@@ -2,8 +2,20 @@
 
 Authority SHA:
 Last reviewed:
+Governance profile: see PROJECT_PROFILE.yaml
 
-This matrix defines which documentation must move transactionally with source changes.
+This matrix defines which applicable documentation must move transactionally with source changes.
+
+## Profile rule
+
+PROJECT_PROFILE.yaml determines which documents are required, optional, or not applicable.
+
+A validator must not force a not_applicable document into existence.
+
+An existing optional contract that is actively maintained is still subject to
+drift checks when related source changes.
+
+STRICT requires explicit applicability decisions for critical optional contracts.
 
 ## Hard rule
 
@@ -11,9 +23,9 @@ This matrix defines which documentation must move transactionally with source ch
 SOURCE PASS + DOC_SYNC FAIL = OVERALL FAIL
 ```
 
-A source change that makes project documentation stale is a project defect.
+A source change that makes applicable project documentation stale is a project defect.
 
-| Change type | Required documentation |
+| Change type | Required documentation when applicable |
 |---|---|
 | Function/class/component added, moved, renamed, removed, or authority changed | SYMBOL_INDEX.md |
 | File/module responsibility or ownership changed | MODULE_MAP.md + SYMBOL_INDEX.md |
@@ -29,8 +41,19 @@ A source change that makes project documentation stale is a project defect.
 | Source/runtime/data/UI/acceptance authority changed | SOURCE_AUTHORITY_MAP.md + CURRENT_STATE.md |
 | Durable architectural/governance decision changed | DECISIONS.md |
 | Confirmed/fixed defect state changed | KNOWN_DEFECTS.md |
-| User-facing project history/release summary changed | CHANGELOG.md when maintained by project |
+| User-facing project history/release summary changed | CHANGELOG.md when maintained |
 | New/removed critical project area | PROJECT_MANIFEST.md + relevant maps/indexes |
+
+## Generated structural facts
+
+Before manually editing structural indexes, regenerate machine facts where applicable:
+
+```bash
+python scripts/generate_symbol_index.py
+python scripts/generate_module_map.py
+```
+
+Generated facts reduce manual drift but do not replace semantic documentation.
 
 ## Mandatory DOC IMPACT declaration
 
@@ -53,56 +76,35 @@ decisions: YES/NO
 known defects: YES/NO
 ```
 
-Every NO must be supported by the actual change scope.
+Every NO must be supported by the actual change scope and project profile.
 
 ## Post-change gate
 
 Before final PASS:
 
 1. inspect changed source files and symbols;
-2. map each change using this matrix;
-3. confirm every required document was updated or explicitly remains valid;
-4. verify SYMBOL_INDEX symbols still resolve;
-5. verify FLOW_INDEX call paths still resolve;
+2. map each change using this matrix and PROJECT_PROFILE.yaml;
+3. regenerate structural facts where applicable;
+4. confirm every required/applicable document was updated or explicitly remains valid;
+5. verify indexed symbols and flows still resolve;
 6. verify CURRENT_STATE reflects actual repository/branch/SHA/phase;
 7. verify TEST_ACCEPTANCE_MATRIX contains only evidence actually executed;
-8. run the handoff validator when available;
-9. reject completion if required documentation is stale.
+8. run the profile-aware validators;
+9. reject completion if applicable documentation is stale.
 
-## Final status
+## Project Truth Synchronization
+
+For STRICT, or when PROJECT_TRUTH_SYNC.md is present for critical flows, verify:
 
 ```text
-DOC_SYNC = PASS
+documentation ↔ source ↔ tests ↔ runtime/E2E evidence
 ```
 
-is required for overall PASS.
-
-## Project Truth Synchronization requirement
-
-DOC_SYNC is necessary but not sufficient.
-
-After applying this matrix, the agent must also maintain PROJECT_TRUTH_SYNC.md and verify affected critical claims across:
-
-documentation ↔ source ↔ tests ↔ runtime/E2E evidence when required.
-
-For every change that affects an authority-bearing behavior, invariant, lifecycle, external contract, data meaning, or runtime behavior:
-
-- update or add the affected truth claim;
-- verify source owner references;
-- verify relevant tests;
-- verify runtime evidence when required;
-- check related documents for contradictions;
-- reject PASS if semantics are NOT_PROVEN.
-
-Final acceptance requires both:
-
-DOC_SYNC = PASS
-PROJECT_STATE_SYNC = PASS
-
+Final acceptance requires every gate required by the selected profile to pass.
 
 ## Cross-document validation gate
 
-Before final PASS, run the cross-document validator against the accepted/base SHA:
+For final acceptance:
 
 ```bash
 python scripts/validate_cross_document_consistency.py \
@@ -111,14 +113,4 @@ python scripts/validate_cross_document_consistency.py \
   --report artifacts/cross_document_sync_report.json
 ```
 
-The validator checks the whole Markdown documentation set for references, stable-claim conflicts, duplicate core docs, selected authority conflicts, explicit stale markers, and required documentation left behind by source changes.
-
 A machine PASS is necessary but not sufficient for semantic correctness.
-
-Final acceptance requires:
-
-```text
-DOC_SYNC = PASS
-CROSS_DOCUMENT_CONSISTENCY = PASS
-PROJECT_STATE_SYNC = PASS
-```
