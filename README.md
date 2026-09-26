@@ -1,36 +1,470 @@
 # Skill Workflow
 
-Reusable project-handoff and codebase-orientation skill for ChatGPT rooms, coding agents, and human developers.
+A reusable project-handoff and codebase-orientation skill for ChatGPT rooms, coding agents, and human developers.
 
-## Start here
+The goal is simple: **let a new room or agent understand a project safely without rereading the entire codebase from scratch.**
 
-Use SKILL.md as the canonical skill. Ready-to-copy project templates live under templates/.
+It focuses on:
+
+- exact project authority;
+- current source/runtime state;
+- architecture and workflow/state-machine mapping;
+- module, symbol, and end-to-end flow indexing;
+- targeted source navigation;
+- evidence-based testing and acceptance;
+- safe handoff between rooms, agents, and developers;
+- preventing accidental redesign, stale assumptions, and false PASS results.
+
+---
+
+## Install
+
+Install directly from GitHub:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow
+```
+
+or:
+
+```bash
+npx skills add https://github.com/maxqstudio/Skill_Workflow
+```
+
+Update installed skills later with:
+
+```bash
+npx skills update
+```
+
+The canonical skill is:
+
+```text
+SKILL.md
+```
+
+---
+
+## What this skill solves
+
+Large projects become difficult to continue when a new room or agent has to reconstruct everything from:
+
+- old chat history;
+- thousands of source lines;
+- stale documentation;
+- unclear branch/SHA authority;
+- undocumented runtime assumptions;
+- incomplete test evidence.
+
+Skill Workflow introduces a standard project map so the next room can answer:
+
+```text
+What is this project?
+What is authoritative?
+What exact SHA is current?
+What phase is active?
+What is the workflow/state machine?
+Which module owns a behavior?
+Which exact function/class implements it?
+What is the end-to-end call path?
+What has actually been tested?
+What is not yet proven?
+What is broken?
+What action is legal next?
+```
+
+without blindly scanning the whole repository.
+
+---
+
+## Core reading workflow
+
+The skill uses this orientation sequence:
+
+```text
+CURRENT_STATE
+→ PROJECT_MANIFEST
+→ SOURCE_AUTHORITY_MAP
+→ ARCHITECTURE
+→ WORKFLOW_STATE_MACHINE
+→ MODULE_MAP
+→ FLOW_INDEX
+→ SYMBOL_INDEX
+→ TEST_ACCEPTANCE_MATRIX
+→ exact relevant source ranges
+→ runtime / E2E verification when required
+```
+
+The idea is to **read the map first, then the code that matters**.
+
+---
 
 ## Core handoff pack
 
-- PROJECT_MANIFEST.md
-- CURRENT_STATE.md
-- SOURCE_AUTHORITY_MAP.md
-- ARCHITECTURE.md
-- WORKFLOW_STATE_MACHINE.md
-- MODULE_MAP.md
-- SYMBOL_INDEX.md
-- FLOW_INDEX.md
-- TEST_ACCEPTANCE_MATRIX.md
+A maintained project should contain these nine files:
 
-## Optional templates
+```text
+PROJECT_MANIFEST.md
+CURRENT_STATE.md
+SOURCE_AUTHORITY_MAP.md
+ARCHITECTURE.md
+WORKFLOW_STATE_MACHINE.md
+MODULE_MAP.md
+SYMBOL_INDEX.md
+FLOW_INDEX.md
+TEST_ACCEPTANCE_MATRIX.md
+```
 
-- DATA_CONTRACTS.md
-- API_CONTRACTS.md
-- UI_INFORMATION_ARCHITECTURE.md
-- RUNBOOK.md
-- DECISIONS.md
-- GLOSSARY.md
-- KNOWN_DEFECTS.md
-- CHANGELOG.md
+Ready-to-copy templates are available under `templates/`.
 
-## Why
+---
 
-A new room or agent should be able to determine project authority, current state, workflow, exact code ownership, evidence boundaries, and the next legal action without reconstructing the project from old chat history or reading the entire codebase blindly.
+## Why SYMBOL_INDEX matters
 
-SYMBOL_INDEX.md acts like a codebase table of contents. FLOW_INDEX.md maps end-to-end behaviors to exact symbols so targeted edits can start at the correct source range.
+`SYMBOL_INDEX.md` acts like a **table of contents for the codebase**.
+
+Instead of opening a 3,000-line file and searching manually, the index can point directly to:
+
+```text
+file: backend/promotion_service.py
+symbol: promote_candidate()
+kind: function
+lines@SHA: 675-980
+responsibility: Candidate → Champion promotion
+reads/writes: lifecycle state + promotion evidence
+tests: test_promotion.py
+```
+
+Recommended index fields:
+
+| File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
+|---|---|---|---|---|---|---|---|
+
+The symbol name is the primary locator.
+
+Line numbers are only navigation hints and should be tied to an exact source SHA.
+
+---
+
+## Why FLOW_INDEX matters
+
+`FLOW_INDEX.md` maps an **end-to-end behavior to its complete call chain**.
+
+Example:
+
+```text
+FLOW: Promote Candidate
+
+UI
+frontend/CandidatesPage.tsx
+  confirmPromotion()
+
+API
+backend/candidate_api.py
+  promote()
+
+SERVICE
+backend/promotion_service.py
+  promote_candidate()
+
+STATE COMMIT
+backend/champion_store.py
+  commit_promotion_authority()
+
+TESTS
+backend/tests/test_promotion.py
+```
+
+This lets an agent immediately see which layers participate in a workflow before editing anything.
+
+Recommended editing order:
+
+```text
+WORKFLOW_STATE_MACHINE
+→ FLOW_INDEX
+→ SYMBOL_INDEX
+→ exact source ranges
+→ relevant tests
+```
+
+---
+
+## Included templates
+
+### Core
+
+- `PROJECT_MANIFEST.md`
+- `CURRENT_STATE.md`
+- `SOURCE_AUTHORITY_MAP.md`
+- `ARCHITECTURE.md`
+- `WORKFLOW_STATE_MACHINE.md`
+- `MODULE_MAP.md`
+- `SYMBOL_INDEX.md`
+- `FLOW_INDEX.md`
+- `TEST_ACCEPTANCE_MATRIX.md`
+
+### Additional contracts
+
+- `DATA_CONTRACTS.md`
+- `API_CONTRACTS.md`
+- `UI_INFORMATION_ARCHITECTURE.md`
+- `RUNBOOK.md`
+- `DECISIONS.md`
+- `GLOSSARY.md`
+- `KNOWN_DEFECTS.md`
+- `CHANGELOG.md`
+
+Not every project needs every optional file.
+
+---
+
+## Key principles
+
+### 1. Exact authority
+
+Always know:
+
+```text
+repository
+branch
+exact SHA
+runtime authority
+acceptance authority
+data authority
+UI authority
+historical/reference authority
+```
+
+If two authorities conflict, do not guess.
+
+---
+
+### 2. Do not blindly scan the whole codebase
+
+Use:
+
+```text
+MODULE_MAP
+→ FLOW_INDEX
+→ SYMBOL_INDEX
+→ exact source range
+```
+
+Expand outward only when the index is stale, incomplete, contradictory, or the task requires a full audit.
+
+---
+
+### 3. Source changed does not mean PASS
+
+A safe repair workflow is:
+
+```text
+identify exact parent SHA
+→ reproduce defect
+→ determine root cause
+→ minimum valid repair
+→ targeted regression
+→ cumulative regression
+→ runtime/E2E verification when required
+→ verify final tested SHA
+→ final audit
+```
+
+Critical invariant:
+
+```text
+FINAL SOURCE SHA
+=
+TESTED SHA
+```
+
+---
+
+### 4. Acceptance must match the evidence
+
+Examples:
+
+```text
+Unit PASS
+≠ Runtime PASS
+
+Runtime starts
+≠ UI/E2E PASS
+
+UI/E2E PASS
+≠ Physical-device PASS
+
+Historical physical proof
+≠ Current physical execution
+
+Build success
+≠ Scientific validity
+```
+
+Never convert `NOT_RUN` into `PASS`.
+
+---
+
+### 5. Active state is not history
+
+Keep these concepts separate:
+
+```text
+ACTIVE STATE
+HISTORICAL EVIDENCE
+ARCHIVE
+```
+
+Historical evidence should usually remain immutable even when an object leaves an active workflow.
+
+---
+
+### 6. Configuration is not execution history
+
+Separate:
+
+```text
+CURRENT CONFIGURATION
+from
+FROZEN EXECUTION SNAPSHOT
+```
+
+Changing a setting should not rewrite evidence from an execution that already happened.
+
+---
+
+### 7. Frontend should display truth, not create truth
+
+Correct:
+
+```text
+backend/domain authority
+→ API
+→ semantic user-facing representation
+→ UI
+```
+
+Wrong:
+
+```text
+frontend hardcoded lifecycle state
+→ apparent project truth
+```
+
+---
+
+### 8. Prevent accidental redesign
+
+Architecture, UI, or workflow changes should require one of:
+
+- a confirmed defect;
+- an explicit owner request;
+- an accepted roadmap change.
+
+Otherwise, preserve the accepted design.
+
+---
+
+## New-room startup procedure
+
+When entering an existing project:
+
+1. Read `CURRENT_STATE.md`.
+2. Read `PROJECT_MANIFEST.md`.
+3. Read `SOURCE_AUTHORITY_MAP.md`.
+4. Read `ARCHITECTURE.md`.
+5. Read `WORKFLOW_STATE_MACHINE.md`.
+6. Read `MODULE_MAP.md`.
+7. Read `FLOW_INDEX.md`.
+8. Read `SYMBOL_INDEX.md`.
+9. Read `TEST_ACCEPTANCE_MATRIX.md`.
+10. Open only the exact relevant source ranges first.
+
+This is the default fast-orientation mode.
+
+---
+
+## Handoff quality gate
+
+A handoff is not complete until a new room can determine, without reconstructing old chats:
+
+```text
+project identity
+current authority
+current exact SHA
+current phase
+workflow/state machine
+module ownership
+symbol ownership
+critical call paths
+authoritative data/state
+proven evidence
+unproven evidence
+known defects
+next legal action
+blocked actions
+```
+
+---
+
+## Repository structure
+
+```text
+Skill_Workflow/
+├─ README.md
+├─ SKILL.md
+└─ templates/
+   ├─ PROJECT_MANIFEST.md
+   ├─ CURRENT_STATE.md
+   ├─ SOURCE_AUTHORITY_MAP.md
+   ├─ ARCHITECTURE.md
+   ├─ WORKFLOW_STATE_MACHINE.md
+   ├─ MODULE_MAP.md
+   ├─ SYMBOL_INDEX.md
+   ├─ FLOW_INDEX.md
+   ├─ TEST_ACCEPTANCE_MATRIX.md
+   ├─ DATA_CONTRACTS.md
+   ├─ API_CONTRACTS.md
+   ├─ UI_INFORMATION_ARCHITECTURE.md
+   ├─ RUNBOOK.md
+   ├─ DECISIONS.md
+   ├─ GLOSSARY.md
+   ├─ KNOWN_DEFECTS.md
+   └─ CHANGELOG.md
+```
+
+---
+
+## Use cases
+
+This workflow is useful for:
+
+- large long-running software projects;
+- projects frequently moved between AI rooms or coding agents;
+- multi-repository systems;
+- Android/iOS applications;
+- web/backend platforms;
+- ML/AI research pipelines;
+- trading/research systems;
+- data engineering projects;
+- hardware/device integration;
+- projects requiring strict audit lineage;
+- teams that need durable AI-assisted development handoff.
+
+---
+
+## Contributing
+
+Improvements are welcome.
+
+Useful contributions include:
+
+- better templates;
+- language-specific symbol index generators;
+- AST-based indexing tools;
+- workflow/call-chain extractors;
+- documentation drift detectors;
+- handoff validators;
+- acceptance-matrix tooling.
+
+The main requirement is that additions preserve the core goal: **faster orientation without sacrificing project authority, workflow integrity, or evidence quality.**
