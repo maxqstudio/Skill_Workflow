@@ -959,11 +959,12 @@ Verify:
 When available, run:
 
 ```bash
-python scripts/validate_handoff.py
-python scripts/validate_project_docs.py
-python scripts/validate_human_comprehension.py --require-pass
-python scripts/validate_sequence_sessions.py
-python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
+python .workflow/tools/validate_handoff.py
+python .workflow/tools/validate_project_docs.py
+python .workflow/tools/validate_doc_quality.py
+python .workflow/tools/validate_human_comprehension.py --require-pass
+python .workflow/tools/validate_sequence_sessions.py
+python .workflow/tools/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 ```
 
 All required validators are blocking gates. The human-comprehension validator checks coverage/status, while the cross-document validator scans all project Markdown, stable claims, local references, selected authority fields, and required doc freshness from the accepted/base SHA.
@@ -1175,6 +1176,9 @@ BEHAVIORAL_SYNC: PASS / NOT_APPLICABLE
 CROSS_DOCUMENT_CONSISTENCY: PASS
 HUMAN_COMPREHENSION: PASS
 SEQUENCE_SYNC: PASS / NOT_APPLICABLE
+DOC_LAYOUT: PASS / NOT_APPLICABLE
+PROJECT_DOCS_NORMALIZED: PASS / NOT_APPLICABLE
+DOC_READABILITY: PASS / NOT_APPLICABLE
 PROJECT_DOCS_SYNC: PASS / NOT_APPLICABLE
 DOC_SOURCE_TRACEABILITY: PASS
 DOC_TEST_TRACEABILITY: PASS
@@ -1197,7 +1201,7 @@ python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA>
 
 For STRICT, or when PROJECT_TRUTH_SYNC.md is present:
 
-python scripts/validate_project_truth.py
+python .workflow/tools/validate_project_truth.py
 
 A skipped validator must be justified by PROJECT_PROFILE.yaml, never by convenience.
 
@@ -1207,8 +1211,9 @@ Structural validator PASS is necessary but not sufficient for semantic truth.
 
 A task is DONE only when source/contract repair is complete, required
 tests/runtime evidence pass, DOC_SYNC passes, HUMAN_COMPREHENSION_GATE passes,
-applicable SEQUENCE_SYNC passes, PROJECT_DOCS_SYNC passes when generated
-documentation is enabled, PROJECT_STATE_SYNC passes, final tested HEAD equals
+applicable SEQUENCE_SYNC passes, DOC_LAYOUT / PROJECT_DOCS_NORMALIZED /
+DOC_READABILITY / PROJECT_DOCS_SYNC pass when generated documentation is
+enabled, PROJECT_STATE_SYNC passes, final tested HEAD equals
 final source/documentation HEAD, and evidence boundaries are explicit.
 
 
