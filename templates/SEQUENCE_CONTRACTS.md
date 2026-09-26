@@ -42,7 +42,8 @@ docs/sequence/
     <phase>-<session>.actual.mmd
   runtime/
     <phase>-<session>.runtime.json
-  reports/
+artifacts/
+  sequence/
     <phase>-<session>.acceptance.json
 ```
 
@@ -50,6 +51,10 @@ Plan Mermaid is generated from the frozen machine-readable plan.
 
 Actual JSON and Mermaid are generated from the codebase and optional runtime
 trace.
+
+Final acceptance reports should live under `artifacts/sequence/` (or another
+external/generated evidence location) so recording validation evidence does not
+force a report-only source commit.
 
 Generated Mermaid files are views, not editable authority.
 
