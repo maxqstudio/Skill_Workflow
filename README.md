@@ -181,9 +181,10 @@ SKILL.md
 
 ## Support the project
 
-If Skill Workflow is useful for your projects, you can support ongoing development through Saweria:
+If Skill Workflow is useful for your projects, you can support ongoing development through:
 
-**[Support MAXQ on Saweria](https://saweria.co/maxq)**
+- **[Saweria](https://saweria.co/maxq)**
+- **[PayPal](https://paypal.me/JacksonJackson1501)**
 
 Support is optional and does not affect access to the public repository or its features.
 
