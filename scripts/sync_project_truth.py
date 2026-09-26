@@ -55,8 +55,13 @@ def main() -> int:
         print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
         return 1
 
-    compiler = root / "scripts" / "generate_project_docs.py"
-    validator = root / "scripts" / "validate_project_docs.py"
+    tool_dir = Path(__file__).resolve().parent
+    compiler = tool_dir / "generate_project_docs.py"
+    validator = tool_dir / "validate_project_docs.py"
+    if not compiler.is_file():
+        compiler = root / "scripts" / "generate_project_docs.py"
+    if not validator.is_file():
+        validator = root / "scripts" / "validate_project_docs.py"
     if not compiler.is_file():
         print("FAIL PROJECT_TRUTH_COMPILER_MISSING")
         return 1
@@ -129,7 +134,15 @@ def main() -> int:
         return code
 
     print("PROJECT_DOCS_SYNC=PASS")
-    print("RECORDED_GATE=.workflow/acceptance.json::truth_gates.PROJECT_DOCS_SYNC")
+    try:
+        gate_ref = acceptance_path.relative_to(root).as_posix()
+    except ValueError:
+        gate_ref = str(acceptance_path)
+    print(
+        "RECORDED_GATE="
+        + gate_ref
+        + "::truth_gates.PROJECT_DOCS_SYNC"
+    )
     return 0
 
 
