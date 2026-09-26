@@ -207,10 +207,14 @@ Initialize:
 python scripts/initialize_project_truth.py
 ```
 
+Initializer vendors runtime tools into `.workflow/tools/`. This keeps project
+governance tooling project-local and independent of Codex/Claude/Cursor skill
+installation paths.
+
 Synchronize code facts and generated docs:
 
 ```bash
-python scripts/sync_project_truth.py
+python .workflow/tools/sync_project_truth.py
 ```
 
 This command:
@@ -226,8 +230,8 @@ generate
 Low-level commands:
 
 ```bash
-python scripts/generate_project_docs.py
-python scripts/validate_project_docs.py
+python .workflow/tools/generate_project_docs.py
+python .workflow/tools/validate_project_docs.py
 ```
 
 Executable regression self-test:
