@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "authorities": [
+    {
+      "concern": "source",
+      "authority": "replace-me",
+      "meaning": "replace-me",
+      "mutable": true
+    }
+  ],
+  "invariants": []
+}
