@@ -85,12 +85,8 @@ The skill uses this orientation sequence:
 PROJECT_PROFILE
 → CURRENT_STATE
 → PROJECT_MANIFEST
-→ SOURCE_AUTHORITY_MAP
-→ ARCHITECTURE
-→ WORKFLOW_STATE_MACHINE
-→ MODULE_MAP
-→ FLOW_INDEX
-→ SYMBOL_INDEX
+→ profile-required authority / architecture / workflow docs
+→ profile-required MODULE / FLOW / SYMBOL maps
 → TEST_ACCEPTANCE_MATRIX
 → exact relevant source ranges
 → runtime / E2E verification when required
