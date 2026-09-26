@@ -384,11 +384,19 @@ python .workflow/tools/generate_project_docs.py
 python .workflow/tools/validate_project_docs.py
 ```
 
-Run the compiler's executable regression self-test with:
+Run the compiler regression self-test with:
 
 ```bash
 python scripts/selftest_project_truth_compiler.py
 ```
+
+Run the full STRICT governance integration self-test with:
+
+```bash
+python scripts/selftest_strict_project_workflow.py
+```
+
+The STRICT fixture creates a temporary Git repository, generates DURING sequence evidence and `docs/`, runs the blocking validator chain, and verifies every validator is read-only on the final clean snapshot.
 
 When generated documentation is enabled:
 
@@ -1213,6 +1221,7 @@ Skill_Workflow/
 │  ├─ validate_doc_quality.py
 │  ├─ sync_project_truth.py
 │  ├─ selftest_project_truth_compiler.py
+│  ├─ selftest_strict_project_workflow.py
 │  ├─ generate_symbol_index.py
 │  ├─ generate_module_map.py
 │  ├─ sequence_contract.py
