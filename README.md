@@ -372,8 +372,10 @@ Populate semantic/governance specs, then synchronize documentation:
 python .workflow/tools/sync_project_truth.py
 ```
 
-That command generates docs/facts, validates reproducibility, records only
-`PROJECT_DOCS_SYNC=PASS`, regenerates, and validates again.
+That command generates docs/facts, validates reproducibility, records only the
+documentation gates `DOC_LAYOUT`, `PROJECT_DOCS_NORMALIZED`,
+`DOC_READABILITY`, and `PROJECT_DOCS_SYNC` as PASS, regenerates, and
+validates again.
 
 Low-level commands remain available:
 
