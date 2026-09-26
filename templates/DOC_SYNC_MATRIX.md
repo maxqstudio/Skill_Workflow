@@ -76,3 +76,25 @@ DOC_SYNC = PASS
 ```
 
 is required for overall PASS.
+
+## Project Truth Synchronization requirement
+
+DOC_SYNC is necessary but not sufficient.
+
+After applying this matrix, the agent must also maintain PROJECT_TRUTH_SYNC.md and verify affected critical claims across:
+
+documentation ↔ source ↔ tests ↔ runtime/E2E evidence when required.
+
+For every change that affects an authority-bearing behavior, invariant, lifecycle, external contract, data meaning, or runtime behavior:
+
+- update or add the affected truth claim;
+- verify source owner references;
+- verify relevant tests;
+- verify runtime evidence when required;
+- check related documents for contradictions;
+- reject PASS if semantics are NOT_PROVEN.
+
+Final acceptance requires both:
+
+DOC_SYNC = PASS
+PROJECT_STATE_SYNC = PASS
