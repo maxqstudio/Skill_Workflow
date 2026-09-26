@@ -20,6 +20,7 @@ from project_profile import (
     parse_profile,
     required_docs,
     runtime_settings,
+    sequence_settings,
     validate_profile,
 )
 
@@ -33,6 +34,7 @@ REQUIRED_GATES = [
     "BEHAVIORAL_SYNC",
     "CROSS_DOCUMENT_CONSISTENCY",
     "HUMAN_COMPREHENSION",
+    "SEQUENCE_SYNC",
     "DOC_SOURCE_TRACEABILITY",
     "DOC_TEST_TRACEABILITY",
     "TEST_RUNTIME_TRACEABILITY",
@@ -113,6 +115,7 @@ def main() -> int:
         profile_name = "standard"
         truth_required = False
         runtime_policy = {"e2e_required": True}
+        sequence_policy = {"required": True, "runtime_trace_required": False}
     else:
         try:
             profile_data = parse_profile(profile_path)
@@ -120,11 +123,13 @@ def main() -> int:
             profile_name = normalized_profile(profile_data)
             truth_required = "PROJECT_TRUTH_SYNC.md" in required_docs(profile_data)
             runtime_policy = runtime_settings(profile_data)
+            sequence_policy = sequence_settings(profile_data)
         except Exception as exc:
             failures.append("PROJECT_PROFILE_INVALID:" + str(exc))
             profile_name = "standard"
             truth_required = False
             runtime_policy = {"e2e_required": True}
+            sequence_policy = {"required": True, "runtime_trace_required": False}
 
     ledger = root / args.ledger
 
@@ -239,6 +244,13 @@ def main() -> int:
             failures.append(
                 "TRUTH_GATE_HUMAN_COMPREHENSION_CONFLICT:"
                 + (human_status or "MISSING")
+            )
+
+    if sequence_policy.get("required", False):
+        sequence_gate = gates.get("SEQUENCE_SYNC")
+        if sequence_gate not in {"PASS", None}:
+            failures.append(
+                f"SEQUENCE_SYNC_REQUIRED_BUT_NOT_PASS:{sequence_gate}"
             )
 
     if runtime_policy.get("e2e_required", True):
