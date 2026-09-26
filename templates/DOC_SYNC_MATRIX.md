@@ -101,18 +101,18 @@ Do not blindly modify source to satisfy a generated comparison.
 ## Required validators
 
 ```bash
-python scripts/validate_project_docs.py
-python scripts/validate_handoff.py
-python scripts/validate_human_comprehension.py --require-pass
-python scripts/validate_sequence_sessions.py
-python scripts/validate_cross_document_consistency.py \
+python .workflow/tools/validate_project_docs.py
+python .workflow/tools/validate_handoff.py
+python .workflow/tools/validate_human_comprehension.py --require-pass
+python .workflow/tools/validate_sequence_sessions.py
+python .workflow/tools/validate_cross_document_consistency.py \
   --base <LAST_ACCEPTED_SHA> --require-base
 ```
 
 For STRICT, or when PROJECT_TRUTH_SYNC.md exists:
 
 ```bash
-python scripts/validate_project_truth.py
+python .workflow/tools/validate_project_truth.py
 ```
 
 A validator PASS proves only its stated machine-verifiable scope. It does not
