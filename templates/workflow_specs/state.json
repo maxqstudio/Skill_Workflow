@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "phase": "replace-me",
+  "status": "replace-me",
+  "last_accepted_sha": "",
+  "last_accepted_branch": "",
+  "proven": [],
+  "not_proven": [],
+  "blockers": [],
+  "next_authorized_actions": [],
+  "blocked_actions": []
+}
