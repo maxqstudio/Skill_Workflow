@@ -19,6 +19,7 @@ from project_profile import (
     normalized_profile,
     parse_profile,
     required_docs,
+    runtime_settings,
     validate_profile,
 )
 
@@ -110,16 +111,19 @@ def main() -> int:
         failures.append("MISSING_PROJECT_PROFILE")
         profile_name = "standard"
         truth_required = False
+        runtime_policy = {"e2e_required": True}
     else:
         try:
             profile_data = parse_profile(profile_path)
             failures.extend(validate_profile(profile_data))
             profile_name = normalized_profile(profile_data)
             truth_required = "PROJECT_TRUTH_SYNC.md" in required_docs(profile_data)
+            runtime_policy = runtime_settings(profile_data)
         except Exception as exc:
             failures.append("PROJECT_PROFILE_INVALID:" + str(exc))
             profile_name = "standard"
             truth_required = False
+            runtime_policy = {"e2e_required": True}
 
     ledger = root / args.ledger
 
@@ -212,6 +216,13 @@ def main() -> int:
                     checked_refs += 1
                     if not file_exists(root, ref):
                         warnings.append(f"RUNTIME_EVIDENCE_PATH_UNRESOLVED:{claim_id}:{ref}")
+
+    if runtime_policy.get("e2e_required", True):
+        runtime_gate = gates.get("RUNTIME_E2E")
+        if runtime_gate not in {"PASS", None}:
+            failures.append(
+                f"RUNTIME_E2E_REQUIRED_BUT_NOT_PASS:{runtime_gate}"
+            )
 
     if gates.get("PROJECT_STATE_SYNC") == "PASS":
         for gate in REQUIRED_GATES:
