@@ -254,24 +254,34 @@ def required_docs_for_diff(changes: list[tuple[str, str]], profile_required: set
     if any(status in {"A", "D"} and is_source(path) for status, path in changes):
         if "MODULE_MAP.md" in profile_required or "MODULE_MAP.md" in present_docs:
             required.add("MODULE_MAP.md")
+        if "SYSTEM_OVERVIEW.md" in profile_required or "SYSTEM_OVERVIEW.md" in present_docs:
+            required.add("SYSTEM_OVERVIEW.md")
 
     paths = [p.lower().replace("\\", "/") for p in source_paths]
 
     if any(any(k in p for k in ("/api/", "route", "router", "controller", "endpoint")) for p in paths):
+        if "SYSTEM_OVERVIEW.md" in profile_required or "SYSTEM_OVERVIEW.md" in present_docs:
+            required.add("SYSTEM_OVERVIEW.md")
         if settings.get("api_contracts") == "required" or "API_CONTRACTS.md" in present_docs:
             required.add("API_CONTRACTS.md")
         if "FLOW_INDEX.md" in profile_required or "FLOW_INDEX.md" in present_docs:
             required.add("FLOW_INDEX.md")
 
     if any(any(k in p for k in ("/ui/", "/frontend/", "/screens/", "/pages/", "/components/")) for p in paths):
+        if "SYSTEM_OVERVIEW.md" in profile_required or "SYSTEM_OVERVIEW.md" in present_docs:
+            required.add("SYSTEM_OVERVIEW.md")
         if settings.get("ui_information_architecture") == "required" or "UI_INFORMATION_ARCHITECTURE.md" in present_docs:
             required.add("UI_INFORMATION_ARCHITECTURE.md")
 
     if any(any(k in p for k in ("migration", "schema", "/db/", "/database/", "/models/", "/data/")) for p in paths):
+        if "SYSTEM_OVERVIEW.md" in profile_required or "SYSTEM_OVERVIEW.md" in present_docs:
+            required.add("SYSTEM_OVERVIEW.md")
         if settings.get("data_contracts") == "required" or "DATA_CONTRACTS.md" in present_docs:
             required.add("DATA_CONTRACTS.md")
 
     if any(any(k in p for k in ("workflow", "lifecycle", "state_machine", "state-machine", "promotion")) for p in paths):
+        if "SYSTEM_OVERVIEW.md" in profile_required or "SYSTEM_OVERVIEW.md" in present_docs:
+            required.add("SYSTEM_OVERVIEW.md")
         for name in ("WORKFLOW_STATE_MACHINE.md", "FLOW_INDEX.md"):
             if name in profile_required or name in present_docs:
                 required.add(name)
