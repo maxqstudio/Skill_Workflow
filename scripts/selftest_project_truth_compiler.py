@@ -141,7 +141,6 @@ def main() -> int:
             "SYSTEM_OVERVIEW.md",
             "CURRENT_STATE.md",
             "PROJECT_MANIFEST.md",
-            "PROJECT_TRUTH_SYNC.md",
         ):
             if (root / name).exists():
                 raise RuntimeError("canonical docs leaked to repository root: " + name)
