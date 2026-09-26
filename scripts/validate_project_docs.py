@@ -46,6 +46,13 @@ def main() -> int:
         print("FAIL PROJECT_TRUTH_COMPILER_MISSING")
         return 1
 
+    quality_validator = tool_dir / "validate_doc_quality.py"
+    if not quality_validator.is_file():
+        quality_validator = root / "scripts" / "validate_doc_quality.py"
+    if not quality_validator.is_file():
+        print("FAIL DOC_QUALITY_VALIDATOR_MISSING")
+        return 1
+
     cmd = [
         sys.executable,
         str(compiler),
@@ -68,6 +75,32 @@ def main() -> int:
         print("PROJECT_DOCS_SYNC=FAIL")
         return proc.returncode
 
+    quality_report = str(Path(args.report).with_name("doc_quality_report.json"))
+    quality = subprocess.run(
+        [
+            sys.executable,
+            str(quality_validator),
+            "--root",
+            str(root),
+            "--report",
+            quality_report,
+        ],
+        cwd=root,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(quality.stdout, end="")
+    if quality.returncode != 0:
+        print("DOC_LAYOUT=FAIL")
+        print("DOC_READABILITY=FAIL")
+        print("PROJECT_DOCS_SYNC=FAIL")
+        return quality.returncode
+
+    print("DOC_LAYOUT=PASS")
+    print("PROJECT_DOCS_NORMALIZED=PASS")
+    print("DOC_READABILITY=PASS")
     print("PROJECT_DOCS_SYNC=PASS")
     return 0
 
