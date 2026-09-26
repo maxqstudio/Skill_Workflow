@@ -1,0 +1,39 @@
+# Skill Workflow governance profile
+#
+# Profiles:
+#   lite     - small/low-complexity projects
+#   standard - default for normal multi-session development
+#   strict   - high-risk, multi-agent, financial, ML/research, hardware,
+#              production infrastructure, or audit-sensitive projects
+#
+# Contract values:
+#   required
+#   optional
+#   not_applicable
+#
+# STRICT requires explicit required/not_applicable decisions for the critical
+# contract categories checked by the validator.
+
+profile: standard
+
+contracts:
+  api_contracts: optional
+  data_contracts: optional
+  ui_information_architecture: optional
+  runbook: optional
+  decisions: optional
+  known_defects: optional
+  glossary: optional
+  changelog: optional
+
+runtime:
+  e2e_required: true
+  physical_device_required: false
+
+indexing:
+  generated_structural_facts: true
+  symbol_index_required: true
+  flow_index_mode: semantic_verified
+
+notes:
+  profile_reason: replace-me
