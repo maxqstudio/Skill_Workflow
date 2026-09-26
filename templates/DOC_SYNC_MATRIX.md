@@ -1,182 +1,94 @@
 # DOCUMENTATION SYNC MATRIX
 
-Authority SHA:
-Last reviewed:
-Governance profile: see PROJECT_PROFILE.yaml
+## Generated documentation mode
 
-This matrix defines which applicable documentation must move transactionally with source changes.
+For STANDARD and STRICT projects, documentation is compiled from upstream
+authorities instead of being maintained manually.
 
-## Profile rule
-
-PROJECT_PROFILE.yaml determines which documents are required, optional, or not applicable.
-
-A validator must not force a not_applicable document into existence.
-
-An existing optional contract that is actively maintained is still subject to
-drift checks when related source changes.
-
-STRICT requires explicit applicability decisions for critical optional contracts.
-
-## Hard rule
+Canonical transaction:
 
 ```text
-SOURCE PASS + DOC_SYNC FAIL = OVERALL FAIL
+SOURCE CODE
++ .workflow SEMANTIC / GOVERNANCE SPECS
++ TEST / RUNTIME EVIDENCE STATE
+→ PROJECT TRUTH COMPILER
+→ GENERATED MARKDOWN
 ```
 
-A source change that makes applicable project documentation stale is a project defect.
+Generated Markdown is a projection. It MUST NOT be edited as the primary repair.
 
-| Change type | Required documentation when applicable |
-|---|---|
-| Function/class/component added, moved, renamed, removed, or authority changed | SYMBOL_INDEX.md |
-| File/module responsibility or ownership changed | MODULE_MAP.md + SYMBOL_INDEX.md |
-| End-to-end call path changed | SEQUENCE_CONTRACTS.md + relevant sequence session/generated actual + FLOW_INDEX.md + SYMBOL_INDEX.md |
-| Lifecycle/state transition changed | SYSTEM_OVERVIEW.md when human-visible behavior changes + WORKFLOW_STATE_MACHINE.md + SEQUENCE_CONTRACTS.md + relevant sequence acceptance + FLOW_INDEX.md + TEST_ACCEPTANCE_MATRIX.md |
-| Public API/event contract changed | SYSTEM_OVERVIEW.md when user/domain flow changes + API_CONTRACTS.md + SEQUENCE_CONTRACTS.md + relevant sequence acceptance + FLOW_INDEX.md + TEST_ACCEPTANCE_MATRIX.md |
-| Database/schema/data semantics changed | SYSTEM_OVERVIEW.md when human-visible data meaning/flow changes + DATA_CONTRACTS.md + MODULE_MAP.md + TEST_ACCEPTANCE_MATRIX.md |
-| UI workspace/page/action/authority changed | SYSTEM_OVERVIEW.md when main user workflow changes + UI_INFORMATION_ARCHITECTURE.md + FLOW_INDEX.md when call path changes |
-| Architecture/dependency/runtime boundary changed | SYSTEM_OVERVIEW.md + ARCHITECTURE.md + SOURCE_AUTHORITY_MAP.md when authority changes |
-| Runtime/start/build/recovery procedure changed | RUNBOOK.md |
-| Test/evidence behavior changed | TEST_ACCEPTANCE_MATRIX.md |
-| Candidate/phase/current SHA/blocker/next action changed | SYSTEM_OVERVIEW.md current-state summary + CURRENT_STATE.md |
-| Source/runtime/data/UI/acceptance authority changed | SOURCE_AUTHORITY_MAP.md + CURRENT_STATE.md |
-| Durable architectural/governance decision changed | DECISIONS.md |
-| Confirmed/fixed defect state changed | KNOWN_DEFECTS.md |
-| User-facing project history/release summary changed | CHANGELOG.md when maintained |
-| New/removed critical project area | SYSTEM_OVERVIEW.md + PROJECT_MANIFEST.md + relevant maps/indexes |
+## Upstream change map
 
-## Generated structural facts
+| Change type | Upstream authority to update | Generated projections |
+|---|---|---|
+| Project identity, purpose, users, outcomes | .workflow/project.json | PROJECT_MANIFEST.md + SYSTEM_OVERVIEW.md |
+| Authority, mutability, invariants | .workflow/authority.json | SOURCE_AUTHORITY_MAP.md + SYSTEM_OVERVIEW.md |
+| Current phase, blockers, next/blocked action | .workflow/state.json | CURRENT_STATE.md + SYSTEM_OVERVIEW.md |
+| Architecture/component/data-flow meaning | .workflow/architecture.json | ARCHITECTURE.md + SYSTEM_OVERVIEW.md |
+| Workflow/lifecycle semantics | .workflow/workflows/*.json | WORKFLOW_STATE_MACHINE.md + FLOW_INDEX.md + SYSTEM_OVERVIEW.md |
+| Sequence policy/session | docs/sequence/* + .workflow/acceptance.json | SEQUENCE_CONTRACTS.md + TEST_ACCEPTANCE_MATRIX.md |
+| API/data/UI/runbook semantics | .workflow/contracts.json | API_CONTRACTS.md / DATA_CONTRACTS.md / UI_INFORMATION_ARCHITECTURE.md / RUNBOOK.md |
+| Critical truth claims and relations | .workflow/claims.json | PROJECT_TRUTH_SYNC.md |
+| Test/runtime/evidence status | .workflow/acceptance.json | TEST_ACCEPTANCE_MATRIX.md + CURRENT_STATE.md + PROJECT_TRUTH_SYNC.md |
+| Durable design decision | .workflow/decisions.json | DECISIONS.md |
+| Known defect lifecycle | .workflow/known_defects.json | KNOWN_DEFECTS.md |
+| Glossary meaning | .workflow/glossary.json | GLOSSARY.md |
+| Changelog/release history | .workflow/changelog.json | CHANGELOG.md |
+| Implementation structure | source code | MODULE_MAP.md + SYMBOL_INDEX.md + observed FLOW_INDEX facts |
 
-Before manually editing structural indexes, regenerate machine facts where applicable:
-
-```bash
-python scripts/generate_symbol_index.py
-python scripts/generate_module_map.py
-```
-
-Generated facts reduce manual drift but do not replace semantic documentation.
-
-## Mandatory DOC IMPACT declaration
-
-Before source modification:
+## Required workflow
 
 ```text
-DOC IMPACT
-system overview: YES/NO
-architecture: YES/NO
-workflow/state machine: YES/NO
-module map: YES/NO
-symbol index: YES/NO
-flow index: YES/NO
-sequence contract: YES/NO
-API contract: YES/NO
-data contract: YES/NO
-UI information architecture: YES/NO
-runbook: YES/NO
-test acceptance matrix: YES/NO
-current state: YES
-decisions: YES/NO
-known defects: YES/NO
+declare DOC IMPACT
+→ update source and/or .workflow authority
+→ generate code facts
+→ generate project docs
+→ generate/validate sequence evidence when applicable
+→ test
+→ update evidence state
+→ regenerate
+→ validate_project_docs.py
+→ cross-document validation
+→ final runtime/E2E when required
+→ final regeneration + validation
 ```
 
-Every NO must be supported by the actual change scope and project profile.
+## Hard gate
 
-## Post-change gate
-
-Before final PASS:
-
-1. inspect changed source files and symbols;
-2. map each change using this matrix and PROJECT_PROFILE.yaml;
-3. regenerate structural facts and actual sequence graphs where applicable;
-4. validate the correct sequence mode (BEFORE / DURING / AFTER);
-5. confirm every required/applicable document was updated or explicitly remains valid;
-6. verify indexed symbols and flows still resolve;
-7. verify CURRENT_STATE reflects actual repository/branch/SHA/phase;
-8. verify TEST_ACCEPTANCE_MATRIX contains only evidence actually executed;
-9. run applicable `validate_sequence_contract.py` session gates;
-10. run `python scripts/validate_human_comprehension.py --require-pass`;
-11. run the remaining profile-aware validators;
-12. reject completion if applicable documentation is stale.
-
-## Project Truth Synchronization
-
-For STRICT, or when PROJECT_TRUTH_SYNC.md is present for critical flows, verify:
+When generated documentation is enabled:
 
 ```text
-documentation ↔ source ↔ tests ↔ runtime/E2E evidence
+PROJECT_DOCS_SYNC = PASS
 ```
 
-Final acceptance requires every gate required by the selected profile to pass.
+is required.
 
-## Cross-document validation gate
-
-For final acceptance:
-
-```bash
-python scripts/validate_cross_document_consistency.py \
-  --base <LAST_ACCEPTED_SHA> \
-  --require-base \
-  --report artifacts/cross_document_sync_report.json
-```
-
-A machine PASS is necessary but not sufficient for semantic correctness.
-
-
-## Human comprehension sync rule
-
-SYSTEM_OVERVIEW.md is a human-facing semantic contract, not a marketing summary.
-
-Update it when a change materially alters:
-
-- project purpose or user outcome;
-- major component boundaries;
-- important data flow;
-- main user/domain workflows;
-- lifecycle semantics;
-- authority boundaries;
-- mutable vs immutable behavior;
-- failure/recovery behavior;
-- current phase, blockers, or next legal action.
-
-Do not update it for trivial internal refactors that do not change the human
-mental model.
-
-Final documentation acceptance requires:
+If compiler output differs from tracked docs:
 
 ```text
-python scripts/validate_human_comprehension.py --require-pass
+PROJECT_DOCS_SYNC = FAIL
+OVERALL STATUS = REPAIR REQUIRED — GENERATED DOCUMENTATION DRIFT
 ```
 
-A structural PASS is necessary but does not replace semantic review.
+Repair the upstream source/spec, then regenerate.
 
+## Manual mode
 
-## Sequence contract sync rule
+LITE may explicitly set:
 
-When sequence policy is enabled, flow-changing source work is incomplete until
-the applicable session contract is validated.
-
-Mode rules:
-
-```text
-BEFORE
-plan exists before implementation
-→ plan is frozen
-→ implementation
-→ actual graph generated from code
-→ plan vs actual
-→ repair until match
-
-DURING
-no retrospective plan
-→ actual graph generated from current code
-→ source/test/runtime acceptance
-
-AFTER
-no retrospective plan
-→ final actual graph generated from final code
-→ source/test/runtime acceptance
+```yaml
+documentation:
+  generated: false
 ```
 
-Never repair a mismatch blindly. First classify:
+In manual mode, the legacy per-document freshness rules apply.
+
+## Sequence contract sync
+
+When sequence policy is enabled, flow-changing work is incomplete until the
+applicable BEFORE / DURING / AFTER session contract is validated.
+
+Mismatch classification:
 
 ```text
 CODE_DEFECT
@@ -184,4 +96,24 @@ PLAN_CHANGE
 GENERATOR_DEFECT
 ```
 
-Manual Mermaid edits are forbidden for canonical sequence artifacts.
+Do not blindly modify source to satisfy a generated comparison.
+
+## Required validators
+
+```bash
+python scripts/validate_project_docs.py
+python scripts/validate_handoff.py
+python scripts/validate_human_comprehension.py --require-pass
+python scripts/validate_sequence_sessions.py
+python scripts/validate_cross_document_consistency.py \
+  --base <LAST_ACCEPTED_SHA> --require-base
+```
+
+For STRICT, or when PROJECT_TRUTH_SYNC.md exists:
+
+```bash
+python scripts/validate_project_truth.py
+```
+
+A validator PASS proves only its stated machine-verifiable scope. It does not
+replace semantic or runtime evidence.
