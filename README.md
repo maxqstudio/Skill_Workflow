@@ -495,6 +495,12 @@ python scripts/validate_sequence_contract.py \
 python scripts/validate_sequence_sessions.py
 ```
 
+When sequence policy is required, final acceptance requires:
+
+```text
+SEQUENCE_SYNC = PASS
+```
+
 Mismatch does not automatically mean the code is wrong. Classify first:
 
 ```text
@@ -821,6 +827,8 @@ PROVENANCE
 + SEMANTICS
 + BEHAVIOR
 + CROSS-DOCUMENT CONSISTENCY
++ HUMAN COMPREHENSION
++ SEQUENCE SYNC when required
 + DOC ↔ SOURCE ↔ TEST ↔ RUNTIME TRACEABILITY
 =
 PROJECT_STATE_SYNC
@@ -850,7 +858,7 @@ python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA>
 python scripts/validate_project_truth.py
 ```
 
-`validate_handoff.py` and `validate_cross_document_consistency.py` are profile-aware. `validate_human_comprehension.py` applies to every profile because `SYSTEM_OVERVIEW.md` is universal. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
+`validate_handoff.py`, `validate_sequence_sessions.py`, and `validate_cross_document_consistency.py` honor the project profile. `validate_human_comprehension.py` applies to every profile because `SYSTEM_OVERVIEW.md` is universal. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
 
 The truth validator checks machine-verifiable provenance, references, and structure. Semantic correctness still requires inspection of the mapped source/tests/runtime. A structural PASS must never be reported as semantic proof.
 
