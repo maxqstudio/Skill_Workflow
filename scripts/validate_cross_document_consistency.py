@@ -321,6 +321,35 @@ def main() -> int:
     failures.extend(ledger_failures)
     observed: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
 
+    relation_rows = parse_table(read(root / "PROJECT_TRUTH_SYNC.md"), "## Claim relations") if (root / "PROJECT_TRUTH_SYNC.md").is_file() else []
+    relations_checked = 0
+    for row in relation_rows[1:]:
+        if len(row) < 3:
+            continue
+        left, relation, right = row[0].strip(), row[1].strip().upper(), row[2].strip()
+        if not left or left == "Claim ID":
+            continue
+        relations_checked += 1
+        if left not in canonical:
+            failures.append("RELATION_UNKNOWN_LEFT_CLAIM:" + left)
+            continue
+        if right not in canonical:
+            failures.append("RELATION_UNKNOWN_RIGHT_CLAIM:" + right)
+            continue
+        if relation not in {"CONFLICTS_WITH", "REQUIRES", "SAME_AS", "SUPERSEDES"}:
+            failures.append("INVALID_CLAIM_RELATION:" + left + ":" + relation + ":" + right)
+            continue
+        left_status = canonical[left]["status"]
+        right_status = canonical[right]["status"]
+        if relation == "CONFLICTS_WITH" and left_status == "PASS" and right_status == "PASS":
+            failures.append("CONFLICTING_CLAIMS_BOTH_PASS:" + left + ":" + right)
+        elif relation == "REQUIRES" and left_status == "PASS" and right_status != "PASS":
+            failures.append("CLAIM_REQUIREMENT_UNSATISFIED:" + left + ":" + right + ":" + right_status)
+        elif relation == "SAME_AS" and left_status in {"PASS", "FAIL"} and right_status in {"PASS", "FAIL"} and left_status != right_status:
+            failures.append("SAME_AS_STATUS_CONFLICT:" + left + ":" + right)
+        elif relation == "SUPERSEDES" and left_status == "PASS" and right_status == "PASS":
+            failures.append("SUPERSEDED_CLAIM_STILL_PASS:" + left + ":" + right)
+
     for doc in docs:
         text = read(doc)
         relative = doc.relative_to(root).as_posix()
@@ -449,6 +478,7 @@ def main() -> int:
         "references_checked": refs_checked,
         "claim_rows_checked": rows_checked,
         "canonical_claims": len(canonical),
+        "claim_relations_checked": relations_checked,
         "changed_files": len(changes),
         "changed_docs": sorted(changed_docs),
         "required_docs_from_diff": sorted(required_due_to_diff),
