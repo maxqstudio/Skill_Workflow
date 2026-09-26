@@ -9,6 +9,12 @@ import subprocess
 import sys
 from pathlib import Path
 
+from project_profile import (
+    PROFILE_FILE,
+    documentation_settings,
+    parse_profile,
+)
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -17,6 +23,21 @@ def main() -> int:
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
+    profile_path = root / PROFILE_FILE
+    if not profile_path.is_file():
+        print("FAIL MISSING_PROJECT_PROFILE")
+        return 1
+
+    try:
+        documentation = documentation_settings(parse_profile(profile_path))
+    except Exception as exc:
+        print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
+        return 1
+
+    if not documentation.get("generated", False):
+        print("PROJECT_DOCS_SYNC=NOT_APPLICABLE")
+        return 0
+
     compiler = root / "scripts" / "generate_project_docs.py"
     if not compiler.is_file():
         print("FAIL PROJECT_TRUTH_COMPILER_MISSING")
