@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "components": [
+    {
+      "id": "replace-me",
+      "name": "replace-me",
+      "purpose": "replace-me",
+      "owns": [],
+      "depends_on": []
+    }
+  ],
+  "data_flows": [],
+  "external_boundaries": []
+}
