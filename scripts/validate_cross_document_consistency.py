@@ -331,15 +331,16 @@ def main() -> int:
         settings = {}
 
     docs = all_docs(root)
-    by_name: dict[str, list[Path]] = defaultdict(list)
-    for path in docs:
-        by_name[path.name].append(path)
-
-    present_docs = set(by_name)
+    root_docs = {
+        path.name: path
+        for path in docs
+        if path.parent == root
+    }
+    present_docs = set(root_docs)
 
     for key, value in settings.items():
         contract_doc = CONTRACT_DOCS[key]
-        if value == "not_applicable" and contract_doc in present_docs:
+        if value == "not_applicable" and (root / contract_doc).is_file():
             failures.append("NOT_APPLICABLE_DOC_PRESENT:" + contract_doc)
 
     for required in sorted(profile_required):
@@ -347,10 +348,8 @@ def main() -> int:
             if not profile_path.is_file():
                 failures.append("MISSING_CORE_DOC:" + required)
             continue
-        if required not in by_name:
+        if not (root / required).is_file():
             failures.append("MISSING_CORE_DOC:" + required)
-        elif len(by_name[required]) > 1:
-            failures.append("DUPLICATE_CORE_DOC:" + required)
 
     truth_required = "PROJECT_TRUTH_SYNC.md" in profile_required
     if truth_required or (root / "PROJECT_TRUTH_SYNC.md").is_file():
@@ -556,8 +555,9 @@ def main() -> int:
         "failures": failures,
         "warnings": warnings,
         "machine_scope": (
-            "Cross-document references, stable claims, selected authority fields, "
-            "explicit stale markers, and git-diff freshness only. Semantic truth "
+            "Cross-document references across all Markdown, root-canonical project "
+            "contracts, stable claims, selected authority fields, explicit stale "
+            "markers, and git-diff freshness only. Semantic truth "
             "still requires source/test/runtime audit."
         ),
         "result": "FAIL" if failures else "PASS",
