@@ -98,3 +98,27 @@ Final acceptance requires both:
 
 DOC_SYNC = PASS
 PROJECT_STATE_SYNC = PASS
+
+
+## Cross-document validation gate
+
+Before final PASS, run the cross-document validator against the accepted/base SHA:
+
+```bash
+python scripts/validate_cross_document_consistency.py \
+  --base <LAST_ACCEPTED_SHA> \
+  --require-base \
+  --report artifacts/cross_document_sync_report.json
+```
+
+The validator checks the whole Markdown documentation set for references, stable-claim conflicts, duplicate core docs, selected authority conflicts, explicit stale markers, and required documentation left behind by source changes.
+
+A machine PASS is necessary but not sufficient for semantic correctness.
+
+Final acceptance requires:
+
+```text
+DOC_SYNC = PASS
+CROSS_DOCUMENT_CONSISTENCY = PASS
+PROJECT_STATE_SYNC = PASS
+```
