@@ -81,14 +81,19 @@ def split_refs(value: str) -> list[str]:
     return [x.strip().strip("`") for x in value.split(";") if x.strip()]
 
 
-def file_exists(root: Path, ref: str) -> bool:
-    return (root / ref).is_file()
+def file_exists(root: Path, ref: str, docs_root: Path | None = None) -> bool:
+    p = Path(ref.replace("\\", "/"))
+    if p.is_absolute():
+        return p.is_file()
+    if docs_root is not None and len(p.parts) == 1 and p.suffix.lower() == ".md":
+        return (docs_root / p).is_file()
+    return (root / p).is_file()
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=".")
-    ap.add_argument("--ledger", default="PROJECT_TRUTH_SYNC.md")
+    ap.add_argument("--ledger", default="")
     ap.add_argument("--report", default="")
     ap.add_argument("--allow-dirty", action="store_true")
     args = ap.parse_args()
@@ -118,7 +123,11 @@ def main() -> int:
         truth_required = False
         runtime_policy = {"e2e_required": True}
         sequence_policy = {"required": True, "runtime_trace_required": False}
-        documentation_policy = {"generated": True, "spec_root": ".workflow"}
+        documentation_policy = {
+            "generated": True,
+            "spec_root": ".workflow",
+            "docs_root": "docs",
+        }
     else:
         try:
             profile_data = parse_profile(profile_path)
@@ -134,7 +143,11 @@ def main() -> int:
             truth_required = False
             runtime_policy = {"e2e_required": True}
             sequence_policy = {"required": True, "runtime_trace_required": False}
-            documentation_policy = {"generated": True, "spec_root": ".workflow"}
+            documentation_policy = {
+                "generated": True,
+                "spec_root": ".workflow",
+                "docs_root": "docs",
+            }
 
     if documentation_policy.get("generated", False):
         tool_dir = Path(__file__).resolve().parent
@@ -160,7 +173,18 @@ def main() -> int:
             if proc.returncode != 0:
                 failures.append("PROJECT_DOCS_COMPILER_VALIDATION_FAILED")
 
-    ledger = root / args.ledger
+    docs_root = root / str(documentation_policy.get("docs_root", "docs"))
+    ledger_arg = args.ledger.strip()
+    if ledger_arg:
+        ledger_candidate = Path(ledger_arg)
+        if ledger_candidate.is_absolute():
+            ledger = ledger_candidate
+        elif len(ledger_candidate.parts) == 1:
+            ledger = docs_root / ledger_candidate
+        else:
+            ledger = root / ledger_candidate
+    else:
+        ledger = docs_root / "PROJECT_TRUTH_SYNC.md"
 
     if not truth_required and not ledger.is_file():
         report = {
@@ -217,7 +241,7 @@ def main() -> int:
 
         for ref in split_refs(docs):
             checked_refs += 1
-            if not file_exists(root, ref):
+            if not file_exists(root, ref, docs_root):
                 failures.append(f"BROKEN_DOC_REF:{claim_id}:{ref}")
 
         for ref in split_refs(tests):
@@ -252,7 +276,7 @@ def main() -> int:
                     if not file_exists(root, ref):
                         warnings.append(f"RUNTIME_EVIDENCE_PATH_UNRESOLVED:{claim_id}:{ref}")
 
-    overview = root / "SYSTEM_OVERVIEW.md"
+    overview = docs_root / "SYSTEM_OVERVIEW.md"
     if not overview.is_file():
         failures.append("MISSING_SYSTEM_OVERVIEW")
     else:
@@ -314,7 +338,7 @@ def main() -> int:
         "worktree_clean": not bool(status),
         "governance_profile": profile_name,
         "applicable": True,
-        "ledger": args.ledger,
+        "ledger": str(ledger.relative_to(root)) if ledger.is_relative_to(root) else str(ledger),
         "gates": gates,
         "claims_checked": claims_checked,
         "references_checked": checked_refs,
