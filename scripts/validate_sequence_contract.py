@@ -13,6 +13,7 @@ from project_profile import parse_profile, sequence_settings
 from sequence_contract import (
     VALID_MODES,
     compare_plan_actual,
+    compute_source_digest,
     git_head,
     is_ancestor,
     load_json,
@@ -46,7 +47,8 @@ def expected_plan_mermaid(plan_path: Path, plan: dict) -> str:
 def expected_actual_mermaid(actual: dict) -> str:
     return (
         "%% GENERATED FILE - DO NOT EDIT\n"
-        f"%% SOURCE_SHA: {actual.get('source_sha', '')}\n"
+        f"%% SOURCE_DIGEST: {actual.get('source_digest', '')}\n"
+        f"%% OBSERVED_HEAD: {actual.get('observed_head', '')}\n"
         "%% GENERATED_BY: generate_sequence_actual.py\n"
         + render_graph_mermaid(actual)
     )
@@ -66,6 +68,7 @@ def main() -> int:
             text=True,
         ).strip())
         head = git_head(root)
+        source_digest = compute_source_digest(root)
     except Exception as exc:
         print(f"FAIL GIT_ERROR:{exc}")
         return 1
@@ -120,15 +123,15 @@ def main() -> int:
             failures.append("ACTUAL_GRAPH_NOT_GENERATED")
         if actual.get("generated_by") != "generate_sequence_actual.py":
             failures.append("ACTUAL_GRAPH_UNKNOWN_GENERATOR")
-        if str(actual.get("source_sha", "")) != head:
+        if str(actual.get("source_digest", "")) != source_digest:
             failures.append(
-                "ACTUAL_SOURCE_SHA_MISMATCH:"
-                + str(actual.get("source_sha", ""))
+                "ACTUAL_SOURCE_DIGEST_MISMATCH:"
+                + str(actual.get("source_digest", ""))
                 + "!="
-                + head
+                + source_digest
             )
-        if str(actual_cfg.get("source_sha", "")).strip() and str(actual_cfg.get("source_sha")) != head:
-            failures.append("SESSION_ACTUAL_SOURCE_SHA_MISMATCH")
+        if str(actual_cfg.get("source_digest", "")).strip() and str(actual_cfg.get("source_digest")) != source_digest:
+            failures.append("SESSION_ACTUAL_SOURCE_DIGEST_MISMATCH")
 
         if not actual_diagram_path.is_file():
             failures.append("MISSING_ACTUAL_DIAGRAM:" + actual_diagram_text)
@@ -254,8 +257,9 @@ def main() -> int:
         else:
             try:
                 runtime_graph = load_json(runtime_path)
-                if str(runtime_graph.get("source_sha", "")) != head:
-                    failures.append("RUNTIME_SEQUENCE_SOURCE_SHA_MISMATCH")
+                runtime_digest = str(runtime_graph.get("source_digest", ""))
+                if runtime_digest and runtime_digest != source_digest:
+                    failures.append("RUNTIME_SEQUENCE_SOURCE_DIGEST_MISMATCH")
                 if mode == "BEFORE" and plan:
                     runtime_compare = compare_plan_actual(plan, runtime_graph, "RUNTIME")
                     if runtime_required and not runtime_compare["match"]:
@@ -273,7 +277,8 @@ def main() -> int:
         "phase": session.get("phase"),
         "mode": mode,
         "critical": critical,
-        "source_sha": head,
+        "final_head": head,
+        "source_digest": source_digest,
         "plan_actual_source_comparison": source_compare,
         "plan_runtime_comparison": runtime_compare,
         "failures": failures,
