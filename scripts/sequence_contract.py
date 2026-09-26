@@ -14,6 +14,17 @@ VALID_MODES = {"BEFORE", "DURING", "AFTER"}
 VALID_REQUIREMENTS = {"MUST", "MAY", "MUST_NOT"}
 VALID_VERIFICATION = {"SOURCE", "RUNTIME", "BOTH", "DOCUMENT"}
 
+SOURCE_EXTENSIONS = {
+    ".py", ".pyi", ".js", ".jsx", ".ts", ".tsx", ".java", ".kt", ".kts",
+    ".cs", ".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".rs", ".go",
+    ".swift", ".m", ".mm", ".php", ".rb", ".scala", ".sh", ".ps1", ".sql",
+    ".proto", ".graphql", ".gql", ".xml", ".gradle",
+}
+SOURCE_EXCLUDED_PARTS = {
+    ".git", ".idea", ".vscode", ".venv", "venv", "node_modules", "dist",
+    "build", "coverage", "vendor", "__pycache__",
+}
+
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -38,6 +49,29 @@ def git(root: Path, *args: str) -> str:
 
 def git_head(root: Path) -> str:
     return git(root, "rev-parse", "HEAD")
+
+
+def source_files(root: Path) -> list[Path]:
+    result: list[Path] = []
+    for path in root.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in SOURCE_EXTENSIONS:
+            continue
+        rel = path.relative_to(root)
+        if any(part in SOURCE_EXCLUDED_PARTS for part in rel.parts):
+            continue
+        result.append(path)
+    return sorted(result, key=lambda p: p.relative_to(root).as_posix())
+
+
+def compute_source_digest(root: Path) -> str:
+    digest = hashlib.sha256()
+    for path in source_files(root):
+        rel = path.relative_to(root).as_posix().encode("utf-8")
+        digest.update(rel)
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
 
 
 def is_ancestor(root: Path, ancestor: str, descendant: str) -> bool:
