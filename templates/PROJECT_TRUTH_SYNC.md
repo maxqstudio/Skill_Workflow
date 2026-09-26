@@ -206,7 +206,7 @@ Then repair the correct authority, regenerate, and validate again.
 
 When PROJECT_PROFILE.yaml enables generated documentation:
 
-- root project Markdown is a deterministic projection;
+- canonical project Markdown under `docs/` is a deterministic projection;
 - semantic/governance intent lives under .workflow/;
 - implementation facts come from source extractors;
 - manual edits to generated Markdown are not authority;
