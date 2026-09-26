@@ -33,6 +33,7 @@ PROFILE_REQUIRED = {
         "FLOW_INDEX.md",
         "TEST_ACCEPTANCE_MATRIX.md",
         "DOC_SYNC_MATRIX.md",
+        "SEQUENCE_CONTRACTS.md",
     },
     "strict": {
         PROFILE_FILE,
@@ -47,6 +48,7 @@ PROFILE_REQUIRED = {
         "FLOW_INDEX.md",
         "TEST_ACCEPTANCE_MATRIX.md",
         "DOC_SYNC_MATRIX.md",
+        "SEQUENCE_CONTRACTS.md",
         "PROJECT_TRUTH_SYNC.md",
     },
 }
@@ -162,10 +164,33 @@ def runtime_settings(data: dict) -> dict[str, bool]:
     }
 
 
+def sequence_settings(data: dict) -> dict[str, bool]:
+    profile = normalized_profile(data)
+    raw = data.get("sequence", {})
+    if not isinstance(raw, dict):
+        raise ValueError("sequence must be a mapping")
+    default_required = profile in {"standard", "strict"}
+    return {
+        "required": _bool_value(
+            raw.get("required", "true" if default_required else "false"),
+            "sequence.required",
+        ),
+        "runtime_trace_required": _bool_value(
+            raw.get("runtime_trace_required", "false"),
+            "sequence.runtime_trace_required",
+        ),
+    }
+
+
 def required_docs(data: dict) -> set[str]:
     profile = normalized_profile(data)
     required = set(PROFILE_REQUIRED[profile])
     settings = contract_settings(data)
+    sequence = sequence_settings(data)
+    if sequence["required"]:
+        required.add("SEQUENCE_CONTRACTS.md")
+    else:
+        required.discard("SEQUENCE_CONTRACTS.md")
     for key, value in settings.items():
         if value == "required":
             required.add(CONTRACT_DOCS[key])
@@ -182,10 +207,13 @@ def validate_profile(data: dict) -> list[str]:
     try:
         settings = contract_settings(data)
         runtime_settings(data)
+        sequence = sequence_settings(data)
     except ValueError as exc:
         return [str(exc)]
 
     if profile == "strict":
+        if not sequence["required"]:
+            failures.append("STRICT_PROFILE_REQUIRES_SEQUENCE_CONTRACTS")
         for key in sorted(STRICT_EXPLICIT_CONTRACTS):
             if settings[key] == "optional":
                 failures.append(
