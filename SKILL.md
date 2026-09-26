@@ -1,3 +1,8 @@
+---
+name: project-handoff-workflow
+description: Safely orient, hand off, audit, repair, and continue software projects using authority maps, architecture, workflow/state machines, module/symbol/flow indexes, and evidence-based acceptance.
+---
+
 # PROJECT HANDOFF & CODEBASE ORIENTATION SKILL
 
 ## Purpose
