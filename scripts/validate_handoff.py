@@ -25,6 +25,7 @@ CORE = [
     "FLOW_INDEX.md",
     "TEST_ACCEPTANCE_MATRIX.md",
     "DOC_SYNC_MATRIX.md",
+    "PROJECT_TRUTH_SYNC.md",
 ]
 
 PLACEHOLDER_PATTERNS = (
@@ -133,6 +134,17 @@ def main() -> int:
             failures.append("TEST_ACCEPTANCE_EVIDENCE_BOUNDARY_MISSING")
         if "Final tested source" not in text:
             failures.append("TEST_ACCEPTANCE_TESTED_SOURCE_MISSING")
+
+
+    truth = root / "PROJECT_TRUTH_SYNC.md"
+    if truth.is_file():
+        text = read(truth)
+        if "## Truth gates" not in text:
+            failures.append("PROJECT_TRUTH_GATES_MISSING")
+        if "## Critical claim traceability" not in text:
+            failures.append("PROJECT_TRUTH_TRACEABILITY_MISSING")
+        if "PROJECT_STATE_SYNC" not in text:
+            failures.append("PROJECT_TRUTH_FINAL_GATE_MISSING")
 
     for warning in warnings:
         print(f"WARN {warning}")
