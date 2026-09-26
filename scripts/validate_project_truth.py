@@ -136,6 +136,27 @@ def main() -> int:
             sequence_policy = {"required": True, "runtime_trace_required": False}
             documentation_policy = {"generated": True, "spec_root": ".workflow"}
 
+    if documentation_policy.get("generated", False):
+        project_docs_validator = root / "scripts" / "validate_project_docs.py"
+        if not project_docs_validator.is_file():
+            failures.append("PROJECT_DOCS_VALIDATOR_MISSING")
+        else:
+            proc = subprocess.run(
+                [
+                    sys.executable,
+                    str(project_docs_validator),
+                    "--root",
+                    str(root),
+                ],
+                cwd=root,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            if proc.returncode != 0:
+                failures.append("PROJECT_DOCS_COMPILER_VALIDATION_FAILED")
+
     ledger = root / args.ledger
 
     if not truth_required and not ledger.is_file():
