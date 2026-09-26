@@ -34,7 +34,7 @@ from project_profile import (
 )
 
 EXCLUDED = {
-    ".git", ".idea", ".vscode", ".venv", "venv", "node_modules",
+    ".git", ".workflow", ".idea", ".vscode", ".venv", "venv", "node_modules",
     "dist", "build", "coverage", "vendor", "__pycache__",
 }
 
@@ -240,6 +240,8 @@ def diff_changes(root: Path, base: str) -> list[tuple[str, str]]:
 
 def is_source(path: str) -> bool:
     p = Path(path)
+    if any(part in EXCLUDED for part in p.parts):
+        return False
     return p.suffix.lower() in SOURCE_EXTS or p.name.lower() in {"dockerfile", "makefile"}
 
 
