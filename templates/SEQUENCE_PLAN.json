@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "flow_id": "FLOW-REPLACE-ME",
+  "title": "Replace me",
+  "status": "FROZEN",
+  "nodes": [
+    {
+      "id": "entry",
+      "label": "Entry",
+      "locator": "path/to/file.py::entry_symbol",
+      "kind": "source"
+    },
+    {
+      "id": "authority",
+      "label": "Authority",
+      "locator": "path/to/file.py::authority_symbol",
+      "kind": "source"
+    }
+  ],
+  "edges": [
+    {
+      "from": "entry",
+      "to": "authority",
+      "action": "call",
+      "requirement": "MUST",
+      "verification": "SOURCE"
+    }
+  ]
+}
