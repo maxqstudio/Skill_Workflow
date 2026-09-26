@@ -101,7 +101,7 @@ The idea is to **read the map first, then the code that matters**.
 
 ## Core handoff pack
 
-A maintained project should contain these nine files:
+A maintained project should contain these eleven core files:
 
 ```text
 PROJECT_MANIFEST.md
@@ -114,6 +114,7 @@ SYMBOL_INDEX.md
 FLOW_INDEX.md
 TEST_ACCEPTANCE_MATRIX.md
 DOC_SYNC_MATRIX.md
+PROJECT_TRUTH_SYNC.md
 ```
 
 Ready-to-copy templates are available under `templates/`.
@@ -204,6 +205,7 @@ WORKFLOW_STATE_MACHINE
 - `FLOW_INDEX.md`
 - `TEST_ACCEPTANCE_MATRIX.md`
 - `DOC_SYNC_MATRIX.md`
+- `PROJECT_TRUTH_SYNC.md`
 
 ### Additional contracts
 
@@ -441,6 +443,49 @@ READ AUTHORITY
 
 ---
 
+## Project Truth Synchronization
+
+Matching a documentation SHA to a repository revision is not enough.
+
+This skill now requires a broader truth gate:
+
+```text
+PROVENANCE
++ REFERENCES
++ STRUCTURE
++ SEMANTICS
++ BEHAVIOR
++ CROSS-DOCUMENT CONSISTENCY
++ DOC ↔ SOURCE ↔ TEST ↔ RUNTIME TRACEABILITY
+=
+PROJECT_STATE_SYNC
+```
+
+Important Git detail: a tracked document cannot reliably contain the hash of the commit that contains that exact document, because changing the document changes the commit hash.
+
+The correct provenance proof is that source and required docs are tracked in the same tested Git HEAD, the worktree is clean, and no source/docs change occurs after final testing without a retest.
+
+`PROJECT_TRUTH_SYNC.md` is the traceability ledger for critical claims. It links each important contract to:
+
+```text
+claim
+→ documents
+→ source owner
+→ tests
+→ runtime/E2E evidence when required
+```
+
+The repository provides:
+
+```bash
+python scripts/validate_handoff.py
+python scripts/validate_project_truth.py
+```
+
+The truth validator checks machine-verifiable provenance, references, and structure. Semantic correctness still requires inspection of the mapped source/tests/runtime. A structural PASS must never be reported as semantic proof.
+
+---
+
 ## New-room startup procedure
 
 When entering an existing project:
@@ -455,7 +500,8 @@ When entering an existing project:
 8. Read `SYMBOL_INDEX.md`.
 9. Read `TEST_ACCEPTANCE_MATRIX.md`.
 10. Read `DOC_SYNC_MATRIX.md`.
-11. Open only the exact relevant source ranges first.
+11. Read `PROJECT_TRUTH_SYNC.md`.
+12. Open only the exact relevant source ranges first.
 
 This is the default fast-orientation mode.
 
@@ -490,6 +536,9 @@ blocked actions
 Skill_Workflow/
 ├─ README.md
 ├─ SKILL.md
+├─ scripts/
+│  ├─ validate_handoff.py
+│  └─ validate_project_truth.py
 └─ templates/
    ├─ PROJECT_MANIFEST.md
    ├─ CURRENT_STATE.md
@@ -501,6 +550,7 @@ Skill_Workflow/
    ├─ FLOW_INDEX.md
    ├─ TEST_ACCEPTANCE_MATRIX.md
    ├─ DOC_SYNC_MATRIX.md
+   ├─ PROJECT_TRUTH_SYNC.md
    ├─ DATA_CONTRACTS.md
    ├─ API_CONTRACTS.md
    ├─ UI_INFORMATION_ARCHITECTURE.md
