@@ -2,10 +2,11 @@
 
 A reusable project-handoff and codebase-orientation skill for ChatGPT rooms, coding agents, and human developers.
 
-The goal is simple: **let a new room or agent understand a project safely without rereading the entire codebase from scratch.**
+The goal is simple: **let a human understand the system without opening the codebase, and let a new room or coding agent continue work without rereading the entire repository from scratch.**
 
 It focuses on:
 
+- human-first system understanding without source-code reconstruction;
 - exact project authority;
 - current source/runtime state;
 - architecture and workflow/state-machine mapping;
@@ -215,6 +216,7 @@ The skill uses this orientation sequence:
 
 ```text
 PROJECT_PROFILE
+→ SYSTEM_OVERVIEW
 → CURRENT_STATE
 → PROJECT_MANIFEST
 → profile-required authority / architecture / workflow docs
@@ -246,6 +248,7 @@ Required:
 
 ```text
 PROJECT_PROFILE.yaml
+SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
 MODULE_MAP.md
@@ -260,6 +263,7 @@ Required:
 
 ```text
 PROJECT_PROFILE.yaml
+SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
@@ -287,6 +291,50 @@ It also forces explicit applicability decisions for critical optional contracts.
 Profile choice is based on **risk and workflow complexity**, not simply repository size.
 
 Ready-to-copy templates are available under `templates/`.
+
+---
+
+## Human-first project understanding
+
+`SYSTEM_OVERVIEW.md` is the first human-facing explanation of the project.
+
+Its job is different from engineering indexes:
+
+```text
+SYSTEM_OVERVIEW
+→ understand what the system is and how it works
+
+FLOW_INDEX / MODULE_MAP / SYMBOL_INDEX
+→ locate exact implementation
+```
+
+A person reading the overview should be able to explain:
+
+- what problem the project solves;
+- who uses it;
+- major components;
+- main data flow;
+- main user/domain workflows;
+- important lifecycle states;
+- authority boundaries;
+- mutable vs immutable state;
+- failure/recovery behavior;
+- current project state;
+- what is proven and not proven;
+- what can happen next and what is blocked.
+
+The overview deliberately uses domain language first. Exact function names and
+call chains belong in the engineering documents.
+
+Final acceptance includes:
+
+```bash
+python scripts/validate_human_comprehension.py --require-pass
+```
+
+The validator checks structural coverage and explicit gate status. It does not
+prove semantic correctness or actual human understanding; that still requires
+review against current authority, workflow, tests, and runtime evidence.
 
 ---
 
@@ -396,6 +444,7 @@ WORKFLOW_STATE_MACHINE
 ### Core / profile templates
 
 - `PROJECT_PROFILE.yaml`
+- `SYSTEM_OVERVIEW.md`
 - `PROJECT_MANIFEST.md`
 - `CURRENT_STATE.md`
 - `SOURCE_AUTHORITY_MAP.md`
@@ -631,6 +680,7 @@ The disciplined flow is:
 
 ```text
 READ PROJECT_PROFILE
+→ READ SYSTEM_OVERVIEW
 → READ AUTHORITY
 → DECLARE DOC IMPACT
 → EDIT
@@ -682,6 +732,7 @@ The repository provides:
 
 ```bash
 python scripts/validate_handoff.py
+python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 python scripts/validate_project_truth.py
 ```
@@ -729,13 +780,14 @@ When entering an existing project:
 
 1. Read `PROJECT_PROFILE.yaml`.
 2. Resolve the required document set for the selected profile.
-3. Read `CURRENT_STATE.md`.
-4. Read `PROJECT_MANIFEST.md`.
-5. Read only the required authority/architecture/workflow/index contracts.
-6. Read `TEST_ACCEPTANCE_MATRIX.md`.
-7. Read `DOC_SYNC_MATRIX.md` when required.
-8. Read `PROJECT_TRUTH_SYNC.md` when required or present.
-9. Open only the exact relevant source ranges first.
+3. Read `SYSTEM_OVERVIEW.md` for the human/domain mental model.
+4. Read `CURRENT_STATE.md`.
+5. Read `PROJECT_MANIFEST.md`.
+6. Read only the required authority/architecture/workflow/index contracts.
+7. Read `TEST_ACCEPTANCE_MATRIX.md`.
+8. Read `DOC_SYNC_MATRIX.md` when required.
+9. Read `PROJECT_TRUTH_SYNC.md` when required or present.
+10. Open only the exact relevant source ranges first.
 
 This is the default fast-orientation mode.
 
@@ -775,10 +827,12 @@ Skill_Workflow/
 │  ├─ generate_symbol_index.py
 │  ├─ generate_module_map.py
 │  ├─ validate_handoff.py
+│  ├─ validate_human_comprehension.py
 │  ├─ validate_cross_document_consistency.py
 │  └─ validate_project_truth.py
 └─ templates/
    ├─ PROJECT_PROFILE.yaml
+   ├─ SYSTEM_OVERVIEW.md
    ├─ PROJECT_MANIFEST.md
    ├─ CURRENT_STATE.md
    ├─ SOURCE_AUTHORITY_MAP.md
