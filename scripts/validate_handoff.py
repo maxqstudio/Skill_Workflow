@@ -140,6 +140,38 @@ def main() -> int:
                 + profile_name
             )
 
+    overview = root / "SYSTEM_OVERVIEW.md"
+    if overview.is_file():
+        text = read(overview)
+        match = re.search(
+            r"^Human comprehension status:\s*(.*?)\s*$",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
+        if not match or not match.group(1).strip():
+            failures.append("HUMAN_COMPREHENSION_STATUS_MISSING")
+        elif match.group(1).strip().upper() != "PASS":
+            failures.append(
+                "HUMAN_COMPREHENSION_GATE_NOT_PASS:"
+                + match.group(1).strip()
+            )
+        for heading in (
+            "## One-minute summary",
+            "## System at a glance",
+            "## Major components",
+            "## Main data flow",
+            "## Main user workflows",
+            "## Lifecycle and state",
+            "## Authority model",
+            "## Mutable vs immutable",
+            "## Failure and recovery",
+            "## Current project state",
+            "## Proven vs not proven",
+            "## Human comprehension gate",
+        ):
+            if heading not in text:
+                failures.append("SYSTEM_OVERVIEW_SECTION_MISSING:" + heading)
+
     authority = root / "SOURCE_AUTHORITY_MAP.md"
     if authority.is_file() and "Canonical authority" not in read(authority):
         failures.append("SOURCE_AUTHORITY_MAP_STRUCTURE_INVALID")
