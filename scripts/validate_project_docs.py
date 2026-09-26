@@ -38,7 +38,10 @@ def main() -> int:
         print("PROJECT_DOCS_SYNC=NOT_APPLICABLE")
         return 0
 
-    compiler = root / "scripts" / "generate_project_docs.py"
+    tool_dir = Path(__file__).resolve().parent
+    compiler = tool_dir / "generate_project_docs.py"
+    if not compiler.is_file():
+        compiler = root / "scripts" / "generate_project_docs.py"
     if not compiler.is_file():
         print("FAIL PROJECT_TRUTH_COMPILER_MISSING")
         return 1
