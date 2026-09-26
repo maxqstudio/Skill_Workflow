@@ -21,23 +21,19 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+from project_profile import (
+    CONTRACT_DOCS,
+    PROFILE_FILE,
+    contract_settings,
+    normalized_profile,
+    parse_profile,
+    required_docs,
+    validate_profile,
+)
+
 EXCLUDED = {
     ".git", ".idea", ".vscode", ".venv", "venv", "node_modules",
     "dist", "build", "coverage", "vendor", "__pycache__",
-}
-
-CORE_DOCS = {
-    "PROJECT_MANIFEST.md",
-    "CURRENT_STATE.md",
-    "SOURCE_AUTHORITY_MAP.md",
-    "ARCHITECTURE.md",
-    "WORKFLOW_STATE_MACHINE.md",
-    "MODULE_MAP.md",
-    "SYMBOL_INDEX.md",
-    "FLOW_INDEX.md",
-    "TEST_ACCEPTANCE_MATRIX.md",
-    "DOC_SYNC_MATRIX.md",
-    "PROJECT_TRUTH_SYNC.md",
 }
 
 SOURCE_EXTS = {
@@ -245,38 +241,44 @@ def is_source(path: str) -> bool:
     return p.suffix.lower() in SOURCE_EXTS or p.name.lower() in {"dockerfile", "makefile"}
 
 
-def required_docs_for_diff(changes: list[tuple[str, str]]) -> set[str]:
+def required_docs_for_diff(changes: list[tuple[str, str]], profile_required: set[str], present_docs: set[str], settings: dict[str, str]) -> set[str]:
     required: set[str] = set()
     source_paths = [path for _, path in changes if is_source(path)]
     if not source_paths:
         return required
 
-    required.update({
-        "CURRENT_STATE.md",
-        "TEST_ACCEPTANCE_MATRIX.md",
-        "PROJECT_TRUTH_SYNC.md",
-        "SYMBOL_INDEX.md",
-    })
+    for name in ("CURRENT_STATE.md", "TEST_ACCEPTANCE_MATRIX.md", "PROJECT_TRUTH_SYNC.md", "SYMBOL_INDEX.md"):
+        if name in profile_required or name in present_docs:
+            required.add(name)
 
     if any(status in {"A", "D"} and is_source(path) for status, path in changes):
-        required.add("MODULE_MAP.md")
+        if "MODULE_MAP.md" in profile_required or "MODULE_MAP.md" in present_docs:
+            required.add("MODULE_MAP.md")
 
     paths = [p.lower().replace("\\", "/") for p in source_paths]
 
     if any(any(k in p for k in ("/api/", "route", "router", "controller", "endpoint")) for p in paths):
-        required.update({"API_CONTRACTS.md", "FLOW_INDEX.md"})
+        if settings.get("api_contracts") == "required" or "API_CONTRACTS.md" in present_docs:
+            required.add("API_CONTRACTS.md")
+        if "FLOW_INDEX.md" in profile_required or "FLOW_INDEX.md" in present_docs:
+            required.add("FLOW_INDEX.md")
 
     if any(any(k in p for k in ("/ui/", "/frontend/", "/screens/", "/pages/", "/components/")) for p in paths):
-        required.add("UI_INFORMATION_ARCHITECTURE.md")
+        if settings.get("ui_information_architecture") == "required" or "UI_INFORMATION_ARCHITECTURE.md" in present_docs:
+            required.add("UI_INFORMATION_ARCHITECTURE.md")
 
     if any(any(k in p for k in ("migration", "schema", "/db/", "/database/", "/models/", "/data/")) for p in paths):
-        required.add("DATA_CONTRACTS.md")
+        if settings.get("data_contracts") == "required" or "DATA_CONTRACTS.md" in present_docs:
+            required.add("DATA_CONTRACTS.md")
 
     if any(any(k in p for k in ("workflow", "lifecycle", "state_machine", "state-machine", "promotion")) for p in paths):
-        required.update({"WORKFLOW_STATE_MACHINE.md", "FLOW_INDEX.md"})
+        for name in ("WORKFLOW_STATE_MACHINE.md", "FLOW_INDEX.md"):
+            if name in profile_required or name in present_docs:
+                required.add(name)
 
     if any(any(k in p for k in ("deploy", "docker", "run_", "start_", "build.", "/scripts/")) for p in paths):
-        required.add("RUNBOOK.md")
+        if settings.get("runbook") == "required" or "RUNBOOK.md" in present_docs:
+            required.add("RUNBOOK.md")
 
     return required
 
@@ -306,19 +308,50 @@ def main() -> int:
     if dirty and not args.allow_dirty:
         failures.append("WORKTREE_NOT_CLEAN")
 
+    profile_path = root / PROFILE_FILE
+    if not profile_path.is_file():
+        failures.append("MISSING_PROJECT_PROFILE")
+        profile_data = {"profile": "standard", "contracts": {}}
+    else:
+        try:
+            profile_data = parse_profile(profile_path)
+            failures.extend(validate_profile(profile_data))
+        except Exception as exc:
+            failures.append("PROJECT_PROFILE_INVALID:" + str(exc))
+            profile_data = {"profile": "standard", "contracts": {}}
+
+    try:
+        profile_name = normalized_profile(profile_data)
+        profile_required = required_docs(profile_data)
+        settings = contract_settings(profile_data)
+    except Exception as exc:
+        failures.append("PROJECT_PROFILE_RESOLUTION_FAILED:" + str(exc))
+        profile_name = "standard"
+        profile_required = set()
+        settings = {}
+
     docs = all_docs(root)
     by_name: dict[str, list[Path]] = defaultdict(list)
     for path in docs:
         by_name[path.name].append(path)
 
-    for required in sorted(CORE_DOCS):
+    present_docs = set(by_name)
+    for required in sorted(profile_required):
+        if required == PROFILE_FILE:
+            if not profile_path.is_file():
+                failures.append("MISSING_CORE_DOC:" + required)
+            continue
         if required not in by_name:
             failures.append("MISSING_CORE_DOC:" + required)
         elif len(by_name[required]) > 1:
             failures.append("DUPLICATE_CORE_DOC:" + required)
 
-    canonical, ledger_failures = truth_claims(root)
-    failures.extend(ledger_failures)
+    truth_required = "PROJECT_TRUTH_SYNC.md" in profile_required
+    if truth_required or (root / "PROJECT_TRUTH_SYNC.md").is_file():
+        canonical, ledger_failures = truth_claims(root)
+        failures.extend(ledger_failures)
+    else:
+        canonical, ledger_failures = {}, []
     observed: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
 
     relation_rows = parse_table(read(root / "PROJECT_TRUTH_SYNC.md"), "## Claim relations") if (root / "PROJECT_TRUTH_SYNC.md").is_file() else []
@@ -463,7 +496,12 @@ def main() -> int:
             changed_docs = {
                 Path(path).name for _, path in changes if Path(path).suffix.lower() == ".md"
             }
-            required_due_to_diff = required_docs_for_diff(changes)
+            required_due_to_diff = required_docs_for_diff(
+                changes,
+                profile_required=profile_required,
+                present_docs=present_docs,
+                settings=settings,
+            )
             for required in sorted(required_due_to_diff):
                 if required not in changed_docs:
                     failures.append("STALE_DOC_NOT_UPDATED:" + required + ":base=" + base)
@@ -472,6 +510,7 @@ def main() -> int:
 
     report = {
         "repo_sha": head,
+        "governance_profile": profile_name,
         "base_sha": base or None,
         "worktree_clean": not dirty,
         "docs_scanned": len(docs),
