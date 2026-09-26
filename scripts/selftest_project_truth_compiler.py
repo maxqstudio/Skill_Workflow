@@ -277,6 +277,7 @@ def main() -> int:
     print("DOC_LAYOUT_DUPLICATE_DETECTION=PASS")
     print("PROJECT_DOCS_NORMALIZED=PASS")
     print("DOC_READABILITY=PASS")
+    print("SELFTEST=PASS")
     return 0
 
 
