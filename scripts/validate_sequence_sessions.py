@@ -46,7 +46,10 @@ def main() -> int:
         }, indent=2))
         return 1
 
-    validator = root / "scripts" / "validate_sequence_contract.py"
+    tool_dir = Path(__file__).resolve().parent
+    validator = tool_dir / "validate_sequence_contract.py"
+    if not validator.is_file():
+        validator = root / "scripts" / "validate_sequence_contract.py"
     if not validator.is_file():
         print(json.dumps({
             "result": "FAIL",
