@@ -114,7 +114,19 @@ def main() -> int:
     current = root / "CURRENT_STATE.md"
     if current.is_file():
         text = read(current)
-        for field in ("Authoritative SHA:", "Status:", "Next authorized action", "Governance profile:"):
+        required_current_fields = [
+            "Authoritative SHA:",
+            "Status:",
+            "Next authorized action",
+            "Governance profile:",
+        ]
+        if sequence_policy.get("required", False):
+            required_current_fields.extend([
+                "Sequence policy:",
+                "Current sequence mode:",
+                "SEQUENCE_SYNC:",
+            ])
+        for field in required_current_fields:
             if field not in text:
                 failures.append(f"CURRENT_STATE_FIELD_MISSING:{field}")
         match = re.search(r"^Governance profile:\s*(.*?)\s*$", text, re.MULTILINE | re.IGNORECASE)
@@ -216,6 +228,11 @@ def main() -> int:
             failures.append("TEST_ACCEPTANCE_EVIDENCE_BOUNDARY_MISSING")
         if "Final tested source" not in text:
             failures.append("TEST_ACCEPTANCE_TESTED_SOURCE_MISSING")
+        if sequence_policy.get("required", False):
+            if "## Sequence contract evidence" not in text:
+                failures.append("TEST_ACCEPTANCE_SEQUENCE_SECTION_MISSING")
+            if "SEQUENCE_SYNC:" not in text:
+                failures.append("TEST_ACCEPTANCE_SEQUENCE_GATE_MISSING")
 
     truth = root / "PROJECT_TRUTH_SYNC.md"
     if truth.is_file():
@@ -226,6 +243,8 @@ def main() -> int:
             failures.append("PROJECT_TRUTH_TRACEABILITY_MISSING")
         if "PROJECT_STATE_SYNC" not in text:
             failures.append("PROJECT_TRUTH_FINAL_GATE_MISSING")
+        if sequence_policy.get("required", False) and "SEQUENCE_SYNC" not in text:
+            failures.append("PROJECT_TRUTH_SEQUENCE_GATE_MISSING")
 
     for warning in warnings:
         print(f"WARN {warning}")
