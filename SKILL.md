@@ -424,7 +424,10 @@ When available, run:
 
 ```bash
 python scripts/validate_handoff.py
+python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 ```
+
+Both validators are blocking gates. The cross-document validator scans all project Markdown, stable claims, local references, selected authority fields, and required doc freshness from the accepted/base SHA.
 
 A validator PASS does not prove semantic correctness, but validator FAIL blocks completion.
 
@@ -464,6 +467,9 @@ TEST_ACCEPTANCE_MATRIX:
 UPDATED
 
 DOC VALIDATOR:
+PASS / FAIL / NOT_AVAILABLE
+
+CROSS-DOCUMENT VALIDATOR:
 PASS / FAIL / NOT_AVAILABLE
 
 STALE REQUIRED DOCS:
@@ -588,9 +594,10 @@ PROJECT_STATE_SYNC: PASS
 
 If any required gate is FAIL, NOT_PROVEN, or unresolved, final status cannot be PASS.
 
-When available run both:
+When available run all three:
 
 python scripts/validate_handoff.py
+python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 python scripts/validate_project_truth.py
 
 Structural validator PASS is necessary but not sufficient for semantic truth.
@@ -598,3 +605,39 @@ Structural validator PASS is necessary but not sufficient for semantic truth.
 ## Definition of done override
 
 A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
+
+
+## Cross-document validator gate
+
+Final acceptance must include a full documentation-consistency scan.
+
+The validator must scan all project Markdown documents, not only indexes.
+
+Minimum machine-checkable scope:
+
+- broken Markdown/local file references;
+- broken path::symbol references;
+- unknown stable TRUTH claim IDs;
+- canonical claim backlinks;
+- duplicate/conflicting claim text;
+- conflicting claim statuses;
+- duplicate core documentation files;
+- explicit Status: STALE markers;
+- selected repository/branch/authority mismatches;
+- source changes that require documentation updates according to change type;
+- required docs that were not updated since the accepted/base SHA.
+
+For final acceptance, run against the exact accepted parent/base SHA:
+
+```bash
+python scripts/validate_cross_document_consistency.py \
+  --base <LAST_ACCEPTED_SHA> \
+  --require-base \
+  --report artifacts/cross_document_sync_report.json
+```
+
+Do not use an inferred HEAD parent for milestone/final acceptance when the accepted base SHA is known.
+
+A cross-document validator FAIL blocks PROJECT_STATE_SYNC.
+
+Machine checks do not prove semantic correctness. Semantic conflicts that cannot be established mechanically still require source/test/runtime audit and must remain NOT_PROVEN until resolved.
