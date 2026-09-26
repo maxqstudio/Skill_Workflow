@@ -90,3 +90,27 @@ UNRESOLVED_CONTRACTS:
 CONTRADICTORY_CLAIMS:
 
 All must be zero for PROJECT_STATE_SYNC=PASS.
+
+
+## Validator evidence
+
+For final acceptance, record or reference generated reports:
+
+```text
+HANDOFF_VALIDATOR:
+CROSS_DOCUMENT_VALIDATOR:
+PROJECT_TRUTH_VALIDATOR:
+CROSS_DOCUMENT_REPORT:
+PROJECT_TRUTH_REPORT:
+```
+
+Required command for cross-document freshness:
+
+```bash
+python scripts/validate_cross_document_consistency.py \
+  --base <LAST_ACCEPTED_SHA> \
+  --require-base \
+  --report artifacts/cross_document_sync_report.json
+```
+
+CROSS_DOCUMENT_CONSISTENCY may be set to PASS only when the machine validator passes and semantic/cross-document review finds no unresolved contradiction.
