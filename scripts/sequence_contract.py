@@ -21,7 +21,7 @@ SOURCE_EXTENSIONS = {
     ".proto", ".graphql", ".gql", ".xml", ".gradle",
 }
 SOURCE_EXCLUDED_PARTS = {
-    ".git", ".idea", ".vscode", ".venv", "venv", "node_modules", "dist",
+    ".git", ".workflow", ".idea", ".vscode", ".venv", "venv", "node_modules", "dist",
     "build", "coverage", "vendor", "__pycache__",
 }
 
