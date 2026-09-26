@@ -29,9 +29,9 @@ A source change that makes applicable project documentation stale is a project d
 |---|---|
 | Function/class/component added, moved, renamed, removed, or authority changed | SYMBOL_INDEX.md |
 | File/module responsibility or ownership changed | MODULE_MAP.md + SYMBOL_INDEX.md |
-| End-to-end call path changed | FLOW_INDEX.md + SYMBOL_INDEX.md |
-| Lifecycle/state transition changed | SYSTEM_OVERVIEW.md when human-visible behavior changes + WORKFLOW_STATE_MACHINE.md + FLOW_INDEX.md + TEST_ACCEPTANCE_MATRIX.md |
-| Public API/event contract changed | SYSTEM_OVERVIEW.md when user/domain flow changes + API_CONTRACTS.md + FLOW_INDEX.md + TEST_ACCEPTANCE_MATRIX.md |
+| End-to-end call path changed | SEQUENCE_CONTRACTS.md + relevant sequence session/generated actual + FLOW_INDEX.md + SYMBOL_INDEX.md |
+| Lifecycle/state transition changed | SYSTEM_OVERVIEW.md when human-visible behavior changes + WORKFLOW_STATE_MACHINE.md + SEQUENCE_CONTRACTS.md + relevant sequence acceptance + FLOW_INDEX.md + TEST_ACCEPTANCE_MATRIX.md |
+| Public API/event contract changed | SYSTEM_OVERVIEW.md when user/domain flow changes + API_CONTRACTS.md + SEQUENCE_CONTRACTS.md + relevant sequence acceptance + FLOW_INDEX.md + TEST_ACCEPTANCE_MATRIX.md |
 | Database/schema/data semantics changed | SYSTEM_OVERVIEW.md when human-visible data meaning/flow changes + DATA_CONTRACTS.md + MODULE_MAP.md + TEST_ACCEPTANCE_MATRIX.md |
 | UI workspace/page/action/authority changed | SYSTEM_OVERVIEW.md when main user workflow changes + UI_INFORMATION_ARCHITECTURE.md + FLOW_INDEX.md when call path changes |
 | Architecture/dependency/runtime boundary changed | SYSTEM_OVERVIEW.md + ARCHITECTURE.md + SOURCE_AUTHORITY_MAP.md when authority changes |
@@ -67,6 +67,7 @@ workflow/state machine: YES/NO
 module map: YES/NO
 symbol index: YES/NO
 flow index: YES/NO
+sequence contract: YES/NO
 API contract: YES/NO
 data contract: YES/NO
 UI information architecture: YES/NO
@@ -85,14 +86,16 @@ Before final PASS:
 
 1. inspect changed source files and symbols;
 2. map each change using this matrix and PROJECT_PROFILE.yaml;
-3. regenerate structural facts where applicable;
-4. confirm every required/applicable document was updated or explicitly remains valid;
-5. verify indexed symbols and flows still resolve;
-6. verify CURRENT_STATE reflects actual repository/branch/SHA/phase;
-7. verify TEST_ACCEPTANCE_MATRIX contains only evidence actually executed;
-8. run `python scripts/validate_human_comprehension.py --require-pass`;
-9. run the remaining profile-aware validators;
-10. reject completion if applicable documentation is stale.
+3. regenerate structural facts and actual sequence graphs where applicable;
+4. validate the correct sequence mode (BEFORE / DURING / AFTER);
+5. confirm every required/applicable document was updated or explicitly remains valid;
+6. verify indexed symbols and flows still resolve;
+7. verify CURRENT_STATE reflects actual repository/branch/SHA/phase;
+8. verify TEST_ACCEPTANCE_MATRIX contains only evidence actually executed;
+9. run applicable `validate_sequence_contract.py` session gates;
+10. run `python scripts/validate_human_comprehension.py --require-pass`;
+11. run the remaining profile-aware validators;
+12. reject completion if applicable documentation is stale.
 
 ## Project Truth Synchronization
 
@@ -144,3 +147,41 @@ python scripts/validate_human_comprehension.py --require-pass
 ```
 
 A structural PASS is necessary but does not replace semantic review.
+
+
+## Sequence contract sync rule
+
+When sequence policy is enabled, flow-changing source work is incomplete until
+the applicable session contract is validated.
+
+Mode rules:
+
+```text
+BEFORE
+plan exists before implementation
+→ plan is frozen
+→ implementation
+→ actual graph generated from code
+→ plan vs actual
+→ repair until match
+
+DURING
+no retrospective plan
+→ actual graph generated from current code
+→ source/test/runtime acceptance
+
+AFTER
+no retrospective plan
+→ final actual graph generated from final code
+→ source/test/runtime acceptance
+```
+
+Never repair a mismatch blindly. First classify:
+
+```text
+CODE_DEFECT
+PLAN_CHANGE
+GENERATOR_DEFECT
+```
+
+Manual Mermaid edits are forbidden for canonical sequence artifacts.
