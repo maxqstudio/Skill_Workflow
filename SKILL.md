@@ -703,7 +703,7 @@ Required truth layers:
 
 Overall invariant:
 
-SOURCE TESTS PASS + DOCS IN SAME TESTED SNAPSHOT + STRUCTURAL SYNC PASS + SEMANTIC SYNC PASS + BEHAVIORAL SYNC PASS + CROSS-DOCUMENT CONSISTENCY PASS + TRACEABILITY PASS = PROJECT_STATE_SYNC PASS.
+SOURCE TESTS PASS + DOCS IN SAME TESTED SNAPSHOT + STRUCTURAL SYNC PASS + SEMANTIC SYNC PASS + BEHAVIORAL SYNC PASS + CROSS-DOCUMENT CONSISTENCY PASS + HUMAN_COMPREHENSION PASS + SEQUENCE_SYNC PASS/NOT_APPLICABLE + TRACEABILITY PASS = PROJECT_STATE_SYNC PASS.
 
 A matching SHA label alone is never sufficient.
 
@@ -823,7 +823,7 @@ Structural validator PASS is necessary but not sufficient for semantic truth.
 
 ## Definition of done override
 
-A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, HUMAN_COMPREHENSION_GATE passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
+A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, HUMAN_COMPREHENSION_GATE passes, applicable SEQUENCE_SYNC passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
 
 
 ## Cross-document validator gate
