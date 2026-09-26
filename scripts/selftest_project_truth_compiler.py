@@ -43,16 +43,17 @@ def main() -> int:
 
     with tempfile.TemporaryDirectory(prefix="skill-workflow-selftest-") as td:
         root = Path(td)
-        shutil.copytree(skill_root / "scripts", root / "scripts")
-        shutil.copytree(skill_root / "templates", root / "templates")
-
         run(
-            root,
+            skill_root,
             sys.executable,
-            str(root / "scripts" / "initialize_project_truth.py"),
+            str(skill_root / "scripts" / "initialize_project_truth.py"),
             "--root",
             str(root),
         )
+
+        tool_root = root / ".workflow" / "tools"
+        if not (tool_root / "sync_project_truth.py").is_file():
+            raise RuntimeError("vendored workflow tools were not installed")
 
         (root / "app.py").write_text(
             "from fastapi import FastAPI\n"
@@ -127,7 +128,7 @@ def main() -> int:
         run(
             root,
             sys.executable,
-            str(root / "scripts" / "sync_project_truth.py"),
+            str(tool_root / "sync_project_truth.py"),
             "--root",
             str(root),
         )
@@ -144,7 +145,7 @@ def main() -> int:
         run(
             root,
             sys.executable,
-            str(root / "scripts" / "validate_project_docs.py"),
+            str(tool_root / "validate_project_docs.py"),
             "--root",
             str(root),
             expect=1,
@@ -153,7 +154,7 @@ def main() -> int:
         run(
             root,
             sys.executable,
-            str(root / "scripts" / "sync_project_truth.py"),
+            str(tool_root / "sync_project_truth.py"),
             "--root",
             str(root),
         )
@@ -168,7 +169,7 @@ def main() -> int:
         run(
             root,
             sys.executable,
-            str(root / "scripts" / "validate_project_docs.py"),
+            str(tool_root / "validate_project_docs.py"),
             "--root",
             str(root),
             expect=1,
@@ -177,7 +178,7 @@ def main() -> int:
         run(
             root,
             sys.executable,
-            str(root / "scripts" / "sync_project_truth.py"),
+            str(tool_root / "sync_project_truth.py"),
             "--root",
             str(root),
         )
@@ -185,7 +186,7 @@ def main() -> int:
         final = run(
             root,
             sys.executable,
-            str(root / "scripts" / "validate_project_docs.py"),
+            str(tool_root / "validate_project_docs.py"),
             "--root",
             str(root),
         )
