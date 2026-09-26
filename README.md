@@ -328,6 +328,12 @@ call chains belong in the engineering documents.
 
 Final acceptance includes:
 
+```text
+HUMAN_COMPREHENSION_GATE = PASS
+```
+
+and:
+
 ```bash
 python scripts/validate_human_comprehension.py --require-pass
 ```
