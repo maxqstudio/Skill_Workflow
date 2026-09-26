@@ -563,6 +563,17 @@ CLAIM / CONTRACT ↔ DOCUMENT(S) ↔ SOURCE OWNER ↔ TEST(S) ↔ RUNTIME/E2E EV
 
 Use stable claim IDs for authority-bearing behavior and invariants where practical, for example TRUTH-PROMOTION-001. Do not add IDs to trivial helpers.
 
+For critical claim-to-claim logic, PROJECT_TRUTH_SYNC.md may declare explicit relations:
+
+```text
+CONFLICTS_WITH
+REQUIRES
+SAME_AS
+SUPERSEDES
+```
+
+The cross-document validator must reject impossible terminal combinations, such as two mutually conflicting claims both marked PASS.
+
 PROJECT_TRUTH_SYNC.md is the canonical traceability ledger.
 
 ## Generated facts vs maintained semantics
