@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "replace-me",
+    "purpose": "replace-me",
+    "primary_users": [
+      "replace-me"
+    ],
+    "expected_outcomes": [
+      "replace-me"
+    ]
+  },
+  "technology": {
+    "languages": [],
+    "frameworks": [],
+    "persistence": [],
+    "external_systems": []
+  },
+  "entry_points": [],
+  "constraints": []
+}
