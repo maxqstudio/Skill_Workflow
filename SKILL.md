@@ -1163,6 +1163,33 @@ All-session acceptance:
 python scripts/validate_sequence_sessions.py
 ```
 
+## Current vs historical sequence evidence
+
+Each sequence session is either:
+
+```text
+CURRENT
+HISTORICAL
+```
+
+CURRENT sessions must match the current source-content digest.
+
+HISTORICAL sessions preserve earlier accepted flow evidence and must not be
+regenerated to match later source.
+
+When a new phase/session becomes authoritative:
+
+```text
+previous accepted CURRENT
+→ HISTORICAL
+
+new phase/session
+→ CURRENT
+```
+
+The aggregate validator may validate both, but only CURRENT sessions are bound
+to today's source digest.
+
 ## Static-analysis boundary
 
 The generic extractor currently provides machine-verifiable structural coverage
