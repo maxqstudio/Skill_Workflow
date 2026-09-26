@@ -11,6 +11,7 @@ It focuses on:
 - current source/runtime state;
 - architecture and workflow/state-machine mapping;
 - module, symbol, and end-to-end flow indexing;
+- generated sequence-contract acceptance with BEFORE / DURING / AFTER modes;
 - targeted source navigation;
 - evidence-based testing and acceptance;
 - safe handoff between rooms, agents, and developers;
@@ -220,6 +221,7 @@ PROJECT_PROFILE
 → CURRENT_STATE
 → PROJECT_MANIFEST
 → profile-required authority / architecture / workflow docs
+→ SEQUENCE_CONTRACTS when required
 → profile-required MODULE / FLOW / SYMBOL maps
 → TEST_ACCEPTANCE_MATRIX
 → exact relevant source ranges
@@ -269,6 +271,7 @@ CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
 ARCHITECTURE.md
 WORKFLOW_STATE_MACHINE.md
+SEQUENCE_CONTRACTS.md
 MODULE_MAP.md
 SYMBOL_INDEX.md
 FLOW_INDEX.md
@@ -402,6 +405,108 @@ Generated facts are inputs to the canonical semantic docs. The agent still owns:
 
 ---
 
+## Generated Sequence Contract acceptance
+
+Critical workflow diagrams can be generated from machine-readable contracts and
+the codebase instead of being typed manually.
+
+The workflow has three explicit modes:
+
+| Mode | Plan | Actual | Use |
+|---|---|---|---|
+| BEFORE | Frozen before implementation | Generated from code | New work where design exists before coding |
+| DURING | Not applicable | Generated from current code | Governance adopted while implementation is in progress |
+| AFTER | Not applicable | Generated from final code | Post-implementation reconstruction |
+
+### BEFORE
+
+```text
+plan contract
+→ generated plan Mermaid
+→ freeze/commit
+→ implementation
+→ generated actual graph
+→ generated actual Mermaid
+→ PLAN vs ACTUAL
+→ classify mismatch
+→ repair
+→ regenerate
+→ accept
+```
+
+Git lineage must prove that the frozen plan existed before implementation.
+
+### DURING / AFTER
+
+Do not create a retrospective plan.
+
+```text
+codebase
+→ generated actual graph
+→ generated Mermaid
+→ source/test/runtime validation
+```
+
+### Why machine-readable contracts matter
+
+Mermaid is only the view.
+
+The real acceptance inputs are:
+
+```text
+session contract JSON
+plan graph JSON (BEFORE only)
+actual graph JSON
+optional runtime graph
+```
+
+Canonical Mermaid files are deterministic generated output and must not be
+hand-edited.
+
+### Source binding
+
+Tracked generated actual graphs use a deterministic source-content digest rather
+than trying to embed the final Git commit that contains themselves.
+
+```text
+ACTUAL_SOURCE_DIGEST
+=
+CURRENT_SOURCE_DIGEST
+```
+
+This avoids self-referential Git provenance while final HEAD remains verified
+separately.
+
+### Commands
+
+```bash
+python scripts/generate_sequence_plan.py \
+  --plan docs/sequence/plans/<session>.plan.json \
+  --output docs/sequence/generated/<session>.plan.mmd
+
+python scripts/generate_sequence_actual.py \
+  --output-json docs/sequence/generated/<session>.actual.json \
+  --output-mermaid docs/sequence/generated/<session>.actual.mmd \
+  --entry <path::symbol>
+
+python scripts/validate_sequence_contract.py \
+  --session docs/sequence/sessions/<session>.json
+
+python scripts/validate_sequence_sessions.py
+```
+
+Mismatch does not automatically mean the code is wrong. Classify first:
+
+```text
+CODE_DEFECT
+PLAN_CHANGE
+GENERATOR_DEFECT
+```
+
+Then repair the correct authority and regenerate.
+
+---
+
 ## Why FLOW_INDEX matters
 
 `FLOW_INDEX.md` maps an **end-to-end behavior to its complete call chain**.
@@ -456,6 +561,7 @@ WORKFLOW_STATE_MACHINE
 - `SOURCE_AUTHORITY_MAP.md`
 - `ARCHITECTURE.md`
 - `WORKFLOW_STATE_MACHINE.md`
+- `SEQUENCE_CONTRACTS.md`
 - `MODULE_MAP.md`
 - `SYMBOL_INDEX.md`
 - `FLOW_INDEX.md`
@@ -739,6 +845,7 @@ The repository provides:
 ```bash
 python scripts/validate_handoff.py
 python scripts/validate_human_comprehension.py --require-pass
+python scripts/validate_sequence_sessions.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 python scripts/validate_project_truth.py
 ```
@@ -790,10 +897,11 @@ When entering an existing project:
 4. Read `CURRENT_STATE.md`.
 5. Read `PROJECT_MANIFEST.md`.
 6. Read only the required authority/architecture/workflow/index contracts.
-7. Read `TEST_ACCEPTANCE_MATRIX.md`.
-8. Read `DOC_SYNC_MATRIX.md` when required.
-9. Read `PROJECT_TRUTH_SYNC.md` when required or present.
-10. Open only the exact relevant source ranges first.
+7. Read `SEQUENCE_CONTRACTS.md` when sequence policy is enabled.
+8. Read `TEST_ACCEPTANCE_MATRIX.md`.
+9. Read `DOC_SYNC_MATRIX.md` when required.
+10. Read `PROJECT_TRUTH_SYNC.md` when required or present.
+11. Open only the exact relevant source ranges first.
 
 This is the default fast-orientation mode.
 
@@ -832,6 +940,11 @@ Skill_Workflow/
 │  ├─ project_profile.py
 │  ├─ generate_symbol_index.py
 │  ├─ generate_module_map.py
+│  ├─ sequence_contract.py
+│  ├─ generate_sequence_plan.py
+│  ├─ generate_sequence_actual.py
+│  ├─ validate_sequence_contract.py
+│  ├─ validate_sequence_sessions.py
 │  ├─ validate_handoff.py
 │  ├─ validate_human_comprehension.py
 │  ├─ validate_cross_document_consistency.py
@@ -844,6 +957,9 @@ Skill_Workflow/
    ├─ SOURCE_AUTHORITY_MAP.md
    ├─ ARCHITECTURE.md
    ├─ WORKFLOW_STATE_MACHINE.md
+   ├─ SEQUENCE_CONTRACTS.md
+   ├─ SEQUENCE_SESSION.json
+   ├─ SEQUENCE_PLAN.json
    ├─ MODULE_MAP.md
    ├─ SYMBOL_INDEX.md
    ├─ FLOW_INDEX.md
