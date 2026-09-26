@@ -236,11 +236,19 @@ python .workflow/tools/generate_project_docs.py
 python .workflow/tools/validate_project_docs.py
 ```
 
-Executable regression self-test:
+Executable compiler regression self-test:
 
 ```bash
 python scripts/selftest_project_truth_compiler.py
 ```
+
+Full STRICT governance integration self-test:
+
+```bash
+python scripts/selftest_strict_project_workflow.py
+```
+
+The STRICT self-test must prove the canonical `docs/` layout, DURING sequence acceptance, the complete validator chain, read-only validation, and a clean final Git worktree.
 
 ## What the compiler may derive from code
 
