@@ -37,7 +37,7 @@ CLI:
 |---|---|
 
 ## Required reading order
-1. PROJECT_PROFILE.yaml
+1. ../PROJECT_PROFILE.yaml
 2. SYSTEM_OVERVIEW.md
 3. CURRENT_STATE.md
 4. this PROJECT_MANIFEST.md
@@ -51,7 +51,7 @@ CLI:
 12. PROJECT_TRUTH_SYNC.md when required or present
 
 ## Profile-specific applicability
-Do not create or maintain documents marked not_applicable in PROJECT_PROFILE.yaml.
+Canonical project documentation lives in repository-root `docs/`. Do not create or maintain documents marked not_applicable in `../PROJECT_PROFILE.yaml`.
 
 ## Non-negotiable constraints
 -
