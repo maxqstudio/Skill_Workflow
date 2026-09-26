@@ -27,14 +27,14 @@ Do not begin by reading the entire repository blindly.
 
 Build a project map first:
 
-PROJECT_PROFILE
-→ SYSTEM_OVERVIEW
-→ CURRENT_STATE
-→ PROJECT_MANIFEST
-→ profile-required authority / architecture / workflow docs
-→ SEQUENCE_CONTRACTS when required
-→ profile-required MODULE / FLOW / SYMBOL maps
-→ TEST_ACCEPTANCE_MATRIX
+PROJECT_PROFILE.yaml
+→ docs/SYSTEM_OVERVIEW.md
+→ docs/CURRENT_STATE.md
+→ docs/PROJECT_MANIFEST.md
+→ docs/<profile-required authority / architecture / workflow docs>
+→ docs/SEQUENCE_CONTRACTS.md when required
+→ docs/<MODULE / FLOW / SYMBOL maps>
+→ docs/TEST_ACCEPTANCE_MATRIX.md
 → exact relevant source ranges
 → runtime/E2E verification when required.
 
@@ -79,8 +79,8 @@ source code
 tests/runtime evidence state
 ```
 
-Root project Markdown is a deterministic projection and MUST NOT be maintained
-manually.
+Canonical human-facing project Markdown lives under repository-root `docs/`.
+It is a deterministic projection and MUST NOT be maintained manually.
 
 Required:
 
@@ -353,6 +353,125 @@ documentation.generated: false
 
 Do not force compiler ceremony onto genuinely small projects.
 
+# 2B. Canonical docs layout and normalization
+
+All canonical human-facing project documentation lives under:
+
+```text
+<repo>/docs/
+```
+
+Repository-root exceptions are intentionally limited to:
+
+```text
+README.md
+PROJECT_PROFILE.yaml
+.workflow/
+```
+
+Generated governance documents MUST NOT exist both at repository root and under
+`docs/`.
+
+Example invalid state:
+
+```text
+SYSTEM_OVERVIEW.md
+docs/SYSTEM_OVERVIEW.md
+```
+
+This is:
+
+```text
+DOC_LAYOUT = FAIL
+```
+
+## Canonical target layout
+
+```text
+<repo>/
+├─ README.md
+├─ PROJECT_PROFILE.yaml
+├─ .workflow/
+│  ├─ project.json
+│  ├─ authority.json
+│  ├─ state.json
+│  ├─ architecture.json
+│  ├─ contracts.json
+│  ├─ claims.json
+│  ├─ acceptance.json
+│  ├─ decisions.json
+│  ├─ known_defects.json
+│  ├─ glossary.json
+│  ├─ changelog.json
+│  ├─ workflows/
+│  ├─ generated/
+│  └─ tools/
+└─ docs/
+   ├─ SYSTEM_OVERVIEW.md
+   ├─ PROJECT_MANIFEST.md
+   ├─ CURRENT_STATE.md
+   ├─ SOURCE_AUTHORITY_MAP.md
+   ├─ ARCHITECTURE.md
+   ├─ WORKFLOW_STATE_MACHINE.md
+   ├─ SEQUENCE_CONTRACTS.md
+   ├─ MODULE_MAP.md
+   ├─ SYMBOL_INDEX.md
+   ├─ FLOW_INDEX.md
+   ├─ TEST_ACCEPTANCE_MATRIX.md
+   ├─ DOC_SYNC_MATRIX.md
+   ├─ PROJECT_TRUTH_SYNC.md
+   ├─ API_CONTRACTS.md
+   ├─ DATA_CONTRACTS.md
+   ├─ UI_INFORMATION_ARCHITECTURE.md
+   ├─ RUNBOOK.md
+   ├─ DECISIONS.md
+   ├─ KNOWN_DEFECTS.md
+   ├─ GLOSSARY.md
+   ├─ CHANGELOG.md
+   └─ sequence/
+```
+
+## Deterministic normalization
+
+Project Truth Compiler output is normalized before it is written.
+
+Normalization is formatting-only:
+
+- normalize line endings to LF;
+- remove trailing whitespace;
+- collapse repeated blank lines outside fenced code;
+- ensure one final newline;
+- preserve semantic ordering.
+
+Do NOT automatically reorder:
+
+- lifecycle transitions;
+- workflow steps;
+- sequence edges;
+- decision chronology;
+- evidence chronology;
+- authority-precedence declarations.
+
+## Documentation quality gate
+
+Run:
+
+```bash
+python .workflow/tools/validate_doc_quality.py
+```
+
+Blocking machine-verifiable outputs:
+
+```text
+DOC_LAYOUT = PASS
+PROJECT_DOCS_NORMALIZED = PASS
+DOC_READABILITY = PASS
+```
+
+`DOC_READABILITY` proves presentation structure only. It does not prove
+semantic understanding. HUMAN_COMPREHENSION remains the semantic human-facing
+gate.
+
 # 3. Document responsibilities
 
 ## PROJECT_PROFILE.yaml
@@ -463,14 +582,14 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 
 1. Read PROJECT_PROFILE.yaml.
 2. Resolve the required document set for the selected profile.
-3. Read SYSTEM_OVERVIEW.md for the human/domain mental model.
-4. Read CURRENT_STATE.md.
-5. Read PROJECT_MANIFEST.md.
+3. Read docs/SYSTEM_OVERVIEW.md for the human/domain mental model.
+4. Read docs/CURRENT_STATE.md.
+5. Read docs/PROJECT_MANIFEST.md.
 6. Read only the authority/architecture/workflow/index/contracts required by the profile.
-7. Read SEQUENCE_CONTRACTS.md when sequence policy is enabled.
-8. Read TEST_ACCEPTANCE_MATRIX.md.
-9. Read DOC_SYNC_MATRIX.md when required.
-10. Read PROJECT_TRUTH_SYNC.md when required or present for critical flows.
+7. Read docs/SEQUENCE_CONTRACTS.md when sequence policy is enabled.
+8. Read docs/TEST_ACCEPTANCE_MATRIX.md.
+9. Read docs/DOC_SYNC_MATRIX.md when required.
+10. Read docs/PROJECT_TRUTH_SYNC.md when required or present for critical flows.
 11. Open only exact relevant source ranges first.
 
 Do not create or maintain documents that the profile marks not applicable.
