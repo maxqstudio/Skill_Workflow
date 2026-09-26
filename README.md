@@ -261,6 +261,9 @@ TEST_ACCEPTANCE_MATRIX.md
 
 Default for normal multi-session / multi-agent development.
 
+Generated documentation is required. Root project Markdown should be produced by
+the Project Truth Compiler rather than edited directly.
+
 Required:
 
 ```text
@@ -283,6 +286,9 @@ DOC_SYNC_MATRIX.md
 
 For financial/trading, ML/research, hardware, production infrastructure, safety/audit-sensitive work, or complex multi-repository projects.
 
+Generated documentation is required and PROJECT_DOCS_SYNC becomes part of the
+truth gate.
+
 STRICT requires all STANDARD docs plus:
 
 ```text
@@ -294,6 +300,134 @@ It also forces explicit applicability decisions for critical optional contracts.
 Profile choice is based on **risk and workflow complexity**, not simply repository size.
 
 Ready-to-copy templates are available under `templates/`.
+
+---
+
+## Project Truth Compiler
+
+For STANDARD and STRICT projects, root project Markdown is generated
+deterministically instead of being maintained by hand.
+
+The authority model is:
+
+```text
+SOURCE CODE
+    = implementation facts
+
+.workflow/*.json
+    = semantic / governance intent
+
+tests + runtime evidence
+    = behavioral truth
+
+generated Markdown
+    = human-readable projection
+```
+
+The compiler does **not** ask an LLM to rewrite documentation. It uses
+deterministic Python templates and machine-readable inputs.
+
+Recommended project structure:
+
+```text
+.workflow/
+├─ project.json
+├─ authority.json
+├─ state.json
+├─ architecture.json
+├─ contracts.json
+├─ claims.json
+├─ acceptance.json
+├─ decisions.json
+├─ known_defects.json
+├─ glossary.json
+├─ changelog.json
+├─ workflows/
+│  └─ FLOW-*.json
+└─ generated/
+   └─ code_facts.json
+```
+
+Initialize the spec pack:
+
+```bash
+python scripts/initialize_project_truth.py
+```
+
+Populate semantic/governance specs, then generate documentation:
+
+```bash
+python scripts/generate_project_docs.py
+```
+
+Validate that tracked documentation is reproducible and current:
+
+```bash
+python scripts/validate_project_docs.py
+```
+
+When generated documentation is enabled:
+
+```text
+manual edit to generated Markdown
+→ NOT AUTHORITY
+
+source/spec change
+→ regenerate
+
+generated output differs from tracked docs
+→ PROJECT_DOCS_SYNC = FAIL
+```
+
+### What comes from code automatically
+
+The fact extractor currently derives machine-observable information such as:
+
+- source files and language inventory;
+- line counts;
+- test-file inventory;
+- Python classes/functions/methods;
+- Python decorated HTTP routes;
+- Python call tokens;
+- deterministic source-content digest.
+
+It deliberately does not guess business meaning.
+
+### What remains explicit semantic input
+
+The compact machine-readable specs declare information that code alone cannot
+reliably explain:
+
+- project purpose and users;
+- authority and mutability;
+- intended workflow/lifecycle semantics;
+- invariants;
+- allowed/blocked next actions;
+- acceptance boundaries;
+- durable design decisions;
+- known defects;
+- glossary meaning.
+
+The agent may edit these structured specs when the actual contract changes.
+It should not duplicate the same semantic change across many Markdown files.
+
+### Why JSON instead of generated prose from an LLM
+
+JSON is used for the semantic spec layer because it is deterministic, easy to
+diff, dependency-free in Python, and suitable for validation.
+
+The canonical path is:
+
+```text
+code facts
++ semantic specs
++ test/runtime evidence declarations
+→ deterministic compiler
+→ all human-facing project docs
+```
+
+This reduces token usage and documentation drift without pretending that static
+analysis can infer Owner intent.
 
 ---
 
@@ -755,6 +889,10 @@ Otherwise, preserve the accepted design.
 
 This skill treats documentation as **part of project state**, not as optional notes.
 
+For STANDARD/STRICT, the normal edit target is **not the Markdown**. The agent
+updates source code and/or the appropriate .workflow JSON authority, then
+regenerates all affected documentation.
+
 The core invariant is:
 
 ```text
@@ -780,7 +918,9 @@ decisions: YES/NO
 known defects: YES/NO
 ```
 
-The agent then uses `DOC_SYNC_MATRIX.md` to determine which documents MUST be updated.
+The agent then uses `DOC_SYNC_MATRIX.md` to determine which upstream authority
+must change. In generated-documentation mode, the compiler updates the Markdown
+projections transactionally.
 
 Examples:
 
@@ -815,14 +955,16 @@ READ PROJECT_PROFILE
 → READ SYSTEM_OVERVIEW
 → READ AUTHORITY
 → DECLARE DOC IMPACT
-→ EDIT
-→ REGENERATE STRUCTURAL FACTS
-→ UPDATE SEMANTIC DOCS + INDEXES
+→ EDIT SOURCE / .workflow SPEC
+→ GENERATE CODE FACTS
+→ GENERATE PROJECT DOCS
+→ GENERATE / VALIDATE SEQUENCES
 → TEST
-→ DOC DRIFT VALIDATION
+→ PROJECT_DOCS_SYNC CHECK
+→ CROSS-DOC VALIDATION
 → RUNTIME/E2E
-→ UPDATE ACCEPTANCE MATRIX
-→ UPDATE CURRENT STATE
+→ UPDATE EVIDENCE SPEC
+→ REGENERATE
 → FINAL HANDOFF
 ```
 
@@ -843,6 +985,7 @@ PROVENANCE
 + CROSS-DOCUMENT CONSISTENCY
 + HUMAN COMPREHENSION
 + SEQUENCE SYNC when required
++ PROJECT DOCS SYNC when generated docs are enabled
 + DOC ↔ SOURCE ↔ TEST ↔ RUNTIME TRACEABILITY
 =
 PROJECT_STATE_SYNC
@@ -866,6 +1009,7 @@ The repository provides:
 
 ```bash
 python scripts/validate_handoff.py
+python scripts/validate_project_docs.py
 python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_sequence_sessions.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
@@ -960,6 +1104,10 @@ Skill_Workflow/
 ├─ SKILL.md
 ├─ scripts/
 │  ├─ project_profile.py
+│  ├─ initialize_project_truth.py
+│  ├─ extract_project_facts.py
+│  ├─ generate_project_docs.py
+│  ├─ validate_project_docs.py
 │  ├─ generate_symbol_index.py
 │  ├─ generate_module_map.py
 │  ├─ sequence_contract.py
