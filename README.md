@@ -737,7 +737,7 @@ python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA>
 python scripts/validate_project_truth.py
 ```
 
-The first two validators are profile-aware. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
+`validate_handoff.py` and `validate_cross_document_consistency.py` are profile-aware. `validate_human_comprehension.py` applies to every profile because `SYSTEM_OVERVIEW.md` is universal. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
 
 The truth validator checks machine-verifiable provenance, references, and structure. Semantic correctness still requires inspection of the mapped source/tests/runtime. A structural PASS must never be reported as semantic proof.
 
