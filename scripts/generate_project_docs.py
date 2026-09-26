@@ -27,6 +27,7 @@ from typing import Any
 from extract_project_facts import extract_project_facts
 from project_profile import (
     contract_settings,
+    documentation_settings,
     normalized_profile,
     parse_profile,
     required_docs,
@@ -570,7 +571,7 @@ Generated from PROJECT_PROFILE.yaml.
         users=", ".join(project.get("primary_users", [])),
         profile=profile,
         repo=clean(source.get("authority")),
-        branch=facts["git"]["branch"],
+        branch=clean(state.get("working_branch")) or "NOT_DECLARED",
         accepted=clean(state.get("last_accepted_sha")) or "NOT_DECLARED",
         digest=facts["source_digest"],
         source=clean(source.get("meaning")) or clean(source.get("authority")),
@@ -610,7 +611,6 @@ Authoritative SHA: external final acceptance evidence
 Last accepted SHA: {accepted}
 Current candidate SHA: external final acceptance evidence
 Current source digest: {digest}
-Worktree clean at generation: {clean}
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -644,9 +644,8 @@ See KNOWN_DEFECTS.md.
         profile=profile,
         phase=clean(state.get("phase")),
         status=clean(state.get("status")),
-        branch=facts["git"]["branch"],
+        branch=clean(state.get("working_branch")) or "NOT_DECLARED",
         digest=facts["source_digest"],
-        clean=str(facts["git"]["worktree_clean"]).upper(),
         runtime=clean(acceptance.get("runtime_status", "NOT_PROVEN")),
         sequence_policy="REQUIRED" if sequence_required else "OPTIONAL / NOT_APPLICABLE",
         sequence_mode=clean(acceptance.get("sequence_mode", "NOT_APPLICABLE")),
@@ -1177,6 +1176,7 @@ def render_truth(specs: dict[str, dict], sequence_required: bool) -> str:
         "CROSS_DOCUMENT_CONSISTENCY",
         "HUMAN_COMPREHENSION",
         "SEQUENCE_SYNC",
+        "PROJECT_DOCS_SYNC",
         "DOC_SOURCE_TRACEABILITY",
         "DOC_TEST_TRACEABILITY",
         "TEST_RUNTIME_TRACEABILITY",
@@ -1537,7 +1537,7 @@ def render_all(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", default=".")
-    parser.add_argument("--spec-root", default=".workflow")
+    parser.add_argument("--spec-root", default="")
     parser.add_argument("--check", action="store_true")
     parser.add_argument(
         "--facts-output",
@@ -1558,11 +1558,13 @@ def main() -> int:
         required = required_docs(profile_data)
         contracts = contract_settings(profile_data)
         sequence = sequence_settings(profile_data)
+        documentation = documentation_settings(profile_data)
     except Exception as exc:
         print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
         return 1
 
-    spec_root = Path(args.spec_root)
+    spec_root_value = args.spec_root or str(documentation.get("spec_root", ".workflow"))
+    spec_root = Path(spec_root_value)
     if not spec_root.is_absolute():
         spec_root = root / spec_root
 
@@ -1585,11 +1587,17 @@ def main() -> int:
     facts_output = Path(args.facts_output)
     if not facts_output.is_absolute():
         facts_output = root / facts_output
-    facts_output.parent.mkdir(parents=True, exist_ok=True)
-    facts_output.write_text(
-        json.dumps(facts, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    expected_facts_text = json.dumps(facts, indent=2, sort_keys=True) + "\n"
+    facts_missing = False
+    facts_stale = False
+    if args.check:
+        if not facts_output.is_file():
+            facts_missing = True
+        elif facts_output.read_text(encoding="utf-8", errors="ignore") != expected_facts_text:
+            facts_stale = True
+    else:
+        facts_output.parent.mkdir(parents=True, exist_ok=True)
+        facts_output.write_text(expected_facts_text, encoding="utf-8")
 
     digest = input_digest(
         profile_path.read_text(encoding="utf-8"),
@@ -1628,8 +1636,10 @@ def main() -> int:
         "generated_docs": sorted(docs),
         "missing_docs": missing,
         "stale_docs": stale,
+        "facts_missing": facts_missing,
+        "facts_stale": facts_stale,
         "mode": "check" if args.check else "write",
-        "result": "FAIL" if missing or stale else "PASS",
+        "result": "FAIL" if missing or stale or facts_missing or facts_stale else "PASS",
         "semantic_boundary": (
             "Compiler projects declared semantic/governance specs and "
             "machine-observed code facts; it does not infer missing intent."
