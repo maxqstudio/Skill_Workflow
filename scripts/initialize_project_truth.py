@@ -65,6 +65,9 @@ def main() -> int:
     generated = spec_root / "generated"
     generated.mkdir(parents=True, exist_ok=True)
 
+    docs_root = root / "docs"
+    docs_root.mkdir(parents=True, exist_ok=True)
+
     if not args.no_tools:
         tools_root = spec_root / "tools"
         tools_root.mkdir(parents=True, exist_ok=True)
@@ -86,6 +89,7 @@ def main() -> int:
                 print("SKIP " + dst.relative_to(root).as_posix())
 
     print("SPEC_ROOT=" + str(spec_root))
+    print("DOCS_ROOT=" + str(docs_root))
     print("WRITES=" + str(writes))
     print("SKIPS=" + str(skips))
     print("RESULT=PASS")
