@@ -30,6 +30,7 @@ Record the actual HEAD in generated/external acceptance evidence.
 | SEMANTIC_SYNC | NOT_PROVEN | |
 | BEHAVIORAL_SYNC | NOT_PROVEN | |
 | CROSS_DOCUMENT_CONSISTENCY | NOT_PROVEN | |
+| HUMAN_COMPREHENSION | NOT_PROVEN | SYSTEM_OVERVIEW.md + human comprehension validator |
 | DOC_SOURCE_TRACEABILITY | NOT_PROVEN | |
 | DOC_TEST_TRACEABILITY | NOT_PROVEN | |
 | TEST_RUNTIME_TRACEABILITY | NOT_PROVEN | |
@@ -122,6 +123,7 @@ For final acceptance, record or reference generated reports:
 
 ```text
 HANDOFF_VALIDATOR:
+HUMAN_COMPREHENSION_VALIDATOR:
 CROSS_DOCUMENT_VALIDATOR:
 PROJECT_TRUTH_VALIDATOR:
 CROSS_DOCUMENT_REPORT:
@@ -138,3 +140,23 @@ python scripts/validate_cross_document_consistency.py \
 ```
 
 CROSS_DOCUMENT_CONSISTENCY may be set to PASS only when the machine validator passes and semantic/cross-document review finds no unresolved contradiction.
+
+
+## Human comprehension truth rule
+
+HUMAN_COMPREHENSION may be set to PASS only when:
+
+- SYSTEM_OVERVIEW.md is structurally complete;
+- every applicable Human Comprehension Gate question is PASS;
+- the overview agrees with CURRENT_STATE, PROJECT_MANIFEST, authority maps,
+  workflow/state documentation, and acceptance evidence;
+- a reviewer can explain the project without opening source code.
+
+Run:
+
+```bash
+python scripts/validate_human_comprehension.py --require-pass
+```
+
+Machine validation checks coverage and explicit statuses only. It does not prove
+the prose is semantically correct or that a real reader understood it.
