@@ -12,6 +12,7 @@
 #   not_applicable
 #
 # SYSTEM_OVERVIEW.md is mandatory for every profile.
+# Sequence contracts are mandatory for STANDARD and STRICT by default.
 # STRICT requires explicit required/not_applicable decisions for the critical
 # contract categories checked by the validator.
 
@@ -29,6 +30,10 @@ contracts:
 
 runtime:
   e2e_required: true
+
+sequence:
+  required: true
+  runtime_trace_required: false
 
 notes:
   profile_reason: replace-me
