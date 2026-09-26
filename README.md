@@ -354,10 +354,18 @@ Initialize the spec pack:
 python scripts/initialize_project_truth.py
 ```
 
+Initializer also vendors the runtime tool pack into:
+
+```text
+.workflow/tools/
+```
+
+so target projects do not depend on a particular agent's skill-install path.
+
 Populate semantic/governance specs, then synchronize documentation:
 
 ```bash
-python scripts/sync_project_truth.py
+python .workflow/tools/sync_project_truth.py
 ```
 
 That command generates docs/facts, validates reproducibility, records only
@@ -366,8 +374,8 @@ That command generates docs/facts, validates reproducibility, records only
 Low-level commands remain available:
 
 ```bash
-python scripts/generate_project_docs.py
-python scripts/validate_project_docs.py
+python .workflow/tools/generate_project_docs.py
+python .workflow/tools/validate_project_docs.py
 ```
 
 Run the compiler's executable regression self-test with:
