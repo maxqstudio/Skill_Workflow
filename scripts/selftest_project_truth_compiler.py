@@ -88,6 +88,56 @@ def main() -> int:
         )
         write_json(state_path, state)
 
+        authority_path = root / ".workflow" / "authority.json"
+        authority = json.loads(authority_path.read_text(encoding="utf-8"))
+        authority["authorities"] = [
+            {
+                "concern": "source",
+                "authority": "local/compiler-fixture",
+                "meaning": "fixture source tree",
+                "mutable": True,
+            },
+            {
+                "concern": "runtime",
+                "authority": "local test process",
+                "meaning": "self-test runtime evidence",
+                "mutable": True,
+            },
+            {
+                "concern": "acceptance",
+                "authority": "self-test assertions",
+                "meaning": "deterministic compiler acceptance",
+                "mutable": False,
+            },
+        ]
+        authority["invariants"] = [
+            "Generated docs must reproduce from source and structured specs."
+        ]
+        write_json(authority_path, authority)
+
+        architecture_path = root / ".workflow" / "architecture.json"
+        architecture = json.loads(
+            architecture_path.read_text(encoding="utf-8")
+        )
+        architecture["components"] = [
+            {
+                "id": "app",
+                "name": "Fixture API",
+                "purpose": "Serve deterministic health status",
+                "owns": ["health endpoint"],
+                "depends_on": [],
+            }
+        ]
+        architecture["data_flows"] = [
+            {
+                "from": "caller",
+                "to": "Fixture API",
+                "meaning": "health request and response",
+            }
+        ]
+        architecture["external_boundaries"] = []
+        write_json(architecture_path, architecture)
+
         acceptance_path = root / ".workflow" / "acceptance.json"
         acceptance = json.loads(acceptance_path.read_text(encoding="utf-8"))
         acceptance.update(
