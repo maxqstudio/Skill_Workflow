@@ -198,6 +198,22 @@ def main() -> int:
                 raise RuntimeError("canonical doc missing from docs/: " + name)
 
         overview = root / "docs" / "SYSTEM_OVERVIEW.md"
+
+        duplicate = root / "SYSTEM_OVERVIEW.md"
+        duplicate.write_text(
+            overview.read_text(encoding="utf-8"),
+            encoding="utf-8",
+        )
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "validate_project_docs.py"),
+            "--root",
+            str(root),
+            expect=1,
+        )
+        duplicate.unlink()
+
         overview.write_text(
             overview.read_text(encoding="utf-8") + "\nMANUAL_TAMPER\n",
             encoding="utf-8",
@@ -258,6 +274,7 @@ def main() -> int:
     print("SOURCE_DRIFT_DETECTION=PASS")
     print("REGENERATION_RECOVERY=PASS")
     print("DOC_LAYOUT=PASS")
+    print("DOC_LAYOUT_DUPLICATE_DETECTION=PASS")
     print("PROJECT_DOCS_NORMALIZED=PASS")
     print("DOC_READABILITY=PASS")
     return 0
