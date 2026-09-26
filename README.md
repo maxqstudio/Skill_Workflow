@@ -19,7 +19,9 @@ It focuses on:
 
 ## Install
 
-Install directly from GitHub:
+The repository uses the open `skills` CLI, which can target Codex, Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, and many other supported coding agents.
+
+Install interactively:
 
 ```bash
 npx skills add maxqstudio/Skill_Workflow
@@ -30,6 +32,136 @@ or:
 ```bash
 npx skills add https://github.com/maxqstudio/Skill_Workflow
 ```
+
+### OpenAI Codex
+
+Project-local:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a codex -y
+```
+
+Global:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a codex -g -y
+```
+
+### Claude Code
+
+Project-local:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a claude-code -y
+```
+
+Global:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a claude-code -g -y
+```
+
+### Codex + Claude Code together
+
+Project-local:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a codex -a claude-code -y
+```
+
+Global:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a codex -a claude-code -g -y
+```
+
+### Other common coding agents
+
+Cursor:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a cursor -y
+```
+
+Gemini CLI:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a gemini-cli -y
+```
+
+GitHub Copilot:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a github-copilot -y
+```
+
+OpenCode:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a opencode -y
+```
+
+Qwen Code:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a qwen-code -y
+```
+
+Roo Code:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a roo -y
+```
+
+Windsurf:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a windsurf -y
+```
+
+Cline:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a cline -y
+```
+
+### Install to multiple agents
+
+Example:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow \
+  -a codex \
+  -a claude-code \
+  -a cursor \
+  -a gemini-cli \
+  -a github-copilot \
+  -a opencode \
+  -y
+```
+
+To install all skills in this repository to all supported/detected agents:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow --all
+```
+
+### Project-local vs global
+
+Project-local is the default and is recommended when the skill should travel with one repository.
+
+Global installation uses `-g` and makes the skill available across projects for that agent.
+
+Examples of agent paths managed by the `skills` CLI include:
+
+| Agent | Project path | Global path |
+|---|---|---|
+| Codex | `.agents/skills/` | `~/.codex/skills/` |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Cursor | `.agents/skills/` | `~/.cursor/skills/` |
+| Gemini CLI | `.agents/skills/` | `~/.gemini/skills/` |
+| GitHub Copilot | `.agents/skills/` | `~/.copilot/skills/` |
+| OpenCode | `.agents/skills/` | `~/.config/opencode/skills/` |
 
 Update installed skills later with:
 
