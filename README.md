@@ -572,7 +572,7 @@ HUMAN_COMPREHENSION_GATE = PASS
 and:
 
 ```bash
-python scripts/validate_human_comprehension.py --require-pass
+python .workflow/tools/validate_human_comprehension.py --require-pass
 ```
 
 The validator checks structural coverage and explicit gate status. It does not
@@ -613,8 +613,8 @@ Line numbers are only navigation hints and should be tied to an exact source SHA
 Two generators reduce manual documentation overhead:
 
 ```bash
-python scripts/generate_symbol_index.py
-python scripts/generate_module_map.py
+python .workflow/tools/generate_symbol_index.py
+python .workflow/tools/generate_module_map.py
 ```
 
 `generate_symbol_index.py`:
@@ -728,19 +728,19 @@ phase and are not regenerated to match newer code.
 ### Commands
 
 ```bash
-python scripts/generate_sequence_plan.py \
+python .workflow/tools/generate_sequence_plan.py \
   --plan docs/sequence/plans/<session>.plan.json \
   --output docs/sequence/generated/<session>.plan.mmd
 
-python scripts/generate_sequence_actual.py \
+python .workflow/tools/generate_sequence_actual.py \
   --output-json docs/sequence/generated/<session>.actual.json \
   --output-mermaid docs/sequence/generated/<session>.actual.mmd \
   --entry <path::symbol>
 
-python scripts/validate_sequence_contract.py \
+python .workflow/tools/validate_sequence_contract.py \
   --session docs/sequence/sessions/<session>.json
 
-python scripts/validate_sequence_sessions.py
+python .workflow/tools/validate_sequence_sessions.py
 ```
 
 When sequence policy is required, final acceptance requires:
@@ -1043,7 +1043,7 @@ Before final PASS, the agent performs a **documentation drift audit**.
 The repository includes:
 
 ```bash
-python scripts/validate_handoff.py
+python .workflow/tools/validate_handoff.py
 ```
 
 The validator checks structural handoff requirements. A validator PASS does not replace semantic review, but a validator FAIL blocks completion.
@@ -1095,7 +1095,7 @@ Important Git detail: a tracked document cannot reliably contain the hash of the
 
 The correct provenance proof is that source and required docs are tracked in the same tested Git HEAD, the worktree is clean, and no source/docs change occurs after final testing without a retest.
 
-`PROJECT_TRUTH_SYNC.md` is the traceability ledger for critical claims. It links each important contract to:
+`docs/PROJECT_TRUTH_SYNC.md` is the traceability ledger for critical claims. It links each important contract to:
 
 ```text
 claim
@@ -1108,15 +1108,15 @@ claim
 The repository provides:
 
 ```bash
-python scripts/validate_handoff.py
-python scripts/validate_project_docs.py
-python scripts/validate_human_comprehension.py --require-pass
-python scripts/validate_sequence_sessions.py
-python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
-python scripts/validate_project_truth.py
+python .workflow/tools/validate_handoff.py
+python .workflow/tools/validate_project_docs.py
+python .workflow/tools/validate_human_comprehension.py --require-pass
+python .workflow/tools/validate_sequence_sessions.py
+python .workflow/tools/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
+python .workflow/tools/validate_project_truth.py
 ```
 
-`validate_handoff.py`, `validate_sequence_sessions.py`, and `validate_cross_document_consistency.py` honor the project profile. `validate_human_comprehension.py` applies to every profile because `SYSTEM_OVERVIEW.md` is universal. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
+`validate_handoff.py`, `validate_sequence_sessions.py`, and `validate_cross_document_consistency.py` honor the project profile. `validate_human_comprehension.py` applies to every profile because `docs/SYSTEM_OVERVIEW.md` is universal. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
 
 The truth validator checks machine-verifiable provenance, references, and structure. Semantic correctness still requires inspection of the mapped source/tests/runtime. A structural PASS must never be reported as semantic proof.
 
@@ -1141,7 +1141,7 @@ It checks machine-verifiable problems such as:
 For final acceptance:
 
 ```bash
-python scripts/validate_cross_document_consistency.py \
+python .workflow/tools/validate_cross_document_consistency.py \
   --base <LAST_ACCEPTED_SHA> \
   --require-base \
   --report artifacts/cross_document_sync_report.json
