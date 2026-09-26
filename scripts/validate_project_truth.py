@@ -16,6 +16,7 @@ from pathlib import Path
 
 from project_profile import (
     PROFILE_FILE,
+    documentation_settings,
     normalized_profile,
     parse_profile,
     required_docs,
@@ -35,6 +36,7 @@ REQUIRED_GATES = [
     "CROSS_DOCUMENT_CONSISTENCY",
     "HUMAN_COMPREHENSION",
     "SEQUENCE_SYNC",
+    "PROJECT_DOCS_SYNC",
     "DOC_SOURCE_TRACEABILITY",
     "DOC_TEST_TRACEABILITY",
     "TEST_RUNTIME_TRACEABILITY",
@@ -116,6 +118,7 @@ def main() -> int:
         truth_required = False
         runtime_policy = {"e2e_required": True}
         sequence_policy = {"required": True, "runtime_trace_required": False}
+        documentation_policy = {"generated": True, "spec_root": ".workflow"}
     else:
         try:
             profile_data = parse_profile(profile_path)
@@ -124,12 +127,14 @@ def main() -> int:
             truth_required = "PROJECT_TRUTH_SYNC.md" in required_docs(profile_data)
             runtime_policy = runtime_settings(profile_data)
             sequence_policy = sequence_settings(profile_data)
+            documentation_policy = documentation_settings(profile_data)
         except Exception as exc:
             failures.append("PROJECT_PROFILE_INVALID:" + str(exc))
             profile_name = "standard"
             truth_required = False
             runtime_policy = {"e2e_required": True}
             sequence_policy = {"required": True, "runtime_trace_required": False}
+            documentation_policy = {"generated": True, "spec_root": ".workflow"}
 
     ledger = root / args.ledger
 
@@ -244,6 +249,13 @@ def main() -> int:
             failures.append(
                 "TRUTH_GATE_HUMAN_COMPREHENSION_CONFLICT:"
                 + (human_status or "MISSING")
+            )
+
+    if documentation_policy.get("generated", False):
+        docs_gate = gates.get("PROJECT_DOCS_SYNC")
+        if docs_gate not in {"PASS", None}:
+            failures.append(
+                f"PROJECT_DOCS_SYNC_REQUIRED_BUT_NOT_PASS:{docs_gate}"
             )
 
     if sequence_policy.get("required", False):
