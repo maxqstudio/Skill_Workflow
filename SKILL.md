@@ -32,6 +32,7 @@ PROJECT_PROFILE
 → CURRENT_STATE
 → PROJECT_MANIFEST
 → profile-required authority / architecture / workflow docs
+→ SEQUENCE_CONTRACTS when required
 → profile-required MODULE / FLOW / SYMBOL maps
 → TEST_ACCEPTANCE_MATRIX
 → exact relevant source ranges
@@ -78,6 +79,7 @@ CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
 ARCHITECTURE.md
 WORKFLOW_STATE_MACHINE.md
+SEQUENCE_CONTRACTS.md
 MODULE_MAP.md
 SYMBOL_INDEX.md
 FLOW_INDEX.md
@@ -175,6 +177,25 @@ Describe components, boundaries, dependencies, data flow, persistence, runtime p
 ## WORKFLOW_STATE_MACHINE.md
 Document every meaningful lifecycle. For each state define entry condition, legal actions, legal transitions, exit condition, owner/authority, side effects, artifacts, failure behavior, and rollback behavior. Write invariants explicitly. Never infer workflow only from UI labels.
 
+## SEQUENCE_CONTRACTS.md
+
+Machine-backed sequence acceptance index.
+
+For each phase/session, declare one mode:
+
+- BEFORE — a plan contract is frozen before implementation, then generated
+  actual behavior is compared against it.
+- DURING — implementation already exists/in progress; retrospective plan is
+  forbidden and only generated actual behavior is accepted.
+- AFTER — post-implementation reconstruction; retrospective plan is forbidden
+  and only final generated actual behavior is accepted.
+
+Canonical Mermaid diagrams are generated files. Do not hand-edit them.
+
+The machine-readable sequence session and plan contracts live under
+`docs/sequence/` (recommended), while acceptance reports should live under
+`artifacts/sequence/`.
+
 ## MODULE_MAP.md
 Fast file-level navigation map. Recommended columns: Module/File | Responsibility | Called By | Calls/Depends On | State Touched | Tests.
 
@@ -229,10 +250,11 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 4. Read CURRENT_STATE.md.
 5. Read PROJECT_MANIFEST.md.
 6. Read only the authority/architecture/workflow/index/contracts required by the profile.
-7. Read TEST_ACCEPTANCE_MATRIX.md.
-8. Read DOC_SYNC_MATRIX.md when required.
-9. Read PROJECT_TRUTH_SYNC.md when required or present for critical flows.
-10. Open only exact relevant source ranges first.
+7. Read SEQUENCE_CONTRACTS.md when sequence policy is enabled.
+8. Read TEST_ACCEPTANCE_MATRIX.md.
+9. Read DOC_SYNC_MATRIX.md when required.
+10. Read PROJECT_TRUTH_SYNC.md when required or present for critical flows.
+11. Open only exact relevant source ranges first.
 
 Do not create or maintain documents that the profile marks not applicable.
 
@@ -244,10 +266,15 @@ read PROJECT_PROFILE
 → read SYSTEM_OVERVIEW
 → understand authority
 → identify affected workflow
+→ determine sequence mode (BEFORE / DURING / AFTER)
+→ freeze sequence plan before coding when mode = BEFORE
 → identify affected modules
 → locate exact symbols
 → reproduce defect or establish baseline
 → implement minimum valid repair
+→ generate actual sequence graph from codebase
+→ validate sequence contract
+→ repair mismatch until sequence acceptance passes
 → regenerate machine-derived structural facts
 → update semantic docs/contracts
 → targeted tests
@@ -421,6 +448,7 @@ workflow/state machine: YES/NO
 module map: YES/NO
 symbol index: YES/NO
 flow index: YES/NO
+sequence contract: YES/NO
 API contract: YES/NO
 data contract: YES/NO
 UI information architecture: YES/NO
@@ -464,10 +492,15 @@ SESSION START
 → read SYSTEM_OVERVIEW
 → read CURRENT_STATE
 → verify repository/branch/SHA authority
-→ read workflow + module/flow/symbol indexes
+→ read workflow + sequence + module/flow/symbol indexes
+→ determine sequence mode
+→ freeze plan if BEFORE
 → declare DOC IMPACT
 → reproduce/baseline
 → implement minimum valid change
+→ generate actual sequence graph
+→ validate plan-vs-actual or actual-only contract
+→ repair and regenerate until sequence acceptance passes
 → regenerate structural facts where applicable
 → update affected semantic docs/indexes
 → targeted tests
@@ -488,6 +521,10 @@ Available generators:
 ```bash
 python scripts/generate_symbol_index.py
 python scripts/generate_module_map.py
+python scripts/generate_sequence_plan.py --plan <plan.json> --output <plan.mmd>
+python scripts/generate_sequence_actual.py --output-json <actual.json> --output-mermaid <actual.mmd>
+python scripts/validate_sequence_contract.py --session <session.json>
+python scripts/validate_sequence_sessions.py
 ```
 
 `generate_symbol_index.py` prefers Universal Ctags for broad language coverage and falls back to Python AST when Ctags is unavailable.
@@ -519,6 +556,9 @@ The task is NOT DONE if any applies:
 
 - source changed but affected docs are stale;
 - human-visible behavior changed but SYSTEM_OVERVIEW is stale;
+- sequence-required workflow changed but generated actual sequence evidence is stale;
+- BEFORE implementation exists without a proven pre-implementation frozen plan;
+- DURING/AFTER contains a retrospective plan;
 - workflow changed but WORKFLOW_STATE_MACHINE or FLOW_INDEX is stale;
 - function/class moved or changed ownership but SYMBOL_INDEX is stale;
 - module responsibility changed but MODULE_MAP is stale;
@@ -546,6 +586,9 @@ Before final PASS, inspect the source diff and compare it with DOC_SYNC_MATRIX.m
 Verify:
 
 - SYSTEM_OVERVIEW still matches the current human/domain mental model;
+- applicable sequence session uses the correct BEFORE/DURING/AFTER mode;
+- generated actual sequence graph matches current source-content digest;
+- BEFORE plan lineage predates implementation;
 - every changed authority-bearing symbol is indexed;
 - every changed call path is reflected in FLOW_INDEX;
 - line-range hints are refreshed or marked STALE;
@@ -559,6 +602,7 @@ When available, run:
 ```bash
 python scripts/validate_handoff.py
 python scripts/validate_human_comprehension.py --require-pass
+python scripts/validate_sequence_sessions.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 ```
 
@@ -579,6 +623,12 @@ UPDATED / NO IMPACT
 
 HUMAN_COMPREHENSION_GATE:
 PASS / FAIL / NOT_PROVEN
+
+SEQUENCE_MODE:
+BEFORE / DURING / AFTER / NOT_APPLICABLE
+
+SEQUENCE_SYNC:
+PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
 
 CURRENT_STATE:
 UPDATED / NO IMPACT
@@ -613,6 +663,9 @@ PASS / FAIL / NOT_AVAILABLE
 HUMAN COMPREHENSION VALIDATOR:
 PASS / FAIL / NOT_AVAILABLE
 
+SEQUENCE CONTRACT VALIDATOR:
+PASS / FAIL / NOT_AVAILABLE
+
 CROSS-DOCUMENT VALIDATOR:
 PASS / FAIL / NOT_AVAILABLE
 
@@ -624,7 +677,7 @@ If a required documentation item is stale, final status cannot be PASS.
 
 # 21. Definition of done
 
-A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, HUMAN_COMPREHENSION_GATE passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
+A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, HUMAN_COMPREHENSION_GATE passes, applicable SEQUENCE_SYNC passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
 
@@ -643,9 +696,10 @@ Required truth layers:
 5. BEHAVIORAL SYNC
 6. CROSS-DOCUMENT CONSISTENCY
 7. HUMAN COMPREHENSION
-8. DOC ↔ SOURCE TRACEABILITY
-9. DOC ↔ TEST TRACEABILITY
-10. TEST ↔ RUNTIME TRACEABILITY
+8. SEQUENCE SYNC
+9. DOC ↔ SOURCE TRACEABILITY
+10. DOC ↔ TEST TRACEABILITY
+11. TEST ↔ RUNTIME TRACEABILITY
 
 Overall invariant:
 
@@ -740,6 +794,7 @@ SEMANTIC_SYNC: PASS
 BEHAVIORAL_SYNC: PASS / NOT_APPLICABLE
 CROSS_DOCUMENT_CONSISTENCY: PASS
 HUMAN_COMPREHENSION: PASS
+SEQUENCE_SYNC: PASS / NOT_APPLICABLE
 DOC_SOURCE_TRACEABILITY: PASS
 DOC_TEST_TRACEABILITY: PASS
 TEST_RUNTIME_TRACEABILITY: PASS / NOT_APPLICABLE
@@ -755,6 +810,7 @@ Run validators required by the selected profile:
 
 python scripts/validate_handoff.py
 python scripts/validate_human_comprehension.py --require-pass
+python scripts/validate_sequence_sessions.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 
 For STRICT, or when PROJECT_TRUTH_SYNC.md is present:
@@ -913,3 +969,226 @@ The engineering call chain belongs in FLOW_INDEX.md.
 
 The two documents must describe the same behavior at different abstraction
 levels.
+
+
+# 24. Sequence Contract acceptance
+
+Sequence diagrams are acceptance artifacts derived from machine-readable
+contracts and source analysis. Canonical Mermaid must never be hand-authored or
+hand-edited.
+
+## Three modes
+
+### BEFORE
+
+Use only when a sequence plan truly exists before implementation begins.
+
+```text
+define intended flow
+→ write machine-readable plan contract
+→ generate plan Mermaid
+→ commit/freeze plan
+→ record frozen plan commit/hash
+→ start implementation
+→ generate actual graph from codebase
+→ generate actual Mermaid
+→ compare PLAN ↔ ACTUAL
+→ classify mismatch
+→ repair correct authority
+→ regenerate
+→ validate again
+```
+
+Git lineage must prove:
+
+```text
+FROZEN_PLAN_COMMIT
+is ancestor of
+IMPLEMENTATION_BASE
+is ancestor of
+FINAL_HEAD
+```
+
+A plan created after implementation began is invalid as BEFORE evidence.
+
+### DURING
+
+Use when Skill Workflow / sequence governance is adopted while implementation is
+already in progress.
+
+```text
+PLAN = NOT_APPLICABLE
+current codebase
+→ generated actual graph
+→ generated actual Mermaid
+→ source/test/runtime validation
+```
+
+Retrospective plans are forbidden.
+
+DURING is continuous observation: regenerate actual sequence evidence as the
+implementation changes.
+
+### AFTER
+
+Use when documenting/reconstructing a completed implementation.
+
+```text
+PLAN = NOT_APPLICABLE
+final codebase
+→ generated final actual graph
+→ generated final actual Mermaid
+→ source/test/runtime validation
+```
+
+Retrospective plans are forbidden.
+
+## Machine-readable authority
+
+Recommended artifacts:
+
+```text
+SEQUENCE_CONTRACTS.md
+docs/sequence/sessions/<session>.json
+docs/sequence/plans/<session>.plan.json          # BEFORE only
+docs/sequence/generated/<session>.plan.mmd       # BEFORE only, generated
+docs/sequence/generated/<session>.actual.json    # generated from code
+docs/sequence/generated/<session>.actual.mmd     # generated from graph
+artifacts/sequence/<session>.acceptance.json      # final evidence
+```
+
+The plan JSON is the BEFORE design contract.
+
+The actual JSON is the machine observation of implementation.
+
+Mermaid is only a deterministic rendering.
+
+## Source-content binding
+
+Do not require a tracked generated graph to contain the final commit SHA of the
+commit that contains itself.
+
+Actual graphs bind to a deterministic SOURCE_CONTENT_DIGEST calculated from
+source files while excluding generated documentation/artifacts.
+
+Final validation recomputes the digest and requires:
+
+```text
+ACTUAL_SOURCE_DIGEST = CURRENT_SOURCE_DIGEST
+```
+
+Git HEAD remains final provenance evidence separately.
+
+## Plan edge semantics
+
+Plan edges may use:
+
+```text
+MUST
+MAY
+MUST_NOT
+```
+
+and verification scope:
+
+```text
+SOURCE
+RUNTIME
+BOTH
+DOCUMENT
+```
+
+Acceptance must not fail merely because harmless internal helper calls exist.
+
+It must fail when required critical edges are missing, forbidden edges appear,
+authority/order semantics are violated where verifiable, or critical bindings
+remain unresolved.
+
+## Mismatch classification
+
+Never blindly repair code because a generated comparison failed.
+
+First classify:
+
+```text
+CODE_DEFECT
+PLAN_CHANGE
+GENERATOR_DEFECT
+```
+
+Then repair the correct authority.
+
+PLAN_CHANGE in BEFORE mode requires explicit authorization and a newly frozen
+plan version before implementing the revised behavior.
+
+## Generated-only diagram rule
+
+Canonical plan/actual Mermaid files are generated.
+
+If deterministic re-rendering does not match the stored Mermaid:
+
+```text
+GENERATED_DIAGRAM_TAMPERED = FAIL
+```
+
+## Required commands
+
+BEFORE plan rendering:
+
+```bash
+python scripts/generate_sequence_plan.py \
+  --plan docs/sequence/plans/<session>.plan.json \
+  --output docs/sequence/generated/<session>.plan.mmd
+```
+
+Actual extraction:
+
+```bash
+python scripts/generate_sequence_actual.py \
+  --output-json docs/sequence/generated/<session>.actual.json \
+  --output-mermaid docs/sequence/generated/<session>.actual.mmd \
+  --entry <path::symbol>
+```
+
+Per-session validation:
+
+```bash
+python scripts/validate_sequence_contract.py \
+  --session docs/sequence/sessions/<session>.json
+```
+
+All-session acceptance:
+
+```bash
+python scripts/validate_sequence_sessions.py
+```
+
+## Static-analysis boundary
+
+The generic extractor currently provides machine-verifiable structural coverage
+for Python AST calls/routes and JS/TS HTTP module edges.
+
+It cannot perfectly infer every dependency-injection edge, reflection target,
+callback/event, framework-generated dispatch, or dynamic runtime path.
+
+For critical unresolved paths:
+
+```text
+do not guess
+→ runtime trace or stronger project-specific extractor
+→ regenerate
+→ revalidate
+```
+
+A generated diagram is evidence only to the strength of the extractor/runtime
+evidence that produced it.
+
+## Sequence final gate
+
+When sequence policy is required:
+
+```text
+SEQUENCE_SYNC = PASS
+```
+
+is required before PROJECT_STATE_SYNC may be PASS.
