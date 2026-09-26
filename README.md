@@ -113,6 +113,7 @@ MODULE_MAP.md
 SYMBOL_INDEX.md
 FLOW_INDEX.md
 TEST_ACCEPTANCE_MATRIX.md
+DOC_SYNC_MATRIX.md
 ```
 
 Ready-to-copy templates are available under `templates/`.
@@ -202,6 +203,7 @@ WORKFLOW_STATE_MACHINE
 - `SYMBOL_INDEX.md`
 - `FLOW_INDEX.md`
 - `TEST_ACCEPTANCE_MATRIX.md`
+- `DOC_SYNC_MATRIX.md`
 
 ### Additional contracts
 
@@ -365,6 +367,80 @@ Otherwise, preserve the accepted design.
 
 ---
 
+## Agent discipline: docs are a hard gate
+
+This skill treats documentation as **part of project state**, not as optional notes.
+
+The core invariant is:
+
+```text
+SOURCE PASS + DOC_SYNC FAIL
+=
+OVERALL FAIL
+```
+
+Before changing source, an agent declares documentation impact:
+
+```text
+architecture: YES/NO
+workflow/state machine: YES/NO
+module map: YES/NO
+symbol index: YES/NO
+flow index: YES/NO
+API contract: YES/NO
+data contract: YES/NO
+UI information architecture: YES/NO
+test acceptance matrix: YES/NO
+current state: YES
+decisions: YES/NO
+known defects: YES/NO
+```
+
+The agent then uses `DOC_SYNC_MATRIX.md` to determine which documents MUST be updated.
+
+Examples:
+
+| Source change | Required docs |
+|---|---|
+| function/class added, moved, renamed, or authority changed | `SYMBOL_INDEX.md` |
+| module responsibility changes | `MODULE_MAP.md` |
+| call chain changes | `FLOW_INDEX.md` |
+| lifecycle/state transition changes | `WORKFLOW_STATE_MACHINE.md` + `FLOW_INDEX.md` |
+| endpoint contract changes | `API_CONTRACTS.md` + `FLOW_INDEX.md` |
+| database/schema/data semantics change | `DATA_CONTRACTS.md` |
+| UI page/action/authority changes | `UI_INFORMATION_ARCHITECTURE.md` |
+| architecture/dependency changes | `ARCHITECTURE.md` |
+| test/evidence changes | `TEST_ACCEPTANCE_MATRIX.md` |
+| candidate/phase/blocker changes | `CURRENT_STATE.md` |
+| durable architectural decision changes | `DECISIONS.md` |
+
+Before final PASS, the agent performs a **documentation drift audit**.
+
+The repository includes:
+
+```bash
+python scripts/validate_handoff.py
+```
+
+The validator checks structural handoff requirements. A validator PASS does not replace semantic review, but a validator FAIL blocks completion.
+
+The disciplined flow is:
+
+```text
+READ AUTHORITY
+→ DECLARE DOC IMPACT
+→ EDIT
+→ UPDATE DOCS + INDEXES
+→ TEST
+→ DOC DRIFT VALIDATION
+→ RUNTIME/E2E
+→ UPDATE ACCEPTANCE MATRIX
+→ UPDATE CURRENT STATE
+→ FINAL HANDOFF
+```
+
+---
+
 ## New-room startup procedure
 
 When entering an existing project:
@@ -378,7 +454,8 @@ When entering an existing project:
 7. Read `FLOW_INDEX.md`.
 8. Read `SYMBOL_INDEX.md`.
 9. Read `TEST_ACCEPTANCE_MATRIX.md`.
-10. Open only the exact relevant source ranges first.
+10. Read `DOC_SYNC_MATRIX.md`.
+11. Open only the exact relevant source ranges first.
 
 This is the default fast-orientation mode.
 
@@ -423,6 +500,7 @@ Skill_Workflow/
    ├─ SYMBOL_INDEX.md
    ├─ FLOW_INDEX.md
    ├─ TEST_ACCEPTANCE_MATRIX.md
+   ├─ DOC_SYNC_MATRIX.md
    ├─ DATA_CONTRACTS.md
    ├─ API_CONTRACTS.md
    ├─ UI_INFORMATION_ARCHITECTURE.md

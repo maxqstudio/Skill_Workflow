@@ -53,6 +53,7 @@ MODULE_MAP.md
 SYMBOL_INDEX.md
 FLOW_INDEX.md
 TEST_ACCEPTANCE_MATRIX.md
+DOC_SYNC_MATRIX.md
 
 Recommended additional documents:
 
@@ -141,7 +142,8 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 7. Read FLOW_INDEX.md.
 8. Read SYMBOL_INDEX.md.
 9. Read TEST_ACCEPTANCE_MATRIX.md.
-10. Open only exact relevant source ranges first.
+10. Read DOC_SYNC_MATRIX.md.
+11. Open only exact relevant source ranges first.
 
 Expand outward only if indexes are stale, incomplete, contradictory, or a full audit is explicitly required.
 
@@ -265,7 +267,8 @@ Read:
 7. FLOW_INDEX
 8. SYMBOL_INDEX
 9. TEST_ACCEPTANCE_MATRIX
-10. exact relevant source ranges.
+10. DOC_SYNC_MATRIX
+11. exact relevant source ranges.
 
 Do not recursively scan the repository unless docs/indexes are missing or conflicting, corruption is suspected, or a full audit is explicitly requested.
 
@@ -303,8 +306,171 @@ Never invent authority or tests, claim runtime PASS from unit tests alone, redes
 
 Always use exact SHA, preserve lineage, separate active state from history, separate configuration from execution snapshots, trace workflow before changing it, verify the strongest required acceptance layer, and leave a clean handoff.
 
-# 20. Definition of done
+# 20. Agent discipline contract
 
-A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, final tested SHA is known, evidence boundary is explicit, and current project state is updated.
+Documentation is part of project state, not optional commentary.
+
+Invariant:
+
+SOURCE PASS + DOC_SYNC FAIL = OVERALL FAIL.
+
+Before editing source, the agent MUST declare documentation impact:
+
+```text
+DOC IMPACT
+architecture: YES/NO
+workflow/state machine: YES/NO
+module map: YES/NO
+symbol index: YES/NO
+flow index: YES/NO
+API contract: YES/NO
+data contract: YES/NO
+UI information architecture: YES/NO
+test acceptance matrix: YES/NO
+current state: YES
+decisions: YES/NO
+known defects: YES/NO
+```
+
+Every NO must be defensible from the actual change scope.
+
+The agent must use DOC_SYNC_MATRIX.md to determine required documentation updates.
+
+A source change that invalidates project documentation is itself a project defect.
+
+## Documentation transaction rule
+
+Source, contracts, indexes, test evidence, and current project state are one transaction:
+
+```text
+CODE
++
+DOC CONTRACT
++
+INDEX
++
+TEST EVIDENCE
++
+CURRENT STATE
+=
+ONE PROJECT STATE
+```
+
+Do not declare completion while any affected document remains stale.
+
+## Required execution sequence
+
+```text
+SESSION START
+→ read CURRENT_STATE
+→ verify repository/branch/SHA authority
+→ read workflow + module/flow/symbol indexes
+→ declare DOC IMPACT
+→ reproduce/baseline
+→ implement minimum valid change
+→ update affected docs/indexes
+→ targeted tests
+→ cumulative regression
+→ documentation drift validation
+→ runtime/E2E when required
+→ update TEST_ACCEPTANCE_MATRIX
+→ update CURRENT_STATE
+→ final handoff
+```
+
+## Hard documentation gates
+
+The task is NOT DONE if any applies:
+
+- source changed but affected docs are stale;
+- workflow changed but WORKFLOW_STATE_MACHINE or FLOW_INDEX is stale;
+- function/class moved or changed ownership but SYMBOL_INDEX is stale;
+- module responsibility changed but MODULE_MAP is stale;
+- API behavior changed but API_CONTRACTS is stale;
+- data/schema semantics changed but DATA_CONTRACTS is stale;
+- UI authority/action changed but UI_INFORMATION_ARCHITECTURE is stale;
+- architecture/dependency changed but ARCHITECTURE is stale;
+- acceptance evidence changed but TEST_ACCEPTANCE_MATRIX is stale;
+- current candidate/phase/blocker changed but CURRENT_STATE is stale;
+- durable design decision changed but DECISIONS is stale.
+
+If documentation drift is detected:
+
+```text
+DOC_SYNC = FAIL
+OVERALL STATUS = REPAIR REQUIRED — DOCUMENTATION DRIFT
+```
+
+Do not downgrade this to a warning.
+
+## Post-change drift audit
+
+Before final PASS, inspect the source diff and compare it with DOC_SYNC_MATRIX.md.
+
+Verify:
+
+- every changed authority-bearing symbol is indexed;
+- every changed call path is reflected in FLOW_INDEX;
+- line-range hints are refreshed or marked STALE;
+- current authority SHA/state is correct;
+- acceptance evidence matches tests actually executed;
+- known defects are current;
+- no required document is silently skipped.
+
+When available, run:
+
+```bash
+python scripts/validate_handoff.py
+```
+
+A validator PASS does not prove semantic correctness, but validator FAIL blocks completion.
+
+## Final report documentation block
+
+Every build/repair final report MUST include:
+
+```text
+DOCUMENTATION SYNC:
+PASS / FAIL
+
+CURRENT_STATE:
+UPDATED / NO IMPACT
+
+WORKFLOW_STATE_MACHINE:
+UPDATED / NO IMPACT
+
+MODULE_MAP:
+UPDATED / NO IMPACT
+
+SYMBOL_INDEX:
+UPDATED / NO IMPACT
+
+FLOW_INDEX:
+UPDATED / NO IMPACT
+
+API_CONTRACTS:
+UPDATED / NO IMPACT
+
+DATA_CONTRACTS:
+UPDATED / NO IMPACT
+
+UI_INFORMATION_ARCHITECTURE:
+UPDATED / NO IMPACT
+
+TEST_ACCEPTANCE_MATRIX:
+UPDATED
+
+DOC VALIDATOR:
+PASS / FAIL / NOT_AVAILABLE
+
+STALE REQUIRED DOCS:
+0 / <count>
+```
+
+If a required documentation item is stale, final status cannot be PASS.
+
+# 21. Definition of done
+
+A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
