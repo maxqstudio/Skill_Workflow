@@ -82,7 +82,8 @@ without blindly scanning the whole repository.
 The skill uses this orientation sequence:
 
 ```text
-CURRENT_STATE
+PROJECT_PROFILE
+→ CURRENT_STATE
 → PROJECT_MANIFEST
 → SOURCE_AUTHORITY_MAP
 → ARCHITECTURE
@@ -99,11 +100,38 @@ The idea is to **read the map first, then the code that matters**.
 
 ---
 
-## Core handoff pack
+## Adaptive governance profiles
 
-A maintained project should contain these eleven core files:
+The skill no longer forces the same document pack on every project.
+
+Every project starts with:
 
 ```text
+PROJECT_PROFILE.yaml
+```
+
+### LITE
+
+For small, low-complexity projects.
+
+Required:
+
+```text
+PROJECT_PROFILE.yaml
+PROJECT_MANIFEST.md
+CURRENT_STATE.md
+MODULE_MAP.md
+TEST_ACCEPTANCE_MATRIX.md
+```
+
+### STANDARD
+
+Default for normal multi-session / multi-agent development.
+
+Required:
+
+```text
+PROJECT_PROFILE.yaml
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
@@ -114,8 +142,21 @@ SYMBOL_INDEX.md
 FLOW_INDEX.md
 TEST_ACCEPTANCE_MATRIX.md
 DOC_SYNC_MATRIX.md
+```
+
+### STRICT
+
+For financial/trading, ML/research, hardware, production infrastructure, safety/audit-sensitive work, or complex multi-repository projects.
+
+STRICT requires all STANDARD docs plus:
+
+```text
 PROJECT_TRUTH_SYNC.md
 ```
+
+It also forces explicit applicability decisions for critical optional contracts.
+
+Profile choice is based on **risk and workflow complexity**, not simply repository size.
 
 Ready-to-copy templates are available under `templates/`.
 
@@ -145,6 +186,37 @@ Recommended index fields:
 The symbol name is the primary locator.
 
 Line numbers are only navigation hints and should be tied to an exact source SHA.
+
+---
+
+## Automatic structural indexing
+
+Two generators reduce manual documentation overhead:
+
+```bash
+python scripts/generate_symbol_index.py
+python scripts/generate_module_map.py
+```
+
+`generate_symbol_index.py`:
+
+- prefers Universal Ctags for broad language coverage;
+- falls back to Python AST when Ctags is unavailable;
+- records file, symbol, kind, line range, language, and source engine;
+- never invents semantic responsibility.
+
+`generate_module_map.py` records machine-verifiable file/module facts such as path, language, line count, and directory.
+
+Generated facts are inputs to the canonical semantic docs. The agent still owns:
+
+- responsibility;
+- authority;
+- state ownership;
+- side effects;
+- workflow meaning;
+- test/evidence interpretation.
+
+`FLOW_INDEX.md` remains semantic-verified instead of blindly auto-generated because DI, callbacks, reflection, dynamic dispatch, and framework routing can make static call graphs misleading.
 
 ---
 
@@ -193,8 +265,9 @@ WORKFLOW_STATE_MACHINE
 
 ## Included templates
 
-### Core
+### Core / profile templates
 
+- `PROJECT_PROFILE.yaml`
 - `PROJECT_MANIFEST.md`
 - `CURRENT_STATE.md`
 - `SOURCE_AUTHORITY_MAP.md`
@@ -429,10 +502,12 @@ The validator checks structural handoff requirements. A validator PASS does not 
 The disciplined flow is:
 
 ```text
-READ AUTHORITY
+READ PROJECT_PROFILE
+→ READ AUTHORITY
 → DECLARE DOC IMPACT
 → EDIT
-→ UPDATE DOCS + INDEXES
+→ REGENERATE STRUCTURAL FACTS
+→ UPDATE SEMANTIC DOCS + INDEXES
 → TEST
 → DOC DRIFT VALIDATION
 → RUNTIME/E2E
@@ -483,6 +558,8 @@ python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA>
 python scripts/validate_project_truth.py
 ```
 
+The first two validators are profile-aware. `validate_project_truth.py` becomes required for STRICT, and also runs whenever a truth ledger is present.
+
 The truth validator checks machine-verifiable provenance, references, and structure. Semantic correctness still requires inspection of the mapped source/tests/runtime. A structural PASS must never be reported as semantic proof.
 
 ---
@@ -522,18 +599,15 @@ This is still a machine-verifiable gate, not semantic proof. If the docs and cod
 
 When entering an existing project:
 
-1. Read `CURRENT_STATE.md`.
-2. Read `PROJECT_MANIFEST.md`.
-3. Read `SOURCE_AUTHORITY_MAP.md`.
-4. Read `ARCHITECTURE.md`.
-5. Read `WORKFLOW_STATE_MACHINE.md`.
-6. Read `MODULE_MAP.md`.
-7. Read `FLOW_INDEX.md`.
-8. Read `SYMBOL_INDEX.md`.
-9. Read `TEST_ACCEPTANCE_MATRIX.md`.
-10. Read `DOC_SYNC_MATRIX.md`.
-11. Read `PROJECT_TRUTH_SYNC.md`.
-12. Open only the exact relevant source ranges first.
+1. Read `PROJECT_PROFILE.yaml`.
+2. Resolve the required document set for the selected profile.
+3. Read `CURRENT_STATE.md`.
+4. Read `PROJECT_MANIFEST.md`.
+5. Read only the required authority/architecture/workflow/index contracts.
+6. Read `TEST_ACCEPTANCE_MATRIX.md`.
+7. Read `DOC_SYNC_MATRIX.md` when required.
+8. Read `PROJECT_TRUTH_SYNC.md` when required or present.
+9. Open only the exact relevant source ranges first.
 
 This is the default fast-orientation mode.
 
@@ -569,10 +643,14 @@ Skill_Workflow/
 ├─ README.md
 ├─ SKILL.md
 ├─ scripts/
+│  ├─ project_profile.py
+│  ├─ generate_symbol_index.py
+│  ├─ generate_module_map.py
 │  ├─ validate_handoff.py
 │  ├─ validate_cross_document_consistency.py
 │  └─ validate_project_truth.py
 └─ templates/
+   ├─ PROJECT_PROFILE.yaml
    ├─ PROJECT_MANIFEST.md
    ├─ CURRENT_STATE.md
    ├─ SOURCE_AUTHORITY_MAP.md
