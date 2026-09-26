@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Structural handoff validator for projects using Skill Workflow.
+"""Profile-aware structural handoff validator for Skill Workflow projects.
 
-This validator intentionally checks structural discipline only.
-It does not prove that documentation is semantically correct.
-A failure blocks handoff; a pass still requires human/agent semantic audit.
+A PASS proves structural handoff discipline only. It does not prove semantic
+correctness of project documentation or runtime behavior.
 """
 
 from __future__ import annotations
@@ -14,27 +13,19 @@ import subprocess
 import sys
 from pathlib import Path
 
-CORE = [
-    "PROJECT_MANIFEST.md",
-    "CURRENT_STATE.md",
-    "SOURCE_AUTHORITY_MAP.md",
-    "ARCHITECTURE.md",
-    "WORKFLOW_STATE_MACHINE.md",
-    "MODULE_MAP.md",
-    "SYMBOL_INDEX.md",
-    "FLOW_INDEX.md",
-    "TEST_ACCEPTANCE_MATRIX.md",
-    "DOC_SYNC_MATRIX.md",
-    "PROJECT_TRUTH_SYNC.md",
-]
+from project_profile import (
+    PROFILE_FILE,
+    normalized_profile,
+    parse_profile,
+    required_docs,
+    validate_profile,
+)
 
 PLACEHOLDER_PATTERNS = (
     re.compile(r"<[^>]+>"),
     re.compile(r"\bTODO\b", re.IGNORECASE),
     re.compile(r"\bTBD\b", re.IGNORECASE),
 )
-
-STALE_PATTERN = re.compile(r"\bSTALE\b", re.IGNORECASE)
 
 
 def git_root(start: Path) -> Path:
@@ -50,37 +41,45 @@ def git_root(start: Path) -> Path:
 
 
 def read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
+    return path.read_text(encoding="utf-8", errors="ignore")
 
 
-def has_meaningful_placeholder(text: str) -> bool:
-    for pattern in PLACEHOLDER_PATTERNS:
-        if pattern.search(text):
-            return True
-    return False
+def has_placeholder(text: str) -> bool:
+    return any(pattern.search(text) for pattern in PLACEHOLDER_PATTERNS)
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--root",
-        default=".",
-        help="Project root containing the handoff documents.",
-    )
-    parser.add_argument(
-        "--allow-placeholders",
-        action="store_true",
-        help="Do not fail on obvious TODO/TBD/<placeholder> tokens.",
-    )
-    args = parser.parse_args()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=".")
+    ap.add_argument("--allow-placeholders", action="store_true")
+    args = ap.parse_args()
 
-    root = git_root(Path(args.root))
+    root = git_root(Path(args.root).resolve())
     failures: list[str] = []
     warnings: list[str] = []
 
-    print(f"HANDOFF_ROOT={root}")
+    profile_path = root / PROFILE_FILE
+    if not profile_path.is_file():
+        print(f"HANDOFF_ROOT={root}")
+        print(f"FAIL MISSING_REQUIRED_DOC:{PROFILE_FILE}")
+        print("RESULT=FAIL failures=1 warnings=0")
+        return 1
 
-    for rel in CORE:
+    try:
+        profile_data = parse_profile(profile_path)
+        profile_name = normalized_profile(profile_data)
+        failures.extend(validate_profile(profile_data))
+        required = required_docs(profile_data)
+    except Exception as exc:
+        print(f"HANDOFF_ROOT={root}")
+        print(f"FAIL PROJECT_PROFILE_INVALID:{exc}")
+        print("RESULT=FAIL failures=1 warnings=0")
+        return 1
+
+    print(f"HANDOFF_ROOT={root}")
+    print(f"GOVERNANCE_PROFILE={profile_name}")
+
+    for rel in sorted(required):
         path = root / rel
         if not path.is_file():
             failures.append(f"MISSING_REQUIRED_DOC:{rel}")
@@ -91,14 +90,16 @@ def main() -> int:
             failures.append(f"EMPTY_REQUIRED_DOC:{rel}")
             continue
 
-        if rel in {"SYMBOL_INDEX.md", "FLOW_INDEX.md"} and STALE_PATTERN.search(text):
-            # Templates can contain the word STALE in instructions. Fail only if
-            # the document explicitly declares Status: STALE.
+        if rel in {"SYMBOL_INDEX.md", "FLOW_INDEX.md"}:
             if re.search(r"^Status\s*:\s*STALE\s*$", text, re.MULTILINE | re.IGNORECASE):
                 failures.append(f"STALE_INDEX:{rel}")
 
-        if not args.allow_placeholders and has_meaningful_placeholder(text):
+        if rel.endswith(".md") and not args.allow_placeholders and has_placeholder(text):
             warnings.append(f"PLACEHOLDER_TOKEN_PRESENT:{rel}")
+
+    profile_text = read(profile_path)
+    if "replace-me" in profile_text.lower():
+        failures.append("PROJECT_PROFILE_REASON_NOT_SET")
 
     current = root / "CURRENT_STATE.md"
     if current.is_file():
@@ -106,6 +107,12 @@ def main() -> int:
         for field in ("Authoritative SHA:", "Status:", "Next authorized action"):
             if field not in text:
                 failures.append(f"CURRENT_STATE_FIELD_MISSING:{field}")
+
+    manifest = root / "PROJECT_MANIFEST.md"
+    if manifest.is_file():
+        text = read(manifest)
+        if "Governance profile:" not in text:
+            warnings.append("PROJECT_MANIFEST_GOVERNANCE_PROFILE_FIELD_MISSING")
 
     authority = root / "SOURCE_AUTHORITY_MAP.md"
     if authority.is_file() and "Canonical authority" not in read(authority):
@@ -135,7 +142,6 @@ def main() -> int:
         if "Final tested source" not in text:
             failures.append("TEST_ACCEPTANCE_TESTED_SOURCE_MISSING")
 
-
     truth = root / "PROJECT_TRUTH_SYNC.md"
     if truth.is_file():
         text = read(truth)
@@ -155,7 +161,10 @@ def main() -> int:
         print(f"RESULT=FAIL failures={len(failures)} warnings={len(warnings)}")
         return 1
 
-    print(f"RESULT=PASS failures=0 warnings={len(warnings)}")
+    print(
+        f"RESULT=PASS profile={profile_name} required_docs={len(required)} "
+        f"failures=0 warnings={len(warnings)}"
+    )
     return 0
 
 
