@@ -80,6 +80,135 @@ def git(root: Path, *args: str) -> str:
     return run(root, "git", *args).strip()
 
 
+def clone_fixture(source: Path, prefix: str) -> tuple[tempfile.TemporaryDirectory, Path]:
+    holder = tempfile.TemporaryDirectory(prefix=prefix)
+    clone = Path(holder.name) / "fixture"
+    run(source, "git", "clone", "--quiet", "--no-hardlinks", str(source), str(clone))
+    git(clone, "config", "user.email", "skill-workflow-selftest@example.invalid")
+    git(clone, "config", "user.name", "Skill Workflow Selftest")
+    return holder, clone
+
+
+def sync_and_commit_case(case_root: Path, message: str) -> None:
+    tool_root = case_root / ".workflow" / "tools"
+    run(
+        case_root,
+        sys.executable,
+        str(tool_root / "sync_project_truth.py"),
+        "--root",
+        str(case_root),
+    )
+    git(case_root, "add", ".")
+    git(case_root, "commit", "-m", message)
+
+
+def assert_cross_failure(case_root: Path, expected_code: str) -> None:
+    tool_root = case_root / ".workflow" / "tools"
+    base = git(case_root, "rev-parse", "HEAD^")
+    output = run(
+        case_root,
+        sys.executable,
+        str(tool_root / "validate_cross_document_consistency.py"),
+        "--root",
+        str(case_root),
+        "--base",
+        base,
+        "--require-base",
+        expect=1,
+    )
+    if expected_code not in output:
+        raise RuntimeError(
+            "expected cross-document failure missing: "
+            + expected_code
+            + "\\n"
+            + output
+        )
+
+
+def run_relation_and_truth_regressions(valid_root: Path) -> None:
+    # Unknown relation target must still be rejected.
+    holder, case_root = clone_fixture(
+        valid_root, "skill-workflow-relation-unknown-target-"
+    )
+    try:
+        claims_path = case_root / ".workflow" / "claims.json"
+        claims = json.loads(claims_path.read_text(encoding="utf-8"))
+        claims["relations"][0]["other_claim_id"] = "TRUTH-DOES-NOT-EXIST"
+        write_json(claims_path, claims)
+        sync_and_commit_case(case_root, "test: unknown relation target")
+        assert_cross_failure(case_root, "RELATION_UNKNOWN_RIGHT_CLAIM")
+    finally:
+        holder.cleanup()
+    print("UNKNOWN_RELATION_TARGET_DETECTION=PASS")
+
+    # Invalid relation type must still be rejected.
+    holder, case_root = clone_fixture(
+        valid_root, "skill-workflow-relation-invalid-type-"
+    )
+    try:
+        claims_path = case_root / ".workflow" / "claims.json"
+        claims = json.loads(claims_path.read_text(encoding="utf-8"))
+        claims["relations"][0]["relation"] = "DEPENDS_SOMEHOW"
+        write_json(claims_path, claims)
+        sync_and_commit_case(case_root, "test: invalid relation type")
+        assert_cross_failure(case_root, "INVALID_CLAIM_RELATION")
+    finally:
+        holder.cleanup()
+    print("INVALID_RELATION_DETECTION=PASS")
+
+    # A real independently projected conflicting claim text must remain detectable.
+    holder, case_root = clone_fixture(
+        valid_root, "skill-workflow-real-claim-conflict-"
+    )
+    try:
+        conflict = case_root / "docs" / "CLAIM_CONFLICT.md"
+        conflict.write_text(
+            "# Independent claim projection\n\n"
+            "| Claim ID | Claim | Status |\n"
+            "|---|---|---|\n"
+            "| TRUTH-HEALTH-001 | This deliberately contradicts the canonical health claim. | PASS |\n",
+            encoding="utf-8",
+        )
+        git(case_root, "add", ".")
+        git(case_root, "commit", "-m", "test: real claim text conflict")
+        assert_cross_failure(case_root, "CLAIM_TEXT_CONFLICT:TRUTH-HEALTH-001")
+    finally:
+        holder.cleanup()
+    print("REAL_CLAIM_TEXT_CONFLICT_DETECTION=PASS")
+
+    # Explicit PROJECT_STATE_SYNC=FAIL must make Project Truth fail closed.
+    holder, case_root = clone_fixture(
+        valid_root, "skill-workflow-project-state-fail-"
+    )
+    try:
+        acceptance_path = case_root / ".workflow" / "acceptance.json"
+        acceptance = json.loads(acceptance_path.read_text(encoding="utf-8"))
+        acceptance["truth_gates"]["PROJECT_STATE_SYNC"] = "FAIL"
+        write_json(acceptance_path, acceptance)
+        sync_and_commit_case(case_root, "test: explicit project state failure")
+        tool_root = case_root / ".workflow" / "tools"
+        output = run(
+            case_root,
+            sys.executable,
+            str(tool_root / "validate_project_truth.py"),
+            "--root",
+            str(case_root),
+            expect=1,
+        )
+        if "TRUTH_GATE_EXPLICIT_FAIL:PROJECT_STATE_SYNC" not in output:
+            raise RuntimeError(
+                "Project Truth did not fail closed for PROJECT_STATE_SYNC=FAIL\\n"
+                + output
+            )
+        if '"result": "FAIL"' not in output:
+            raise RuntimeError(
+                "Project Truth failure did not report result=FAIL\\n" + output
+            )
+    finally:
+        holder.cleanup()
+    print("PROJECT_STATE_FAIL_CLOSED=PASS")
+
+
 def main() -> int:
     skill_root = Path(__file__).resolve().parent.parent
 
@@ -319,9 +448,25 @@ notes:
                         "tests": ["tests/test_health.py"],
                         "runtime_evidence": [],
                         "status": "PASS",
+                    },
+                    {
+                        "id": "TRUTH-HEALTH-DEPENDENCY-001",
+                        "claim": "The fixture health dependency is source and test traceable.",
+                        "documents": ["PROJECT_TRUTH_SYNC.md"],
+                        "source_owners": ["app.py::health"],
+                        "tests": ["tests/test_health.py"],
+                        "runtime_evidence": [],
+                        "status": "PASS",
+                    },
+                ],
+                "relations": [
+                    {
+                        "claim_id": "TRUTH-HEALTH-001",
+                        "relation": "REQUIRES",
+                        "other_claim_id": "TRUTH-HEALTH-DEPENDENCY-001",
+                        "notes": "The public health truth requires its traced implementation dependency.",
                     }
                 ],
-                "relations": [],
             },
         )
 
@@ -607,11 +752,25 @@ notes:
             ),
         ]
 
+        cross_output = ""
         for label, command in commands:
-            run(root, *command)
+            output = run(root, *command)
+            if label == "CROSS_DOCUMENT":
+                cross_output = output
             if git(root, "status", "--porcelain"):
                 raise RuntimeError(label + " validator mutated the clean fixture")
             print(label + "=PASS")
+
+        if '"claim_relations_checked": 1' not in cross_output:
+            raise RuntimeError(
+                "main STRICT integration fixture did not validate its non-empty Claim relation\n"
+                + cross_output
+            )
+        print("NONEMPTY_RELATION_FIXTURE=PASS")
+        print("VALID_RELATION_ACCEPTANCE=PASS")
+        print("CLAIM_RELATION_REGRESSION=PASS")
+
+        run_relation_and_truth_regressions(root)
 
         if final_sha != git(root, "rev-parse", "HEAD"):
             raise RuntimeError("validator chain changed final Git HEAD")

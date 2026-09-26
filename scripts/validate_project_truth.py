@@ -227,6 +227,8 @@ def main() -> int:
             failures.append(f"MISSING_GATE:{gate}")
         elif value not in ALLOWED:
             failures.append(f"INVALID_GATE_VALUE:{gate}:{value}")
+        elif value == "FAIL":
+            failures.append(f"TRUTH_GATE_EXPLICIT_FAIL:{gate}")
 
     claim_rows = parse_table(text, "## Critical claim traceability")
     for row in claim_rows[1:]:

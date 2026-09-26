@@ -204,9 +204,16 @@ def truth_claims(
 
 
 def claim_rows(text: str) -> list[tuple[str, str, str]]:
+    """Return observed claim rows while excluding the dedicated relation table."""
     result: list[tuple[str, str, str]] = []
+    section = ""
     for line in strip_fences(text).splitlines():
         line = line.strip()
+        if line.startswith("## "):
+            section = line[3:].strip().casefold()
+            continue
+        if section == "claim relations":
+            continue
         if not (line.startswith("|") and line.endswith("|")):
             continue
         cols = [c.strip() for c in line.strip("|").split("|")]
