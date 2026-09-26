@@ -32,6 +32,7 @@ Record the actual HEAD in generated/external acceptance evidence.
 | CROSS_DOCUMENT_CONSISTENCY | NOT_PROVEN | |
 | HUMAN_COMPREHENSION | NOT_PROVEN | SYSTEM_OVERVIEW.md + human comprehension validator |
 | SEQUENCE_SYNC | NOT_PROVEN | SEQUENCE_CONTRACTS.md + per-session sequence acceptance reports |
+| PROJECT_DOCS_SYNC | NOT_PROVEN | Project Truth Compiler check |
 | DOC_SOURCE_TRACEABILITY | NOT_PROVEN | |
 | DOC_TEST_TRACEABILITY | NOT_PROVEN | |
 | TEST_RUNTIME_TRACEABILITY | NOT_PROVEN | |
@@ -199,3 +200,17 @@ GENERATOR_DEFECT
 ```
 
 Then repair the correct authority, regenerate, and validate again.
+
+
+## Generated documentation truth rule
+
+When PROJECT_PROFILE.yaml enables generated documentation:
+
+- root project Markdown is a deterministic projection;
+- semantic/governance intent lives under .workflow/;
+- implementation facts come from source extractors;
+- manual edits to generated Markdown are not authority;
+- python scripts/validate_project_docs.py must PASS.
+
+PROJECT_DOCS_SYNC may be PASS only when the compiler reproduces tracked
+documentation and generated code facts exactly from the current upstream inputs.
