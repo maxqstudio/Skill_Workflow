@@ -87,12 +87,13 @@ def main() -> int:
     print(f"GOVERNANCE_PROFILE={profile_name}")
 
     generated_mode = bool(documentation_policy.get("generated", False))
+    docs_root = root / str(documentation_policy.get("docs_root", "docs"))
     spec_root = root / str(documentation_policy.get("spec_root", ".workflow"))
     if generated_mode and not spec_root.is_dir():
         failures.append("PROJECT_TRUTH_SPEC_ROOT_MISSING:" + str(spec_root))
 
     for rel in sorted(required):
-        path = root / rel
+        path = root / rel if rel == PROFILE_FILE else docs_root / rel
         if not path.is_file():
             failures.append(f"MISSING_REQUIRED_DOC:{rel}")
             continue
@@ -113,16 +114,21 @@ def main() -> int:
         if rel.endswith(".md") and not args.allow_placeholders and has_placeholder(text):
             warnings.append(f"PLACEHOLDER_TOKEN_PRESENT:{rel}")
 
+    if generated_mode:
+        for rel in sorted(required):
+            if rel != PROFILE_FILE and (root / rel).is_file():
+                failures.append("DUPLICATE_CANONICAL_DOC_AT_REPO_ROOT:" + rel)
+
     profile_text = read(profile_path)
     if "replace-me" in profile_text.lower():
         failures.append("PROJECT_PROFILE_REASON_NOT_SET")
 
     for key, value in settings.items():
         contract_doc = CONTRACT_DOCS[key]
-        if value == "not_applicable" and (root / contract_doc).is_file():
+        if value == "not_applicable" and (docs_root / contract_doc).is_file():
             failures.append(f"NOT_APPLICABLE_DOC_PRESENT:{contract_doc}")
 
-    current = root / "CURRENT_STATE.md"
+    current = docs_root / "CURRENT_STATE.md"
     if current.is_file():
         text = read(current)
         required_current_fields = [
@@ -151,7 +157,7 @@ def main() -> int:
                 + profile_name
             )
 
-    manifest = root / "PROJECT_MANIFEST.md"
+    manifest = docs_root / "PROJECT_MANIFEST.md"
     if manifest.is_file():
         text = read(manifest)
         match = re.search(r"^Governance profile:\s*(.*?)\s*$", text, re.MULTILINE | re.IGNORECASE)
@@ -165,7 +171,7 @@ def main() -> int:
                 + profile_name
             )
 
-    overview = root / "SYSTEM_OVERVIEW.md"
+    overview = docs_root / "SYSTEM_OVERVIEW.md"
     if overview.is_file():
         text = read(overview)
         match = re.search(
@@ -217,7 +223,7 @@ def main() -> int:
         if "Flow inventory" not in text and "| Flow |" not in text:
             failures.append("FLOW_INDEX_INVENTORY_MISSING")
 
-    sequence_doc = root / "SEQUENCE_CONTRACTS.md"
+    sequence_doc = docs_root / "SEQUENCE_CONTRACTS.md"
     if sequence_policy.get("required", False):
         if not sequence_doc.is_file():
             failures.append("MISSING_REQUIRED_DOC:SEQUENCE_CONTRACTS.md")
@@ -232,7 +238,7 @@ def main() -> int:
         if not sessions:
             failures.append("SEQUENCE_SESSION_CONTRACT_MISSING")
 
-    matrix = root / "TEST_ACCEPTANCE_MATRIX.md"
+    matrix = docs_root / "TEST_ACCEPTANCE_MATRIX.md"
     if matrix.is_file():
         text = read(matrix)
         if "Evidence boundary" not in text:
@@ -245,7 +251,7 @@ def main() -> int:
             if "SEQUENCE_SYNC:" not in text:
                 failures.append("TEST_ACCEPTANCE_SEQUENCE_GATE_MISSING")
 
-    truth = root / "PROJECT_TRUTH_SYNC.md"
+    truth = docs_root / "PROJECT_TRUTH_SYNC.md"
     if truth.is_file():
         text = read(truth)
         if "## Truth gates" not in text:
