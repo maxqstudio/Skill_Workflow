@@ -2,6 +2,7 @@
   "schema_version": 1,
   "phase": "replace-me",
   "status": "replace-me",
+  "working_branch": "",
   "last_accepted_sha": "",
   "last_accepted_branch": "",
   "proven": [],
