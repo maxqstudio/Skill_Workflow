@@ -19,7 +19,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -1698,16 +1697,17 @@ def main() -> int:
     if not facts_output.is_absolute():
         facts_output = root / facts_output
     expected_facts_text = json.dumps(facts, indent=2, sort_keys=True) + "\n"
+    expected_facts_bytes = expected_facts_text.encode("utf-8")
     facts_missing = False
     facts_stale = False
     if args.check:
         if not facts_output.is_file():
             facts_missing = True
-        elif facts_output.read_text(encoding="utf-8", errors="ignore") != expected_facts_text:
+        elif facts_output.read_bytes() != expected_facts_bytes:
             facts_stale = True
     else:
         facts_output.parent.mkdir(parents=True, exist_ok=True)
-        facts_output.write_text(expected_facts_text, encoding="utf-8")
+        facts_output.write_bytes(expected_facts_bytes)
 
     digest = input_digest(
         profile_path.read_text(encoding="utf-8"),
@@ -1742,10 +1742,10 @@ def main() -> int:
         if args.check:
             if not path.is_file():
                 missing.append("docs/" + name)
-            elif path.read_text(encoding="utf-8", errors="ignore") != expected:
+            elif path.read_bytes() != expected.encode("utf-8"):
                 stale.append("docs/" + name)
         else:
-            path.write_text(expected, encoding="utf-8")
+            path.write_bytes(expected.encode("utf-8"))
 
     report = {
         "schema_version": 1,
