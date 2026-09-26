@@ -16,7 +16,8 @@ Goals:
 - avoid stale assumptions;
 - avoid blind full-codebase rescans;
 - preserve exact tested-source lineage;
-- make runtime and acceptance evidence explicit.
+- make runtime and acceptance evidence explicit;
+- let humans understand the system without opening source code.
 
 This skill is project-agnostic.
 
@@ -27,6 +28,7 @@ Do not begin by reading the entire repository blindly.
 Build a project map first:
 
 PROJECT_PROFILE
+→ SYSTEM_OVERVIEW
 → CURRENT_STATE
 → PROJECT_MANIFEST
 → profile-required authority / architecture / workflow docs
@@ -53,6 +55,7 @@ Required:
 
 ```text
 PROJECT_PROFILE.yaml
+SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
 MODULE_MAP.md
@@ -69,6 +72,7 @@ Required:
 
 ```text
 PROJECT_PROFILE.yaml
+SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
@@ -142,6 +146,20 @@ It selects LITE, STANDARD, or STRICT and declares which optional contracts are r
 
 Agents must read this before deciding which project documents are mandatory.
 
+## SYSTEM_OVERVIEW.md
+
+Human-first project explanation.
+
+A reader must be able to understand the project purpose, major components,
+main data flow, user/domain workflows, lifecycle/state, authority model,
+mutable vs immutable state, failure/recovery behavior, current project state,
+and proven/not-proven boundaries without opening source code.
+
+Keep implementation details out of the primary explanation. Link to engineering
+documents for drill-down.
+
+SYSTEM_OVERVIEW.md contains the Human Comprehension Gate.
+
 ## PROJECT_MANIFEST.md
 Project entry point. Identify purpose, repositories, branch, source authority, runtime authority, acceptance authority, stack, entry points, important directories, external systems, required reading order, and non-negotiable constraints.
 
@@ -207,13 +225,14 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 
 1. Read PROJECT_PROFILE.yaml.
 2. Resolve the required document set for the selected profile.
-3. Read CURRENT_STATE.md.
-4. Read PROJECT_MANIFEST.md.
-5. Read only the authority/architecture/workflow/index/contracts required by the profile.
-6. Read TEST_ACCEPTANCE_MATRIX.md.
-7. Read DOC_SYNC_MATRIX.md when required.
-8. Read PROJECT_TRUTH_SYNC.md when required or present for critical flows.
-9. Open only exact relevant source ranges first.
+3. Read SYSTEM_OVERVIEW.md for the human/domain mental model.
+4. Read CURRENT_STATE.md.
+5. Read PROJECT_MANIFEST.md.
+6. Read only the authority/architecture/workflow/index/contracts required by the profile.
+7. Read TEST_ACCEPTANCE_MATRIX.md.
+8. Read DOC_SYNC_MATRIX.md when required.
+9. Read PROJECT_TRUTH_SYNC.md when required or present for critical flows.
+10. Open only exact relevant source ranges first.
 
 Do not create or maintain documents that the profile marks not applicable.
 
@@ -222,6 +241,7 @@ Expand outward only if indexes are stale, incomplete, contradictory, or a full a
 # 6. Task execution workflow
 
 read PROJECT_PROFILE
+→ read SYSTEM_OVERVIEW
 → understand authority
 → identify affected workflow
 → identify affected modules
@@ -307,6 +327,7 @@ Do not hardcode dynamic authority, eligibility, execution counts, promotion stat
 # 14. Handoff procedure
 
 Before handoff update at minimum:
+SYSTEM_OVERVIEW.md when the human mental model/current summary changed
 CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
 TEST_ACCEPTANCE_MATRIX.md
@@ -316,7 +337,7 @@ Handoff should include project, repo, branch, exact authoritative SHA, runtime a
 
 # 15. Handoff quality gate
 
-A new room must be able to answer without reading the whole codebase:
+A new room or human reviewer must be able to answer without reading the whole codebase:
 what is the project;
 what is current authority;
 what phase is active;
@@ -334,16 +355,17 @@ what is forbidden.
 
 Read:
 1. PROJECT_PROFILE
-2. CURRENT_STATE
-3. PROJECT_MANIFEST
-4. only profile-required authority/architecture/workflow docs
-5. MODULE_MAP when required
-6. FLOW_INDEX when required
-7. SYMBOL_INDEX when required
-8. TEST_ACCEPTANCE_MATRIX
-9. DOC_SYNC_MATRIX when required
-10. PROJECT_TRUTH_SYNC when required or present
-11. exact relevant source ranges.
+2. SYSTEM_OVERVIEW
+3. CURRENT_STATE
+4. PROJECT_MANIFEST
+5. only profile-required authority/architecture/workflow docs
+6. MODULE_MAP when required
+7. FLOW_INDEX when required
+8. SYMBOL_INDEX when required
+9. TEST_ACCEPTANCE_MATRIX
+10. DOC_SYNC_MATRIX when required
+11. PROJECT_TRUTH_SYNC when required or present
+12. exact relevant source ranges.
 
 Do not recursively scan the repository unless docs/indexes are missing or conflicting, corruption is suspected, or a full audit is explicitly requested.
 
@@ -393,6 +415,7 @@ Before editing source, the agent MUST declare documentation impact:
 
 ```text
 DOC IMPACT
+system overview: YES/NO
 architecture: YES/NO
 workflow/state machine: YES/NO
 module map: YES/NO
@@ -437,6 +460,8 @@ Do not declare completion while any affected document remains stale.
 
 ```text
 SESSION START
+→ read PROJECT_PROFILE
+→ read SYSTEM_OVERVIEW
 → read CURRENT_STATE
 → verify repository/branch/SHA authority
 → read workflow + module/flow/symbol indexes
@@ -493,6 +518,7 @@ FLOW_INDEX remains semantic-verified. Do not automatically claim an end-to-end c
 The task is NOT DONE if any applies:
 
 - source changed but affected docs are stale;
+- human-visible behavior changed but SYSTEM_OVERVIEW is stale;
 - workflow changed but WORKFLOW_STATE_MACHINE or FLOW_INDEX is stale;
 - function/class moved or changed ownership but SYMBOL_INDEX is stale;
 - module responsibility changed but MODULE_MAP is stale;
@@ -519,6 +545,7 @@ Before final PASS, inspect the source diff and compare it with DOC_SYNC_MATRIX.m
 
 Verify:
 
+- SYSTEM_OVERVIEW still matches the current human/domain mental model;
 - every changed authority-bearing symbol is indexed;
 - every changed call path is reflected in FLOW_INDEX;
 - line-range hints are refreshed or marked STALE;
@@ -531,6 +558,7 @@ When available, run:
 
 ```bash
 python scripts/validate_handoff.py
+python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 ```
 
@@ -545,6 +573,12 @@ Every build/repair final report MUST include:
 ```text
 DOCUMENTATION SYNC:
 PASS / FAIL
+
+SYSTEM_OVERVIEW:
+UPDATED / NO IMPACT
+
+HUMAN_COMPREHENSION_GATE:
+PASS / FAIL / NOT_PROVEN
 
 CURRENT_STATE:
 UPDATED / NO IMPACT
@@ -576,6 +610,9 @@ UPDATED
 DOC VALIDATOR:
 PASS / FAIL / NOT_AVAILABLE
 
+HUMAN COMPREHENSION VALIDATOR:
+PASS / FAIL / NOT_AVAILABLE
+
 CROSS-DOCUMENT VALIDATOR:
 PASS / FAIL / NOT_AVAILABLE
 
@@ -587,7 +624,7 @@ If a required documentation item is stale, final status cannot be PASS.
 
 # 21. Definition of done
 
-A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
+A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, HUMAN_COMPREHENSION_GATE passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
 
@@ -605,9 +642,10 @@ Required truth layers:
 4. SEMANTIC SYNC
 5. BEHAVIORAL SYNC
 6. CROSS-DOCUMENT CONSISTENCY
-7. DOC ↔ SOURCE TRACEABILITY
-8. DOC ↔ TEST TRACEABILITY
-9. TEST ↔ RUNTIME TRACEABILITY
+7. HUMAN COMPREHENSION
+8. DOC ↔ SOURCE TRACEABILITY
+9. DOC ↔ TEST TRACEABILITY
+10. TEST ↔ RUNTIME TRACEABILITY
 
 Overall invariant:
 
@@ -701,6 +739,7 @@ STRUCTURAL_SYNC: PASS
 SEMANTIC_SYNC: PASS
 BEHAVIORAL_SYNC: PASS / NOT_APPLICABLE
 CROSS_DOCUMENT_CONSISTENCY: PASS
+HUMAN_COMPREHENSION: PASS
 DOC_SOURCE_TRACEABILITY: PASS
 DOC_TEST_TRACEABILITY: PASS
 TEST_RUNTIME_TRACEABILITY: PASS / NOT_APPLICABLE
@@ -785,3 +824,91 @@ Escalate to STANDARD or STRICT when any of these materially apply:
 - strong runtime/E2E acceptance needs.
 
 Downgrading a governance profile requires an explicit documented decision. It must not be used to bypass documentation or validation failures.
+
+
+# 23. Human-first comprehension contract
+
+The project documentation must support two different readers:
+
+```text
+HUMAN
+→ understand the system without opening code
+
+AGENT / DEVELOPER
+→ locate exact source without rereading the whole codebase
+```
+
+The intended drill-down is:
+
+```text
+SYSTEM_OVERVIEW
+→ CURRENT_STATE
+→ PROJECT_MANIFEST
+→ ARCHITECTURE
+→ WORKFLOW_STATE_MACHINE
+→ FLOW_INDEX
+→ MODULE_MAP / SYMBOL_INDEX
+→ SOURCE CODE
+```
+
+SYSTEM_OVERVIEW.md is mandatory for every governance profile.
+
+## Human Comprehension Gate
+
+A reviewer must be able to answer, from documentation alone:
+
+- What is the project and what problem does it solve?
+- Who uses it and what outcomes does it produce?
+- What are the major components?
+- How does important data move through the system?
+- What are the main user/domain workflows?
+- What are the important states and legal transitions?
+- Who or what is authoritative for important decisions?
+- What is mutable and what is immutable?
+- How does failure/recovery behave?
+- What is the current project state?
+- What is proven and what is not proven?
+- What action is legal next and what is blocked?
+
+If any applicable answer requires source-code reconstruction:
+
+```text
+HUMAN_COMPREHENSION_GATE = FAIL
+```
+
+Run:
+
+```bash
+python scripts/validate_human_comprehension.py --require-pass
+```
+
+The validator proves structural coverage and explicit status only.
+
+It MUST NOT be presented as proof of semantic correctness or actual human
+understanding. The final semantic review compares SYSTEM_OVERVIEW.md against
+current authority, workflow, test, and runtime evidence.
+
+## Human-first writing rule
+
+SYSTEM_OVERVIEW.md should use domain language first.
+
+Prefer:
+
+```text
+Owner selects a qualified candidate
+→ system revalidates evidence
+→ Challenger is created
+```
+
+over:
+
+```text
+OptimizerPage.tsx
+→ POST /api/...
+→ service.py::function()
+```
+
+The engineering call chain belongs in FLOW_INDEX.md.
+
+The two documents must describe the same behavior at different abstraction
+levels.
