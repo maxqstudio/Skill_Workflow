@@ -336,6 +336,12 @@ def main() -> int:
         by_name[path.name].append(path)
 
     present_docs = set(by_name)
+
+    for key, value in settings.items():
+        contract_doc = CONTRACT_DOCS[key]
+        if value == "not_applicable" and contract_doc in present_docs:
+            failures.append("NOT_APPLICABLE_DOC_PRESENT:" + contract_doc)
+
     for required in sorted(profile_required):
         if required == PROFILE_FILE:
             if not profile_path.is_file():
@@ -462,6 +468,19 @@ def main() -> int:
 
     manifest = root / "PROJECT_MANIFEST.md"
     current = root / "CURRENT_STATE.md"
+    if manifest.is_file():
+        mf_only = scalar_fields(read(manifest))
+        manifest_profile = mf_only.get("governance profile")
+        if not manifest_profile:
+            failures.append("PROJECT_MANIFEST_GOVERNANCE_PROFILE_MISSING")
+        elif manifest_profile.strip().lower() != profile_name:
+            failures.append(
+                "PROJECT_MANIFEST_PROFILE_CONFLICT:"
+                + manifest_profile
+                + "!="
+                + profile_name
+            )
+
     if manifest.is_file() and current.is_file():
         mf = scalar_fields(read(manifest))
         cf = scalar_fields(read(current))
