@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "session_id": "replace-me",
+  "phase": "replace-me",
+  "mode": "BEFORE",
+  "critical": true,
+  "status": "PLANNED",
+  "implementation_base_sha": "",
+  "plan": {
+    "required": true,
+    "contract": "docs/sequence/plans/replace-me.plan.json",
+    "frozen": true,
+    "frozen_commit": "",
+    "sha256": "",
+    "diagram": "docs/sequence/generated/replace-me.plan.mmd"
+  },
+  "actual": {
+    "graph": "docs/sequence/generated/replace-me.actual.json",
+    "diagram": "docs/sequence/generated/replace-me.actual.mmd",
+    "source_sha": ""
+  },
+  "runtime_trace": {
+    "required": false,
+    "graph": ""
+  },
+  "acceptance_report": "docs/sequence/reports/replace-me.acceptance.json"
+}
