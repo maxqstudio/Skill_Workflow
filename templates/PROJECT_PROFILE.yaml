@@ -12,7 +12,7 @@
 #   not_applicable
 #
 # SYSTEM_OVERVIEW.md is mandatory for every profile.
-# Sequence contracts are mandatory for STANDARD and STRICT by default.
+# Generated documentation and sequence contracts are mandatory for STANDARD and STRICT by default.
 # STRICT requires explicit required/not_applicable decisions for the critical
 # contract categories checked by the validator.
 
@@ -30,6 +30,10 @@ contracts:
 
 runtime:
   e2e_required: true
+
+documentation:
+  generated: true
+  spec_root: .workflow
 
 sequence:
   required: true
