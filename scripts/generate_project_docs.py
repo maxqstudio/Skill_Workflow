@@ -617,6 +617,10 @@ Current source digest: {digest}
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
 Runtime status: {runtime}
 
+## Documentation governance
+Documentation mode: GENERATED
+PROJECT_DOCS_SYNC: {project_docs_sync}
+
 ## Sequence governance
 Sequence policy: {sequence_policy}
 Current sequence mode: {sequence_mode}
@@ -653,6 +657,9 @@ See KNOWN_DEFECTS.md.
         sequence_mode=clean(acceptance.get("sequence_mode", "NOT_APPLICABLE")),
         sequence_session=clean(acceptance.get("sequence_session")) or "NOT_APPLICABLE",
         sequence_sync=clean(acceptance.get("sequence_sync_status", "NOT_PROVEN")),
+        project_docs_sync=clean(
+            acceptance.get("truth_gates", {}).get("PROJECT_DOCS_SYNC", "NOT_PROVEN")
+        ),
         proven=bullets(state.get("proven", [])),
         not_proven=bullets(state.get("not_proven", [])),
         blockers=bullets(state.get("blockers", [])),
@@ -1086,6 +1093,11 @@ Sequence mode for this phase/session: {sequence_mode}
 Sequence session contract: {sequence_session}
 SEQUENCE_SYNC: {sequence_sync}
 
+## Project Truth Compiler evidence
+
+Documentation mode: GENERATED
+PROJECT_DOCS_SYNC: {project_docs_sync}
+
 ## Human comprehension evidence
 
 SYSTEM_OVERVIEW status: {human}
@@ -1101,6 +1113,9 @@ Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.
         sequence_mode=clean(acceptance.get("sequence_mode", "NOT_APPLICABLE")),
         sequence_session=clean(acceptance.get("sequence_session")) or "NOT_APPLICABLE",
         sequence_sync=clean(acceptance.get("sequence_sync_status", "NOT_PROVEN")),
+        project_docs_sync=clean(
+            acceptance.get("truth_gates", {}).get("PROJECT_DOCS_SYNC", "NOT_PROVEN")
+        ),
         human=clean(acceptance.get("human_comprehension_status", "NOT_PROVEN")),
     )
 
