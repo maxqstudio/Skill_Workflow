@@ -82,10 +82,13 @@ def main() -> int:
     failures: list[str] = []
     warnings: list[str] = []
     mode = str(session.get("mode", "")).upper()
+    scope = str(session.get("scope", "CURRENT")).upper()
     critical = bool(session.get("critical", False))
 
     if mode not in VALID_MODES:
         failures.append("INVALID_SEQUENCE_MODE:" + mode)
+    if scope not in {"CURRENT", "HISTORICAL"}:
+        failures.append("INVALID_SEQUENCE_SCOPE:" + scope)
 
     try:
         policy = sequence_settings(parse_profile(root / "PROJECT_PROFILE.yaml"))
@@ -123,15 +126,28 @@ def main() -> int:
             failures.append("ACTUAL_GRAPH_NOT_GENERATED")
         if actual.get("generated_by") != "generate_sequence_actual.py":
             failures.append("ACTUAL_GRAPH_UNKNOWN_GENERATOR")
-        if str(actual.get("source_digest", "")) != source_digest:
+        observed_digest = str(actual.get("source_digest", ""))
+        recorded_digest = str(actual_cfg.get("source_digest", "")).strip()
+
+        if not observed_digest:
+            failures.append("ACTUAL_SOURCE_DIGEST_MISSING")
+        if recorded_digest and recorded_digest != observed_digest:
+            failures.append("SESSION_ACTUAL_SOURCE_DIGEST_MISMATCH")
+
+        if scope == "CURRENT" and observed_digest != source_digest:
             failures.append(
                 "ACTUAL_SOURCE_DIGEST_MISMATCH:"
-                + str(actual.get("source_digest", ""))
+                + observed_digest
                 + "!="
                 + source_digest
             )
-        if str(actual_cfg.get("source_digest", "")).strip() and str(actual_cfg.get("source_digest")) != source_digest:
-            failures.append("SESSION_ACTUAL_SOURCE_DIGEST_MISMATCH")
+
+        declared_entries = [str(x) for x in actual_cfg.get("entries", [])]
+        graph_entries = [str(x) for x in actual.get("entries", [])]
+        if declared_entries and declared_entries != graph_entries:
+            failures.append("SESSION_ACTUAL_ENTRYPOINT_MISMATCH")
+        if critical and not graph_entries:
+            failures.append("CRITICAL_SEQUENCE_ENTRYPOINT_MISSING")
 
         if not actual_diagram_path.is_file():
             failures.append("MISSING_ACTUAL_DIAGRAM:" + actual_diagram_text)
@@ -258,7 +274,8 @@ def main() -> int:
             try:
                 runtime_graph = load_json(runtime_path)
                 runtime_digest = str(runtime_graph.get("source_digest", ""))
-                if runtime_digest and runtime_digest != source_digest:
+                actual_digest = str(actual.get("source_digest", "")) if actual else ""
+                if runtime_digest and actual_digest and runtime_digest != actual_digest:
                     failures.append("RUNTIME_SEQUENCE_SOURCE_DIGEST_MISMATCH")
                 if mode == "BEFORE" and plan:
                     runtime_compare = compare_plan_actual(plan, runtime_graph, "RUNTIME")
@@ -276,6 +293,7 @@ def main() -> int:
         "session_id": session.get("session_id"),
         "phase": session.get("phase"),
         "mode": mode,
+        "scope": scope,
         "critical": critical,
         "final_head": head,
         "source_digest": source_digest,
