@@ -16,6 +16,12 @@ import subprocess
 import sys
 from pathlib import Path
 
+from project_profile import (
+    PROFILE_FILE,
+    documentation_settings,
+    parse_profile,
+)
+
 REQUIRED_HEADINGS = [
     "## One-minute summary",
     "## System at a glance",
@@ -94,10 +100,24 @@ def main() -> int:
     args = ap.parse_args()
 
     root = git_root(Path(args.root).resolve())
-    path = root / "SYSTEM_OVERVIEW.md"
+    profile_path = root / PROFILE_FILE
     failures: list[str] = []
     warnings: list[str] = []
 
+    if not profile_path.is_file():
+        print("FAIL MISSING_PROJECT_PROFILE")
+        print("RESULT=FAIL")
+        return 1
+
+    try:
+        documentation = documentation_settings(parse_profile(profile_path))
+    except Exception as exc:
+        print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
+        print("RESULT=FAIL")
+        return 1
+
+    docs_root = root / str(documentation.get("docs_root", "docs"))
+    path = docs_root / "SYSTEM_OVERVIEW.md"
     if not path.is_file():
         print("FAIL MISSING_SYSTEM_OVERVIEW")
         print("RESULT=FAIL")
