@@ -25,5 +25,5 @@
     "required": false,
     "graph": ""
   },
-  "acceptance_report": "docs/sequence/reports/replace-me.acceptance.json"
+  "acceptance_report": "artifacts/sequence/replace-me.acceptance.json"
 }
