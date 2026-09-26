@@ -141,6 +141,24 @@ def contract_settings(data: dict) -> dict[str, str]:
     return result
 
 
+def _bool_value(value: object, key: str) -> bool:
+    normalized = str(value).strip().lower()
+    if normalized in {"true", "yes", "1"}:
+        return True
+    if normalized in {"false", "no", "0"}:
+        return False
+    raise ValueError(f"Invalid boolean setting {key}: {value}")
+
+
+def runtime_settings(data: dict) -> dict[str, bool]:
+    raw = data.get("runtime", {})
+    if not isinstance(raw, dict):
+        raise ValueError("runtime must be a mapping")
+    return {
+        "e2e_required": _bool_value(raw.get("e2e_required", "true"), "runtime.e2e_required"),
+    }
+
+
 def required_docs(data: dict) -> set[str]:
     profile = normalized_profile(data)
     required = set(PROFILE_REQUIRED[profile])
@@ -160,6 +178,7 @@ def validate_profile(data: dict) -> list[str]:
 
     try:
         settings = contract_settings(data)
+        runtime_settings(data)
     except ValueError as exc:
         return [str(exc)]
 
