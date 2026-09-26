@@ -1,44 +1,36 @@
 # Skill Workflow
 
-Reusable workflow skill for understanding, handing off, auditing, repairing, and continuing software projects across ChatGPT rooms, coding agents, and human developers.
+Reusable project-handoff and codebase-orientation skill for ChatGPT rooms, coding agents, and human developers.
 
 ## Start here
 
-Use **`SKILL.md`** as the current canonical version.
-
-The skill defines a documentation and execution contract built around:
-
-- project authority and exact source revisions;
-- architecture and workflow/state-machine mapping;
-- module, symbol, and end-to-end flow indexes;
-- targeted source navigation instead of blind full-codebase rescans;
-- test/acceptance evidence boundaries;
-- runtime/E2E verification;
-- safe project handoff between rooms or agents.
+Use SKILL.md as the canonical skill. Ready-to-copy project templates live under templates/.
 
 ## Core handoff pack
 
-The canonical skill recommends these project documents:
+- PROJECT_MANIFEST.md
+- CURRENT_STATE.md
+- SOURCE_AUTHORITY_MAP.md
+- ARCHITECTURE.md
+- WORKFLOW_STATE_MACHINE.md
+- MODULE_MAP.md
+- SYMBOL_INDEX.md
+- FLOW_INDEX.md
+- TEST_ACCEPTANCE_MATRIX.md
 
-```text
-PROJECT_MANIFEST.md
-CURRENT_STATE.md
-SOURCE_AUTHORITY_MAP.md
-ARCHITECTURE.md
-WORKFLOW_STATE_MACHINE.md
-MODULE_MAP.md
-SYMBOL_INDEX.md
-FLOW_INDEX.md
-TEST_ACCEPTANCE_MATRIX.md
-```
+## Optional templates
 
-Additional contracts such as data, API, UI information architecture, runbooks, decisions, glossary, defects, and changelog can be added as needed.
+- DATA_CONTRACTS.md
+- API_CONTRACTS.md
+- UI_INFORMATION_ARCHITECTURE.md
+- RUNBOOK.md
+- DECISIONS.md
+- GLOSSARY.md
+- KNOWN_DEFECTS.md
+- CHANGELOG.md
 
-## Versions
+## Why
 
-- `SKILL.md` — current canonical skill.
-- `versions/SKILL_V1.md` — original version before symbol/flow indexing was added.
+A new room or agent should be able to determine project authority, current state, workflow, exact code ownership, evidence boundaries, and the next legal action without reconstructing the project from old chat history or reading the entire codebase blindly.
 
-## Design goal
-
-A new room or agent should be able to understand where authority lives, what the current state is, which exact code symbols implement a workflow, what has actually been proven, and what action is legal next — without reconstructing the project from old chat history or reading the entire codebase blindly.
+SYMBOL_INDEX.md acts like a codebase table of contents. FLOW_INDEX.md maps end-to-end behaviors to exact symbols so targeted edits can start at the correct source range.

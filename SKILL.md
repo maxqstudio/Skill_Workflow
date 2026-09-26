@@ -1,0 +1,305 @@
+# PROJECT HANDOFF & CODEBASE ORIENTATION SKILL
+
+## Purpose
+
+Use this skill to understand, continue, audit, repair, or hand off software projects safely across rooms, agents, and developers.
+
+Goals:
+- reduce context loss;
+- prevent accidental redesign;
+- prevent authority confusion;
+- avoid stale assumptions;
+- avoid blind full-codebase rescans;
+- preserve exact tested-source lineage;
+- make runtime and acceptance evidence explicit.
+
+This skill is project-agnostic.
+
+# 1. Core principle
+
+Do not begin by reading the entire repository blindly.
+
+Build a project map first:
+
+CURRENT_STATE
+→ PROJECT_MANIFEST
+→ SOURCE_AUTHORITY_MAP
+→ ARCHITECTURE
+→ WORKFLOW_STATE_MACHINE
+→ MODULE_MAP
+→ FLOW_INDEX
+→ SYMBOL_INDEX
+→ TEST_ACCEPTANCE_MATRIX
+→ exact relevant source ranges
+→ runtime/E2E verification when required.
+
+The documents are navigation and contract aids. Source and runtime remain evidence and may expose stale documentation.
+
+# 2. Core handoff pack
+
+Every maintained project should contain:
+
+PROJECT_MANIFEST.md
+CURRENT_STATE.md
+SOURCE_AUTHORITY_MAP.md
+ARCHITECTURE.md
+WORKFLOW_STATE_MACHINE.md
+MODULE_MAP.md
+SYMBOL_INDEX.md
+FLOW_INDEX.md
+TEST_ACCEPTANCE_MATRIX.md
+
+Recommended additional documents:
+
+DATA_CONTRACTS.md
+API_CONTRACTS.md
+UI_INFORMATION_ARCHITECTURE.md
+RUNBOOK.md
+DECISIONS.md
+GLOSSARY.md
+KNOWN_DEFECTS.md
+CHANGELOG.md
+
+If something does not apply, say so explicitly.
+
+# 3. Document responsibilities
+
+## PROJECT_MANIFEST.md
+Project entry point. Identify purpose, repositories, branch, source authority, runtime authority, acceptance authority, stack, entry points, important directories, external systems, required reading order, and non-negotiable constraints.
+
+## CURRENT_STATE.md
+Short live handoff snapshot. Include current phase, exact authoritative SHA, last accepted SHA, current candidate, blockers, known defects, proven/not-proven facts, next authorized action, and blocked actions. Never mix historical status with current status.
+
+## SOURCE_AUTHORITY_MAP.md
+Map each concern to its canonical authority and location. Cover source, runtime, data, configuration, UI, workflow, database, artifact/model, deployment, tests, historical reference, and documentation. If authorities conflict, do not guess.
+
+## ARCHITECTURE.md
+Describe components, boundaries, dependencies, data flow, persistence, runtime processes, external systems, and security boundaries.
+
+## WORKFLOW_STATE_MACHINE.md
+Document every meaningful lifecycle. For each state define entry condition, legal actions, legal transitions, exit condition, owner/authority, side effects, artifacts, failure behavior, and rollback behavior. Write invariants explicitly. Never infer workflow only from UI labels.
+
+## MODULE_MAP.md
+Fast file-level navigation map. Recommended columns: Module/File | Responsibility | Called By | Calls/Depends On | State Touched | Tests.
+
+## SYMBOL_INDEX.md
+Codebase table of contents. Index authority-bearing functions, classes, methods, API handlers, UI components, workers, state-transition functions, DB mutation functions, validators, and artifact readers/writers.
+
+Recommended columns:
+File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests.
+
+Use file path + symbol name + line-range hint. Symbol name is primary. Line numbers are hints tied to an exact SHA.
+
+Prefer machine-generated structure plus human-maintained semantic responsibility. Do not index every trivial helper.
+
+## FLOW_INDEX.md
+End-to-end call-chain index. For each important behavior map:
+entry point
+→ API/event
+→ service/domain handler
+→ state transition
+→ DB/artifact write
+→ external side effect
+→ fail-closed/error path
+→ tests.
+
+Before editing a flow:
+WORKFLOW_STATE_MACHINE
+→ FLOW_INDEX
+→ SYMBOL_INDEX
+→ exact source ranges
+→ relevant tests.
+
+## TEST_ACCEPTANCE_MATRIX.md
+Map requirements to unit, integration, runtime, UI/E2E, physical, and production evidence. Use explicit states such as PASS, FAIL, NOT_RUN, NOT_APPLICABLE, NOT_PROVEN, BLOCKED. Never convert NOT_RUN into PASS.
+
+# 4. Optional contracts
+
+DATA_CONTRACTS documents schema, meaning, source of truth, mutability, versioning, lineage, retention, legal mutation, and validation.
+
+API_CONTRACTS documents endpoint purpose, input/output, authority, side effects, errors, idempotency, and mutation scope.
+
+UI_INFORMATION_ARCHITECTURE documents each workspace/page, backend authority, visible data, actions, forbidden actions, and technical data hidden from normal user surfaces.
+
+RUNBOOK contains exact setup, build, start, stop, test, diagnose, recover, reset, and deploy commands plus environment details.
+
+DECISIONS records durable decisions with date, context, reason, alternatives, impact, and authority.
+
+# 5. New-room startup procedure
+
+1. Read CURRENT_STATE.md.
+2. Read PROJECT_MANIFEST.md.
+3. Read SOURCE_AUTHORITY_MAP.md.
+4. Read ARCHITECTURE.md.
+5. Read WORKFLOW_STATE_MACHINE.md.
+6. Read MODULE_MAP.md.
+7. Read FLOW_INDEX.md.
+8. Read SYMBOL_INDEX.md.
+9. Read TEST_ACCEPTANCE_MATRIX.md.
+10. Open only exact relevant source ranges first.
+
+Expand outward only if indexes are stale, incomplete, contradictory, or a full audit is explicitly required.
+
+# 6. Task execution workflow
+
+understand authority
+→ identify affected workflow
+→ identify affected modules
+→ locate exact symbols
+→ reproduce defect or establish baseline
+→ implement minimum valid repair
+→ targeted tests
+→ cumulative regression
+→ runtime/E2E verification when applicable
+→ verify final SHA
+→ final audit
+→ update project state.
+
+Never treat source changed as equivalent to PASS.
+
+# 7. Build/repair contract
+
+For every repair:
+1. identify exact parent SHA;
+2. reproduce or prove defect;
+3. determine root cause;
+4. repair minimum scope;
+5. add regression coverage;
+6. run targeted tests;
+7. run cumulative tests;
+8. run runtime/E2E when required;
+9. confirm final source SHA equals tested SHA;
+10. only then mark candidate ready for audit.
+
+Do not make a report-only commit after final testing if it changes the tested SHA.
+
+Invariant:
+FINAL SOURCE SHA = TESTED SHA.
+
+# 8. Acceptance rule
+
+Acceptance reflects only the strongest evidence actually executed.
+
+Unit PASS does not imply runtime PASS.
+Runtime start does not imply UI E2E PASS.
+UI E2E does not imply physical-device PASS.
+Historical physical proof does not imply current physical execution.
+Build success does not imply scientific validity.
+
+Always state the evidence boundary.
+
+# 9. Defect handling
+
+For a confirmed defect record:
+root cause
+→ affected contract
+→ affected modules/symbols
+→ repair scope
+→ regression test
+→ runtime retest when required.
+
+Use CONFIRMED, STRONG_INFERENCE, UNVERIFIED.
+
+# 10. Redesign prevention
+
+Architecture, UI, or workflow changes require a defect repair, explicit owner request, or accepted roadmap change. Otherwise do not redesign.
+
+# 11. Active state vs history
+
+Separate ACTIVE STATE, HISTORICAL EVIDENCE, and ARCHIVE. Promotion should normally remove an object from the prior active list while preserving evidence.
+
+# 12. Configuration vs execution snapshot
+
+Separate CURRENT CONFIGURATION from FROZEN EXECUTION SNAPSHOT. Editable configuration must not rewrite historical evidence. Running execution keeps values captured at start.
+
+# 13. UI truth contract
+
+Correct:
+backend/domain authority
+→ API
+→ semantic user-facing representation
+→ UI.
+
+Do not hardcode dynamic authority, eligibility, execution counts, promotion state, runtime availability, or phase completion in presentation code.
+
+# 14. Handoff procedure
+
+Before handoff update at minimum:
+CURRENT_STATE.md
+SOURCE_AUTHORITY_MAP.md
+TEST_ACCEPTANCE_MATRIX.md
+KNOWN_DEFECTS.md.
+
+Handoff should include project, repo, branch, exact authoritative SHA, runtime authority, current phase/status, last accepted, current candidate, defects, proven/not-proven facts, blocked actions, next authorized action, and read-first order.
+
+# 15. Handoff quality gate
+
+A new room must be able to answer without reading the whole codebase:
+what is the project;
+what is current authority;
+what phase is active;
+what exact SHA is current;
+what is the workflow/state machine;
+which modules and symbols own critical behavior;
+what are the critical call paths;
+what data/state is authoritative;
+what is proven/not proven;
+what is broken;
+what may happen next;
+what is forbidden.
+
+# 16. Fast orientation mode
+
+Read:
+1. CURRENT_STATE
+2. PROJECT_MANIFEST
+3. SOURCE_AUTHORITY_MAP
+4. ARCHITECTURE
+5. WORKFLOW_STATE_MACHINE
+6. MODULE_MAP
+7. FLOW_INDEX
+8. SYMBOL_INDEX
+9. TEST_ACCEPTANCE_MATRIX
+10. exact relevant source ranges.
+
+Do not recursively scan the repository unless docs/indexes are missing or conflicting, corruption is suspected, or a full audit is explicitly requested.
+
+# 17. Document drift check
+
+Verify critical claims against source/runtime when they affect authority, state transitions, data semantics, acceptance, or when docs predate the candidate.
+
+If docs disagree with implementation:
+identify conflict
+→ determine canonical authority
+→ repair stale documentation.
+
+# 18. Index freshness
+
+MODULE_MAP, SYMBOL_INDEX, and FLOW_INDEX are navigation accelerators.
+
+Refresh them when files/symbols move, workflow ownership changes, API routing changes, state-transition logic moves, major refactors change call paths, or line ranges drift materially.
+
+Preferred model:
+machine-generated structure
++
+human-maintained semantic responsibility
++
+exact SHA binding.
+
+If stale:
+mark STALE
+→ locate by symbol name
+→ refresh ranges/call paths
+→ do not trust stale line numbers blindly.
+
+# 19. Non-negotiables
+
+Never invent authority or tests, claim runtime PASS from unit tests alone, redesign without authorization, hide defects, mutate history to match current configuration, use stale SHA as current authority, mix unrelated project state, or rely on chat memory as the only project record.
+
+Always use exact SHA, preserve lineage, separate active state from history, separate configuration from execution snapshots, trace workflow before changing it, verify the strongest required acceptance layer, and leave a clean handoff.
+
+# 20. Definition of done
+
+A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, final tested SHA is known, evidence boundary is explicit, and current project state is updated.
+
+A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
