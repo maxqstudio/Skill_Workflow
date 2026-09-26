@@ -32,7 +32,10 @@ Record the actual HEAD in generated/external acceptance evidence.
 | CROSS_DOCUMENT_CONSISTENCY | NOT_PROVEN | |
 | HUMAN_COMPREHENSION | NOT_PROVEN | SYSTEM_OVERVIEW.md + human comprehension validator |
 | SEQUENCE_SYNC | NOT_PROVEN | SEQUENCE_CONTRACTS.md + per-session sequence acceptance reports |
-| PROJECT_DOCS_SYNC | NOT_PROVEN | Project Truth Compiler check |
+| DOC_LAYOUT | NOT_PROVEN | canonical docs/ layout validator |
+| PROJECT_DOCS_NORMALIZED | NOT_PROVEN | deterministic Markdown normalization check |
+| DOC_READABILITY | NOT_PROVEN | machine presentation-quality validator |
+| PROJECT_DOCS_SYNC | NOT_PROVEN | Project Truth Compiler + doc quality check |
 | DOC_SOURCE_TRACEABILITY | NOT_PROVEN | |
 | DOC_TEST_TRACEABILITY | NOT_PROVEN | |
 | TEST_RUNTIME_TRACEABILITY | NOT_PROVEN | |
