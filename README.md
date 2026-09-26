@@ -479,10 +479,42 @@ The repository provides:
 
 ```bash
 python scripts/validate_handoff.py
+python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 python scripts/validate_project_truth.py
 ```
 
 The truth validator checks machine-verifiable provenance, references, and structure. Semantic correctness still requires inspection of the mapped source/tests/runtime. A structural PASS must never be reported as semantic proof.
+
+---
+
+## Cross-document consistency validator
+
+The repository includes a validator that scans **all project Markdown documents**, not only the code indexes.
+
+It checks machine-verifiable problems such as:
+
+- broken Markdown/local references;
+- broken `path::symbol` references;
+- unknown or conflicting stable `TRUTH-*` claims;
+- missing claim backlinks;
+- conflicting claim status/text;
+- duplicate core docs;
+- explicit stale markers;
+- selected repository/branch/SHA conflicts between core docs;
+- source changes whose required docs were not updated since the accepted/base SHA.
+
+For final acceptance:
+
+```bash
+python scripts/validate_cross_document_consistency.py \
+  --base <LAST_ACCEPTED_SHA> \
+  --require-base \
+  --report artifacts/cross_document_sync_report.json
+```
+
+The base SHA matters: it lets the validator identify documentation that was left behind by the source changes in the candidate.
+
+This is still a machine-verifiable gate, not semantic proof. If the docs and code disagree in meaning but the contradiction cannot be proven structurally, semantic review remains required.
 
 ---
 
@@ -538,6 +570,7 @@ Skill_Workflow/
 ├─ SKILL.md
 ├─ scripts/
 │  ├─ validate_handoff.py
+│  ├─ validate_cross_document_consistency.py
 │  └─ validate_project_truth.py
 └─ templates/
    ├─ PROJECT_MANIFEST.md
