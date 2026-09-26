@@ -19,6 +19,12 @@ Current candidate SHA:
 Environment:
 Runtime status:
 
+## Sequence governance
+Sequence policy: REQUIRED / OPTIONAL / NOT_APPLICABLE
+Current sequence mode: BEFORE / DURING / AFTER / NOT_APPLICABLE
+Current sequence session:
+SEQUENCE_SYNC: PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+
 ## Proven
 -
 
