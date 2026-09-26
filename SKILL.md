@@ -69,6 +69,19 @@ Additional contracts may still be marked required when the project needs them.
 
 Default for normal multi-session or multi-agent development.
 
+Generated documentation is REQUIRED.
+
+The normal upstream edit targets are:
+
+```text
+source code
+.workflow/*.json
+tests/runtime evidence state
+```
+
+Root project Markdown is a deterministic projection and MUST NOT be maintained
+manually.
+
 Required:
 
 ```text
@@ -109,7 +122,11 @@ all STANDARD documents
 PROJECT_TRUTH_SYNC.md
 ```
 
-STRICT also requires explicit applicability decisions for critical optional contracts. Do not leave them ambiguously optional.
+STRICT also requires explicit applicability decisions for critical optional
+contracts. Do not leave them ambiguously optional.
+
+Generated documentation is REQUIRED and PROJECT_DOCS_SYNC is a blocking truth
+gate.
 
 ## Optional contract declarations
 
@@ -138,15 +155,169 @@ Profile selection is based on complexity, risk, runtime dependencies, handoff fr
 
 Validators MUST derive required documents from `PROJECT_PROFILE.yaml`; do not hardcode one universal pack.
 
+# 2A. Project Truth Compiler
+
+For STANDARD and STRICT projects, documentation is compiled rather than
+hand-maintained.
+
+The authority model is:
+
+```text
+SOURCE CODE
+= implementation facts
+
+.workflow/*.json
+= semantic / governance intent
+
+tests + runtime evidence
+= behavioral truth
+
+generated Markdown
+= human-readable projection
+```
+
+Do NOT treat generated Markdown as the upstream semantic authority.
+
+## Machine-readable semantic layer
+
+Recommended structure:
+
+```text
+.workflow/
+├─ project.json
+├─ authority.json
+├─ state.json
+├─ architecture.json
+├─ contracts.json
+├─ claims.json
+├─ acceptance.json
+├─ decisions.json
+├─ known_defects.json
+├─ glossary.json
+├─ changelog.json
+├─ workflows/
+│  └─ FLOW-*.json
+└─ generated/
+   └─ code_facts.json
+```
+
+Initialize:
+
+```bash
+python scripts/initialize_project_truth.py
+```
+
+Extract code facts and generate docs:
+
+```bash
+python scripts/generate_project_docs.py
+```
+
+Validate reproducibility/freshness:
+
+```bash
+python scripts/validate_project_docs.py
+```
+
+## What the compiler may derive from code
+
+Machine-observable facts may include:
+
+- source file inventory;
+- languages/extensions;
+- source line counts;
+- test file inventory;
+- Python classes/functions/methods;
+- Python decorated HTTP routes;
+- Python call tokens;
+- deterministic source-content digest;
+- other language facts when a supported parser/indexer exists.
+
+## What the compiler MUST NOT invent
+
+The compiler must not infer missing:
+
+- project purpose;
+- Owner intent;
+- business/scientific authority;
+- lifecycle meaning;
+- mutability rules;
+- legal transitions;
+- invariants;
+- failure semantics;
+- next authorized action;
+- blocked action;
+- acceptance status;
+- design rationale.
+
+Those belong in machine-readable semantic/governance specs.
+
+## Generated-doc rule
+
+When generated documentation is enabled:
+
+```text
+manual Markdown edit
+≠ authority
+```
+
+The correct repair path is:
+
+```text
+change source and/or .workflow spec
+→ regenerate
+→ validate
+```
+
+If tracked generated Markdown differs from deterministic compiler output:
+
+```text
+PROJECT_DOCS_SYNC = FAIL
+```
+
+## Deterministic generator rule
+
+The canonical compiler must not use an LLM to generate final tracked docs.
+
+Allowed:
+
+```text
+AST / parser
+structured semantic specs
+deterministic templates
+test/runtime evidence declarations
+```
+
+Not canonical:
+
+```text
+source → LLM prose → tracked docs
+```
+
+An LLM may help a human/agent propose semantic spec changes, but the final
+documentation projection must be deterministic.
+
+## LITE compatibility
+
+LITE may use manual Markdown when PROJECT_PROFILE explicitly has:
+
+```text
+documentation.generated: false
+```
+
+Do not force compiler ceremony onto genuinely small projects.
+
 # 3. Document responsibilities
 
 ## PROJECT_PROFILE.yaml
 
 Machine-readable governance policy.
 
-It selects LITE, STANDARD, or STRICT and declares which optional contracts are required, optional, or not applicable.
+It selects LITE, STANDARD, or STRICT; declares optional contract applicability;
+and selects generated-documentation / sequence policy.
 
-Agents must read this before deciding which project documents are mandatory.
+Agents must read this before deciding which project documents are mandatory or
+whether Markdown is editable at all.
 
 ## SYSTEM_OVERVIEW.md
 
@@ -497,20 +668,27 @@ SESSION START
 → freeze plan if BEFORE
 → declare DOC IMPACT
 → reproduce/baseline
-→ implement minimum valid change
+→ implement minimum valid source/spec change
+→ generate code facts
+→ generate project docs
 → generate actual sequence graph
 → validate plan-vs-actual or actual-only contract
-→ repair and regenerate until sequence acceptance passes
-→ regenerate structural facts where applicable
-→ update affected semantic docs/indexes
+→ classify/repair mismatch if any
 → targeted tests
 → cumulative regression
-→ documentation drift validation
+→ update .workflow acceptance/evidence state
+→ regenerate project docs
+→ PROJECT_DOCS_SYNC validation
+→ documentation/cross-doc validation
 → runtime/E2E when required
-→ update TEST_ACCEPTANCE_MATRIX
-→ update CURRENT_STATE
+→ final regeneration
+→ final validators
 → final handoff
 ```
+
+For generated-documentation mode, do not manually update
+TEST_ACCEPTANCE_MATRIX.md, CURRENT_STATE.md, FLOW_INDEX.md, or other root
+Markdown. Update their upstream .workflow authority and regenerate.
 
 ## Structural index generation
 
@@ -519,6 +697,11 @@ Do not manually reconstruct facts that can be generated safely.
 Available generators:
 
 ```bash
+python scripts/initialize_project_truth.py
+python scripts/extract_project_facts.py
+python scripts/generate_project_docs.py
+python scripts/validate_project_docs.py
+
 python scripts/generate_symbol_index.py
 python scripts/generate_module_map.py
 python scripts/generate_sequence_plan.py --plan <plan.json> --output <plan.mmd>
@@ -526,6 +709,10 @@ python scripts/generate_sequence_actual.py --output-json <actual.json> --output-
 python scripts/validate_sequence_contract.py --session <session.json>
 python scripts/validate_sequence_sessions.py
 ```
+
+The Project Truth Compiler is the preferred documentation path for
+STANDARD/STRICT. Legacy individual index generators remain useful for targeted
+inspection and LITE/manual compatibility.
 
 `generate_symbol_index.py` prefers Universal Ctags for broad language coverage and falls back to Python AST when Ctags is unavailable.
 
@@ -554,7 +741,9 @@ FLOW_INDEX remains semantic-verified. Do not automatically claim an end-to-end c
 
 The task is NOT DONE if any applies:
 
-- source changed but affected docs are stale;
+- generated-documentation mode is enabled but PROJECT_DOCS_SYNC is not PASS;
+- a generated root Markdown contract was manually edited instead of changing its upstream authority;
+- source/spec changed but generated docs are stale;
 - human-visible behavior changed but SYSTEM_OVERVIEW is stale;
 - sequence-required workflow changed but generated actual sequence evidence is stale;
 - BEFORE implementation exists without a proven pre-implementation frozen plan;
@@ -595,12 +784,14 @@ Verify:
 - current authority SHA/state is correct;
 - acceptance evidence matches tests actually executed;
 - known defects are current;
-- no required document is silently skipped.
+- no required document is silently skipped;
+- generated docs reproduce exactly from current source + semantic specs.
 
 When available, run:
 
 ```bash
 python scripts/validate_handoff.py
+python scripts/validate_project_docs.py
 python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_sequence_sessions.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
@@ -629,6 +820,12 @@ BEFORE / DURING / AFTER / NOT_APPLICABLE
 
 SEQUENCE_SYNC:
 PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+
+PROJECT_DOCS_SYNC:
+PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+
+PROJECT TRUTH COMPILER:
+PASS / FAIL / NOT_AVAILABLE
 
 CURRENT_STATE:
 UPDATED / NO IMPACT
@@ -677,7 +874,11 @@ If a required documentation item is stale, final status cannot be PASS.
 
 # 21. Definition of done
 
-A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, HUMAN_COMPREHENSION_GATE passes, applicable SEQUENCE_SYNC passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
+A task is DONE only when source/contract repair is complete, regression exists,
+required runtime/E2E ran, documentation sync passes, HUMAN_COMPREHENSION_GATE
+passes, applicable SEQUENCE_SYNC passes, PROJECT_DOCS_SYNC passes when generated
+documentation is enabled, affected projections/contracts are current, final
+tested SHA is known, and evidence boundary is explicit.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
 
@@ -697,13 +898,18 @@ Required truth layers:
 6. CROSS-DOCUMENT CONSISTENCY
 7. HUMAN COMPREHENSION
 8. SEQUENCE SYNC
-9. DOC ↔ SOURCE TRACEABILITY
-10. DOC ↔ TEST TRACEABILITY
-11. TEST ↔ RUNTIME TRACEABILITY
+9. PROJECT DOCS SYNC
+10. DOC ↔ SOURCE TRACEABILITY
+11. DOC ↔ TEST TRACEABILITY
+12. TEST ↔ RUNTIME TRACEABILITY
 
 Overall invariant:
 
-SOURCE TESTS PASS + DOCS IN SAME TESTED SNAPSHOT + STRUCTURAL SYNC PASS + SEMANTIC SYNC PASS + BEHAVIORAL SYNC PASS + CROSS-DOCUMENT CONSISTENCY PASS + HUMAN_COMPREHENSION PASS + SEQUENCE_SYNC PASS/NOT_APPLICABLE + TRACEABILITY PASS = PROJECT_STATE_SYNC PASS.
+SOURCE TESTS PASS + DOCS IN SAME TESTED SNAPSHOT + STRUCTURAL SYNC PASS +
+SEMANTIC SYNC PASS + BEHAVIORAL SYNC PASS + CROSS-DOCUMENT CONSISTENCY PASS +
+HUMAN_COMPREHENSION PASS + SEQUENCE_SYNC PASS/NOT_APPLICABLE +
+PROJECT_DOCS_SYNC PASS/NOT_APPLICABLE + TRACEABILITY PASS =
+PROJECT_STATE_SYNC PASS.
 
 A matching SHA label alone is never sufficient.
 
@@ -775,11 +981,16 @@ The cross-document validator must reject impossible terminal combinations, such 
 
 PROJECT_TRUTH_SYNC.md is the canonical traceability ledger.
 
-## Generated facts vs maintained semantics
+## Generated facts vs semantic specs
 
-Prefer machine-generated facts for file paths, symbol names, line hints, signatures, routes, imports/dependencies, schema/table names, and test names.
+Prefer machine-generated facts for implementation-observable structure.
 
-Human/agent-maintained semantics remain required for purpose, authority, responsibility, lifecycle meaning, invariants, legal transitions, failure semantics, and evidence interpretation.
+Purpose, authority, lifecycle meaning, invariants, legal transitions, failure
+semantics, evidence interpretation, and Owner intent remain explicit semantic
+inputs under .workflow.
+
+In generated-documentation mode, these semantics are maintained once in the
+structured spec layer and projected into all affected Markdown documents.
 
 Machine verification of facts does not replace semantic audit.
 
@@ -795,6 +1006,7 @@ BEHAVIORAL_SYNC: PASS / NOT_APPLICABLE
 CROSS_DOCUMENT_CONSISTENCY: PASS
 HUMAN_COMPREHENSION: PASS
 SEQUENCE_SYNC: PASS / NOT_APPLICABLE
+PROJECT_DOCS_SYNC: PASS / NOT_APPLICABLE
 DOC_SOURCE_TRACEABILITY: PASS
 DOC_TEST_TRACEABILITY: PASS
 TEST_RUNTIME_TRACEABILITY: PASS / NOT_APPLICABLE
@@ -809,6 +1021,7 @@ If any required gate is FAIL, NOT_PROVEN, or unresolved, final status cannot be 
 Run validators required by the selected profile:
 
 python scripts/validate_handoff.py
+python scripts/validate_project_docs.py
 python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_sequence_sessions.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
@@ -823,7 +1036,11 @@ Structural validator PASS is necessary but not sufficient for semantic truth.
 
 ## Definition of done override
 
-A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, HUMAN_COMPREHENSION_GATE passes, applicable SEQUENCE_SYNC passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
+A task is DONE only when source/contract repair is complete, required
+tests/runtime evidence pass, DOC_SYNC passes, HUMAN_COMPREHENSION_GATE passes,
+applicable SEQUENCE_SYNC passes, PROJECT_DOCS_SYNC passes when generated
+documentation is enabled, PROJECT_STATE_SYNC passes, final tested HEAD equals
+final source/documentation HEAD, and evidence boundaries are explicit.
 
 
 ## Cross-document validator gate
