@@ -13,6 +13,7 @@
 #
 # SYSTEM_OVERVIEW.md is mandatory for every profile.
 # Generated documentation and sequence contracts are mandatory for STANDARD and STRICT by default.
+# Canonical human-facing project documentation lives under repository-root docs/.
 # STRICT requires explicit required/not_applicable decisions for the critical
 # contract categories checked by the validator.
 
@@ -34,6 +35,7 @@ runtime:
 documentation:
   generated: true
   spec_root: .workflow
+  docs_root: docs
 
 sequence:
   required: true
