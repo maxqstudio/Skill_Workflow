@@ -46,6 +46,8 @@ Do not impose the same documentation ceremony on every project.
 
 Every project MUST define `PROJECT_PROFILE.yaml`.
 
+Every required `.md` document name below resolves under repository-root `docs/`. `PROJECT_PROFILE.yaml` and `README.md` remain at repository root.
+
 Supported profiles:
 
 ## LITE
