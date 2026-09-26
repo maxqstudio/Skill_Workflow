@@ -167,6 +167,7 @@ when the project has a larger vocabulary.
 | Project identity and authorities | PROJECT_MANIFEST.md |
 | Architecture | ARCHITECTURE.md |
 | Full lifecycle rules | WORKFLOW_STATE_MACHINE.md |
+| Generated plan/actual sequence evidence | SEQUENCE_CONTRACTS.md |
 | End-to-end engineering call paths | FLOW_INDEX.md |
 | Module ownership | MODULE_MAP.md |
 | Exact source symbols | SYMBOL_INDEX.md |
