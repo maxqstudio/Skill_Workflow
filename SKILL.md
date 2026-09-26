@@ -54,6 +54,7 @@ SYMBOL_INDEX.md
 FLOW_INDEX.md
 TEST_ACCEPTANCE_MATRIX.md
 DOC_SYNC_MATRIX.md
+PROJECT_TRUTH_SYNC.md
 
 Recommended additional documents:
 
@@ -143,7 +144,8 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 8. Read SYMBOL_INDEX.md.
 9. Read TEST_ACCEPTANCE_MATRIX.md.
 10. Read DOC_SYNC_MATRIX.md.
-11. Open only exact relevant source ranges first.
+11. Read PROJECT_TRUTH_SYNC.md.
+12. Open only exact relevant source ranges first.
 
 Expand outward only if indexes are stale, incomplete, contradictory, or a full audit is explicitly required.
 
@@ -268,7 +270,8 @@ Read:
 8. SYMBOL_INDEX
 9. TEST_ACCEPTANCE_MATRIX
 10. DOC_SYNC_MATRIX
-11. exact relevant source ranges.
+11. PROJECT_TRUTH_SYNC
+12. exact relevant source ranges.
 
 Do not recursively scan the repository unless docs/indexes are missing or conflicting, corruption is suspected, or a full audit is explicitly requested.
 
@@ -474,3 +477,124 @@ If a required documentation item is stale, final status cannot be PASS.
 A task is DONE only when source/contract repair is complete, regression exists, required runtime/E2E ran, documentation sync passes, affected indexes/contracts are current, final tested SHA is known, evidence boundary is explicit, and CURRENT_STATE is updated.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
+
+# 22. Project Truth Synchronization
+
+Documentation sync is broader than index freshness or matching a revision label.
+
+A project is synchronized only when important claims in documentation are consistent with the current source, tests, and runtime evidence.
+
+Required truth layers:
+
+1. PROVENANCE SYNC
+2. REFERENCE SYNC
+3. STRUCTURAL SYNC
+4. SEMANTIC SYNC
+5. BEHAVIORAL SYNC
+6. CROSS-DOCUMENT CONSISTENCY
+7. DOC ↔ SOURCE TRACEABILITY
+8. DOC ↔ TEST TRACEABILITY
+9. TEST ↔ RUNTIME TRACEABILITY
+
+Overall invariant:
+
+SOURCE TESTS PASS + DOCS IN SAME TESTED SNAPSHOT + STRUCTURAL SYNC PASS + SEMANTIC SYNC PASS + BEHAVIORAL SYNC PASS + CROSS-DOCUMENT CONSISTENCY PASS + TRACEABILITY PASS = PROJECT_STATE_SYNC PASS.
+
+A matching SHA label alone is never sufficient.
+
+## Provenance rule
+
+Do not require a tracked document to contain the hash of the commit that contains that same document. Git commit hashes are derived from the tree, so this creates a self-reference problem.
+
+Instead prove provenance by:
+- testing an exact Git HEAD;
+- requiring a clean worktree for final acceptance;
+- verifying source and required docs are tracked in that same HEAD;
+- recording the tested HEAD in generated/external acceptance evidence;
+- forbidding source or documentation changes after final testing without retest.
+
+Therefore the invariant is:
+
+TESTED_HEAD = FINAL_SOURCE_HEAD = FINAL_DOCUMENTATION_HEAD.
+
+The generated truth report may record the actual HEAD after checkout/testing. It is acceptance evidence and should not be committed back into the same snapshot if doing so would change the HEAD being reported.
+
+## Reference sync
+
+All authoritative references must resolve where machine-verifiable: files, indexed symbols, tests, routes/schemas/components where supported, and required evidence references.
+
+A broken required reference means PROJECT_STATE_SYNC FAIL.
+
+## Structural sync
+
+The documented structure must match implementation structure. MODULE_MAP ownership, SYMBOL_INDEX symbols, FLOW_INDEX call paths, API contracts, data contracts, and UI architecture must point to real implementation authority.
+
+## Semantic sync
+
+Existence is not enough. The stated responsibility, authority, transition, side effect, invariant, and failure semantics must match the code.
+
+Example: if docs say Candidate → Challenger but code implements Candidate → Champion, structural resolution may pass while SEMANTIC_SYNC must fail.
+
+Generic scripts cannot fully prove semantics. The agent must inspect the exact authority-bearing implementation and relevant tests, then record traceability in PROJECT_TRUTH_SYNC.md.
+
+Do not claim semantic PASS from path/symbol existence checks alone.
+
+## Behavioral sync
+
+Where documentation describes runtime behavior, prove it with the strongest required executable evidence: lifecycle tests, runtime/API verification, browser/device E2E, integration evidence, or actual runbook execution as applicable.
+
+If required behavioral evidence was not executed, BEHAVIORAL_SYNC is NOT_PROVEN and overall PROJECT_STATE_SYNC cannot be PASS unless the behavior is explicitly NOT_APPLICABLE.
+
+## Cross-document consistency
+
+Documents must agree with each other. Contradictions between WORKFLOW_STATE_MACHINE, FLOW_INDEX, API_CONTRACTS, CURRENT_STATE, TEST_ACCEPTANCE_MATRIX, SOURCE_AUTHORITY_MAP, PROJECT_MANIFEST, KNOWN_DEFECTS, or other authority docs are project defects.
+
+## Bidirectional truth traceability
+
+For every critical project claim maintain:
+
+CLAIM / CONTRACT ↔ DOCUMENT(S) ↔ SOURCE OWNER ↔ TEST(S) ↔ RUNTIME/E2E EVIDENCE when required.
+
+Use stable claim IDs for authority-bearing behavior and invariants where practical, for example TRUTH-PROMOTION-001. Do not add IDs to trivial helpers.
+
+PROJECT_TRUTH_SYNC.md is the canonical traceability ledger.
+
+## Generated facts vs maintained semantics
+
+Prefer machine-generated facts for file paths, symbol names, line hints, signatures, routes, imports/dependencies, schema/table names, and test names.
+
+Human/agent-maintained semantics remain required for purpose, authority, responsibility, lifecycle meaning, invariants, legal transitions, failure semantics, and evidence interpretation.
+
+Machine verification of facts does not replace semantic audit.
+
+## Required final truth gates
+
+SOURCE_TESTS: PASS
+RUNTIME_E2E: PASS / NOT_APPLICABLE
+PROVENANCE_SYNC: PASS
+REFERENCE_SYNC: PASS
+STRUCTURAL_SYNC: PASS
+SEMANTIC_SYNC: PASS
+BEHAVIORAL_SYNC: PASS / NOT_APPLICABLE
+CROSS_DOCUMENT_CONSISTENCY: PASS
+DOC_SOURCE_TRACEABILITY: PASS
+DOC_TEST_TRACEABILITY: PASS
+TEST_RUNTIME_TRACEABILITY: PASS / NOT_APPLICABLE
+STALE_DOCUMENTS: 0
+BROKEN_REFERENCES: 0
+UNRESOLVED_CONTRACTS: 0
+CONTRADICTORY_CLAIMS: 0
+PROJECT_STATE_SYNC: PASS
+
+If any required gate is FAIL, NOT_PROVEN, or unresolved, final status cannot be PASS.
+
+When available run both:
+
+python scripts/validate_handoff.py
+python scripts/validate_project_truth.py
+
+Structural validator PASS is necessary but not sufficient for semantic truth.
+
+## Definition of done override
+
+A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
