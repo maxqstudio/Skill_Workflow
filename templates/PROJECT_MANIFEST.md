@@ -4,6 +4,7 @@
 Name:
 Purpose:
 Primary users:
+Governance profile: see PROJECT_PROFILE.yaml
 
 ## Repositories
 Repository:
@@ -36,16 +37,19 @@ CLI:
 |---|---|
 
 ## Required reading order
-1. CURRENT_STATE.md
-2. SOURCE_AUTHORITY_MAP.md
-3. ARCHITECTURE.md
-4. WORKFLOW_STATE_MACHINE.md
-5. MODULE_MAP.md
-6. FLOW_INDEX.md
-7. SYMBOL_INDEX.md
+1. PROJECT_PROFILE.yaml
+2. CURRENT_STATE.md
+3. this PROJECT_MANIFEST.md
+4. profile-required authority / architecture / workflow documents
+5. MODULE_MAP.md when required
+6. FLOW_INDEX.md when required
+7. SYMBOL_INDEX.md when required
 8. TEST_ACCEPTANCE_MATRIX.md
-9. DOC_SYNC_MATRIX.md
-10. PROJECT_TRUTH_SYNC.md
+9. DOC_SYNC_MATRIX.md when required
+10. PROJECT_TRUTH_SYNC.md when required or present
+
+## Profile-specific applicability
+Do not create or maintain documents marked not_applicable in PROJECT_PROFILE.yaml.
 
 ## Non-negotiable constraints
 -
