@@ -19,7 +19,7 @@ from project_profile import (
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=".")
-    ap.add_argument("--report", default="artifacts/project_docs_sync_report.json")
+    ap.add_argument("--report", default="")
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
@@ -59,9 +59,9 @@ def main() -> int:
         "--root",
         str(root),
         "--check",
-        "--report",
-        args.report,
     ]
+    if args.report:
+        cmd.extend(["--report", args.report])
     proc = subprocess.run(
         cmd,
         cwd=root,
@@ -75,16 +75,23 @@ def main() -> int:
         print("PROJECT_DOCS_SYNC=FAIL")
         return proc.returncode
 
-    quality_report = str(Path(args.report).with_name("doc_quality_report.json"))
+    quality_cmd = [
+        sys.executable,
+        str(quality_validator),
+        "--root",
+        str(root),
+    ]
+    if args.report:
+        report_path = Path(args.report)
+        quality_report = str(
+            report_path.with_name(
+                report_path.stem + ".quality" + report_path.suffix
+            )
+        )
+        quality_cmd.extend(["--report", quality_report])
+
     quality = subprocess.run(
-        [
-            sys.executable,
-            str(quality_validator),
-            "--root",
-            str(root),
-            "--report",
-            quality_report,
-        ],
+        quality_cmd,
         cwd=root,
         text=True,
         stdout=subprocess.PIPE,
