@@ -28,12 +28,6 @@ contracts:
 
 runtime:
   e2e_required: true
-  physical_device_required: false
-
-indexing:
-  generated_structural_facts: true
-  symbol_index_required: true
-  flow_index_mode: semantic_verified
 
 notes:
   profile_reason: replace-me
