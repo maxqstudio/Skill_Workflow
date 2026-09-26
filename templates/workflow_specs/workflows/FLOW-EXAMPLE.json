@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "flow_id": "FLOW-EXAMPLE",
+  "title": "Replace me",
+  "purpose": "replace-me",
+  "critical": true,
+  "entry_condition": "replace-me",
+  "authority": "replace-me",
+  "states": [],
+  "transitions": [],
+  "invariants": [],
+  "failure_behavior": [],
+  "restart_behavior": [],
+  "rollback_behavior": [],
+  "source_owners": [],
+  "tests": [],
+  "sequence_session": ""
+}
