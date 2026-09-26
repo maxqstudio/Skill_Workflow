@@ -1,6 +1,26 @@
 {
   "schema_version": 1,
   "evidence_boundary": "replace-me",
+  "runtime_status": "NOT_PROVEN",
+  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_questions": {},
+  "sequence_mode": "NOT_APPLICABLE",
+  "sequence_session": "",
+  "sequence_sync_status": "NOT_PROVEN",
+  "truth_gates": {
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "RUNTIME_E2E": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "BEHAVIORAL_SYNC": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "TEST_RUNTIME_TRACEABILITY": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN"
+  },
   "requirements": [],
   "test_commands": [],
   "runtime_checks": []
