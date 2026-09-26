@@ -20,6 +20,7 @@ from project_profile import (
     normalized_profile,
     parse_profile,
     required_docs,
+    sequence_settings,
     validate_profile,
 )
 
@@ -73,6 +74,7 @@ def main() -> int:
         failures.extend(validate_profile(profile_data))
         required = required_docs(profile_data)
         settings = contract_settings(profile_data)
+        sequence_policy = sequence_settings(profile_data)
     except Exception as exc:
         print(f"HANDOFF_ROOT={root}")
         print(f"FAIL PROJECT_PROFILE_INVALID:{exc}")
@@ -191,6 +193,21 @@ def main() -> int:
             failures.append("FLOW_INDEX_AUTHORITY_SHA_MISSING")
         if "Flow inventory" not in text and "| Flow |" not in text:
             failures.append("FLOW_INDEX_INVENTORY_MISSING")
+
+    sequence_doc = root / "SEQUENCE_CONTRACTS.md"
+    if sequence_policy.get("required", False):
+        if not sequence_doc.is_file():
+            failures.append("MISSING_REQUIRED_DOC:SEQUENCE_CONTRACTS.md")
+        else:
+            text = read(sequence_doc)
+            for heading in ("## Modes", "## Flow inventory", "## Mismatch handling"):
+                if heading not in text:
+                    failures.append("SEQUENCE_CONTRACTS_STRUCTURE_INVALID:" + heading)
+
+        sessions_root = root / "docs" / "sequence" / "sessions"
+        sessions = list(sessions_root.rglob("*.json")) if sessions_root.is_dir() else []
+        if not sessions:
+            failures.append("SEQUENCE_SESSION_CONTRACT_MISSING")
 
     matrix = root / "TEST_ACCEPTANCE_MATRIX.md"
     if matrix.is_file():
