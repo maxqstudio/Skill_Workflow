@@ -26,6 +26,7 @@ def main() -> int:
     root = Path(args.root).resolve()
     skill_root = Path(__file__).resolve().parent.parent
     template_root = skill_root / "templates" / "workflow_specs"
+    profile_template = skill_root / "templates" / "PROJECT_PROFILE.yaml"
 
     if not template_root.is_dir():
         print("FAIL WORKFLOW_SPEC_TEMPLATES_NOT_FOUND:" + str(template_root))
@@ -37,6 +38,15 @@ def main() -> int:
 
     writes = 0
     skips = 0
+
+    if profile_template.is_file():
+        result = copy_file(profile_template, root / "PROJECT_PROFILE.yaml", args.force)
+        if result == "WRITE":
+            writes += 1
+            print("WRITE PROJECT_PROFILE.yaml")
+        else:
+            skips += 1
+            print("SKIP PROJECT_PROFILE.yaml")
 
     for src in sorted(template_root.rglob("*")):
         if not src.is_file():
