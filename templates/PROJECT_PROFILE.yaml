@@ -11,6 +11,7 @@
 #   optional
 #   not_applicable
 #
+# SYSTEM_OVERVIEW.md is mandatory for every profile.
 # STRICT requires explicit required/not_applicable decisions for the critical
 # contract categories checked by the validator.
 
