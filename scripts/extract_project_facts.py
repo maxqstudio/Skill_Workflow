@@ -10,7 +10,6 @@ from __future__ import annotations
 import argparse
 import ast
 import json
-import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -33,27 +32,6 @@ LANGUAGE_BY_EXT = {
 }
 
 HTTP_METHODS = {"get", "post", "put", "patch", "delete", "options", "head"}
-
-
-def run_git(root: Path, *args: str) -> str:
-    return subprocess.check_output(
-        ["git", "-C", str(root), *args],
-        text=True,
-        stderr=subprocess.STDOUT,
-    ).strip()
-
-
-def git_facts(root: Path) -> dict:
-    result = {
-        "branch": "UNKNOWN",
-        "worktree_clean": False,
-    }
-    try:
-        result["branch"] = run_git(root, "branch", "--show-current") or "DETACHED"
-        result["worktree_clean"] = not bool(run_git(root, "status", "--porcelain"))
-    except Exception:
-        pass
-    return result
 
 
 def call_name(node: ast.AST) -> str:
@@ -213,7 +191,6 @@ def extract_project_facts(root: Path) -> dict:
     return {
         "schema_version": 1,
         "source_digest": compute_source_digest(root),
-        "git": git_facts(root),
         "source_summary": {
             "files": len(modules),
             "lines": sum(x["lines"] for x in modules),
