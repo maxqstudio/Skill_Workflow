@@ -17,7 +17,7 @@
   "actual": {
     "graph": "docs/sequence/generated/replace-me.actual.json",
     "diagram": "docs/sequence/generated/replace-me.actual.mmd",
-    "source_sha": ""
+    "source_digest": ""
   },
   "test_traceability_required": true,
   "tests": [],
