@@ -242,6 +242,8 @@ Every project starts with:
 PROJECT_PROFILE.yaml
 ```
 
+All required `.md` names in the profile tables resolve under `docs/`. `PROJECT_PROFILE.yaml` and `README.md` remain at repository root.
+
 ### LITE
 
 For small, low-complexity projects.
@@ -1206,6 +1208,7 @@ Skill_Workflow/
 │  ├─ extract_project_facts.py
 │  ├─ generate_project_docs.py
 │  ├─ validate_project_docs.py
+│  ├─ validate_doc_quality.py
 │  ├─ sync_project_truth.py
 │  ├─ selftest_project_truth_compiler.py
 │  ├─ generate_symbol_index.py
