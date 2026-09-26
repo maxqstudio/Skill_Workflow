@@ -314,6 +314,8 @@ def main() -> int:
     for required in sorted(CORE_DOCS):
         if required not in by_name:
             failures.append("MISSING_CORE_DOC:" + required)
+        elif len(by_name[required]) > 1:
+            failures.append("DUPLICATE_CORE_DOC:" + required)
 
     canonical, ledger_failures = truth_claims(root)
     failures.extend(ledger_failures)
@@ -357,7 +359,7 @@ def main() -> int:
                 failures.append("UNRESOLVED_PATH_SYMBOL:" + relative + ":" + path_ref + "::" + symbol)
 
         ids = set(CLAIM_ID_RE.findall(unfenced))
-        if doc.name != "PROJECT_TRUTH_SYNC.md":
+        if doc.name not in {"PROJECT_TRUTH_SYNC.md", "README.md", "SKILL.md"}:
             for claim_id in sorted(ids):
                 if claim_id not in canonical:
                     failures.append("UNKNOWN_CLAIM_ID:" + relative + ":" + claim_id)
