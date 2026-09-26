@@ -14,7 +14,9 @@ import sys
 from pathlib import Path
 
 from project_profile import (
+    CONTRACT_DOCS,
     PROFILE_FILE,
+    contract_settings,
     normalized_profile,
     parse_profile,
     required_docs,
@@ -70,6 +72,7 @@ def main() -> int:
         profile_name = normalized_profile(profile_data)
         failures.extend(validate_profile(profile_data))
         required = required_docs(profile_data)
+        settings = contract_settings(profile_data)
     except Exception as exc:
         print(f"HANDOFF_ROOT={root}")
         print(f"FAIL PROJECT_PROFILE_INVALID:{exc}")
@@ -101,6 +104,11 @@ def main() -> int:
     if "replace-me" in profile_text.lower():
         failures.append("PROJECT_PROFILE_REASON_NOT_SET")
 
+    for key, value in settings.items():
+        contract_doc = CONTRACT_DOCS[key]
+        if value == "not_applicable" and (root / contract_doc).is_file():
+            failures.append(f"NOT_APPLICABLE_DOC_PRESENT:{contract_doc}")
+
     current = root / "CURRENT_STATE.md"
     if current.is_file():
         text = read(current)
@@ -111,8 +119,16 @@ def main() -> int:
     manifest = root / "PROJECT_MANIFEST.md"
     if manifest.is_file():
         text = read(manifest)
-        if "Governance profile:" not in text:
-            warnings.append("PROJECT_MANIFEST_GOVERNANCE_PROFILE_FIELD_MISSING")
+        match = re.search(r"^Governance profile:\s*(.*?)\s*$", text, re.MULTILINE | re.IGNORECASE)
+        if not match or not match.group(1).strip():
+            failures.append("PROJECT_MANIFEST_GOVERNANCE_PROFILE_MISSING")
+        elif match.group(1).strip().lower() != profile_name:
+            failures.append(
+                "PROJECT_MANIFEST_PROFILE_CONFLICT:"
+                + match.group(1).strip()
+                + "!="
+                + profile_name
+            )
 
     authority = root / "SOURCE_AUTHORITY_MAP.md"
     if authority.is_file() and "Canonical authority" not in read(authority):
