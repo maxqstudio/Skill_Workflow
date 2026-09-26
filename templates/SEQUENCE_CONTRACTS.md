@@ -89,7 +89,7 @@ Required:
 ```text
 ACTUAL_GRAPH_GENERATED
 ACTUAL_DIAGRAM_GENERATED
-ACTUAL_SOURCE_SHA = FINAL_SOURCE_SHA
+ACTUAL_SOURCE_DIGEST = CURRENT_SOURCE_DIGEST
 SOURCE_ACTUAL_SYNC = PASS
 TEST_TRACEABILITY = PASS when required
 RUNTIME_ACTUAL_SYNC = PASS / NOT_APPLICABLE
@@ -108,7 +108,7 @@ Required:
 ```text
 FINAL_ACTUAL_GRAPH_GENERATED
 FINAL_ACTUAL_DIAGRAM_GENERATED
-FINAL_SOURCE_BINDING = PASS
+FINAL_SOURCE_DIGEST_BINDING = PASS
 TEST_TRACEABILITY = PASS when required
 RUNTIME_ACTUAL_SYNC = PASS / NOT_APPLICABLE
 UNRESOLVED_CRITICAL_EDGES = 0
@@ -159,3 +159,25 @@ Therefore:
 - unresolved critical edges block acceptance;
 - runtime trace may be required for dynamic critical paths;
 - generator PASS does not itself prove behavioral correctness.
+
+
+## Source digest provenance rule
+
+Generated actual sequence artifacts may be tracked in Git, so they must not
+require the commit hash of the commit that contains themselves.
+
+Actual sequence evidence is bound to:
+
+```text
+SOURCE_CONTENT_DIGEST
+```
+
+computed deterministically from project source files while excluding generated
+documentation/artifacts.
+
+Final validation recomputes that digest from the checked-out project and
+requires it to match the actual graph.
+
+The Git HEAD remains acceptance provenance, but it is not embedded as a
+self-referential equality requirement inside tracked generated sequence
+artifacts.
