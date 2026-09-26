@@ -3,6 +3,7 @@
   "session_id": "replace-me",
   "phase": "replace-me",
   "mode": "BEFORE",
+  "scope": "CURRENT",
   "critical": true,
   "status": "PLANNED",
   "implementation_base_sha": "",
@@ -17,7 +18,8 @@
   "actual": {
     "graph": "docs/sequence/generated/replace-me.actual.json",
     "diagram": "docs/sequence/generated/replace-me.actual.mmd",
-    "source_digest": ""
+    "source_digest": "",
+    "entries": []
   },
   "test_traceability_required": true,
   "tests": [],
