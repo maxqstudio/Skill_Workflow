@@ -207,16 +207,33 @@ Initialize:
 python scripts/initialize_project_truth.py
 ```
 
-Extract code facts and generate docs:
+Synchronize code facts and generated docs:
+
+```bash
+python scripts/sync_project_truth.py
+```
+
+This command:
+
+```text
+generate
+→ validate
+→ record only PROJECT_DOCS_SYNC=PASS
+→ regenerate
+→ validate again
+```
+
+Low-level commands:
 
 ```bash
 python scripts/generate_project_docs.py
+python scripts/validate_project_docs.py
 ```
 
-Validate reproducibility/freshness:
+Executable regression self-test:
 
 ```bash
-python scripts/validate_project_docs.py
+python scripts/selftest_project_truth_compiler.py
 ```
 
 ## What the compiler may derive from code
@@ -296,6 +313,31 @@ source → LLM prose → tracked docs
 
 An LLM may help a human/agent propose semantic spec changes, but the final
 documentation projection must be deterministic.
+
+## Recorded gate is not trusted alone
+
+A declared:
+
+```text
+PROJECT_DOCS_SYNC = PASS
+```
+
+is not sufficient evidence.
+
+When generated documentation is enabled,
+`validate_project_truth.py` executes the Project Truth Compiler validator again.
+
+Therefore:
+
+```text
+recorded PASS
++ executable compiler check FAIL
+=
+PROJECT_STATE_SYNC FAIL
+```
+
+This prevents a stale or manually forged acceptance flag from bypassing the
+actual deterministic check.
 
 ## LITE compatibility
 
@@ -701,6 +743,8 @@ python scripts/initialize_project_truth.py
 python scripts/extract_project_facts.py
 python scripts/generate_project_docs.py
 python scripts/validate_project_docs.py
+python scripts/sync_project_truth.py
+python scripts/selftest_project_truth_compiler.py
 
 python scripts/generate_symbol_index.py
 python scripts/generate_module_map.py
