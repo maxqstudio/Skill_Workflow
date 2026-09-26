@@ -175,9 +175,16 @@ def documentation_settings(data: dict) -> dict[str, object]:
         "documentation.generated",
     )
     spec_root = str(raw.get("spec_root", ".workflow")).strip() or ".workflow"
+    docs_root = str(raw.get("docs_root", "docs")).strip() or "docs"
+    docs_path = Path(docs_root)
+    if docs_path.is_absolute() or ".." in docs_path.parts or docs_root != "docs":
+        raise ValueError(
+            "documentation.docs_root must be the repository-local canonical path: docs"
+        )
     return {
         "generated": generated,
         "spec_root": spec_root,
+        "docs_root": docs_root,
     }
 
 
