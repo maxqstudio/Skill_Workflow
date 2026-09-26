@@ -1153,7 +1153,7 @@ Generated root Markdown is not manually edited.
 
 ## Acceptance
 
-Run: python scripts/generate_project_docs.py --check
+Run: python .workflow/tools/validate_project_docs.py
 
 If generated output differs from tracked Markdown:
 PROJECT_DOCS_SYNC = FAIL
