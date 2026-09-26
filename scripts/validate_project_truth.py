@@ -32,6 +32,7 @@ REQUIRED_GATES = [
     "SEMANTIC_SYNC",
     "BEHAVIORAL_SYNC",
     "CROSS_DOCUMENT_CONSISTENCY",
+    "HUMAN_COMPREHENSION",
     "DOC_SOURCE_TRACEABILITY",
     "DOC_TEST_TRACEABILITY",
     "TEST_RUNTIME_TRACEABILITY",
@@ -216,6 +217,29 @@ def main() -> int:
                     checked_refs += 1
                     if not file_exists(root, ref):
                         warnings.append(f"RUNTIME_EVIDENCE_PATH_UNRESOLVED:{claim_id}:{ref}")
+
+    overview = root / "SYSTEM_OVERVIEW.md"
+    if not overview.is_file():
+        failures.append("MISSING_SYSTEM_OVERVIEW")
+    else:
+        overview_text = overview.read_text(encoding="utf-8", errors="ignore")
+        match = re.search(
+            r"^Human comprehension status:\s*(.*?)\s*$",
+            overview_text,
+            re.MULTILINE | re.IGNORECASE,
+        )
+        human_status = match.group(1).strip().upper() if match else ""
+        if not human_status:
+            failures.append("HUMAN_COMPREHENSION_STATUS_MISSING")
+        elif human_status != "PASS":
+            failures.append(
+                "HUMAN_COMPREHENSION_STATUS_NOT_PASS:" + human_status
+            )
+        if gates.get("HUMAN_COMPREHENSION") == "PASS" and human_status != "PASS":
+            failures.append(
+                "TRUTH_GATE_HUMAN_COMPREHENSION_CONFLICT:"
+                + (human_status or "MISSING")
+            )
 
     if runtime_policy.get("e2e_required", True):
         runtime_gate = gates.get("RUNTIME_E2E")
