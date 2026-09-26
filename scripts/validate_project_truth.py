@@ -14,6 +14,14 @@ import subprocess
 import sys
 from pathlib import Path
 
+from project_profile import (
+    PROFILE_FILE,
+    normalized_profile,
+    parse_profile,
+    required_docs,
+    validate_profile,
+)
+
 REQUIRED_GATES = [
     "SOURCE_TESTS",
     "RUNTIME_E2E",
@@ -97,7 +105,44 @@ def main() -> int:
     if status and not args.allow_dirty:
         failures.append("WORKTREE_NOT_CLEAN")
 
+    profile_path = root / PROFILE_FILE
+    if not profile_path.is_file():
+        failures.append("MISSING_PROJECT_PROFILE")
+        profile_name = "standard"
+        truth_required = False
+    else:
+        try:
+            profile_data = parse_profile(profile_path)
+            failures.extend(validate_profile(profile_data))
+            profile_name = normalized_profile(profile_data)
+            truth_required = "PROJECT_TRUTH_SYNC.md" in required_docs(profile_data)
+        except Exception as exc:
+            failures.append("PROJECT_PROFILE_INVALID:" + str(exc))
+            profile_name = "standard"
+            truth_required = False
+
     ledger = root / args.ledger
+
+    if not truth_required and not ledger.is_file():
+        report = {
+            "repo_sha": head,
+            "worktree_clean": not bool(status),
+            "governance_profile": profile_name,
+            "applicable": False,
+            "reason": "PROJECT_TRUTH_SYNC is not required by this profile and no ledger exists.",
+            "failures": failures,
+            "warnings": warnings,
+            "result": "FAIL" if failures else "PASS",
+        }
+        payload = json.dumps(report, indent=2, sort_keys=True)
+        print(payload)
+        if args.report:
+            report_path = Path(args.report)
+            if not report_path.is_absolute():
+                report_path = root / report_path
+            report_path.parent.mkdir(parents=True, exist_ok=True)
+            report_path.write_text(payload + "\n", encoding="utf-8")
+        return 1 if failures else 0
     if not ledger.is_file():
         failures.append(f"MISSING_LEDGER:{args.ledger}")
         text = ""
@@ -184,6 +229,8 @@ def main() -> int:
     report = {
         "repo_sha": head,
         "worktree_clean": not bool(status),
+        "governance_profile": profile_name,
+        "applicable": True,
         "ledger": args.ledger,
         "gates": gates,
         "claims_checked": claims_checked,
