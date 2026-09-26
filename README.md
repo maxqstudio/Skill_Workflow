@@ -477,6 +477,20 @@ CURRENT_SOURCE_DIGEST
 This avoids self-referential Git provenance while final HEAD remains verified
 separately.
 
+### Current vs historical sessions
+
+Sequence evidence has an explicit scope:
+
+```text
+CURRENT
+HISTORICAL
+```
+
+CURRENT actual graphs must match the current source-content digest.
+
+HISTORICAL graphs preserve the implementation observed in an earlier accepted
+phase and are not regenerated to match newer code.
+
 ### Commands
 
 ```bash
