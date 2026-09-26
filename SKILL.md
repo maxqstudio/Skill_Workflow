@@ -1,6 +1,6 @@
 ---
 name: project-handoff-workflow
-description: Safely orient, hand off, audit, repair, and continue software projects using authority maps, architecture, workflow/state machines, module/symbol/flow indexes, and evidence-based acceptance.
+description: Help humans understand and agents safely orient, hand off, audit, repair, and continue software projects using human-first overviews, authority maps, architecture, workflows, indexes, and evidence-based acceptance.
 ---
 
 # PROJECT HANDOFF & CODEBASE ORIENTATION SKILL
@@ -562,7 +562,7 @@ python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 ```
 
-Both validators are blocking gates. The cross-document validator scans all project Markdown, stable claims, local references, selected authority fields, and required doc freshness from the accepted/base SHA.
+All required validators are blocking gates. The human-comprehension validator checks coverage/status, while the cross-document validator scans all project Markdown, stable claims, local references, selected authority fields, and required doc freshness from the accepted/base SHA.
 
 A validator PASS does not prove semantic correctness, but validator FAIL blocks completion.
 
@@ -754,6 +754,7 @@ If any required gate is FAIL, NOT_PROVEN, or unresolved, final status cannot be 
 Run validators required by the selected profile:
 
 python scripts/validate_handoff.py
+python scripts/validate_human_comprehension.py --require-pass
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 
 For STRICT, or when PROJECT_TRUTH_SYNC.md is present:
@@ -766,7 +767,7 @@ Structural validator PASS is necessary but not sufficient for semantic truth.
 
 ## Definition of done override
 
-A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
+A task is DONE only when source/contract repair is complete, required tests/runtime evidence pass, DOC_SYNC passes, HUMAN_COMPREHENSION_GATE passes, PROJECT_STATE_SYNC passes, affected indexes/contracts are current, final tested HEAD equals final source/documentation HEAD, evidence boundaries are explicit, and CURRENT_STATE is updated.
 
 
 ## Cross-document validator gate
