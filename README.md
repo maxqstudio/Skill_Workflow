@@ -216,14 +216,14 @@ without blindly scanning the whole repository.
 The skill uses this orientation sequence:
 
 ```text
-PROJECT_PROFILE
-→ SYSTEM_OVERVIEW
-→ CURRENT_STATE
-→ PROJECT_MANIFEST
-→ profile-required authority / architecture / workflow docs
-→ SEQUENCE_CONTRACTS when required
-→ profile-required MODULE / FLOW / SYMBOL maps
-→ TEST_ACCEPTANCE_MATRIX
+PROJECT_PROFILE.yaml
+→ docs/SYSTEM_OVERVIEW.md
+→ docs/CURRENT_STATE.md
+→ docs/PROJECT_MANIFEST.md
+→ docs/<profile-required authority / architecture / workflow docs>
+→ docs/SEQUENCE_CONTRACTS.md when required
+→ docs/<MODULE / FLOW / SYMBOL maps>
+→ docs/TEST_ACCEPTANCE_MATRIX.md
 → exact relevant source ranges
 → runtime / E2E verification when required
 ```
@@ -261,8 +261,9 @@ TEST_ACCEPTANCE_MATRIX.md
 
 Default for normal multi-session / multi-agent development.
 
-Generated documentation is required. Root project Markdown should be produced by
-the Project Truth Compiler rather than edited directly.
+Generated documentation is required. Canonical human-facing project Markdown
+lives under repository-root `docs/` and is produced by the Project Truth
+Compiler rather than edited directly.
 
 Required:
 
@@ -305,8 +306,9 @@ Ready-to-copy templates are available under `templates/`.
 
 ## Project Truth Compiler
 
-For STANDARD and STRICT projects, root project Markdown is generated
-deterministically instead of being maintained by hand.
+For STANDARD and STRICT projects, canonical project Markdown under
+repository-root `docs/` is generated deterministically instead of being
+maintained by hand.
 
 The authority model is:
 
@@ -396,6 +398,69 @@ source/spec change
 generated output differs from tracked docs
 → PROJECT_DOCS_SYNC = FAIL
 ```
+
+### Canonical docs layout
+
+Target projects use one canonical human-facing documentation root:
+
+```text
+<repo>/
+├─ README.md
+├─ PROJECT_PROFILE.yaml
+├─ .workflow/
+│  ├─ *.json
+│  ├─ workflows/
+│  ├─ generated/
+│  └─ tools/
+└─ docs/
+   ├─ SYSTEM_OVERVIEW.md
+   ├─ CURRENT_STATE.md
+   ├─ PROJECT_MANIFEST.md
+   ├─ ARCHITECTURE.md
+   ├─ WORKFLOW_STATE_MACHINE.md
+   ├─ SEQUENCE_CONTRACTS.md
+   ├─ FLOW_INDEX.md
+   ├─ MODULE_MAP.md
+   ├─ SYMBOL_INDEX.md
+   ├─ TEST_ACCEPTANCE_MATRIX.md
+   ├─ PROJECT_TRUTH_SYNC.md
+   └─ sequence/
+```
+
+Canonical generated governance docs MUST NOT also exist at repository root.
+
+```text
+root/SYSTEM_OVERVIEW.md
++
+root/docs/SYSTEM_OVERVIEW.md
+=
+DOC_LAYOUT FAIL
+```
+
+`README.md`, `PROJECT_PROFILE.yaml`, and `.workflow/` remain at repository
+root.
+
+### Deterministic cleanup and readability
+
+The compiler applies safe deterministic Markdown normalization before writing
+tracked docs:
+
+- LF newlines;
+- trailing whitespace removal;
+- stable single blank-line separation outside fenced code;
+- exactly one final newline;
+- no semantic reordering of workflows, sequence edges, decisions, or evidence.
+
+Then `validate_doc_quality.py` checks:
+
+```text
+DOC_LAYOUT
+PROJECT_DOCS_NORMALIZED
+DOC_READABILITY
+```
+
+These are structural presentation gates. Semantic readability is still decided
+by the Human Comprehension Gate.
 
 ### What comes from code automatically
 
@@ -1092,14 +1157,14 @@ When entering an existing project:
 
 1. Read `PROJECT_PROFILE.yaml`.
 2. Resolve the required document set for the selected profile.
-3. Read `SYSTEM_OVERVIEW.md` for the human/domain mental model.
-4. Read `CURRENT_STATE.md`.
-5. Read `PROJECT_MANIFEST.md`.
+3. Read `docs/SYSTEM_OVERVIEW.md` for the human/domain mental model.
+4. Read `docs/CURRENT_STATE.md`.
+5. Read `docs/PROJECT_MANIFEST.md`.
 6. Read only the required authority/architecture/workflow/index contracts.
-7. Read `SEQUENCE_CONTRACTS.md` when sequence policy is enabled.
-8. Read `TEST_ACCEPTANCE_MATRIX.md`.
-9. Read `DOC_SYNC_MATRIX.md` when required.
-10. Read `PROJECT_TRUTH_SYNC.md` when required or present.
+7. Read `docs/SEQUENCE_CONTRACTS.md` when sequence policy is enabled.
+8. Read `docs/TEST_ACCEPTANCE_MATRIX.md`.
+9. Read `docs/DOC_SYNC_MATRIX.md` when required.
+10. Read `docs/PROJECT_TRUTH_SYNC.md` when required or present.
 11. Open only the exact relevant source ranges first.
 
 This is the default fast-orientation mode.
