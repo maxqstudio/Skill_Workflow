@@ -203,11 +203,11 @@ def main() -> int:
             if heading not in text:
                 failures.append("SYSTEM_OVERVIEW_SECTION_MISSING:" + heading)
 
-    authority = root / "SOURCE_AUTHORITY_MAP.md"
+    authority = docs_root / "SOURCE_AUTHORITY_MAP.md"
     if authority.is_file() and "Canonical authority" not in read(authority):
         failures.append("SOURCE_AUTHORITY_MAP_STRUCTURE_INVALID")
 
-    symbol = root / "SYMBOL_INDEX.md"
+    symbol = docs_root / "SYMBOL_INDEX.md"
     if symbol.is_file():
         text = read(symbol)
         if "Authority SHA:" not in text:
@@ -215,7 +215,7 @@ def main() -> int:
         if "| File | Symbol |" not in text:
             failures.append("SYMBOL_INDEX_TABLE_MISSING")
 
-    flow = root / "FLOW_INDEX.md"
+    flow = docs_root / "FLOW_INDEX.md"
     if flow.is_file():
         text = read(flow)
         if "Authority SHA:" not in text:
