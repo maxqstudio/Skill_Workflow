@@ -164,6 +164,23 @@ def runtime_settings(data: dict) -> dict[str, bool]:
     }
 
 
+def documentation_settings(data: dict) -> dict[str, object]:
+    profile = normalized_profile(data)
+    raw = data.get("documentation", {})
+    if not isinstance(raw, dict):
+        raise ValueError("documentation must be a mapping")
+    default_generated = profile in {"standard", "strict"}
+    generated = _bool_value(
+        raw.get("generated", "true" if default_generated else "false"),
+        "documentation.generated",
+    )
+    spec_root = str(raw.get("spec_root", ".workflow")).strip() or ".workflow"
+    return {
+        "generated": generated,
+        "spec_root": spec_root,
+    }
+
+
 def sequence_settings(data: dict) -> dict[str, bool]:
     profile = normalized_profile(data)
     raw = data.get("sequence", {})
@@ -208,8 +225,14 @@ def validate_profile(data: dict) -> list[str]:
         settings = contract_settings(data)
         runtime_settings(data)
         sequence = sequence_settings(data)
+        documentation = documentation_settings(data)
     except ValueError as exc:
         return [str(exc)]
+
+    if profile in {"standard", "strict"} and not documentation["generated"]:
+        failures.append(
+            f"{profile.upper()}_PROFILE_REQUIRES_GENERATED_DOCUMENTATION"
+        )
 
     if profile in {"standard", "strict"} and not sequence["required"]:
         failures.append(
