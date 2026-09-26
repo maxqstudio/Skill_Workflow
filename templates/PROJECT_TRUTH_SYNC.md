@@ -64,6 +64,30 @@ relative/path/to/file.ext
 
 Multiple references may be separated with semicolons.
 
+## Claim relations
+
+Use this table when two critical claims have an explicit logical relationship.
+
+Allowed relations:
+
+```text
+CONFLICTS_WITH
+REQUIRES
+SAME_AS
+SUPERSEDES
+```
+
+| Claim ID | Relation | Other Claim ID | Notes |
+|---|---|---|---|
+| | | | |
+
+Rules:
+
+- `CONFLICTS_WITH`: both claims may not be PASS simultaneously.
+- `REQUIRES`: if the first claim is PASS, the required claim must also be PASS.
+- `SAME_AS`: terminal PASS/FAIL states must agree.
+- `SUPERSEDES`: if the new claim is PASS, the superseded claim must not remain PASS.
+
 ## Cross-document consistency audit
 
 | Claim / Area | Documents compared | Result | Notes |
