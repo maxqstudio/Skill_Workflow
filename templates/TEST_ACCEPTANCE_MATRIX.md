@@ -84,3 +84,18 @@ python scripts/validate_sequence_contract.py \
 
 Generated Mermaid is a view of machine-readable graph state. Do not use manual
 diagram edits as acceptance evidence.
+
+
+## Project Truth Compiler evidence
+
+Documentation mode:
+Semantic spec root:
+Generated source facts:
+PROJECT_DOCS_SYNC: PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+
+Required command when generated documentation is enabled:
+
+    python scripts/validate_project_docs.py
+
+This gate proves deterministic projection/freshness only. It does not create
+missing semantic intent and does not replace source/test/runtime verification.
