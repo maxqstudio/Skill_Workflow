@@ -20,7 +20,7 @@ import re
 from collections import defaultdict, deque
 from pathlib import Path
 
-from sequence_contract import git_head, render_graph_mermaid, write_json
+from sequence_contract import compute_source_digest, git_head, render_graph_mermaid, write_json
 
 EXCLUDED = {
     ".git", ".idea", ".vscode", ".venv", "venv", "node_modules",
@@ -321,6 +321,7 @@ def main() -> int:
 
     root = Path(args.root).resolve()
     head = git_head(root)
+    source_digest = compute_source_digest(root)
 
     py_nodes, py_edges, py_failures = collect_python(root)
     js_nodes, js_edges = collect_js_http(root)
@@ -341,7 +342,8 @@ def main() -> int:
         "schema_version": 1,
         "generated": True,
         "generated_by": "generate_sequence_actual.py",
-        "source_sha": head,
+        "observed_head": head,
+        "source_digest": source_digest,
         "entries": args.entry,
         "nodes": nodes,
         "edges": edges,
@@ -372,14 +374,16 @@ def main() -> int:
     write_json(output_json, graph)
     mermaid = (
         "%% GENERATED FILE - DO NOT EDIT\n"
-        f"%% SOURCE_SHA: {head}\n"
+        f"%% SOURCE_DIGEST: {source_digest}\n"
+        f"%% OBSERVED_HEAD: {head}\n"
         "%% GENERATED_BY: generate_sequence_actual.py\n"
         + render_graph_mermaid(graph)
     )
     output_mermaid.parent.mkdir(parents=True, exist_ok=True)
     output_mermaid.write_text(mermaid, encoding="utf-8")
 
-    print(f"SOURCE_SHA={head}")
+    print(f"OBSERVED_HEAD={head}")
+    print(f"SOURCE_DIGEST={source_digest}")
     print(f"NODES={len(nodes)}")
     print(f"EDGES={len(edges)}")
     print(f"PYTHON_PARSE_FAILURES={len(py_failures)}")
