@@ -45,6 +45,7 @@ SPEC_FILES = [
     "decisions.json",
     "known_defects.json",
     "glossary.json",
+    "changelog.json",
 ]
 
 
@@ -1445,6 +1446,25 @@ Use explicit OPEN, FIXED/ACCEPTED, HISTORICAL, or NOT_PROVEN semantics.
 """.format(rows="\n".join(rows))
 
 
+def render_changelog(specs: dict[str, dict]) -> str:
+    out = ["# CHANGELOG", ""]
+    entries = specs["changelog.json"].get("entries", [])
+    if not entries:
+        out.append("No changelog entries declared.")
+    for item in entries:
+        out.extend(
+            [
+                "## " + clean(item.get("date")) + " — " + clean(item.get("title")),
+                "",
+                "Type: " + clean(item.get("type", "change")),
+                "",
+                bullets(item.get("changes", [])),
+                "",
+            ]
+        )
+    return "\n".join(out) + "\n"
+
+
 def render_glossary(specs: dict[str, dict]) -> str:
     rows = []
     for item in specs["glossary.json"].get("terms", []):
@@ -1493,6 +1513,7 @@ def render_all(
         "DECISIONS.md": lambda: render_decisions(specs),
         "KNOWN_DEFECTS.md": lambda: render_defects(specs),
         "GLOSSARY.md": lambda: render_glossary(specs),
+        "CHANGELOG.md": lambda: render_changelog(specs),
     }
 
     wanted = set(required)
@@ -1519,6 +1540,7 @@ def render_all(
         "decisions": "DECISIONS.md",
         "known_defects": "KNOWN_DEFECTS.md",
         "glossary": "GLOSSARY.md",
+        "changelog": "CHANGELOG.md",
     }
     for key, filename in optional_map.items():
         if contracts.get(key) != "not_applicable":
