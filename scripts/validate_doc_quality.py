@@ -64,8 +64,6 @@ SYSTEM_OVERVIEW_HEADINGS = {
 
 def normalized_shape(text: str) -> tuple[bool, list[str]]:
     failures: list[str] = []
-    if "\r" in text:
-        failures.append("NON_LF_NEWLINE")
     if not text.endswith("\n"):
         failures.append("MISSING_FINAL_NEWLINE")
 
@@ -191,7 +189,10 @@ def main() -> int:
             continue
 
         checked += 1
-        text = path.read_text(encoding="utf-8", errors="strict")
+        raw = path.read_bytes()
+        if b"\r" in raw:
+            failures.append("DOC_QUALITY:" + name + ":NON_LF_NEWLINE")
+        text = raw.decode("utf-8", errors="strict")
         if GENERATED_MARKER not in text:
             failures.append("GENERATED_MARKER_MISSING:docs/" + name)
 
