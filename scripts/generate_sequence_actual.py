@@ -23,7 +23,7 @@ from pathlib import Path
 from sequence_contract import compute_source_digest, git_head, render_graph_mermaid, write_json
 
 EXCLUDED = {
-    ".git", ".idea", ".vscode", ".venv", "venv", "node_modules",
+    ".git", ".workflow", ".idea", ".vscode", ".venv", "venv", "node_modules",
     "dist", "build", "coverage", "vendor", "__pycache__",
 }
 JS_EXTS = {".js", ".jsx", ".ts", ".tsx"}
