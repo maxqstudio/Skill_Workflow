@@ -2,6 +2,7 @@
 
 Last updated:
 Authority verified at SHA:
+Governance profile:
 
 ## Current phase
 Phase:
