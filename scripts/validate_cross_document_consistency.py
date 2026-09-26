@@ -599,9 +599,15 @@ def main() -> int:
                 settings=settings,
                 sequence_required=seq_settings.get("required", False),
             )
-            for required in sorted(required_due_to_diff):
-                if required not in changed_docs:
-                    failures.append("STALE_DOC_NOT_UPDATED:" + required + ":base=" + base)
+            if not doc_settings.get("generated", False):
+                for required in sorted(required_due_to_diff):
+                    if required not in changed_docs:
+                        failures.append("STALE_DOC_NOT_UPDATED:" + required + ":base=" + base)
+            elif required_due_to_diff:
+                warnings.append(
+                    "GENERATED_DOC_DIFF_FRESHNESS_DELEGATED_TO_PROJECT_DOCS_COMPILER:"
+                    + ",".join(sorted(required_due_to_diff))
+                )
         except subprocess.CalledProcessError:
             failures.append("INVALID_BASE_SHA:" + base)
 
@@ -624,7 +630,8 @@ def main() -> int:
         "machine_scope": (
             "Cross-document references across all Markdown, root-canonical project "
             "contracts, stable claims, selected authority fields, explicit stale "
-            "markers, and git-diff freshness only. Semantic truth "
+            "markers, and git-diff freshness for manual-doc mode. Generated-doc "
+            "freshness is delegated to the deterministic Project Truth Compiler. Semantic truth "
             "still requires source/test/runtime audit."
         ),
         "result": "FAIL" if failures else "PASS",
