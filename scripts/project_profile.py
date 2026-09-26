@@ -211,9 +211,12 @@ def validate_profile(data: dict) -> list[str]:
     except ValueError as exc:
         return [str(exc)]
 
+    if profile in {"standard", "strict"} and not sequence["required"]:
+        failures.append(
+            f"{profile.upper()}_PROFILE_REQUIRES_SEQUENCE_CONTRACTS"
+        )
+
     if profile == "strict":
-        if not sequence["required"]:
-            failures.append("STRICT_PROFILE_REQUIRES_SEQUENCE_CONTRACTS")
         for key in sorted(STRICT_EXPLICIT_CONTRACTS):
             if settings[key] == "optional":
                 failures.append(
