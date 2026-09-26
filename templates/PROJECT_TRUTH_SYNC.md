@@ -31,6 +31,7 @@ Record the actual HEAD in generated/external acceptance evidence.
 | BEHAVIORAL_SYNC | NOT_PROVEN | |
 | CROSS_DOCUMENT_CONSISTENCY | NOT_PROVEN | |
 | HUMAN_COMPREHENSION | NOT_PROVEN | SYSTEM_OVERVIEW.md + human comprehension validator |
+| SEQUENCE_SYNC | NOT_PROVEN | SEQUENCE_CONTRACTS.md + per-session sequence acceptance reports |
 | DOC_SOURCE_TRACEABILITY | NOT_PROVEN | |
 | DOC_TEST_TRACEABILITY | NOT_PROVEN | |
 | TEST_RUNTIME_TRACEABILITY | NOT_PROVEN | |
@@ -124,6 +125,7 @@ For final acceptance, record or reference generated reports:
 ```text
 HANDOFF_VALIDATOR:
 HUMAN_COMPREHENSION_VALIDATOR:
+SEQUENCE_CONTRACT_VALIDATOR:
 CROSS_DOCUMENT_VALIDATOR:
 PROJECT_TRUTH_VALIDATOR:
 CROSS_DOCUMENT_REPORT:
@@ -160,3 +162,40 @@ python scripts/validate_human_comprehension.py --require-pass
 
 Machine validation checks coverage and explicit statuses only. It does not prove
 the prose is semantically correct or that a real reader understood it.
+
+
+## Sequence synchronization truth rule
+
+SEQUENCE_SYNC applies according to PROJECT_PROFILE.yaml.
+
+For each critical phase/session flow:
+
+- BEFORE requires a frozen plan that Git proves existed before implementation,
+  generated plan Mermaid, generated actual graph/diagram, and PLAN ↔ ACTUAL
+  acceptance.
+- DURING forbids retrospective plans and requires generated ACTUAL ↔ SOURCE /
+  TEST / RUNTIME evidence.
+- AFTER forbids retrospective plans and requires generated FINAL ACTUAL ↔
+  SOURCE / TEST / RUNTIME evidence.
+
+Canonical Mermaid diagrams are generated files and must not be hand-edited.
+
+Run each applicable session through:
+
+```bash
+python scripts/validate_sequence_contract.py \
+  --session docs/sequence/sessions/<session>.json
+```
+
+SEQUENCE_SYNC may be PASS only when every required critical sequence session
+passes and no unresolved critical edge/binding remains.
+
+A mismatch must first be classified as one of:
+
+```text
+CODE_DEFECT
+PLAN_CHANGE
+GENERATOR_DEFECT
+```
+
+Then repair the correct authority, regenerate, and validate again.
