@@ -92,10 +92,14 @@ Documentation mode:
 Semantic spec root:
 Generated source facts:
 PROJECT_DOCS_SYNC: PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+DOC_LAYOUT: PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+PROJECT_DOCS_NORMALIZED: PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
+DOC_READABILITY: PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
 
 Required command when generated documentation is enabled:
 
-    python scripts/validate_project_docs.py
+    python .workflow/tools/validate_project_docs.py
+python .workflow/tools/validate_doc_quality.py
 
 This gate proves deterministic projection/freshness only. It does not create
 missing semantic intent and does not replace source/test/runtime verification.
