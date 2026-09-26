@@ -21,3 +21,21 @@ State explicitly what the current evidence proves and does not prove.
 Final source SHA:
 Tested SHA:
 Match:
+
+
+## Human comprehension evidence
+
+SYSTEM_OVERVIEW status:
+HUMAN_COMPREHENSION_GATE:
+Reviewer / audit authority:
+Validator:
+
+Required command:
+
+```bash
+python scripts/validate_human_comprehension.py --require-pass
+```
+
+A validator PASS proves structural coverage and explicit checklist status only.
+Semantic review must confirm the overview agrees with current project authority,
+workflow, tests, and runtime evidence.
