@@ -8,7 +8,7 @@ Inputs:
 - machine-observed code facts from extract_project_facts.py
 
 Outputs:
-- generated root Markdown documentation
+- deterministic human-facing Markdown under repository-root docs/
 
 The compiler never invents missing business intent. Missing required semantic
 inputs fail closed. Generated Markdown is a projection, not upstream authority.
@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -88,6 +89,42 @@ def cell(value: Any) -> str:
 def bullets(values: list[Any], empty: str = "- None declared.") -> str:
     rows = [clean(x) for x in values if clean(x)]
     return "\n".join("- " + x for x in rows) if rows else empty
+
+
+def normalize_markdown(text: str) -> str:
+    """Apply safe deterministic Markdown normalization.
+
+    This is formatting-only. It must not reorder semantic lists, lifecycle
+    transitions, decision chronology, sequence edges, or evidence rows.
+    """
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    out: list[str] = []
+    in_fence = False
+    previous_blank = False
+
+    for raw in text.split("\n"):
+        line = raw.rstrip()
+        stripped = line.lstrip()
+        if stripped.startswith("~~~") or stripped.startswith(chr(96) * 3):
+            in_fence = not in_fence
+            out.append(line)
+            previous_blank = False
+            continue
+
+        if not in_fence and not line:
+            if previous_blank:
+                continue
+            out.append("")
+            previous_blank = True
+            continue
+
+        out.append(line)
+        previous_blank = False
+
+    while out and not out[-1]:
+        out.pop()
+
+    return "\n".join(out) + "\n"
 
 
 def read_specs(spec_root: Path) -> tuple[dict[str, dict], list[dict]]:
@@ -545,7 +582,7 @@ External systems: {external}
 Generated from code inventory. See MODULE_MAP.md.
 
 ## Required reading order
-1. PROJECT_PROFILE.yaml
+1. ../PROJECT_PROFILE.yaml
 2. SYSTEM_OVERVIEW.md
 3. CURRENT_STATE.md
 4. PROJECT_MANIFEST.md
@@ -1132,7 +1169,7 @@ Sequence contracts required: {sequence}
 CODE FACTS + GOVERNANCE SPECS + EVIDENCE DECLARATIONS
 -> DETERMINISTIC MARKDOWN PROJECTIONS
 
-Generated root Markdown is not manually edited.
+Generated Markdown lives under repository-root docs/ and is not manually edited.
 
 ## Change mapping
 
@@ -1568,7 +1605,7 @@ def render_all(
         renderer = renderers.get(name)
         if renderer is None:
             continue
-        result[name] = head + renderer().rstrip() + "\n"
+        result[name] = normalize_markdown(head + renderer())
     return result
 
 
@@ -1605,6 +1642,8 @@ def main() -> int:
     spec_root = Path(spec_root_value)
     if not spec_root.is_absolute():
         spec_root = root / spec_root
+
+    docs_root = root / str(documentation.get("docs_root", "docs"))
 
     try:
         specs, workflows = read_specs(spec_root)
@@ -1656,28 +1695,41 @@ def main() -> int:
 
     missing: list[str] = []
     stale: list[str] = []
+    root_duplicates: list[str] = []
+
+    if not args.check:
+        docs_root.mkdir(parents=True, exist_ok=True)
+
     for name, expected in docs.items():
-        path = root / name
+        path = docs_root / name
+        legacy_root_path = root / name
+        if legacy_root_path.is_file():
+            root_duplicates.append(name)
+
         if args.check:
             if not path.is_file():
-                missing.append(name)
+                missing.append("docs/" + name)
             elif path.read_text(encoding="utf-8", errors="ignore") != expected:
-                stale.append(name)
+                stale.append("docs/" + name)
         else:
             path.write_text(expected, encoding="utf-8")
 
     report = {
         "schema_version": 1,
         "profile": profile,
+        "docs_root": str(docs_root.relative_to(root).as_posix()),
         "source_digest": facts["source_digest"],
         "input_digest": digest,
-        "generated_docs": sorted(docs),
+        "generated_docs": sorted("docs/" + name for name in docs),
         "missing_docs": missing,
         "stale_docs": stale,
+        "legacy_root_doc_duplicates": sorted(root_duplicates),
         "facts_missing": facts_missing,
         "facts_stale": facts_stale,
+        "project_docs_normalized": True,
+        "doc_layout": "FAIL" if root_duplicates else "PASS",
         "mode": "check" if args.check else "write",
-        "result": "FAIL" if missing or stale or facts_missing or facts_stale else "PASS",
+        "result": "FAIL" if missing or stale or root_duplicates or facts_missing or facts_stale else "PASS",
         "semantic_boundary": (
             "Compiler projects declared semantic/governance specs and "
             "machine-observed code facts; it does not infer missing intent."
