@@ -224,7 +224,7 @@ This command:
 ```text
 generate
 → validate
-→ record only PROJECT_DOCS_SYNC=PASS
+→ record only DOC_LAYOUT / PROJECT_DOCS_NORMALIZED / DOC_READABILITY / PROJECT_DOCS_SYNC = PASS
 → regenerate
 → validate again
 ```
@@ -1046,8 +1046,9 @@ If a required documentation item is stale, final status cannot be PASS.
 
 A task is DONE only when source/contract repair is complete, regression exists,
 required runtime/E2E ran, documentation sync passes, HUMAN_COMPREHENSION_GATE
-passes, applicable SEQUENCE_SYNC passes, PROJECT_DOCS_SYNC passes when generated
-documentation is enabled, affected projections/contracts are current, final
+passes, applicable SEQUENCE_SYNC passes, DOC_LAYOUT /
+PROJECT_DOCS_NORMALIZED / DOC_READABILITY / PROJECT_DOCS_SYNC pass when
+generated documentation is enabled, affected projections/contracts are current, final
 tested SHA is known, and evidence boundary is explicit.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
@@ -1078,7 +1079,9 @@ Overall invariant:
 SOURCE TESTS PASS + DOCS IN SAME TESTED SNAPSHOT + STRUCTURAL SYNC PASS +
 SEMANTIC SYNC PASS + BEHAVIORAL SYNC PASS + CROSS-DOCUMENT CONSISTENCY PASS +
 HUMAN_COMPREHENSION PASS + SEQUENCE_SYNC PASS/NOT_APPLICABLE +
-PROJECT_DOCS_SYNC PASS/NOT_APPLICABLE + TRACEABILITY PASS =
+DOC_LAYOUT PASS/NOT_APPLICABLE + PROJECT_DOCS_NORMALIZED PASS/NOT_APPLICABLE +
+DOC_READABILITY PASS/NOT_APPLICABLE + PROJECT_DOCS_SYNC PASS/NOT_APPLICABLE +
+TRACEABILITY PASS =
 PROJECT_STATE_SYNC PASS.
 
 A matching SHA label alone is never sufficient.
