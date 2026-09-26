@@ -15,6 +15,7 @@ PROFILE_REQUIRED = {
     "lite": {
         PROFILE_FILE,
         "PROJECT_MANIFEST.md",
+        "SYSTEM_OVERVIEW.md",
         "CURRENT_STATE.md",
         "MODULE_MAP.md",
         "TEST_ACCEPTANCE_MATRIX.md",
@@ -22,6 +23,7 @@ PROFILE_REQUIRED = {
     "standard": {
         PROFILE_FILE,
         "PROJECT_MANIFEST.md",
+        "SYSTEM_OVERVIEW.md",
         "CURRENT_STATE.md",
         "SOURCE_AUTHORITY_MAP.md",
         "ARCHITECTURE.md",
@@ -35,6 +37,7 @@ PROFILE_REQUIRED = {
     "strict": {
         PROFILE_FILE,
         "PROJECT_MANIFEST.md",
+        "SYSTEM_OVERVIEW.md",
         "CURRENT_STATE.md",
         "SOURCE_AUTHORITY_MAP.md",
         "ARCHITECTURE.md",
