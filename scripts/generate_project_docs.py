@@ -655,7 +655,11 @@ Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
 Runtime status: {runtime}
 
 ## Documentation governance
+Documentation root: docs/
 Documentation mode: GENERATED
+DOC_LAYOUT: {doc_layout}
+PROJECT_DOCS_NORMALIZED: {docs_normalized}
+DOC_READABILITY: {doc_readability}
 PROJECT_DOCS_SYNC: {project_docs_sync}
 
 ## Sequence governance
@@ -694,6 +698,17 @@ See KNOWN_DEFECTS.md.
         sequence_mode=clean(acceptance.get("sequence_mode", "NOT_APPLICABLE")),
         sequence_session=clean(acceptance.get("sequence_session")) or "NOT_APPLICABLE",
         sequence_sync=clean(acceptance.get("sequence_sync_status", "NOT_PROVEN")),
+        doc_layout=clean(
+            acceptance.get("truth_gates", {}).get("DOC_LAYOUT", "NOT_PROVEN")
+        ),
+        docs_normalized=clean(
+            acceptance.get("truth_gates", {}).get(
+                "PROJECT_DOCS_NORMALIZED", "NOT_PROVEN"
+            )
+        ),
+        doc_readability=clean(
+            acceptance.get("truth_gates", {}).get("DOC_READABILITY", "NOT_PROVEN")
+        ),
         project_docs_sync=clean(
             acceptance.get("truth_gates", {}).get("PROJECT_DOCS_SYNC", "NOT_PROVEN")
         ),
@@ -1132,7 +1147,11 @@ SEQUENCE_SYNC: {sequence_sync}
 
 ## Project Truth Compiler evidence
 
+Documentation root: docs/
 Documentation mode: GENERATED
+DOC_LAYOUT: {doc_layout}
+PROJECT_DOCS_NORMALIZED: {docs_normalized}
+DOC_READABILITY: {doc_readability}
 PROJECT_DOCS_SYNC: {project_docs_sync}
 
 ## Human comprehension evidence
@@ -1150,6 +1169,17 @@ Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.
         sequence_mode=clean(acceptance.get("sequence_mode", "NOT_APPLICABLE")),
         sequence_session=clean(acceptance.get("sequence_session")) or "NOT_APPLICABLE",
         sequence_sync=clean(acceptance.get("sequence_sync_status", "NOT_PROVEN")),
+        doc_layout=clean(
+            acceptance.get("truth_gates", {}).get("DOC_LAYOUT", "NOT_PROVEN")
+        ),
+        docs_normalized=clean(
+            acceptance.get("truth_gates", {}).get(
+                "PROJECT_DOCS_NORMALIZED", "NOT_PROVEN"
+            )
+        ),
+        doc_readability=clean(
+            acceptance.get("truth_gates", {}).get("DOC_READABILITY", "NOT_PROVEN")
+        ),
         project_docs_sync=clean(
             acceptance.get("truth_gates", {}).get("PROJECT_DOCS_SYNC", "NOT_PROVEN")
         ),
@@ -1230,6 +1260,9 @@ def render_truth(specs: dict[str, dict], sequence_required: bool) -> str:
         "CROSS_DOCUMENT_CONSISTENCY",
         "HUMAN_COMPREHENSION",
         "SEQUENCE_SYNC",
+        "DOC_LAYOUT",
+        "PROJECT_DOCS_NORMALIZED",
+        "DOC_READABILITY",
         "PROJECT_DOCS_SYNC",
         "DOC_SOURCE_TRACEABILITY",
         "DOC_TEST_TRACEABILITY",
