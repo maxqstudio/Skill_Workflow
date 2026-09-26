@@ -137,7 +137,18 @@ def main() -> int:
         if acceptance.get("truth_gates", {}).get("PROJECT_DOCS_SYNC") != "PASS":
             raise RuntimeError("PROJECT_DOCS_SYNC was not recorded PASS")
 
-        overview = root / "SYSTEM_OVERVIEW.md"
+        for name in (
+            "SYSTEM_OVERVIEW.md",
+            "CURRENT_STATE.md",
+            "PROJECT_MANIFEST.md",
+            "PROJECT_TRUTH_SYNC.md",
+        ):
+            if (root / name).exists():
+                raise RuntimeError("canonical docs leaked to repository root: " + name)
+            if not (root / "docs" / name).is_file():
+                raise RuntimeError("canonical doc missing from docs/: " + name)
+
+        overview = root / "docs" / "SYSTEM_OVERVIEW.md"
         overview.write_text(
             overview.read_text(encoding="utf-8") + "\nMANUAL_TAMPER\n",
             encoding="utf-8",
@@ -197,6 +208,9 @@ def main() -> int:
     print("TAMPER_DETECTION=PASS")
     print("SOURCE_DRIFT_DETECTION=PASS")
     print("REGENERATION_RECOVERY=PASS")
+    print("DOC_LAYOUT=PASS")
+    print("PROJECT_DOCS_NORMALIZED=PASS")
+    print("DOC_READABILITY=PASS")
     return 0
 
 
