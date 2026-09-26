@@ -28,6 +28,7 @@ from project_profile import (
     normalized_profile,
     parse_profile,
     required_docs,
+    sequence_settings,
     validate_profile,
 )
 
@@ -241,7 +242,13 @@ def is_source(path: str) -> bool:
     return p.suffix.lower() in SOURCE_EXTS or p.name.lower() in {"dockerfile", "makefile"}
 
 
-def required_docs_for_diff(changes: list[tuple[str, str]], profile_required: set[str], present_docs: set[str], settings: dict[str, str]) -> set[str]:
+def required_docs_for_diff(
+    changes: list[tuple[str, str]],
+    profile_required: set[str],
+    present_docs: set[str],
+    settings: dict[str, str],
+    sequence_required: bool,
+) -> set[str]:
     required: set[str] = set()
     source_paths = [path for _, path in changes if is_source(path)]
     if not source_paths:
@@ -258,6 +265,21 @@ def required_docs_for_diff(changes: list[tuple[str, str]], profile_required: set
             required.add("SYSTEM_OVERVIEW.md")
 
     paths = [p.lower().replace("\\", "/") for p in source_paths]
+
+    sequence_sensitive = any(
+        any(k in p for k in (
+            "/api/", "route", "router", "controller", "endpoint",
+            "/ui/", "/frontend/", "/screens/", "/pages/", "/components/",
+            "workflow", "lifecycle", "state_machine", "state-machine",
+            "promotion", "service", "store", "repository",
+        ))
+        for p in paths
+    )
+    if sequence_required and (
+        sequence_sensitive
+        or any(status in {"A", "D"} and is_source(path) for status, path in changes)
+    ):
+        required.add("SEQUENCE_CONTRACTS.md")
 
     if any(any(k in p for k in ("/api/", "route", "router", "controller", "endpoint")) for p in paths):
         if "SYSTEM_OVERVIEW.md" in profile_required or "SYSTEM_OVERVIEW.md" in present_docs:
@@ -334,11 +356,13 @@ def main() -> int:
         profile_name = normalized_profile(profile_data)
         profile_required = required_docs(profile_data)
         settings = contract_settings(profile_data)
+        seq_settings = sequence_settings(profile_data)
     except Exception as exc:
         failures.append("PROJECT_PROFILE_RESOLUTION_FAILED:" + str(exc))
         profile_name = "standard"
         profile_required = set()
         settings = {}
+        seq_settings = {"required": False, "runtime_trace_required": False}
 
     docs = all_docs(root)
     root_docs = {
@@ -542,6 +566,7 @@ def main() -> int:
                 profile_required=profile_required,
                 present_docs=present_docs,
                 settings=settings,
+                sequence_required=seq_settings.get("required", False),
             )
             for required in sorted(required_due_to_diff):
                 if required not in changed_docs:
