@@ -865,18 +865,18 @@ Available generators:
 
 ```bash
 python scripts/initialize_project_truth.py
-python scripts/extract_project_facts.py
-python scripts/generate_project_docs.py
-python scripts/validate_project_docs.py
-python scripts/sync_project_truth.py
+python .workflow/tools/extract_project_facts.py
+python .workflow/tools/generate_project_docs.py
+python .workflow/tools/validate_project_docs.py
+python .workflow/tools/sync_project_truth.py
 python scripts/selftest_project_truth_compiler.py
 
-python scripts/generate_symbol_index.py
-python scripts/generate_module_map.py
-python scripts/generate_sequence_plan.py --plan <plan.json> --output <plan.mmd>
-python scripts/generate_sequence_actual.py --output-json <actual.json> --output-mermaid <actual.mmd>
-python scripts/validate_sequence_contract.py --session <session.json>
-python scripts/validate_sequence_sessions.py
+python .workflow/tools/generate_symbol_index.py
+python .workflow/tools/generate_module_map.py
+python .workflow/tools/generate_sequence_plan.py --plan <plan.json> --output <plan.mmd>
+python .workflow/tools/generate_sequence_actual.py --output-json <actual.json> --output-mermaid <actual.mmd>
+python .workflow/tools/validate_sequence_contract.py --session <session.json>
+python .workflow/tools/validate_sequence_sessions.py
 ```
 
 The Project Truth Compiler is the preferred documentation path for
@@ -1193,11 +1193,11 @@ If any required gate is FAIL, NOT_PROVEN, or unresolved, final status cannot be 
 
 Run validators required by the selected profile:
 
-python scripts/validate_handoff.py
-python scripts/validate_project_docs.py
-python scripts/validate_human_comprehension.py --require-pass
-python scripts/validate_sequence_sessions.py
-python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
+python .workflow/tools/validate_handoff.py
+python .workflow/tools/validate_project_docs.py
+python .workflow/tools/validate_human_comprehension.py --require-pass
+python .workflow/tools/validate_sequence_sessions.py
+python .workflow/tools/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
 
 For STRICT, or when PROJECT_TRUTH_SYNC.md is present:
 
@@ -1240,7 +1240,7 @@ Minimum machine-checkable scope:
 For final acceptance, run against the exact accepted parent/base SHA:
 
 ```bash
-python scripts/validate_cross_document_consistency.py \
+python .workflow/tools/validate_cross_document_consistency.py \
   --base <LAST_ACCEPTED_SHA> \
   --require-base \
   --report artifacts/cross_document_sync_report.json
@@ -1327,7 +1327,7 @@ HUMAN_COMPREHENSION_GATE = FAIL
 Run:
 
 ```bash
-python scripts/validate_human_comprehension.py --require-pass
+python .workflow/tools/validate_human_comprehension.py --require-pass
 ```
 
 The validator proves structural coverage and explicit status only.
@@ -1527,7 +1527,7 @@ GENERATED_DIAGRAM_TAMPERED = FAIL
 BEFORE plan rendering:
 
 ```bash
-python scripts/generate_sequence_plan.py \
+python .workflow/tools/generate_sequence_plan.py \
   --plan docs/sequence/plans/<session>.plan.json \
   --output docs/sequence/generated/<session>.plan.mmd
 ```
@@ -1535,7 +1535,7 @@ python scripts/generate_sequence_plan.py \
 Actual extraction:
 
 ```bash
-python scripts/generate_sequence_actual.py \
+python .workflow/tools/generate_sequence_actual.py \
   --output-json docs/sequence/generated/<session>.actual.json \
   --output-mermaid docs/sequence/generated/<session>.actual.mmd \
   --entry <path::symbol>
@@ -1544,14 +1544,14 @@ python scripts/generate_sequence_actual.py \
 Per-session validation:
 
 ```bash
-python scripts/validate_sequence_contract.py \
+python .workflow/tools/validate_sequence_contract.py \
   --session docs/sequence/sessions/<session>.json
 ```
 
 All-session acceptance:
 
 ```bash
-python scripts/validate_sequence_sessions.py
+python .workflow/tools/validate_sequence_sessions.py
 ```
 
 ## Current vs historical sequence evidence
