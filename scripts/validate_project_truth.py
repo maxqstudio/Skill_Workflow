@@ -137,7 +137,10 @@ def main() -> int:
             documentation_policy = {"generated": True, "spec_root": ".workflow"}
 
     if documentation_policy.get("generated", False):
-        project_docs_validator = root / "scripts" / "validate_project_docs.py"
+        tool_dir = Path(__file__).resolve().parent
+        project_docs_validator = tool_dir / "validate_project_docs.py"
+        if not project_docs_validator.is_file():
+            project_docs_validator = root / "scripts" / "validate_project_docs.py"
         if not project_docs_validator.is_file():
             failures.append("PROJECT_DOCS_VALIDATOR_MISSING")
         else:
