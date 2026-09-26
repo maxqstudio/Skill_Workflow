@@ -1,5 +1,9 @@
 # DOCUMENTATION SYNC MATRIX
 
+Canonical documentation root: `docs/`
+
+Generated governance Markdown must not also exist at repository root.
+
 ## Generated documentation mode
 
 For STANDARD and STRICT projects, documentation is compiled from upstream
@@ -12,7 +16,9 @@ SOURCE CODE
 + .workflow SEMANTIC / GOVERNANCE SPECS
 + TEST / RUNTIME EVIDENCE STATE
 → PROJECT TRUTH COMPILER
-→ GENERATED MARKDOWN
+→ DETERMINISTIC NORMALIZATION
+→ GENERATED MARKDOWN UNDER docs/
+→ DOC QUALITY VALIDATION
 ```
 
 Generated Markdown is a projection. It MUST NOT be edited as the primary repair.
@@ -102,6 +108,7 @@ Do not blindly modify source to satisfy a generated comparison.
 
 ```bash
 python .workflow/tools/validate_project_docs.py
+python .workflow/tools/validate_doc_quality.py
 python .workflow/tools/validate_handoff.py
 python .workflow/tools/validate_human_comprehension.py --require-pass
 python .workflow/tools/validate_sequence_sessions.py
