@@ -49,7 +49,10 @@ def read(path: Path) -> str:
 
 
 def has_placeholder(text: str) -> bool:
-    return any(pattern.search(text) for pattern in PLACEHOLDER_PATTERNS)
+    # Generated provenance markers are HTML comments and must not be mistaken
+    # for angle-bracket placeholders.
+    visible = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    return any(pattern.search(visible) for pattern in PLACEHOLDER_PATTERNS)
 
 
 def main() -> int:
