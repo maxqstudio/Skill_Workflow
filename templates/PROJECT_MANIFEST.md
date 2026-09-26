@@ -4,7 +4,7 @@
 Name:
 Purpose:
 Primary users:
-Governance profile: see PROJECT_PROFILE.yaml
+Governance profile:
 
 ## Repositories
 Repository:
