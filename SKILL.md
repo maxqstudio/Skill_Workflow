@@ -26,7 +26,8 @@ Do not begin by reading the entire repository blindly.
 
 Build a project map first:
 
-CURRENT_STATE
+PROJECT_PROFILE
+→ CURRENT_STATE
 → PROJECT_MANIFEST
 → SOURCE_AUTHORITY_MAP
 → ARCHITECTURE
@@ -40,10 +41,38 @@ CURRENT_STATE
 
 The documents are navigation and contract aids. Source and runtime remain evidence and may expose stale documentation.
 
-# 2. Core handoff pack
+# 2. Adaptive governance profiles
 
-Every maintained project should contain:
+Do not impose the same documentation ceremony on every project.
 
+Every project MUST define `PROJECT_PROFILE.yaml`.
+
+Supported profiles:
+
+## LITE
+
+For small, low-complexity projects with limited runtime/state complexity.
+
+Required:
+
+```text
+PROJECT_PROFILE.yaml
+PROJECT_MANIFEST.md
+CURRENT_STATE.md
+MODULE_MAP.md
+TEST_ACCEPTANCE_MATRIX.md
+```
+
+Additional contracts may still be marked required when the project needs them.
+
+## STANDARD
+
+Default for normal multi-session or multi-agent development.
+
+Required:
+
+```text
+PROJECT_PROFILE.yaml
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
 SOURCE_AUTHORITY_MAP.md
@@ -54,22 +83,68 @@ SYMBOL_INDEX.md
 FLOW_INDEX.md
 TEST_ACCEPTANCE_MATRIX.md
 DOC_SYNC_MATRIX.md
+```
+
+`PROJECT_TRUTH_SYNC.md` may be added for critical flows.
+
+## STRICT
+
+For high-risk or audit-sensitive work such as:
+
+- financial/trading systems;
+- ML/research pipelines;
+- production infrastructure;
+- hardware/device integration;
+- safety-sensitive behavior;
+- complex multi-repository systems;
+- projects with strict acceptance lineage.
+
+Required:
+
+```text
+all STANDARD documents
++
 PROJECT_TRUTH_SYNC.md
+```
 
-Recommended additional documents:
+STRICT also requires explicit applicability decisions for critical optional contracts. Do not leave them ambiguously optional.
 
-DATA_CONTRACTS.md
+## Optional contract declarations
+
+`PROJECT_PROFILE.yaml` may mark these as:
+
+```text
+required
+optional
+not_applicable
+```
+
+Supported contract categories:
+
+```text
 API_CONTRACTS.md
+DATA_CONTRACTS.md
 UI_INFORMATION_ARCHITECTURE.md
 RUNBOOK.md
 DECISIONS.md
-GLOSSARY.md
 KNOWN_DEFECTS.md
+GLOSSARY.md
 CHANGELOG.md
+```
 
-If something does not apply, say so explicitly.
+Profile selection is based on complexity, risk, runtime dependencies, handoff frequency, evidence requirements, and workflow/state complexity — not source-line count alone.
+
+Validators MUST derive required documents from `PROJECT_PROFILE.yaml`; do not hardcode one universal pack.
 
 # 3. Document responsibilities
+
+## PROJECT_PROFILE.yaml
+
+Machine-readable governance policy.
+
+It selects LITE, STANDARD, or STRICT and declares which optional contracts are required, optional, or not applicable.
+
+Agents must read this before deciding which project documents are mandatory.
 
 ## PROJECT_MANIFEST.md
 Project entry point. Identify purpose, repositories, branch, source authority, runtime authority, acceptance authority, stack, entry points, important directories, external systems, required reading order, and non-negotiable constraints.
@@ -134,29 +209,31 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 
 # 5. New-room startup procedure
 
-1. Read CURRENT_STATE.md.
-2. Read PROJECT_MANIFEST.md.
-3. Read SOURCE_AUTHORITY_MAP.md.
-4. Read ARCHITECTURE.md.
-5. Read WORKFLOW_STATE_MACHINE.md.
-6. Read MODULE_MAP.md.
-7. Read FLOW_INDEX.md.
-8. Read SYMBOL_INDEX.md.
-9. Read TEST_ACCEPTANCE_MATRIX.md.
-10. Read DOC_SYNC_MATRIX.md.
-11. Read PROJECT_TRUTH_SYNC.md.
-12. Open only exact relevant source ranges first.
+1. Read PROJECT_PROFILE.yaml.
+2. Resolve the required document set for the selected profile.
+3. Read CURRENT_STATE.md.
+4. Read PROJECT_MANIFEST.md.
+5. Read only the authority/architecture/workflow/index/contracts required by the profile.
+6. Read TEST_ACCEPTANCE_MATRIX.md.
+7. Read DOC_SYNC_MATRIX.md when required.
+8. Read PROJECT_TRUTH_SYNC.md when required or present for critical flows.
+9. Open only exact relevant source ranges first.
+
+Do not create or maintain documents that the profile marks not applicable.
 
 Expand outward only if indexes are stale, incomplete, contradictory, or a full audit is explicitly required.
 
 # 6. Task execution workflow
 
-understand authority
+read PROJECT_PROFILE
+→ understand authority
 → identify affected workflow
 → identify affected modules
 → locate exact symbols
 → reproduce defect or establish baseline
 → implement minimum valid repair
+→ regenerate machine-derived structural facts
+→ update semantic docs/contracts
 → targeted tests
 → cumulative regression
 → runtime/E2E verification when applicable
@@ -260,18 +337,17 @@ what is forbidden.
 # 16. Fast orientation mode
 
 Read:
-1. CURRENT_STATE
-2. PROJECT_MANIFEST
-3. SOURCE_AUTHORITY_MAP
-4. ARCHITECTURE
-5. WORKFLOW_STATE_MACHINE
-6. MODULE_MAP
-7. FLOW_INDEX
-8. SYMBOL_INDEX
-9. TEST_ACCEPTANCE_MATRIX
-10. DOC_SYNC_MATRIX
-11. PROJECT_TRUTH_SYNC
-12. exact relevant source ranges.
+1. PROJECT_PROFILE
+2. CURRENT_STATE
+3. PROJECT_MANIFEST
+4. only profile-required authority/architecture/workflow docs
+5. MODULE_MAP when required
+6. FLOW_INDEX when required
+7. SYMBOL_INDEX when required
+8. TEST_ACCEPTANCE_MATRIX
+9. DOC_SYNC_MATRIX when required
+10. PROJECT_TRUTH_SYNC when required or present
+11. exact relevant source ranges.
 
 Do not recursively scan the repository unless docs/indexes are missing or conflicting, corruption is suspected, or a full audit is explicitly requested.
 
@@ -371,7 +447,8 @@ SESSION START
 → declare DOC IMPACT
 → reproduce/baseline
 → implement minimum valid change
-→ update affected docs/indexes
+→ regenerate structural facts where applicable
+→ update affected semantic docs/indexes
 → targeted tests
 → cumulative regression
 → documentation drift validation
@@ -380,6 +457,40 @@ SESSION START
 → update CURRENT_STATE
 → final handoff
 ```
+
+## Structural index generation
+
+Do not manually reconstruct facts that can be generated safely.
+
+Available generators:
+
+```bash
+python scripts/generate_symbol_index.py
+python scripts/generate_module_map.py
+```
+
+`generate_symbol_index.py` prefers Universal Ctags for broad language coverage and falls back to Python AST when Ctags is unavailable.
+
+Generated outputs contain facts only:
+
+- file path;
+- symbol;
+- kind;
+- line range;
+- language;
+- file/module size/location.
+
+They MUST NOT invent:
+
+- responsibility;
+- authority;
+- lifecycle semantics;
+- side effects;
+- legal transitions.
+
+The agent merges generated facts into semantic project documentation and verifies ownership.
+
+FLOW_INDEX remains semantic-verified. Do not automatically claim an end-to-end call graph is authoritative merely from static call discovery.
 
 ## Hard documentation gates
 
@@ -605,11 +716,16 @@ PROJECT_STATE_SYNC: PASS
 
 If any required gate is FAIL, NOT_PROVEN, or unresolved, final status cannot be PASS.
 
-When available run all three:
+Run validators required by the selected profile:
 
 python scripts/validate_handoff.py
 python scripts/validate_cross_document_consistency.py --base <LAST_ACCEPTED_SHA> --require-base
+
+For STRICT, or when PROJECT_TRUTH_SYNC.md is present:
+
 python scripts/validate_project_truth.py
+
+A skipped validator must be justified by PROJECT_PROFILE.yaml, never by convenience.
 
 Structural validator PASS is necessary but not sufficient for semantic truth.
 
@@ -652,3 +768,24 @@ Do not use an inferred HEAD parent for milestone/final acceptance when the accep
 A cross-document validator FAIL blocks PROJECT_STATE_SYNC.
 
 Machine checks do not prove semantic correctness. Semantic conflicts that cannot be established mechanically still require source/test/runtime audit and must remain NOT_PROVEN until resolved.
+
+
+## Profile selection discipline
+
+Do not choose LITE merely because a repository is small.
+
+Choose the profile from actual project risk and complexity.
+
+Escalate to STANDARD or STRICT when any of these materially apply:
+
+- multiple agents/rooms frequently hand off work;
+- complex state machines;
+- external runtimes or devices;
+- financial or scientific correctness;
+- immutable evidence/lineage;
+- production mutation;
+- multi-repository authority;
+- difficult rollback/recovery;
+- strong runtime/E2E acceptance needs.
+
+Downgrading a governance profile requires an explicit documented decision. It must not be used to bypass documentation or validation failures.
