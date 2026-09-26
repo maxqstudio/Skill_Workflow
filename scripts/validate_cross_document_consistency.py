@@ -481,6 +481,19 @@ def main() -> int:
                 + profile_name
             )
 
+    if current.is_file():
+        cf_only = scalar_fields(read(current))
+        current_profile = cf_only.get("governance profile")
+        if not current_profile:
+            failures.append("CURRENT_STATE_GOVERNANCE_PROFILE_MISSING")
+        elif current_profile.strip().lower() != profile_name:
+            failures.append(
+                "CURRENT_STATE_PROFILE_CONFLICT:"
+                + current_profile
+                + "!="
+                + profile_name
+            )
+
     if manifest.is_file() and current.is_file():
         mf = scalar_fields(read(manifest))
         cf = scalar_fields(read(current))
