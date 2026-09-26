@@ -44,6 +44,8 @@ CLI:
 6. FLOW_INDEX.md
 7. SYMBOL_INDEX.md
 8. TEST_ACCEPTANCE_MATRIX.md
+9. DOC_SYNC_MATRIX.md
+10. PROJECT_TRUTH_SYNC.md
 
 ## Non-negotiable constraints
 -
