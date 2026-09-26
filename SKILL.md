@@ -909,7 +909,7 @@ FLOW_INDEX remains semantic-verified. Do not automatically claim an end-to-end c
 The task is NOT DONE if any applies:
 
 - generated-documentation mode is enabled but PROJECT_DOCS_SYNC is not PASS;
-- a generated root Markdown contract was manually edited instead of changing its upstream authority;
+- a generated `docs/` Markdown contract was manually edited instead of changing its upstream authority;
 - source/spec changed but generated docs are stale;
 - human-visible behavior changed but SYSTEM_OVERVIEW is stale;
 - sequence-required workflow changed but generated actual sequence evidence is stale;
