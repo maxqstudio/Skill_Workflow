@@ -354,16 +354,26 @@ Initialize the spec pack:
 python scripts/initialize_project_truth.py
 ```
 
-Populate semantic/governance specs, then generate documentation:
+Populate semantic/governance specs, then synchronize documentation:
+
+```bash
+python scripts/sync_project_truth.py
+```
+
+That command generates docs/facts, validates reproducibility, records only
+`PROJECT_DOCS_SYNC=PASS`, regenerates, and validates again.
+
+Low-level commands remain available:
 
 ```bash
 python scripts/generate_project_docs.py
+python scripts/validate_project_docs.py
 ```
 
-Validate that tracked documentation is reproducible and current:
+Run the compiler's executable regression self-test with:
 
 ```bash
-python scripts/validate_project_docs.py
+python scripts/selftest_project_truth_compiler.py
 ```
 
 When generated documentation is enabled:
@@ -410,6 +420,21 @@ reliably explain:
 
 The agent may edit these structured specs when the actual contract changes.
 It should not duplicate the same semantic change across many Markdown files.
+
+### PROJECT_DOCS_SYNC is independently revalidated
+
+The value recorded in `.workflow/acceptance.json` is not trusted by itself.
+
+Final truth validation executes the generated-doc validator again. Therefore:
+
+```text
+spec says PROJECT_DOCS_SYNC=PASS
+but compiler check fails
+→ final truth FAIL
+```
+
+This prevents a stale or manually forged PASS declaration from becoming
+acceptance authority.
 
 ### Why JSON instead of generated prose from an LLM
 
@@ -1108,6 +1133,8 @@ Skill_Workflow/
 │  ├─ extract_project_facts.py
 │  ├─ generate_project_docs.py
 │  ├─ validate_project_docs.py
+│  ├─ sync_project_truth.py
+│  ├─ selftest_project_truth_compiler.py
 │  ├─ generate_symbol_index.py
 │  ├─ generate_module_map.py
 │  ├─ sequence_contract.py
