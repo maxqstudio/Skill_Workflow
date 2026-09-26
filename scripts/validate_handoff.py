@@ -112,9 +112,19 @@ def main() -> int:
     current = root / "CURRENT_STATE.md"
     if current.is_file():
         text = read(current)
-        for field in ("Authoritative SHA:", "Status:", "Next authorized action"):
+        for field in ("Authoritative SHA:", "Status:", "Next authorized action", "Governance profile:"):
             if field not in text:
                 failures.append(f"CURRENT_STATE_FIELD_MISSING:{field}")
+        match = re.search(r"^Governance profile:\s*(.*?)\s*$", text, re.MULTILINE | re.IGNORECASE)
+        if not match or not match.group(1).strip():
+            failures.append("CURRENT_STATE_GOVERNANCE_PROFILE_MISSING")
+        elif match.group(1).strip().lower() != profile_name:
+            failures.append(
+                "CURRENT_STATE_PROFILE_CONFLICT:"
+                + match.group(1).strip()
+                + "!="
+                + profile_name
+            )
 
     manifest = root / "PROJECT_MANIFEST.md"
     if manifest.is_file():
