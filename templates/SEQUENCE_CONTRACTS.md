@@ -186,3 +186,43 @@ requires it to match the actual graph.
 The Git HEAD remains acceptance provenance, but it is not embedded as a
 self-referential equality requirement inside tracked generated sequence
 artifacts.
+
+
+## Current vs historical sequence sessions
+
+Every session declares:
+
+```text
+scope: CURRENT
+or
+scope: HISTORICAL
+```
+
+CURRENT means the sequence is part of the codebase state being accepted now.
+
+For CURRENT:
+
+```text
+ACTUAL_SOURCE_DIGEST
+=
+CURRENT_SOURCE_DIGEST
+```
+
+HISTORICAL means the session belongs to an earlier accepted phase/session.
+
+Historical sequence evidence must remain immutable. It is validated against its
+own recorded actual graph/digest and generated diagram, not against today's
+source digest.
+
+When development advances:
+
+```text
+previous CURRENT accepted session
+→ HISTORICAL
+
+new active phase/session
+→ CURRENT
+```
+
+Do not regenerate historical actual diagrams merely to make them match newer
+code.
