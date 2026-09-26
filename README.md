@@ -179,6 +179,16 @@ SKILL.md
 
 ---
 
+## Support the project
+
+If Skill Workflow is useful for your projects, you can support ongoing development through Saweria:
+
+**[Support MAXQ on Saweria](https://saweria.co/maxq)**
+
+Support is optional and does not affect access to the public repository or its features.
+
+---
+
 ## What this skill solves
 
 Large projects become difficult to continue when a new room or agent has to reconstruct everything from:
