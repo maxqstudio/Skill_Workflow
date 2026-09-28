@@ -1,0 +1,31 @@
+name: Windows LF Selftest
+
+on:
+  push:
+    branches:
+      - fix/deterministic-lf-sequence-actual
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  strict-selftest:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Preserve exact Git bytes
+        shell: pwsh
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Project Truth compiler selftest
+        shell: pwsh
+        run: python scripts/selftest_project_truth_compiler.py
+      - name: STRICT workflow selftest
+        shell: pwsh
+        run: python scripts/selftest_strict_project_workflow.py
