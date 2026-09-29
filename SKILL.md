@@ -784,7 +784,7 @@ mark STALE
 
 # 19. Non-negotiables
 
-Never invent authority or tests, claim runtime PASS from unit tests alone, redesign without authorization, hide defects, mutate history to match current configuration, use stale SHA as current authority, mix unrelated project state, or rely on chat memory as the only project record.
+Never invent authority or tests, claim runtime PASS from unit tests alone, redesign without authorization, hide defects, mutate history to match current configuration, use stale SHA as current authority, allow roadmap/current-phase drift, mix unrelated project state, or rely on chat memory as the only project record.
 
 Always use exact SHA, preserve lineage, separate active state from history, separate configuration from execution snapshots, trace workflow before changing it, verify the strongest required acceptance layer, and leave a clean handoff.
 
@@ -812,6 +812,7 @@ data contract: YES/NO
 UI information architecture: YES/NO
 test acceptance matrix: YES/NO
 current state: YES
+roadmap: YES/NO
 decisions: YES/NO
 known defects: YES/NO
 ```
@@ -836,6 +837,8 @@ INDEX
 TEST EVIDENCE
 +
 CURRENT STATE
++
+ROADMAP
 =
 ONE PROJECT STATE
 ```
@@ -849,6 +852,7 @@ SESSION START
 → read PROJECT_PROFILE
 → read SYSTEM_OVERVIEW
 → read CURRENT_STATE
+→ read ROADMAP and verify current phase synchronization
 → verify repository/branch/SHA authority
 → read workflow + sequence + module/flow/symbol indexes
 → determine sequence mode
@@ -863,6 +867,7 @@ SESSION START
 → classify/repair mismatch if any
 → targeted tests
 → cumulative regression
+→ update .workflow state + roadmap in one transaction when phase changes
 → update .workflow acceptance/evidence state
 → regenerate project docs
 → PROJECT_DOCS_SYNC validation
@@ -930,6 +935,9 @@ FLOW_INDEX remains semantic-verified. Do not automatically claim an end-to-end c
 
 The task is NOT DONE if any applies:
 
+- `.workflow/roadmap.json` is missing;
+- `.workflow/state.json::phase` differs from `.workflow/roadmap.json::current_phase`;
+- ROADMAP_SYNC is not PASS for generated-documentation mode;
 - generated-documentation mode is enabled but PROJECT_DOCS_SYNC is not PASS;
 - a generated `docs/` Markdown contract was manually edited instead of changing its upstream authority;
 - source/spec changed but generated docs are stale;
@@ -971,6 +979,7 @@ Verify:
 - every changed call path is reflected in FLOW_INDEX;
 - line-range hints are refreshed or marked STALE;
 - current authority SHA/state is correct;
+- roadmap current phase equals project current phase and exactly one roadmap phase is CURRENT;
 - acceptance evidence matches tests actually executed;
 - known defects are current;
 - no required document is silently skipped;
@@ -1011,6 +1020,9 @@ BEFORE / DURING / AFTER / NOT_APPLICABLE
 SEQUENCE_SYNC:
 PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
 
+ROADMAP_SYNC:
+PASS / FAIL / NOT_PROVEN
+
 PROJECT_DOCS_SYNC:
 PASS / FAIL / NOT_PROVEN / NOT_APPLICABLE
 
@@ -1018,6 +1030,9 @@ PROJECT TRUTH COMPILER:
 PASS / FAIL / NOT_AVAILABLE
 
 CURRENT_STATE:
+UPDATED / NO IMPACT
+
+ROADMAP:
 UPDATED / NO IMPACT
 
 WORKFLOW_STATE_MACHINE:
