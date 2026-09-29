@@ -88,6 +88,34 @@ def main() -> int:
         )
         write_json(state_path, state)
 
+        roadmap_path = root / ".workflow" / "roadmap.json"
+        roadmap = json.loads(roadmap_path.read_text(encoding="utf-8"))
+        roadmap.update(
+            {
+                "current_phase": "SELFTEST",
+                "phases": [
+                    {
+                        "id": "SELFTEST",
+                        "title": "Compiler self-test",
+                        "status": "CURRENT",
+                        "objective": "Verify deterministic project truth compilation.",
+                        "exit_criteria": [
+                            "Compiler regeneration is deterministic.",
+                            "Roadmap synchronization failures are detected.",
+                        ],
+                    },
+                    {
+                        "id": "COMPLETE",
+                        "title": "Self-test complete",
+                        "status": "PLANNED",
+                        "objective": "Record successful compiler validation.",
+                        "exit_criteria": ["All compiler self-test assertions pass."],
+                    },
+                ],
+            }
+        )
+        write_json(roadmap_path, roadmap)
+
         authority_path = root / ".workflow" / "authority.json"
         authority = json.loads(authority_path.read_text(encoding="utf-8"))
         authority["authorities"] = [
@@ -186,10 +214,13 @@ def main() -> int:
         acceptance = json.loads(acceptance_path.read_text(encoding="utf-8"))
         if acceptance.get("truth_gates", {}).get("PROJECT_DOCS_SYNC") != "PASS":
             raise RuntimeError("PROJECT_DOCS_SYNC was not recorded PASS")
+        if acceptance.get("truth_gates", {}).get("ROADMAP_SYNC") != "PASS":
+            raise RuntimeError("ROADMAP_SYNC was not recorded PASS")
 
         for name in (
             "SYSTEM_OVERVIEW.md",
             "CURRENT_STATE.md",
+            "ROADMAP.md",
             "PROJECT_MANIFEST.md",
         ):
             if (root / name).exists():
@@ -259,6 +290,40 @@ def main() -> int:
             str(root),
         )
 
+        roadmap_bytes = roadmap_path.read_bytes()
+        roadmap_path.unlink()
+        missing_roadmap = run(
+            root,
+            sys.executable,
+            str(tool_root / "validate_project_docs.py"),
+            "--root",
+            str(root),
+            expect=1,
+        )
+        if "roadmap.json" not in missing_roadmap:
+            raise RuntimeError(
+                "missing roadmap did not fail with roadmap evidence\n"
+                + missing_roadmap
+            )
+        roadmap_path.write_bytes(roadmap_bytes)
+
+        roadmap = json.loads(roadmap_path.read_text(encoding="utf-8"))
+        roadmap["current_phase"] = "DRIFTED_PHASE"
+        write_json(roadmap_path, roadmap)
+        phase_drift = run(
+            root,
+            sys.executable,
+            str(tool_root / "validate_project_docs.py"),
+            "--root",
+            str(root),
+            expect=1,
+        )
+        if "ROADMAP_STATE_PHASE_MISMATCH:DRIFTED_PHASE!=SELFTEST" not in phase_drift:
+            raise RuntimeError(
+                "roadmap phase drift was not detected\n" + phase_drift
+            )
+        roadmap_path.write_bytes(roadmap_bytes)
+
         final = run(
             root,
             sys.executable,
@@ -272,6 +337,9 @@ def main() -> int:
     print("PROJECT_TRUTH_COMPILER_SELFTEST=PASS")
     print("TAMPER_DETECTION=PASS")
     print("SOURCE_DRIFT_DETECTION=PASS")
+    print("MISSING_ROADMAP_DETECTION=PASS")
+    print("ROADMAP_PHASE_DRIFT_DETECTION=PASS")
+    print("ROADMAP_SYNC=PASS")
     print("REGENERATION_RECOVERY=PASS")
     print("DOC_LAYOUT=PASS")
     print("DOC_LAYOUT_DUPLICATE_DETECTION=PASS")
