@@ -30,6 +30,7 @@ Build a project map first:
 PROJECT_PROFILE.yaml
 → docs/SYSTEM_OVERVIEW.md
 → docs/CURRENT_STATE.md
+→ docs/ROADMAP.md
 → docs/PROJECT_MANIFEST.md
 → docs/<profile-required authority / architecture / workflow docs>
 → docs/SEQUENCE_CONTRACTS.md when required
@@ -61,6 +62,7 @@ PROJECT_PROFILE.yaml
 SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
+ROADMAP.md
 MODULE_MAP.md
 TEST_ACCEPTANCE_MATRIX.md
 ```
@@ -91,6 +93,7 @@ PROJECT_PROFILE.yaml
 SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
+ROADMAP.md
 SOURCE_AUTHORITY_MAP.md
 ARCHITECTURE.md
 WORKFLOW_STATE_MACHINE.md
@@ -189,6 +192,7 @@ Recommended structure:
 ├─ project.json
 ├─ authority.json
 ├─ state.json
+├─ roadmap.json
 ├─ architecture.json
 ├─ contracts.json
 ├─ claims.json
@@ -222,9 +226,10 @@ python .workflow/tools/sync_project_truth.py
 This command:
 
 ```text
-generate
+validate roadmap/state phase contract
+→ generate
 → validate
-→ record only DOC_LAYOUT / PROJECT_DOCS_NORMALIZED / DOC_READABILITY / PROJECT_DOCS_SYNC = PASS
+→ record ROADMAP_SYNC / DOC_LAYOUT / PROJECT_DOCS_NORMALIZED / DOC_READABILITY / PROJECT_DOCS_SYNC = PASS
 → regenerate
 → validate again
 ```
@@ -420,6 +425,7 @@ DOC_LAYOUT = FAIL
    ├─ SYSTEM_OVERVIEW.md
    ├─ PROJECT_MANIFEST.md
    ├─ CURRENT_STATE.md
+   ├─ ROADMAP.md
    ├─ SOURCE_AUTHORITY_MAP.md
    ├─ ARCHITECTURE.md
    ├─ WORKFLOW_STATE_MACHINE.md
@@ -514,6 +520,9 @@ Project entry point. Identify purpose, repositories, branch, source authority, r
 ## CURRENT_STATE.md
 Short live handoff snapshot. Include current phase, exact authoritative SHA, last accepted SHA, current candidate, blockers, known defects, proven/not-proven facts, next authorized action, and blocked actions. Never mix historical status with current status.
 
+## ROADMAP.md
+Deterministic human-facing projection of `.workflow/roadmap.json`. The machine-readable roadmap is mandatory project governance authority. `.workflow/state.json::phase` MUST equal `.workflow/roadmap.json::current_phase`; exactly one roadmap phase MUST be marked `CURRENT`; that phase id MUST equal `current_phase`; phase ids MUST be unique. When phase advances, update `state.json` and `roadmap.json` in the same project-state transaction and run `sync_project_truth.py`. Missing roadmap authority or phase drift is a blocking failure.
+
 ## SOURCE_AUTHORITY_MAP.md
 Map each concern to its canonical authority and location. Cover source, runtime, data, configuration, UI, workflow, database, artifact/model, deployment, tests, historical reference, and documentation. If authorities conflict, do not guess.
 
@@ -594,13 +603,14 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 2. Resolve the required document set for the selected profile.
 3. Read docs/SYSTEM_OVERVIEW.md for the human/domain mental model.
 4. Read docs/CURRENT_STATE.md.
-5. Read docs/PROJECT_MANIFEST.md.
-6. Read only the authority/architecture/workflow/index/contracts required by the profile.
-7. Read docs/SEQUENCE_CONTRACTS.md when sequence policy is enabled.
-8. Read docs/TEST_ACCEPTANCE_MATRIX.md.
-9. Read docs/DOC_SYNC_MATRIX.md when required.
-10. Read docs/PROJECT_TRUTH_SYNC.md when required or present for critical flows.
-11. Open only exact relevant source ranges first.
+5. Read docs/ROADMAP.md and verify its current phase matches CURRENT_STATE.
+6. Read docs/PROJECT_MANIFEST.md.
+7. Read only the authority/architecture/workflow/index/contracts required by the profile.
+8. Read docs/SEQUENCE_CONTRACTS.md when sequence policy is enabled.
+9. Read docs/TEST_ACCEPTANCE_MATRIX.md.
+10. Read docs/DOC_SYNC_MATRIX.md when required.
+11. Read docs/PROJECT_TRUTH_SYNC.md when required or present for critical flows.
+12. Open only exact relevant source ranges first.
 
 Do not create or maintain documents that the profile marks not applicable.
 
@@ -628,7 +638,7 @@ read PROJECT_PROFILE
 → runtime/E2E verification when applicable
 → verify final SHA
 → final audit
-→ update project state.
+→ update project state and roadmap together when the current phase changes.
 
 Never treat source changed as equivalent to PASS.
 
@@ -702,6 +712,7 @@ Do not hardcode dynamic authority, eligibility, execution counts, promotion stat
 Before handoff update at minimum:
 SYSTEM_OVERVIEW.md when the human mental model/current summary changed
 CURRENT_STATE.md
+ROADMAP.md when phase plan/current phase changed
 SOURCE_AUTHORITY_MAP.md
 TEST_ACCEPTANCE_MATRIX.md
 KNOWN_DEFECTS.md.
@@ -730,15 +741,16 @@ Read:
 1. PROJECT_PROFILE
 2. SYSTEM_OVERVIEW
 3. CURRENT_STATE
-4. PROJECT_MANIFEST
-5. only profile-required authority/architecture/workflow docs
-6. MODULE_MAP when required
-7. FLOW_INDEX when required
-8. SYMBOL_INDEX when required
-9. TEST_ACCEPTANCE_MATRIX
-10. DOC_SYNC_MATRIX when required
-11. PROJECT_TRUTH_SYNC when required or present
-12. exact relevant source ranges.
+4. ROADMAP
+5. PROJECT_MANIFEST
+6. only profile-required authority/architecture/workflow docs
+7. MODULE_MAP when required
+8. FLOW_INDEX when required
+9. SYMBOL_INDEX when required
+10. TEST_ACCEPTANCE_MATRIX
+11. DOC_SYNC_MATRIX when required
+12. PROJECT_TRUTH_SYNC when required or present
+13. exact relevant source ranges.
 
 Do not recursively scan the repository unless docs/indexes are missing or conflicting, corruption is suspected, or a full audit is explicitly requested.
 
