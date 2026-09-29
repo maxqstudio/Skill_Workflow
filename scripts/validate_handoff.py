@@ -94,6 +94,8 @@ def main() -> int:
     spec_root = root / str(documentation_policy.get("spec_root", ".workflow"))
     if generated_mode and not spec_root.is_dir():
         failures.append("PROJECT_TRUTH_SPEC_ROOT_MISSING:" + str(spec_root))
+    if generated_mode and not (spec_root / "roadmap.json").is_file():
+        failures.append("ROADMAP_SPEC_MISSING:" + str(spec_root / "roadmap.json"))
 
     for rel in sorted(required):
         path = root / rel if rel == PROFILE_FILE else docs_root / rel
@@ -137,6 +139,8 @@ def main() -> int:
         required_current_fields = [
             "Authoritative SHA:",
             "Status:",
+            "Roadmap phase:",
+            "ROADMAP_SYNC:",
             "Next authorized action",
             "Governance profile:",
         ]
@@ -158,6 +162,47 @@ def main() -> int:
                 + match.group(1).strip()
                 + "!="
                 + profile_name
+            )
+
+    roadmap = docs_root / "ROADMAP.md"
+    if roadmap.is_file():
+        text = read(roadmap)
+        state_match = re.search(
+            r"^Current project phase:\s*(.*?)\s*$",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
+        roadmap_match = re.search(
+            r"^Current roadmap phase:\s*(.*?)\s*$",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
+        sync_match = re.search(
+            r"^ROADMAP_SYNC:\s*(.*?)\s*$",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
+        if not state_match or not state_match.group(1).strip():
+            failures.append("ROADMAP_PROJECT_PHASE_MISSING")
+        if not roadmap_match or not roadmap_match.group(1).strip():
+            failures.append("ROADMAP_CURRENT_PHASE_MISSING")
+        if (
+            state_match
+            and roadmap_match
+            and state_match.group(1).strip() != roadmap_match.group(1).strip()
+        ):
+            failures.append(
+                "ROADMAP_STATE_PHASE_CONFLICT:"
+                + roadmap_match.group(1).strip()
+                + "!="
+                + state_match.group(1).strip()
+            )
+        if generated_mode and (
+            not sync_match or sync_match.group(1).strip().upper() != "PASS"
+        ):
+            failures.append(
+                "ROADMAP_SYNC_NOT_PASS:"
+                + (sync_match.group(1).strip() if sync_match else "MISSING")
             )
 
     manifest = docs_root / "PROJECT_MANIFEST.md"
