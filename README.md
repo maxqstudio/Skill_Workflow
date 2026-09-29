@@ -230,6 +230,7 @@ The skill uses this orientation sequence:
 PROJECT_PROFILE.yaml
 → docs/SYSTEM_OVERVIEW.md
 → docs/CURRENT_STATE.md
+→ docs/ROADMAP.md
 → docs/PROJECT_MANIFEST.md
 → docs/<profile-required authority / architecture / workflow docs>
 → docs/SEQUENCE_CONTRACTS.md when required
@@ -266,6 +267,7 @@ PROJECT_PROFILE.yaml
 SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
+ROADMAP.md
 MODULE_MAP.md
 TEST_ACCEPTANCE_MATRIX.md
 ```
@@ -285,6 +287,7 @@ PROJECT_PROFILE.yaml
 SYSTEM_OVERVIEW.md
 PROJECT_MANIFEST.md
 CURRENT_STATE.md
+ROADMAP.md
 SOURCE_AUTHORITY_MAP.md
 ARCHITECTURE.md
 WORKFLOW_STATE_MACHINE.md
@@ -349,6 +352,7 @@ Recommended project structure:
 ├─ project.json
 ├─ authority.json
 ├─ state.json
+├─ roadmap.json
 ├─ architecture.json
 ├─ contracts.json
 ├─ claims.json
@@ -383,10 +387,12 @@ Populate semantic/governance specs, then synchronize documentation:
 python .workflow/tools/sync_project_truth.py
 ```
 
-That command generates docs/facts, validates reproducibility, records only the
-documentation gates `DOC_LAYOUT`, `PROJECT_DOCS_NORMALIZED`,
-`DOC_READABILITY`, and `PROJECT_DOCS_SYNC` as PASS, regenerates, and
-validates again.
+That command validates the roadmap/state phase contract, generates docs/facts,
+validates reproducibility, records `ROADMAP_SYNC` plus the documentation gates
+`DOC_LAYOUT`, `PROJECT_DOCS_NORMALIZED`, `DOC_READABILITY`, and
+`PROJECT_DOCS_SYNC` as PASS, regenerates, and validates again. A missing
+`.workflow/roadmap.json` or roadmap/current-phase drift fails before PASS can
+be recorded.
 
 Low-level commands remain available:
 
@@ -422,6 +428,32 @@ generated output differs from tracked docs
 → PROJECT_DOCS_SYNC = FAIL
 ```
 
+### Roadmap synchronization contract
+
+The roadmap authority is `.workflow/roadmap.json`. The human-facing
+`docs/ROADMAP.md` is generated and MUST NOT be edited as an independent source
+of truth.
+
+Blocking invariants:
+
+```text
+.workflow/state.json::phase
+=
+.workflow/roadmap.json::current_phase
+
+exactly one roadmap phase status
+=
+CURRENT
+```
+
+The `CURRENT` phase id must equal `current_phase`, and phase ids must be
+unique. When a project advances phase, update `state.json` and `roadmap.json`
+in the same project-state transaction, then run
+`python .workflow/tools/sync_project_truth.py`.
+
+Missing roadmap authority or phase drift is `ROADMAP_SYNC = FAIL` and blocks
+project completion.
+
 ### Canonical docs layout
 
 Target projects use one canonical human-facing documentation root:
@@ -438,6 +470,7 @@ Target projects use one canonical human-facing documentation root:
 └─ docs/
    ├─ SYSTEM_OVERVIEW.md
    ├─ CURRENT_STATE.md
+   ├─ ROADMAP.md
    ├─ PROJECT_MANIFEST.md
    ├─ ARCHITECTURE.md
    ├─ WORKFLOW_STATE_MACHINE.md
@@ -507,6 +540,7 @@ reliably explain:
 - project purpose and users;
 - authority and mutability;
 - intended workflow/lifecycle semantics;
+- roadmap phases and the current phase;
 - invariants;
 - allowed/blocked next actions;
 - acceptance boundaries;
