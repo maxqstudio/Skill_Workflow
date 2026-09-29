@@ -1,0 +1,39 @@
+name: Governance Selftest
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  governance-selftest:
+    name: Governance Selftest (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile governance scripts
+        run: python -m compileall -q scripts
+
+      - name: Project Truth Compiler self-test
+        run: python scripts/selftest_project_truth_compiler.py
+
+      - name: STRICT workflow self-test
+        run: python scripts/selftest_strict_project_workflow.py
