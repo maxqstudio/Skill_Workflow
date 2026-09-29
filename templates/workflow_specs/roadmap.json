@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "current_phase": "replace-me",
+  "phases": [
+    {
+      "id": "replace-me",
+      "title": "replace-me",
+      "status": "CURRENT",
+      "objective": "replace-me",
+      "exit_criteria": []
+    }
+  ]
+}
