@@ -5,7 +5,7 @@
   "mode": "DURING",
   "scope": "CURRENT",
   "critical": true,
-  "status": "VERIFYING",
+  "status": "VERIFIED",
   "implementation_base_sha": "",
   "plan": {
     "required": false,
@@ -18,7 +18,7 @@
   "actual": {
     "graph": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.json",
     "diagram": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd",
-    "source_digest": "",
+    "source_digest": "f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541",
     "entries": [
       "scripts/sync_project_truth.py::main"
     ]
