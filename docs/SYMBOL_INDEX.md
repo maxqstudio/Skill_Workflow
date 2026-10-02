@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d
+Source digest: 1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -158,20 +158,21 @@ Status: CURRENT
 | scripts/project_snapshot.py | resolve_snapshot | function | 238-247 | Observed Python symbol | | | |
 | scripts/script_runner.py | invoke_main | function | 12-35 | Observed Python symbol | | | |
 | scripts/selftest_cross_document_regressions.py | main | function | 7-35 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | require | function | 26-28 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | git | function | 31-37 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | git_text | function | 40-45 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | snapshot_parity_and_immutability | function | 48-83 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | snapshot_fact_reuse | function | 86-105 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_executes_once | function | 108-127 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_executes_once.action | method | 111-116 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_executes_once.action.run | method | 112-114 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_fail_closed | function | 130-167 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_fail_closed.fail | method | 133-134 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_fail_closed.downstream | method | 136-139 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | mode_planning_contract | function | 170-244 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | changed_path_collection_contract | function | 247-269 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | main | function | 272-280 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | require | function | 28-30 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | git | function | 33-39 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | git_text | function | 42-47 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | snapshot_parity_and_immutability | function | 50-85 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | snapshot_fact_reuse | function | 88-107 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | dag_executes_once | function | 110-129 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | dag_executes_once.action | method | 113-118 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | dag_executes_once.action.run | method | 114-116 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | dag_fail_closed | function | 132-169 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | dag_fail_closed.fail | method | 135-136 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | dag_fail_closed.downstream | method | 138-141 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | mode_planning_contract | function | 172-246 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | changed_path_collection_contract | function | 249-271 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | mode_cli_integration_contract | function | 274-362 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | main | function | 365-374 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | run | function | 16-36 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | write_json | function | 39-40 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | test_gitignored_source_files_are_excluded | function | 43-101 | Observed Python symbol | | | |

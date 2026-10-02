@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d
+Source digest: 1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -21,7 +21,7 @@ Generated/refreshed: current compiler run
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
-| scripts/selftest_governance_engine.py | Python | 284 | scripts | NO |
+| scripts/selftest_governance_engine.py | Python | 378 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 418 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 868 | scripts | NO |

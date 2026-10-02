@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: NOT_PROVEN
+Human comprehension status: PASS
 
 ## One-minute summary
 
@@ -172,18 +172,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
-| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
-| What are the major components and how do they relate? | NOT_PROVEN | Major components |
-| How does important data flow through the system? | NOT_PROVEN | Main data flow |
-| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
-| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
-| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
-| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
-| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
-| What is the current project state? | NOT_PROVEN | Current project state |
-| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
-| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
+| What is the project and what problem does it solve? | PASS | One-minute summary |
+| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
+| What are the major components and how do they relate? | PASS | Major components |
+| How does important data flow through the system? | PASS | Main data flow |
+| What are the main user/domain workflows? | PASS | Main user workflows |
+| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
+| Who/what is authoritative for important decisions? | PASS | Authority model |
+| What is mutable and what is immutable? | PASS | Mutable vs immutable |
+| How does failure/recovery behave? | PASS | Failure and recovery |
+| What is the current project state? | PASS | Current project state |
+| What is proven and what is not proven? | PASS | Proven vs not proven |
+| What may happen next and what is blocked? | PASS | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.

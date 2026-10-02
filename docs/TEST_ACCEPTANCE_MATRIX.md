@@ -7,14 +7,14 @@
 SW2-02 acceptance covers changed-file impact classification plus develop, verify, and finalize governance execution modes. Fast modes may reduce intermediate work only when impact is known; unknown impact must escalate. Finalize must preserve the complete accepted fail-closed governance contract. Runtime/E2E is not applicable to this repository-only orchestration phase. SW2-03 sequence-render redesign is not part of this phase.
 
 Final tested source: external final acceptance evidence.
-Current source digest: e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d
+Current source digest: 1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-02-R1 | Develop mode runs only checks that are safely mapped from the changed-file impact set and never claims final acceptance. | NOT_PROVEN until mode planning and targeted-check regressions pass on the SW2-02 candidate. | NOT_PROVEN |
-| SW2-02-R2 | Verify mode expands to the affected governance and test scope without becoming final acceptance authority. | NOT_PROVEN until changed-file impact tests prove verify is a strict expansion of develop for affected scope. | NOT_PROVEN |
+| SW2-02-R1 | Develop mode runs only checks that are safely mapped from the changed-file impact set and never claims final acceptance. | Governance Selftest run 37035039338 passed on Ubuntu and Windows. scripts/selftest_governance_engine.py executes a real governance_engine.py --mode develop fixture, proves only compile_scripts + engine_regression are selected for a known engine-only change, and proves develop never gains final acceptance authority. | PASS |
+| SW2-02-R2 | Verify mode expands to the affected governance and test scope without becoming final acceptance authority. | NOT_PROVEN until the real SW2-02 candidate executes governance_engine.py --mode verify successfully against the accepted base and remains intermediate evidence. | NOT_PROVEN |
 | SW2-02-R3 | Finalize mode always executes the complete required acceptance graph and remains fail-closed. | NOT_PROVEN until exact-head CI proves finalize executes the complete required regression, synchronization, validator, truth, and clean-state graph. | NOT_PROVEN |
-| SW2-02-R4 | Unknown changed-file impact fails closed by escalating to a broader execution mode. | NOT_PROVEN until unknown-path regression proves develop escalates to verify and verify escalates to finalize. | NOT_PROVEN |
+| SW2-02-R4 | Unknown changed-file impact fails closed by escalating to a broader execution mode. | Governance Selftest run 37035039338 passed mode-planning and CLI integration regressions on Ubuntu and Windows. Unknown develop impact escalates to verify; unknown verify impact escalates to the full finalize graph, fails closed on an incomplete fixture, and remains final_acceptance_authority=false because the request began as verify. | PASS |
 
 ## Test commands
 
@@ -43,7 +43,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-02-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
@@ -56,7 +56,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: NOT_PROVEN
-HUMAN_COMPREHENSION_GATE: NOT_PROVEN
+SYSTEM_OVERVIEW status: PASS
+HUMAN_COMPREHENSION_GATE: PASS
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

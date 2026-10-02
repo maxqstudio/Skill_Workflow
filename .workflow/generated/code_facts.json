@@ -108,7 +108,7 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 284
+      "lines": 378
     },
     {
       "directory": "scripts",
@@ -7388,6 +7388,162 @@
       "target_token": "print"
     },
     {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "scripts.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "git_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "develop_report.read_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "all"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "unknown.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "unknown.write_bytes"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "verify_report.read_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "target_token": "print"
+    },
+    {
       "caller": "scripts/selftest_governance_engine.py::main",
       "target_token": "snapshot_parity_and_immutability"
     },
@@ -7410,6 +7566,10 @@
     {
       "caller": "scripts/selftest_governance_engine.py::main",
       "target_token": "changed_path_collection_contract"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "mode_cli_integration_contract"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::main",
@@ -14589,112 +14749,120 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 28,
-      "line_start": 26,
+      "line_end": 30,
+      "line_start": 28,
       "locator": "scripts/selftest_governance_engine.py::require",
       "symbol": "require"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 37,
-      "line_start": 31,
+      "line_end": 39,
+      "line_start": 33,
       "locator": "scripts/selftest_governance_engine.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 45,
-      "line_start": 40,
+      "line_end": 47,
+      "line_start": 42,
       "locator": "scripts/selftest_governance_engine.py::git_text",
       "symbol": "git_text"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 83,
-      "line_start": 48,
+      "line_end": 85,
+      "line_start": 50,
       "locator": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
       "symbol": "snapshot_parity_and_immutability"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 105,
-      "line_start": 86,
+      "line_end": 107,
+      "line_start": 88,
       "locator": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
       "symbol": "snapshot_fact_reuse"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 127,
-      "line_start": 108,
+      "line_end": 129,
+      "line_start": 110,
       "locator": "scripts/selftest_governance_engine.py::dag_executes_once",
       "symbol": "dag_executes_once"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 116,
-      "line_start": 111,
+      "line_end": 118,
+      "line_start": 113,
       "locator": "scripts/selftest_governance_engine.py::dag_executes_once.action",
       "symbol": "dag_executes_once.action"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 114,
-      "line_start": 112,
+      "line_end": 116,
+      "line_start": 114,
       "locator": "scripts/selftest_governance_engine.py::dag_executes_once.action.run",
       "symbol": "dag_executes_once.action.run"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 167,
-      "line_start": 130,
+      "line_end": 169,
+      "line_start": 132,
       "locator": "scripts/selftest_governance_engine.py::dag_fail_closed",
       "symbol": "dag_fail_closed"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 134,
-      "line_start": 133,
+      "line_end": 136,
+      "line_start": 135,
       "locator": "scripts/selftest_governance_engine.py::dag_fail_closed.fail",
       "symbol": "dag_fail_closed.fail"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 139,
-      "line_start": 136,
+      "line_end": 141,
+      "line_start": 138,
       "locator": "scripts/selftest_governance_engine.py::dag_fail_closed.downstream",
       "symbol": "dag_fail_closed.downstream"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 244,
-      "line_start": 170,
+      "line_end": 246,
+      "line_start": 172,
       "locator": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "symbol": "mode_planning_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 269,
-      "line_start": 247,
+      "line_end": 271,
+      "line_start": 249,
       "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
       "symbol": "changed_path_collection_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 280,
-      "line_start": 272,
+      "line_end": 362,
+      "line_start": 274,
+      "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
+      "symbol": "mode_cli_integration_contract"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 374,
+      "line_start": 365,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -15300,13 +15468,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d",
+  "source_digest": "1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565",
   "source_summary": {
     "files": 27,
     "languages": {
       "Python": 27
     },
-    "lines": 9307,
+    "lines": 9401,
     "test_files": 0
   },
   "tests": []

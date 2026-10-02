@@ -18,7 +18,7 @@ Branch: work/sw2-02-fast-development-workflow
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
 Current candidate SHA: external final acceptance evidence
-Current source digest: e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d
+Current source digest: 1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-02-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
