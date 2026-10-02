@@ -26,4 +26,12 @@ Skill Workflow will adopt its own governed roadmap, project truth, generated doc
 
 Rationale: A governance framework should prove that its contract is practical on itself before expanding it for consumers.
 
+## SW2-ADR-004 — Keep snapshot reuse process-local and non-authoritative
+
+Status: ACCEPTED
+
+Governance Engine V2 may reuse one immutable source snapshot and process-local derived facts only within one execution. Snapshot or memoized state is never acceptance authority; final acceptance starts a fresh process, recaptures the exact candidate source, and reruns required evidence.
+
+Rationale: Repeated source discovery, file reads, AST extraction, and nested script processes are avoidable execution cost, but persisting cache state as truth would weaken provenance and fail-closed semantics.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-PERFORMANCE-PARITY -->

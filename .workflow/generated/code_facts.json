@@ -17,14 +17,14 @@
       "file": "scripts/benchmark_governance.py",
       "is_test": false,
       "language": "Python",
-      "lines": 250
+      "lines": 293
     },
     {
       "directory": "scripts",
       "file": "scripts/extract_project_facts.py",
       "is_test": false,
       "language": "Python",
-      "lines": 248
+      "lines": 255
     },
     {
       "directory": "scripts",
@@ -63,6 +63,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/governance_engine.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 318
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/initialize_project_truth.py",
       "is_test": false,
       "language": "Python",
@@ -77,10 +84,31 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/project_snapshot.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 247
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/script_runner.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 35
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_cross_document_regressions.py",
       "is_test": false,
       "language": "Python",
       "lines": 39
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/selftest_governance_engine.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 152
     },
     {
       "directory": "scripts",
@@ -108,14 +136,14 @@
       "file": "scripts/sequence_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 238
+      "lines": 203
     },
     {
       "directory": "scripts",
       "file": "scripts/sync_project_truth.py",
       "is_test": false,
       "language": "Python",
-      "lines": 153
+      "lines": 146
     },
     {
       "directory": "scripts",
@@ -150,14 +178,14 @@
       "file": "scripts/validate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 116
+      "lines": 84
     },
     {
       "directory": "scripts",
       "file": "scripts/validate_project_truth.py",
       "is_test": false,
       "language": "Python",
-      "lines": 377
+      "lines": 365
     },
     {
       "directory": "scripts",
@@ -240,6 +268,10 @@
       "target_token": "candidate.is_file"
     },
     {
+      "caller": "scripts/benchmark_governance.py::governance_tool",
+      "target_token": "candidate.resolve"
+    },
+    {
       "caller": "scripts/benchmark_governance.py::copy_for_sync",
       "target_token": "shutil.ignore_patterns"
     },
@@ -256,12 +288,76 @@
       "target_token": "shutil.rmtree"
     },
     {
-      "caller": "scripts/benchmark_governance.py::fixture_tool",
-      "target_token": "source_tool.relative_to"
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "baseline.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "commands.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "baseline.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "timings.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::baseline_comparison",
+      "target_token": "isinstance"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
       "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "ap.add_argument"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
@@ -294,6 +390,10 @@
     {
       "caller": "scripts/benchmark_governance.py::main",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "Path"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
@@ -357,6 +457,42 @@
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "timed"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "time.perf_counter"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "active_project_snapshot"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "extract_project_facts"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "time.perf_counter"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "timed"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "_cached_facts"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
       "target_token": "tempfile.TemporaryDirectory"
     },
     {
@@ -369,14 +505,6 @@
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
-      "target_token": "fixture_tool"
-    },
-    {
-      "caller": "scripts/benchmark_governance.py::main",
-      "target_token": "fixture_tool"
-    },
-    {
-      "caller": "scripts/benchmark_governance.py::main",
       "target_token": "run_command"
     },
     {
@@ -398,6 +526,10 @@
     {
       "caller": "scripts/benchmark_governance.py::main",
       "target_token": "str"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "governance_tool"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
@@ -410,6 +542,14 @@
     {
       "caller": "scripts/benchmark_governance.py::main",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "run_command"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "str"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
@@ -445,6 +585,34 @@
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "first_facts.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "cached_facts.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "args.baseline.strip"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "baseline_comparison"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
       "target_token": "bool"
     },
     {
@@ -453,7 +621,7 @@
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
-      "target_token": "sync_tool.parent.relative_to"
+      "target_token": "str"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
@@ -478,6 +646,10 @@
     {
       "caller": "scripts/benchmark_governance.py::main",
       "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::main",
+      "target_token": "fresh_snapshot.metrics"
     },
     {
       "caller": "scripts/benchmark_governance.py::main",
@@ -506,6 +678,14 @@
     {
       "caller": "scripts/benchmark_governance.py::main",
       "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::_cached_facts",
+      "target_token": "active_project_snapshot"
+    },
+    {
+      "caller": "scripts/benchmark_governance.py::_cached_facts",
+      "target_token": "extract_project_facts"
     },
     {
       "caller": "scripts/extract_project_facts.py::call_name",
@@ -672,152 +852,164 @@
       "target_token": "name.endswith"
     },
     {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "Counter"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "snapshot.source_files"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "LANGUAGE_BY_EXT.get"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "path.suffix.lower"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "path.suffix.lower"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "snapshot.read_text"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "source_text.splitlines"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "modules.append"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "is_test_file"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "is_test_file"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "tests.append"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "path.suffix.lower"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "ast.parse"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "snapshot.read_text"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "parse_failures.append"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "PythonFacts"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "visitor.visit"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "symbols.extend"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "routes.extend"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "python_calls.extend"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "modules.sort"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "symbols.sort"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "x.get"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "routes.sort"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "dict"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "language_counts.items"
+    },
+    {
+      "caller": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "target_token": "len"
+    },
+    {
       "caller": "scripts/extract_project_facts.py::extract_project_facts",
       "target_token": "root.resolve"
     },
     {
       "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "source_files"
+      "target_token": "resolve_snapshot"
     },
     {
       "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "Counter"
+      "target_token": "snap.memoized"
     },
     {
       "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.relative_to"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "LANGUAGE_BY_EXT.get"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.suffix.lower"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.suffix.lower"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "len"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.read_text"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "modules.append"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.relative_to"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "is_test_file"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "is_test_file"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "tests.append"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.suffix.lower"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "ast.parse"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "path.read_text"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "parse_failures.append"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "type"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "PythonFacts"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "visitor.visit"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "symbols.extend"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "routes.extend"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "python_calls.extend"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "modules.sort"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "symbols.sort"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "x.get"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "routes.sort"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "sorted"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "set"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "compute_source_digest"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "len"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "sum"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "dict"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "sorted"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "language_counts.items"
-    },
-    {
-      "caller": "scripts/extract_project_facts.py::extract_project_facts",
-      "target_token": "len"
+      "target_token": "_extract_from_snapshot"
     },
     {
       "caller": "scripts/extract_project_facts.py::main",
@@ -5024,6 +5216,338 @@
       "target_token": "print"
     },
     {
+      "caller": "scripts/governance_engine.py::ValidationDAG.__init__",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.__init__",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.__init__",
+      "target_token": "self._assert_acyclic"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "target_token": "visiting.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "target_token": "visit"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "target_token": "visiting.remove"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "target_token": "visited.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG._assert_acyclic",
+      "target_token": "visit"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "results.get"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "execute"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "NodeResult"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "time.perf_counter"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "node.action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "NodeResult"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "target_token": "time.perf_counter"
+    },
+    {
+      "caller": "scripts/governance_engine.py::ValidationDAG.run",
+      "target_token": "execute"
+    },
+    {
+      "caller": "scripts/governance_engine.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/governance_engine.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::state_base",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/governance_engine.py::state_base",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/governance_engine.py::state_base",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/governance_engine.py::state_base",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::state_base",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/governance_engine.py::governed_status",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/governance_engine.py::cli_action",
+      "target_token": "invoke_main"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "governed_status"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_dag",
+      "target_token": "ValidationDAG"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "args.base.strip"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "state_base"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "args.expected_head.strip"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "snapshot.metrics"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "active_project_snapshot"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "build_dag"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "results.items"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "snapshot.metrics"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "result.output.splitlines"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "results.items"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "path.is_absolute"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "path.write_text"
+    },
+    {
       "caller": "scripts/initialize_project_truth.py::copy_file",
       "target_token": "dst.exists"
     },
@@ -5532,6 +6056,318 @@
       "target_token": "failures.append"
     },
     {
+      "caller": "scripts/project_snapshot.py::_git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::_git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::_git_optional",
+      "target_token": "_git"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "_git"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "root.relative_to"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "SnapshotError"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "os.fsdecode"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "indexed_paths.split"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "root.rglob"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "path.suffix.lower"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "result.append"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::discover_source_paths",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::canonical_source_bytes",
+      "target_token": "path.read_bytes"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::SnapshotFile.text",
+      "target_token": "self.canonical_bytes.decode"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "time.perf_counter"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "discover_source_paths"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "hashlib.sha256"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "canonical_source_bytes"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "SnapshotError"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "digest.update"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "rel.encode"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "digest.update"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "digest.update"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "digest.update"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "captured.append"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "SnapshotFile"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "cls"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "digest.hexdigest"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "_git_optional"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "_git_optional"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "time.perf_counter"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "target_token": "value.is_absolute"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "target_token": "value.resolve"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "target_token": "SnapshotError"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "target_token": "value.as_posix"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "target_token": "SnapshotError"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "target_token": "self.entry"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "target_token": "self.entry"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.memoized",
+      "target_token": "factory"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::active_project_snapshot",
+      "target_token": "_ACTIVE_SNAPSHOT.set"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::active_project_snapshot",
+      "target_token": "_ACTIVE_SNAPSHOT.reset"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::active_snapshot_for",
+      "target_token": "_ACTIVE_SNAPSHOT.get"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::active_snapshot_for",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::resolve_snapshot",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::resolve_snapshot",
+      "target_token": "SnapshotError"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::resolve_snapshot",
+      "target_token": "snapshot.root.as_posix"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::resolve_snapshot",
+      "target_token": "root.as_posix"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::resolve_snapshot",
+      "target_token": "active_snapshot_for"
+    },
+    {
+      "caller": "scripts/project_snapshot.py::resolve_snapshot",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "io.StringIO"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "redirect_stdout"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "redirect_stderr"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "main_func"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "buffer.write"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/script_runner.py::invoke_main",
+      "target_token": "buffer.getvalue"
+    },
+    {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "claim_backlink_comment"
     },
@@ -5581,6 +6417,310 @@
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::require",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "source.write_bytes"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "source_files"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "compute_source_digest"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "p.resolve"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "p.resolve"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "snapshot.source_files"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "snapshot.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "snapshot.read_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "source.write_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "snapshot.read_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "ProjectSnapshot.capture"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "active_project_snapshot"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "extract_project_facts"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "extract_project_facts"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "compute_source_digest"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "snapshot.metrics"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "ValidationDAG"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "action"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "action"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "action"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "all"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "results.values"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationDAG"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "ValidationDAG"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "snapshot_parity_and_immutability"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "snapshot_fact_reuse"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "dag_executes_once"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "dag_fail_closed"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
       "target_token": "print"
     },
     {
@@ -6984,80 +8124,48 @@
       "target_token": "git"
     },
     {
+      "caller": "scripts/sequence_contract.py::_selected_snapshot",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::_selected_snapshot",
+      "target_token": "active_snapshot_for"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::_selected_snapshot",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::_selected_snapshot",
+      "target_token": "selected.root.as_posix"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::_selected_snapshot",
+      "target_token": "root.as_posix"
+    },
+    {
       "caller": "scripts/sequence_contract.py::source_files",
       "target_token": "root.resolve"
     },
     {
       "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "Path"
+      "target_token": "_selected_snapshot"
     },
     {
       "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "git"
+      "target_token": "selected.source_files"
     },
     {
       "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "root.relative_to"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "subprocess.check_output"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "Path"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "os.fsdecode"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "indexed_paths.split"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "RuntimeError"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "root.rglob"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "path.is_file"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "path.suffix.lower"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "path.relative_to"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "any"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "result.append"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "sorted"
-    },
-    {
-      "caller": "scripts/sequence_contract.py::source_files",
-      "target_token": "p.relative_to"
+      "target_token": "discover_source_paths"
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
       "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::compute_source_digest",
+      "target_token": "_selected_snapshot"
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
@@ -7065,7 +8173,7 @@
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
-      "target_token": "source_files"
+      "target_token": "discover_source_paths"
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
@@ -7085,7 +8193,7 @@
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
-      "target_token": "path.read_bytes"
+      "target_token": "canonical_source_bytes"
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
@@ -7324,8 +8432,180 @@
       "target_token": "forbidden.append"
     },
     {
-      "caller": "scripts/sync_project_truth.py::run",
-      "target_token": "subprocess.run"
+      "caller": "scripts/sync_project_truth.py::run_main",
+      "target_token": "invoke_main"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "profile_path.is_file"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "documentation_settings"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "parse_profile"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "run_main"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "run_main"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "documentation.get"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "documentation.get"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "spec_root.is_absolute"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "acceptance_path.is_file"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "acceptance_path.read_text"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "acceptance.setdefault"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "acceptance_path.write_bytes"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "run_main"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "run_main"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "acceptance_path.relative_to"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
@@ -7349,219 +8629,23 @@
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "profile_path.is_file"
+      "target_token": "active_snapshot_for"
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
+      "target_token": "sync_once"
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "documentation_settings"
+      "target_token": "ProjectSnapshot.capture"
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "parse_profile"
+      "target_token": "active_project_snapshot"
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "Path"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "compiler.is_file"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "validator.is_file"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "compiler.is_file"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "validator.is_file"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "run"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "run"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "documentation.get"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "Path"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "documentation.get"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "spec_root.is_absolute"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "acceptance_path.is_file"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "json.loads"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "acceptance_path.read_text"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "acceptance.setdefault"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "acceptance_path.write_bytes"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "json.dumps"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "run"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "run"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "acceptance_path.relative_to"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/sync_project_truth.py::main",
-      "target_token": "print"
+      "target_token": "sync_once"
     },
     {
       "caller": "scripts/validate_cross_document_consistency.py::git",
@@ -10129,47 +11213,15 @@
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "Path"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "compiler.is_file"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "compiler.is_file"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "quality_validator.is_file"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "quality_validator.is_file"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "print"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
       "target_token": "str"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "str"
+      "target_token": "compiler_args.extend"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "cmd.extend"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "subprocess.run"
+      "target_token": "invoke_main"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
@@ -10178,10 +11230,6 @@
     {
       "caller": "scripts/validate_project_docs.py::main",
       "target_token": "print"
-    },
-    {
-      "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "str"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
@@ -10201,11 +11249,11 @@
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "quality_cmd.extend"
+      "target_token": "quality_args.extend"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
-      "target_token": "subprocess.run"
+      "target_token": "invoke_main"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
@@ -10353,6 +11401,10 @@
     },
     {
       "caller": "scripts/validate_project_truth.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_project_truth.py::main",
       "target_token": "ap.parse_args"
     },
     {
@@ -10433,27 +11485,7 @@
     },
     {
       "caller": "scripts/validate_project_truth.py::main",
-      "target_token": "Path"
-    },
-    {
-      "caller": "scripts/validate_project_truth.py::main",
-      "target_token": "project_docs_validator.is_file"
-    },
-    {
-      "caller": "scripts/validate_project_truth.py::main",
-      "target_token": "project_docs_validator.is_file"
-    },
-    {
-      "caller": "scripts/validate_project_truth.py::main",
-      "target_token": "failures.append"
-    },
-    {
-      "caller": "scripts/validate_project_truth.py::main",
-      "target_token": "subprocess.run"
-    },
-    {
-      "caller": "scripts/validate_project_truth.py::main",
-      "target_token": "str"
+      "target_token": "invoke_main"
     },
     {
       "caller": "scripts/validate_project_truth.py::main",
@@ -11705,23 +12737,31 @@
     {
       "file": "scripts/benchmark_governance.py",
       "kind": "function",
-      "line_end": 108,
+      "line_end": 137,
       "line_start": 106,
-      "locator": "scripts/benchmark_governance.py::fixture_tool",
-      "symbol": "fixture_tool"
+      "locator": "scripts/benchmark_governance.py::baseline_comparison",
+      "symbol": "baseline_comparison"
     },
     {
       "file": "scripts/benchmark_governance.py",
       "kind": "function",
-      "line_end": 246,
-      "line_start": 111,
+      "line_end": 284,
+      "line_start": 140,
       "locator": "scripts/benchmark_governance.py::main",
       "symbol": "main"
     },
     {
+      "file": "scripts/benchmark_governance.py",
+      "kind": "function",
+      "line_end": 289,
+      "line_start": 287,
+      "locator": "scripts/benchmark_governance.py::_cached_facts",
+      "symbol": "_cached_facts"
+    },
+    {
       "file": "scripts/extract_project_facts.py",
       "kind": "function",
-      "line_end": 47,
+      "line_end": 43,
       "line_start": 37,
       "locator": "scripts/extract_project_facts.py::call_name",
       "symbol": "call_name"
@@ -11729,96 +12769,104 @@
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "function",
-      "line_end": 53,
-      "line_start": 50,
+      "line_end": 49,
+      "line_start": 46,
       "locator": "scripts/extract_project_facts.py::literal_string",
       "symbol": "literal_string"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "class",
-      "line_end": 131,
-      "line_start": 56,
+      "line_end": 127,
+      "line_start": 52,
       "locator": "scripts/extract_project_facts.py::PythonFacts",
       "symbol": "PythonFacts"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 63,
-      "line_start": 57,
+      "line_end": 59,
+      "line_start": 53,
       "locator": "scripts/extract_project_facts.py::PythonFacts.__init__",
       "symbol": "PythonFacts.__init__"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 67,
-      "line_start": 65,
+      "line_end": 63,
+      "line_start": 61,
       "locator": "scripts/extract_project_facts.py::PythonFacts.locator",
       "symbol": "PythonFacts.locator"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 81,
-      "line_start": 69,
+      "line_end": 77,
+      "line_start": 65,
       "locator": "scripts/extract_project_facts.py::PythonFacts.visit_ClassDef",
       "symbol": "PythonFacts.visit_ClassDef"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 111,
-      "line_start": 83,
+      "line_end": 107,
+      "line_start": 79,
       "locator": "scripts/extract_project_facts.py::PythonFacts._function",
       "symbol": "PythonFacts._function"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 114,
-      "line_start": 113,
+      "line_end": 110,
+      "line_start": 109,
       "locator": "scripts/extract_project_facts.py::PythonFacts.visit_FunctionDef",
       "symbol": "PythonFacts.visit_FunctionDef"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 121,
-      "line_start": 116,
+      "line_end": 117,
+      "line_start": 112,
       "locator": "scripts/extract_project_facts.py::PythonFacts.visit_AsyncFunctionDef",
       "symbol": "PythonFacts.visit_AsyncFunctionDef"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "method",
-      "line_end": 131,
-      "line_start": 123,
+      "line_end": 127,
+      "line_start": 119,
       "locator": "scripts/extract_project_facts.py::PythonFacts.visit_Call",
       "symbol": "PythonFacts.visit_Call"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "function",
-      "line_end": 144,
-      "line_start": 134,
+      "line_end": 140,
+      "line_start": 130,
       "locator": "scripts/extract_project_facts.py::is_test_file",
       "symbol": "is_test_file"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "function",
-      "line_end": 221,
-      "line_start": 147,
+      "line_end": 216,
+      "line_start": 143,
+      "locator": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "symbol": "_extract_from_snapshot"
+    },
+    {
+      "file": "scripts/extract_project_facts.py",
+      "kind": "function",
+      "line_end": 228,
+      "line_start": 219,
       "locator": "scripts/extract_project_facts.py::extract_project_facts",
       "symbol": "extract_project_facts"
     },
     {
       "file": "scripts/extract_project_facts.py",
       "kind": "function",
-      "line_end": 244,
-      "line_start": 224,
+      "line_end": 251,
+      "line_start": 231,
       "locator": "scripts/extract_project_facts.py::main",
       "symbol": "main"
     },
@@ -12391,6 +13439,118 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/governance_engine.py",
+      "kind": "class",
+      "line_end": 36,
+      "line_start": 30,
+      "locator": "scripts/governance_engine.py::NodeResult",
+      "symbol": "NodeResult"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "class",
+      "line_end": 43,
+      "line_start": 40,
+      "locator": "scripts/governance_engine.py::ValidationNode",
+      "symbol": "ValidationNode"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "class",
+      "line_end": 123,
+      "line_start": 46,
+      "locator": "scripts/governance_engine.py::ValidationDAG",
+      "symbol": "ValidationDAG"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "method",
+      "line_end": 59,
+      "line_start": 47,
+      "locator": "scripts/governance_engine.py::ValidationDAG.__init__",
+      "symbol": "ValidationDAG.__init__"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "method",
+      "line_end": 77,
+      "line_start": 61,
+      "locator": "scripts/governance_engine.py::ValidationDAG._assert_acyclic",
+      "symbol": "ValidationDAG._assert_acyclic"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "method",
+      "line_end": 74,
+      "line_start": 65,
+      "locator": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "symbol": "ValidationDAG._assert_acyclic.visit"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "method",
+      "line_end": 123,
+      "line_start": 79,
+      "locator": "scripts/governance_engine.py::ValidationDAG.run",
+      "symbol": "ValidationDAG.run"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "method",
+      "line_end": 119,
+      "line_start": 82,
+      "locator": "scripts/governance_engine.py::ValidationDAG.run.execute",
+      "symbol": "ValidationDAG.run.execute"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 131,
+      "line_start": 126,
+      "locator": "scripts/governance_engine.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 142,
+      "line_start": 134,
+      "locator": "scripts/governance_engine.py::state_base",
+      "symbol": "state_base"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 158,
+      "line_start": 145,
+      "locator": "scripts/governance_engine.py::governed_status",
+      "symbol": "governed_status"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 166,
+      "line_start": 161,
+      "locator": "scripts/governance_engine.py::cli_action",
+      "symbol": "cli_action"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 242,
+      "line_start": 169,
+      "locator": "scripts/governance_engine.py::build_dag",
+      "symbol": "build_dag"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 314,
+      "line_start": 245,
+      "locator": "scripts/governance_engine.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/initialize_project_truth.py",
       "kind": "function",
       "line_end": 16,
@@ -12487,11 +13647,251 @@
       "symbol": "validate_profile"
     },
     {
+      "file": "scripts/project_snapshot.py",
+      "kind": "class",
+      "line_end": 37,
+      "line_start": 36,
+      "locator": "scripts/project_snapshot.py::SnapshotError",
+      "symbol": "SnapshotError"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 45,
+      "line_start": 40,
+      "locator": "scripts/project_snapshot.py::_git",
+      "symbol": "_git"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 52,
+      "line_start": 48,
+      "locator": "scripts/project_snapshot.py::_git_optional",
+      "symbol": "_git_optional"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 101,
+      "line_start": 55,
+      "locator": "scripts/project_snapshot.py::discover_source_paths",
+      "symbol": "discover_source_paths"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 106,
+      "line_start": 104,
+      "locator": "scripts/project_snapshot.py::canonical_source_bytes",
+      "symbol": "canonical_source_bytes"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "class",
+      "line_end": 116,
+      "line_start": 110,
+      "locator": "scripts/project_snapshot.py::SnapshotFile",
+      "symbol": "SnapshotFile"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 116,
+      "line_start": 115,
+      "locator": "scripts/project_snapshot.py::SnapshotFile.text",
+      "symbol": "SnapshotFile.text"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "class",
+      "line_end": 214,
+      "line_start": 120,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot",
+      "symbol": "ProjectSnapshot"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 168,
+      "line_start": 134,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "symbol": "ProjectSnapshot.capture"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 171,
+      "line_start": 170,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.source_files",
+      "symbol": "ProjectSnapshot.source_files"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 185,
+      "line_start": 173,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "symbol": "ProjectSnapshot.entry"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 188,
+      "line_start": 187,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "symbol": "ProjectSnapshot.read_bytes"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 191,
+      "line_start": 190,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "symbol": "ProjectSnapshot.read_text"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 200,
+      "line_start": 193,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.memoized",
+      "symbol": "ProjectSnapshot.memoized"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "method",
+      "line_end": 214,
+      "line_start": 202,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "symbol": "ProjectSnapshot.metrics"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 228,
+      "line_start": 223,
+      "locator": "scripts/project_snapshot.py::active_project_snapshot",
+      "symbol": "active_project_snapshot"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 235,
+      "line_start": 231,
+      "locator": "scripts/project_snapshot.py::active_snapshot_for",
+      "symbol": "active_snapshot_for"
+    },
+    {
+      "file": "scripts/project_snapshot.py",
+      "kind": "function",
+      "line_end": 247,
+      "line_start": 238,
+      "locator": "scripts/project_snapshot.py::resolve_snapshot",
+      "symbol": "resolve_snapshot"
+    },
+    {
+      "file": "scripts/script_runner.py",
+      "kind": "function",
+      "line_end": 35,
+      "line_start": 12,
+      "locator": "scripts/script_runner.py::invoke_main",
+      "symbol": "invoke_main"
+    },
+    {
       "file": "scripts/selftest_cross_document_regressions.py",
       "kind": "function",
       "line_end": 35,
       "line_start": 7,
       "locator": "scripts/selftest_cross_document_regressions.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 18,
+      "line_start": 16,
+      "locator": "scripts/selftest_governance_engine.py::require",
+      "symbol": "require"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 21,
+      "locator": "scripts/selftest_governance_engine.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 62,
+      "line_start": 30,
+      "locator": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
+      "symbol": "snapshot_parity_and_immutability"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 84,
+      "line_start": 65,
+      "locator": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
+      "symbol": "snapshot_fact_reuse"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 105,
+      "line_start": 87,
+      "locator": "scripts/selftest_governance_engine.py::dag_executes_once",
+      "symbol": "dag_executes_once"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "method",
+      "line_end": 94,
+      "line_start": 90,
+      "locator": "scripts/selftest_governance_engine.py::dag_executes_once.action",
+      "symbol": "dag_executes_once.action"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "method",
+      "line_end": 93,
+      "line_start": 91,
+      "locator": "scripts/selftest_governance_engine.py::dag_executes_once.action.run",
+      "symbol": "dag_executes_once.action.run"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 139,
+      "line_start": 108,
+      "locator": "scripts/selftest_governance_engine.py::dag_fail_closed",
+      "symbol": "dag_fail_closed"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "method",
+      "line_end": 112,
+      "line_start": 111,
+      "locator": "scripts/selftest_governance_engine.py::dag_fail_closed.fail",
+      "symbol": "dag_fail_closed.fail"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "method",
+      "line_end": 117,
+      "line_start": 114,
+      "locator": "scripts/selftest_governance_engine.py::dag_fail_closed.downstream",
+      "symbol": "dag_fail_closed.downstream"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 148,
+      "line_start": 142,
+      "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
     {
@@ -12609,120 +14009,136 @@
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 31,
-      "line_start": 30,
+      "line_end": 25,
+      "line_start": 24,
       "locator": "scripts/sequence_contract.py::load_json",
       "symbol": "load_json"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 36,
-      "line_start": 34,
+      "line_end": 30,
+      "line_start": 28,
       "locator": "scripts/sequence_contract.py::write_json",
       "symbol": "write_json"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 40,
-      "line_start": 39,
+      "line_end": 34,
+      "line_start": 33,
       "locator": "scripts/sequence_contract.py::sha256_file",
       "symbol": "sha256_file"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 48,
-      "line_start": 43,
+      "line_end": 42,
+      "line_start": 37,
       "locator": "scripts/sequence_contract.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 52,
-      "line_start": 51,
+      "line_end": 46,
+      "line_start": 45,
       "locator": "scripts/sequence_contract.py::git_head",
       "symbol": "git_head"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 108,
-      "line_start": 55,
+      "line_end": 56,
+      "line_start": 49,
+      "locator": "scripts/sequence_contract.py::_selected_snapshot",
+      "symbol": "_selected_snapshot"
+    },
+    {
+      "file": "scripts/sequence_contract.py",
+      "kind": "function",
+      "line_end": 67,
+      "line_start": 59,
       "locator": "scripts/sequence_contract.py::source_files",
       "symbol": "source_files"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 121,
-      "line_start": 111,
+      "line_end": 86,
+      "line_start": 70,
       "locator": "scripts/sequence_contract.py::compute_source_digest",
       "symbol": "compute_source_digest"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 131,
-      "line_start": 124,
+      "line_end": 96,
+      "line_start": 89,
       "locator": "scripts/sequence_contract.py::is_ancestor",
       "symbol": "is_ancestor"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 138,
-      "line_start": 134,
+      "line_end": 103,
+      "line_start": 99,
       "locator": "scripts/sequence_contract.py::sanitize_alias",
       "symbol": "sanitize_alias"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 173,
-      "line_start": 141,
+      "line_end": 138,
+      "line_start": 106,
       "locator": "scripts/sequence_contract.py::render_graph_mermaid",
       "symbol": "render_graph_mermaid"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 183,
-      "line_start": 176,
+      "line_end": 148,
+      "line_start": 141,
       "locator": "scripts/sequence_contract.py::plan_locator_map",
       "symbol": "plan_locator_map"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 191,
-      "line_start": 186,
+      "line_end": 156,
+      "line_start": 151,
       "locator": "scripts/sequence_contract.py::graph_edge_set",
       "symbol": "graph_edge_set"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 238,
-      "line_start": 194,
+      "line_end": 203,
+      "line_start": 159,
       "locator": "scripts/sequence_contract.py::compare_plan_actual",
       "symbol": "compare_plan_actual"
     },
     {
       "file": "scripts/sync_project_truth.py",
       "kind": "function",
-      "line_end": 37,
-      "line_start": 28,
-      "locator": "scripts/sync_project_truth.py::run",
-      "symbol": "run"
+      "line_end": 31,
+      "line_start": 30,
+      "locator": "scripts/sync_project_truth.py::run_main",
+      "symbol": "run_main"
     },
     {
       "file": "scripts/sync_project_truth.py",
       "kind": "function",
-      "line_end": 149,
-      "line_start": 40,
+      "line_end": 127,
+      "line_start": 34,
+      "locator": "scripts/sync_project_truth.py::sync_once",
+      "symbol": "sync_once"
+    },
+    {
+      "file": "scripts/sync_project_truth.py",
+      "kind": "function",
+      "line_end": 142,
+      "line_start": 130,
       "locator": "scripts/sync_project_truth.py::main",
       "symbol": "main"
     },
@@ -12977,7 +14393,7 @@
     {
       "file": "scripts/validate_project_docs.py",
       "kind": "function",
-      "line_end": 112,
+      "line_end": 80,
       "line_start": 19,
       "locator": "scripts/validate_project_docs.py::main",
       "symbol": "main"
@@ -12985,48 +14401,48 @@
     {
       "file": "scripts/validate_project_truth.py",
       "kind": "function",
-      "line_end": 60,
-      "line_start": 55,
+      "line_end": 62,
+      "line_start": 57,
       "locator": "scripts/validate_project_truth.py::run_git",
       "symbol": "run_git"
     },
     {
       "file": "scripts/validate_project_truth.py",
       "kind": "function",
-      "line_end": 64,
-      "line_start": 63,
+      "line_end": 66,
+      "line_start": 65,
       "locator": "scripts/validate_project_truth.py::git_root",
       "symbol": "git_root"
     },
     {
       "file": "scripts/validate_project_truth.py",
       "kind": "function",
-      "line_end": 81,
-      "line_start": 67,
+      "line_end": 83,
+      "line_start": 69,
       "locator": "scripts/validate_project_truth.py::parse_table",
       "symbol": "parse_table"
     },
     {
       "file": "scripts/validate_project_truth.py",
       "kind": "function",
-      "line_end": 85,
-      "line_start": 84,
+      "line_end": 87,
+      "line_start": 86,
       "locator": "scripts/validate_project_truth.py::split_refs",
       "symbol": "split_refs"
     },
     {
       "file": "scripts/validate_project_truth.py",
       "kind": "function",
-      "line_end": 94,
-      "line_start": 88,
+      "line_end": 96,
+      "line_start": 90,
       "locator": "scripts/validate_project_truth.py::file_exists",
       "symbol": "file_exists"
     },
     {
       "file": "scripts/validate_project_truth.py",
       "kind": "function",
-      "line_end": 373,
-      "line_start": 97,
+      "line_end": 361,
+      "line_start": 99,
       "locator": "scripts/validate_project_truth.py::main",
       "symbol": "main"
     },
@@ -13080,13 +14496,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "f9527928cdb48e848a317cdf3d356c3434083736f47837c7b8bda661f72ffa58",
+  "source_digest": "84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4",
   "source_summary": {
-    "files": 23,
+    "files": 27,
     "languages": {
-      "Python": 23
+      "Python": 27
     },
-    "lines": 7991,
+    "lines": 8707,
     "test_files": 0
   },
   "tests": []

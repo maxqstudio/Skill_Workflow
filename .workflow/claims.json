@@ -61,16 +61,21 @@
       "id": "TRUTH-SW2-PERFORMANCE-PARITY",
       "runtime_evidence": [],
       "source_owners": [
-        "SKILL.md"
+        "SKILL.md",
+        "scripts/governance_engine.py",
+        "scripts/project_snapshot.py"
       ],
-      "status": "NOT_APPLICABLE",
-      "tests": []
+      "status": "PASS",
+      "tests": [
+        "scripts/selftest_governance_engine.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
     }
   ],
   "relations": [
     {
       "claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
-      "notes": "Performance work is valid only if fail-closed acceptance remains intact. The claim is NOT_APPLICABLE in SW2-00 because no V2 performance optimization is accepted in the baseline phase; it must be re-opened and proven when optimization begins.",
+      "notes": "Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proves this relation through exact-head cross-platform regression, fail-closed DAG tests, current sequence acceptance, and final Project Truth validation.",
       "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
       "relation": "REQUIRES"
     }

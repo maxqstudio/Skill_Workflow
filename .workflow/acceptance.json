@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-00 acceptance covers STRICT self-governance, exact-head cross-platform source tests, deterministic project-truth synchronization, corrected static DURING sequence evidence, and reproducible self/consumer governance baselines. Repository merge enforcement remains an audited and recorded gap deferred to SW2-07; Mermaid renderability and bounded human diagram complexity remain deferred to SW2-03.",
+  "evidence_boundary": "SW2-01 acceptance covers the immutable source snapshot, process-local reusable derived facts, dependency-aware governance DAG, governance-parity regressions, current static sequence evidence, and measured execution improvement relative to the accepted pre-V2/current-main contract. Runtime/E2E is not applicable to this repository-only governance-engine phase. Repository merge enforcement remains deferred to SW2-07; Mermaid renderability and bounded human diagram complexity remain deferred to SW2-03. SW2-02 execution-mode work is not part of this acceptance.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,27 +17,27 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PROJECT_PROFILE.yaml, .workflow specs, canonical generated docs, Self Governance run 36977990910",
-      "id": "SW2-00-R1",
-      "requirement": "Skill Workflow is governed by its own STRICT profile and synchronized project truth.",
+      "evidence": "Governance Selftest run 37017181150 passed Engine V2 regression on Ubuntu and Windows. Self performance run 37017491760 measured one source enumeration, 27 source reads for 27 files, one derived-fact miss and three hits, with source digest 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4.",
+      "id": "SW2-01-R1",
+      "requirement": "One immutable source snapshot supplies reusable inventory, canonical bytes, digest, and derived source facts within a governance engine execution.",
       "status": "PASS"
     },
     {
-      "evidence": "benchmarks/baselines/sw2-00-self-linux.json and benchmarks/baselines/sw2-00-max-grounding-linux.json",
-      "id": "SW2-00-R2",
-      "requirement": "A reproducible current performance baseline exists before engine optimization begins.",
+      "evidence": "scripts/selftest_governance_engine.py proves execute-once, blocked-downstream, unknown-dependency, and cycle rejection. Self Governance fail-closed evidence blocked final Project Truth behind failed dependencies instead of executing downstream acceptance on unproven state.",
+      "id": "SW2-01-R2",
+      "requirement": "A dependency-aware validation DAG executes each required node once, fails closed, and avoids nested validator subprocess orchestration on the V2 path.",
       "status": "PASS"
     },
     {
-      "evidence": "benchmarks/baselines/sw2-00-repository-enforcement.json",
-      "id": "SW2-00-R3",
-      "requirement": "Current main/branch/ruleset enforcement is audited and the required remediation is explicitly recorded.",
+      "evidence": "Exact-head candidate 0b9be3b45d4f6ba129715b6378295760baef0b57 passed Governance Selftest run 37025006496, SW2 Sequence Evidence run 37025006302, SW2 Engine Performance run 37025006408, and SW2 Consumer Engine Performance run 37025006331. Self Governance run 37025007273 proved synchronized docs, clean worktree, cross-document consistency, human comprehension, and fail-closed final truth behavior; its only remaining failure was intentionally unpromoted final truth gates. Manual semantic audit verified accepted inventory/digest semantics, immutability, fresh recapture, expected-head rejection, and DAG failure behavior against scripts/project_snapshot.py, scripts/governance_engine.py, and scripts/selftest_governance_engine.py.",
+      "id": "SW2-01-R3",
+      "requirement": "V2 acceptance preserves the accepted pre-V2 governance contract, source-inventory semantics, and required failure behavior.",
       "status": "PASS"
     },
     {
-      "evidence": ".workflow/known_defects.json including performance, docs, self-governance, enforcement, exact-head provenance, and sequence resolver defects",
-      "id": "SW2-00-R4",
-      "requirement": "Known performance, documentation, sequence, and governance defects are recorded with evidence.",
+      "evidence": "Run 37017491760: Skill Workflow sync_project_truth 0.74522295s -> 0.29126614s, 60.9156% improvement. Run 37017491292: pinned max-grounding sync 1.104520865s -> 0.264897568s, 76.0170% improvement. Tracked summaries: benchmarks/results/sw2-01-self-linux.json and benchmarks/results/sw2-01-max-grounding-linux.json. Hosted-runner timing is comparative only; isolated primitive timing is not claimed to improve universally.",
+      "id": "SW2-01-R4",
+      "requirement": "Measured self and governed-consumer governance execution cost improves relative to accepted baselines without skipping required gates.",
       "status": "PASS"
     }
   ],
@@ -45,22 +45,20 @@
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-00-GOVERNANCE",
+  "sequence_session": "SW2-01-GOVERNANCE",
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
+    "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_sequence_call_resolution.py",
+    "python scripts/selftest_cross_document_regressions.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
-    "python scripts/benchmark_governance.py --root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD>",
-    "python scripts/benchmark_governance.py --root <GOVERNED_CONSUMER> --repeats 3 --expected-head <EXACT_CONSUMER_HEAD>",
-    "python scripts/validate_project_docs.py --root .",
-    "python scripts/validate_doc_quality.py --root .",
+    "python scripts/benchmark_governance.py --root . --tool-root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD> --baseline benchmarks/baselines/sw2-00-self-linux.json",
+    "python scripts/benchmark_governance.py --root <GOVERNED_CONSUMER> --tool-root . --repeats 3 --expected-head <EXACT_CONSUMER_HEAD> --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json",
+    "python scripts/governance_engine.py --root . --base 964481ed1609f87904ba9e08890bffc0a10c3fd4 --sync --expected-head <EXACT_HEAD>",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/validate_handoff.py --root .",
-    "python scripts/validate_human_comprehension.py --root . --require-pass",
-    "python scripts/validate_cross_document_consistency.py --root . --base 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8 --require-base",
-    "python scripts/validate_project_truth.py --root ."
+    "python scripts/validate_handoff.py --root ."
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

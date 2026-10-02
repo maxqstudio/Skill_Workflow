@@ -1,0 +1,39 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-01-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-01-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-01-GOVERNANCE.actual.json",
+    "source_digest": "84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4"
+  },
+  "critical": true,
+  "evidence_boundary": "This DURING session covers the static Governance Engine V2 orchestration entrypoint and its source-visible dependencies. Snapshot and memoization are acceleration only; hosted CI scheduling, dynamic Python behavior, and runtime semantics outside static extraction require separate evidence.",
+  "implementation_base_sha": "964481ed1609f87904ba9e08890bffc0a10c3fd4",
+  "mode": "DURING",
+  "phase": "SW2-01",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-01-GOVERNANCE",
+  "status": "VERIFIED",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py",
+    "scripts/selftest_sequence_call_resolution.py"
+  ]
+}

@@ -47,8 +47,20 @@ jobs:
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
 
-      - name: Generate synchronized self-governance state
-        run: python scripts/sync_project_truth.py --root .
+      - name: Governance Engine V2 regression
+        run: python scripts/selftest_governance_engine.py
+
+      - name: Run synchronized Governance Engine V2
+        shell: bash
+        run: |
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          test -n "$base"
+          python scripts/governance_engine.py \
+            --root . \
+            --base "$base" \
+            --sync \
+            --expected-head "$expected"
 
       - name: Upload generated governance preview
         if: always()
@@ -73,31 +85,12 @@ jobs:
             exit 1
           fi
 
-      - name: Validate generated documentation
-        run: python scripts/validate_project_docs.py --root .
-
-      - name: Validate documentation quality
-        run: python scripts/validate_doc_quality.py --root .
-
-      - name: Validate human comprehension
-        run: python scripts/validate_human_comprehension.py --root . --require-pass
-
-      - name: Validate cross-document consistency
-        shell: bash
-        run: |
-          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
-          test -n "$base"
-          python scripts/validate_cross_document_consistency.py --root . --base "$base" --require-base
-
-      - name: Validate final project truth
-        run: python scripts/validate_project_truth.py --root .
-
-      - name: Require validators to remain read-only
+      - name: Require engine path to remain read-only after synchronization
         shell: bash
         run: |
           status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs)"
           if [ -n "$status" ]; then
-            echo "Validator chain mutated governed state:"
+            echo "Governance Engine V2 mutated governed state unexpectedly:"
             printf '%s\n' "$status"
             exit 1
           fi

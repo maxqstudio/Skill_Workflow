@@ -38,13 +38,13 @@ HEAD is recorded externally after the commit exists.
 | TRUTH-SW-FAIL-CLOSED | Required governance failures block final project acceptance. | SYSTEM_OVERVIEW.md; PROJECT_TRUTH_SYNC.md | SKILL.md | scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | PASS |
 | TRUTH-SW-ROADMAP-SYNC | The current project phase must equal the roadmap current phase and exactly one roadmap phase must be CURRENT. | ROADMAP.md; CURRENT_STATE.md; PROJECT_TRUTH_SYNC.md | scripts/generate_project_docs.py; scripts/validate_project_truth.py | scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | PASS |
 | TRUTH-SW-DOCS-DETERMINISTIC | Generated project Markdown must reproduce deterministically from current source and machine-readable project truth. | DOC_SYNC_MATRIX.md; PROJECT_TRUTH_SYNC.md | scripts/generate_project_docs.py; scripts/validate_project_docs.py | scripts/selftest_project_truth_compiler.py | NOT_APPLICABLE | PASS |
-| TRUTH-SW2-PERFORMANCE-PARITY | SW2 performance improvements must preserve required governance semantics and final fail-closed acceptance. | ROADMAP.md; DECISIONS.md; PROJECT_TRUTH_SYNC.md | SKILL.md |  | NOT_APPLICABLE | NOT_APPLICABLE |
+| TRUTH-SW2-PERFORMANCE-PARITY | SW2 performance improvements must preserve required governance semantics and final fail-closed acceptance. | ROADMAP.md; DECISIONS.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/governance_engine.py; scripts/project_snapshot.py | scripts/selftest_governance_engine.py; scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | PASS |
 
 ## Claim relations
 
 | Claim ID | Relation | Other Claim ID | Notes |
 |---|---|---|---|
-| TRUTH-SW2-PERFORMANCE-PARITY | REQUIRES | TRUTH-SW-FAIL-CLOSED | Performance work is valid only if fail-closed acceptance remains intact. The claim is NOT_APPLICABLE in SW2-00 because no V2 performance optimization is accepted in the baseline phase; it must be re-opened and proven when optimization begins. |
+| TRUTH-SW2-PERFORMANCE-PARITY | REQUIRES | TRUTH-SW-FAIL-CLOSED | Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proves this relation through exact-head cross-platform regression, fail-closed DAG tests, current sequence acceptance, and final Project Truth validation. |
 
 ## Cross-document consistency audit
 

@@ -2,16 +2,16 @@
 
 # ROADMAP
 
-Current project phase: SW2-00
-Current roadmap phase: SW2-00
+Current project phase: SW2-01
+Current roadmap phase: SW2-01
 ROADMAP_SYNC: PASS
 
 ## Phase plan
 
 | Order | Phase | Title | Roadmap status | Objective | Exit criteria |
 |---:|---|---|---|---|---|
-| 1 | SW2-00 | Baseline & Self-Governance | CURRENT | Make Skill Workflow govern itself, establish exact current authority, capture performance and enforcement baselines, and define measurable V2 acceptance. | STRICT self-governance specs and generated docs are synchronized.<br>Current main/branch/ruleset enforcement is audited and required remediation is recorded.<br>Existing governance execution has reproducible timing, scan-count, and CI baselines.<br>Known performance, documentation, sequence, and governance defects are recorded with evidence.<br>SW2-01 may begin only after SW2-00 acceptance evidence is complete. |
-| 2 | SW2-01 | Governance Engine V2 | PLANNED | Replace repeated scans and nested validator subprocess work with one immutable project snapshot and a dependency-aware validation DAG. | One canonical scan produces reusable facts for generators and validators.<br>Cache is acceleration only and cannot become acceptance authority.<br>Final acceptance proves governance parity with the pre-V2 contract.<br>Measured execution cost improves without skipping required gates. |
+| 1 | SW2-00 | Baseline & Self-Governance | COMPLETE | Make Skill Workflow govern itself, establish exact current authority, capture performance and enforcement baselines, and define measurable V2 acceptance. | STRICT self-governance specs and generated docs are synchronized.<br>Current main/branch/ruleset enforcement is audited and required remediation is recorded.<br>Existing governance execution has reproducible timing, scan-count, and CI baselines.<br>Known performance, documentation, sequence, and governance defects are recorded with evidence.<br>SW2-01 may begin only after SW2-00 acceptance evidence is complete. |
+| 2 | SW2-01 | Governance Engine V2 | CURRENT | Replace repeated scans and nested validator subprocess work with one immutable project snapshot and a dependency-aware validation DAG. | One canonical scan produces reusable facts for generators and validators.<br>Cache is acceleration only and cannot become acceptance authority.<br>Final acceptance proves governance parity with the pre-V2 contract.<br>Measured execution cost improves without skipping required gates. |
 | 3 | SW2-02 | Fast Development Workflow | PLANNED | Introduce develop, verify, and finalize execution modes so inner-loop work is fast while final acceptance remains complete. | Develop mode runs only safely impacted checks.<br>Verify mode expands to affected governance/test scope.<br>Finalize mode always executes the complete required acceptance graph.<br>Unknown impact fails closed to broader verification. |
 | 4 | SW2-03 | Sequence V2 | PLANNED | Separate full machine sequence evidence from bounded human-facing diagrams and add Mermaid correctness gates. | Full evidence graphs retain acceptance fidelity.<br>Human diagrams use semantic collapsing or subflows rather than raw helper dumps.<br>Mermaid syntax/render validation is blocking.<br>Diagram complexity thresholds are measurable and documented. |
 | 5 | SW2-04 | Documentation System V2 | PLANNED | Standardize public documentation information architecture and separate public guidance from machine indexes/evidence. | README is a concise public landing page.<br>Concept, guide, reference, architecture, and sequence documentation have stable locations.<br>Machine indexes no longer dominate human-facing docs.<br>Generated documentation remains deterministic and drift-detectable. |

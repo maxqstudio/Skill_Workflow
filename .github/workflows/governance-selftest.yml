@@ -19,6 +19,8 @@ jobs:
           - ubuntu-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
 
     steps:
       - name: Checkout exact candidate
@@ -43,6 +45,9 @@ jobs:
 
       - name: Compile governance scripts
         run: python -m compileall -q scripts
+
+      - name: Governance Engine V2 regression
+        run: python scripts/selftest_governance_engine.py
 
       - name: Sequence call-resolution regression
         run: python scripts/selftest_sequence_call_resolution.py
