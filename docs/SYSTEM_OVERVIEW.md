@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: PASS
+Human comprehension status: NOT_PROVEN
 
 ## One-minute summary
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-01
+Current phase: SW2-02
 
-Current status: ACCEPTED
+Current status: IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,13 +110,15 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Regenerate canonical project truth for the SW2-01 closure state and rerun the complete exact-head acceptance suite.
-- Merge PR #7 to main only after Self Governance, Governance Selftest, SW2 Sequence Evidence, SW2 Engine Performance, and SW2 Consumer Engine Performance all pass on the same final PR head.
-- After merge, await explicit Owner authorization before starting SW2-02 Fast Development Workflow implementation.
+- Introduce explicit develop, verify, and finalize governance execution modes without changing standalone validator behavior.
+- Add deterministic changed-file impact classification so develop mode runs only safely mapped checks and unknown impact escalates.
+- Make verify mode expand to the affected governance/test scope and make finalize mode execute the complete required acceptance graph.
+- Add cross-platform regressions proving mode ordering, escalation, fail-closed behavior, and finalization parity before SW2-02 acceptance.
 
 Blocked actions:
-- Do not start SW2-02 develop/verify/finalize mode work until SW2-01 is merged to main and the Owner explicitly authorizes the next phase.
-- Do not remove validators, weaken fail-closed semantics, or treat snapshot/cache state as acceptance authority.
+- Do not start SW2-03 Sequence V2 work before SW2-02 acceptance is complete and the Owner explicitly authorizes the next phase.
+- Do not remove validators, weaken fail-closed semantics, or let develop/verify mode become final acceptance authority.
+- Unknown changed-file impact must escalate to a broader mode; it must never silently skip verification.
 - Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates.
 
 Known blockers:
@@ -126,21 +128,17 @@ Known blockers:
 
 ### Proven
 
-- SW2-00 was accepted and merged before SW2-01 authorization.
-- Accepted base main 964481ed1609f87904ba9e08890bffc0a10c3fd4 uses Git-aware source inventory, excludes git-ignored files, and normalizes CRLF for cross-platform source digests.
-- Governance Engine V2 captures one immutable process-local project snapshot and reuses derived source facts without making cache state acceptance authority.
-- Governance Engine V2 executes dependency-aware validation nodes once and blocks downstream checks after dependency failure.
-- Governance Selftest run 37017181150 passed Engine V2 and legacy governance regressions on Ubuntu and Windows.
-- SW2 Sequence Evidence run 37017491861 passed the SW2-01 current session plus aggregate historical/current validation.
-- Skill Workflow sync_project_truth improved from 0.74522295s to 0.29126614s in run 37017491760; pinned max-grounding improved from 1.104520865s to 0.264897568s in run 37017491292.
-- Exact-head candidate 0b9be3b45d4f6ba129715b6378295760baef0b57 passed Governance Selftest run 37025006496, SW2 Sequence Evidence run 37025006302, SW2 Engine Performance run 37025006408, and SW2 Consumer Engine Performance run 37025006331; Self Governance run 37025007273 reached clean synchronized state and failed only because final truth gates had not yet been promoted.
-- Manual semantic audit verified snapshot immutability, accepted inventory/digest parity, fresh recapture, expected-head rejection, and fail-closed DAG behavior against the authority-bearing implementation and regression tests.
+- SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
+- Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.
+- The accepted SW2-01 engine uses one immutable process-local source snapshot, reusable derived facts, exact-head provenance checks, and a fail-closed dependency DAG.
+- Snapshot/cache state remains acceleration only and is not acceptance authority.
 
 ### Not proven
 
+- SW2-02 mode-safety is NOT_PROVEN until exact-head regressions prove develop/verify cannot bypass finalize acceptance.
+- Changed-file impact classification is NOT_PROVEN until known and unknown path classes are regression-tested.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 - Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
-- Performance improvement is proven for Skill Workflow and the pinned max-grounding consumer on hosted Ubuntu runners, not universally for every repository or every isolated primitive.
 
 ## Important limitations
 
@@ -174,18 +172,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | PASS | One-minute summary |
-| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
-| What are the major components and how do they relate? | PASS | Major components |
-| How does important data flow through the system? | PASS | Main data flow |
-| What are the main user/domain workflows? | PASS | Main user workflows |
-| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
-| Who/what is authoritative for important decisions? | PASS | Authority model |
-| What is mutable and what is immutable? | PASS | Mutable vs immutable |
-| How does failure/recovery behave? | PASS | Failure and recovery |
-| What is the current project state? | PASS | Current project state |
-| What is proven and what is not proven? | PASS | Proven vs not proven |
-| What may happen next and what is blocked? | PASS | Current project state |
+| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
+| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
+| What are the major components and how do they relate? | NOT_PROVEN | Major components |
+| How does important data flow through the system? | NOT_PROVEN | Main data flow |
+| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
+| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
+| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
+| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
+| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
+| What is the current project state? | NOT_PROVEN | Current project state |
+| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
+| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.

@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 964481ed1609f87904ba9e08890bffc0a10c3fd4
+Authority verified at SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-01
-Status: ACCEPTED
-Roadmap phase: SW2-01
+Phase: SW2-02
+Status: IN_PROGRESS
+Roadmap phase: SW2-02
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-01-governance-engine-v2
+Branch: work/sw2-02-fast-development-workflow
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 964481ed1609f87904ba9e08890bffc0a10c3fd4
+Last accepted SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
 Current candidate SHA: external final acceptance evidence
-Current source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4
+Current source digest: e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,24 +35,20 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-01-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-02-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
-- SW2-00 was accepted and merged before SW2-01 authorization.
-- Accepted base main 964481ed1609f87904ba9e08890bffc0a10c3fd4 uses Git-aware source inventory, excludes git-ignored files, and normalizes CRLF for cross-platform source digests.
-- Governance Engine V2 captures one immutable process-local project snapshot and reuses derived source facts without making cache state acceptance authority.
-- Governance Engine V2 executes dependency-aware validation nodes once and blocks downstream checks after dependency failure.
-- Governance Selftest run 37017181150 passed Engine V2 and legacy governance regressions on Ubuntu and Windows.
-- SW2 Sequence Evidence run 37017491861 passed the SW2-01 current session plus aggregate historical/current validation.
-- Skill Workflow sync_project_truth improved from 0.74522295s to 0.29126614s in run 37017491760; pinned max-grounding improved from 1.104520865s to 0.264897568s in run 37017491292.
-- Exact-head candidate 0b9be3b45d4f6ba129715b6378295760baef0b57 passed Governance Selftest run 37025006496, SW2 Sequence Evidence run 37025006302, SW2 Engine Performance run 37025006408, and SW2 Consumer Engine Performance run 37025006331; Self Governance run 37025007273 reached clean synchronized state and failed only because final truth gates had not yet been promoted.
-- Manual semantic audit verified snapshot immutability, accepted inventory/digest parity, fresh recapture, expected-head rejection, and fail-closed DAG behavior against the authority-bearing implementation and regression tests.
+- SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
+- Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.
+- The accepted SW2-01 engine uses one immutable process-local source snapshot, reusable derived facts, exact-head provenance checks, and a fail-closed dependency DAG.
+- Snapshot/cache state remains acceleration only and is not acceptance authority.
 
 ## Not proven
+- SW2-02 mode-safety is NOT_PROVEN until exact-head regressions prove develop/verify cannot bypass finalize acceptance.
+- Changed-file impact classification is NOT_PROVEN until known and unknown path classes are regression-tested.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 - Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
-- Performance improvement is proven for Skill Workflow and the pinned max-grounding consumer on hosted Ubuntu runners, not universally for every repository or every isolated primitive.
 
 ## Known blockers
 - None declared.
@@ -61,13 +57,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Regenerate canonical project truth for the SW2-01 closure state and rerun the complete exact-head acceptance suite.
-- Merge PR #7 to main only after Self Governance, Governance Selftest, SW2 Sequence Evidence, SW2 Engine Performance, and SW2 Consumer Engine Performance all pass on the same final PR head.
-- After merge, await explicit Owner authorization before starting SW2-02 Fast Development Workflow implementation.
+- Introduce explicit develop, verify, and finalize governance execution modes without changing standalone validator behavior.
+- Add deterministic changed-file impact classification so develop mode runs only safely mapped checks and unknown impact escalates.
+- Make verify mode expand to the affected governance/test scope and make finalize mode execute the complete required acceptance graph.
+- Add cross-platform regressions proving mode ordering, escalation, fail-closed behavior, and finalization parity before SW2-02 acceptance.
 
 ## Explicitly blocked
-- Do not start SW2-02 develop/verify/finalize mode work until SW2-01 is merged to main and the Owner explicitly authorizes the next phase.
-- Do not remove validators, weaken fail-closed semantics, or treat snapshot/cache state as acceptance authority.
+- Do not start SW2-03 Sequence V2 work before SW2-02 acceptance is complete and the Owner explicitly authorizes the next phase.
+- Do not remove validators, weaken fail-closed semantics, or let develop/verify mode become final acceptance authority.
+- Unknown changed-file impact must escalate to a broader mode; it must never silently skip verification.
 - Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

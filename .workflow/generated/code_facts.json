@@ -66,7 +66,7 @@
       "file": "scripts/governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 318
+      "lines": 786
     },
     {
       "directory": "scripts",
@@ -108,7 +108,7 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 152
+      "lines": 284
     },
     {
       "directory": "scripts",
@@ -5308,6 +5308,22 @@
       "target_token": "str"
     },
     {
+      "caller": "scripts/governance_engine.py::git_z",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/governance_engine.py::git_z",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::git_z",
+      "target_token": "item.decode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::git_z",
+      "target_token": "payload.split"
+    },
+    {
       "caller": "scripts/governance_engine.py::state_base",
       "target_token": "path.is_file"
     },
@@ -5328,12 +5344,396 @@
       "target_token": "data.get"
     },
     {
+      "caller": "scripts/governance_engine.py::collect_changed_paths",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::collect_changed_paths",
+      "target_token": "paths.update"
+    },
+    {
+      "caller": "scripts/governance_engine.py::collect_changed_paths",
+      "target_token": "git_z"
+    },
+    {
+      "caller": "scripts/governance_engine.py::collect_changed_paths",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/governance_engine.py::collect_changed_paths",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::collect_changed_paths",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.replace"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_changed_paths",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_changed_paths",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_changed_paths",
+      "target_token": "classify_path"
+    },
+    {
+      "caller": "scripts/governance_engine.py::effective_mode",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::effective_mode",
+      "target_token": "impact_set.intersection"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "path_set.intersection"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "path_set.intersection"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "path_set.intersection"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "path_set.intersection"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "DEVELOP_TEST_MAP.items"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "impact_set.intersection"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "names.add"
+    },
+    {
+      "caller": "scripts/governance_engine.py::develop_node_names",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::planned_node_names",
+      "target_token": "develop_node_names"
+    },
+    {
       "caller": "scripts/governance_engine.py::governed_status",
       "target_token": "git"
     },
     {
       "caller": "scripts/governance_engine.py::cli_action",
       "target_token": "invoke_main"
+    },
+    {
+      "caller": "scripts/governance_engine.py::command_action.run",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/governance_engine.py::_regression_node",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::_regression_node",
+      "target_token": "command_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "command_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "_regression_node"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "command_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "dependencies.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "dependencies.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "dependencies.extend"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "cli_action"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "nodes.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "governed_status"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "ValidationDAG"
     },
     {
       "caller": "scripts/governance_engine.py::build_dag",
@@ -5457,6 +5857,10 @@
     },
     {
       "caller": "scripts/governance_engine.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
       "target_token": "parser.parse_args"
     },
     {
@@ -5477,6 +5881,10 @@
     },
     {
       "caller": "scripts/governance_engine.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
       "target_token": "ProjectSnapshot.capture"
     },
     {
@@ -5485,11 +5893,59 @@
     },
     {
       "caller": "scripts/governance_engine.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "collect_changed_paths"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "planned_node_names"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
       "target_token": "snapshot.metrics"
     },
     {
       "caller": "scripts/governance_engine.py::main",
       "target_token": "active_project_snapshot"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "build_mode_dag"
     },
     {
       "caller": "scripts/governance_engine.py::main",
@@ -5506,6 +5962,22 @@
     {
       "caller": "scripts/governance_engine.py::main",
       "target_token": "results.items"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/governance_engine.py::main",
+      "target_token": "bool"
     },
     {
       "caller": "scripts/governance_engine.py::main",
@@ -6432,6 +6904,14 @@
       "target_token": "str"
     },
     {
+      "caller": "scripts/selftest_governance_engine.py::git_text",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::git_text",
+      "target_token": "str"
+    },
+    {
       "caller": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
       "target_token": "tempfile.TemporaryDirectory"
     },
@@ -6704,6 +7184,210 @@
       "target_token": "print"
     },
     {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "develop_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "planned_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "planned_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "verify_without_docs.issubset"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git_text"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "collect_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "collect_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "target_token": "print"
+    },
+    {
       "caller": "scripts/selftest_governance_engine.py::main",
       "target_token": "snapshot_parity_and_immutability"
     },
@@ -6718,6 +7402,14 @@
     {
       "caller": "scripts/selftest_governance_engine.py::main",
       "target_token": "dag_fail_closed"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "mode_planning_contract"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::main",
+      "target_token": "changed_path_collection_contract"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::main",
@@ -13441,112 +14133,200 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "class",
-      "line_end": 36,
-      "line_start": 30,
+      "line_end": 39,
+      "line_start": 33,
       "locator": "scripts/governance_engine.py::NodeResult",
       "symbol": "NodeResult"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "class",
-      "line_end": 43,
-      "line_start": 40,
+      "line_end": 46,
+      "line_start": 43,
       "locator": "scripts/governance_engine.py::ValidationNode",
       "symbol": "ValidationNode"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "class",
-      "line_end": 123,
-      "line_start": 46,
+      "line_end": 126,
+      "line_start": 49,
       "locator": "scripts/governance_engine.py::ValidationDAG",
       "symbol": "ValidationDAG"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 59,
-      "line_start": 47,
+      "line_end": 62,
+      "line_start": 50,
       "locator": "scripts/governance_engine.py::ValidationDAG.__init__",
       "symbol": "ValidationDAG.__init__"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 77,
-      "line_start": 61,
+      "line_end": 80,
+      "line_start": 64,
       "locator": "scripts/governance_engine.py::ValidationDAG._assert_acyclic",
       "symbol": "ValidationDAG._assert_acyclic"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 74,
-      "line_start": 65,
+      "line_end": 77,
+      "line_start": 68,
       "locator": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
       "symbol": "ValidationDAG._assert_acyclic.visit"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 123,
-      "line_start": 79,
+      "line_end": 126,
+      "line_start": 82,
       "locator": "scripts/governance_engine.py::ValidationDAG.run",
       "symbol": "ValidationDAG.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 119,
-      "line_start": 82,
+      "line_end": 122,
+      "line_start": 85,
       "locator": "scripts/governance_engine.py::ValidationDAG.run.execute",
       "symbol": "ValidationDAG.run.execute"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 131,
-      "line_start": 126,
+      "line_end": 195,
+      "line_start": 190,
       "locator": "scripts/governance_engine.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 142,
-      "line_start": 134,
+      "line_end": 207,
+      "line_start": 198,
+      "locator": "scripts/governance_engine.py::git_z",
+      "symbol": "git_z"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 218,
+      "line_start": 210,
       "locator": "scripts/governance_engine.py::state_base",
       "symbol": "state_base"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 158,
-      "line_start": 145,
+      "line_end": 235,
+      "line_start": 221,
+      "locator": "scripts/governance_engine.py::collect_changed_paths",
+      "symbol": "collect_changed_paths"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 262,
+      "line_start": 238,
+      "locator": "scripts/governance_engine.py::classify_path",
+      "symbol": "classify_path"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 266,
+      "line_start": 265,
+      "locator": "scripts/governance_engine.py::classify_changed_paths",
+      "symbol": "classify_changed_paths"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 277,
+      "line_start": 269,
+      "locator": "scripts/governance_engine.py::effective_mode",
+      "symbol": "effective_mode"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 324,
+      "line_start": 280,
+      "locator": "scripts/governance_engine.py::develop_node_names",
+      "symbol": "develop_node_names"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 337,
+      "line_start": 327,
+      "locator": "scripts/governance_engine.py::planned_node_names",
+      "symbol": "planned_node_names"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 353,
+      "line_start": 340,
       "locator": "scripts/governance_engine.py::governed_status",
       "symbol": "governed_status"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 166,
-      "line_start": 161,
+      "line_end": 361,
+      "line_start": 356,
       "locator": "scripts/governance_engine.py::cli_action",
       "symbol": "cli_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 242,
-      "line_start": 169,
+      "line_end": 376,
+      "line_start": 364,
+      "locator": "scripts/governance_engine.py::command_action",
+      "symbol": "command_action"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "method",
+      "line_end": 374,
+      "line_start": 365,
+      "locator": "scripts/governance_engine.py::command_action.run",
+      "symbol": "command_action.run"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 384,
+      "line_start": 379,
+      "locator": "scripts/governance_engine.py::_regression_node",
+      "symbol": "_regression_node"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 574,
+      "line_start": 387,
+      "locator": "scripts/governance_engine.py::build_mode_dag",
+      "symbol": "build_mode_dag"
+    },
+    {
+      "file": "scripts/governance_engine.py",
+      "kind": "function",
+      "line_end": 651,
+      "line_start": 577,
       "locator": "scripts/governance_engine.py::build_dag",
       "symbol": "build_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 314,
-      "line_start": 245,
+      "line_end": 782,
+      "line_start": 654,
       "locator": "scripts/governance_engine.py::main",
       "symbol": "main"
     },
@@ -13809,88 +14589,112 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 18,
-      "line_start": 16,
+      "line_end": 28,
+      "line_start": 26,
       "locator": "scripts/selftest_governance_engine.py::require",
       "symbol": "require"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 27,
-      "line_start": 21,
+      "line_end": 37,
+      "line_start": 31,
       "locator": "scripts/selftest_governance_engine.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 62,
-      "line_start": 30,
+      "line_end": 45,
+      "line_start": 40,
+      "locator": "scripts/selftest_governance_engine.py::git_text",
+      "symbol": "git_text"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 83,
+      "line_start": 48,
       "locator": "scripts/selftest_governance_engine.py::snapshot_parity_and_immutability",
       "symbol": "snapshot_parity_and_immutability"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 84,
-      "line_start": 65,
+      "line_end": 105,
+      "line_start": 86,
       "locator": "scripts/selftest_governance_engine.py::snapshot_fact_reuse",
       "symbol": "snapshot_fact_reuse"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 105,
-      "line_start": 87,
+      "line_end": 127,
+      "line_start": 108,
       "locator": "scripts/selftest_governance_engine.py::dag_executes_once",
       "symbol": "dag_executes_once"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 94,
-      "line_start": 90,
+      "line_end": 116,
+      "line_start": 111,
       "locator": "scripts/selftest_governance_engine.py::dag_executes_once.action",
       "symbol": "dag_executes_once.action"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 93,
-      "line_start": 91,
+      "line_end": 114,
+      "line_start": 112,
       "locator": "scripts/selftest_governance_engine.py::dag_executes_once.action.run",
       "symbol": "dag_executes_once.action.run"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 139,
-      "line_start": 108,
+      "line_end": 167,
+      "line_start": 130,
       "locator": "scripts/selftest_governance_engine.py::dag_fail_closed",
       "symbol": "dag_fail_closed"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 112,
-      "line_start": 111,
+      "line_end": 134,
+      "line_start": 133,
       "locator": "scripts/selftest_governance_engine.py::dag_fail_closed.fail",
       "symbol": "dag_fail_closed.fail"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "method",
-      "line_end": 117,
-      "line_start": 114,
+      "line_end": 139,
+      "line_start": 136,
       "locator": "scripts/selftest_governance_engine.py::dag_fail_closed.downstream",
       "symbol": "dag_fail_closed.downstream"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 148,
-      "line_start": 142,
+      "line_end": 244,
+      "line_start": 170,
+      "locator": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "symbol": "mode_planning_contract"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 269,
+      "line_start": 247,
+      "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
+      "symbol": "changed_path_collection_contract"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "function",
+      "line_end": 280,
+      "line_start": 272,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -14496,13 +15300,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4",
+  "source_digest": "e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d",
   "source_summary": {
     "files": 27,
     "languages": {
       "Python": 27
     },
-    "lines": 8707,
+    "lines": 9307,
     "test_files": 0
   },
   "tests": []

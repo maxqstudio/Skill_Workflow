@@ -642,6 +642,73 @@ read PROJECT_PROFILE
 
 Never treat source changed as equivalent to PASS.
 
+
+## Fast governance execution modes
+
+Governance Engine V2 supports three explicit execution modes for the task loop:
+
+```text
+develop
+→ verify
+→ finalize
+```
+
+These modes change execution breadth, not governance authority.
+
+### develop
+
+Use `develop` for the inner loop when changed-file impact can be classified safely.
+It may run only the targeted structural/regression checks mapped to the affected
+implementation area.
+
+A `develop` PASS is intermediate evidence only. It MUST NOT be used to mark a
+requirement, phase, release, or PROJECT_STATE_SYNC as accepted.
+
+If changed-file impact is broad or not safely mapped, `develop` MUST escalate to
+`verify` instead of silently skipping checks.
+
+### verify
+
+Use `verify` before finalization to expand from targeted checks to the affected
+governance and regression scope. It includes deterministic project-document,
+human-comprehension, sequence, handoff, and cross-document verification where
+applicable.
+
+A `verify` PASS is still intermediate evidence. It MUST NOT replace final
+acceptance. If impact is unknown, `verify` MUST escalate to the complete
+`finalize` graph.
+
+### finalize
+
+`finalize` is the only fast-workflow mode that may provide final acceptance
+authority. It MUST:
+
+- require the exact expected candidate HEAD;
+- run the complete required regression graph;
+- synchronize deterministic Project Truth;
+- run human-comprehension, sequence, handoff, cross-document, and final Project
+  Truth validation;
+- require the governed worktree to end clean;
+- preserve every required final truth gate and fail closed on any dependency.
+
+An invocation that began as `verify` and escalated to the full graph is still
+reported as intermediate evidence; automatic escalation MUST NOT silently grant
+final acceptance authority.
+
+Changed-file classification and caches are accelerators only. Unknown impact,
+classifier failure, missing base authority, or provenance mismatch MUST broaden
+verification or fail; they must never produce a narrower false PASS.
+
+Typical commands:
+
+```bash
+python .workflow/tools/governance_engine.py --root . --mode develop --base <LAST_ACCEPTED_SHA>
+python .workflow/tools/governance_engine.py --root . --mode verify --base <LAST_ACCEPTED_SHA>
+python .workflow/tools/governance_engine.py --root . --mode finalize --base <LAST_ACCEPTED_SHA> --expected-head <EXACT_HEAD>
+```
+
+Standalone validators remain valid and fail-closed. These modes orchestrate
+when they run; they do not weaken their contracts.
 # 7. Build/repair contract
 
 For every repair:

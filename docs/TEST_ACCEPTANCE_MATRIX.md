@@ -4,17 +4,17 @@
 
 ## Evidence boundary
 
-SW2-01 acceptance covers the immutable source snapshot, process-local reusable derived facts, dependency-aware governance DAG, governance-parity regressions, current static sequence evidence, and measured execution improvement relative to the accepted pre-V2/current-main contract. Runtime/E2E is not applicable to this repository-only governance-engine phase. Repository merge enforcement remains deferred to SW2-07; Mermaid renderability and bounded human diagram complexity remain deferred to SW2-03. SW2-02 execution-mode work is not part of this acceptance.
+SW2-02 acceptance covers changed-file impact classification plus develop, verify, and finalize governance execution modes. Fast modes may reduce intermediate work only when impact is known; unknown impact must escalate. Finalize must preserve the complete accepted fail-closed governance contract. Runtime/E2E is not applicable to this repository-only orchestration phase. SW2-03 sequence-render redesign is not part of this phase.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4
+Current source digest: e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-01-R1 | One immutable source snapshot supplies reusable inventory, canonical bytes, digest, and derived source facts within a governance engine execution. | Governance Selftest run 37017181150 passed Engine V2 regression on Ubuntu and Windows. Self performance run 37017491760 measured one source enumeration, 27 source reads for 27 files, one derived-fact miss and three hits, with source digest 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4. | PASS |
-| SW2-01-R2 | A dependency-aware validation DAG executes each required node once, fails closed, and avoids nested validator subprocess orchestration on the V2 path. | scripts/selftest_governance_engine.py proves execute-once, blocked-downstream, unknown-dependency, and cycle rejection. Self Governance fail-closed evidence blocked final Project Truth behind failed dependencies instead of executing downstream acceptance on unproven state. | PASS |
-| SW2-01-R3 | V2 acceptance preserves the accepted pre-V2 governance contract, source-inventory semantics, and required failure behavior. | Exact-head candidate 0b9be3b45d4f6ba129715b6378295760baef0b57 passed Governance Selftest run 37025006496, SW2 Sequence Evidence run 37025006302, SW2 Engine Performance run 37025006408, and SW2 Consumer Engine Performance run 37025006331. Self Governance run 37025007273 proved synchronized docs, clean worktree, cross-document consistency, human comprehension, and fail-closed final truth behavior; its only remaining failure was intentionally unpromoted final truth gates. Manual semantic audit verified accepted inventory/digest semantics, immutability, fresh recapture, expected-head rejection, and DAG failure behavior against scripts/project_snapshot.py, scripts/governance_engine.py, and scripts/selftest_governance_engine.py. | PASS |
-| SW2-01-R4 | Measured self and governed-consumer governance execution cost improves relative to accepted baselines without skipping required gates. | Run 37017491760: Skill Workflow sync_project_truth 0.74522295s -> 0.29126614s, 60.9156% improvement. Run 37017491292: pinned max-grounding sync 1.104520865s -> 0.264897568s, 76.0170% improvement. Tracked summaries: benchmarks/results/sw2-01-self-linux.json and benchmarks/results/sw2-01-max-grounding-linux.json. Hosted-runner timing is comparative only; isolated primitive timing is not claimed to improve universally. | PASS |
+| SW2-02-R1 | Develop mode runs only checks that are safely mapped from the changed-file impact set and never claims final acceptance. | NOT_PROVEN until mode planning and targeted-check regressions pass on the SW2-02 candidate. | NOT_PROVEN |
+| SW2-02-R2 | Verify mode expands to the affected governance and test scope without becoming final acceptance authority. | NOT_PROVEN until changed-file impact tests prove verify is a strict expansion of develop for affected scope. | NOT_PROVEN |
+| SW2-02-R3 | Finalize mode always executes the complete required acceptance graph and remains fail-closed. | NOT_PROVEN until exact-head CI proves finalize executes the complete required regression, synchronization, validator, truth, and clean-state graph. | NOT_PROVEN |
+| SW2-02-R4 | Unknown changed-file impact fails closed by escalating to a broader execution mode. | NOT_PROVEN until unknown-path regression proves develop escalates to verify and verify escalates to finalize. | NOT_PROVEN |
 
 ## Test commands
 
@@ -24,9 +24,9 @@ Current source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
-- python scripts/benchmark_governance.py --root . --tool-root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD> --baseline benchmarks/baselines/sw2-00-self-linux.json
-- python scripts/benchmark_governance.py --root <GOVERNED_CONSUMER> --tool-root . --repeats 3 --expected-head <EXACT_CONSUMER_HEAD> --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json
-- python scripts/governance_engine.py --root . --base 964481ed1609f87904ba9e08890bffc0a10c3fd4 --sync --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode develop --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode verify --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode finalize --expected-head <EXACT_HEAD>
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
 
@@ -42,8 +42,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-01-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-02-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
@@ -56,7 +56,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: PASS
-HUMAN_COMPREHENSION_GATE: PASS
+SYSTEM_OVERVIEW status: NOT_PROVEN
+HUMAN_COMPREHENSION_GATE: NOT_PROVEN
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.
