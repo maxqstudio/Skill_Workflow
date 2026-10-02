@@ -221,9 +221,14 @@ def mode_planning_contract() -> None:
             unknown_impacts,
         )
     )
+    verify_without_docs = set(VERIFY_NODE_NAMES) - {"validate_project_docs"}
     require(
-        set(VERIFY_NODE_NAMES).issubset(finalize_nodes),
-        "finalize is not a superset of verify",
+        verify_without_docs.issubset(finalize_nodes),
+        "finalize lost verify regression/validator coverage",
+    )
+    require(
+        "sync_project_truth" in finalize_nodes,
+        "finalize did not replace read-only docs validation with synchronized docs validation",
     )
     for required in (
         "strict_workflow_selftest",
