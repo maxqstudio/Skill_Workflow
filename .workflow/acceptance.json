@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-00 begins from previously passing core self-tests, but self-governance, performance baselines, repository enforcement, and V2-specific acceptance remain in progress.",
+  "evidence_boundary": "SW2-00 has an exact-head self-repository performance baseline and confirmed repository-enforcement audit, but canonical self-governance docs, representative consumer timing, sequence acceptance, and final exact-candidate project-state acceptance remain incomplete.",
   "human_comprehension_questions": {},
   "human_comprehension_status": "NOT_PROVEN",
   "requirements": [
@@ -10,22 +10,22 @@
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "timing and scan-count benchmark artifacts",
+      "evidence": "benchmarks/baselines/sw2-00-self-linux.json plus representative consumer baseline still required",
       "id": "SW2-00-R2",
       "requirement": "A reproducible current performance baseline exists before engine optimization begins.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "GitHub repository/ruleset audit",
+      "evidence": "benchmarks/baselines/sw2-00-repository-enforcement.json",
       "id": "SW2-00-R3",
       "requirement": "Repository merge/ruleset enforcement is audited and aligned with declared governance.",
-      "status": "NOT_PROVEN"
+      "status": "FAIL"
     },
     {
-      "evidence": "KNOWN_DEFECTS.md generated from .workflow/known_defects.json",
+      "evidence": ".workflow/known_defects.json including performance, docs, self-governance, enforcement, and exact-head provenance defects",
       "id": "SW2-00-R4",
       "requirement": "Known sequence and documentation quality defects are explicitly recorded before repair phases begin.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -37,7 +37,8 @@
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/selftest_project_truth_compiler.py",
-    "python scripts/selftest_strict_project_workflow.py"
+    "python scripts/selftest_strict_project_workflow.py",
+    "python scripts/benchmark_governance.py --root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
