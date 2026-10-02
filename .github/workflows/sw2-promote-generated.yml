@@ -1,0 +1,49 @@
+name: SW2 Promote Generated Governance
+
+on:
+  push:
+    branches:
+      - work/sw2-00-baseline-self-governance
+    paths:
+      - .github/workflows/sw2-promote-generated.yml
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    if: github.ref == 'refs/heads/work/sw2-00-baseline-self-governance'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Verify exact candidate
+        shell: bash
+        run: |
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "${{ github.sha }}"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate canonical governance
+        run: python scripts/sync_project_truth.py --root .
+
+      - name: Commit generated-only projection
+        shell: bash
+        run: |
+          git add PROJECT_PROFILE.yaml .workflow/acceptance.json .workflow/generated/code_facts.json docs/*.md
+          if git diff --cached --quiet; then
+            echo "NO_GENERATED_DRIFT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs(sw2): synchronize final SW2-00 project truth"
+          git push origin HEAD:work/sw2-00-baseline-self-governance
