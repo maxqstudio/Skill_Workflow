@@ -18,7 +18,7 @@
   "actual": {
     "graph": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.json",
     "diagram": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd",
-    "source_digest": "ded30f2882a60f5cf52f47cc1a0a7eb91d23f0215ee99971bf7d6908c6884c1a",
+    "source_digest": "",
     "entries": [
       "scripts/sync_project_truth.py::main"
     ]
@@ -26,7 +26,8 @@
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_project_truth_compiler.py",
-    "scripts/selftest_strict_project_workflow.py"
+    "scripts/selftest_strict_project_workflow.py",
+    "scripts/selftest_sequence_call_resolution.py"
   ],
   "runtime_trace": {
     "required": false,
