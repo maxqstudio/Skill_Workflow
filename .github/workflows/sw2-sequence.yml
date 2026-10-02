@@ -1,0 +1,66 @@
+name: SW2 Sequence Evidence
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  sequence-evidence:
+    name: SW2 Sequence Evidence (ubuntu-latest)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Verify exact candidate provenance
+        shell: bash
+        run: |
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "EXPECTED_HEAD=$expected"
+          echo "ACTUAL_HEAD=$actual"
+          test "$actual" = "$expected"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate current actual sequence evidence
+        run: >-
+          python scripts/generate_sequence_actual.py
+          --root .
+          --output-json docs/sequence/generated/SW2-00-GOVERNANCE.actual.json
+          --output-mermaid docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd
+          --entry scripts/sync_project_truth.py::main
+
+      - name: Validate current sequence session
+        run: >-
+          python scripts/validate_sequence_contract.py
+          --root .
+          --session docs/sequence/sessions/SW2-00-GOVERNANCE.json
+          --report artifacts/sequence/SW2-00-GOVERNANCE.acceptance.json
+
+      - name: Validate aggregate sequence contract
+        run: python scripts/validate_sequence_sessions.py --root .
+
+      - name: Upload generated sequence evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-00-sequence-evidence
+          path: |
+            docs/sequence/generated/SW2-00-GOVERNANCE.actual.json
+            docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd
+            artifacts/sequence/SW2-00-GOVERNANCE.acceptance.json
+          if-no-files-found: error
+          retention-days: 14
