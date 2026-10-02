@@ -1,0 +1,18 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
+%% OBSERVED_HEAD: 093095d4cbc10a5748d08577a221d0e4abdaf441
+%% GENERATED_BY: generate_sequence_actual.py
+sequenceDiagram
+    participant scripts_project_profile_py___bool_value_0 as scripts/project_profile.py::_bool_value
+    participant scripts_project_profile_py___clean_1 as scripts/project_profile.py::_clean
+    participant scripts_project_profile_py__documentation_settings_2 as scripts/project_profile.py::documentation_settings
+    participant scripts_project_profile_py__normalized_profile_3 as scripts/project_profile.py::normalized_profile
+    participant scripts_project_profile_py__parse_profile_4 as scripts/project_profile.py::parse_profile
+    participant scripts_sync_project_truth_py__main_5 as scripts/sync_project_truth.py::main
+    participant scripts_sync_project_truth_py__run_6 as scripts/sync_project_truth.py::run
+    scripts_project_profile_py__documentation_settings_2->>scripts_project_profile_py___bool_value_0: _bool_value [STATIC]
+    scripts_project_profile_py__documentation_settings_2->>scripts_project_profile_py__normalized_profile_3: normalized_profile [STATIC]
+    scripts_project_profile_py__parse_profile_4->>scripts_project_profile_py___clean_1: _clean [STATIC]
+    scripts_sync_project_truth_py__main_5->>scripts_project_profile_py__documentation_settings_2: documentation_settings [STATIC]
+    scripts_sync_project_truth_py__main_5->>scripts_project_profile_py__parse_profile_4: parse_profile [STATIC]
+    scripts_sync_project_truth_py__main_5->>scripts_sync_project_truth_py__run_6: run [STATIC]
