@@ -11,12 +11,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
+import tempfile
 import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
+
+# Direct engine execution must not create repository-local __pycache__.
+sys.dont_write_bytecode = True
 
 import sync_project_truth
 import validate_cross_document_consistency
@@ -376,6 +381,26 @@ def command_action(root: Path, argv: list[str]) -> Callable[[], tuple[int, str]]
     return run
 
 
+def compile_scripts_action(root: Path) -> Callable[[], tuple[int, str]]:
+    """Compile Python sources without materializing bytecode in the governed worktree."""
+    def run() -> tuple[int, str]:
+        with tempfile.TemporaryDirectory(prefix="skill-workflow-pycache-") as td:
+            env = os.environ.copy()
+            env["PYTHONPYCACHEPREFIX"] = td
+            completed = subprocess.run(
+                [sys.executable, "-m", "compileall", "-q", "scripts"],
+                cwd=root,
+                env=env,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+        return completed.returncode, completed.stdout
+
+    return run
+
+
 def _regression_node(name: str, root: Path, script: str) -> ValidationNode:
     return ValidationNode(
         name=name,
@@ -408,10 +433,7 @@ def build_mode_dag(
             ValidationNode(
                 name="compile_scripts",
                 dependencies=(),
-                action=command_action(
-                    root,
-                    [sys.executable, "-m", "compileall", "-q", "scripts"],
-                ),
+                action=compile_scripts_action(root),
             )
         )
 

@@ -324,6 +324,10 @@ def mode_cli_integration_contract() -> None:
             all(node["status"] == "PASS" for node in develop_payload["nodes"].values()),
             "develop CLI targeted node failed",
         )
+        require(
+            not any(path.name == "__pycache__" for path in scripts.rglob("__pycache__")),
+            "develop compile dirtied fixture worktree with __pycache__",
+        )
 
         unknown = root / "future" / "new-surface.bin"
         unknown.parent.mkdir(parents=True)
