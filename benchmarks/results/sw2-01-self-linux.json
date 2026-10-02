@@ -1,0 +1,31 @@
+{
+  "artifact_id": 11230716217,
+  "artifact_zip_sha256": "f4383a2e5656f985db317c466267748de82c38886b39c06c59714efc3be51e75",
+  "baseline": {
+    "path": "benchmarks/baselines/sw2-00-self-linux.json",
+    "sync_project_truth_seconds": 0.7452229499999987,
+    "extract_project_facts_median_seconds": 0.082721295999999
+  },
+  "boundary": "Hosted-runner timings are comparative evidence, not hardware-absolute claims. The workflow-level speedup is the SW2-01 acceptance target; isolated primitive timings may vary and are retained even when worse.",
+  "candidate": {
+    "head": "845bdb7798fe970c9140077e0e94e4cc0c6af69b",
+    "source_digest": "84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4",
+    "sync_project_truth_seconds": 0.29126614300002984,
+    "extract_project_facts_median_seconds": 0.14041153400000894,
+    "cached_facts_median_seconds": 0.0001059580000060123,
+    "snapshot_files": 27,
+    "snapshot_file_reads": 27,
+    "snapshot_source_enumerations": 1,
+    "derived_cache_hits": 3,
+    "derived_cache_misses": 1
+  },
+  "comparison": {
+    "sync_improvement_percent": 60.91556989756819,
+    "sync_ratio": 0.3908443010243181,
+    "extract_project_facts_improvement_percent": -69.74049100972819,
+    "extract_project_facts_ratio": 1.697404910097282
+  },
+  "run_id": 37017491760,
+  "schema_version": 1,
+  "result": "PASS"
+}
