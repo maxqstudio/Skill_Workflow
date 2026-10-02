@@ -102,6 +102,7 @@ def main() -> int:
         default="artifacts/performance/sw2-00-self-baseline.json",
     )
     ap.add_argument("--include-selftests", action="store_true")
+    ap.add_argument("--expected-head", default="")
     args = ap.parse_args()
 
     if args.repeats < 1:
@@ -113,6 +114,9 @@ def main() -> int:
     if not scripts.is_dir():
         print("FAIL scripts directory missing")
         return 2
+
+    observed_head = git(root, "rev-parse", "HEAD") or "NOT_AVAILABLE"
+    expected_head = args.expected_head.strip()
 
     inventory_timing, inventory = timed(args.repeats, lambda: source_files(root))
     source_bytes = sum(path.stat().st_size for path in inventory)
@@ -128,14 +132,23 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="skill-workflow-sw2-baseline-") as td:
         fixture = Path(td) / "repo"
         copy_for_sync(root, fixture)
-        sync = run_command(
+        commands["sync_project_truth"] = run_command(
             fixture,
-            [sys.executable, str(fixture / "scripts" / "sync_project_truth.py"), "--root", str(fixture)],
+            [
+                sys.executable,
+                str(fixture / "scripts" / "sync_project_truth.py"),
+                "--root",
+                str(fixture),
+            ],
         )
-        commands["sync_project_truth"] = sync
         commands["validate_project_docs_after_sync"] = run_command(
             fixture,
-            [sys.executable, str(fixture / "scripts" / "validate_project_docs.py"), "--root", str(fixture)],
+            [
+                sys.executable,
+                str(fixture / "scripts" / "validate_project_docs.py"),
+                "--root",
+                str(fixture),
+            ],
         )
 
     if args.include_selftests:
@@ -153,11 +166,17 @@ def main() -> int:
         for name, result in commands.items()
         if int(result.get("returncode", 1)) != 0
     ]
+    if expected_head and observed_head != expected_head:
+        failures.append(
+            "PROVENANCE_MISMATCH:observed=" + observed_head + ":expected=" + expected_head
+        )
 
     report = {
         "schema_version": 1,
         "benchmark": "SW2-00 Skill Workflow self baseline",
-        "observed_head": git(root, "rev-parse", "HEAD") or "NOT_AVAILABLE",
+        "observed_head": observed_head,
+        "expected_head": expected_head or "NOT_DECLARED",
+        "exact_head_match": bool(expected_head) and observed_head == expected_head,
         "platform": platform.platform(),
         "python": sys.version.split()[0],
         "cpu_count": os.cpu_count(),
