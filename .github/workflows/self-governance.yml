@@ -55,7 +55,14 @@ jobs:
           retention-days: 7
 
       - name: Require tracked governance to be synchronized
-        run: git diff --exit-code -- PROJECT_PROFILE.yaml .workflow docs
+        shell: bash
+        run: |
+          status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs)"
+          if [ -n "$status" ]; then
+            echo "Generated governance differs from the tracked candidate:"
+            printf '%s\n' "$status"
+            exit 1
+          fi
 
       - name: Validate generated documentation
         run: python scripts/validate_project_docs.py --root .
