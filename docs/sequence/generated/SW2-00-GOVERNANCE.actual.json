@@ -128,7 +128,7 @@
       "locator": "scripts/sync_project_truth.py::run"
     }
   ],
-  "observed_head": "d7c03e1f8a11cdddf03cb9e9eff96900d6a30ba7",
+  "observed_head": "3246c373529cc295e6e0946187449d82114caf5d",
   "schema_version": 1,
-  "source_digest": "79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a"
+  "source_digest": "f9527928cdb48e848a317cdf3d356c3434083736f47837c7b8bda661f72ffa58"
 }

@@ -87,7 +87,7 @@
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
-      "lines": 413
+      "lines": 418
     },
     {
       "directory": "scripts",
@@ -108,7 +108,7 @@
       "file": "scripts/sequence_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 236
+      "lines": 238
     },
     {
       "directory": "scripts",
@@ -5712,6 +5712,18 @@
       "target_token": "sorted"
     },
     {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "compute_source_digest"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "compute_source_digest"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "RuntimeError"
+    },
+    {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "Path"
     },
@@ -7042,6 +7054,10 @@
     {
       "caller": "scripts/sequence_contract.py::source_files",
       "target_token": "p.relative_to"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::compute_source_digest",
+      "target_token": "root.resolve"
     },
     {
       "caller": "scripts/sequence_contract.py::compute_source_digest",
@@ -12497,7 +12513,7 @@
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 96,
+      "line_end": 101,
       "line_start": 43,
       "locator": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
       "symbol": "test_gitignored_source_files_are_excluded"
@@ -12505,8 +12521,8 @@
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 409,
-      "line_start": 99,
+      "line_end": 414,
+      "line_start": 104,
       "locator": "scripts/selftest_project_truth_compiler.py::main",
       "symbol": "main"
     },
@@ -12641,7 +12657,7 @@
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 119,
+      "line_end": 121,
       "line_start": 111,
       "locator": "scripts/sequence_contract.py::compute_source_digest",
       "symbol": "compute_source_digest"
@@ -12649,48 +12665,48 @@
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 129,
-      "line_start": 122,
+      "line_end": 131,
+      "line_start": 124,
       "locator": "scripts/sequence_contract.py::is_ancestor",
       "symbol": "is_ancestor"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 136,
-      "line_start": 132,
+      "line_end": 138,
+      "line_start": 134,
       "locator": "scripts/sequence_contract.py::sanitize_alias",
       "symbol": "sanitize_alias"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 171,
-      "line_start": 139,
+      "line_end": 173,
+      "line_start": 141,
       "locator": "scripts/sequence_contract.py::render_graph_mermaid",
       "symbol": "render_graph_mermaid"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 181,
-      "line_start": 174,
+      "line_end": 183,
+      "line_start": 176,
       "locator": "scripts/sequence_contract.py::plan_locator_map",
       "symbol": "plan_locator_map"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 189,
-      "line_start": 184,
+      "line_end": 191,
+      "line_start": 186,
       "locator": "scripts/sequence_contract.py::graph_edge_set",
       "symbol": "graph_edge_set"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 236,
-      "line_start": 192,
+      "line_end": 238,
+      "line_start": 194,
       "locator": "scripts/sequence_contract.py::compare_plan_actual",
       "symbol": "compare_plan_actual"
     },
@@ -13064,13 +13080,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a",
+  "source_digest": "f9527928cdb48e848a317cdf3d356c3434083736f47837c7b8bda661f72ffa58",
   "source_summary": {
     "files": 23,
     "languages": {
       "Python": 23
     },
-    "lines": 7984,
+    "lines": 7991,
     "test_files": 0
   },
   "tests": []
