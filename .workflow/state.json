@@ -2,28 +2,36 @@
   "blocked_actions": [
     "Do not start SW2-01 single-snapshot engine refactoring before SW2-00 baseline evidence is accepted.",
     "Do not remove validators or downgrade the governance profile to gain speed.",
-    "Do not claim public documentation quality from formatting checks alone."
+    "Do not claim public documentation quality from formatting checks alone.",
+    "Do not merge SW2-00 while main lacks the required repository enforcement or while self-governance remains unsynchronized."
   ],
-  "blockers": [],
+  "blockers": [
+    "Main has no branch protection/ruleset and no required status checks; repository merge enforcement is not aligned with declared fail-closed governance.",
+    "Canonical generated self-governance docs and tracked code facts are not yet committed to the branch."
+  ],
   "last_accepted_branch": "main",
   "last_accepted_sha": "024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8",
   "next_authorized_actions": [
-    "Bootstrap STRICT self-governance specs and generated documentation for Skill Workflow.",
-    "Record reproducible timing and scan-count baselines before optimizing the engine.",
-    "Audit and harden repository merge/ruleset enforcement without weakening developer iteration speed.",
+    "Commit canonical generated self-governance docs/code facts and make the self-governance check read-only clean.",
+    "Capture at least one representative consumer governance baseline before SW2-01 optimization begins.",
+    "Configure main PR/ruleset enforcement with exact-head required checks.",
+    "Generate and validate the current DURING sequence session for FLOW-GOVERNANCE-CHANGE.",
     "Complete SW2-00 acceptance before starting SW2-01 engine refactoring."
   ],
   "not_proven": [
     "Skill Workflow has not yet completed self-governance acceptance under its own STRICT profile.",
-    "No reproducible governance performance baseline has yet been recorded for representative consumer repositories.",
-    "The cost distribution between governance tooling and project-native build/test work is not yet measured.",
-    "Mermaid renderability and human diagram complexity are not yet blocking gates."
+    "No reproducible governance performance baseline has yet been recorded for a representative large consumer repository.",
+    "The cost distribution between Skill Workflow governance and consumer project-native build/test work is not yet measured.",
+    "Mermaid renderability and human diagram complexity are not yet blocking gates.",
+    "Repository enforcement remediation has not yet been applied."
   ],
   "phase": "SW2-00",
   "proven": [
     "Pre-SW2 main 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8 passed the existing Ubuntu and Windows Governance Selftest.",
     "Current implementation contains deterministic generated-documentation, sequence, truth, handoff, and cross-document validators.",
-    "Current main is not branch-protected according to the repository branch metadata audited at SW2-00 start."
+    "Repository enforcement audit proves main is not protected and repository rulesets are empty at SW2-00 start.",
+    "Exact-head self baseline run 36971841881 passed against candidate 0b2cbbba444ee49e91ec2a2058f499cd241c40dc and is recorded at benchmarks/baselines/sw2-00-self-linux.json.",
+    "The first baseline exposed that default pull-request checkout used a synthetic merge ref; SW2-00 now binds governance workflows to the exact candidate SHA before executing tests."
   ],
   "schema_version": 1,
   "status": "IN_PROGRESS",
