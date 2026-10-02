@@ -1,0 +1,51 @@
+name: SW2-02 Sequence Refresh
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-sequence:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate current sequence and bind digest
+        shell: bash
+        run: |
+          python scripts/generate_sequence_actual.py \
+            --root . \
+            --output-json docs/sequence/generated/SW2-02-GOVERNANCE.actual.json \
+            --output-mermaid docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd \
+            --entry scripts/governance_engine.py::main
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          graph = json.loads(Path('docs/sequence/generated/SW2-02-GOVERNANCE.actual.json').read_text(encoding='utf-8'))
+          path = Path('docs/sequence/sessions/SW2-02-GOVERNANCE.json')
+          session = json.loads(path.read_text(encoding='utf-8'))
+          session['actual']['source_digest'] = graph['source_digest']
+          path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+          python scripts/validate_sequence_sessions.py --root .
+      - name: Commit deterministic sequence state
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/sequence/generated/SW2-02-GOVERNANCE.actual.json \
+                  docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd \
+                  docs/sequence/sessions/SW2-02-GOVERNANCE.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "docs(sequence): refresh SW2-02 final source evidence"
+          git push origin HEAD:work/sw2-02-fast-development-workflow
