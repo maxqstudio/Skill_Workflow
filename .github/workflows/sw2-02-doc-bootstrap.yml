@@ -25,7 +25,7 @@ jobs:
           python-version: "3.12"
 
       - name: Add fast execution mode contract
-        shell: python
+        shell: python {0}
         run: |
           from pathlib import Path
 
