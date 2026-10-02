@@ -1,4 +1,4 @@
-name: SW2 Consumer Baseline
+name: SW2 Consumer Engine Performance
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  max-grounding-baseline:
-    name: Consumer Baseline (max-grounding)
+  max-grounding-performance:
+    name: Consumer Engine Performance (max-grounding)
     runs-on: ubuntu-latest
 
     steps:
@@ -52,20 +52,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Measure pinned consumer governance cost
+      - name: Measure candidate engine on pinned consumer
         run: >-
           python scripts/benchmark_governance.py
           --root consumer
+          --tool-root .
           --repeats 3
           --expected-head 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f
-          --label "SW2-00 max-grounding consumer baseline"
-          --output ../artifacts/performance/sw2-00-max-grounding.json
+          --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json
+          --label "SW2-01 max-grounding with candidate Engine V2"
+          --output ../artifacts/performance/sw2-01-max-grounding-engine.json
 
-      - name: Upload consumer baseline evidence
+      - name: Upload consumer performance evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sw2-00-max-grounding-baseline
-          path: artifacts/performance/sw2-00-max-grounding.json
+          name: sw2-01-max-grounding-engine-performance
+          path: artifacts/performance/sw2-01-max-grounding-engine.json
           if-no-files-found: error
           retention-days: 14
