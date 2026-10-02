@@ -1,0 +1,78 @@
+name: SW2-02 Pycache Repair
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Repair worktree-clean compile orchestration
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          engine_path = Path('scripts/governance_engine.py')
+          text = engine_path.read_text(encoding='utf-8')
+          text = text.replace(
+              'import json\nimport subprocess\nimport sys\nimport time\n',
+              'import json\nimport os\nimport subprocess\nimport sys\nimport tempfile\nimport time\n',
+              1,
+          )
+          marker = 'from typing import Callable\n\nimport sync_project_truth\n'
+          replacement = (
+              'from typing import Callable\n\n'
+              '# Direct engine execution must not create repository-local __pycache__.\n'
+              'sys.dont_write_bytecode = True\n\n'
+              'import sync_project_truth\n'
+          )
+          if marker not in text:
+              raise SystemExit('LOCAL_IMPORT_MARKER_MISSING')
+          text = text.replace(marker, replacement, 1)
+
+          command_marker = '''def command_action(root: Path, argv: list[str]) -> Callable[[], tuple[int, str]]:\n    def run() -> tuple[int, str]:\n        completed = subprocess.run(\n            argv,\n            cwd=root,\n            text=True,\n            stdout=subprocess.PIPE,\n            stderr=subprocess.STDOUT,\n            check=False,\n        )\n        return completed.returncode, completed.stdout\n\n    return run\n\n\n'''
+          compile_action = '''def command_action(root: Path, argv: list[str]) -> Callable[[], tuple[int, str]]:\n    def run() -> tuple[int, str]:\n        completed = subprocess.run(\n            argv,\n            cwd=root,\n            text=True,\n            stdout=subprocess.PIPE,\n            stderr=subprocess.STDOUT,\n            check=False,\n        )\n        return completed.returncode, completed.stdout\n\n    return run\n\n\ndef compile_scripts_action(root: Path) -> Callable[[], tuple[int, str]]:\n    \"\"\"Compile Python sources without materializing bytecode in the governed worktree.\"\"\"\n    def run() -> tuple[int, str]:\n        with tempfile.TemporaryDirectory(prefix=\"skill-workflow-pycache-\") as td:\n            env = os.environ.copy()\n            env[\"PYTHONPYCACHEPREFIX\"] = td\n            completed = subprocess.run(\n                [sys.executable, \"-m\", \"compileall\", \"-q\", \"scripts\"],\n                cwd=root,\n                env=env,\n                text=True,\n                stdout=subprocess.PIPE,\n                stderr=subprocess.STDOUT,\n                check=False,\n            )\n        return completed.returncode, completed.stdout\n\n    return run\n\n\n'''
+          if command_marker not in text:
+              raise SystemExit('COMMAND_ACTION_MARKER_MISSING')
+          text = text.replace(command_marker, compile_action, 1)
+          old_compile = '''                action=command_action(\n                    root,\n                    [sys.executable, \"-m\", \"compileall\", \"-q\", \"scripts\"],\n                ),\n'''
+          new_compile = '                action=compile_scripts_action(root),\n'
+          if old_compile not in text:
+              raise SystemExit('COMPILE_NODE_MARKER_MISSING')
+          text = text.replace(old_compile, new_compile, 1)
+          engine_path.write_text(text, encoding='utf-8')
+
+          test_path = Path('scripts/selftest_governance_engine.py')
+          test = test_path.read_text(encoding='utf-8')
+          assertion_marker = '''        require(\n            all(node[\"status\"] == \"PASS\" for node in develop_payload[\"nodes\"].values()),\n            \"develop CLI targeted node failed\",\n        )\n\n        unknown = root / \"future\" / \"new-surface.bin\"\n'''
+          assertion_replacement = '''        require(\n            all(node[\"status\"] == \"PASS\" for node in develop_payload[\"nodes\"].values()),\n            \"develop CLI targeted node failed\",\n        )\n        require(\n            not any(path.name == \"__pycache__\" for path in scripts.rglob(\"__pycache__\")),\n            \"develop compile dirtied fixture worktree with __pycache__\",\n        )\n\n        unknown = root / \"future\" / \"new-surface.bin\"\n'''
+          if assertion_marker not in test:
+              raise SystemExit('TEST_ASSERTION_MARKER_MISSING')
+          test = test.replace(assertion_marker, assertion_replacement, 1)
+          test_path.write_text(test, encoding='utf-8')
+          PY
+          python -m compileall -q scripts
+          find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
+          python scripts/selftest_governance_engine.py
+      - name: Commit repair
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/governance_engine.py scripts/selftest_governance_engine.py
+          git commit -m "fix(sw2): keep mode compile checks worktree-clean"
+          git push origin HEAD:work/sw2-02-fast-development-workflow
