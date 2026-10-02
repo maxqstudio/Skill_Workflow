@@ -78,6 +78,16 @@ def run_command(root: Path, command: list[str]) -> dict[str, object]:
     }
 
 
+def governance_tool(root: Path, name: str) -> Path | None:
+    for candidate in (
+        root / "scripts" / name,
+        root / ".workflow" / "tools" / name,
+    ):
+        if candidate.is_file():
+            return candidate
+    return None
+
+
 def copy_for_sync(root: Path, destination: Path) -> None:
     ignored = shutil.ignore_patterns(
         ".git",
@@ -93,6 +103,11 @@ def copy_for_sync(root: Path, destination: Path) -> None:
         shutil.rmtree(generated)
 
 
+def fixture_tool(fixture: Path, source_root: Path, source_tool: Path) -> Path:
+    rel = source_tool.relative_to(source_root)
+    return fixture / rel
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=".")
@@ -103,6 +118,7 @@ def main() -> int:
     )
     ap.add_argument("--include-selftests", action="store_true")
     ap.add_argument("--expected-head", default="")
+    ap.add_argument("--label", default="SW2-00 Skill Workflow baseline")
     args = ap.parse_args()
 
     if args.repeats < 1:
@@ -110,9 +126,10 @@ def main() -> int:
         return 2
 
     root = Path(args.root).resolve()
-    scripts = root / "scripts"
-    if not scripts.is_dir():
-        print("FAIL scripts directory missing")
+    sync_tool = governance_tool(root, "sync_project_truth.py")
+    docs_validator = governance_tool(root, "validate_project_docs.py")
+    if sync_tool is None or docs_validator is None:
+        print("FAIL governance sync/docs tools missing")
         return 2
 
     observed_head = git(root, "rev-parse", "HEAD") or "NOT_AVAILABLE"
@@ -132,11 +149,13 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="skill-workflow-sw2-baseline-") as td:
         fixture = Path(td) / "repo"
         copy_for_sync(root, fixture)
+        fixture_sync = fixture_tool(fixture, root, sync_tool)
+        fixture_validator = fixture_tool(fixture, root, docs_validator)
         commands["sync_project_truth"] = run_command(
             fixture,
             [
                 sys.executable,
-                str(fixture / "scripts" / "sync_project_truth.py"),
+                str(fixture_sync),
                 "--root",
                 str(fixture),
             ],
@@ -145,20 +164,25 @@ def main() -> int:
             fixture,
             [
                 sys.executable,
-                str(fixture / "scripts" / "validate_project_docs.py"),
+                str(fixture_validator),
                 "--root",
                 str(fixture),
             ],
         )
 
     if args.include_selftests:
+        compiler_selftest = governance_tool(root, "selftest_project_truth_compiler.py")
+        strict_selftest = governance_tool(root, "selftest_strict_project_workflow.py")
+        if compiler_selftest is None or strict_selftest is None:
+            print("FAIL requested selftests are missing")
+            return 2
         commands["project_truth_compiler_selftest"] = run_command(
             root,
-            [sys.executable, str(scripts / "selftest_project_truth_compiler.py")],
+            [sys.executable, str(compiler_selftest)],
         )
         commands["strict_workflow_selftest"] = run_command(
             root,
-            [sys.executable, str(scripts / "selftest_strict_project_workflow.py")],
+            [sys.executable, str(strict_selftest)],
         )
 
     failures = [
@@ -173,10 +197,11 @@ def main() -> int:
 
     report = {
         "schema_version": 1,
-        "benchmark": "SW2-00 Skill Workflow self baseline",
+        "benchmark": args.label,
         "observed_head": observed_head,
         "expected_head": expected_head or "NOT_DECLARED",
         "exact_head_match": bool(expected_head) and observed_head == expected_head,
+        "tool_layout": str(sync_tool.parent.relative_to(root).as_posix()),
         "platform": platform.platform(),
         "python": sys.version.split()[0],
         "cpu_count": os.cpu_count(),
