@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -59,6 +60,8 @@ def main() -> int:
 
     results = []
     failed = 0
+    child_env = os.environ.copy()
+    child_env["PYTHONDONTWRITEBYTECODE"] = "1"
 
     for session in sessions:
         rel = session.relative_to(root).as_posix()
@@ -70,8 +73,10 @@ def main() -> int:
                 str(root),
                 "--session",
                 rel,
+                "--no-write-report",
             ],
             cwd=root,
+            env=child_env,
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
