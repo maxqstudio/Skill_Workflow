@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-00 has an exact-head self-repository performance baseline and confirmed repository-enforcement audit, but canonical self-governance docs, representative consumer timing, sequence acceptance, and final exact-candidate project-state acceptance remain incomplete.",
+  "evidence_boundary": "SW2-00 has exact-head self and representative governed-consumer performance baselines plus a confirmed repository-enforcement audit. Canonical self-governance docs, sequence acceptance, repository enforcement remediation, and final exact-candidate project-state acceptance remain incomplete.",
   "human_comprehension_questions": {},
   "human_comprehension_status": "NOT_PROVEN",
   "requirements": [
@@ -10,10 +10,10 @@
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "benchmarks/baselines/sw2-00-self-linux.json plus representative consumer baseline still required",
+      "evidence": "benchmarks/baselines/sw2-00-self-linux.json and benchmarks/baselines/sw2-00-max-grounding-linux.json",
       "id": "SW2-00-R2",
       "requirement": "A reproducible current performance baseline exists before engine optimization begins.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "benchmarks/baselines/sw2-00-repository-enforcement.json",
@@ -38,7 +38,8 @@
     "python -m compileall -q scripts",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
-    "python scripts/benchmark_governance.py --root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD>"
+    "python scripts/benchmark_governance.py --root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD>",
+    "python scripts/benchmark_governance.py --root <GOVERNED_CONSUMER> --repeats 3 --expected-head <EXACT_CONSUMER_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
