@@ -10,6 +10,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+from sequence_contract import compute_source_digest, source_files
+
 
 def run(root: Path, *args: str, expect: int = 0) -> str:
     proc = subprocess.run(
@@ -38,8 +40,71 @@ def write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
+def test_gitignored_source_files_are_excluded() -> None:
+    with tempfile.TemporaryDirectory(prefix="skill-workflow-source-inventory-") as td:
+        root = Path(td).resolve()
+        run(root, "git", "init", "--quiet")
+        run(root, "git", "config", "user.email", "skill-workflow-selftest@example.invalid")
+        run(root, "git", "config", "user.name", "Skill Workflow Selftest")
+
+        (root / ".gitignore").write_text(
+            "artifacts/\n.pytest-codex-*/\n",
+            encoding="utf-8",
+        )
+        (root / "tracked.py").write_bytes(b"TRACKED = True\n")
+        (root / "untracked.py").write_text("UNTRACKED = True\n", encoding="utf-8")
+        nested_root = root / "nested"
+        nested_root.mkdir()
+        (nested_root / "module.py").write_text("NESTED = True\n", encoding="utf-8")
+        ignored_artifact = root / "artifacts" / "optimizer" / "report.xml"
+        ignored_cache = root / ".pytest-codex-fixture" / "report.xml"
+        ignored_artifact.parent.mkdir(parents=True)
+        ignored_cache.parent.mkdir(parents=True)
+        ignored_artifact.write_text("<report />\n", encoding="utf-8")
+        ignored_cache.write_text("<report />\n", encoding="utf-8")
+
+        run(root, "git", "add", ".gitignore", "tracked.py")
+        run(root, "git", "commit", "--quiet", "-m", "test: create source inventory fixture")
+
+        observed = {
+            path.relative_to(root).as_posix()
+            for path in source_files(root)
+        }
+        required = {"tracked.py", "untracked.py", "nested/module.py"}
+        forbidden = {
+            "artifacts/optimizer/report.xml",
+            ".pytest-codex-fixture/report.xml",
+        }
+        if not required.issubset(observed):
+            raise RuntimeError(
+                "tracked or non-ignored source omitted: "
+                + ",".join(sorted(required - observed))
+            )
+        if observed.intersection(forbidden):
+            raise RuntimeError(
+                "Git-ignored source leaked into inventory: "
+                + ",".join(sorted(observed.intersection(forbidden)))
+            )
+        nested_observed = {
+            path.relative_to(nested_root).as_posix()
+            for path in source_files(nested_root)
+        }
+        if nested_observed != {"module.py"}:
+            raise RuntimeError(
+                "subdirectory source inventory mismatch: "
+                + ",".join(sorted(nested_observed))
+            )
+        lf_digest = compute_source_digest(root)
+        (root / "tracked.py").write_bytes(b"TRACKED = True\r\n")
+        crlf_digest = compute_source_digest(root)
+        if crlf_digest != lf_digest:
+            raise RuntimeError("source digest changed with Windows line endings")
+
+
 def main() -> int:
     skill_root = Path(__file__).resolve().parent.parent
+    test_gitignored_source_files_are_excluded()
+    print("GITIGNORED_SOURCE_EXCLUSION=PASS")
 
     with tempfile.TemporaryDirectory(prefix="skill-workflow-selftest-") as td:
         root = Path(td)

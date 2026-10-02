@@ -18,7 +18,7 @@ Branch: work/sw2-00-baseline-self-governance
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8
 Current candidate SHA: external final acceptance evidence
-Current source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
+Current source digest: f9527928cdb48e848a317cdf3d356c3434083736f47837c7b8bda661f72ffa58
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
