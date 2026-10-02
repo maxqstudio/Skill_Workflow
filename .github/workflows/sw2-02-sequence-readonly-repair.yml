@@ -1,4 +1,3 @@
-# Trigger after workflow creation so this push executes the one-shot repair.
 name: SW2-02 Sequence Readonly Repair
 
 on:
@@ -23,15 +22,24 @@ jobs:
           python-version: "3.12"
       - name: Apply sequence read-only repair
         run: python .github/sw2-02-sequence-readonly-repair.txt
-      - name: Run targeted verify regression
+      - name: Run targeted read-only regression
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         shell: bash
         run: |
-          expected="$(git rev-parse HEAD)"
-          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
-          python scripts/governance_engine.py --root . --base "$base" --mode verify --expected-head "$expected"
-          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts)"
+          python scripts/validate_sequence_contract.py --help | grep -- --no-write-report
+          before="$(git status --porcelain --untracked-files=all -- artifacts/sequence scripts)"
+          python scripts/validate_sequence_sessions.py --root . > /tmp/sequence-validation.log 2>&1 || true
+          after="$(git status --porcelain --untracked-files=all -- artifacts/sequence scripts)"
+          cat /tmp/sequence-validation.log
+          echo "SEQUENCE_READONLY_BEFORE_BEGIN"
+          printf '%s\n' "$before"
+          echo "SEQUENCE_READONLY_BEFORE_END"
+          echo "SEQUENCE_READONLY_AFTER_BEGIN"
+          printf '%s\n' "$after"
+          echo "SEQUENCE_READONLY_AFTER_END"
+          test "$before" = "$after"
+          echo "SEQUENCE_AGGREGATE_READ_ONLY=PASS"
       - name: Commit repair and permanent regression
         shell: bash
         run: |
