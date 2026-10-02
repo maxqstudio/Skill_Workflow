@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression tests for Governance Engine V2 primitives."""
+"""Regression tests for Governance Engine V2 primitives and SW2-02 modes."""
 
 from __future__ import annotations
 
@@ -8,7 +8,17 @@ import tempfile
 from pathlib import Path
 
 from extract_project_facts import extract_project_facts
-from governance_engine import ValidationDAG, ValidationNode
+from governance_engine import (
+    FINALIZE_NODE_NAMES,
+    VERIFY_NODE_NAMES,
+    ValidationDAG,
+    ValidationNode,
+    classify_changed_paths,
+    collect_changed_paths,
+    develop_node_names,
+    effective_mode,
+    planned_node_names,
+)
 from project_snapshot import ProjectSnapshot, active_project_snapshot
 from sequence_contract import compute_source_digest, source_files
 
@@ -25,6 +35,14 @@ def git(root: Path, *args: str) -> None:
         stderr=subprocess.PIPE,
         check=True,
     )
+
+
+def git_text(root: Path, *args: str) -> str:
+    return subprocess.check_output(
+        ["git", "-C", str(root), *args],
+        text=True,
+        stderr=subprocess.STDOUT,
+    ).strip()
 
 
 def snapshot_parity_and_immutability() -> None:
@@ -50,7 +68,10 @@ def snapshot_parity_and_immutability() -> None:
         )
         require(snapshot.source_digest == legacy_digest, "snapshot digest parity failed")
         require(b"\r\n" not in snapshot.read_bytes("app.py"), "CRLF was not canonicalized")
-        require("ignored.py" not in [item.relative_path for item in snapshot.files], "ignored source leaked into snapshot")
+        require(
+            "ignored.py" not in [item.relative_path for item in snapshot.files],
+            "ignored source leaked into snapshot",
+        )
 
         old_digest = snapshot.source_digest
         old_text = snapshot.read_text("app.py")
@@ -91,6 +112,7 @@ def dag_executes_once() -> None:
         def run() -> tuple[int, str]:
             calls[name] += 1
             return 0, name + "=PASS\n"
+
         return run
 
     results = ValidationDAG(
@@ -128,7 +150,13 @@ def dag_fail_closed() -> None:
 
     for nodes, marker in (
         ([ValidationNode("broken", ("missing",), downstream)], "UNKNOWN_DAG_DEPENDENCY"),
-        ([ValidationNode("x", ("y",), downstream), ValidationNode("y", ("x",), downstream)], "DAG_CYCLE"),
+        (
+            [
+                ValidationNode("x", ("y",), downstream),
+                ValidationNode("y", ("x",), downstream),
+            ],
+            "DAG_CYCLE",
+        ),
     ):
         try:
             ValidationDAG(nodes)
@@ -139,11 +167,110 @@ def dag_fail_closed() -> None:
     print("DAG_FAIL_CLOSED=PASS")
 
 
+def mode_planning_contract() -> None:
+    engine_paths = ("scripts/governance_engine.py",)
+    engine_impacts = classify_changed_paths(engine_paths)
+    require(engine_impacts == ("engine",), f"engine classification drifted: {engine_impacts}")
+    require(
+        effective_mode("develop", engine_impacts) == "develop",
+        "known engine change should remain develop",
+    )
+    develop_nodes = develop_node_names(engine_paths, engine_impacts)
+    require("engine_regression" in develop_nodes, "develop missed engine regression")
+    require("strict_workflow_selftest" not in develop_nodes, "develop ran final-only regression")
+
+    broad_impacts = classify_changed_paths(("scripts/new_future_validator.py",))
+    require(
+        effective_mode("develop", broad_impacts) == "verify",
+        "unmapped source should escalate develop to verify",
+    )
+
+    unknown_impacts = classify_changed_paths(("future/new-surface.bin",))
+    require(unknown_impacts == ("unknown",), "unknown path was misclassified")
+    require(
+        effective_mode("develop", unknown_impacts) == "verify",
+        "unknown develop impact did not escalate to verify",
+    )
+    require(
+        effective_mode("verify", unknown_impacts) == "finalize",
+        "unknown verify impact did not escalate to finalize",
+    )
+
+    verify_nodes = set(
+        planned_node_names(
+            "develop",
+            "verify",
+            ("scripts/new_future_validator.py",),
+            broad_impacts,
+        )
+    )
+    require(
+        set(develop_nodes).issubset(verify_nodes),
+        "verify is not a superset of known develop checks",
+    )
+    require(
+        set(VERIFY_NODE_NAMES) == verify_nodes,
+        "verify node set drifted from declared contract",
+    )
+
+    finalize_nodes = set(
+        planned_node_names(
+            "verify",
+            "finalize",
+            ("future/new-surface.bin",),
+            unknown_impacts,
+        )
+    )
+    require(
+        set(VERIFY_NODE_NAMES).issubset(finalize_nodes),
+        "finalize is not a superset of verify",
+    )
+    for required in (
+        "strict_workflow_selftest",
+        "sync_project_truth",
+        "validate_project_truth",
+        "governed_state_clean",
+    ):
+        require(required in finalize_nodes, f"finalize missing {required}")
+    require(
+        set(FINALIZE_NODE_NAMES) == finalize_nodes,
+        "finalize node set drifted from declared contract",
+    )
+    print("MODE_PLANNING_CONTRACT=PASS")
+
+
+def changed_path_collection_contract() -> None:
+    with tempfile.TemporaryDirectory(prefix="sw2-impact-") as td:
+        root = Path(td).resolve()
+        git(root, "init")
+        git(root, "config", "user.email", "sw2@example.invalid")
+        git(root, "config", "user.name", "SW2 Test")
+        (root / "tracked.py").write_text("value = 1\n", encoding="utf-8")
+        git(root, "add", "tracked.py")
+        git(root, "commit", "-m", "base")
+        base = git_text(root, "rev-parse", "HEAD")
+
+        (root / "tracked.py").write_text("value = 2\n", encoding="utf-8")
+        (root / "untracked.txt").write_text("new\n", encoding="utf-8")
+        dirty = set(collect_changed_paths(root, base))
+        require("tracked.py" in dirty, "unstaged path missing from impact set")
+        require("untracked.txt" in dirty, "untracked path missing from impact set")
+
+        git(root, "add", "tracked.py", "untracked.txt")
+        git(root, "commit", "-m", "candidate")
+        committed = set(collect_changed_paths(root, base))
+        require("tracked.py" in committed, "committed path missing from impact set")
+        require("untracked.txt" in committed, "committed new path missing from impact set")
+    print("CHANGED_PATH_COLLECTION=PASS")
+
+
 def main() -> int:
     snapshot_parity_and_immutability()
     snapshot_fact_reuse()
     dag_executes_once()
     dag_fail_closed()
+    mode_planning_contract()
+    changed_path_collection_contract()
     print("GOVERNANCE_ENGINE_SELFTEST=PASS")
     return 0
 
