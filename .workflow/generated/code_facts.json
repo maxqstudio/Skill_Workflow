@@ -87,7 +87,7 @@
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
-      "lines": 353
+      "lines": 413
     },
     {
       "directory": "scripts",
@@ -108,7 +108,7 @@
       "file": "scripts/sequence_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 191
+      "lines": 236
     },
     {
       "directory": "scripts",
@@ -5612,8 +5612,116 @@
       "target_token": "json.dumps"
     },
     {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "nested_root.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "ignored_artifact.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "ignored_cache.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "ignored_artifact.write_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "ignored_cache.write_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "source_files"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "required.issubset"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "observed.intersection"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "observed.intersection"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "source_files"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "target_token": "sorted"
+    },
+    {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "test_gitignored_source_files_are_excluded"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -6862,6 +6970,46 @@
     {
       "caller": "scripts/sequence_contract.py::git_head",
       "target_token": "git"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "root.relative_to"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "os.fsdecode"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "indexed_paths.split"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::source_files",
+      "target_token": "RuntimeError"
     },
     {
       "caller": "scripts/sequence_contract.py::source_files",
@@ -12333,24 +12481,32 @@
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 34,
-      "line_start": 14,
+      "line_end": 36,
+      "line_start": 16,
       "locator": "scripts/selftest_project_truth_compiler.py::run",
       "symbol": "run"
     },
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 38,
-      "line_start": 37,
+      "line_end": 40,
+      "line_start": 39,
       "locator": "scripts/selftest_project_truth_compiler.py::write_json",
       "symbol": "write_json"
     },
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 349,
-      "line_start": 41,
+      "line_end": 96,
+      "line_start": 43,
+      "locator": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
+      "symbol": "test_gitignored_source_files_are_excluded"
+    },
+    {
+      "file": "scripts/selftest_project_truth_compiler.py",
+      "kind": "function",
+      "line_end": 409,
+      "line_start": 99,
       "locator": "scripts/selftest_project_truth_compiler.py::main",
       "symbol": "main"
     },
@@ -12437,104 +12593,104 @@
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 30,
-      "line_start": 29,
+      "line_end": 31,
+      "line_start": 30,
       "locator": "scripts/sequence_contract.py::load_json",
       "symbol": "load_json"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 35,
-      "line_start": 33,
+      "line_end": 36,
+      "line_start": 34,
       "locator": "scripts/sequence_contract.py::write_json",
       "symbol": "write_json"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 39,
-      "line_start": 38,
+      "line_end": 40,
+      "line_start": 39,
       "locator": "scripts/sequence_contract.py::sha256_file",
       "symbol": "sha256_file"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 47,
-      "line_start": 42,
+      "line_end": 48,
+      "line_start": 43,
       "locator": "scripts/sequence_contract.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 51,
-      "line_start": 50,
+      "line_end": 52,
+      "line_start": 51,
       "locator": "scripts/sequence_contract.py::git_head",
       "symbol": "git_head"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 63,
-      "line_start": 54,
+      "line_end": 108,
+      "line_start": 55,
       "locator": "scripts/sequence_contract.py::source_files",
       "symbol": "source_files"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 74,
-      "line_start": 66,
+      "line_end": 119,
+      "line_start": 111,
       "locator": "scripts/sequence_contract.py::compute_source_digest",
       "symbol": "compute_source_digest"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 84,
-      "line_start": 77,
+      "line_end": 129,
+      "line_start": 122,
       "locator": "scripts/sequence_contract.py::is_ancestor",
       "symbol": "is_ancestor"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 91,
-      "line_start": 87,
+      "line_end": 136,
+      "line_start": 132,
       "locator": "scripts/sequence_contract.py::sanitize_alias",
       "symbol": "sanitize_alias"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 126,
-      "line_start": 94,
+      "line_end": 171,
+      "line_start": 139,
       "locator": "scripts/sequence_contract.py::render_graph_mermaid",
       "symbol": "render_graph_mermaid"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 136,
-      "line_start": 129,
+      "line_end": 181,
+      "line_start": 174,
       "locator": "scripts/sequence_contract.py::plan_locator_map",
       "symbol": "plan_locator_map"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 144,
-      "line_start": 139,
+      "line_end": 189,
+      "line_start": 184,
       "locator": "scripts/sequence_contract.py::graph_edge_set",
       "symbol": "graph_edge_set"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 191,
-      "line_start": 147,
+      "line_end": 236,
+      "line_start": 192,
       "locator": "scripts/sequence_contract.py::compare_plan_actual",
       "symbol": "compare_plan_actual"
     },
@@ -12908,13 +13064,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276",
+  "source_digest": "79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a",
   "source_summary": {
     "files": 23,
     "languages": {
       "Python": 23
     },
-    "lines": 7879,
+    "lines": 7984,
     "test_files": 0
   },
   "tests": []

@@ -6,7 +6,7 @@
       "scripts/sync_project_truth.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.json",
-    "source_digest": "a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276"
+    "source_digest": "79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a"
   },
   "critical": true,
   "evidence_boundary": "This DURING session covers the static Project Truth synchronization implementation entrypoint only. Repository merge policy and GitHub-hosted orchestration remain separate governance evidence and are not inferred from this graph.",

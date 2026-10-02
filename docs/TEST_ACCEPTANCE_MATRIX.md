@@ -7,7 +7,7 @@
 SW2-00 acceptance covers STRICT self-governance, exact-head cross-platform source tests, deterministic project-truth synchronization, corrected static DURING sequence evidence, and reproducible self/consumer governance baselines. Repository merge enforcement remains an audited and recorded gap deferred to SW2-07; Mermaid renderability and bounded human diagram complexity remain deferred to SW2-03.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
+Current source digest: 79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
+Source digest: 79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -112,9 +112,10 @@ Status: CURRENT
 | scripts/project_profile.py | required_docs | function | 212-224 | Observed Python symbol | | | |
 | scripts/project_profile.py | validate_profile | function | 227-260 | Observed Python symbol | | | |
 | scripts/selftest_cross_document_regressions.py | main | function | 7-35 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | run | function | 14-34 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | write_json | function | 37-38 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | main | function | 41-349 | Observed Python symbol | | | |
+| scripts/selftest_project_truth_compiler.py | run | function | 16-36 | Observed Python symbol | | | |
+| scripts/selftest_project_truth_compiler.py | write_json | function | 39-40 | Observed Python symbol | | | |
+| scripts/selftest_project_truth_compiler.py | test_gitignored_source_files_are_excluded | function | 43-96 | Observed Python symbol | | | |
+| scripts/selftest_project_truth_compiler.py | main | function | 99-409 | Observed Python symbol | | | |
 | scripts/selftest_sequence_call_resolution.py | run | function | 18-28 | Observed Python symbol | | | |
 | scripts/selftest_sequence_call_resolution.py | main | function | 31-103 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | run | function | 48-68 | Observed Python symbol | | | |
@@ -125,19 +126,19 @@ Status: CURRENT
 | scripts/selftest_strict_project_workflow.py | assert_cross_failure | function | 105-125 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | run_relation_and_truth_regressions | function | 128-209 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | main | function | 212-864 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | load_json | function | 29-30 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | write_json | function | 33-35 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | sha256_file | function | 38-39 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | git | function | 42-47 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | git_head | function | 50-51 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | source_files | function | 54-63 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | compute_source_digest | function | 66-74 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | is_ancestor | function | 77-84 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | sanitize_alias | function | 87-91 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | render_graph_mermaid | function | 94-126 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | plan_locator_map | function | 129-136 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | graph_edge_set | function | 139-144 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | compare_plan_actual | function | 147-191 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | load_json | function | 30-31 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | write_json | function | 34-36 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | sha256_file | function | 39-40 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | git | function | 43-48 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | git_head | function | 51-52 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | source_files | function | 55-108 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | compute_source_digest | function | 111-119 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | is_ancestor | function | 122-129 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | sanitize_alias | function | 132-136 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | render_graph_mermaid | function | 139-171 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | plan_locator_map | function | 174-181 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | graph_edge_set | function | 184-189 | Observed Python symbol | | | |
+| scripts/sequence_contract.py | compare_plan_actual | function | 192-236 | Observed Python symbol | | | |
 | scripts/sync_project_truth.py | run | function | 28-37 | Observed Python symbol | | | |
 | scripts/sync_project_truth.py | main | function | 40-149 | Observed Python symbol | | | |
 | scripts/validate_cross_document_consistency.py | git | function | 62-67 | Observed Python symbol | | | |

@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
+Source digest: 79522a5eb90773bfc0a5260c87000255a24cbc946d2d9329fec5e692fadd4a6a
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -18,10 +18,10 @@ Generated/refreshed: current compiler run
 | scripts/initialize_project_truth.py | Python | 100 | scripts | NO |
 | scripts/project_profile.py | Python | 260 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
-| scripts/selftest_project_truth_compiler.py | Python | 353 | scripts | NO |
+| scripts/selftest_project_truth_compiler.py | Python | 413 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 868 | scripts | NO |
-| scripts/sequence_contract.py | Python | 191 | scripts | NO |
+| scripts/sequence_contract.py | Python | 236 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 153 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 738 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
