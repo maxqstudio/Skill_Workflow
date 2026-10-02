@@ -187,6 +187,18 @@ def mode_planning_contract() -> None:
         "unmapped source should escalate develop to verify",
     )
 
+    support_impacts = classify_changed_paths(
+        (".gitattributes", "artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json")
+    )
+    require(
+        support_impacts == ("governance", "sequence"),
+        f"known governance/sequence support paths misclassified: {support_impacts}",
+    )
+    require(
+        effective_mode("verify", support_impacts) == "verify",
+        "known governance support paths should not force finalize",
+    )
+
     unknown_impacts = classify_changed_paths(("future/new-surface.bin",))
     require(unknown_impacts == ("unknown",), "unknown path was misclassified")
     require(

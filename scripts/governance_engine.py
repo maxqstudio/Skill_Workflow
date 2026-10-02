@@ -252,8 +252,10 @@ def classify_path(path: str) -> str:
         return "cross_document"
     if path in DEVELOP_TEST_MAP:
         return "targeted_test"
-    if path == "PROJECT_PROFILE.yaml" or path.startswith(".workflow/"):
+    if path in {"PROJECT_PROFILE.yaml", ".gitattributes"} or path.startswith(".workflow/"):
         return "governance"
+    if path.startswith("artifacts/sequence/"):
+        return "sequence"
     if path in {"SKILL.md", "README.md"} or path.startswith("docs/"):
         return "documentation"
     if path.startswith("benchmarks/"):
