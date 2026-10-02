@@ -1,0 +1,134 @@
+{
+  "coverage": {
+    "js_ts_http_module_scan": true,
+    "limitations": [
+      "dynamic dispatch",
+      "dependency injection",
+      "reflection",
+      "callbacks/events",
+      "framework magic not visible statically",
+      "JS/TS function-level call ownership is not fully resolved"
+    ],
+    "python_ast": true,
+    "python_parse_failures": [],
+    "python_route_decorators": true,
+    "runtime_trace": false
+  },
+  "edges": [
+    {
+      "action": "_bool_value",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::documentation_settings",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::_bool_value"
+    },
+    {
+      "action": "normalized_profile",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::documentation_settings",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::normalized_profile"
+    },
+    {
+      "action": "_clean",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::parse_profile",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::_clean"
+    },
+    {
+      "action": "documentation_settings",
+      "evidence": "STATIC",
+      "from": "scripts/sync_project_truth.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::documentation_settings"
+    },
+    {
+      "action": "parse_profile",
+      "evidence": "STATIC",
+      "from": "scripts/sync_project_truth.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "action": "run",
+      "evidence": "STATIC",
+      "from": "scripts/sync_project_truth.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sync_project_truth.py::run"
+    }
+  ],
+  "entries": [
+    "scripts/sync_project_truth.py::main"
+  ],
+  "generated": true,
+  "generated_by": "generate_sequence_actual.py",
+  "nodes": [
+    {
+      "id": "scripts/project_profile.py::_bool_value",
+      "kind": "function",
+      "label": "scripts/project_profile.py::_bool_value",
+      "language": "Python",
+      "line_end": 158,
+      "line_start": 152,
+      "locator": "scripts/project_profile.py::_bool_value"
+    },
+    {
+      "id": "scripts/project_profile.py::_clean",
+      "kind": "function",
+      "label": "scripts/project_profile.py::_clean",
+      "language": "Python",
+      "line_end": 85,
+      "line_start": 81,
+      "locator": "scripts/project_profile.py::_clean"
+    },
+    {
+      "id": "scripts/project_profile.py::documentation_settings",
+      "kind": "function",
+      "label": "scripts/project_profile.py::documentation_settings",
+      "language": "Python",
+      "line_end": 191,
+      "line_start": 170,
+      "locator": "scripts/project_profile.py::documentation_settings"
+    },
+    {
+      "id": "scripts/project_profile.py::normalized_profile",
+      "kind": "function",
+      "label": "scripts/project_profile.py::normalized_profile",
+      "language": "Python",
+      "line_end": 135,
+      "line_start": 131,
+      "locator": "scripts/project_profile.py::normalized_profile"
+    },
+    {
+      "id": "scripts/project_profile.py::parse_profile",
+      "kind": "function",
+      "label": "scripts/project_profile.py::parse_profile",
+      "language": "Python",
+      "line_end": 128,
+      "line_start": 88,
+      "locator": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "id": "scripts/sync_project_truth.py::main",
+      "kind": "function",
+      "label": "scripts/sync_project_truth.py::main",
+      "language": "Python",
+      "line_end": 149,
+      "line_start": 40,
+      "locator": "scripts/sync_project_truth.py::main"
+    },
+    {
+      "id": "scripts/sync_project_truth.py::run",
+      "kind": "function",
+      "label": "scripts/sync_project_truth.py::run",
+      "language": "Python",
+      "line_end": 37,
+      "line_start": 28,
+      "locator": "scripts/sync_project_truth.py::run"
+    }
+  ],
+  "observed_head": "093095d4cbc10a5748d08577a221d0e4abdaf441",
+  "schema_version": 1,
+  "source_digest": "f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541"
+}
