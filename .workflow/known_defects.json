@@ -31,16 +31,28 @@
       "summary": "Skill Workflow did not govern its own repository with PROJECT_PROFILE.yaml, .workflow project truth, and canonical generated docs before SW2-00."
     },
     {
-      "evidence": "GitHub branch metadata for main at SW2-00 start",
+      "evidence": "GitHub branch metadata and empty repository ruleset list at SW2-00 start",
       "id": "SW2-DEF-GOV-002",
       "status": "CONFIRMED",
-      "summary": "The main branch was not protected and had no required status checks in the branch metadata audited at SW2-00 start."
+      "summary": "The main branch was not protected and had no required status checks or repository rulesets at SW2-00 start."
     },
     {
-      "evidence": "SW2-00 baseline run 36971637043 observed synthetic checkout HEAD 86e72f07fc5cc586d250acd61ddfc6e9db115147 while the PR candidate head was 599fbd4c6fe13fc5dcc2d408b0da0150f81a8392.",
+      "evidence": "SW2-00 baseline run 36971637043 observed synthetic checkout HEAD 86e72f07fc5cc586d250acd61ddfc6e9db115147 while the PR candidate head was 599fbd4c6fe13fc5dcc2d408b0da0150f81a8392; exact-head workflow repair later passed cross-platform.",
       "id": "SW2-DEF-GOV-003",
-      "status": "CONFIRMED",
+      "status": "FIXED/ACCEPTED",
       "summary": "Pull-request GitHub Actions used the default synthetic merge checkout, so successful PR self-tests were not proving the exact candidate HEAD."
+    },
+    {
+      "evidence": "The original self-governance drift gate used git diff --exit-code, which does not report untracked generated files; the replacement git status --porcelain --untracked-files=all gate exposed .workflow/generated/code_facts.json in run 36973054856.",
+      "id": "SW2-DEF-GOV-004",
+      "status": "FIXED/ACCEPTED",
+      "summary": "The first self-governance drift check did not fail on untracked generated governance files."
+    },
+    {
+      "evidence": "SW2 Sequence Evidence run 36973434507 produced a false edge from scripts/sync_project_truth.py::main to scripts/validate_sequence_contract.py::resolve because Path(...).resolve() degraded to the global leaf token resolve.",
+      "id": "SW2-DEF-SEQ-001",
+      "status": "CONFIRMED",
+      "summary": "Static Python call resolution can falsely bind an attribute call on an unresolved expression receiver to an unrelated project function with the same leaf name."
     }
   ],
   "schema_version": 1
