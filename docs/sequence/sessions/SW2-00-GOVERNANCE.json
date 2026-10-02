@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "session_id": "SW2-00-GOVERNANCE",
+  "phase": "SW2-00",
+  "mode": "DURING",
+  "scope": "CURRENT",
+  "critical": true,
+  "status": "VERIFYING",
+  "implementation_base_sha": "",
+  "plan": {
+    "required": false,
+    "contract": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "sha256": "",
+    "diagram": ""
+  },
+  "actual": {
+    "graph": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.json",
+    "diagram": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd",
+    "source_digest": "ded30f2882a60f5cf52f47cc1a0a7eb91d23f0215ee99971bf7d6908c6884c1a",
+    "entries": [
+      "scripts/sync_project_truth.py::main"
+    ]
+  },
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ],
+  "runtime_trace": {
+    "required": false,
+    "graph": ""
+  },
+  "acceptance_report": "artifacts/sequence/SW2-00-GOVERNANCE.acceptance.json",
+  "evidence_boundary": "This DURING session covers the static Project Truth synchronization implementation entrypoint only. Repository merge policy and GitHub-hosted orchestration remain separate governance evidence and are not inferred from this graph."
+}
