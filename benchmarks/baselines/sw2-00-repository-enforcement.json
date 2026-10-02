@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "audit": "SW2-00 repository enforcement baseline",
+  "audited_at": "2026-10-02",
+  "repository": "maxqstudio/Skill_Workflow",
+  "default_branch": "main",
+  "evidence": {
+    "main_branch_protected": false,
+    "required_status_checks_enforcement": "off",
+    "required_status_check_contexts": [],
+    "repository_rulesets": []
+  },
+  "result": "FAIL",
+  "reason": "Declared fail-closed governance is not enforced at the repository merge boundary because main has no branch protection/ruleset and no required checks.",
+  "minimum_remediation": [
+    "Require changes to main through pull requests.",
+    "Require Governance Selftest (ubuntu-latest).",
+    "Require Governance Selftest (windows-latest).",
+    "Require Self Governance (ubuntu-latest) after canonical self-governance docs are tracked.",
+    "Prevent merge when a required check is missing, pending, or failing."
+  ],
+  "solo_maintainer_note": "Do not require an approving review if that would make a solo-maintainer repository impossible to merge; enforce PR plus exact-head status checks instead."
+}
