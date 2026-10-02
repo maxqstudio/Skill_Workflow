@@ -1,0 +1,42 @@
+name: SW2-02 Sequence Readonly Repair
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply sequence read-only repair
+        run: python .github/sw2-02-sequence-readonly-repair.txt
+      - name: Run targeted verify regression
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          expected="$(git rev-parse HEAD)"
+          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          python scripts/governance_engine.py --root . --base "$base" --mode verify --expected-head "$expected"
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts)"
+      - name: Commit repair and permanent regression
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/validate_sequence_contract.py scripts/validate_sequence_sessions.py .github/workflows/governance-selftest.yml
+          git diff --cached --quiet && { echo "NO_REPAIR_DIFF"; exit 0; }
+          git commit -m "fix(sw2): keep aggregate sequence validation read-only"
+          git push origin HEAD:work/sw2-02-fast-development-workflow
