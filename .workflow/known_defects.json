@@ -49,10 +49,10 @@
       "summary": "The first self-governance drift check did not fail on untracked generated governance files."
     },
     {
-      "evidence": "SW2 Sequence Evidence run 36973434507 produced a false edge from scripts/sync_project_truth.py::main to scripts/validate_sequence_contract.py::resolve because Path(...).resolve() degraded to the global leaf token resolve.",
+      "evidence": "Run 36973434507 reproduced the false resolve edge. Repair in generate_sequence_actual.py and extract_project_facts.py plus selftest_sequence_call_resolution.py passed Ubuntu and Windows in Governance Selftest run 36973822382. Corrected sequence run 36973822246 removed the false edge and passed per-session plus aggregate validation.",
       "id": "SW2-DEF-SEQ-001",
-      "status": "CONFIRMED",
-      "summary": "Static Python call resolution can falsely bind an attribute call on an unresolved expression receiver to an unrelated project function with the same leaf name."
+      "status": "FIXED/ACCEPTED",
+      "summary": "Static Python call resolution could falsely bind an attribute call on an unresolved expression receiver to an unrelated project function with the same leaf name."
     }
   ],
   "schema_version": 1
