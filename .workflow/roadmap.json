@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-00",
+  "current_phase": "SW2-01",
   "phases": [
     {
       "exit_criteria": [
@@ -11,7 +11,7 @@
       ],
       "id": "SW2-00",
       "objective": "Make Skill Workflow govern itself, establish exact current authority, capture performance and enforcement baselines, and define measurable V2 acceptance.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Baseline & Self-Governance"
     },
     {
@@ -23,7 +23,7 @@
       ],
       "id": "SW2-01",
       "objective": "Replace repeated scans and nested validator subprocess work with one immutable project snapshot and a dependency-aware validation DAG.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Governance Engine V2"
     },
     {
