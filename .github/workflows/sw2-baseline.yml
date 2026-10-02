@@ -1,4 +1,4 @@
-name: SW2 Baseline
+name: SW2 Engine Performance
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  governance-baseline:
-    name: Governance Baseline (ubuntu-latest)
+  governance-performance:
+    name: Governance Engine Performance (ubuntu-latest)
     runs-on: ubuntu-latest
 
     steps:
@@ -35,20 +35,23 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Measure current governance cost
+      - name: Measure Governance Engine V2 against accepted baseline
         run: >-
           python scripts/benchmark_governance.py
           --root .
+          --tool-root .
           --repeats 3
           --include-selftests
           --expected-head "${{ github.event.pull_request.head.sha || github.sha }}"
-          --output artifacts/performance/sw2-00-self-baseline.json
+          --baseline benchmarks/baselines/sw2-00-self-linux.json
+          --label "SW2-01 Skill Workflow Engine V2"
+          --output artifacts/performance/sw2-01-self-engine.json
 
-      - name: Upload baseline evidence
+      - name: Upload performance evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sw2-00-governance-baseline
-          path: artifacts/performance/sw2-00-self-baseline.json
+          name: sw2-01-self-engine-performance
+          path: artifacts/performance/sw2-01-self-engine.json
           if-no-files-found: error
           retention-days: 14
