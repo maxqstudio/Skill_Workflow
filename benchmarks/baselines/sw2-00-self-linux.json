@@ -1,0 +1,71 @@
+{
+  "benchmark": "SW2-00 Skill Workflow self baseline",
+  "boundary": "This report measures current execution cost only. It does not prove semantic correctness, runtime behavior, or final project acceptance.",
+  "commands": {
+    "project_truth_compiler_selftest": {
+      "seconds": 1.8632110050000001,
+      "returncode": 0
+    },
+    "strict_workflow_selftest": {
+      "seconds": 2.9558216500000043,
+      "returncode": 0
+    },
+    "sync_project_truth": {
+      "seconds": 0.7452229499999987,
+      "returncode": 0
+    },
+    "validate_project_docs_after_sync": {
+      "seconds": 0.20986168700000007,
+      "returncode": 0
+    }
+  },
+  "cpu_count": 4,
+  "current_io_model": {
+    "explanation": "Current extract_project_facts enumerates source_files once for module/fact extraction, reads Python text for line counting and AST parsing, then compute_source_digest enumerates source files again and reads bytes. This is an implementation-derived baseline, not an OS-level I/O trace.",
+    "extract_project_facts_source_enumerations": 2,
+    "per_python_file_reads_inside_extract_project_facts": 3
+  },
+  "evidence": {
+    "github_actions_run": 36971841881,
+    "artifact_id": 11211753487,
+    "artifact_digest": "sha256:08c856930f6f1fc37c950ec596825d59d03b2adf1485f59a037a0410850736f8"
+  },
+  "exact_head_match": true,
+  "expected_head": "0b2cbbba444ee49e91ec2a2058f499cd241c40dc",
+  "failures": [],
+  "observed_head": "0b2cbbba444ee49e91ec2a2058f499cd241c40dc",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "result": "PASS",
+  "schema_version": 1,
+  "source": {
+    "bytes": 253649,
+    "digest": "b6cc07120d3166164a09583d703d178f9af31f96316af1cb60c1675c47fa9751",
+    "files": 21,
+    "lines": 7677,
+    "python_files": 21
+  },
+  "timings": {
+    "compute_source_digest": {
+      "max_seconds": 0.008224377000001226,
+      "mean_seconds": 0.0071572343333331885,
+      "median_seconds": 0.007785048999998878,
+      "min_seconds": 0.00546227699999946,
+      "repeats": 3
+    },
+    "extract_project_facts": {
+      "max_seconds": 0.08372547100000105,
+      "mean_seconds": 0.081571569,
+      "median_seconds": 0.082721295999999,
+      "min_seconds": 0.07826793999999992,
+      "repeats": 3
+    },
+    "source_files": {
+      "max_seconds": 0.0029285500000000297,
+      "mean_seconds": 0.002687334999999772,
+      "median_seconds": 0.0025931670000005624,
+      "min_seconds": 0.002540287999998725,
+      "repeats": 3
+    }
+  }
+}

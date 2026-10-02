@@ -1,0 +1,65 @@
+{
+  "entry_points": [
+    {
+      "name": "Skill contract",
+      "path": "SKILL.md",
+      "purpose": "Define governance behavior and agent discipline."
+    },
+    {
+      "name": "Project Truth Compiler",
+      "path": "scripts/generate_project_docs.py",
+      "purpose": "Compile machine-readable project truth into deterministic Markdown."
+    },
+    {
+      "name": "Project truth sync",
+      "path": "scripts/sync_project_truth.py",
+      "purpose": "Generate and validate canonical documentation state."
+    },
+    {
+      "name": "STRICT self-test",
+      "path": "scripts/selftest_strict_project_workflow.py",
+      "purpose": "Exercise end-to-end STRICT governance behavior."
+    }
+  ],
+  "project": {
+    "expected_outcomes": [
+      "fast project orientation without blind repository rescans",
+      "fail-closed governance without false PASS claims",
+      "deterministic public-quality project documentation",
+      "traceable acceptance bound to exact source state"
+    ],
+    "name": "Skill Workflow",
+    "primary_users": [
+      "software maintainers",
+      "coding agents",
+      "multi-session project teams"
+    ],
+    "purpose": "Provide deterministic, evidence-based project governance, documentation synchronization, sequence acceptance, and safe handoff workflows for humans and coding agents.",
+    "repository": "maxqstudio/Skill_Workflow"
+  },
+  "schema_version": 1,
+  "technology": {
+    "external_systems": [
+      "GitHub",
+      "consumer project repositories"
+    ],
+    "frameworks": [
+      "GitHub Actions"
+    ],
+    "languages": [
+      "Python",
+      "Markdown",
+      "YAML",
+      "JSON"
+    ],
+    "persistence": [
+      "Git repository"
+    ]
+  },
+  "constraints": [
+    "Governance strictness must not be weakened to improve speed.",
+    "Final acceptance must remain fail closed and evidence based.",
+    "Generated Markdown is a projection; source and .workflow specs remain upstream authority.",
+    "SW2-01 engine refactoring must not start before SW2-00 baseline and self-governance acceptance are complete."
+  ]
+}

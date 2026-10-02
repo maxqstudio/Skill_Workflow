@@ -1,0 +1,81 @@
+{
+  "authority": "SKILL.md plus current .workflow project truth and exact Git candidate",
+  "critical": true,
+  "entry_condition": "A scoped Skill Workflow defect, roadmap item, or owner-authorized governance change is selected.",
+  "failure_behavior": [
+    "Any unresolved authority, test, documentation, or truth failure returns the candidate to repair.",
+    "Unknown optimization impact expands verification scope rather than assuming safety."
+  ],
+  "flow_id": "FLOW-GOVERNANCE-CHANGE",
+  "invariants": [
+    "Required governance failure blocks acceptance.",
+    "Generated documentation is never repaired by manual patching.",
+    "Roadmap phase and state phase advance in one transaction.",
+    "Performance work cannot silently skip final gates."
+  ],
+  "purpose": "Change Skill Workflow source or governance state while preserving exact authority, deterministic documentation, blocking evidence, and roadmap synchronization.",
+  "restart_behavior": [
+    "Resume from the exact branch/SHA and current .workflow state; do not reconstruct authority from chat memory."
+  ],
+  "rollback_behavior": [
+    "Revert to the last accepted Git state and preserve failed candidate evidence/history."
+  ],
+  "schema_version": 1,
+  "sequence_session": "SW2-00-GOVERNANCE",
+  "source_owners": [
+    "SKILL.md",
+    "scripts/sync_project_truth.py",
+    "scripts/validate_project_truth.py",
+    "scripts/validate_cross_document_consistency.py"
+  ],
+  "states": [
+    "BASELINED",
+    "IMPLEMENTING",
+    "VERIFYING",
+    "READY_FOR_ACCEPTANCE",
+    "ACCEPTED"
+  ],
+  "tests": [
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ],
+  "title": "Governed Skill Workflow change",
+  "transitions": [
+    {
+      "action": "Make the minimum authorized source/spec change after authority and documentation impact are established.",
+      "authority": "current roadmap phase and accepted scope",
+      "from": "BASELINED",
+      "side_effects": [
+        "candidate source/spec state changes"
+      ],
+      "to": "IMPLEMENTING"
+    },
+    {
+      "action": "Run targeted tests, regenerate affected evidence/docs, and execute required governance validation.",
+      "authority": "test and governance contract",
+      "from": "IMPLEMENTING",
+      "side_effects": [
+        "generated evidence/docs may change"
+      ],
+      "to": "VERIFYING"
+    },
+    {
+      "action": "Require cumulative tests, exact-candidate governance gates, and explicit evidence boundaries.",
+      "authority": "blocking validator and test results",
+      "from": "VERIFYING",
+      "side_effects": [
+        "candidate may be nominated for acceptance"
+      ],
+      "to": "READY_FOR_ACCEPTANCE"
+    },
+    {
+      "action": "Accept only the exact tested/documented HEAD with clean final provenance.",
+      "authority": "final acceptance evidence",
+      "from": "READY_FOR_ACCEPTANCE",
+      "side_effects": [
+        "last accepted state may advance"
+      ],
+      "to": "ACCEPTED"
+    }
+  ]
+}

@@ -21,8 +21,20 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout
+      - name: Checkout exact candidate
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Verify exact candidate provenance
+        shell: bash
+        run: |
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "EXPECTED_HEAD=$expected"
+          echo "ACTUAL_HEAD=$actual"
+          test "$actual" = "$expected"
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,6 +43,12 @@ jobs:
 
       - name: Compile governance scripts
         run: python -m compileall -q scripts
+
+      - name: Sequence call-resolution regression
+        run: python scripts/selftest_sequence_call_resolution.py
+
+      - name: Cross-document regression
+        run: python scripts/selftest_cross_document_regressions.py
 
       - name: Project Truth Compiler self-test
         run: python scripts/selftest_project_truth_compiler.py

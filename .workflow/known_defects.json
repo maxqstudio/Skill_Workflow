@@ -1,0 +1,59 @@
+{
+  "defects": [
+    {
+      "evidence": "scripts/sync_project_truth.py, scripts/validate_project_docs.py, scripts/generate_project_docs.py",
+      "id": "SW2-DEF-PERF-001",
+      "status": "CONFIRMED",
+      "summary": "Documentation sync and validation can invoke the compiler/source extraction repeatedly for the same candidate snapshot."
+    },
+    {
+      "evidence": "scripts/extract_project_facts.py and scripts/sequence_contract.py",
+      "id": "SW2-DEF-PERF-002",
+      "status": "CONFIRMED",
+      "summary": "Source facts and source digest perform repeated repository traversals and reads instead of sharing one immutable scan snapshot."
+    },
+    {
+      "evidence": "consumer sequence artifacts audited at SW2-00 start",
+      "id": "SW2-DEF-DOC-001",
+      "status": "CONFIRMED",
+      "summary": "Generated actual sequence diagrams can expand to large low-level helper graphs that are technically evidence-rich but poor human documentation."
+    },
+    {
+      "evidence": "scripts/validate_doc_quality.py",
+      "id": "SW2-DEF-DOC-002",
+      "status": "CONFIRMED",
+      "summary": "Documentation quality validation does not currently prove Mermaid syntax/renderability."
+    },
+    {
+      "evidence": "pre-SW2 root tree at 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8",
+      "id": "SW2-DEF-GOV-001",
+      "status": "CONFIRMED",
+      "summary": "Skill Workflow did not govern its own repository with PROJECT_PROFILE.yaml, .workflow project truth, and canonical generated docs before SW2-00."
+    },
+    {
+      "evidence": "GitHub branch metadata and empty repository ruleset list at SW2-00 start",
+      "id": "SW2-DEF-GOV-002",
+      "status": "CONFIRMED",
+      "summary": "The main branch was not protected and had no required status checks or repository rulesets at SW2-00 start."
+    },
+    {
+      "evidence": "SW2-00 baseline run 36971637043 observed synthetic checkout HEAD 86e72f07fc5cc586d250acd61ddfc6e9db115147 while the PR candidate head was 599fbd4c6fe13fc5dcc2d408b0da0150f81a8392; exact-head workflow repair later passed cross-platform.",
+      "id": "SW2-DEF-GOV-003",
+      "status": "FIXED/ACCEPTED",
+      "summary": "Pull-request GitHub Actions used the default synthetic merge checkout, so successful PR self-tests were not proving the exact candidate HEAD."
+    },
+    {
+      "evidence": "The original self-governance drift gate used git diff --exit-code, which does not report untracked generated files; the replacement git status --porcelain --untracked-files=all gate exposed .workflow/generated/code_facts.json in run 36973054856.",
+      "id": "SW2-DEF-GOV-004",
+      "status": "FIXED/ACCEPTED",
+      "summary": "The first self-governance drift check did not fail on untracked generated governance files."
+    },
+    {
+      "evidence": "Run 36973434507 reproduced the false resolve edge. Repair in generate_sequence_actual.py and extract_project_facts.py plus selftest_sequence_call_resolution.py passed Ubuntu and Windows in Governance Selftest run 36973822382. Corrected sequence run 36973822246 removed the false edge and passed per-session plus aggregate validation.",
+      "id": "SW2-DEF-SEQ-001",
+      "status": "FIXED/ACCEPTED",
+      "summary": "Static Python call resolution could falsely bind an attribute call on an unresolved expression receiver to an unrelated project function with the same leaf name."
+    }
+  ],
+  "schema_version": 1
+}

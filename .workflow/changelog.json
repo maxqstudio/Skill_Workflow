@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "changes": [
+        "Adopt STRICT self-governance authority.",
+        "Create SW2-00 through SW2-09 roadmap authority.",
+        "Record initial confirmed performance, documentation, and repository-governance defects."
+      ],
+      "date": "2026-10-02",
+      "title": "Begin Skill Workflow V2 governance program",
+      "type": "governance"
+    }
+  ],
+  "schema_version": 1
+}

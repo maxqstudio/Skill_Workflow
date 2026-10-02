@@ -1,0 +1,54 @@
+name: SW2 Baseline
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  governance-baseline:
+    name: Governance Baseline (ubuntu-latest)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Verify exact candidate provenance
+        shell: bash
+        run: |
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "EXPECTED_HEAD=$expected"
+          echo "ACTUAL_HEAD=$actual"
+          test "$actual" = "$expected"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Measure current governance cost
+        run: >-
+          python scripts/benchmark_governance.py
+          --root .
+          --repeats 3
+          --include-selftests
+          --expected-head "${{ github.event.pull_request.head.sha || github.sha }}"
+          --output artifacts/performance/sw2-00-self-baseline.json
+
+      - name: Upload baseline evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-00-governance-baseline
+          path: artifacts/performance/sw2-00-self-baseline.json
+          if-no-files-found: error
+          retention-days: 14
