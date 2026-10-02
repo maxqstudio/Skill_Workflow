@@ -90,7 +90,7 @@ jobs:
           find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
           base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
           test -n "$base"
-          python scripts/validate_cross_document_consistency.py --root . --base "$base" --require-base
+          PYTHONDONTWRITEBYTECODE=1 python scripts/validate_cross_document_consistency.py --root . --base "$base" --require-base
 
       - name: Validate final project truth
         run: python scripts/validate_project_truth.py --root .
