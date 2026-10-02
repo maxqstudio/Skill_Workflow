@@ -1,0 +1,5 @@
+# BEGIN SKILL_WORKFLOW GOVERNANCE EOL
+/PROJECT_PROFILE.yaml text eol=lf
+/.workflow/** text eol=lf
+/docs/** text eol=lf
+# END SKILL_WORKFLOW GOVERNANCE EOL
