@@ -63,27 +63,6 @@ jobs:
 
           regression = Path('scripts/selftest_cross_document_regressions.py')
           regression.write_text('''#!/usr/bin/env python3\nfrom pathlib import Path\nfrom generate_project_docs import claim_backlink_comment\nfrom validate_cross_document_consistency import is_template_document\n\n\ndef main() -> int:\n    specs = {\n        "claims.json": {\n            "claims": [\n                {\n                    "id": "TRUTH-TEST-BACKLINK",\n                    "documents": ["SYSTEM_OVERVIEW.md", "docs/ROADMAP.md"],\n                }\n            ]\n        }\n    }\n    overview = claim_backlink_comment(specs, "SYSTEM_OVERVIEW.md")\n    roadmap = claim_backlink_comment(specs, "ROADMAP.md")\n    other = claim_backlink_comment(specs, "CURRENT_STATE.md")\n    if "TRUTH-TEST-BACKLINK" not in overview or "TRUTH-TEST-BACKLINK" not in roadmap:\n        raise RuntimeError("declared claim backlink was not projected")\n    if other:\n        raise RuntimeError("claim backlink leaked into undeclared document")\n\n    root = Path("/repo")\n    if not is_template_document(root, root / "templates" / "PROJECT_TRUTH_SYNC.md"):\n        raise RuntimeError("template document was not recognized")\n    if is_template_document(root, root / "docs" / "PROJECT_TRUTH_SYNC.md"):\n        raise RuntimeError("canonical document was misclassified as template")\n\n    print("CLAIM_BACKLINK_PROJECTION=PASS")\n    print("TEMPLATE_PATH_SYMBOL_SCOPE=PASS")\n    print("CROSS_DOCUMENT_REGRESSION=PASS")\n    return 0\n\n\nif __name__ == "__main__":\n    raise SystemExit(main())\n''', encoding='utf-8', newline='\n')
-
-          for workflow_path in [
-              Path('.github/workflows/governance-selftest.yml'),
-              Path('.github/workflows/self-governance.yml'),
-          ]:
-              w = workflow_path.read_text(encoding='utf-8')
-              if workflow_path.name == 'governance-selftest.yml':
-                  anchor = '''      - name: Project Truth Compiler self-test\n        run: python scripts/selftest_project_truth_compiler.py\n'''
-                  addition = '''      - name: Cross-document regression\n        run: python scripts/selftest_cross_document_regressions.py\n\n'''
-                  if 'Cross-document regression' not in w:
-                      if anchor not in w:
-                          raise SystemExit('governance selftest anchor missing')
-                      w = w.replace(anchor, addition + anchor, 1)
-              else:
-                  anchor = '''      - name: Generate synchronized self-governance state\n        run: python scripts/sync_project_truth.py --root .\n'''
-                  addition = '''      - name: Remove compile artifacts\n        shell: bash\n        run: find scripts -type d -name __pycache__ -prune -exec rm -rf {} +\n\n      - name: Cross-document regression\n        run: python scripts/selftest_cross_document_regressions.py\n\n'''
-                  if 'Cross-document regression' not in w:
-                      if anchor not in w:
-                          raise SystemExit('self-governance anchor missing')
-                      w = w.replace(anchor, addition + anchor, 1)
-              workflow_path.write_text(w, encoding='utf-8', newline='\n')
           PY
 
       - name: Run targeted regressions
@@ -92,10 +71,10 @@ jobs:
           find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
           python scripts/selftest_cross_document_regressions.py
 
-      - name: Commit repair
+      - name: Commit source repair
         shell: bash
         run: |
-          git add scripts/generate_project_docs.py scripts/validate_cross_document_consistency.py scripts/selftest_cross_document_regressions.py .github/workflows/governance-selftest.yml .github/workflows/self-governance.yml
+          git add scripts/generate_project_docs.py scripts/validate_cross_document_consistency.py scripts/selftest_cross_document_regressions.py
           git diff --cached --check
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
