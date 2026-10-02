@@ -1,0 +1,60 @@
+from pathlib import Path
+
+
+def replace_once(path: Path, old: str, new: str) -> None:
+    text = path.read_text(encoding="utf-8")
+    count = text.count(old)
+    if count != 1:
+        raise SystemExit(f"PATCH_ANCHOR_COUNT:{path}:{count}")
+    path.write_text(text.replace(old, new, 1), encoding="utf-8", newline="\n")
+
+
+engine = Path("scripts/governance_engine.py")
+replace_once(
+    engine,
+    '''    if path == "PROJECT_PROFILE.yaml" or path.startswith(".workflow/"):
+        return "governance"
+    if path in {"SKILL.md", "README.md"} or path.startswith("docs/"):
+''',
+    '''    if path in {"PROJECT_PROFILE.yaml", ".gitattributes"} or path.startswith(".workflow/"):
+        return "governance"
+    if path.startswith("artifacts/sequence/"):
+        return "sequence"
+    if path in {"SKILL.md", "README.md"} or path.startswith("docs/"):
+''',
+)
+
+selftest = Path("scripts/selftest_governance_engine.py")
+replace_once(
+    selftest,
+    '''    broad_impacts = classify_changed_paths(("scripts/new_future_validator.py",))
+    require(
+        effective_mode("develop", broad_impacts) == "verify",
+        "unmapped source should escalate develop to verify",
+    )
+
+    unknown_impacts = classify_changed_paths(("future/new-surface.bin",))
+''',
+    '''    broad_impacts = classify_changed_paths(("scripts/new_future_validator.py",))
+    require(
+        effective_mode("develop", broad_impacts) == "verify",
+        "unmapped source should escalate develop to verify",
+    )
+
+    support_impacts = classify_changed_paths(
+        (".gitattributes", "artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json")
+    )
+    require(
+        support_impacts == ("governance", "sequence"),
+        f"known governance/sequence support paths misclassified: {support_impacts}",
+    )
+    require(
+        effective_mode("verify", support_impacts) == "verify",
+        "known governance support paths should not force finalize",
+    )
+
+    unknown_impacts = classify_changed_paths(("future/new-surface.bin",))
+''',
+)
+
+print("SW2_02_CLASSIFIER_PATCH=APPLIED")
