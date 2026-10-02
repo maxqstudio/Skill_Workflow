@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+import json
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -269,6 +271,97 @@ def changed_path_collection_contract() -> None:
     print("CHANGED_PATH_COLLECTION=PASS")
 
 
+def mode_cli_integration_contract() -> None:
+    tool = Path(__file__).resolve().parent / "governance_engine.py"
+    with tempfile.TemporaryDirectory(prefix="sw2-mode-cli-") as td:
+        root = Path(td).resolve()
+        scripts = root / "scripts"
+        scripts.mkdir(parents=True)
+        git(root, "init")
+        git(root, "config", "user.email", "sw2@example.invalid")
+        git(root, "config", "user.name", "SW2 Test")
+        (scripts / "governance_engine.py").write_text("VALUE = 1\n", encoding="utf-8")
+        (scripts / "selftest_governance_engine.py").write_text(
+            "print('FIXTURE_ENGINE_REGRESSION=PASS')\n",
+            encoding="utf-8",
+        )
+        git(root, "add", "scripts")
+        git(root, "commit", "-m", "base")
+        base = git_text(root, "rev-parse", "HEAD")
+
+        (scripts / "governance_engine.py").write_text("VALUE = 2\n", encoding="utf-8")
+        develop_report = root / "develop-report.json"
+        develop = subprocess.run(
+            [
+                sys.executable,
+                str(tool),
+                "--root",
+                str(root),
+                "--base",
+                base,
+                "--mode",
+                "develop",
+                "--expected-head",
+                base,
+                "--report",
+                str(develop_report),
+            ],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        require(develop.returncode == 0, "develop CLI fixture did not pass")
+        develop_payload = json.loads(develop_report.read_text(encoding="utf-8"))
+        require(develop_payload["requested_mode"] == "develop", "develop request not recorded")
+        require(develop_payload["effective_mode"] == "develop", "known impact escalated unexpectedly")
+        require(develop_payload["final_acceptance_authority"] is False, "develop gained final authority")
+        require(
+            set(develop_payload["selected_nodes"]) == {"compile_scripts", "engine_regression"},
+            "develop CLI selected the wrong targeted checks",
+        )
+        require(
+            all(node["status"] == "PASS" for node in develop_payload["nodes"].values()),
+            "develop CLI targeted node failed",
+        )
+
+        unknown = root / "future" / "new-surface.bin"
+        unknown.parent.mkdir(parents=True)
+        unknown.write_bytes(b"unknown")
+        verify_report = root / "verify-report.json"
+        verify = subprocess.run(
+            [
+                sys.executable,
+                str(tool),
+                "--root",
+                str(root),
+                "--base",
+                base,
+                "--mode",
+                "verify",
+                "--expected-head",
+                base,
+                "--report",
+                str(verify_report),
+            ],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        require(verify.returncode != 0, "unknown verify fixture produced a false PASS")
+        verify_payload = json.loads(verify_report.read_text(encoding="utf-8"))
+        require(verify_payload["requested_mode"] == "verify", "verify request not recorded")
+        require(verify_payload["effective_mode"] == "finalize", "unknown verify did not escalate")
+        require(
+            verify_payload["final_acceptance_authority"] is False,
+            "verify escalation silently gained final acceptance authority",
+        )
+        require("unknown" in verify_payload["impact_classes"], "unknown impact not reported")
+        require("validate_project_truth" in verify_payload["selected_nodes"], "escalated full graph missing final truth")
+    print("MODE_CLI_INTEGRATION=PASS")
+
+
 def main() -> int:
     snapshot_parity_and_immutability()
     snapshot_fact_reuse()
@@ -276,6 +369,7 @@ def main() -> int:
     dag_fail_closed()
     mode_planning_contract()
     changed_path_collection_contract()
+    mode_cli_integration_contract()
     print("GOVERNANCE_ENGINE_SELFTEST=PASS")
     return 0
 
