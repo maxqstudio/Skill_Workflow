@@ -1,0 +1,42 @@
+name: SW2-01 Closure Canonical Sync
+
+on:
+  push:
+    branches:
+      - work/sw2-01-governance-engine-v2
+
+permissions:
+  contents: write
+
+jobs:
+  sync-canonical:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SW2-01 branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-01-governance-engine-v2
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate canonical Project Truth
+        run: python scripts/sync_project_truth.py --root .
+
+      - name: Commit deterministic generated state
+        shell: bash
+        run: |
+          status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow/acceptance.json .workflow/generated docs/*.md)"
+          if [ -z "$status" ]; then
+            echo "CANONICAL_SYNC=NO_CHANGES"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT_PROFILE.yaml .workflow/acceptance.json .workflow/generated docs/*.md
+          git commit -m "docs(sw2): sync SW2-01 closure truth"
+          git push origin HEAD:work/sw2-01-governance-engine-v2
