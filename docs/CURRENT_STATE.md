@@ -45,18 +45,20 @@ SEQUENCE_SYNC: PASS
 - Exact-head self and governed-consumer performance baselines are recorded at benchmarks/baselines/sw2-00-self-linux.json and benchmarks/baselines/sw2-00-max-grounding-linux.json.
 - Default pull-request synthetic merge checkout was repaired; every SW2 governance workflow verifies the exact candidate SHA before executing evidence-producing checks.
 - The self-governance drift gate was repaired to include untracked generated files.
-- Canonical code facts and generated documentation are tracked; Self Governance run 36977990910 passed read-only on exact head ced2336e9289b5aaef5d60ae7d55be1561a4b171.
-- SW2-DEF-SEQ-001 was repaired, regression-tested on Ubuntu and Windows, regenerated, semantically re-audited, and accepted; Sequence Evidence run 36977990845 passed on exact head ced2336e9289b5aaef5d60ae7d55be1561a4b171.
-- Governance Selftest run 36977990861 passed on Ubuntu and Windows, SW2 Baseline run 36977990864 passed, and governed-consumer baseline run 36977990933 passed on exact head ced2336e9289b5aaef5d60ae7d55be1561a4b171.
+- Canonical code facts and generated documentation are tracked and self-governance generation is read-only clean.
+- SW2-DEF-SEQ-001 was repaired, regression-tested on Ubuntu and Windows, regenerated, semantically re-audited, and accepted.
+- Cross-document claim backlinks and template placeholder scoping are regression-tested; cross-document consistency passes on the current SW2 source snapshot.
+- Human comprehension validation passes against the current generated project overview.
 
 ## Not proven
 - Final SW2-00 acceptance is not proven until the post-update exact-head STRICT validator chain passes.
+- Performance-parity of the future SW2 optimization engine is intentionally not applicable in SW2-00 because no V2 optimization has been accepted; it must be reopened and proven when optimization begins.
 - Repository merge enforcement is still absent on main; SW2-00 records the mismatch and minimum remediation, while actual alignment remains a SW2-07 exit criterion.
 - Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
 - End-to-end separation of governance overhead from consumer-native build/test cost is not yet a dedicated benchmark.
 
 ## Known blockers
-- Final exact-candidate STRICT validator-chain acceptance has not yet been executed after the SW2-00 authority-state update.
+- Final exact-candidate STRICT validator-chain acceptance has not yet passed after the SW2-00 authority-state update.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
