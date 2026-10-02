@@ -44,6 +44,9 @@ jobs:
       - name: Compile governance scripts
         run: python -m compileall -q scripts
 
+      - name: Sequence call-resolution regression
+        run: python scripts/selftest_sequence_call_resolution.py
+
       - name: Project Truth Compiler self-test
         run: python scripts/selftest_project_truth_compiler.py
 
