@@ -368,9 +368,12 @@ def cli_action(
 
 def command_action(root: Path, argv: list[str]) -> Callable[[], tuple[int, str]]:
     def run() -> tuple[int, str]:
+        env = os.environ.copy()
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
         completed = subprocess.run(
             argv,
             cwd=root,
+            env=env,
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,

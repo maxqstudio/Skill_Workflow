@@ -281,8 +281,9 @@ def mode_cli_integration_contract() -> None:
         git(root, "config", "user.email", "sw2@example.invalid")
         git(root, "config", "user.name", "SW2 Test")
         (scripts / "governance_engine.py").write_text("VALUE = 1\n", encoding="utf-8")
+        (scripts / "fixture_helper.py").write_text("VALUE = 1\n", encoding="utf-8")
         (scripts / "selftest_governance_engine.py").write_text(
-            "print('FIXTURE_ENGINE_REGRESSION=PASS')\n",
+            "import fixture_helper\nprint('FIXTURE_ENGINE_REGRESSION=PASS')\n",
             encoding="utf-8",
         )
         git(root, "add", "scripts")
