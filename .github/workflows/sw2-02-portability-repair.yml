@@ -1,0 +1,154 @@
+name: SW2-02 Portability Repair
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply minimum portability repairs
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path: Path, old: str, new: str) -> None:
+              text = path.read_text(encoding="utf-8")
+              if text.count(old) != 1:
+                  raise SystemExit(f"PATCH_ANCHOR_COUNT:{path}:{text.count(old)}")
+              path.write_text(text.replace(old, new, 1), encoding="utf-8", newline="\n")
+
+          engine = Path("scripts/governance_engine.py")
+          replace_once(
+              engine,
+              '''    def run() -> tuple[int, str]:
+        completed = subprocess.run(
+            argv,
+            cwd=root,
+            text=True,
+''',
+              '''    def run() -> tuple[int, str]:
+        env = os.environ.copy()
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
+        completed = subprocess.run(
+            argv,
+            cwd=root,
+            env=env,
+            text=True,
+''',
+          )
+
+          generator = Path("scripts/generate_project_docs.py")
+          replace_once(
+              generator,
+              '''def clean(value: Any) -> str:
+    return str(value or "").strip()
+''',
+              '''def canonical_generated_bytes(value: bytes) -> bytes:
+    """Normalize checkout line endings before deterministic generated-output comparison."""
+    return value.replace(b"\\r\\n", b"\\n").replace(b"\\r", b"\\n")
+
+
+def clean(value: Any) -> str:
+    return str(value or "").strip()
+''',
+          )
+          replace_once(
+              generator,
+              '''        elif facts_output.read_bytes() != expected_facts_bytes:
+            facts_stale = True
+''',
+              '''        elif canonical_generated_bytes(facts_output.read_bytes()) != expected_facts_bytes:
+            facts_stale = True
+''',
+          )
+          replace_once(
+              generator,
+              '''            elif path.read_bytes() != expected.encode("utf-8"):
+                stale.append("docs/" + name)
+''',
+              '''            elif canonical_generated_bytes(path.read_bytes()) != expected.encode("utf-8"):
+                stale.append("docs/" + name)
+''',
+          )
+
+          engine_test = Path("scripts/selftest_governance_engine.py")
+          replace_once(
+              engine_test,
+              '''        (scripts / "selftest_governance_engine.py").write_text(
+            "print('FIXTURE_ENGINE_REGRESSION=PASS')\\n",
+            encoding="utf-8",
+        )
+''',
+              '''        (scripts / "fixture_helper.py").write_text("VALUE = 1\\n", encoding="utf-8")
+        (scripts / "selftest_governance_engine.py").write_text(
+            "import fixture_helper\\nprint('FIXTURE_ENGINE_REGRESSION=PASS')\\n",
+            encoding="utf-8",
+        )
+''',
+          )
+
+          compiler_test = Path("scripts/selftest_project_truth_compiler.py")
+          replace_once(
+              compiler_test,
+              '''        overview = root / "docs" / "SYSTEM_OVERVIEW.md"
+
+        duplicate = root / "SYSTEM_OVERVIEW.md"
+''',
+              '''        overview = root / "docs" / "SYSTEM_OVERVIEW.md"
+        facts_file = root / ".workflow" / "generated" / "code_facts.json"
+        overview.write_bytes(overview.read_bytes().replace(b"\\n", b"\\r\\n"))
+        facts_file.write_bytes(facts_file.read_bytes().replace(b"\\n", b"\\r\\n"))
+        crlf_check = run(
+            root,
+            sys.executable,
+            str(tool_root / "validate_project_docs.py"),
+            "--root",
+            str(root),
+        )
+        if "PROJECT_DOCS_SYNC=PASS" not in crlf_check:
+            raise RuntimeError("generated CRLF checkout did not canonicalize during check")
+
+        duplicate = root / "SYSTEM_OVERVIEW.md"
+''',
+          )
+          replace_once(
+              compiler_test,
+              '''    print("PROJECT_DOCS_NORMALIZED=PASS")
+    print("DOC_READABILITY=PASS")
+''',
+              '''    print("PROJECT_DOCS_NORMALIZED=PASS")
+    print("GENERATED_CRLF_CHECK=PASS")
+    print("DOC_READABILITY=PASS")
+''',
+          )
+          PY
+      - name: Run targeted regressions
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+      - name: Commit repair source and regression only
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/governance_engine.py scripts/generate_project_docs.py scripts/selftest_governance_engine.py scripts/selftest_project_truth_compiler.py
+          git diff --cached --quiet && { echo "NO_REPAIR_DIFF"; exit 0; }
+          git commit -m "fix(sw2): keep verify portable and worktree-clean"
+          git push origin HEAD:work/sw2-02-fast-development-workflow
