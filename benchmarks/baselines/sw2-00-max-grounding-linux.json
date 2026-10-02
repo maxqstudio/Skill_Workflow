@@ -1,0 +1,65 @@
+{
+  "benchmark": "SW2-00 max-grounding consumer baseline",
+  "boundary": "This report measures current execution cost only. It does not prove semantic correctness, runtime behavior, or final project acceptance.",
+  "commands": {
+    "sync_project_truth": {
+      "seconds": 1.1045208649999978,
+      "returncode": 0
+    },
+    "validate_project_docs_after_sync": {
+      "seconds": 0.30601988699999794,
+      "returncode": 0
+    }
+  },
+  "cpu_count": 4,
+  "current_io_model": {
+    "explanation": "Current extract_project_facts enumerates source_files once for module/fact extraction, reads Python text for line counting and AST parsing, then compute_source_digest enumerates source files again and reads bytes. This is an implementation-derived baseline, not an OS-level I/O trace.",
+    "extract_project_facts_source_enumerations": 2,
+    "per_python_file_reads_inside_extract_project_facts": 3
+  },
+  "evidence": {
+    "consumer_repository": "maxqstudio/max-grounding",
+    "github_actions_run": 36972351382,
+    "artifact_id": 11211849133,
+    "artifact_digest": "sha256:a7702dd437664ea82716e2742f0bf043f6cff4a78db4d6daa9438528aa7489b6"
+  },
+  "exact_head_match": true,
+  "expected_head": "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f",
+  "failures": [],
+  "observed_head": "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "result": "PASS",
+  "schema_version": 1,
+  "source": {
+    "bytes": 314325,
+    "digest": "3959543a3702de284923478b1b2b7c53d6cf556ad57700bb1e89fa1341e06390",
+    "files": 52,
+    "lines": 9483,
+    "python_files": 52
+  },
+  "timings": {
+    "compute_source_digest": {
+      "max_seconds": 0.013619957999999599,
+      "mean_seconds": 0.013364993999999797,
+      "median_seconds": 0.013254713999998557,
+      "min_seconds": 0.013220310000001234,
+      "repeats": 3
+    },
+    "extract_project_facts": {
+      "max_seconds": 0.14649883000000585,
+      "mean_seconds": 0.14057556300000348,
+      "median_seconds": 0.13778310700000418,
+      "min_seconds": 0.1374447520000004,
+      "repeats": 3
+    },
+    "source_files": {
+      "max_seconds": 0.015638884000004794,
+      "mean_seconds": 0.011490993333336993,
+      "median_seconds": 0.009469015000000525,
+      "min_seconds": 0.00936508100000566,
+      "repeats": 3
+    }
+  },
+  "tool_layout": ".workflow/tools"
+}
