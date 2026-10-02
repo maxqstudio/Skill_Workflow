@@ -13,6 +13,8 @@ jobs:
   self-governance:
     name: Self Governance (ubuntu-latest)
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
 
     steps:
       - name: Checkout exact candidate
@@ -44,10 +46,6 @@ jobs:
 
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
-
-      - name: Remove regression import artifacts
-        shell: bash
-        run: find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
 
       - name: Generate synchronized self-governance state
         run: python scripts/sync_project_truth.py --root .
@@ -87,10 +85,9 @@ jobs:
       - name: Validate cross-document consistency
         shell: bash
         run: |
-          find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
           base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
           test -n "$base"
-          PYTHONDONTWRITEBYTECODE=1 python scripts/validate_cross_document_consistency.py --root . --base "$base" --require-base
+          python scripts/validate_cross_document_consistency.py --root . --base "$base" --require-base
 
       - name: Validate final project truth
         run: python scripts/validate_project_truth.py --root .
@@ -98,7 +95,6 @@ jobs:
       - name: Require validators to remain read-only
         shell: bash
         run: |
-          find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
           status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs)"
           if [ -n "$status" ]; then
             echo "Validator chain mutated governed state:"
