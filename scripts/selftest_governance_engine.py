@@ -29,7 +29,7 @@ def git(root: Path, *args: str) -> None:
 
 def snapshot_parity_and_immutability() -> None:
     with tempfile.TemporaryDirectory(prefix="sw2-snapshot-") as td:
-        root = Path(td)
+        root = Path(td).resolve()
         git(root, "init")
         git(root, "config", "user.email", "sw2@example.invalid")
         git(root, "config", "user.name", "SW2 Test")
@@ -44,8 +44,8 @@ def snapshot_parity_and_immutability() -> None:
         legacy_digest = compute_source_digest(root)
         snapshot = ProjectSnapshot.capture(root)
         require(
-            [p.relative_to(root).as_posix() for p in legacy_files]
-            == [p.relative_to(root).as_posix() for p in snapshot.source_files()],
+            [p.resolve().relative_to(root).as_posix() for p in legacy_files]
+            == [p.resolve().relative_to(root).as_posix() for p in snapshot.source_files()],
             "snapshot inventory differs from accepted standalone inventory",
         )
         require(snapshot.source_digest == legacy_digest, "snapshot digest parity failed")
@@ -64,7 +64,7 @@ def snapshot_parity_and_immutability() -> None:
 
 def snapshot_fact_reuse() -> None:
     with tempfile.TemporaryDirectory(prefix="sw2-reuse-") as td:
-        root = Path(td)
+        root = Path(td).resolve()
         (root / "app.py").write_text(
             "def helper():\n    return 1\n\ndef main():\n    return helper()\n",
             encoding="utf-8",
