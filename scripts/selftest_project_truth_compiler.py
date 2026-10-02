@@ -53,6 +53,9 @@ def test_gitignored_source_files_are_excluded() -> None:
         )
         (root / "tracked.py").write_text("TRACKED = True\n", encoding="utf-8")
         (root / "untracked.py").write_text("UNTRACKED = True\n", encoding="utf-8")
+        nested_root = root / "nested"
+        nested_root.mkdir()
+        (nested_root / "module.py").write_text("NESTED = True\n", encoding="utf-8")
         ignored_artifact = root / "artifacts" / "optimizer" / "report.xml"
         ignored_cache = root / ".pytest-codex-fixture" / "report.xml"
         ignored_artifact.parent.mkdir(parents=True)
@@ -67,7 +70,7 @@ def test_gitignored_source_files_are_excluded() -> None:
             path.relative_to(root).as_posix()
             for path in source_files(root)
         }
-        required = {"tracked.py", "untracked.py"}
+        required = {"tracked.py", "untracked.py", "nested/module.py"}
         forbidden = {
             "artifacts/optimizer/report.xml",
             ".pytest-codex-fixture/report.xml",
@@ -81,6 +84,15 @@ def test_gitignored_source_files_are_excluded() -> None:
             raise RuntimeError(
                 "Git-ignored source leaked into inventory: "
                 + ",".join(sorted(observed.intersection(forbidden)))
+            )
+        nested_observed = {
+            path.relative_to(nested_root).as_posix()
+            for path in source_files(nested_root)
+        }
+        if nested_observed != {"module.py"}:
+            raise RuntimeError(
+                "subdirectory source inventory mismatch: "
+                + ",".join(sorted(nested_observed))
             )
 
 

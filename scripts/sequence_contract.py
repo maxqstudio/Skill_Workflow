@@ -72,18 +72,17 @@ def source_files(root: Path) -> list[Path]:
                 [
                     "git",
                     "-C",
-                    str(repo_root),
+                    str(root),
                     "ls-files",
                     "--cached",
                     "--others",
                     "--exclude-standard",
-                    "--full-name",
                     "-z",
                 ],
                 stderr=subprocess.STDOUT,
             )
             candidates = (
-                repo_root / Path(os.fsdecode(item))
+                root / Path(os.fsdecode(item))
                 for item in indexed_paths.split(b"\0")
                 if item
             )
