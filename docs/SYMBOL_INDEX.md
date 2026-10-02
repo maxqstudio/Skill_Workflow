@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
+Source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -42,31 +42,32 @@ Status: CURRENT
 | scripts/generate_project_docs.py | validate_inputs | function | 153-265 | Observed Python symbol | | | |
 | scripts/generate_project_docs.py | input_digest | function | 268-287 | Observed Python symbol | | | |
 | scripts/generate_project_docs.py | generated_header | function | 290-294 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | auth_lookup | function | 297-301 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_system_overview | function | 304-574 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_project_manifest | function | 577-679 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_current_state | function | 682-783 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_roadmap | function | 786-846 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_authority | function | 849-884 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_architecture | function | 887-966 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_workflows | function | 969-1035 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_sequence | function | 1038-1089 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_modules | function | 1092-1121 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_symbols | function | 1124-1160 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_flows | function | 1163-1226 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_acceptance | function | 1229-1321 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_doc_sync | function | 1324-1368 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_truth | function | 1371-1517 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_api | function | 1520-1547 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_data | function | 1550-1575 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_ui | function | 1578-1603 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_runbook | function | 1606-1621 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_decisions | function | 1624-1642 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_defects | function | 1645-1668 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_changelog | function | 1671-1687 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_glossary | function | 1690-1698 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_all | function | 1701-1780 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | main | function | 1783-1922 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | claim_backlink_comment | function | 297-306 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | auth_lookup | function | 309-313 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_system_overview | function | 316-586 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_project_manifest | function | 589-691 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_current_state | function | 694-795 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_roadmap | function | 798-858 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_authority | function | 861-896 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_architecture | function | 899-978 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_workflows | function | 981-1047 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_sequence | function | 1050-1101 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_modules | function | 1104-1133 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_symbols | function | 1136-1172 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_flows | function | 1175-1238 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_acceptance | function | 1241-1333 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_doc_sync | function | 1336-1380 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_truth | function | 1383-1529 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_api | function | 1532-1559 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_data | function | 1562-1587 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_ui | function | 1590-1615 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_runbook | function | 1618-1633 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_decisions | function | 1636-1654 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_defects | function | 1657-1680 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_changelog | function | 1683-1699 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_glossary | function | 1702-1710 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | render_all | function | 1713-1794 | Observed Python symbol | | | |
+| scripts/generate_project_docs.py | main | function | 1797-1936 | Observed Python symbol | | | |
 | scripts/generate_sequence_actual.py | allowed | function | 33-35 | Observed Python symbol | | | |
 | scripts/generate_sequence_actual.py | call_name | function | 38-49 | Observed Python symbol | | | |
 | scripts/generate_sequence_actual.py | literal_string | function | 52-55 | Observed Python symbol | | | |
@@ -110,6 +111,7 @@ Status: CURRENT
 | scripts/project_profile.py | sequence_settings | function | 194-209 | Observed Python symbol | | | |
 | scripts/project_profile.py | required_docs | function | 212-224 | Observed Python symbol | | | |
 | scripts/project_profile.py | validate_profile | function | 227-260 | Observed Python symbol | | | |
+| scripts/selftest_cross_document_regressions.py | main | function | 7-35 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | run | function | 14-34 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | write_json | function | 37-38 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | main | function | 41-349 | Observed Python symbol | | | |
@@ -143,22 +145,23 @@ Status: CURRENT
 | scripts/validate_cross_document_consistency.py | read | function | 74-75 | Observed Python symbol | | | |
 | scripts/validate_cross_document_consistency.py | source_has_symbol | function | 78-111 | Observed Python symbol | | | |
 | scripts/validate_cross_document_consistency.py | strip_fences | function | 114-130 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | all_docs | function | 133-139 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | parse_table | function | 142-155 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | scalar_fields | function | 158-168 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | normalize_repo | function | 171-175 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | normalize_branch | function | 178-179 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | normalize_sha | function | 182-184 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | likely_path | function | 187-194 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | resolve_ref | function | 197-208 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | truth_claims | function | 211-240 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | claim_rows | function | 243-267 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | split_refs | function | 270-271 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | resolve_declared_doc_ref | function | 274-282 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | diff_changes | function | 285-295 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | is_source | function | 298-302 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | required_docs_for_diff | function | 305-375 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | main | function | 378-726 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | is_template_document | function | 133-137 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | all_docs | function | 140-146 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | parse_table | function | 149-162 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | scalar_fields | function | 165-175 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | normalize_repo | function | 178-182 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | normalize_branch | function | 185-186 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | normalize_sha | function | 189-191 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | likely_path | function | 194-201 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | resolve_ref | function | 204-215 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | truth_claims | function | 218-247 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | claim_rows | function | 250-274 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | split_refs | function | 277-278 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | resolve_declared_doc_ref | function | 281-289 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | diff_changes | function | 292-302 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | is_source | function | 305-309 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | required_docs_for_diff | function | 312-382 | Observed Python symbol | | | |
+| scripts/validate_cross_document_consistency.py | main | function | 385-734 | Observed Python symbol | | | |
 | scripts/validate_doc_quality.py | normalized_shape | function | 66-117 | Observed Python symbol | | | |
 | scripts/validate_doc_quality.py | main | function | 120-265 | Observed Python symbol | | | |
 | scripts/validate_handoff.py | git_root | function | 36-45 | Observed Python symbol | | | |

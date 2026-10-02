@@ -25,3 +25,5 @@ Status: ACCEPTED
 Skill Workflow will adopt its own governed roadmap, project truth, generated docs, and acceptance workflow before engine V2 refactoring begins.
 
 Rationale: A governance framework should prove that its contract is practical on itself before expanding it for consumers.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW2-PERFORMANCE-PARITY -->

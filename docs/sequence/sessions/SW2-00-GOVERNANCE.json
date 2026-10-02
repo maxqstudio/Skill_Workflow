@@ -1,38 +1,38 @@
 {
-  "schema_version": 1,
-  "session_id": "SW2-00-GOVERNANCE",
-  "phase": "SW2-00",
-  "mode": "DURING",
-  "scope": "CURRENT",
-  "critical": true,
-  "status": "VERIFIED",
-  "implementation_base_sha": "",
-  "plan": {
-    "required": false,
-    "contract": "",
-    "frozen": false,
-    "frozen_commit": "",
-    "sha256": "",
-    "diagram": ""
-  },
+  "acceptance_report": "artifacts/sequence/SW2-00-GOVERNANCE.acceptance.json",
   "actual": {
-    "graph": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.json",
     "diagram": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd",
-    "source_digest": "f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541",
     "entries": [
       "scripts/sync_project_truth.py::main"
-    ]
+    ],
+    "graph": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.json",
+    "source_digest": "a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276"
   },
+  "critical": true,
+  "evidence_boundary": "This DURING session covers the static Project Truth synchronization implementation entrypoint only. Repository merge policy and GitHub-hosted orchestration remain separate governance evidence and are not inferred from this graph.",
+  "implementation_base_sha": "",
+  "mode": "DURING",
+  "phase": "SW2-00",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-00-GOVERNANCE",
+  "status": "VERIFIED",
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_project_truth_compiler.py",
     "scripts/selftest_strict_project_workflow.py",
     "scripts/selftest_sequence_call_resolution.py"
-  ],
-  "runtime_trace": {
-    "required": false,
-    "graph": ""
-  },
-  "acceptance_report": "artifacts/sequence/SW2-00-GOVERNANCE.acceptance.json",
-  "evidence_boundary": "This DURING session covers the static Project Truth synchronization implementation entrypoint only. Repository merge policy and GitHub-hosted orchestration remain separate governance evidence and are not inferred from this graph."
+  ]
 }

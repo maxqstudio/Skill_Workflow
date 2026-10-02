@@ -38,3 +38,5 @@ When the project advances phase, update `.workflow/state.json` and
 `python .workflow/tools/sync_project_truth.py`
 
 Missing roadmap authority or phase drift is a blocking validation failure.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-PERFORMANCE-PARITY -->

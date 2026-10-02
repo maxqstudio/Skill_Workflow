@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 22 files, 1 language categories.
+Observed source inventory: 23 files, 1 language categories.
 
 ## Major components
 
@@ -190,3 +190,5 @@ See GLOSSARY.md.
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW-FAIL-CLOSED -->

@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
+Source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -11,18 +11,19 @@ Generated/refreshed: current compiler run
 | scripts/benchmark_governance.py | Python | 250 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 248 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
-| scripts/generate_project_docs.py | Python | 1926 | scripts | NO |
+| scripts/generate_project_docs.py | Python | 1940 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 420 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
 | scripts/initialize_project_truth.py | Python | 100 | scripts | NO |
 | scripts/project_profile.py | Python | 260 | scripts | NO |
+| scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 353 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 868 | scripts | NO |
 | scripts/sequence_contract.py | Python | 191 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 153 | scripts | NO |
-| scripts/validate_cross_document_consistency.py | Python | 730 | scripts | NO |
+| scripts/validate_cross_document_consistency.py | Python | 738 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
 | scripts/validate_handoff.py | Python | 378 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |

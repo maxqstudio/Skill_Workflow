@@ -13,7 +13,7 @@ Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-00-baseline-self-governance
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8
-Current source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
+Current source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.

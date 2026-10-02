@@ -40,3 +40,5 @@ PROJECT_DOCS_SYNC = FAIL
 
 Repair source/spec authority and regenerate. Never patch generated Markdown by
 hand.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW-DOCS-DETERMINISTIC -->

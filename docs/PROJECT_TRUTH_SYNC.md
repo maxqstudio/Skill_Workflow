@@ -83,3 +83,5 @@ review. The compiler does not infer PASS.
 
 SEQUENCE_SYNC is projected from sequence acceptance evidence. The compiler does
 not infer PASS from a diagram.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW-DOCS-DETERMINISTIC TRUTH-SW-FAIL-CLOSED TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-PERFORMANCE-PARITY -->

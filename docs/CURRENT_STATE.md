@@ -18,7 +18,7 @@ Branch: work/sw2-00-baseline-self-governance
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8
 Current candidate SHA: external final acceptance evidence
-Current source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
+Current source digest: a79066e0f5e7ae22aa77744aa1b8fc6ccfef4b82fcbc986945101efd2d894276
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -70,3 +70,5 @@ See KNOWN_DEFECTS.md.
 - Do not start SW2-01 single-snapshot engine refactoring before SW2-00 acceptance is complete.
 - Do not remove validators or downgrade the governance profile to gain speed.
 - Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->
