@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 21 files, 1 language categories.
+Observed source inventory: 22 files, 1 language categories.
 
 ## Major components
 
@@ -110,9 +110,10 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Commit canonical generated self-governance docs/code facts and make the self-governance check read-only clean.
+- Verify the sequence call-resolution repair on Ubuntu and Windows and regenerate the SW2-00 DURING sequence artifact.
+- Track canonical generated code facts without hand-editing machine evidence and make self-governance read-only clean.
 - Configure main PR/ruleset enforcement with exact-head required checks.
-- Generate and validate the current DURING sequence session for FLOW-GOVERNANCE-CHANGE.
+- Complete semantic human-comprehension review after generated current-state projections are synchronized.
 - Complete SW2-00 acceptance before starting SW2-01 engine refactoring.
 
 Blocked actions:
@@ -123,7 +124,8 @@ Blocked actions:
 
 Known blockers:
 - Main has no branch protection/ruleset and no required status checks; repository merge enforcement is not aligned with declared fail-closed governance.
-- Canonical generated self-governance docs and tracked code facts are not yet committed to the branch.
+- The canonical generated .workflow/generated/code_facts.json is still untracked, so clean read-only self-governance cannot yet pass.
+- SW2-DEF-SEQ-001 must pass the new call-resolution regression and regenerated semantic sequence audit before SEQUENCE_SYNC can be accepted.
 
 ## Proven vs not proven
 
@@ -134,7 +136,9 @@ Known blockers:
 - Repository enforcement audit proves main is not protected and repository rulesets are empty at SW2-00 start.
 - Exact-head self baseline run 36971841881 passed and is recorded at benchmarks/baselines/sw2-00-self-linux.json.
 - Exact-head max-grounding consumer baseline run 36972351382 passed at 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f and is recorded at benchmarks/baselines/sw2-00-max-grounding-linux.json.
-- The first baseline exposed that default pull-request checkout used a synthetic merge ref; SW2-00 now binds governance workflows to the exact candidate SHA before executing tests.
+- Default pull-request synthetic merge checkout was repaired; exact-candidate provenance is now checked before governance tests.
+- Twenty canonical human-facing self-governance documents were generated deterministically and tracked; the latest drift audit showed only code_facts.json remained untracked before subsequent source changes.
+- Initial SW2-00 DURING sequence generation and validators executed successfully, but semantic audit correctly rejected acceptance because it exposed a false-positive static call edge.
 
 ### Not proven
 
@@ -142,6 +146,7 @@ Known blockers:
 - The cost distribution between Skill Workflow governance and consumer project-native build/test work is not yet measured end-to-end.
 - Mermaid renderability and human diagram complexity are not yet blocking gates.
 - Repository enforcement remediation has not yet been applied.
+- SEQUENCE_SYNC remains NOT_PROVEN until the false-positive resolver defect is repaired and semantically re-audited.
 
 ## Important limitations
 

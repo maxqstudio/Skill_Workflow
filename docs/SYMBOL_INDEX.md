@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: ded30f2882a60f5cf52f47cc1a0a7eb91d23f0215ee99971bf7d6908c6884c1a
+Source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -15,19 +15,19 @@ Status: CURRENT
 | scripts/benchmark_governance.py | copy_for_sync | function | 91-103 | Observed Python symbol | | | |
 | scripts/benchmark_governance.py | fixture_tool | function | 106-108 | Observed Python symbol | | | |
 | scripts/benchmark_governance.py | main | function | 111-246 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | call_name | function | 37-43 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | literal_string | function | 46-49 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts | class | 52-127 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.__init__ | method | 53-59 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.locator | method | 61-63 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_ClassDef | method | 65-77 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts._function | method | 79-107 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_FunctionDef | method | 109-110 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_AsyncFunctionDef | method | 112-117 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_Call | method | 119-127 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | is_test_file | function | 130-140 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | extract_project_facts | function | 143-217 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | main | function | 220-240 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | call_name | function | 37-47 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | literal_string | function | 50-53 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts | class | 56-131 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts.__init__ | method | 57-63 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts.locator | method | 65-67 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts.visit_ClassDef | method | 69-81 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts._function | method | 83-111 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts.visit_FunctionDef | method | 113-114 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts.visit_AsyncFunctionDef | method | 116-121 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | PythonFacts.visit_Call | method | 123-131 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | is_test_file | function | 134-144 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | extract_project_facts | function | 147-221 | Observed Python symbol | | | |
+| scripts/extract_project_facts.py | main | function | 224-244 | Observed Python symbol | | | |
 | scripts/generate_module_map.py | head | function | 28-36 | Observed Python symbol | | | |
 | scripts/generate_module_map.py | language | function | 39-47 | Observed Python symbol | | | |
 | scripts/generate_module_map.py | main | function | 50-116 | Observed Python symbol | | | |
@@ -68,22 +68,22 @@ Status: CURRENT
 | scripts/generate_project_docs.py | render_all | function | 1701-1780 | Observed Python symbol | | | |
 | scripts/generate_project_docs.py | main | function | 1783-1922 | Observed Python symbol | | | |
 | scripts/generate_sequence_actual.py | allowed | function | 33-35 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | call_name | function | 38-44 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | literal_string | function | 47-50 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector | class | 53-125 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.__init__ | method | 54-62 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.symbol_id | method | 64-66 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_ClassDef | method | 68-81 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector._visit_function | method | 83-112 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_FunctionDef | method | 114-115 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_AsyncFunctionDef | method | 117-118 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_Call | method | 120-125 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | collect_python | function | 128-195 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | collect_js_http | function | 205-259 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | dedupe_nodes | function | 262-268 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | dedupe_edges | function | 271-285 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | filter_reachable | function | 288-328 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | main | function | 331-411 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | call_name | function | 38-49 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | literal_string | function | 52-55 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector | class | 58-130 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector.__init__ | method | 59-67 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector.symbol_id | method | 69-71 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector.visit_ClassDef | method | 73-86 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector._visit_function | method | 88-117 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector.visit_FunctionDef | method | 119-120 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector.visit_AsyncFunctionDef | method | 122-123 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | PyCollector.visit_Call | method | 125-130 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | collect_python | function | 133-200 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | collect_js_http | function | 210-264 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | dedupe_nodes | function | 267-273 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | dedupe_edges | function | 276-290 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | filter_reachable | function | 293-333 | Observed Python symbol | | | |
+| scripts/generate_sequence_actual.py | main | function | 336-416 | Observed Python symbol | | | |
 | scripts/generate_sequence_plan.py | main | function | 15-45 | Observed Python symbol | | | |
 | scripts/generate_symbol_index.py | git_head | function | 28-36 | Observed Python symbol | | | |
 | scripts/generate_symbol_index.py | allowed | function | 39-41 | Observed Python symbol | | | |
@@ -113,6 +113,8 @@ Status: CURRENT
 | scripts/selftest_project_truth_compiler.py | run | function | 14-34 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | write_json | function | 37-38 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | main | function | 41-349 | Observed Python symbol | | | |
+| scripts/selftest_sequence_call_resolution.py | run | function | 18-28 | Observed Python symbol | | | |
+| scripts/selftest_sequence_call_resolution.py | main | function | 31-103 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | run | function | 48-68 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | write_json | function | 71-76 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | git | function | 79-80 | Observed Python symbol | | | |

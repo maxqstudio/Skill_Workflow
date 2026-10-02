@@ -4,21 +4,22 @@
 
 ## Evidence boundary
 
-SW2-00 has exact-head self and representative governed-consumer performance baselines plus a confirmed repository-enforcement audit. Canonical self-governance docs, sequence acceptance, repository enforcement remediation, and final exact-candidate project-state acceptance remain incomplete.
+SW2-00 has exact-head self and representative governed-consumer performance baselines, corrected and semantically reviewed DURING sequence evidence, and a confirmed repository-enforcement audit. Canonical code-facts tracking, repository enforcement remediation, human-comprehension acceptance, and final exact-candidate project-state acceptance remain incomplete.
 
 Final tested source: external final acceptance evidence.
-Current source digest: ded30f2882a60f5cf52f47cc1a0a7eb91d23f0215ee99971bf7d6908c6884c1a
+Current source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
 | SW2-00-R1 | Skill Workflow is governed by its own STRICT profile and synchronized project truth. | PROJECT_PROFILE.yaml, .workflow specs, generated docs, blocking validators | NOT_PROVEN |
 | SW2-00-R2 | A reproducible current performance baseline exists before engine optimization begins. | benchmarks/baselines/sw2-00-self-linux.json and benchmarks/baselines/sw2-00-max-grounding-linux.json | PASS |
 | SW2-00-R3 | Repository merge/ruleset enforcement is audited and aligned with declared governance. | benchmarks/baselines/sw2-00-repository-enforcement.json | FAIL |
-| SW2-00-R4 | Known sequence and documentation quality defects are explicitly recorded before repair phases begin. | .workflow/known_defects.json including performance, docs, self-governance, enforcement, and exact-head provenance defects | PASS |
+| SW2-00-R4 | Known sequence and documentation quality defects are explicitly recorded before repair phases begin. | .workflow/known_defects.json including performance, docs, self-governance, enforcement, exact-head provenance, and sequence resolver defects | PASS |
 
 ## Test commands
 
 - python -m compileall -q scripts
+- python scripts/selftest_sequence_call_resolution.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/benchmark_governance.py --root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD>
@@ -37,7 +38,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-00-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 

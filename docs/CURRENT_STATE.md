@@ -18,7 +18,7 @@ Branch: work/sw2-00-baseline-self-governance
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8
 Current candidate SHA: external final acceptance evidence
-Current source digest: ded30f2882a60f5cf52f47cc1a0a7eb91d23f0215ee99971bf7d6908c6884c1a
+Current source digest: f9f43065d12665166cff411a08f64e4e2d7a553be2500ccee13a9d49f89d8541
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-00-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - Pre-SW2 main 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8 passed the existing Ubuntu and Windows Governance Selftest.
@@ -44,25 +44,30 @@ SEQUENCE_SYNC: NOT_PROVEN
 - Repository enforcement audit proves main is not protected and repository rulesets are empty at SW2-00 start.
 - Exact-head self baseline run 36971841881 passed and is recorded at benchmarks/baselines/sw2-00-self-linux.json.
 - Exact-head max-grounding consumer baseline run 36972351382 passed at 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f and is recorded at benchmarks/baselines/sw2-00-max-grounding-linux.json.
-- The first baseline exposed that default pull-request checkout used a synthetic merge ref; SW2-00 now binds governance workflows to the exact candidate SHA before executing tests.
+- Default pull-request synthetic merge checkout was repaired; exact-candidate provenance is now checked before governance tests.
+- Twenty canonical human-facing self-governance documents were generated deterministically and tracked; the latest drift audit showed only code_facts.json remained untracked before subsequent source changes.
+- Initial SW2-00 DURING sequence generation and validators executed successfully, but semantic audit correctly rejected acceptance because it exposed a false-positive static call edge.
 
 ## Not proven
 - Skill Workflow has not yet completed self-governance acceptance under its own STRICT profile.
 - The cost distribution between Skill Workflow governance and consumer project-native build/test work is not yet measured end-to-end.
 - Mermaid renderability and human diagram complexity are not yet blocking gates.
 - Repository enforcement remediation has not yet been applied.
+- SEQUENCE_SYNC remains NOT_PROVEN until the false-positive resolver defect is repaired and semantically re-audited.
 
 ## Known blockers
 - Main has no branch protection/ruleset and no required status checks; repository merge enforcement is not aligned with declared fail-closed governance.
-- Canonical generated self-governance docs and tracked code facts are not yet committed to the branch.
+- The canonical generated .workflow/generated/code_facts.json is still untracked, so clean read-only self-governance cannot yet pass.
+- SW2-DEF-SEQ-001 must pass the new call-resolution regression and regenerated semantic sequence audit before SEQUENCE_SYNC can be accepted.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Commit canonical generated self-governance docs/code facts and make the self-governance check read-only clean.
+- Verify the sequence call-resolution repair on Ubuntu and Windows and regenerate the SW2-00 DURING sequence artifact.
+- Track canonical generated code facts without hand-editing machine evidence and make self-governance read-only clean.
 - Configure main PR/ruleset enforcement with exact-head required checks.
-- Generate and validate the current DURING sequence session for FLOW-GOVERNANCE-CHANGE.
+- Complete semantic human-comprehension review after generated current-state projections are synchronized.
 - Complete SW2-00 acceptance before starting SW2-01 engine refactoring.
 
 ## Explicitly blocked
