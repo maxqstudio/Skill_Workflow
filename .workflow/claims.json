@@ -63,14 +63,14 @@
       "source_owners": [
         "SKILL.md"
       ],
-      "status": "NOT_PROVEN",
+      "status": "NOT_APPLICABLE",
       "tests": []
     }
   ],
   "relations": [
     {
       "claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
-      "notes": "Performance work is valid only if fail-closed acceptance remains intact.",
+      "notes": "Performance work is valid only if fail-closed acceptance remains intact. The claim is NOT_APPLICABLE in SW2-00 because no V2 performance optimization is accepted in the baseline phase; it must be re-opened and proven when optimization begins.",
       "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
       "relation": "REQUIRES"
     }
