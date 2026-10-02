@@ -70,12 +70,37 @@
         "scripts/selftest_governance_engine.py",
         "scripts/selftest_strict_project_workflow.py"
       ]
+    },
+    {
+      "claim": "Develop and verify modes may reduce intermediate work only when changed-file impact is safely classified; unknown impact escalates, and finalize remains the only complete acceptance mode.",
+      "documents": [
+        "ROADMAP.md",
+        "DECISIONS.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-MODE-SAFETY",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        "scripts/governance_engine.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_governance_engine.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
     }
   ],
   "relations": [
     {
       "claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
-      "notes": "Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proves this relation through exact-head cross-platform regression, fail-closed DAG tests, current sequence acceptance, and final Project Truth validation.",
+      "notes": "Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proved this relation through exact-head cross-platform regression and final Project Truth validation.",
+      "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-MODE-SAFETY",
+      "notes": "Fast modes are valid only if they cannot replace or weaken final fail-closed acceptance.",
       "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
       "relation": "REQUIRES"
     }
