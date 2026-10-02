@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565
+Source digest: 246fac69c19d285907aac95ff7f07ab1ed5e4536eb7b6203305324bfba1c51f6
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -101,31 +101,33 @@ Status: CURRENT
 | scripts/generate_symbol_index.py | dedupe | function | 158-171 | Observed Python symbol | | | |
 | scripts/generate_symbol_index.py | write_markdown | function | 174-201 | Observed Python symbol | | | |
 | scripts/generate_symbol_index.py | main | function | 204-257 | Observed Python symbol | | | |
-| scripts/governance_engine.py | NodeResult | class | 33-39 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationNode | class | 43-46 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG | class | 49-126 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG.__init__ | method | 50-62 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG._assert_acyclic | method | 64-80 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG._assert_acyclic.visit | method | 68-77 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG.run | method | 82-126 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG.run.execute | method | 85-122 | Observed Python symbol | | | |
-| scripts/governance_engine.py | git | function | 190-195 | Observed Python symbol | | | |
-| scripts/governance_engine.py | git_z | function | 198-207 | Observed Python symbol | | | |
-| scripts/governance_engine.py | state_base | function | 210-218 | Observed Python symbol | | | |
-| scripts/governance_engine.py | collect_changed_paths | function | 221-235 | Observed Python symbol | | | |
-| scripts/governance_engine.py | classify_path | function | 238-262 | Observed Python symbol | | | |
-| scripts/governance_engine.py | classify_changed_paths | function | 265-266 | Observed Python symbol | | | |
-| scripts/governance_engine.py | effective_mode | function | 269-277 | Observed Python symbol | | | |
-| scripts/governance_engine.py | develop_node_names | function | 280-324 | Observed Python symbol | | | |
-| scripts/governance_engine.py | planned_node_names | function | 327-337 | Observed Python symbol | | | |
-| scripts/governance_engine.py | governed_status | function | 340-353 | Observed Python symbol | | | |
-| scripts/governance_engine.py | cli_action | function | 356-361 | Observed Python symbol | | | |
-| scripts/governance_engine.py | command_action | function | 364-376 | Observed Python symbol | | | |
-| scripts/governance_engine.py | command_action.run | method | 365-374 | Observed Python symbol | | | |
-| scripts/governance_engine.py | _regression_node | function | 379-384 | Observed Python symbol | | | |
-| scripts/governance_engine.py | build_mode_dag | function | 387-574 | Observed Python symbol | | | |
-| scripts/governance_engine.py | build_dag | function | 577-651 | Observed Python symbol | | | |
-| scripts/governance_engine.py | main | function | 654-782 | Observed Python symbol | | | |
+| scripts/governance_engine.py | NodeResult | class | 38-44 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationNode | class | 48-51 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationDAG | class | 54-131 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationDAG.__init__ | method | 55-67 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationDAG._assert_acyclic | method | 69-85 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationDAG._assert_acyclic.visit | method | 73-82 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationDAG.run | method | 87-131 | Observed Python symbol | | | |
+| scripts/governance_engine.py | ValidationDAG.run.execute | method | 90-127 | Observed Python symbol | | | |
+| scripts/governance_engine.py | git | function | 195-200 | Observed Python symbol | | | |
+| scripts/governance_engine.py | git_z | function | 203-212 | Observed Python symbol | | | |
+| scripts/governance_engine.py | state_base | function | 215-223 | Observed Python symbol | | | |
+| scripts/governance_engine.py | collect_changed_paths | function | 226-240 | Observed Python symbol | | | |
+| scripts/governance_engine.py | classify_path | function | 243-267 | Observed Python symbol | | | |
+| scripts/governance_engine.py | classify_changed_paths | function | 270-271 | Observed Python symbol | | | |
+| scripts/governance_engine.py | effective_mode | function | 274-282 | Observed Python symbol | | | |
+| scripts/governance_engine.py | develop_node_names | function | 285-329 | Observed Python symbol | | | |
+| scripts/governance_engine.py | planned_node_names | function | 332-342 | Observed Python symbol | | | |
+| scripts/governance_engine.py | governed_status | function | 345-358 | Observed Python symbol | | | |
+| scripts/governance_engine.py | cli_action | function | 361-366 | Observed Python symbol | | | |
+| scripts/governance_engine.py | command_action | function | 369-381 | Observed Python symbol | | | |
+| scripts/governance_engine.py | command_action.run | method | 370-379 | Observed Python symbol | | | |
+| scripts/governance_engine.py | compile_scripts_action | function | 384-401 | Observed Python symbol | | | |
+| scripts/governance_engine.py | compile_scripts_action.run | method | 386-399 | Observed Python symbol | | | |
+| scripts/governance_engine.py | _regression_node | function | 404-409 | Observed Python symbol | | | |
+| scripts/governance_engine.py | build_mode_dag | function | 412-596 | Observed Python symbol | | | |
+| scripts/governance_engine.py | build_dag | function | 599-673 | Observed Python symbol | | | |
+| scripts/governance_engine.py | main | function | 676-804 | Observed Python symbol | | | |
 | scripts/initialize_project_truth.py | copy_file | function | 11-16 | Observed Python symbol | | | |
 | scripts/initialize_project_truth.py | main | function | 19-96 | Observed Python symbol | | | |
 | scripts/project_profile.py | _clean | function | 81-85 | Observed Python symbol | | | |
@@ -171,8 +173,8 @@ Status: CURRENT
 | scripts/selftest_governance_engine.py | dag_fail_closed.downstream | method | 138-141 | Observed Python symbol | | | |
 | scripts/selftest_governance_engine.py | mode_planning_contract | function | 172-246 | Observed Python symbol | | | |
 | scripts/selftest_governance_engine.py | changed_path_collection_contract | function | 249-271 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | mode_cli_integration_contract | function | 274-362 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | main | function | 365-374 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | mode_cli_integration_contract | function | 274-366 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | main | function | 369-378 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | run | function | 16-36 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | write_json | function | 39-40 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | test_gitignored_source_files_are_excluded | function | 43-101 | Observed Python symbol | | | |

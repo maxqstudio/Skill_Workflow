@@ -1,6 +1,6 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: 1eb6bdd590a4f81a42a73c52d23ad8a621c0c9da80fdf98019eaba03f6910565
-%% OBSERVED_HEAD: 35019e7fe03ad6d043dd7b54ddaae86f9cf9ccff
+%% SOURCE_DIGEST: 246fac69c19d285907aac95ff7f07ab1ed5e4536eb7b6203305324bfba1c51f6
+%% OBSERVED_HEAD: c023d26b4546919e7f18d06ad6afa79675bd2e2d
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
     participant scripts_governance_engine_py__ValidationDAG_0 as scripts/governance_engine.py::ValidationDAG
@@ -13,68 +13,70 @@ sequenceDiagram
     participant scripts_governance_engine_py__cli_action_7 as scripts/governance_engine.py::cli_action
     participant scripts_governance_engine_py__collect_changed_paths_8 as scripts/governance_engine.py::collect_changed_paths
     participant scripts_governance_engine_py__command_action_9 as scripts/governance_engine.py::command_action
-    participant scripts_governance_engine_py__develop_node_names_10 as scripts/governance_engine.py::develop_node_names
-    participant scripts_governance_engine_py__effective_mode_11 as scripts/governance_engine.py::effective_mode
-    participant scripts_governance_engine_py__git_12 as scripts/governance_engine.py::git
-    participant scripts_governance_engine_py__git_z_13 as scripts/governance_engine.py::git_z
-    participant scripts_governance_engine_py__governed_status_14 as scripts/governance_engine.py::governed_status
-    participant scripts_governance_engine_py__main_15 as scripts/governance_engine.py::main
-    participant scripts_governance_engine_py__planned_node_names_16 as scripts/governance_engine.py::planned_node_names
-    participant scripts_governance_engine_py__state_base_17 as scripts/governance_engine.py::state_base
-    participant scripts_project_snapshot_py__ProjectSnapshot_capture_18 as scripts/project_snapshot.py::ProjectSnapshot.capture
-    participant scripts_project_snapshot_py__ProjectSnapshot_entry_19 as scripts/project_snapshot.py::ProjectSnapshot.entry
-    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_20 as scripts/project_snapshot.py::ProjectSnapshot.metrics
-    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_21 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
-    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_22 as scripts/project_snapshot.py::ProjectSnapshot.read_text
-    participant scripts_project_snapshot_py__SnapshotError_23 as scripts/project_snapshot.py::SnapshotError
-    participant scripts_project_snapshot_py__SnapshotFile_24 as scripts/project_snapshot.py::SnapshotFile
-    participant scripts_project_snapshot_py___git_25 as scripts/project_snapshot.py::_git
-    participant scripts_project_snapshot_py___git_optional_26 as scripts/project_snapshot.py::_git_optional
-    participant scripts_project_snapshot_py__active_project_snapshot_27 as scripts/project_snapshot.py::active_project_snapshot
-    participant scripts_project_snapshot_py__canonical_source_bytes_28 as scripts/project_snapshot.py::canonical_source_bytes
-    participant scripts_project_snapshot_py__discover_source_paths_29 as scripts/project_snapshot.py::discover_source_paths
-    participant scripts_script_runner_py__invoke_main_30 as scripts/script_runner.py::invoke_main
-    participant scripts_validate_sequence_contract_py__resolve_31 as scripts/validate_sequence_contract.py::resolve
+    participant scripts_governance_engine_py__compile_scripts_action_10 as scripts/governance_engine.py::compile_scripts_action
+    participant scripts_governance_engine_py__develop_node_names_11 as scripts/governance_engine.py::develop_node_names
+    participant scripts_governance_engine_py__effective_mode_12 as scripts/governance_engine.py::effective_mode
+    participant scripts_governance_engine_py__git_13 as scripts/governance_engine.py::git
+    participant scripts_governance_engine_py__git_z_14 as scripts/governance_engine.py::git_z
+    participant scripts_governance_engine_py__governed_status_15 as scripts/governance_engine.py::governed_status
+    participant scripts_governance_engine_py__main_16 as scripts/governance_engine.py::main
+    participant scripts_governance_engine_py__planned_node_names_17 as scripts/governance_engine.py::planned_node_names
+    participant scripts_governance_engine_py__state_base_18 as scripts/governance_engine.py::state_base
+    participant scripts_project_snapshot_py__ProjectSnapshot_capture_19 as scripts/project_snapshot.py::ProjectSnapshot.capture
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_20 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_21 as scripts/project_snapshot.py::ProjectSnapshot.metrics
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_22 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_23 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_24 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_project_snapshot_py__SnapshotFile_25 as scripts/project_snapshot.py::SnapshotFile
+    participant scripts_project_snapshot_py___git_26 as scripts/project_snapshot.py::_git
+    participant scripts_project_snapshot_py___git_optional_27 as scripts/project_snapshot.py::_git_optional
+    participant scripts_project_snapshot_py__active_project_snapshot_28 as scripts/project_snapshot.py::active_project_snapshot
+    participant scripts_project_snapshot_py__canonical_source_bytes_29 as scripts/project_snapshot.py::canonical_source_bytes
+    participant scripts_project_snapshot_py__discover_source_paths_30 as scripts/project_snapshot.py::discover_source_paths
+    participant scripts_script_runner_py__invoke_main_31 as scripts/script_runner.py::invoke_main
+    participant scripts_validate_sequence_contract_py__resolve_32 as scripts/validate_sequence_contract.py::resolve
     scripts_governance_engine_py___regression_node_2->>scripts_governance_engine_py__ValidationNode_1: ValidationNode [STATIC]
     scripts_governance_engine_py___regression_node_2->>scripts_governance_engine_py__command_action_9: command_action [STATIC]
     scripts_governance_engine_py__build_dag_3->>scripts_governance_engine_py__ValidationDAG_0: ValidationDAG [STATIC]
     scripts_governance_engine_py__build_dag_3->>scripts_governance_engine_py__ValidationNode_1: ValidationNode [STATIC]
     scripts_governance_engine_py__build_dag_3->>scripts_governance_engine_py__cli_action_7: cli_action [STATIC]
-    scripts_governance_engine_py__build_dag_3->>scripts_governance_engine_py__governed_status_14: governed_status [STATIC]
+    scripts_governance_engine_py__build_dag_3->>scripts_governance_engine_py__governed_status_15: governed_status [STATIC]
     scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__ValidationDAG_0: ValidationDAG [STATIC]
     scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__ValidationNode_1: ValidationNode [STATIC]
     scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py___regression_node_2: _regression_node [STATIC]
     scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__cli_action_7: cli_action [STATIC]
     scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__command_action_9: command_action [STATIC]
-    scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__governed_status_14: governed_status [STATIC]
+    scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__compile_scripts_action_10: compile_scripts_action [STATIC]
+    scripts_governance_engine_py__build_mode_dag_4->>scripts_governance_engine_py__governed_status_15: governed_status [STATIC]
     scripts_governance_engine_py__classify_changed_paths_5->>scripts_governance_engine_py__classify_path_6: classify_path [STATIC]
-    scripts_governance_engine_py__cli_action_7->>scripts_script_runner_py__invoke_main_30: invoke_main [STATIC]
-    scripts_governance_engine_py__collect_changed_paths_8->>scripts_governance_engine_py__git_z_13: git_z [STATIC]
-    scripts_governance_engine_py__governed_status_14->>scripts_governance_engine_py__git_12: git [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__build_dag_3: build_dag [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__build_mode_dag_4: build_mode_dag [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__classify_changed_paths_5: classify_changed_paths [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__collect_changed_paths_8: collect_changed_paths [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__effective_mode_11: effective_mode [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__planned_node_names_16: planned_node_names [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_governance_engine_py__state_base_17: state_base [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_capture_18: ProjectSnapshot.capture [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_metrics_20: snapshot.metrics [STATIC]
-    scripts_governance_engine_py__main_15->>scripts_project_snapshot_py__active_project_snapshot_27: active_project_snapshot [STATIC]
-    scripts_governance_engine_py__planned_node_names_16->>scripts_governance_engine_py__develop_node_names_10: develop_node_names [STATIC]
-    scripts_governance_engine_py__state_base_17->>scripts_project_snapshot_py__ProjectSnapshot_read_text_22: path.read_text [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_18->>scripts_project_snapshot_py__SnapshotError_23: SnapshotError [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_18->>scripts_project_snapshot_py__SnapshotFile_24: SnapshotFile [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_18->>scripts_project_snapshot_py___git_optional_26: _git_optional [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_18->>scripts_project_snapshot_py__canonical_source_bytes_28: canonical_source_bytes [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_18->>scripts_project_snapshot_py__discover_source_paths_29: discover_source_paths [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_18->>scripts_validate_sequence_contract_py__resolve_31: root.resolve [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_entry_19->>scripts_project_snapshot_py__SnapshotError_23: SnapshotError [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_entry_19->>scripts_validate_sequence_contract_py__resolve_31: value.resolve [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_21->>scripts_project_snapshot_py__ProjectSnapshot_entry_19: self.entry [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_read_text_22->>scripts_project_snapshot_py__ProjectSnapshot_entry_19: self.entry [STATIC]
-    scripts_project_snapshot_py___git_optional_26->>scripts_project_snapshot_py___git_25: _git [STATIC]
-    scripts_project_snapshot_py__canonical_source_bytes_28->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_21: path.read_bytes [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_29->>scripts_project_snapshot_py__SnapshotError_23: SnapshotError [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_29->>scripts_project_snapshot_py___git_25: _git [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_29->>scripts_validate_sequence_contract_py__resolve_31: root.resolve [STATIC]
+    scripts_governance_engine_py__cli_action_7->>scripts_script_runner_py__invoke_main_31: invoke_main [STATIC]
+    scripts_governance_engine_py__collect_changed_paths_8->>scripts_governance_engine_py__git_z_14: git_z [STATIC]
+    scripts_governance_engine_py__governed_status_15->>scripts_governance_engine_py__git_13: git [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__build_dag_3: build_dag [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__build_mode_dag_4: build_mode_dag [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__classify_changed_paths_5: classify_changed_paths [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__collect_changed_paths_8: collect_changed_paths [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__effective_mode_12: effective_mode [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__planned_node_names_17: planned_node_names [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_governance_engine_py__state_base_18: state_base [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_project_snapshot_py__ProjectSnapshot_capture_19: ProjectSnapshot.capture [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_project_snapshot_py__ProjectSnapshot_metrics_21: snapshot.metrics [STATIC]
+    scripts_governance_engine_py__main_16->>scripts_project_snapshot_py__active_project_snapshot_28: active_project_snapshot [STATIC]
+    scripts_governance_engine_py__planned_node_names_17->>scripts_governance_engine_py__develop_node_names_11: develop_node_names [STATIC]
+    scripts_governance_engine_py__state_base_18->>scripts_project_snapshot_py__ProjectSnapshot_read_text_23: path.read_text [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_19->>scripts_project_snapshot_py__SnapshotError_24: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_19->>scripts_project_snapshot_py__SnapshotFile_25: SnapshotFile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_19->>scripts_project_snapshot_py___git_optional_27: _git_optional [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_19->>scripts_project_snapshot_py__canonical_source_bytes_29: canonical_source_bytes [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_19->>scripts_project_snapshot_py__discover_source_paths_30: discover_source_paths [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_19->>scripts_validate_sequence_contract_py__resolve_32: root.resolve [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_20->>scripts_project_snapshot_py__SnapshotError_24: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_20->>scripts_validate_sequence_contract_py__resolve_32: value.resolve [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_22->>scripts_project_snapshot_py__ProjectSnapshot_entry_20: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_23->>scripts_project_snapshot_py__ProjectSnapshot_entry_20: self.entry [STATIC]
+    scripts_project_snapshot_py___git_optional_27->>scripts_project_snapshot_py___git_26: _git [STATIC]
+    scripts_project_snapshot_py__canonical_source_bytes_29->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_22: path.read_bytes [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_30->>scripts_project_snapshot_py__SnapshotError_24: SnapshotError [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_30->>scripts_project_snapshot_py___git_26: _git [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_30->>scripts_validate_sequence_contract_py__resolve_32: root.resolve [STATIC]
