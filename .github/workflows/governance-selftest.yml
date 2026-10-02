@@ -47,6 +47,9 @@ jobs:
       - name: Sequence call-resolution regression
         run: python scripts/selftest_sequence_call_resolution.py
 
+      - name: Cross-document regression
+        run: python scripts/selftest_cross_document_regressions.py
+
       - name: Project Truth Compiler self-test
         run: python scripts/selftest_project_truth_compiler.py
 
