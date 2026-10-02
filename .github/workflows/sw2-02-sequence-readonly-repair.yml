@@ -1,3 +1,4 @@
+# Trigger after workflow creation so this push executes the one-shot repair.
 name: SW2-02 Sequence Readonly Repair
 
 on:
