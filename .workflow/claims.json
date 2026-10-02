@@ -61,16 +61,21 @@
       "id": "TRUTH-SW2-PERFORMANCE-PARITY",
       "runtime_evidence": [],
       "source_owners": [
-        "SKILL.md"
+        "SKILL.md",
+        "scripts/governance_engine.py",
+        "scripts/project_snapshot.py"
       ],
-      "status": "NOT_APPLICABLE",
-      "tests": []
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_governance_engine.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
     }
   ],
   "relations": [
     {
       "claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
-      "notes": "Performance work is valid only if fail-closed acceptance remains intact. The claim is NOT_APPLICABLE in SW2-00 because no V2 performance optimization is accepted in the baseline phase; it must be re-opened and proven when optimization begins.",
+      "notes": "Performance work is valid only if fail-closed acceptance remains intact. SW2-01 reopens this claim and must prove it before acceptance.",
       "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
       "relation": "REQUIRES"
     }
