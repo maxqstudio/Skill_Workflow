@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: ae99d0936f2f80b457c212654292ff06ddfa99c081542bbe10d415ad42f44df1
+Source digest: 9efac7410f3537a7da8fe5a6706288784fbcd13b35d3ad7c4f0d0c65ddb3e16f
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -114,21 +114,21 @@ Status: CURRENT
 | scripts/governance_engine.py | git_z | function | 203-212 | Observed Python symbol | | | |
 | scripts/governance_engine.py | state_base | function | 215-223 | Observed Python symbol | | | |
 | scripts/governance_engine.py | collect_changed_paths | function | 226-240 | Observed Python symbol | | | |
-| scripts/governance_engine.py | classify_path | function | 243-267 | Observed Python symbol | | | |
-| scripts/governance_engine.py | classify_changed_paths | function | 270-271 | Observed Python symbol | | | |
-| scripts/governance_engine.py | effective_mode | function | 274-282 | Observed Python symbol | | | |
-| scripts/governance_engine.py | develop_node_names | function | 285-329 | Observed Python symbol | | | |
-| scripts/governance_engine.py | planned_node_names | function | 332-342 | Observed Python symbol | | | |
-| scripts/governance_engine.py | governed_status | function | 345-358 | Observed Python symbol | | | |
-| scripts/governance_engine.py | cli_action | function | 361-366 | Observed Python symbol | | | |
-| scripts/governance_engine.py | command_action | function | 369-384 | Observed Python symbol | | | |
-| scripts/governance_engine.py | command_action.run | method | 370-382 | Observed Python symbol | | | |
-| scripts/governance_engine.py | compile_scripts_action | function | 387-404 | Observed Python symbol | | | |
-| scripts/governance_engine.py | compile_scripts_action.run | method | 389-402 | Observed Python symbol | | | |
-| scripts/governance_engine.py | _regression_node | function | 407-412 | Observed Python symbol | | | |
-| scripts/governance_engine.py | build_mode_dag | function | 415-599 | Observed Python symbol | | | |
-| scripts/governance_engine.py | build_dag | function | 602-676 | Observed Python symbol | | | |
-| scripts/governance_engine.py | main | function | 679-807 | Observed Python symbol | | | |
+| scripts/governance_engine.py | classify_path | function | 243-269 | Observed Python symbol | | | |
+| scripts/governance_engine.py | classify_changed_paths | function | 272-273 | Observed Python symbol | | | |
+| scripts/governance_engine.py | effective_mode | function | 276-284 | Observed Python symbol | | | |
+| scripts/governance_engine.py | develop_node_names | function | 287-331 | Observed Python symbol | | | |
+| scripts/governance_engine.py | planned_node_names | function | 334-344 | Observed Python symbol | | | |
+| scripts/governance_engine.py | governed_status | function | 347-360 | Observed Python symbol | | | |
+| scripts/governance_engine.py | cli_action | function | 363-368 | Observed Python symbol | | | |
+| scripts/governance_engine.py | command_action | function | 371-386 | Observed Python symbol | | | |
+| scripts/governance_engine.py | command_action.run | method | 372-384 | Observed Python symbol | | | |
+| scripts/governance_engine.py | compile_scripts_action | function | 389-406 | Observed Python symbol | | | |
+| scripts/governance_engine.py | compile_scripts_action.run | method | 391-404 | Observed Python symbol | | | |
+| scripts/governance_engine.py | _regression_node | function | 409-414 | Observed Python symbol | | | |
+| scripts/governance_engine.py | build_mode_dag | function | 417-601 | Observed Python symbol | | | |
+| scripts/governance_engine.py | build_dag | function | 604-678 | Observed Python symbol | | | |
+| scripts/governance_engine.py | main | function | 681-809 | Observed Python symbol | | | |
 | scripts/initialize_project_truth.py | ensure_gitattributes | function | 20-30 | Observed Python symbol | | | |
 | scripts/initialize_project_truth.py | copy_file | function | 33-38 | Observed Python symbol | | | |
 | scripts/initialize_project_truth.py | main | function | 41-126 | Observed Python symbol | | | |
@@ -173,10 +173,10 @@ Status: CURRENT
 | scripts/selftest_governance_engine.py | dag_fail_closed | function | 132-169 | Observed Python symbol | | | |
 | scripts/selftest_governance_engine.py | dag_fail_closed.fail | method | 135-136 | Observed Python symbol | | | |
 | scripts/selftest_governance_engine.py | dag_fail_closed.downstream | method | 138-141 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | mode_planning_contract | function | 172-246 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | changed_path_collection_contract | function | 249-271 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | mode_cli_integration_contract | function | 274-367 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | main | function | 370-379 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | mode_planning_contract | function | 172-258 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | changed_path_collection_contract | function | 261-283 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | mode_cli_integration_contract | function | 286-379 | Observed Python symbol | | | |
+| scripts/selftest_governance_engine.py | main | function | 382-391 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | run | function | 16-36 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | write_json | function | 39-40 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | test_gitignored_source_files_are_excluded | function | 43-101 | Observed Python symbol | | | |

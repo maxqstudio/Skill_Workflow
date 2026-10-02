@@ -7,7 +7,7 @@
 SW2-02 acceptance covers changed-file impact classification plus develop, verify, and finalize governance execution modes. Fast modes may reduce intermediate work only when impact is known; unknown impact must escalate. Finalize must preserve the complete accepted fail-closed governance contract. Runtime/E2E is not applicable to this repository-only orchestration phase. SW2-03 sequence-render redesign is not part of this phase.
 
 Final tested source: external final acceptance evidence.
-Current source digest: ae99d0936f2f80b457c212654292ff06ddfa99c081542bbe10d415ad42f44df1
+Current source digest: 9efac7410f3537a7da8fe5a6706288784fbcd13b35d3ad7c4f0d0c65ddb3e16f
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
