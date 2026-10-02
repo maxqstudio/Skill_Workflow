@@ -1,18 +1,18 @@
 {
   "evidence_boundary": "SW2-00 acceptance covers STRICT self-governance, exact-head cross-platform source tests, deterministic project-truth synchronization, corrected static DURING sequence evidence, and reproducible self/consumer governance baselines. Repository merge enforcement remains an audited and recorded gap deferred to SW2-07; Mermaid renderability and bounded human diagram complexity remain deferred to SW2-03.",
   "human_comprehension_questions": {
-    "What is the project and what problem does it solve?": "PASS",
-    "Who uses it and what are the primary outcomes?": "PASS",
-    "What are the major components and how do they relate?": "PASS",
-    "How does important data flow through the system?": "PASS",
-    "What are the main user/domain workflows?": "PASS",
-    "What are the important lifecycle states and transitions?": "PASS",
-    "Who/what is authoritative for important decisions?": "PASS",
-    "What is mutable and what is immutable?": "PASS",
     "How does failure/recovery behave?": "PASS",
-    "What is the current project state?": "PASS",
+    "How does important data flow through the system?": "PASS",
+    "What are the important lifecycle states and transitions?": "PASS",
+    "What are the main user/domain workflows?": "PASS",
+    "What are the major components and how do they relate?": "PASS",
+    "What is mutable and what is immutable?": "PASS",
     "What is proven and what is not proven?": "PASS",
-    "What may happen next and what is blocked?": "PASS"
+    "What is the current project state?": "PASS",
+    "What is the project and what problem does it solve?": "PASS",
+    "What may happen next and what is blocked?": "PASS",
+    "Who uses it and what are the primary outcomes?": "PASS",
+    "Who/what is authoritative for important decisions?": "PASS"
   },
   "human_comprehension_status": "PASS",
   "requirements": [

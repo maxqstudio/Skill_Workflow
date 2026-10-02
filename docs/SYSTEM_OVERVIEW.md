@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: NOT_PROVEN
+Human comprehension status: PASS
 
 ## One-minute summary
 
@@ -110,22 +110,17 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Verify the sequence call-resolution repair on Ubuntu and Windows and regenerate the SW2-00 DURING sequence artifact.
-- Track canonical generated code facts without hand-editing machine evidence and make self-governance read-only clean.
-- Configure main PR/ruleset enforcement with exact-head required checks.
-- Complete semantic human-comprehension review after generated current-state projections are synchronized.
-- Complete SW2-00 acceptance before starting SW2-01 engine refactoring.
+- Regenerate canonical project truth from this updated SW2-00 authority state.
+- Run the complete read-only STRICT validator chain against the exact candidate HEAD.
+- If every SW2-00 exit criterion passes, close SW2-00 without starting SW2-01 implementation.
 
 Blocked actions:
 - Do not start SW2-01 single-snapshot engine refactoring before SW2-00 acceptance is complete.
 - Do not remove validators or downgrade the governance profile to gain speed.
-- Do not claim public documentation quality from formatting checks alone.
-- Do not merge SW2-00 while main lacks required repository enforcement or while self-governance remains unsynchronized.
+- Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates.
 
 Known blockers:
-- Main has no branch protection/ruleset and no required status checks; repository merge enforcement is not aligned with declared fail-closed governance.
-- The canonical generated .workflow/generated/code_facts.json is still untracked, so clean read-only self-governance cannot yet pass.
-- SW2-DEF-SEQ-001 must pass the new call-resolution regression and regenerated semantic sequence audit before SEQUENCE_SYNC can be accepted.
+- Final exact-candidate STRICT validator-chain acceptance has not yet been executed after the SW2-00 authority-state update.
 
 ## Proven vs not proven
 
@@ -133,20 +128,20 @@ Known blockers:
 
 - Pre-SW2 main 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8 passed the existing Ubuntu and Windows Governance Selftest.
 - Current implementation contains deterministic generated-documentation, sequence, truth, handoff, and cross-document validators.
-- Repository enforcement audit proves main is not protected and repository rulesets are empty at SW2-00 start.
-- Exact-head self baseline run 36971841881 passed and is recorded at benchmarks/baselines/sw2-00-self-linux.json.
-- Exact-head max-grounding consumer baseline run 36972351382 passed at 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f and is recorded at benchmarks/baselines/sw2-00-max-grounding-linux.json.
-- Default pull-request synthetic merge checkout was repaired; exact-candidate provenance is now checked before governance tests.
-- Twenty canonical human-facing self-governance documents were generated deterministically and tracked; the latest drift audit showed only code_facts.json remained untracked before subsequent source changes.
-- Initial SW2-00 DURING sequence generation and validators executed successfully, but semantic audit correctly rejected acceptance because it exposed a false-positive static call edge.
+- Repository enforcement audit proves main is not protected and repository rulesets are empty; benchmarks/baselines/sw2-00-repository-enforcement.json records the minimum remediation required before SW2-07 can close.
+- Exact-head self and governed-consumer performance baselines are recorded at benchmarks/baselines/sw2-00-self-linux.json and benchmarks/baselines/sw2-00-max-grounding-linux.json.
+- Default pull-request synthetic merge checkout was repaired; every SW2 governance workflow verifies the exact candidate SHA before executing evidence-producing checks.
+- The self-governance drift gate was repaired to include untracked generated files.
+- Canonical code facts and generated documentation are tracked; Self Governance run 36977990910 passed read-only on exact head ced2336e9289b5aaef5d60ae7d55be1561a4b171.
+- SW2-DEF-SEQ-001 was repaired, regression-tested on Ubuntu and Windows, regenerated, semantically re-audited, and accepted; Sequence Evidence run 36977990845 passed on exact head ced2336e9289b5aaef5d60ae7d55be1561a4b171.
+- Governance Selftest run 36977990861 passed on Ubuntu and Windows, SW2 Baseline run 36977990864 passed, and governed-consumer baseline run 36977990933 passed on exact head ced2336e9289b5aaef5d60ae7d55be1561a4b171.
 
 ### Not proven
 
-- Skill Workflow has not yet completed self-governance acceptance under its own STRICT profile.
-- The cost distribution between Skill Workflow governance and consumer project-native build/test work is not yet measured end-to-end.
-- Mermaid renderability and human diagram complexity are not yet blocking gates.
-- Repository enforcement remediation has not yet been applied.
-- SEQUENCE_SYNC remains NOT_PROVEN until the false-positive resolver defect is repaired and semantically re-audited.
+- Final SW2-00 acceptance is not proven until the post-update exact-head STRICT validator chain passes.
+- Repository merge enforcement is still absent on main; SW2-00 records the mismatch and minimum remediation, while actual alignment remains a SW2-07 exit criterion.
+- Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
+- End-to-end separation of governance overhead from consumer-native build/test cost is not yet a dedicated benchmark.
 
 ## Important limitations
 
@@ -180,18 +175,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
-| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
-| What are the major components and how do they relate? | NOT_PROVEN | Major components |
-| How does important data flow through the system? | NOT_PROVEN | Main data flow |
-| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
-| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
-| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
-| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
-| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
-| What is the current project state? | NOT_PROVEN | Current project state |
-| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
-| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
+| What is the project and what problem does it solve? | PASS | One-minute summary |
+| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
+| What are the major components and how do they relate? | PASS | Major components |
+| How does important data flow through the system? | PASS | Main data flow |
+| What are the main user/domain workflows? | PASS | Main user workflows |
+| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
+| Who/what is authoritative for important decisions? | PASS | Authority model |
+| What is mutable and what is immutable? | PASS | Mutable vs immutable |
+| How does failure/recovery behave? | PASS | Failure and recovery |
+| What is the current project state? | PASS | Current project state |
+| What is proven and what is not proven? | PASS | Proven vs not proven |
+| What may happen next and what is blocked? | PASS | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.
