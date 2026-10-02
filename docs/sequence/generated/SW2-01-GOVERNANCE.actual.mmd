@@ -1,0 +1,54 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4
+%% OBSERVED_HEAD: 54339ab3c6e00f8027ad5c1a8fcde1ae79239656
+%% GENERATED_BY: generate_sequence_actual.py
+sequenceDiagram
+    participant scripts_governance_engine_py__ValidationDAG_0 as scripts/governance_engine.py::ValidationDAG
+    participant scripts_governance_engine_py__ValidationNode_1 as scripts/governance_engine.py::ValidationNode
+    participant scripts_governance_engine_py__build_dag_2 as scripts/governance_engine.py::build_dag
+    participant scripts_governance_engine_py__cli_action_3 as scripts/governance_engine.py::cli_action
+    participant scripts_governance_engine_py__git_4 as scripts/governance_engine.py::git
+    participant scripts_governance_engine_py__governed_status_5 as scripts/governance_engine.py::governed_status
+    participant scripts_governance_engine_py__main_6 as scripts/governance_engine.py::main
+    participant scripts_governance_engine_py__state_base_7 as scripts/governance_engine.py::state_base
+    participant scripts_project_snapshot_py__ProjectSnapshot_capture_8 as scripts/project_snapshot.py::ProjectSnapshot.capture
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_9 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_10 as scripts/project_snapshot.py::ProjectSnapshot.metrics
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_11 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_12 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_13 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_project_snapshot_py__SnapshotFile_14 as scripts/project_snapshot.py::SnapshotFile
+    participant scripts_project_snapshot_py___git_15 as scripts/project_snapshot.py::_git
+    participant scripts_project_snapshot_py___git_optional_16 as scripts/project_snapshot.py::_git_optional
+    participant scripts_project_snapshot_py__active_project_snapshot_17 as scripts/project_snapshot.py::active_project_snapshot
+    participant scripts_project_snapshot_py__canonical_source_bytes_18 as scripts/project_snapshot.py::canonical_source_bytes
+    participant scripts_project_snapshot_py__discover_source_paths_19 as scripts/project_snapshot.py::discover_source_paths
+    participant scripts_script_runner_py__invoke_main_20 as scripts/script_runner.py::invoke_main
+    participant scripts_validate_sequence_contract_py__resolve_21 as scripts/validate_sequence_contract.py::resolve
+    scripts_governance_engine_py__build_dag_2->>scripts_governance_engine_py__ValidationDAG_0: ValidationDAG [STATIC]
+    scripts_governance_engine_py__build_dag_2->>scripts_governance_engine_py__ValidationNode_1: ValidationNode [STATIC]
+    scripts_governance_engine_py__build_dag_2->>scripts_governance_engine_py__cli_action_3: cli_action [STATIC]
+    scripts_governance_engine_py__build_dag_2->>scripts_governance_engine_py__governed_status_5: governed_status [STATIC]
+    scripts_governance_engine_py__cli_action_3->>scripts_script_runner_py__invoke_main_20: invoke_main [STATIC]
+    scripts_governance_engine_py__governed_status_5->>scripts_governance_engine_py__git_4: git [STATIC]
+    scripts_governance_engine_py__main_6->>scripts_governance_engine_py__build_dag_2: build_dag [STATIC]
+    scripts_governance_engine_py__main_6->>scripts_governance_engine_py__state_base_7: state_base [STATIC]
+    scripts_governance_engine_py__main_6->>scripts_project_snapshot_py__ProjectSnapshot_capture_8: ProjectSnapshot.capture [STATIC]
+    scripts_governance_engine_py__main_6->>scripts_project_snapshot_py__ProjectSnapshot_metrics_10: snapshot.metrics [STATIC]
+    scripts_governance_engine_py__main_6->>scripts_project_snapshot_py__active_project_snapshot_17: active_project_snapshot [STATIC]
+    scripts_governance_engine_py__state_base_7->>scripts_project_snapshot_py__ProjectSnapshot_read_text_12: path.read_text [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_8->>scripts_project_snapshot_py__SnapshotError_13: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_8->>scripts_project_snapshot_py__SnapshotFile_14: SnapshotFile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_8->>scripts_project_snapshot_py___git_optional_16: _git_optional [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_8->>scripts_project_snapshot_py__canonical_source_bytes_18: canonical_source_bytes [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_8->>scripts_project_snapshot_py__discover_source_paths_19: discover_source_paths [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_8->>scripts_validate_sequence_contract_py__resolve_21: root.resolve [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_9->>scripts_project_snapshot_py__SnapshotError_13: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_9->>scripts_validate_sequence_contract_py__resolve_21: value.resolve [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_11->>scripts_project_snapshot_py__ProjectSnapshot_entry_9: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_12->>scripts_project_snapshot_py__ProjectSnapshot_entry_9: self.entry [STATIC]
+    scripts_project_snapshot_py___git_optional_16->>scripts_project_snapshot_py___git_15: _git [STATIC]
+    scripts_project_snapshot_py__canonical_source_bytes_18->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_11: path.read_bytes [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_19->>scripts_project_snapshot_py__SnapshotError_13: SnapshotError [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_19->>scripts_project_snapshot_py___git_15: _git [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_19->>scripts_validate_sequence_contract_py__resolve_21: root.resolve [STATIC]
