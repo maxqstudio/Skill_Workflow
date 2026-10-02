@@ -33,7 +33,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/governance_engine.py scripts/generate_project_docs.py scripts/selftest_governance_engine.py scripts/selftest_project_truth_compiler.py
+          git add scripts/governance_engine.py scripts/generate_project_docs.py scripts/initialize_project_truth.py scripts/selftest_governance_engine.py scripts/selftest_project_truth_compiler.py
           git diff --cached --quiet && { echo "NO_REPAIR_DIFF"; exit 0; }
           git commit -m "fix(sw2): keep verify portable and worktree-clean"
           git push origin HEAD:work/sw2-02-fast-development-workflow
