@@ -65,7 +65,7 @@
         "scripts/governance_engine.py",
         "scripts/project_snapshot.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_governance_engine.py",
         "scripts/selftest_strict_project_workflow.py"
@@ -75,7 +75,7 @@
   "relations": [
     {
       "claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
-      "notes": "Performance work is valid only if fail-closed acceptance remains intact. SW2-01 reopens this claim and must prove it before acceptance.",
+      "notes": "Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proves this relation through exact-head cross-platform regression, fail-closed DAG tests, current sequence acceptance, and final Project Truth validation.",
       "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
       "relation": "REQUIRES"
     }
