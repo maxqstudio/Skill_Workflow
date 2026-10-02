@@ -1,0 +1,26 @@
+{
+  "decisions": [
+    {
+      "decision": "SW2 will reduce duplicate scans, regeneration, and validation work rather than remove required final governance gates.",
+      "id": "SW2-ADR-001",
+      "rationale": "The user requires substantially faster development without weakening evidence-based acceptance.",
+      "status": "ACCEPTED",
+      "title": "Keep governance strict while optimizing execution"
+    },
+    {
+      "decision": "V2 will preserve complete machine evidence while allowing bounded, semantic human documentation views.",
+      "id": "SW2-ADR-002",
+      "rationale": "Current sequence and symbol outputs can be structurally useful to validators but too large or low-level for public human consumption.",
+      "status": "ACCEPTED",
+      "title": "Separate machine evidence from human-facing documentation"
+    },
+    {
+      "decision": "Skill Workflow will adopt its own governed roadmap, project truth, generated docs, and acceptance workflow before engine V2 refactoring begins.",
+      "id": "SW2-ADR-003",
+      "rationale": "A governance framework should prove that its contract is practical on itself before expanding it for consumers.",
+      "status": "ACCEPTED",
+      "title": "Dogfood Skill Workflow on its own repository"
+    }
+  ],
+  "schema_version": 1
+}

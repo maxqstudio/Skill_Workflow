@@ -1,0 +1,62 @@
+{
+  "evidence_boundary": "SW2-00 begins from previously passing core self-tests, but self-governance, performance baselines, repository enforcement, and V2-specific acceptance remain in progress.",
+  "human_comprehension_questions": {},
+  "human_comprehension_status": "NOT_PROVEN",
+  "requirements": [
+    {
+      "evidence": "PROJECT_PROFILE.yaml, .workflow specs, generated docs, blocking validators",
+      "id": "SW2-00-R1",
+      "requirement": "Skill Workflow is governed by its own STRICT profile and synchronized project truth.",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "evidence": "timing and scan-count benchmark artifacts",
+      "id": "SW2-00-R2",
+      "requirement": "A reproducible current performance baseline exists before engine optimization begins.",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "evidence": "GitHub repository/ruleset audit",
+      "id": "SW2-00-R3",
+      "requirement": "Repository merge/ruleset enforcement is audited and aligned with declared governance.",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "evidence": "KNOWN_DEFECTS.md generated from .workflow/known_defects.json",
+      "id": "SW2-00-R4",
+      "requirement": "Known sequence and documentation quality defects are explicitly recorded before repair phases begin.",
+      "status": "NOT_PROVEN"
+    }
+  ],
+  "runtime_checks": [],
+  "runtime_status": "NOT_APPLICABLE",
+  "schema_version": 1,
+  "sequence_mode": "DURING",
+  "sequence_session": "SW2-00-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
+  "test_commands": [
+    "python -m compileall -q scripts",
+    "python scripts/selftest_project_truth_compiler.py",
+    "python scripts/selftest_strict_project_workflow.py"
+  ],
+  "truth_gates": {
+    "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "DOC_LAYOUT": "NOT_PROVEN",
+    "DOC_READABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "PROJECT_DOCS_NORMALIZED": "NOT_PROVEN",
+    "PROJECT_DOCS_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
+    "ROADMAP_SYNC": "NOT_PROVEN",
+    "RUNTIME_E2E": "NOT_APPLICABLE",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
+  }
+}

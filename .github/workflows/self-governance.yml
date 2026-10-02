@@ -1,0 +1,54 @@
+name: Self Governance
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  self-governance:
+    name: Self Governance (ubuntu-latest)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile governance scripts
+        run: python -m compileall -q scripts
+
+      - name: Generate synchronized self-governance state
+        run: python scripts/sync_project_truth.py --root .
+
+      - name: Upload generated governance preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: self-governance-generated
+          path: |
+            PROJECT_PROFILE.yaml
+            .workflow/acceptance.json
+            .workflow/generated/
+            docs/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Require tracked governance to be synchronized
+        run: git diff --exit-code -- PROJECT_PROFILE.yaml .workflow docs
+
+      - name: Validate generated documentation
+        run: python scripts/validate_project_docs.py --root .
+
+      - name: Validate documentation quality
+        run: python scripts/validate_doc_quality.py --root .

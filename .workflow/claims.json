@@ -1,0 +1,79 @@
+{
+  "claims": [
+    {
+      "claim": "Required governance failures block final project acceptance.",
+      "documents": [
+        "SYSTEM_OVERVIEW.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW-FAIL-CLOSED",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md"
+      ],
+      "status": "PASS",
+      "tests": [
+        "scripts/selftest_strict_project_workflow.py"
+      ]
+    },
+    {
+      "claim": "The current project phase must equal the roadmap current phase and exactly one roadmap phase must be CURRENT.",
+      "documents": [
+        "ROADMAP.md",
+        "CURRENT_STATE.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW-ROADMAP-SYNC",
+      "runtime_evidence": [],
+      "source_owners": [
+        "scripts/generate_project_docs.py",
+        "scripts/validate_project_truth.py"
+      ],
+      "status": "PASS",
+      "tests": [
+        "scripts/selftest_strict_project_workflow.py"
+      ]
+    },
+    {
+      "claim": "Generated project Markdown must reproduce deterministically from current source and machine-readable project truth.",
+      "documents": [
+        "DOC_SYNC_MATRIX.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW-DOCS-DETERMINISTIC",
+      "runtime_evidence": [],
+      "source_owners": [
+        "scripts/generate_project_docs.py",
+        "scripts/validate_project_docs.py"
+      ],
+      "status": "PASS",
+      "tests": [
+        "scripts/selftest_project_truth_compiler.py"
+      ]
+    },
+    {
+      "claim": "SW2 performance improvements must preserve required governance semantics and final fail-closed acceptance.",
+      "documents": [
+        "ROADMAP.md",
+        "DECISIONS.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-PERFORMANCE-PARITY",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": []
+    }
+  ],
+  "relations": [
+    {
+      "claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
+      "notes": "Performance work is valid only if fail-closed acceptance remains intact.",
+      "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
+      "relation": "REQUIRES"
+    }
+  ],
+  "schema_version": 1
+}

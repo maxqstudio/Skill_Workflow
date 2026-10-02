@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "terms": [
+    {
+      "term": "Project Truth",
+      "definition": "Machine-readable semantic, governance, evidence, and source facts used to produce and validate human-facing project state."
+    },
+    {
+      "term": "Immutable snapshot",
+      "definition": "A proposed SW2 execution unit in which all generators and validators consume the same candidate facts rather than rescanning independently."
+    },
+    {
+      "term": "Validation DAG",
+      "definition": "A proposed dependency graph that executes each required validation fact once per candidate snapshot and reuses proven prerequisites."
+    },
+    {
+      "term": "Machine evidence",
+      "definition": "Complete structural or acceptance data retained for verification even when a human-facing representation is simplified."
+    },
+    {
+      "term": "Human view",
+      "definition": "A bounded, semantic representation designed for comprehension without weakening the underlying machine evidence."
+    }
+  ]
+}

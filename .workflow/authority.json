@@ -1,0 +1,53 @@
+{
+  "authorities": [
+    {
+      "authority": "Git committed repository source",
+      "concern": "source",
+      "meaning": "Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.",
+      "mutable": true
+    },
+    {
+      "authority": "SKILL.md",
+      "concern": "governance",
+      "meaning": "Normative workflow and acceptance semantics are defined by the canonical skill contract.",
+      "mutable": true
+    },
+    {
+      "authority": ".workflow/state.json",
+      "concern": "project_state",
+      "meaning": "Current phase, status, blockers, proven boundaries, and next legal actions are declared here.",
+      "mutable": true
+    },
+    {
+      "authority": ".workflow/roadmap.json",
+      "concern": "roadmap",
+      "meaning": "The SW2 phase plan and current roadmap phase are authoritative here.",
+      "mutable": true
+    },
+    {
+      "authority": ".workflow specs plus deterministic compiler",
+      "concern": "documentation",
+      "meaning": "Human-facing docs are generated projections and are never the upstream semantic authority.",
+      "mutable": true
+    },
+    {
+      "authority": "GitHub Actions governance self-tests and exact test fixtures",
+      "concern": "runtime",
+      "meaning": "Executable behavior is proven only by tests run against the exact candidate snapshot.",
+      "mutable": true
+    },
+    {
+      "authority": "Blocking validator chain plus exact-commit GitHub Actions evidence",
+      "concern": "acceptance",
+      "meaning": "PASS is valid only when required gates succeed against the accepted candidate and evidence boundaries are explicit.",
+      "mutable": false
+    }
+  ],
+  "invariants": [
+    "SOURCE PASS plus required governance failure equals overall failure.",
+    "Final source HEAD, final documentation HEAD, and tested HEAD must be identical for accepted releases.",
+    "Performance optimization may eliminate duplicate work but may not remove required final truth gates.",
+    "Roadmap current phase and project current phase must remain synchronized."
+  ],
+  "schema_version": 1
+}

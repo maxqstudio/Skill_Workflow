@@ -1,0 +1,130 @@
+{
+  "components": [
+    {
+      "depends_on": [],
+      "id": "skill_contract",
+      "name": "Skill Contract",
+      "owns": [
+        "SKILL.md governance semantics",
+        "profile expectations",
+        "definition of done"
+      ],
+      "purpose": "Define normative governance, acceptance, documentation, and handoff behavior."
+    },
+    {
+      "depends_on": [
+        "source_extractors",
+        "workflow_specs"
+      ],
+      "id": "truth_compiler",
+      "name": "Project Truth Compiler",
+      "owns": [
+        "generated docs",
+        "code fact projection"
+      ],
+      "purpose": "Project machine-readable facts and semantic specs into deterministic human-facing Markdown."
+    },
+    {
+      "depends_on": [
+        "repository source"
+      ],
+      "id": "source_extractors",
+      "name": "Source & Sequence Extractors",
+      "owns": [
+        "source digest",
+        "module facts",
+        "Python symbols/routes/calls",
+        "static sequence graph"
+      ],
+      "purpose": "Observe machine-verifiable source structure and sequence edges without inventing semantic intent."
+    },
+    {
+      "depends_on": [
+        "truth_compiler",
+        "source_extractors",
+        "workflow_specs"
+      ],
+      "id": "validators",
+      "name": "Governance Validators",
+      "owns": [
+        "blocking governance gates",
+        "validation reports"
+      ],
+      "purpose": "Fail closed on stale docs, broken references, sequence drift, truth inconsistencies, and handoff defects."
+    },
+    {
+      "depends_on": [
+        "skill_contract"
+      ],
+      "id": "bootstrap",
+      "name": "Initializer & Templates",
+      "owns": [
+        "PROJECT_PROFILE template",
+        ".workflow templates",
+        "vendored tool bootstrap"
+      ],
+      "purpose": "Install project-local governance specs and tool support into consumer repositories."
+    },
+    {
+      "depends_on": [
+        "validators",
+        "repository source"
+      ],
+      "id": "ci",
+      "name": "GitHub Actions Acceptance",
+      "owns": [
+        "Ubuntu selftest",
+        "Windows selftest",
+        "self-governance checks"
+      ],
+      "purpose": "Execute cross-platform self-tests and exact-candidate governance validation."
+    },
+    {
+      "depends_on": [],
+      "id": "workflow_specs",
+      "name": "Machine-Readable Project Truth",
+      "owns": [
+        ".workflow/*.json"
+      ],
+      "purpose": "Hold semantic intent, current state, roadmap, claims, contracts, and acceptance declarations."
+    }
+  ],
+  "data_flows": [
+    {
+      "from": "repository source",
+      "meaning": "Current source is scanned into machine-observable facts and digests.",
+      "to": "Source & Sequence Extractors"
+    },
+    {
+      "from": "Machine-Readable Project Truth",
+      "meaning": "Declared semantics and state are projected with observed source facts.",
+      "to": "Project Truth Compiler"
+    },
+    {
+      "from": "Project Truth Compiler",
+      "meaning": "Canonical deterministic human-facing Markdown is generated.",
+      "to": "docs/"
+    },
+    {
+      "from": "source/spec/docs evidence",
+      "meaning": "Validators evaluate required truth gates without upgrading unproven evidence.",
+      "to": "Governance Validators"
+    },
+    {
+      "from": "Governance Validators",
+      "meaning": "Exact candidate acceptance is exposed as blocking CI evidence.",
+      "to": "GitHub Actions Acceptance"
+    }
+  ],
+  "external_boundaries": [
+    {
+      "contract": "Source hosting, pull requests, Actions execution, branch/ruleset enforcement, and release provenance.",
+      "name": "GitHub"
+    },
+    {
+      "contract": "Skill Workflow is vendored/installed into projects that provide project-specific source, tests, runtime evidence, and semantic specs.",
+      "name": "Consumer repositories"
+    }
+  ],
+  "schema_version": 1
+}

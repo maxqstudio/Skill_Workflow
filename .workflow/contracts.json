@@ -1,0 +1,98 @@
+{
+  "api_contracts": [],
+  "data_contracts": [
+    {
+      "invariants": [
+        "STRICT applicability decisions are explicit",
+        "canonical docs root is docs/"
+      ],
+      "legal_writes": [
+        "explicit governance/profile changes"
+      ],
+      "mutability": "governance configuration",
+      "name": "PROJECT_PROFILE.yaml",
+      "retention": "current project state",
+      "source_of_truth": "repository root PROJECT_PROFILE.yaml"
+    },
+    {
+      "invariants": [
+        "state phase equals roadmap current phase",
+        "generated Markdown is not upstream authority"
+      ],
+      "legal_writes": [
+        "authorized project-state transactions"
+      ],
+      "mutability": "versioned semantic project state",
+      "name": ".workflow semantic specs",
+      "retention": "Git history",
+      "source_of_truth": ".workflow/*.json and .workflow/workflows/*.json"
+    },
+    {
+      "invariants": [
+        "manual edits are invalid",
+        "deterministic regeneration must match tracked files"
+      ],
+      "legal_writes": [
+        "scripts/generate_project_docs.py",
+        "scripts/sync_project_truth.py"
+      ],
+      "mutability": "generated only",
+      "name": "generated project documentation",
+      "retention": "tracked with accepted source state",
+      "source_of_truth": "deterministic compiler output from source plus .workflow specs"
+    },
+    {
+      "invariants": [
+        "CURRENT sessions bind to current source digest",
+        "historical sessions are not rewritten to match new source"
+      ],
+      "legal_writes": [
+        "sequence generators"
+      ],
+      "mutability": "generated evidence",
+      "name": "sequence evidence",
+      "retention": "current and historical accepted sessions",
+      "source_of_truth": "generated sequence JSON plus source-content digest"
+    }
+  ],
+  "runbook_steps": [
+    {
+      "command": "python -m compileall -q scripts",
+      "expected": "exit code 0",
+      "name": "Compile governance scripts",
+      "purpose": "Reject Python syntax/import compilation failures before deeper governance tests."
+    },
+    {
+      "command": "python scripts/selftest_project_truth_compiler.py",
+      "expected": "RESULT/PASS markers with exit code 0",
+      "name": "Project Truth Compiler self-test",
+      "purpose": "Exercise deterministic documentation compiler behavior."
+    },
+    {
+      "command": "python scripts/selftest_strict_project_workflow.py",
+      "expected": "STRICT_SELFTEST=PASS",
+      "name": "STRICT workflow self-test",
+      "purpose": "Exercise end-to-end STRICT governance behavior."
+    },
+    {
+      "command": "python scripts/sync_project_truth.py --root .",
+      "expected": "PROJECT_DOCS_SYNC=PASS",
+      "name": "Synchronize self-governance docs",
+      "purpose": "Generate self-governance facts/docs and record compiler quality gates."
+    },
+    {
+      "command": "python scripts/validate_project_docs.py --root .",
+      "expected": "PROJECT_DOCS_SYNC=PASS",
+      "name": "Validate generated docs",
+      "purpose": "Verify deterministic reproducibility and documentation structure."
+    },
+    {
+      "command": "python scripts/validate_cross_document_consistency.py --root . --base <LAST_ACCEPTED_SHA> --require-base",
+      "expected": "result PASS",
+      "name": "Validate cross-document consistency",
+      "purpose": "Validate references, claims, authority consistency, and diff-aware freshness."
+    }
+  ],
+  "schema_version": 1,
+  "ui_surfaces": []
+}

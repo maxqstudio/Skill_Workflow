@@ -1,0 +1,127 @@
+{
+  "current_phase": "SW2-00",
+  "phases": [
+    {
+      "exit_criteria": [
+        "STRICT self-governance specs and generated docs are synchronized.",
+        "Current main/branch/ruleset enforcement is audited and required remediation is recorded.",
+        "Existing governance execution has reproducible timing, scan-count, and CI baselines.",
+        "Known performance, documentation, sequence, and governance defects are recorded with evidence.",
+        "SW2-01 may begin only after SW2-00 acceptance evidence is complete."
+      ],
+      "id": "SW2-00",
+      "objective": "Make Skill Workflow govern itself, establish exact current authority, capture performance and enforcement baselines, and define measurable V2 acceptance.",
+      "status": "CURRENT",
+      "title": "Baseline & Self-Governance"
+    },
+    {
+      "exit_criteria": [
+        "One canonical scan produces reusable facts for generators and validators.",
+        "Cache is acceleration only and cannot become acceptance authority.",
+        "Final acceptance proves governance parity with the pre-V2 contract.",
+        "Measured execution cost improves without skipping required gates."
+      ],
+      "id": "SW2-01",
+      "objective": "Replace repeated scans and nested validator subprocess work with one immutable project snapshot and a dependency-aware validation DAG.",
+      "status": "PLANNED",
+      "title": "Governance Engine V2"
+    },
+    {
+      "exit_criteria": [
+        "Develop mode runs only safely impacted checks.",
+        "Verify mode expands to affected governance/test scope.",
+        "Finalize mode always executes the complete required acceptance graph.",
+        "Unknown impact fails closed to broader verification."
+      ],
+      "id": "SW2-02",
+      "objective": "Introduce develop, verify, and finalize execution modes so inner-loop work is fast while final acceptance remains complete.",
+      "status": "PLANNED",
+      "title": "Fast Development Workflow"
+    },
+    {
+      "exit_criteria": [
+        "Full evidence graphs retain acceptance fidelity.",
+        "Human diagrams use semantic collapsing or subflows rather than raw helper dumps.",
+        "Mermaid syntax/render validation is blocking.",
+        "Diagram complexity thresholds are measurable and documented."
+      ],
+      "id": "SW2-03",
+      "objective": "Separate full machine sequence evidence from bounded human-facing diagrams and add Mermaid correctness gates.",
+      "status": "PLANNED",
+      "title": "Sequence V2"
+    },
+    {
+      "exit_criteria": [
+        "README is a concise public landing page.",
+        "Concept, guide, reference, architecture, and sequence documentation have stable locations.",
+        "Machine indexes no longer dominate human-facing docs.",
+        "Generated documentation remains deterministic and drift-detectable."
+      ],
+      "id": "SW2-04",
+      "objective": "Standardize public documentation information architecture and separate public guidance from machine indexes/evidence.",
+      "status": "PLANNED",
+      "title": "Documentation System V2"
+    },
+    {
+      "exit_criteria": [
+        "Profile/spec schemas have explicit versions.",
+        "Toolchain identity is lockable and auditable.",
+        "Supported migrations are deterministic and tested.",
+        "Release compatibility policy is documented."
+      ],
+      "id": "SW2-05",
+      "objective": "Version project schemas, toolchain bundles, migrations, and compatibility guarantees.",
+      "status": "PLANNED",
+      "title": "Schema & Toolchain Versioning"
+    },
+    {
+      "exit_criteria": [
+        "Analyzer contract is language-independent.",
+        "Python and JS/TS remain fully regression-covered.",
+        "Generic fallback behavior is explicit and fail-safe.",
+        "Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists."
+      ],
+      "id": "SW2-06",
+      "objective": "Introduce analyzer interfaces so structural evidence can grow beyond Python without coupling governance semantics to one parser.",
+      "status": "PLANNED",
+      "title": "Cross-Language Analyzer Architecture"
+    },
+    {
+      "exit_criteria": [
+        "Repository health files are present with Owner-approved license.",
+        "Security and contribution paths are documented.",
+        "Merge/ruleset enforcement matches declared governance.",
+        "Release process is repeatable and evidence-backed."
+      ],
+      "id": "SW2-07",
+      "objective": "Complete public repository health, security, contribution, and release governance.",
+      "status": "PLANNED",
+      "title": "Public Project Hardening"
+    },
+    {
+      "exit_criteria": [
+        "Representative LITE, STANDARD, and STRICT fixtures pass.",
+        "At least one large real consumer validates performance improvement and governance parity.",
+        "Migration regressions and false PASS cases are covered.",
+        "Cross-platform acceptance remains green."
+      ],
+      "id": "SW2-08",
+      "objective": "Prove V2 against representative small and large consumer projects before declaring stability.",
+      "status": "PLANNED",
+      "title": "Regression & Adoption Validation"
+    },
+    {
+      "exit_criteria": [
+        "All prior SW2 phases are accepted.",
+        "Release candidate passes exact final acceptance.",
+        "Migration and rollback guidance are published.",
+        "A versioned GitHub release/tag is produced from the tested HEAD."
+      ],
+      "id": "SW2-09",
+      "objective": "Publish the accepted V2 contract with migration documentation, compatibility guarantees, and exact release evidence.",
+      "status": "PLANNED",
+      "title": "V2 Stable Release"
+    }
+  ],
+  "schema_version": 1
+}
