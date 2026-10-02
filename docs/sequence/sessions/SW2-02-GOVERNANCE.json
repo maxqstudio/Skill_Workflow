@@ -1,0 +1,39 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-02-GOVERNANCE.actual.json",
+    "source_digest": "e3e10fb971a00273a7661c8c96060715ce512c103451a68338a1a19189308b4d"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-02 DURING evidence covers static source-visible orchestration for changed-file impact classification plus develop, verify, and finalize mode selection. Static extraction does not prove dynamic Python behavior or final acceptance semantics by itself; those require source regressions and Project Truth acceptance.",
+  "implementation_base_sha": "94717751cb0ca0a3680ccd93ac16219c9bd0425d",
+  "mode": "DURING",
+  "phase": "SW2-02",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-02-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py",
+    "scripts/selftest_sequence_call_resolution.py"
+  ]
+}
