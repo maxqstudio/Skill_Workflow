@@ -32,20 +32,14 @@ jobs:
           python scripts/validate_sequence_sessions.py --root . > /tmp/sequence-validation.log 2>&1 || true
           after="$(git status --porcelain --untracked-files=all -- artifacts/sequence scripts)"
           cat /tmp/sequence-validation.log
-          echo "SEQUENCE_READONLY_BEFORE_BEGIN"
-          printf '%s\n' "$before"
-          echo "SEQUENCE_READONLY_BEFORE_END"
-          echo "SEQUENCE_READONLY_AFTER_BEGIN"
-          printf '%s\n' "$after"
-          echo "SEQUENCE_READONLY_AFTER_END"
           test "$before" = "$after"
           echo "SEQUENCE_AGGREGATE_READ_ONLY=PASS"
-      - name: Commit repair and permanent regression
+      - name: Commit source repair only
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/validate_sequence_contract.py scripts/validate_sequence_sessions.py .github/workflows/governance-selftest.yml
+          git add scripts/validate_sequence_contract.py scripts/validate_sequence_sessions.py
           git diff --cached --quiet && { echo "NO_REPAIR_DIFF"; exit 0; }
           git commit -m "fix(sw2): keep aggregate sequence validation read-only"
           git push origin HEAD:work/sw2-02-fast-development-workflow
