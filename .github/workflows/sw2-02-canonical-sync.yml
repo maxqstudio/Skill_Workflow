@@ -1,0 +1,32 @@
+name: SW2-02 Canonical Sync
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/sync_project_truth.py --root .
+      - name: Commit deterministic Project Truth
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT_PROFILE.yaml .workflow/acceptance.json .workflow/generated docs/*.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "docs(sw2): sync SW2-02 project truth"
+          git push origin HEAD:work/sw2-02-fast-development-workflow
