@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 23 files, 1 language categories.
+Observed source inventory: 27 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-00
+Current phase: SW2-01
 
-Current status: ACCEPTED
+Current status: IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,13 +110,14 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Regenerate canonical project truth for the accepted SW2-00 closure state and rerun the read-only exact-head acceptance suite.
-- Merge the accepted SW2-00 pull request to main only after the post-closure exact-head suite remains green.
-- After merge, await explicit Owner authorization before starting SW2-01 Governance Engine V2 implementation.
+- Introduce one immutable project snapshot that captures the accepted source inventory and bytes once per governance engine execution.
+- Make generators and validators reuse source facts from the active snapshot without changing standalone fail-closed behavior.
+- Introduce a dependency-aware validation DAG that executes each required node once and blocks downstream checks after dependency failure.
+- Benchmark self and governed-consumer execution against accepted SW2-00/current-main baselines and prove governance parity before SW2-01 acceptance.
 
 Blocked actions:
-- Do not start SW2-01 single-snapshot engine refactoring until the Owner explicitly authorizes the next phase.
-- Do not remove validators or downgrade the governance profile to gain speed.
+- Do not start SW2-02 develop/verify/finalize mode work before SW2-01 acceptance is complete.
+- Do not remove validators, weaken fail-closed semantics, or treat snapshot/cache state as acceptance authority.
 - Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates.
 
 Known blockers:
@@ -126,24 +127,18 @@ Known blockers:
 
 ### Proven
 
-- Pre-SW2 main 024e2ea458b25ad9dfb401d3fdeaa994a4cbe1b8 passed the existing Ubuntu and Windows Governance Selftest.
-- Current implementation contains deterministic generated-documentation, sequence, truth, handoff, and cross-document validators.
-- Repository enforcement audit proves main is not protected and repository rulesets are empty; benchmarks/baselines/sw2-00-repository-enforcement.json records the minimum remediation required before SW2-07 can close.
-- Exact-head self and governed-consumer performance baselines are recorded at benchmarks/baselines/sw2-00-self-linux.json and benchmarks/baselines/sw2-00-max-grounding-linux.json.
-- Default pull-request synthetic merge checkout was repaired; every SW2 governance workflow verifies the exact candidate SHA before executing evidence-producing checks.
-- The self-governance drift gate was repaired to include untracked generated files.
-- Canonical code facts and generated documentation are tracked and self-governance generation is read-only clean.
-- SW2-DEF-SEQ-001 was repaired, regression-tested on Ubuntu and Windows, regenerated, semantically re-audited, and accepted.
-- Cross-document claim backlinks and template placeholder scoping are regression-tested; cross-document consistency passes on the current SW2 source snapshot.
-- Human comprehension validation passes against the current generated project overview.
-- Exact-head SW2-00 acceptance candidate 57744324528a5d33b7196abf03f9d5c48bc926e4 passed Self Governance run 36979602321, Governance Selftest run 36979602359 on Ubuntu and Windows, SW2 Sequence Evidence run 36979602313, SW2 Baseline run 36979602299, and SW2 Consumer Baseline run 36979602346.
+- SW2-00 was accepted and merged before SW2-01 authorization.
+- Latest accepted main 964481ed1609f87904ba9e08890bffc0a10c3fd4 normalizes source inventory by excluding git-ignored files and normalizes CRLF for cross-platform source digests.
+- Latest main push evidence includes successful self-governance/sequence/baseline lanes before SW2-01 work begins.
+- SW2-00 recorded reproducible self and governed-consumer performance baselines before V2 optimization.
+- Required governance failures remain fail-closed under the accepted pre-V2 contract.
 
 ### Not proven
 
-- Performance-parity of the future SW2 optimization engine is intentionally not applicable in SW2-00 because no V2 optimization has been accepted; it must be reopened and proven when optimization begins.
-- Repository merge enforcement is still absent on main; SW2-00 records the mismatch and minimum remediation, while actual alignment remains a SW2-07 exit criterion.
+- SW2-01 performance parity is reopened and remains NOT_PROVEN until exact-head regression and acceptance evidence passes.
+- Measured V2 execution improvement remains NOT_PROVEN until benchmark evidence exists on the SW2-01 candidate.
+- Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 - Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
-- End-to-end separation of governance overhead from consumer-native build/test cost is not yet a dedicated benchmark.
 
 ## Important limitations
 
