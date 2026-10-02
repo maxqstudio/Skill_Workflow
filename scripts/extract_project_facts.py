@@ -10,10 +10,10 @@ from __future__ import annotations
 import argparse
 import ast
 import json
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
-from sequence_contract import compute_source_digest, source_files
+from project_snapshot import ProjectSnapshot, resolve_snapshot
 
 LANGUAGE_BY_EXT = {
     ".py": "Python", ".pyi": "Python",
@@ -39,10 +39,6 @@ def call_name(node: ast.AST) -> str:
         return node.id
     if isinstance(node, ast.Attribute):
         left = call_name(node.value)
-        # Keep call facts conservative. An attribute on an unresolved
-        # expression receiver (for example Path(...).resolve()) is not a
-        # project symbol locator and must not degrade into the global leaf
-        # token "resolve".
         return f"{left}.{node.attr}" if left else ""
     return ""
 
@@ -144,10 +140,7 @@ def is_test_file(rel: str) -> bool:
     )
 
 
-def extract_project_facts(root: Path) -> dict:
-    root = root.resolve()
-    files = source_files(root)
-
+def _extract_from_snapshot(root: Path, snapshot: ProjectSnapshot) -> dict:
     language_counts: Counter[str] = Counter()
     modules: list[dict] = []
     tests: list[str] = []
@@ -156,12 +149,14 @@ def extract_project_facts(root: Path) -> dict:
     python_calls: list[dict] = []
     parse_failures: list[str] = []
 
-    for path in files:
+    for path in snapshot.source_files():
         rel = path.relative_to(root).as_posix()
         language = LANGUAGE_BY_EXT.get(path.suffix.lower(), path.suffix.lower().lstrip(".") or "text")
         try:
-            line_count = len(path.read_text(encoding="utf-8", errors="ignore").splitlines())
+            source_text = snapshot.read_text(path, errors="ignore")
+            line_count = len(source_text.splitlines())
         except Exception:
+            source_text = ""
             line_count = 0
 
         language_counts[language] += 1
@@ -177,7 +172,7 @@ def extract_project_facts(root: Path) -> dict:
 
         if path.suffix.lower() == ".py":
             try:
-                tree = ast.parse(path.read_text(encoding="utf-8"))
+                tree = ast.parse(snapshot.read_text(path))
             except Exception as exc:
                 parse_failures.append(f"{rel}:{type(exc).__name__}")
                 continue
@@ -194,7 +189,7 @@ def extract_project_facts(root: Path) -> dict:
 
     return {
         "schema_version": 1,
-        "source_digest": compute_source_digest(root),
+        "source_digest": snapshot.source_digest,
         "source_summary": {
             "files": len(modules),
             "lines": sum(x["lines"] for x in modules),
@@ -219,6 +214,18 @@ def extract_project_facts(root: Path) -> dict:
             "python_parse_failures": parse_failures,
         },
     }
+
+
+def extract_project_facts(
+    root: Path,
+    snapshot: ProjectSnapshot | None = None,
+) -> dict:
+    root = root.resolve()
+    snap = resolve_snapshot(root, snapshot)
+    return snap.memoized(
+        "project_facts:v1",
+        lambda: _extract_from_snapshot(root, snap),
+    )
 
 
 def main() -> int:
