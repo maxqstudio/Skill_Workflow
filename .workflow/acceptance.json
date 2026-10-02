@@ -1,29 +1,29 @@
 {
   "evidence_boundary": "SW2-02 acceptance covers changed-file impact classification plus develop, verify, and finalize governance execution modes. Fast modes may reduce intermediate work only when impact is known; unknown impact must escalate. Finalize must preserve the complete accepted fail-closed governance contract. Runtime/E2E is not applicable to this repository-only orchestration phase. SW2-03 sequence-render redesign is not part of this phase.",
   "human_comprehension_questions": {
-    "How does failure/recovery behave?": "NOT_PROVEN",
-    "How does important data flow through the system?": "NOT_PROVEN",
-    "What are the important lifecycle states and transitions?": "NOT_PROVEN",
-    "What are the main user/domain workflows?": "NOT_PROVEN",
-    "What are the major components and how do they relate?": "NOT_PROVEN",
-    "What is mutable and what is immutable?": "NOT_PROVEN",
-    "What is proven and what is not proven?": "NOT_PROVEN",
-    "What is the current project state?": "NOT_PROVEN",
-    "What is the project and what problem does it solve?": "NOT_PROVEN",
-    "What may happen next and what is blocked?": "NOT_PROVEN",
-    "Who uses it and what are the primary outcomes?": "NOT_PROVEN",
-    "Who/what is authoritative for important decisions?": "NOT_PROVEN"
+    "How does failure/recovery behave?": "PASS",
+    "How does important data flow through the system?": "PASS",
+    "What are the important lifecycle states and transitions?": "PASS",
+    "What are the main user/domain workflows?": "PASS",
+    "What are the major components and how do they relate?": "PASS",
+    "What is mutable and what is immutable?": "PASS",
+    "What is proven and what is not proven?": "PASS",
+    "What is the current project state?": "PASS",
+    "What is the project and what problem does it solve?": "PASS",
+    "What may happen next and what is blocked?": "PASS",
+    "Who uses it and what are the primary outcomes?": "PASS",
+    "Who/what is authoritative for important decisions?": "PASS"
   },
-  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until mode planning and targeted-check regressions pass on the SW2-02 candidate.",
+      "evidence": "Governance Selftest run 37035039338 passed on Ubuntu and Windows. scripts/selftest_governance_engine.py executes a real governance_engine.py --mode develop fixture, proves only compile_scripts + engine_regression are selected for a known engine-only change, and proves develop never gains final acceptance authority.",
       "id": "SW2-02-R1",
       "requirement": "Develop mode runs only checks that are safely mapped from the changed-file impact set and never claims final acceptance.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until changed-file impact tests prove verify is a strict expansion of develop for affected scope.",
+      "evidence": "NOT_PROVEN until the real SW2-02 candidate executes governance_engine.py --mode verify successfully against the accepted base and remains intermediate evidence.",
       "id": "SW2-02-R2",
       "requirement": "Verify mode expands to the affected governance and test scope without becoming final acceptance authority.",
       "status": "NOT_PROVEN"
@@ -35,10 +35,10 @@
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "NOT_PROVEN until unknown-path regression proves develop escalates to verify and verify escalates to finalize.",
+      "evidence": "Governance Selftest run 37035039338 passed mode-planning and CLI integration regressions on Ubuntu and Windows. Unknown develop impact escalates to verify; unknown verify impact escalates to the full finalize graph, fails closed on an incomplete fixture, and remains final_acceptance_authority=false because the request began as verify.",
       "id": "SW2-02-R4",
       "requirement": "Unknown changed-file impact fails closed by escalating to a broader execution mode.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -46,7 +46,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-02-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/selftest_governance_engine.py",
@@ -67,7 +67,7 @@
     "DOC_READABILITY": "PASS",
     "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
     "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
-    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
     "PROJECT_STATE_SYNC": "NOT_PROVEN",
@@ -76,7 +76,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
