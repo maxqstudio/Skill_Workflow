@@ -4,7 +4,7 @@
 
 ## Evidence boundary
 
-SW2-01 acceptance covers the immutable source snapshot, process-local reusable derived facts, dependency-aware governance DAG, governance-parity regressions, and measured execution improvement relative to the accepted pre-V2/current-main contract. It must not weaken required gates, use snapshot/cache state as acceptance authority, or begin SW2-02 execution-mode work.
+SW2-01 acceptance covers the immutable source snapshot, process-local reusable derived facts, dependency-aware governance DAG, governance-parity regressions, current static sequence evidence, and measured execution improvement relative to the accepted pre-V2/current-main contract. Runtime/E2E is not applicable to this repository-only governance-engine phase. Repository merge enforcement remains deferred to SW2-07; Mermaid renderability and bounded human diagram complexity remain deferred to SW2-03. SW2-02 execution-mode work is not part of this acceptance.
 
 Final tested source: external final acceptance evidence.
 Current source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4
@@ -12,9 +12,9 @@ Current source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
 | SW2-01-R1 | One immutable source snapshot supplies reusable inventory, canonical bytes, digest, and derived source facts within a governance engine execution. | Governance Selftest run 37017181150 passed Engine V2 regression on Ubuntu and Windows. Self performance run 37017491760 measured one source enumeration, 27 source reads for 27 files, one derived-fact miss and three hits, with source digest 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4. | PASS |
-| SW2-01-R2 | A dependency-aware validation DAG executes each required node once, fails closed, and avoids nested validator subprocess orchestration on the V2 path. | scripts/selftest_governance_engine.py proves execute-once, blocked-downstream, unknown-dependency, and cycle rejection. Self Governance fail-closed evidence blocked final Project Truth behind failed cross-document synchronization instead of executing downstream acceptance on stale generated state. | PASS |
-| SW2-01-R3 | V2 acceptance preserves the accepted pre-V2 governance contract, source-inventory semantics, and required failure behavior. | NOT_PROVEN until canonical generated state is tracked and the complete exact-head STRICT/sequence/final Project Truth chain passes on the merge candidate. | NOT_PROVEN |
-| SW2-01-R4 | Measured self and governed-consumer governance execution cost improves relative to accepted baselines without skipping required gates. | Run 37017491760: Skill Workflow sync_project_truth 0.74522295s -> 0.29126614s, 60.9156% improvement. Run 37017491292: pinned max-grounding sync 1.104520865s -> 0.264897568s, 76.0170% improvement. Tracked summaries: benchmarks/results/sw2-01-self-linux.json and benchmarks/results/sw2-01-max-grounding-linux.json. Hosted-runner timing is comparative only. | PASS |
+| SW2-01-R2 | A dependency-aware validation DAG executes each required node once, fails closed, and avoids nested validator subprocess orchestration on the V2 path. | scripts/selftest_governance_engine.py proves execute-once, blocked-downstream, unknown-dependency, and cycle rejection. Self Governance fail-closed evidence blocked final Project Truth behind failed dependencies instead of executing downstream acceptance on unproven state. | PASS |
+| SW2-01-R3 | V2 acceptance preserves the accepted pre-V2 governance contract, source-inventory semantics, and required failure behavior. | Exact-head candidate 0b9be3b45d4f6ba129715b6378295760baef0b57 passed Governance Selftest run 37025006496, SW2 Sequence Evidence run 37025006302, SW2 Engine Performance run 37025006408, and SW2 Consumer Engine Performance run 37025006331. Self Governance run 37025007273 proved synchronized docs, clean worktree, cross-document consistency, human comprehension, and fail-closed final truth behavior; its only remaining failure was intentionally unpromoted final truth gates. Manual semantic audit verified accepted inventory/digest semantics, immutability, fresh recapture, expected-head rejection, and DAG failure behavior against scripts/project_snapshot.py, scripts/governance_engine.py, and scripts/selftest_governance_engine.py. | PASS |
+| SW2-01-R4 | Measured self and governed-consumer governance execution cost improves relative to accepted baselines without skipping required gates. | Run 37017491760: Skill Workflow sync_project_truth 0.74522295s -> 0.29126614s, 60.9156% improvement. Run 37017491292: pinned max-grounding sync 1.104520865s -> 0.264897568s, 76.0170% improvement. Tracked summaries: benchmarks/results/sw2-01-self-linux.json and benchmarks/results/sw2-01-max-grounding-linux.json. Hosted-runner timing is comparative only; isolated primitive timing is not claimed to improve universally. | PASS |
 
 ## Test commands
 
@@ -26,7 +26,7 @@ Current source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/benchmark_governance.py --root . --tool-root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD> --baseline benchmarks/baselines/sw2-00-self-linux.json
 - python scripts/benchmark_governance.py --root <GOVERNED_CONSUMER> --tool-root . --repeats 3 --expected-head <EXACT_CONSUMER_HEAD> --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json
-- python scripts/governance_engine.py --root . --base 964481ed1609f87904ba9e08890bffc0a10c3fd4 --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 964481ed1609f87904ba9e08890bffc0a10c3fd4 --sync --expected-head <EXACT_HEAD>
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
 
@@ -43,7 +43,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-01-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
