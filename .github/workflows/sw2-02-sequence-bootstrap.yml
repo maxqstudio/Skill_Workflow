@@ -1,0 +1,66 @@
+name: SW2-02 Sequence Bootstrap
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-sequence:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SW2-02 branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Recreate accepted SW2-01 historical sequence
+        shell: bash
+        run: |
+          current="$PWD"
+          git worktree add /tmp/sw2-01 54339ab3c6e00f8027ad5c1a8fcde1ae79239656
+          cd /tmp/sw2-01
+          python scripts/generate_sequence_actual.py \
+            --root . \
+            --output-json "$current/docs/sequence/generated/SW2-01-GOVERNANCE.actual.json" \
+            --output-mermaid "$current/docs/sequence/generated/SW2-01-GOVERNANCE.actual.mmd" \
+            --entry scripts/governance_engine.py::main
+          cd "$current"
+          git worktree remove /tmp/sw2-01 --force
+
+      - name: Generate current SW2-02 sequence
+        run: >-
+          python scripts/generate_sequence_actual.py
+          --root .
+          --output-json docs/sequence/generated/SW2-02-GOVERNANCE.actual.json
+          --output-mermaid docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd
+          --entry scripts/governance_engine.py::main
+
+      - name: Validate aggregate sequence
+        run: python scripts/validate_sequence_sessions.py --root .
+
+      - name: Commit deterministic sequence evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/sequence/generated/SW2-01-GOVERNANCE.actual.json \
+                  docs/sequence/generated/SW2-01-GOVERNANCE.actual.mmd \
+                  docs/sequence/generated/SW2-02-GOVERNANCE.actual.json \
+                  docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd
+          if git diff --cached --quiet; then
+            echo "SEQUENCE_BOOTSTRAP=NO_CHANGES"
+            exit 0
+          fi
+          git commit -m "docs(sequence): materialize SW2-01 and SW2-02 evidence"
+          git push origin HEAD:work/sw2-02-fast-development-workflow
