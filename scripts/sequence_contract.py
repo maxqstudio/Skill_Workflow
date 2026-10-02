@@ -109,12 +109,14 @@ def source_files(root: Path) -> list[Path]:
 
 
 def compute_source_digest(root: Path) -> str:
+    root = root.resolve()
     digest = hashlib.sha256()
     for path in source_files(root):
         rel = path.relative_to(root).as_posix().encode("utf-8")
         digest.update(rel)
         digest.update(b"\0")
-        digest.update(path.read_bytes())
+        # Windows Git checkouts may materialize canonical LF files as CRLF.
+        digest.update(path.read_bytes().replace(b"\r\n", b"\n"))
         digest.update(b"\0")
     return digest.hexdigest()
 

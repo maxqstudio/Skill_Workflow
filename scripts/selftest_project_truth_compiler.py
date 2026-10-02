@@ -10,7 +10,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from sequence_contract import source_files
+from sequence_contract import compute_source_digest, source_files
 
 
 def run(root: Path, *args: str, expect: int = 0) -> str:
@@ -42,7 +42,7 @@ def write_json(path: Path, data: dict) -> None:
 
 def test_gitignored_source_files_are_excluded() -> None:
     with tempfile.TemporaryDirectory(prefix="skill-workflow-source-inventory-") as td:
-        root = Path(td)
+        root = Path(td).resolve()
         run(root, "git", "init", "--quiet")
         run(root, "git", "config", "user.email", "skill-workflow-selftest@example.invalid")
         run(root, "git", "config", "user.name", "Skill Workflow Selftest")
@@ -51,7 +51,7 @@ def test_gitignored_source_files_are_excluded() -> None:
             "artifacts/\n.pytest-codex-*/\n",
             encoding="utf-8",
         )
-        (root / "tracked.py").write_text("TRACKED = True\n", encoding="utf-8")
+        (root / "tracked.py").write_bytes(b"TRACKED = True\n")
         (root / "untracked.py").write_text("UNTRACKED = True\n", encoding="utf-8")
         nested_root = root / "nested"
         nested_root.mkdir()
@@ -94,6 +94,11 @@ def test_gitignored_source_files_are_excluded() -> None:
                 "subdirectory source inventory mismatch: "
                 + ",".join(sorted(nested_observed))
             )
+        lf_digest = compute_source_digest(root)
+        (root / "tracked.py").write_bytes(b"TRACKED = True\r\n")
+        crlf_digest = compute_source_digest(root)
+        if crlf_digest != lf_digest:
+            raise RuntimeError("source digest changed with Windows line endings")
 
 
 def main() -> int:
