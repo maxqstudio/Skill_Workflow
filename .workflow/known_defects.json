@@ -35,6 +35,12 @@
       "id": "SW2-DEF-GOV-002",
       "status": "CONFIRMED",
       "summary": "The main branch was not protected and had no required status checks in the branch metadata audited at SW2-00 start."
+    },
+    {
+      "evidence": "SW2-00 baseline run 36971637043 observed synthetic checkout HEAD 86e72f07fc5cc586d250acd61ddfc6e9db115147 while the PR candidate head was 599fbd4c6fe13fc5dcc2d408b0da0150f81a8392.",
+      "id": "SW2-DEF-GOV-003",
+      "status": "CONFIRMED",
+      "summary": "Pull-request GitHub Actions used the default synthetic merge checkout, so successful PR self-tests were not proving the exact candidate HEAD."
     }
   ],
   "schema_version": 1
