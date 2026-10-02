@@ -18,7 +18,7 @@ Branch: work/sw2-02-fast-development-workflow
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
 Current candidate SHA: external final acceptance evidence
-Current source digest: 246fac69c19d285907aac95ff7f07ab1ed5e4536eb7b6203305324bfba1c51f6
+Current source digest: ae99d0936f2f80b457c212654292ff06ddfa99c081542bbe10d415ad42f44df1
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

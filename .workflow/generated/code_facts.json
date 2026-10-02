@@ -38,7 +38,7 @@
       "file": "scripts/generate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 1940
+      "lines": 1945
     },
     {
       "directory": "scripts",
@@ -66,14 +66,14 @@
       "file": "scripts/governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 808
+      "lines": 811
     },
     {
       "directory": "scripts",
       "file": "scripts/initialize_project_truth.py",
       "is_test": false,
       "language": "Python",
-      "lines": 100
+      "lines": 130
     },
     {
       "directory": "scripts",
@@ -108,14 +108,14 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 382
+      "lines": 383
     },
     {
       "directory": "scripts",
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
-      "lines": 418
+      "lines": 456
     },
     {
       "directory": "scripts",
@@ -1270,6 +1270,10 @@
     {
       "caller": "scripts/generate_project_docs.py::canonical_bytes",
       "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::canonical_generated_bytes",
+      "target_token": "value.replace"
     },
     {
       "caller": "scripts/generate_project_docs.py::clean",
@@ -4081,6 +4085,10 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "canonical_generated_bytes"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "facts_output.read_bytes"
     },
     {
@@ -4126,6 +4134,10 @@
     {
       "caller": "scripts/generate_project_docs.py::main",
       "target_token": "missing.append"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "canonical_generated_bytes"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -5529,6 +5541,10 @@
     },
     {
       "caller": "scripts/governance_engine.py::command_action.run",
+      "target_token": "os.environ.copy"
+    },
+    {
+      "caller": "scripts/governance_engine.py::command_action.run",
       "target_token": "subprocess.run"
     },
     {
@@ -6032,6 +6048,26 @@
       "target_token": "path.write_text"
     },
     {
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "current.endswith"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "path.write_text"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "path.write_text"
+    },
+    {
       "caller": "scripts/initialize_project_truth.py::copy_file",
       "target_token": "dst.exists"
     },
@@ -6094,6 +6130,18 @@
     {
       "caller": "scripts/initialize_project_truth.py::main",
       "target_token": "spec_root.is_absolute"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "ensure_gitattributes"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/initialize_project_truth.py::main",
@@ -7777,6 +7825,10 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "json.loads"
     },
     {
@@ -7926,6 +7978,62 @@
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "overview.write_bytes"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "overview.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "facts_file.write_bytes"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "facts_file.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -8086,6 +8194,14 @@
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -13797,272 +13913,280 @@
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 82,
+      "line_end": 83,
       "line_start": 81,
+      "locator": "scripts/generate_project_docs.py::canonical_generated_bytes",
+      "symbol": "canonical_generated_bytes"
+    },
+    {
+      "file": "scripts/generate_project_docs.py",
+      "kind": "function",
+      "line_end": 87,
+      "line_start": 86,
       "locator": "scripts/generate_project_docs.py::clean",
       "symbol": "clean"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 86,
-      "line_start": 85,
+      "line_end": 91,
+      "line_start": 90,
       "locator": "scripts/generate_project_docs.py::cell",
       "symbol": "cell"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 91,
-      "line_start": 89,
+      "line_end": 96,
+      "line_start": 94,
       "locator": "scripts/generate_project_docs.py::bullets",
       "symbol": "bullets"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 127,
-      "line_start": 94,
+      "line_end": 132,
+      "line_start": 99,
       "locator": "scripts/generate_project_docs.py::normalize_markdown",
       "symbol": "normalize_markdown"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 150,
-      "line_start": 130,
+      "line_end": 155,
+      "line_start": 135,
       "locator": "scripts/generate_project_docs.py::read_specs",
       "symbol": "read_specs"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 265,
-      "line_start": 153,
+      "line_end": 270,
+      "line_start": 158,
       "locator": "scripts/generate_project_docs.py::validate_inputs",
       "symbol": "validate_inputs"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 287,
-      "line_start": 268,
+      "line_end": 292,
+      "line_start": 273,
       "locator": "scripts/generate_project_docs.py::input_digest",
       "symbol": "input_digest"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 294,
-      "line_start": 290,
+      "line_end": 299,
+      "line_start": 295,
       "locator": "scripts/generate_project_docs.py::generated_header",
       "symbol": "generated_header"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 306,
-      "line_start": 297,
+      "line_end": 311,
+      "line_start": 302,
       "locator": "scripts/generate_project_docs.py::claim_backlink_comment",
       "symbol": "claim_backlink_comment"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 313,
-      "line_start": 309,
+      "line_end": 318,
+      "line_start": 314,
       "locator": "scripts/generate_project_docs.py::auth_lookup",
       "symbol": "auth_lookup"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 586,
-      "line_start": 316,
+      "line_end": 591,
+      "line_start": 321,
       "locator": "scripts/generate_project_docs.py::render_system_overview",
       "symbol": "render_system_overview"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 691,
-      "line_start": 589,
+      "line_end": 696,
+      "line_start": 594,
       "locator": "scripts/generate_project_docs.py::render_project_manifest",
       "symbol": "render_project_manifest"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 795,
-      "line_start": 694,
+      "line_end": 800,
+      "line_start": 699,
       "locator": "scripts/generate_project_docs.py::render_current_state",
       "symbol": "render_current_state"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 858,
-      "line_start": 798,
+      "line_end": 863,
+      "line_start": 803,
       "locator": "scripts/generate_project_docs.py::render_roadmap",
       "symbol": "render_roadmap"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 896,
-      "line_start": 861,
+      "line_end": 901,
+      "line_start": 866,
       "locator": "scripts/generate_project_docs.py::render_authority",
       "symbol": "render_authority"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 978,
-      "line_start": 899,
+      "line_end": 983,
+      "line_start": 904,
       "locator": "scripts/generate_project_docs.py::render_architecture",
       "symbol": "render_architecture"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1047,
-      "line_start": 981,
+      "line_end": 1052,
+      "line_start": 986,
       "locator": "scripts/generate_project_docs.py::render_workflows",
       "symbol": "render_workflows"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1101,
-      "line_start": 1050,
+      "line_end": 1106,
+      "line_start": 1055,
       "locator": "scripts/generate_project_docs.py::render_sequence",
       "symbol": "render_sequence"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1133,
-      "line_start": 1104,
+      "line_end": 1138,
+      "line_start": 1109,
       "locator": "scripts/generate_project_docs.py::render_modules",
       "symbol": "render_modules"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1172,
-      "line_start": 1136,
+      "line_end": 1177,
+      "line_start": 1141,
       "locator": "scripts/generate_project_docs.py::render_symbols",
       "symbol": "render_symbols"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1238,
-      "line_start": 1175,
+      "line_end": 1243,
+      "line_start": 1180,
       "locator": "scripts/generate_project_docs.py::render_flows",
       "symbol": "render_flows"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1333,
-      "line_start": 1241,
+      "line_end": 1338,
+      "line_start": 1246,
       "locator": "scripts/generate_project_docs.py::render_acceptance",
       "symbol": "render_acceptance"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1380,
-      "line_start": 1336,
+      "line_end": 1385,
+      "line_start": 1341,
       "locator": "scripts/generate_project_docs.py::render_doc_sync",
       "symbol": "render_doc_sync"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1529,
-      "line_start": 1383,
+      "line_end": 1534,
+      "line_start": 1388,
       "locator": "scripts/generate_project_docs.py::render_truth",
       "symbol": "render_truth"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1559,
-      "line_start": 1532,
+      "line_end": 1564,
+      "line_start": 1537,
       "locator": "scripts/generate_project_docs.py::render_api",
       "symbol": "render_api"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1587,
-      "line_start": 1562,
+      "line_end": 1592,
+      "line_start": 1567,
       "locator": "scripts/generate_project_docs.py::render_data",
       "symbol": "render_data"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1615,
-      "line_start": 1590,
+      "line_end": 1620,
+      "line_start": 1595,
       "locator": "scripts/generate_project_docs.py::render_ui",
       "symbol": "render_ui"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1633,
-      "line_start": 1618,
+      "line_end": 1638,
+      "line_start": 1623,
       "locator": "scripts/generate_project_docs.py::render_runbook",
       "symbol": "render_runbook"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1654,
-      "line_start": 1636,
+      "line_end": 1659,
+      "line_start": 1641,
       "locator": "scripts/generate_project_docs.py::render_decisions",
       "symbol": "render_decisions"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1680,
-      "line_start": 1657,
+      "line_end": 1685,
+      "line_start": 1662,
       "locator": "scripts/generate_project_docs.py::render_defects",
       "symbol": "render_defects"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1699,
-      "line_start": 1683,
+      "line_end": 1704,
+      "line_start": 1688,
       "locator": "scripts/generate_project_docs.py::render_changelog",
       "symbol": "render_changelog"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1710,
-      "line_start": 1702,
+      "line_end": 1715,
+      "line_start": 1707,
       "locator": "scripts/generate_project_docs.py::render_glossary",
       "symbol": "render_glossary"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1794,
-      "line_start": 1713,
+      "line_end": 1799,
+      "line_start": 1718,
       "locator": "scripts/generate_project_docs.py::render_all",
       "symbol": "render_all"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1936,
-      "line_start": 1797,
+      "line_end": 1941,
+      "line_start": 1802,
       "locator": "scripts/generate_project_docs.py::main",
       "symbol": "main"
     },
@@ -14469,7 +14593,7 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 381,
+      "line_end": 384,
       "line_start": 369,
       "locator": "scripts/governance_engine.py::command_action",
       "symbol": "command_action"
@@ -14477,7 +14601,7 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 379,
+      "line_end": 382,
       "line_start": 370,
       "locator": "scripts/governance_engine.py::command_action.run",
       "symbol": "command_action.run"
@@ -14485,64 +14609,72 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 401,
-      "line_start": 384,
+      "line_end": 404,
+      "line_start": 387,
       "locator": "scripts/governance_engine.py::compile_scripts_action",
       "symbol": "compile_scripts_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 399,
-      "line_start": 386,
+      "line_end": 402,
+      "line_start": 389,
       "locator": "scripts/governance_engine.py::compile_scripts_action.run",
       "symbol": "compile_scripts_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 409,
-      "line_start": 404,
+      "line_end": 412,
+      "line_start": 407,
       "locator": "scripts/governance_engine.py::_regression_node",
       "symbol": "_regression_node"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 596,
-      "line_start": 412,
+      "line_end": 599,
+      "line_start": 415,
       "locator": "scripts/governance_engine.py::build_mode_dag",
       "symbol": "build_mode_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 673,
-      "line_start": 599,
+      "line_end": 676,
+      "line_start": 602,
       "locator": "scripts/governance_engine.py::build_dag",
       "symbol": "build_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 804,
-      "line_start": 676,
+      "line_end": 807,
+      "line_start": 679,
       "locator": "scripts/governance_engine.py::main",
       "symbol": "main"
     },
     {
       "file": "scripts/initialize_project_truth.py",
       "kind": "function",
-      "line_end": 16,
-      "line_start": 11,
+      "line_end": 30,
+      "line_start": 20,
+      "locator": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "symbol": "ensure_gitattributes"
+    },
+    {
+      "file": "scripts/initialize_project_truth.py",
+      "kind": "function",
+      "line_end": 38,
+      "line_start": 33,
       "locator": "scripts/initialize_project_truth.py::copy_file",
       "symbol": "copy_file"
     },
     {
       "file": "scripts/initialize_project_truth.py",
       "kind": "function",
-      "line_end": 96,
-      "line_start": 19,
+      "line_end": 126,
+      "line_start": 41,
       "locator": "scripts/initialize_project_truth.py::main",
       "symbol": "main"
     },
@@ -14893,7 +15025,7 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 366,
+      "line_end": 367,
       "line_start": 274,
       "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
       "symbol": "mode_cli_integration_contract"
@@ -14901,8 +15033,8 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 378,
-      "line_start": 369,
+      "line_end": 379,
+      "line_start": 370,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -14933,7 +15065,7 @@
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 414,
+      "line_end": 452,
       "line_start": 104,
       "locator": "scripts/selftest_project_truth_compiler.py::main",
       "symbol": "main"
@@ -15508,13 +15640,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "246fac69c19d285907aac95ff7f07ab1ed5e4536eb7b6203305324bfba1c51f6",
+  "source_digest": "ae99d0936f2f80b457c212654292ff06ddfa99c081542bbe10d415ad42f44df1",
   "source_summary": {
     "files": 27,
     "languages": {
       "Python": 27
     },
-    "lines": 9427,
+    "lines": 9504,
     "test_files": 0
   },
   "tests": []

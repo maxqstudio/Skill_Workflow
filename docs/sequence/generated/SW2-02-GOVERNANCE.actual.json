@@ -353,8 +353,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::_regression_node",
       "language": "Python",
-      "line_end": 409,
-      "line_start": 404,
+      "line_end": 412,
+      "line_start": 407,
       "locator": "scripts/governance_engine.py::_regression_node"
     },
     {
@@ -362,8 +362,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::build_dag",
       "language": "Python",
-      "line_end": 673,
-      "line_start": 599,
+      "line_end": 676,
+      "line_start": 602,
       "locator": "scripts/governance_engine.py::build_dag"
     },
     {
@@ -371,8 +371,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::build_mode_dag",
       "language": "Python",
-      "line_end": 596,
-      "line_start": 412,
+      "line_end": 599,
+      "line_start": 415,
       "locator": "scripts/governance_engine.py::build_mode_dag"
     },
     {
@@ -416,7 +416,7 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::command_action",
       "language": "Python",
-      "line_end": 381,
+      "line_end": 384,
       "line_start": 369,
       "locator": "scripts/governance_engine.py::command_action"
     },
@@ -425,8 +425,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::compile_scripts_action",
       "language": "Python",
-      "line_end": 401,
-      "line_start": 384,
+      "line_end": 404,
+      "line_start": 387,
       "locator": "scripts/governance_engine.py::compile_scripts_action"
     },
     {
@@ -479,8 +479,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::main",
       "language": "Python",
-      "line_end": 804,
-      "line_start": 676,
+      "line_end": 807,
+      "line_start": 679,
       "locator": "scripts/governance_engine.py::main"
     },
     {
@@ -628,7 +628,7 @@
       "locator": "scripts/validate_sequence_contract.py::resolve"
     }
   ],
-  "observed_head": "c023d26b4546919e7f18d06ad6afa79675bd2e2d",
+  "observed_head": "e4b175bf20172b6a582fb9ac29dd63b6035d55b4",
   "schema_version": 1,
-  "source_digest": "246fac69c19d285907aac95ff7f07ab1ed5e4536eb7b6203305324bfba1c51f6"
+  "source_digest": "ae99d0936f2f80b457c212654292ff06ddfa99c081542bbe10d415ad42f44df1"
 }
