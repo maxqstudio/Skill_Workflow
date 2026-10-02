@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-00 has exact-head self and representative governed-consumer performance baselines plus a confirmed repository-enforcement audit. Canonical self-governance docs, sequence acceptance, repository enforcement remediation, and final exact-candidate project-state acceptance remain incomplete.",
+  "evidence_boundary": "SW2-00 has exact-head self and representative governed-consumer performance baselines, corrected and semantically reviewed DURING sequence evidence, and a confirmed repository-enforcement audit. Canonical code-facts tracking, repository enforcement remediation, human-comprehension acceptance, and final exact-candidate project-state acceptance remain incomplete.",
   "human_comprehension_questions": {},
   "human_comprehension_status": "NOT_PROVEN",
   "requirements": [
@@ -22,7 +22,7 @@
       "status": "FAIL"
     },
     {
-      "evidence": ".workflow/known_defects.json including performance, docs, self-governance, enforcement, and exact-head provenance defects",
+      "evidence": ".workflow/known_defects.json including performance, docs, self-governance, enforcement, exact-head provenance, and sequence resolver defects",
       "id": "SW2-00-R4",
       "requirement": "Known sequence and documentation quality defects are explicitly recorded before repair phases begin.",
       "status": "PASS"
@@ -33,9 +33,10 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-00-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
+    "python scripts/selftest_sequence_call_resolution.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/benchmark_governance.py --root . --repeats 3 --include-selftests --expected-head <EXACT_HEAD>",
@@ -56,7 +57,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
