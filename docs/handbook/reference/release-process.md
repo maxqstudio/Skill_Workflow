@@ -26,20 +26,21 @@ The manual `Release Preflight` workflow exposes two deliberately different modes
 `evidence_only=true` exists to prove that the release process is repeatable before final acceptance is complete. It:
 
 1. checks out the exact requested candidate;
-2. runs `scripts/governance_engine.py --mode verify` for that SHA;
-3. runs `scripts/release_preflight.py --evidence-only`;
-4. allows explicit `NOT_PROVEN` acceptance items while rejecting explicit `FAIL` or invalid statuses;
-5. rejects stable versions;
-6. emits JSON evidence with `publication_authority=false`.
+2. requests `scripts/governance_engine.py --mode verify` for that SHA;
+3. permits the governance engine to escalate execution breadth to `effective_mode=finalize` when impact is broad or unknown, while requiring `requested_mode=verify` and `final_acceptance_authority=false`;
+4. runs `scripts/release_preflight.py --evidence-only`;
+5. allows explicit `NOT_PROVEN` acceptance items while rejecting explicit `FAIL` or invalid statuses;
+6. rejects stable versions;
+7. emits JSON evidence with `publication_authority=false`.
 
-A PASS in evidence-only mode is **not** permission to tag, publish, or claim final acceptance. Its only authority is to prove the mechanics and fail-closed behavior of the prerelease process.
+A PASS in evidence-only mode is **not** permission to tag, publish, or claim final acceptance. Its only authority is to prove the mechanics and fail-closed behavior of the prerelease process. Escalating validation breadth does not upgrade authority.
 
 ### Strict publication-ready preflight
 
 `evidence_only=false` is the strict path. It:
 
-1. runs `scripts/governance_engine.py --mode finalize` for the exact candidate;
-2. requires a successful finalize report with `final_acceptance_authority=true`;
+1. requests `scripts/governance_engine.py --mode finalize` for the exact candidate;
+2. requires `requested_mode=finalize`, `effective_mode=finalize`, and `final_acceptance_authority=true`;
 3. requires every acceptance requirement to be `PASS`;
 4. requires every truth gate to be `PASS` or `NOT_APPLICABLE`;
 5. validates version syntax and tag non-existence;
@@ -49,7 +50,7 @@ Only a successful strict preflight may emit `publication_authority=true`. The pr
 
 ## Evidence artifacts
 
-The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose whether the run was evidence-only or strict, whether the version was stable, and whether publication authority was granted.
+The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose the requested/effective governance modes, whether the run was evidence-only or strict, whether the version was stable, and whether publication authority was granted.
 
 ## Publication boundary
 

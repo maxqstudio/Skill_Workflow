@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PYTHONDONTWRITEBYTECODE: "1"
-      SOURCE_HEAD: "0bf0e3aee46f8bfca7792f9457e49404b07b976b"
+      SOURCE_HEAD: "6eacfe392ec033c943f2f4ca81f6ce278c91282e"
       ACCEPTED_MAIN: "f391fe9dc5d208803118090bbe6a174e8f6c7c63"
       BRANCH: "work/sw2-07-public-project-hardening"
-      EVIDENCE_VERSION: "v2.0.0-sw2-07-evidence.1"
+      EVIDENCE_VERSION: "v2.0.0-sw2-07-evidence.2"
 
     steps:
       - name: Checkout phase branch
@@ -146,6 +146,8 @@ jobs:
           assert report['evidence_only'] is True
           assert report['publication_authority'] is False
           assert report['stable'] is False
+          assert report['governance_requested_mode'] == 'verify'
+          assert report['governance_effective_mode'] in {'verify', 'finalize'}
           assert report['failures'] == []
           print('R4_EVIDENCE_ONLY_PREFLIGHT=PASS')
           print('R4_PUBLICATION_AUTHORITY_FALSE=PASS')
@@ -185,8 +187,9 @@ jobs:
           assert by_id['SW2-07-R4']['status'] == 'NOT_PROVEN'
           evidence = (
               f'GitHub Actions run {run_id} proved the repeatable release-process dry run on exact regenerated candidate {candidate}: '
-              'governance verify PASS, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, '
-              'and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.'
+              'governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, '
+              'clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight '
+              'remains separately fail-closed and stable publication remains SW2-09 scope.'
           )
           by_id['SW2-07-R4']['status'] = 'PASS'
           by_id['SW2-07-R4']['evidence'] = evidence

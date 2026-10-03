@@ -70,6 +70,8 @@ def validate(
             governance = {}
             failures.append(report_label + "_REPORT_INVALID")
 
+    requested_mode = governance.get("requested_mode") if governance else None
+    effective_mode = governance.get("effective_mode") if governance else None
     if governance:
         if governance.get("result") != "PASS":
             failures.append(report_label + "_REPORT_NOT_PASS")
@@ -77,13 +79,17 @@ def validate(
         if report_head != expected_head:
             failures.append(f"{report_label}_REPORT_HEAD_MISMATCH:{report_head}")
         if evidence_only:
-            if governance.get("effective_mode") != "verify":
-                failures.append("EVIDENCE_REPORT_WRONG_MODE")
+            if requested_mode != "verify":
+                failures.append("EVIDENCE_REPORT_WRONG_REQUESTED_MODE")
+            if effective_mode not in {"verify", "finalize"}:
+                failures.append("EVIDENCE_REPORT_INVALID_EFFECTIVE_MODE")
             if governance.get("final_acceptance_authority") is not False:
                 failures.append("EVIDENCE_REPORT_MUST_NOT_BE_AUTHORITY")
         else:
-            if governance.get("effective_mode") != "finalize":
-                failures.append("FINALIZE_REPORT_WRONG_MODE")
+            if requested_mode != "finalize":
+                failures.append("FINALIZE_REPORT_WRONG_REQUESTED_MODE")
+            if effective_mode != "finalize":
+                failures.append("FINALIZE_REPORT_WRONG_EFFECTIVE_MODE")
             if governance.get("final_acceptance_authority") is not True:
                 failures.append("FINALIZE_REPORT_NOT_AUTHORITY")
 
@@ -155,12 +161,14 @@ def validate(
         "stable": stable,
         "evidence_only": evidence_only,
         "publication_authority": publication_authority,
+        "governance_requested_mode": requested_mode,
+        "governance_effective_mode": effective_mode,
         "current_phase": current_phase,
         "governance_report": str(governance_report),
         "failures": failures,
         "evidence_boundary": (
-            "Evidence-only mode is a non-authoritative dry run: it proves exact-head, clean-state, version/tag, verify-report, and fail-closed status semantics while allowing explicit NOT_PROVEN items; it can never authorize publication and rejects stable versions. "
-            "Strict mode requires complete PASS governance, a finalize authority report, and stable-release phase boundaries. Neither mode creates a Git tag or GitHub release."
+            "Evidence-only mode is a non-authoritative dry run: it requires a verify request, allows governance breadth to escalate fail-closed, proves exact-head, clean-state, version/tag, report, and status semantics while allowing explicit NOT_PROVEN items, can never authorize publication, and rejects stable versions. "
+            "Strict mode requires a finalize request, effective finalize execution, complete PASS governance, finalize authority, and stable-release phase boundaries. Neither mode creates a Git tag or GitHub release."
         ),
     }
 
