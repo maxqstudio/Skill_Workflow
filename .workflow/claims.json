@@ -127,6 +127,48 @@
       "tests": [
         "scripts/selftest_sequence_call_resolution.py"
       ]
+    },
+    {
+      "claim": "Documentation System V2 provides a concise public landing page and stable public information architecture without treating machine indexes as the primary human entry point.",
+      "documents": [
+        "ROADMAP.md",
+        "DOC_SYNC_MATRIX.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-DOCS-PUBLIC-IA",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        "scripts/generate_project_docs.py",
+        "scripts/validate_project_docs.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_project_truth_compiler.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
+    },
+    {
+      "claim": "Public guidance and deterministic machine indexes/evidence are separated without weakening generated-document determinism, drift detection, or acceptance traceability.",
+      "documents": [
+        "ROADMAP.md",
+        "DOC_SYNC_MATRIX.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-DOCS-SEPARATION",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        "scripts/generate_project_docs.py",
+        "scripts/validate_project_docs.py",
+        "scripts/validate_cross_document_consistency.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_cross_document_regressions.py",
+        "scripts/selftest_project_truth_compiler.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
     }
   ],
   "relations": [
@@ -152,6 +194,18 @@
       "claim_id": "TRUTH-SW2-SEQUENCE-PRESENTATION",
       "notes": "Human readability improvements must not replace or weaken the machine evidence graph.",
       "other_claim_id": "TRUTH-SW2-SEQUENCE-FIDELITY",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-DOCS-PUBLIC-IA",
+      "notes": "Public documentation restructuring is valid only if deterministic generated Project Truth remains intact.",
+      "other_claim_id": "TRUTH-SW-DOCS-DETERMINISTIC",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-DOCS-SEPARATION",
+      "notes": "Separating machine indexes from public guidance must preserve deterministic generation and drift detection.",
+      "other_claim_id": "TRUTH-SW-DOCS-DETERMINISTIC",
       "relation": "REQUIRES"
     }
   ],

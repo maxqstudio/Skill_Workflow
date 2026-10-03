@@ -4,17 +4,17 @@
 
 ## Evidence boundary
 
-SW2-03 acceptance covers Sequence V2 only: full machine sequence evidence must retain acceptance fidelity while human-facing diagrams become bounded and semantically readable. Mermaid syntax/render correctness must become blocking and diagram complexity must be measured against a documented policy. Existing SW2-02 develop/verify/finalize mode safety remains inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository-only sequence tooling phase unless stronger runtime evidence becomes required.
+SW2-04 acceptance covers Documentation System V2 only: public-facing documentation must become concise and navigable while deterministic generated Project Truth and machine evidence remain independently auditable and drift-detectable. Existing SW2-01 through SW2-03 governance, mode-safety, and Sequence V2 guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository documentation-system phase unless stronger runtime evidence becomes necessary.
 
 Final tested source: external final acceptance evidence.
 Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-03-R1 | Full machine-generated sequence evidence retains acceptance-relevant static graph fidelity and is not reduced merely to improve human readability. | PASS on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: Governance Selftest run 37087211310 passed Sequence human-view regression on Ubuntu and Windows; SW2 Sequence Evidence run 37087211297 regenerated and validated the independent full machine graph; committed source-bound machine evidence remains 39 nodes / 54 edges. | PASS |
-| SW2-03-R2 | Human-facing sequence diagrams use semantic components, collapsing, or subflows instead of exposing raw helper-level call dumps as the default view. | PASS on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: deterministic module-collapse-v1 projects the 39-node / 54-edge machine graph to 8 human participants / 13 interactions while accounting for 26 internal collapsed edges and all 28 cross-component machine edges; tamper/fidelity regression passed Ubuntu and Windows. | PASS |
-| SW2-03-R3 | Mermaid syntax and renderability validation is blocking for governed human-facing sequence diagrams. | PASS on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: permanent SW2 Sequence Evidence run 37087211297 rendered the governed human Mermaid with @mermaid-js/mermaid-cli@12.0.0 and required a non-empty SVG before aggregate sequence validation could pass. | PASS |
-| SW2-03-R4 | Diagram complexity is measured against a documented evidence-based policy and over-complex human views must be collapsed, split, or fail validation. | PASS on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: SW2-ADR-005 records measured baseline growth 7/6 -> 22/27 -> 33/44 -> 37/53, module-collapse-v1 enforces one participant per semantic component and one interaction per directed component pair, and selftest_sequence_human_view.py proves policy enforcement without inventing a global numeric limit. | PASS |
+| SW2-04-R1 | README is a concise public landing page that explains purpose, value, getting started, support, and maintenance without embedding the full governance reference manual. | NOT_PROVEN until README/public landing-page restructuring is implemented and validated against the accepted documentation information architecture. | NOT_PROVEN |
+| SW2-04-R2 | Concept, guide, reference, architecture, and sequence documentation have stable public locations and navigation. | NOT_PROVEN until the public documentation tree, navigation, redirects/migration handling where applicable, and cross-document validation are implemented. | NOT_PROVEN |
+| SW2-04-R3 | Machine indexes and evidence no longer dominate human-facing documentation while remaining fully available and auditable. | NOT_PROVEN until machine indexes/evidence are separated from public guidance with deterministic references and no loss of acceptance evidence. | NOT_PROVEN |
+| SW2-04-R4 | Generated documentation remains deterministic and drift-detectable after the documentation-system restructuring. | NOT_PROVEN until compiler, sync, cross-document, Human Comprehension, and clean-worktree regressions pass on the restructured documentation system. | NOT_PROVEN |
 
 ## Test commands
 
@@ -25,7 +25,6 @@ Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab27
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
-- python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
 - python scripts/governance_engine.py --root . --base f79917550fe42f98110f1a11915ad9699e5244e6 --mode finalize --expected-head <EXACT_HEAD>
@@ -42,7 +41,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-03-GOVERNANCE
+Sequence session contract: SW2-04-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

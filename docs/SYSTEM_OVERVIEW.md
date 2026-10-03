@@ -64,7 +64,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-03
+Current phase: SW2-04
 
 Current status: IN_PROGRESS
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run post-promotion clean-worktree acceptance on the exact promotion cleanup SHA.
-- Close SW2-03 only after post-promotion permanent CI is fully green.
-- Open SW2-04 Documentation System V2 fail-closed only as a separate phase transaction.
+- Run clean permanent CI on the SW2-04 phase-open transition candidate.
+- Merge PR #9 only after the exact phase-open cleanup SHA passes all permanent CI.
+- After post-merge main acceptance, create work/sw2-04-documentation-system-v2 from exact accepted main and update working-branch/last-accepted authority before implementation.
 
 Blocked actions:
-- Do not discard machine sequence nodes/edges merely to make human diagrams smaller.
-- Do not declare arbitrary participant/interaction limits without measured baseline evidence and documented rationale.
-- Do not treat Mermaid text generation alone as proof of renderability; SW2-03 requires a blocking parser/render gate.
-- Do not weaken SW2-02 mode safety or final fail-closed acceptance while changing sequence presentation.
-- Do not start SW2-04 Documentation System V2 before SW2-03 acceptance is complete and the Owner authorizes the next phase.
+- Do not mark any SW2-04 requirement PASS before implementation-specific evidence exists.
+- Do not manually edit deterministic generated project Markdown as semantic authority.
+- Do not remove or hide machine indexes/evidence merely to make public documentation shorter.
+- Do not weaken Project Truth, cross-document, Human Comprehension, or sequence gates while restructuring documentation.
+- Do not choose or add a repository license in SW2-04; license authority remains an Owner decision and SW2-07 scope.
 
 Known blockers:
 - None declared.
@@ -140,9 +140,13 @@ Known blockers:
 - SW2-02 Fast Development Workflow acceptance is complete on branch candidate c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a: all SW2-02 requirements and TRUTH-SW2-MODE-SAFETY are PASS, and Self Governance 37081631917, Governance Selftest 37081631955, Sequence Evidence 37081631942, Engine Performance 37081631972, and Consumer Engine Performance 37081631956 all succeeded.
 - SW2-02 was merged to main as f79917550fe42f98110f1a11915ad9699e5244e6; post-merge Self Governance 37085905097, Governance Selftest 37085905094 on Ubuntu and Windows, SW2 Sequence Evidence 37085905107, SW2 Engine Performance 37085905175, and SW2 Consumer Engine Performance 37085905090 all succeeded.
 - SW2-03 Sequence V2 feature acceptance is proven on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: Self Governance 37087211311, Governance Selftest 37087211310 on Ubuntu and Windows, SW2 Sequence Evidence 37087211297 with blocking Mermaid render, SW2 Engine Performance 37087211307, and SW2 Consumer Engine Performance 37087211371 all succeeded. The full machine graph remains independent evidence; module-collapse-v1 produces a bounded human projection with complete machine-edge accounting.
+- SW2-03 Sequence V2 is accepted on exact cleanup candidate 7823dd1b6be1de59c1f28406c050df343a3d1934: Self Governance 37093982357, Governance Selftest 37093982276 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37093982364 with blocking Mermaid render, SW2 Engine Performance 37093982407, and SW2 Consumer Engine Performance 37093982235 all succeeded. Sequence V2 consumer vendoring and SKILL contract synchronization were also proven before closure.
 
 ### Not proven
 
+- SW2-04 concise public README/landing-page quality is NOT_PROVEN until the public documentation information architecture is implemented and reviewed.
+- SW2-04 separation between public guidance and machine indexes/evidence is NOT_PROVEN until deterministic generators and validators enforce the new locations.
+- SW2-04 generated-document determinism and drift detection after documentation restructuring are NOT_PROVEN until regression evidence passes.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 
 ## Important limitations

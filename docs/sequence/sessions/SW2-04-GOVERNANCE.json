@@ -1,0 +1,50 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-04-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/generate_project_docs.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/validate_doc_quality.py::main",
+      "scripts/validate_human_comprehension.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-04-GOVERNANCE.actual.json",
+    "source_digest": "ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-04 DURING evidence binds the documentation compiler/validation pipeline at phase opening. Static extraction proves source-visible structure only; public information-architecture quality, README concision, machine/public separation, and post-restructure determinism remain NOT_PROVEN until dedicated SW2-04 evidence exists.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-04-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-04-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-04-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b"
+  },
+  "implementation_base_sha": "7823dd1b6be1de59c1f28406c050df343a3d1934",
+  "mode": "DURING",
+  "phase": "SW2-04",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-04-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_sequence_human_view.py",
+    "scripts/selftest_cross_document_regressions.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}

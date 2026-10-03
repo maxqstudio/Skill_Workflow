@@ -36,9 +36,9 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "CURRENT",
+  "scope": "HISTORICAL",
   "session_id": "SW2-03-GOVERNANCE",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_sequence_call_resolution.py",
