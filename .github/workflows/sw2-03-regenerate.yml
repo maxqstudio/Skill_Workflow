@@ -113,7 +113,7 @@ jobs:
           python scripts/sync_project_truth.py --root .
           python scripts/validate_project_docs.py --root .
           python scripts/validate_human_comprehension.py --root . --require-pass
-          python scripts/validate_cross_document_consistency.py --root . --base f79917550fe42f98110f1a11915ad9699e5244e6
+          # Clean-worktree cross-document validation runs on the post-commit cleanup candidate.
           python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json --report artifacts/sequence/SW2-03-GOVERNANCE.acceptance.json
           python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
           python scripts/validate_sequence_sessions.py --root .
