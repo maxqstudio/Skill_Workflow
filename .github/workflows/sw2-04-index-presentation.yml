@@ -128,9 +128,74 @@ jobs:
               '',
               '',
           ]
-          new_block = '\n'.join(lines)
-          path.write_text(text[:start] + new_block + text[end:], encoding='utf-8', newline='\n')
+          path.write_text(text[:start] + '\n'.join(lines) + text[end:], encoding='utf-8', newline='\n')
           print('SYMBOL_INDEX_PRESENTER_PATCH=PASS')
+          PY
+
+      - name: Patch handoff validator for legacy and V2 symbol indexes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/validate_handoff.py')
+          text = path.read_text(encoding='utf-8')
+
+          old_placeholder = '''def has_placeholder(text: str) -> bool:\n    # Generated provenance markers are HTML comments and must not be mistaken\n    # for angle-bracket placeholders.\n    visible = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)\n    return any(pattern.search(visible) for pattern in PLACEHOLDER_PATTERNS)\n'''
+          new_placeholder = '''def has_placeholder(text: str) -> bool:\n    # Generated provenance markers and the narrow HTML presentation vocabulary\n    # used by deterministic generated indexes are not template placeholders.\n    visible = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)\n    visible = re.sub(\n        r"</?(?:details|summary|code)>",\n        "",\n        visible,\n        flags=re.IGNORECASE,\n    )\n    return any(pattern.search(visible) for pattern in PLACEHOLDER_PATTERNS)\n\n\ndef validate_symbol_index_shape(text: str) -> list[str]:\n    \"\"\"Accept legacy or V2 presentation while failing malformed V2 structure.\"\"\"\n    if "| File | Symbol |" in text:\n        return []\n\n    v2_markers = (\n        "## File summary",\n        "| File | Symbols | Classes | Functions | Methods |",\n        "## Detailed symbols",\n        "| Symbol | Kind | Lines@SHA |",\n    )\n    present = [marker in text for marker in v2_markers]\n    if not any(present):\n        return ["SYMBOL_INDEX_TABLE_MISSING"]\n\n    failures = [\n        "SYMBOL_INDEX_V2_STRUCTURE_MISSING:" + marker\n        for marker, found in zip(v2_markers, present)\n        if not found\n    ]\n    opened = len(re.findall(r"<details>", text, flags=re.IGNORECASE))\n    closed = len(re.findall(r"</details>", text, flags=re.IGNORECASE))\n    summaries = len(re.findall(r"<summary>", text, flags=re.IGNORECASE))\n    summary_closed = len(re.findall(r"</summary>", text, flags=re.IGNORECASE))\n    if opened != closed or opened != summaries or summaries != summary_closed:\n        failures.append(\n            "SYMBOL_INDEX_V2_DETAILS_UNBALANCED:"\n            + f"open={opened},close={closed},summary={summaries},summary_close={summary_closed}"\n        )\n    if opened == 0 and "_No Python symbols observed._" not in text:\n        failures.append("SYMBOL_INDEX_V2_DETAILS_MISSING")\n    return failures\n'''
+          if old_placeholder not in text:
+              raise SystemExit('HANDOFF_PLACEHOLDER_ANCHOR_NOT_FOUND')
+          text = text.replace(old_placeholder, new_placeholder, 1)
+
+          old_symbol = '''    symbol = docs_root / "SYMBOL_INDEX.md"\n    if symbol.is_file():\n        text = read(symbol)\n        if "Authority SHA:" not in text:\n            failures.append("SYMBOL_INDEX_AUTHORITY_SHA_MISSING")\n        if "| File | Symbol |" not in text:\n            failures.append("SYMBOL_INDEX_TABLE_MISSING")\n'''
+          new_symbol = '''    symbol = docs_root / "SYMBOL_INDEX.md"\n    if symbol.is_file():\n        text = read(symbol)\n        if "Authority SHA:" not in text:\n            failures.append("SYMBOL_INDEX_AUTHORITY_SHA_MISSING")\n        failures.extend(validate_symbol_index_shape(text))\n'''
+          if old_symbol not in text:
+              raise SystemExit('HANDOFF_SYMBOL_ANCHOR_NOT_FOUND')
+          text = text.replace(old_symbol, new_symbol, 1)
+          path.write_text(text, encoding='utf-8', newline='\n')
+          print('HANDOFF_SYMBOL_INDEX_V2_COMPAT=PASS')
+          PY
+
+      - name: Extend generated presentation regression through handoff contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/selftest_generated_doc_presentation.py')
+          text = path.read_text(encoding='utf-8')
+          old_import = 'from generate_project_docs import render_symbols\n'
+          new_import = 'from generate_project_docs import render_symbols\nfrom validate_handoff import has_placeholder, validate_symbol_index_shape\n'
+          if old_import not in text:
+              raise SystemExit('PRESENTATION_SELFTEST_IMPORT_ANCHOR_NOT_FOUND')
+          text = text.replace(old_import, new_import, 1)
+
+          old_assert = '''    assert "fixture limitation" in rendered\n\n    print("SYMBOL_SUMMARY_PRESENT=PASS")\n'''
+          new_assert = '''    assert "fixture limitation" in rendered\n    assert validate_symbol_index_shape(rendered) == []\n    assert not has_placeholder(rendered)\n\n    legacy = "Authority SHA: test\\n| File | Symbol | Kind |\\n|---|---|---|\\n"\n    assert validate_symbol_index_shape(legacy) == []\n\n    tampered = rendered.replace("</details>", "", 1)\n    failures = validate_symbol_index_shape(tampered)\n    assert any(item.startswith("SYMBOL_INDEX_V2_DETAILS_UNBALANCED:") for item in failures)\n\n    print("SYMBOL_SUMMARY_PRESENT=PASS")\n'''
+          if old_assert not in text:
+              raise SystemExit('PRESENTATION_SELFTEST_ASSERT_ANCHOR_NOT_FOUND')
+          text = text.replace(old_assert, new_assert, 1)
+          text = text.replace(
+              '    print("EMPTY_SEMANTIC_COLUMNS_REMOVED=PASS")\n',
+              '    print("EMPTY_SEMANTIC_COLUMNS_REMOVED=PASS")\n    print("HANDOFF_LEGACY_COMPATIBILITY=PASS")\n    print("HANDOFF_V2_TAMPER_REJECTION=PASS")\n    print("PRESENTATION_TAGS_NOT_PLACEHOLDERS=PASS")\n',
+              1,
+          )
+          path.write_text(text, encoding='utf-8', newline='\n')
+          print('PRESENTATION_HANDOFF_REGRESSION=PASS')
+          PY
+
+      - name: Remove legacy README canonical-link warnings without expanding the landing page
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('README.md')
+          text = path.read_text(encoding='utf-8')
+          old = 'This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).\n'
+          new = 'This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [system overview](docs/SYSTEM_OVERVIEW.md), [project manifest](docs/PROJECT_MANIFEST.md), [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).\n'
+          if old not in text:
+              raise SystemExit('README_GOVERNANCE_LINK_ANCHOR_NOT_FOUND')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+          print('README_CANONICAL_LINKS=PASS')
           PY
 
       - name: Wire generated presentation regression into permanent CI
@@ -163,8 +228,8 @@ jobs:
               decisions['decisions'].append({
                   'id': 'SW2-ADR-007',
                   'title': 'Collapse generated symbol detail without dropping machine facts',
-                  'decision': 'SYMBOL_INDEX.md uses a file-level summary as the default GitHub view and deterministic per-file collapsible detail. Every extracted symbol remains rendered, while empty semantic columns and repetitive placeholder responsibility text are removed. Full machine facts remain in .workflow/generated/code_facts.json.',
-                  'rationale': 'The previous single table exposed every Python symbol with repeated Observed Python symbol text and empty Responsibility/Reads-Writes/Called-By/Tests columns. That preserved machine inventory but made the human-facing document hard to scan. Collapsible deterministic grouping improves presentation without reducing extracted evidence.',
+                  'decision': 'SYMBOL_INDEX.md uses a file-level summary as the default GitHub view and deterministic per-file collapsible detail. Every extracted symbol remains rendered, while empty semantic columns and repetitive placeholder responsibility text are removed. Full machine facts remain in .workflow/generated/code_facts.json. Handoff validation accepts legacy tables for compatibility and validates V2 presentation structure fail-closed.',
+                  'rationale': 'The previous single table exposed every Python symbol with repeated Observed Python symbol text and empty Responsibility/Reads-Writes/Called-By/Tests columns. That preserved machine inventory but made the human-facing document hard to scan. Collapsible deterministic grouping improves presentation without reducing extracted evidence or breaking existing consumer indexes.',
                   'status': 'ACCEPTED'
               })
           write('.workflow/decisions.json', decisions)
@@ -180,12 +245,17 @@ jobs:
           claim = claim_map['TRUTH-SW2-DOCS-SEPARATION']
           if 'scripts/selftest_generated_doc_presentation.py' not in claim['tests']:
               claim['tests'].append('scripts/selftest_generated_doc_presentation.py')
+          if 'scripts/validate_handoff.py' not in claim['source_owners']:
+              claim['source_owners'].append('scripts/validate_handoff.py')
           write('.workflow/claims.json', claims)
           print('SW2_04_INDEX_PRESENTATION_AUTHORITY=PASS')
           PY
 
-      - name: Run generated presentation regression
-        run: python scripts/selftest_generated_doc_presentation.py
+      - name: Run generated presentation and handoff regressions
+        run: |
+          python scripts/selftest_generated_doc_presentation.py
+          python scripts/selftest_public_docs.py
+          python scripts/validate_public_docs.py --root .
 
       - name: Regenerate current sequence and Project Truth
         run: |
@@ -227,6 +297,10 @@ jobs:
           import json
           acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
           assert all(item['status'] == 'NOT_PROVEN' for item in acceptance['requirements'])
+          claims = json.load(open('.workflow/claims.json', encoding='utf-8'))
+          claim_map = {item['id']: item for item in claims['claims']}
+          assert claim_map['TRUTH-SW2-DOCS-PUBLIC-IA']['status'] == 'NOT_PROVEN'
+          assert claim_map['TRUTH-SW2-DOCS-SEPARATION']['status'] == 'NOT_PROVEN'
           print('SW2_04_REQUIREMENTS_STILL_NOT_PROVEN=PASS')
           PY
 
@@ -235,7 +309,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/generate_project_docs.py scripts/selftest_generated_doc_presentation.py .github/workflows/governance-selftest.yml .workflow docs artifacts/public_docs_report.json artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json
+          git add README.md scripts/generate_project_docs.py scripts/validate_handoff.py scripts/selftest_generated_doc_presentation.py .github/workflows/governance-selftest.yml .workflow docs artifacts/public_docs_report.json artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json
           git diff --cached --quiet && { echo "NO_PRESENTATION_DIFF"; exit 1; }
           git commit -m "feat(sw2-04): improve generated symbol index presentation"
           git push origin HEAD:work/sw2-04-documentation-system-v2
