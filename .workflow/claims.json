@@ -143,7 +143,7 @@
         "scripts/validate_project_docs.py",
         "scripts/validate_public_docs.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_project_truth_compiler.py",
         "scripts/selftest_strict_project_workflow.py",
@@ -167,7 +167,7 @@
         "scripts/validate_public_docs.py",
         "scripts/validate_handoff.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_cross_document_regressions.py",
         "scripts/selftest_project_truth_compiler.py",

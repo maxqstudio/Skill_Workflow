@@ -17,28 +17,28 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until README/public landing-page restructuring is implemented and validated against the accepted documentation information architecture.",
+      "evidence": "PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: README is a concise landing page and validate_public_docs.py plus selftest_public_docs.py passed in Governance Selftest run 37095620587 on Ubuntu and Windows. The validator rejects reintroduction of deep reference-manual sections.",
       "id": "SW2-04-R1",
       "requirement": "README is a concise public landing page that explains purpose, value, getting started, support, and maintenance without embedding the full governance reference manual.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until the public documentation tree, navigation, redirects/migration handling where applicable, and cross-document validation are implemented.",
+      "evidence": "PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: docs/README.md and docs/handbook/ provide stable getting-started, concepts, guides, reference, architecture, and sequence navigation; public-doc navigation/tamper regressions and cross-document regressions passed on Ubuntu and Windows in run 37095620587.",
       "id": "SW2-04-R2",
       "requirement": "Concept, guide, reference, architecture, and sequence documentation have stable public locations and navigation.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until machine indexes/evidence are separated from public guidance with deterministic references and no loss of acceptance evidence.",
+      "evidence": "PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: public guidance is separated under docs/handbook while canonical generated Project Truth paths remain unchanged; SYMBOL_INDEX default presentation is file-level summary plus collapsible complete symbol detail, full code_facts.json remains available, and legacy/V2 handoff compatibility plus tamper rejection passed on Ubuntu and Windows.",
       "id": "SW2-04-R3",
       "requirement": "Machine indexes and evidence no longer dominate human-facing documentation while remaining fully available and auditable.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until compiler, sync, cross-document, Human Comprehension, and clean-worktree regressions pass on the restructured documentation system.",
+      "evidence": "PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: Self Governance run 37095620543 completed final Governance Engine acceptance, Governance Selftest 37095620587 passed compiler/STRICT/cross-document/read-only verification on Ubuntu and Windows, SW2 Sequence Evidence 37095620519 passed current-session generation and Mermaid rendering, and engine/consumer performance runs 37095620515 / 37095620594 succeeded.",
       "id": "SW2-04-R4",
       "requirement": "Generated documentation remains deterministic and drift-detectable after the documentation-system restructuring.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
