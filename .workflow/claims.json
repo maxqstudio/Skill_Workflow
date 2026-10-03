@@ -84,7 +84,7 @@
         "SKILL.md",
         "scripts/governance_engine.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_governance_engine.py",
         "scripts/selftest_strict_project_workflow.py"

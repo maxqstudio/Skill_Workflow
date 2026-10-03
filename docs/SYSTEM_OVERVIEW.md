@@ -135,10 +135,11 @@ Known blockers:
 - SW2-02 verify mode is proven on exact candidate 9e0ef0d098ea2f7f96424ce057ca1f4572939b52: SW2-02 Verify Evidence run 37080781127 passed on Ubuntu and Windows with verify remaining intermediate evidence and final_acceptance_authority=false.
 - Governance Selftest run 37080786219 permanently proves verify mode is read-only on Ubuntu and Windows after the full compiler/regression chain; compile bytecode is isolated outside the repository worktree.
 - Changed-file impact classification and fail-closed escalation are regression-proven for SW2-02 develop/verify planning; unknown impact still escalates rather than silently skipping verification.
+- SW2-02 finalize mode is proven on exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446: Finalize Evidence run 37081217929 passed on Ubuntu and Windows with the complete required acceptance DAG, final_acceptance_authority=true, exact-head provenance, and clean governed worktree.
+- SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.
 
 ### Not proven
 
-- SW2-02 final mode-safety remains NOT_PROVEN until exact-head finalize proves the complete acceptance graph, final acceptance authority, and clean final truth.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 - Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
 
