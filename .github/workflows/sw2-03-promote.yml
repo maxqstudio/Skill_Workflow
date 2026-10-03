@@ -1,3 +1,4 @@
+# Triggered after exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577 passed permanent CI.
 name: SW2-03 Promote Evidence
 
 on:
