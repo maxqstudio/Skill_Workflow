@@ -241,13 +241,16 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-ANALYZER-CONTRACT",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd; Governance Selftest run 37107117851 Ubuntu/Windows SUCCESS with permanent analyzer-contract regression.",
+        "SW2 Sequence Evidence run 37107117803 SUCCESS with current SW2-06 machine/human sequence generation and blocking Mermaid render."
+      ],
       "source_owners": [
         "scripts/analyzer_contract.py",
         "scripts/extract_project_facts.py",
         "scripts/generate_sequence_actual.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_analyzer_contract.py",
         "scripts/selftest_sequence_call_resolution.py"
@@ -261,13 +264,16 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-DYNAMIC-EVIDENCE",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd; Governance Selftest run 37107117851 Ubuntu/Windows SUCCESS with negative-path rejection of false dynamic proof and fail-safe unsupported-language fallback.",
+        "SW2 Sequence Evidence run 37107117803 SUCCESS while static coverage explicitly retains dynamic/reflection/DI/callback/framework limitations as NOT_PROVEN."
+      ],
       "source_owners": [
         "scripts/analyzer_contract.py",
         "scripts/generate_sequence_actual.py",
         "scripts/validate_sequence_contract.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_analyzer_contract.py"
       ]

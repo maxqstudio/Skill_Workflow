@@ -11,10 +11,10 @@ Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd40686
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-06-R1 | Analyzer contract is language-independent. | Phase-open baseline only; dedicated analyzer-interface evidence is not yet accepted. | NOT_PROVEN |
-| SW2-06-R2 | Python and JS/TS remain fully regression-covered. | Existing analyzers are preserved at phase opening, but regression coverage under the new contract is not yet accepted. | NOT_PROVEN |
-| SW2-06-R3 | Generic fallback behavior is explicit and fail-safe. | No accepted generic fallback contract exists at phase opening. | NOT_PROVEN |
-| SW2-06-R4 | Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. | Phase-open evidence records current static-analysis limitations; dedicated negative-path proof is not yet accepted. | NOT_PROVEN |
+| SW2-06-R1 | Analyzer contract is language-independent. | PASS on exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd: Governance Selftest run 37107117851 passed Ubuntu and Windows with the permanent cross-language analyzer-contract regression. scripts/analyzer_contract.py exposes one normalized language-independent AnalyzerResult/StructuralAnalyzer contract while parser-specific adapters remain separate. | PASS |
+| SW2-06-R2 | Python and JS/TS remain fully regression-covered. | PASS on exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd: Governance Selftest run 37107117851 passed Ubuntu and Windows with selftest_analyzer_contract.py plus existing sequence call-resolution regressions; SW2 Sequence Evidence run 37107117803 also passed with blocking Mermaid render. Accepted Python AST and JS/TS literal fetch/axios evidence semantics remain regression-covered. | PASS |
+| SW2-06-R3 | Generic fallback behavior is explicit and fail-safe. | PASS on exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd: selftest_analyzer_contract.py passed cross-platform in Governance Selftest run 37107117851, proving generic_inventory is inventory-only, reports unsupported files as NOT_PROVEN, and rejects fabricated semantic facts/nodes/edges. | PASS |
+| SW2-06-R4 | Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. | PASS on exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd: Governance Selftest run 37107117851 passed the negative path that rejects any static analyzer attempting to promote dynamic behavior above NOT_PROVEN; SW2 Sequence Evidence run 37107117803 passed while generated coverage retains explicit static-analysis limitations. | PASS |
 
 ## Test commands
 
