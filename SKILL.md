@@ -47,6 +47,8 @@ Do not impose the same documentation ceremony on every project.
 
 Every project MUST define `PROJECT_PROFILE.yaml`.
 
+`PROJECT_PROFILE.yaml` MUST declare `schema_version: 1`. Governed `.workflow/*.json` and `.workflow/workflows/*.json` specs MUST also declare supported schema versions. Missing or unknown versions fail closed; legacy state must be migrated explicitly rather than silently reinterpreted.
+
 Every required `.md` document name below resolves under repository-root `docs/`. `PROJECT_PROFILE.yaml` and `README.md` remain at repository root.
 
 Supported profiles:
@@ -216,6 +218,8 @@ python scripts/initialize_project_truth.py
 Initializer vendors runtime tools into `.workflow/tools/`. This keeps project
 governance tooling project-local and independent of Codex/Claude/Cursor skill
 installation paths.
+
+The initializer also writes `.workflow/toolchain.lock.json`, binding the exact vendored Python tool bytes by SHA-256-derived manifest digest. The digest is acceptance-relevant; producer repository/commit metadata is provenance only and mutable upstream/cache state is never authority. For legacy projects, run `python scripts/migrate_governance_v1.py --root <project>` from the intended Skill Workflow source checkout. Migration is explicit, deterministic, idempotent, and rejects unknown future schema versions.
 
 Synchronize code facts and generated docs:
 

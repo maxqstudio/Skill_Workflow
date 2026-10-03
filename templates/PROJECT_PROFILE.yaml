@@ -17,6 +17,7 @@
 # STRICT requires explicit required/not_applicable decisions for the critical
 # contract categories checked by the validator.
 
+schema_version: 1
 profile: standard
 
 contracts:

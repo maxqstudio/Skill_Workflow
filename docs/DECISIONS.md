@@ -58,4 +58,12 @@ SYMBOL_INDEX.md uses a file-level summary as the default GitHub view and determi
 
 Rationale: The previous single table exposed every Python symbol with repeated Observed Python symbol text and empty Responsibility/Reads-Writes/Called-By/Tests columns. Collapsible deterministic grouping improves presentation without reducing extracted evidence or breaking existing consumer indexes.
 
+## SW2-ADR-008 — Separate schema compatibility from release naming and bind vendored tools by content digest
+
+Status: ACCEPTED
+
+Governance profile/spec schema version 1 is explicit and blocking. Legacy unversioned state requires the deterministic migrate_governance_v1.py path. Vendored consumer tools are bound by .workflow/toolchain.lock.json exact file hashes and manifest digest; producer commit metadata is provenance only. Stable Skill Workflow V2 release naming remains SW2-09 scope.
+
+Rationale: The existing JSON schema_version fields were not enforced and PROJECT_PROFILE.yaml had no version. Tool vendoring also had no byte-level identity, allowing accidental drift. The smallest compatible contract makes existing v1 semantics explicit without inventing a premature product release version.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

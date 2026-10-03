@@ -1,6 +1,6 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
-%% OBSERVED_HEAD: 16e0ce29b56753e80c62b4af54af45a2478f15bb
+%% SOURCE_DIGEST: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+%% OBSERVED_HEAD: 59280590379f5284740826610e3a943cb4220dc5
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
     participant scripts_extract_project_facts_py__PythonFacts_0 as scripts/extract_project_facts.py::PythonFacts
@@ -68,46 +68,66 @@ sequenceDiagram
     participant scripts_initialize_project_truth_py__copy_file_62 as scripts/initialize_project_truth.py::copy_file
     participant scripts_initialize_project_truth_py__ensure_gitattributes_63 as scripts/initialize_project_truth.py::ensure_gitattributes
     participant scripts_initialize_project_truth_py__main_64 as scripts/initialize_project_truth.py::main
-    participant scripts_project_profile_py___bool_value_65 as scripts/project_profile.py::_bool_value
-    participant scripts_project_profile_py___clean_66 as scripts/project_profile.py::_clean
-    participant scripts_project_profile_py__contract_settings_67 as scripts/project_profile.py::contract_settings
-    participant scripts_project_profile_py__documentation_settings_68 as scripts/project_profile.py::documentation_settings
-    participant scripts_project_profile_py__normalized_profile_69 as scripts/project_profile.py::normalized_profile
-    participant scripts_project_profile_py__parse_profile_70 as scripts/project_profile.py::parse_profile
-    participant scripts_project_profile_py__required_docs_71 as scripts/project_profile.py::required_docs
-    participant scripts_project_profile_py__sequence_settings_72 as scripts/project_profile.py::sequence_settings
-    participant scripts_project_snapshot_py__ProjectSnapshot_capture_73 as scripts/project_snapshot.py::ProjectSnapshot.capture
-    participant scripts_project_snapshot_py__ProjectSnapshot_entry_74 as scripts/project_snapshot.py::ProjectSnapshot.entry
-    participant scripts_project_snapshot_py__ProjectSnapshot_memoized_75 as scripts/project_snapshot.py::ProjectSnapshot.memoized
-    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_76 as scripts/project_snapshot.py::ProjectSnapshot.metrics
-    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_77 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
-    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_78 as scripts/project_snapshot.py::ProjectSnapshot.read_text
-    participant scripts_project_snapshot_py__SnapshotError_79 as scripts/project_snapshot.py::SnapshotError
-    participant scripts_project_snapshot_py__SnapshotFile_80 as scripts/project_snapshot.py::SnapshotFile
-    participant scripts_project_snapshot_py___git_81 as scripts/project_snapshot.py::_git
-    participant scripts_project_snapshot_py___git_optional_82 as scripts/project_snapshot.py::_git_optional
-    participant scripts_project_snapshot_py__active_project_snapshot_83 as scripts/project_snapshot.py::active_project_snapshot
-    participant scripts_project_snapshot_py__active_snapshot_for_84 as scripts/project_snapshot.py::active_snapshot_for
-    participant scripts_project_snapshot_py__canonical_source_bytes_85 as scripts/project_snapshot.py::canonical_source_bytes
-    participant scripts_project_snapshot_py__discover_source_paths_86 as scripts/project_snapshot.py::discover_source_paths
-    participant scripts_project_snapshot_py__resolve_snapshot_87 as scripts/project_snapshot.py::resolve_snapshot
-    participant scripts_script_runner_py__invoke_main_88 as scripts/script_runner.py::invoke_main
-    participant scripts_selftest_sequence_human_view_py__sha256_89 as scripts/selftest_sequence_human_view.py::sha256
+    participant scripts_migrate_governance_v1_py__add_profile_version_65 as scripts/migrate_governance_v1.py::add_profile_version
+    participant scripts_migrate_governance_v1_py__add_spec_version_66 as scripts/migrate_governance_v1.py::add_spec_version
+    participant scripts_migrate_governance_v1_py__inspect_specs_67 as scripts/migrate_governance_v1.py::inspect_specs
+    participant scripts_migrate_governance_v1_py__main_68 as scripts/migrate_governance_v1.py::main
+    participant scripts_project_profile_py___bool_value_69 as scripts/project_profile.py::_bool_value
+    participant scripts_project_profile_py___clean_70 as scripts/project_profile.py::_clean
+    participant scripts_project_profile_py__contract_settings_71 as scripts/project_profile.py::contract_settings
+    participant scripts_project_profile_py__documentation_settings_72 as scripts/project_profile.py::documentation_settings
+    participant scripts_project_profile_py__normalized_profile_73 as scripts/project_profile.py::normalized_profile
+    participant scripts_project_profile_py__parse_profile_74 as scripts/project_profile.py::parse_profile
+    participant scripts_project_profile_py__required_docs_75 as scripts/project_profile.py::required_docs
+    participant scripts_project_profile_py__sequence_settings_76 as scripts/project_profile.py::sequence_settings
+    participant scripts_project_snapshot_py__ProjectSnapshot_capture_77 as scripts/project_snapshot.py::ProjectSnapshot.capture
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_78 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_memoized_79 as scripts/project_snapshot.py::ProjectSnapshot.memoized
+    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_80 as scripts/project_snapshot.py::ProjectSnapshot.metrics
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_82 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_83 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_project_snapshot_py__SnapshotFile_84 as scripts/project_snapshot.py::SnapshotFile
+    participant scripts_project_snapshot_py___git_85 as scripts/project_snapshot.py::_git
+    participant scripts_project_snapshot_py___git_optional_86 as scripts/project_snapshot.py::_git_optional
+    participant scripts_project_snapshot_py__active_project_snapshot_87 as scripts/project_snapshot.py::active_project_snapshot
+    participant scripts_project_snapshot_py__active_snapshot_for_88 as scripts/project_snapshot.py::active_snapshot_for
+    participant scripts_project_snapshot_py__canonical_source_bytes_89 as scripts/project_snapshot.py::canonical_source_bytes
+    participant scripts_project_snapshot_py__discover_source_paths_90 as scripts/project_snapshot.py::discover_source_paths
+    participant scripts_project_snapshot_py__resolve_snapshot_91 as scripts/project_snapshot.py::resolve_snapshot
+    participant scripts_schema_contract_py___profile_version_92 as scripts/schema_contract.py::_profile_version
+    participant scripts_schema_contract_py__governed_spec_paths_93 as scripts/schema_contract.py::governed_spec_paths
+    participant scripts_schema_contract_py__require_json_schema_version_94 as scripts/schema_contract.py::require_json_schema_version
+    participant scripts_schema_contract_py__require_profile_schema_version_95 as scripts/schema_contract.py::require_profile_schema_version
+    participant scripts_schema_contract_py__validate_spec_tree_versions_96 as scripts/schema_contract.py::validate_spec_tree_versions
+    participant scripts_script_runner_py__invoke_main_97 as scripts/script_runner.py::invoke_main
+    participant scripts_selftest_sequence_human_view_py__sha256_98 as scripts/selftest_sequence_human_view.py::sha256
+    participant scripts_toolchain_identity_py___git_value_99 as scripts/toolchain_identity.py::_git_value
+    participant scripts_toolchain_identity_py___sha256_100 as scripts/toolchain_identity.py::_sha256
+    participant scripts_toolchain_identity_py__producer_metadata_101 as scripts/toolchain_identity.py::producer_metadata
+    participant scripts_toolchain_identity_py__source_tool_paths_102 as scripts/toolchain_identity.py::source_tool_paths
+    participant scripts_toolchain_identity_py__sync_vendored_tools_103 as scripts/toolchain_identity.py::sync_vendored_tools
+    participant scripts_toolchain_identity_py__tool_manifest_104 as scripts/toolchain_identity.py::tool_manifest
+    participant scripts_toolchain_identity_py__toolchain_digest_105 as scripts/toolchain_identity.py::toolchain_digest
+    participant scripts_toolchain_identity_py__validate_toolchain_lock_106 as scripts/toolchain_identity.py::validate_toolchain_lock
+    participant scripts_toolchain_identity_py__write_toolchain_lock_107 as scripts/toolchain_identity.py::write_toolchain_lock
+    participant scripts_validate_schema_toolchain_py__main_108 as scripts/validate_schema_toolchain.py::main
+    participant scripts_validate_schema_toolchain_py__validate_109 as scripts/validate_schema_toolchain.py::validate
     scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_extract_project_facts_py__PythonFacts_0: PythonFacts [STATIC]
     scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_extract_project_facts_py__is_test_file_3: is_test_file [STATIC]
     scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_43: visitor.visit [STATIC]
-    scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_project_snapshot_py__ProjectSnapshot_read_text_78: snapshot.read_text [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: snapshot.read_text [STATIC]
     scripts_extract_project_facts_py__extract_project_facts_2->>scripts_extract_project_facts_py___extract_from_snapshot_1: _extract_from_snapshot [STATIC]
-    scripts_extract_project_facts_py__extract_project_facts_2->>scripts_project_snapshot_py__ProjectSnapshot_memoized_75: snap.memoized [STATIC]
-    scripts_extract_project_facts_py__extract_project_facts_2->>scripts_project_snapshot_py__resolve_snapshot_87: resolve_snapshot [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_2->>scripts_project_snapshot_py__ProjectSnapshot_memoized_79: snap.memoized [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_2->>scripts_project_snapshot_py__resolve_snapshot_91: resolve_snapshot [STATIC]
     scripts_generate_project_docs_py__auth_lookup_4->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
     scripts_generate_project_docs_py__bullets_5->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
     scripts_generate_project_docs_py__cell_8->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
     scripts_generate_project_docs_py__claim_backlink_comment_9->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
     scripts_generate_project_docs_py__input_digest_13->>scripts_generate_project_docs_py__canonical_bytes_6: canonical_bytes [STATIC]
     scripts_generate_project_docs_py__input_digest_13->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
-    scripts_generate_project_docs_py__input_digest_13->>scripts_selftest_sequence_human_view_py__sha256_89: hashlib.sha256 [STATIC]
-    scripts_generate_project_docs_py__load_json_14->>scripts_project_snapshot_py__ProjectSnapshot_read_text_78: path.read_text [STATIC]
+    scripts_generate_project_docs_py__input_digest_13->>scripts_selftest_sequence_human_view_py__sha256_98: hashlib.sha256 [STATIC]
+    scripts_generate_project_docs_py__load_json_14->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
     scripts_generate_project_docs_py__main_15->>scripts_extract_project_facts_py__extract_project_facts_2: extract_project_facts [STATIC]
     scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__canonical_generated_bytes_7: canonical_generated_bytes [STATIC]
     scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__git_root_12: git_root [STATIC]
@@ -115,17 +135,18 @@ sequenceDiagram
     scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__read_specs_17: read_specs [STATIC]
     scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__render_all_19: render_all [STATIC]
     scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__validate_inputs_41: validate_inputs [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__contract_settings_67: contract_settings [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__documentation_settings_68: documentation_settings [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__normalized_profile_69: normalized_profile [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__parse_profile_70: parse_profile [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__required_docs_71: required_docs [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__sequence_settings_72: sequence_settings [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_77: facts_output.read_bytes [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_77: path.read_bytes [STATIC]
-    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_text_78: profile_path.read_text [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__contract_settings_71: contract_settings [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__documentation_settings_72: documentation_settings [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__normalized_profile_73: normalized_profile [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__parse_profile_74: parse_profile [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__required_docs_75: required_docs [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__sequence_settings_76: sequence_settings [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: facts_output.read_bytes [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: path.read_bytes [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: profile_path.read_text [STATIC]
     scripts_generate_project_docs_py__read_specs_17->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
     scripts_generate_project_docs_py__read_specs_17->>scripts_generate_project_docs_py__load_json_14: load_json [STATIC]
+    scripts_generate_project_docs_py__read_specs_17->>scripts_schema_contract_py__require_json_schema_version_94: require_json_schema_version [STATIC]
     scripts_generate_project_docs_py__render_acceptance_18->>scripts_generate_project_docs_py__bullets_5: bullets [STATIC]
     scripts_generate_project_docs_py__render_acceptance_18->>scripts_generate_project_docs_py__cell_8: cell [STATIC]
     scripts_generate_project_docs_py__render_acceptance_18->>scripts_generate_project_docs_py__clean_10: clean [STATIC]
@@ -205,7 +226,7 @@ sequenceDiagram
     scripts_governance_engine_py__build_mode_dag_47->>scripts_governance_engine_py__compile_scripts_action_53: compile_scripts_action [STATIC]
     scripts_governance_engine_py__build_mode_dag_47->>scripts_governance_engine_py__governed_status_58: governed_status [STATIC]
     scripts_governance_engine_py__classify_changed_paths_48->>scripts_governance_engine_py__classify_path_49: classify_path [STATIC]
-    scripts_governance_engine_py__cli_action_50->>scripts_script_runner_py__invoke_main_88: invoke_main [STATIC]
+    scripts_governance_engine_py__cli_action_50->>scripts_script_runner_py__invoke_main_97: invoke_main [STATIC]
     scripts_governance_engine_py__collect_changed_paths_51->>scripts_governance_engine_py__git_z_57: git_z [STATIC]
     scripts_governance_engine_py__governed_status_58->>scripts_governance_engine_py__git_56: git [STATIC]
     scripts_governance_engine_py__main_59->>scripts_governance_engine_py__build_dag_46: build_dag [STATIC]
@@ -215,37 +236,78 @@ sequenceDiagram
     scripts_governance_engine_py__main_59->>scripts_governance_engine_py__effective_mode_55: effective_mode [STATIC]
     scripts_governance_engine_py__main_59->>scripts_governance_engine_py__planned_node_names_60: planned_node_names [STATIC]
     scripts_governance_engine_py__main_59->>scripts_governance_engine_py__state_base_61: state_base [STATIC]
-    scripts_governance_engine_py__main_59->>scripts_project_snapshot_py__ProjectSnapshot_capture_73: ProjectSnapshot.capture [STATIC]
-    scripts_governance_engine_py__main_59->>scripts_project_snapshot_py__ProjectSnapshot_metrics_76: snapshot.metrics [STATIC]
-    scripts_governance_engine_py__main_59->>scripts_project_snapshot_py__active_project_snapshot_83: active_project_snapshot [STATIC]
+    scripts_governance_engine_py__main_59->>scripts_project_snapshot_py__ProjectSnapshot_capture_77: ProjectSnapshot.capture [STATIC]
+    scripts_governance_engine_py__main_59->>scripts_project_snapshot_py__ProjectSnapshot_metrics_80: snapshot.metrics [STATIC]
+    scripts_governance_engine_py__main_59->>scripts_project_snapshot_py__active_project_snapshot_87: active_project_snapshot [STATIC]
     scripts_governance_engine_py__planned_node_names_60->>scripts_governance_engine_py__develop_node_names_54: develop_node_names [STATIC]
-    scripts_governance_engine_py__state_base_61->>scripts_project_snapshot_py__ProjectSnapshot_read_text_78: path.read_text [STATIC]
-    scripts_initialize_project_truth_py__ensure_gitattributes_63->>scripts_project_snapshot_py__ProjectSnapshot_read_text_78: path.read_text [STATIC]
+    scripts_governance_engine_py__state_base_61->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
+    scripts_initialize_project_truth_py__ensure_gitattributes_63->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
     scripts_initialize_project_truth_py__main_64->>scripts_initialize_project_truth_py__copy_file_62: copy_file [STATIC]
     scripts_initialize_project_truth_py__main_64->>scripts_initialize_project_truth_py__ensure_gitattributes_63: ensure_gitattributes [STATIC]
-    scripts_project_profile_py__documentation_settings_68->>scripts_project_profile_py___bool_value_65: _bool_value [STATIC]
-    scripts_project_profile_py__documentation_settings_68->>scripts_project_profile_py__normalized_profile_69: normalized_profile [STATIC]
-    scripts_project_profile_py__parse_profile_70->>scripts_project_profile_py___clean_66: _clean [STATIC]
-    scripts_project_profile_py__parse_profile_70->>scripts_project_snapshot_py__ProjectSnapshot_read_text_78: path.read_text [STATIC]
-    scripts_project_profile_py__required_docs_71->>scripts_project_profile_py__contract_settings_67: contract_settings [STATIC]
-    scripts_project_profile_py__required_docs_71->>scripts_project_profile_py__normalized_profile_69: normalized_profile [STATIC]
-    scripts_project_profile_py__required_docs_71->>scripts_project_profile_py__sequence_settings_72: sequence_settings [STATIC]
-    scripts_project_profile_py__sequence_settings_72->>scripts_project_profile_py___bool_value_65: _bool_value [STATIC]
-    scripts_project_profile_py__sequence_settings_72->>scripts_project_profile_py__normalized_profile_69: normalized_profile [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_73->>scripts_project_snapshot_py__SnapshotError_79: SnapshotError [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_73->>scripts_project_snapshot_py__SnapshotFile_80: SnapshotFile [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_73->>scripts_project_snapshot_py___git_optional_82: _git_optional [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_73->>scripts_project_snapshot_py__canonical_source_bytes_85: canonical_source_bytes [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_73->>scripts_project_snapshot_py__discover_source_paths_86: discover_source_paths [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_capture_73->>scripts_selftest_sequence_human_view_py__sha256_89: hashlib.sha256 [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_entry_74->>scripts_project_snapshot_py__SnapshotError_79: SnapshotError [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_77->>scripts_project_snapshot_py__ProjectSnapshot_entry_74: self.entry [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_read_text_78->>scripts_project_snapshot_py__ProjectSnapshot_entry_74: self.entry [STATIC]
-    scripts_project_snapshot_py___git_optional_82->>scripts_project_snapshot_py___git_81: _git [STATIC]
-    scripts_project_snapshot_py__canonical_source_bytes_85->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_77: path.read_bytes [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_86->>scripts_project_snapshot_py__SnapshotError_79: SnapshotError [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_86->>scripts_project_snapshot_py___git_81: _git [STATIC]
-    scripts_project_snapshot_py__resolve_snapshot_87->>scripts_project_snapshot_py__ProjectSnapshot_capture_73: ProjectSnapshot.capture [STATIC]
-    scripts_project_snapshot_py__resolve_snapshot_87->>scripts_project_snapshot_py__SnapshotError_79: SnapshotError [STATIC]
-    scripts_project_snapshot_py__resolve_snapshot_87->>scripts_project_snapshot_py__active_snapshot_for_84: active_snapshot_for [STATIC]
-    scripts_selftest_sequence_human_view_py__sha256_89->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_77: path.read_bytes [STATIC]
+    scripts_initialize_project_truth_py__main_64->>scripts_toolchain_identity_py__write_toolchain_lock_107: write_toolchain_lock [STATIC]
+    scripts_migrate_governance_v1_py__add_profile_version_65->>scripts_project_profile_py__parse_profile_74: parse_profile [STATIC]
+    scripts_migrate_governance_v1_py__add_profile_version_65->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
+    scripts_migrate_governance_v1_py__add_profile_version_65->>scripts_schema_contract_py__require_profile_schema_version_95: require_profile_schema_version [STATIC]
+    scripts_migrate_governance_v1_py__add_spec_version_66->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
+    scripts_migrate_governance_v1_py__inspect_specs_67->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
+    scripts_migrate_governance_v1_py__inspect_specs_67->>scripts_schema_contract_py__governed_spec_paths_93: governed_spec_paths [STATIC]
+    scripts_migrate_governance_v1_py__inspect_specs_67->>scripts_schema_contract_py__require_json_schema_version_94: require_json_schema_version [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_migrate_governance_v1_py__add_profile_version_65: add_profile_version [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_migrate_governance_v1_py__add_spec_version_66: add_spec_version [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_migrate_governance_v1_py__inspect_specs_67: inspect_specs [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_project_profile_py__parse_profile_74: parse_profile [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_schema_contract_py__require_profile_schema_version_95: require_profile_schema_version [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_schema_contract_py__validate_spec_tree_versions_96: validate_spec_tree_versions [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_toolchain_identity_py__sync_vendored_tools_103: sync_vendored_tools [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_toolchain_identity_py__validate_toolchain_lock_106: validate_toolchain_lock [STATIC]
+    scripts_migrate_governance_v1_py__main_68->>scripts_toolchain_identity_py__write_toolchain_lock_107: write_toolchain_lock [STATIC]
+    scripts_project_profile_py__documentation_settings_72->>scripts_project_profile_py___bool_value_69: _bool_value [STATIC]
+    scripts_project_profile_py__documentation_settings_72->>scripts_project_profile_py__normalized_profile_73: normalized_profile [STATIC]
+    scripts_project_profile_py__parse_profile_74->>scripts_project_profile_py___clean_70: _clean [STATIC]
+    scripts_project_profile_py__parse_profile_74->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
+    scripts_project_profile_py__parse_profile_74->>scripts_schema_contract_py__require_profile_schema_version_95: require_profile_schema_version [STATIC]
+    scripts_project_profile_py__required_docs_75->>scripts_project_profile_py__contract_settings_71: contract_settings [STATIC]
+    scripts_project_profile_py__required_docs_75->>scripts_project_profile_py__normalized_profile_73: normalized_profile [STATIC]
+    scripts_project_profile_py__required_docs_75->>scripts_project_profile_py__sequence_settings_76: sequence_settings [STATIC]
+    scripts_project_profile_py__sequence_settings_76->>scripts_project_profile_py___bool_value_69: _bool_value [STATIC]
+    scripts_project_profile_py__sequence_settings_76->>scripts_project_profile_py__normalized_profile_73: normalized_profile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_77->>scripts_project_snapshot_py__SnapshotError_83: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_77->>scripts_project_snapshot_py__SnapshotFile_84: SnapshotFile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_77->>scripts_project_snapshot_py___git_optional_86: _git_optional [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_77->>scripts_project_snapshot_py__canonical_source_bytes_89: canonical_source_bytes [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_77->>scripts_project_snapshot_py__discover_source_paths_90: discover_source_paths [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_77->>scripts_selftest_sequence_human_view_py__sha256_98: hashlib.sha256 [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_78->>scripts_project_snapshot_py__SnapshotError_83: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81->>scripts_project_snapshot_py__ProjectSnapshot_entry_78: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_82->>scripts_project_snapshot_py__ProjectSnapshot_entry_78: self.entry [STATIC]
+    scripts_project_snapshot_py___git_optional_86->>scripts_project_snapshot_py___git_85: _git [STATIC]
+    scripts_project_snapshot_py__canonical_source_bytes_89->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: path.read_bytes [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_90->>scripts_project_snapshot_py__SnapshotError_83: SnapshotError [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_90->>scripts_project_snapshot_py___git_85: _git [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_91->>scripts_project_snapshot_py__ProjectSnapshot_capture_77: ProjectSnapshot.capture [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_91->>scripts_project_snapshot_py__SnapshotError_83: SnapshotError [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_91->>scripts_project_snapshot_py__active_snapshot_for_88: active_snapshot_for [STATIC]
+    scripts_schema_contract_py__require_profile_schema_version_95->>scripts_schema_contract_py___profile_version_92: _profile_version [STATIC]
+    scripts_schema_contract_py__validate_spec_tree_versions_96->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: path.read_text [STATIC]
+    scripts_schema_contract_py__validate_spec_tree_versions_96->>scripts_schema_contract_py__governed_spec_paths_93: governed_spec_paths [STATIC]
+    scripts_schema_contract_py__validate_spec_tree_versions_96->>scripts_schema_contract_py__require_json_schema_version_94: require_json_schema_version [STATIC]
+    scripts_selftest_sequence_human_view_py__sha256_98->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: path.read_bytes [STATIC]
+    scripts_toolchain_identity_py___sha256_100->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: path.read_bytes [STATIC]
+    scripts_toolchain_identity_py___sha256_100->>scripts_selftest_sequence_human_view_py__sha256_98: hashlib.sha256 [STATIC]
+    scripts_toolchain_identity_py__producer_metadata_101->>scripts_toolchain_identity_py___git_value_99: _git_value [STATIC]
+    scripts_toolchain_identity_py__sync_vendored_tools_103->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: dst.read_bytes [STATIC]
+    scripts_toolchain_identity_py__sync_vendored_tools_103->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_81: src.read_bytes [STATIC]
+    scripts_toolchain_identity_py__sync_vendored_tools_103->>scripts_toolchain_identity_py__source_tool_paths_102: source_tool_paths [STATIC]
+    scripts_toolchain_identity_py__tool_manifest_104->>scripts_toolchain_identity_py___sha256_100: _sha256 [STATIC]
+    scripts_toolchain_identity_py__toolchain_digest_105->>scripts_selftest_sequence_human_view_py__sha256_98: hashlib.sha256 [STATIC]
+    scripts_toolchain_identity_py__validate_toolchain_lock_106->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: lock_path.read_text [STATIC]
+    scripts_toolchain_identity_py__validate_toolchain_lock_106->>scripts_toolchain_identity_py__tool_manifest_104: tool_manifest [STATIC]
+    scripts_toolchain_identity_py__validate_toolchain_lock_106->>scripts_toolchain_identity_py__toolchain_digest_105: toolchain_digest [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_107->>scripts_project_snapshot_py__ProjectSnapshot_read_text_82: target.read_text [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_107->>scripts_toolchain_identity_py__producer_metadata_101: producer_metadata [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_107->>scripts_toolchain_identity_py__tool_manifest_104: tool_manifest [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_107->>scripts_toolchain_identity_py__toolchain_digest_105: toolchain_digest [STATIC]
+    scripts_validate_schema_toolchain_py__main_108->>scripts_validate_schema_toolchain_py__validate_109: validate [STATIC]
+    scripts_validate_schema_toolchain_py__validate_109->>scripts_project_profile_py__parse_profile_74: parse_profile [STATIC]
+    scripts_validate_schema_toolchain_py__validate_109->>scripts_schema_contract_py__validate_spec_tree_versions_96: validate_spec_tree_versions [STATIC]
+    scripts_validate_schema_toolchain_py__validate_109->>scripts_toolchain_identity_py__validate_toolchain_lock_106: validate_toolchain_lock [STATIC]

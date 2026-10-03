@@ -7,7 +7,7 @@
 SW2-05 acceptance covers Schema & Toolchain Versioning only: profile/spec schema versions, auditable toolchain identity, deterministic supported migrations, and release compatibility policy. SW2-01 through SW2-04 accepted governance, performance, sequence, and documentation guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository phase unless implementation introduces behavior requiring stronger runtime evidence.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
+Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -19,6 +19,8 @@ Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd787
 ## Test commands
 
 - python -m compileall -q scripts
+- python scripts/validate_schema_toolchain.py --root .
+- python scripts/selftest_schema_toolchain.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py

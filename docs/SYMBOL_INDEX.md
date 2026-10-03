@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
+Source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -24,20 +24,24 @@ responsibility, callers, or state ownership.
 | scripts/generate_symbol_index.py | 13 | 1 | 7 | 5 |
 | scripts/governance_engine.py | 27 | 3 | 17 | 7 |
 | scripts/initialize_project_truth.py | 3 | 0 | 3 | 0 |
+| scripts/migrate_governance_v1.py | 4 | 0 | 4 | 0 |
 | scripts/project_profile.py | 10 | 0 | 10 | 0 |
 | scripts/project_snapshot.py | 18 | 3 | 7 | 8 |
+| scripts/schema_contract.py | 5 | 0 | 5 | 0 |
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_governance_engine.py | 15 | 0 | 11 | 4 |
 | scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_schema_toolchain.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_sequence_call_resolution.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_sequence_human_view.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_strict_project_workflow.py | 8 | 0 | 8 | 0 |
 | scripts/sequence_contract.py | 14 | 0 | 14 | 0 |
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 3 | 0 | 3 | 0 |
+| scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
 | scripts/validate_cross_document_consistency.py | 22 | 0 | 22 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
 | scripts/validate_handoff.py | 5 | 0 | 5 | 0 |
@@ -45,6 +49,7 @@ responsibility, callers, or state ownership.
 | scripts/validate_project_docs.py | 1 | 0 | 1 | 0 |
 | scripts/validate_project_truth.py | 6 | 0 | 6 | 0 |
 | scripts/validate_public_docs.py | 2 | 0 | 2 | 0 |
+| scripts/validate_schema_toolchain.py | 2 | 0 | 2 | 0 |
 | scripts/validate_sequence_contract.py | 5 | 0 | 5 | 0 |
 | scripts/validate_sequence_human_view.py | 3 | 0 | 3 | 0 |
 | scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
@@ -105,44 +110,44 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| git_root | function | 53-62 |
-| load_json | function | 65-69 |
-| canonical_bytes | function | 72-78 |
-| canonical_generated_bytes | function | 81-83 |
-| clean | function | 86-87 |
-| cell | function | 90-91 |
-| bullets | function | 94-96 |
-| normalize_markdown | function | 99-132 |
-| read_specs | function | 135-155 |
-| validate_inputs | function | 158-270 |
-| input_digest | function | 273-292 |
-| generated_header | function | 295-299 |
-| claim_backlink_comment | function | 302-311 |
-| auth_lookup | function | 314-318 |
-| render_system_overview | function | 321-591 |
-| render_project_manifest | function | 594-696 |
-| render_current_state | function | 699-800 |
-| render_roadmap | function | 803-863 |
-| render_authority | function | 866-901 |
-| render_architecture | function | 904-983 |
-| render_workflows | function | 986-1052 |
-| render_sequence | function | 1055-1106 |
-| render_modules | function | 1109-1138 |
-| render_symbols | function | 1141-1228 |
-| render_flows | function | 1231-1294 |
-| render_acceptance | function | 1297-1389 |
-| render_doc_sync | function | 1392-1436 |
-| render_truth | function | 1439-1585 |
-| render_api | function | 1588-1615 |
-| render_data | function | 1618-1643 |
-| render_ui | function | 1646-1671 |
-| render_runbook | function | 1674-1689 |
-| render_decisions | function | 1692-1710 |
-| render_defects | function | 1713-1736 |
-| render_changelog | function | 1739-1755 |
-| render_glossary | function | 1758-1766 |
-| render_all | function | 1769-1850 |
-| main | function | 1853-1992 |
+| git_root | function | 54-63 |
+| load_json | function | 66-70 |
+| canonical_bytes | function | 73-79 |
+| canonical_generated_bytes | function | 82-84 |
+| clean | function | 87-88 |
+| cell | function | 91-92 |
+| bullets | function | 95-97 |
+| normalize_markdown | function | 100-133 |
+| read_specs | function | 136-159 |
+| validate_inputs | function | 162-274 |
+| input_digest | function | 277-296 |
+| generated_header | function | 299-303 |
+| claim_backlink_comment | function | 306-315 |
+| auth_lookup | function | 318-322 |
+| render_system_overview | function | 325-595 |
+| render_project_manifest | function | 598-700 |
+| render_current_state | function | 703-804 |
+| render_roadmap | function | 807-867 |
+| render_authority | function | 870-905 |
+| render_architecture | function | 908-987 |
+| render_workflows | function | 990-1056 |
+| render_sequence | function | 1059-1110 |
+| render_modules | function | 1113-1142 |
+| render_symbols | function | 1145-1232 |
+| render_flows | function | 1235-1298 |
+| render_acceptance | function | 1301-1393 |
+| render_doc_sync | function | 1396-1440 |
+| render_truth | function | 1443-1589 |
+| render_api | function | 1592-1619 |
+| render_data | function | 1622-1647 |
+| render_ui | function | 1650-1675 |
+| render_runbook | function | 1678-1693 |
+| render_decisions | function | 1696-1714 |
+| render_defects | function | 1717-1740 |
+| render_changelog | function | 1743-1759 |
+| render_glossary | function | 1762-1770 |
+| render_all | function | 1773-1854 |
+| main | function | 1857-1996 |
 
 </details>
 
@@ -241,9 +246,21 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| ensure_gitattributes | function | 20-30 |
-| copy_file | function | 33-38 |
-| main | function | 41-126 |
+| ensure_gitattributes | function | 22-32 |
+| copy_file | function | 35-40 |
+| main | function | 43-133 |
+
+</details>
+
+<details>
+<summary><code>scripts/migrate_governance_v1.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| add_profile_version | function | 26-40 |
+| inspect_specs | function | 43-53 |
+| add_spec_version | function | 56-64 |
+| main | function | 67-133 |
 
 </details>
 
@@ -252,16 +269,16 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _clean | function | 81-85 |
-| parse_profile | function | 88-128 |
-| normalized_profile | function | 131-135 |
-| contract_settings | function | 138-149 |
-| _bool_value | function | 152-158 |
-| runtime_settings | function | 161-167 |
-| documentation_settings | function | 170-191 |
-| sequence_settings | function | 194-209 |
-| required_docs | function | 212-224 |
-| validate_profile | function | 227-260 |
+| _clean | function | 83-87 |
+| parse_profile | function | 90-132 |
+| normalized_profile | function | 135-139 |
+| contract_settings | function | 142-153 |
+| _bool_value | function | 156-162 |
+| runtime_settings | function | 165-171 |
+| documentation_settings | function | 174-195 |
+| sequence_settings | function | 198-213 |
+| required_docs | function | 216-228 |
+| validate_profile | function | 231-264 |
 
 </details>
 
@@ -288,6 +305,19 @@ responsibility, callers, or state ownership.
 | active_project_snapshot | function | 223-228 |
 | active_snapshot_for | function | 231-235 |
 | resolve_snapshot | function | 238-247 |
+
+</details>
+
+<details>
+<summary><code>scripts/schema_contract.py</code> — 5 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _profile_version | function | 15-23 |
+| require_profile_schema_version | function | 26-41 |
+| require_json_schema_version | function | 44-63 |
+| governed_spec_paths | function | 66-75 |
+| validate_spec_tree_versions | function | 78-88 |
 
 </details>
 
@@ -363,6 +393,17 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_schema_toolchain.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 13-31 |
+| write_json | function | 34-35 |
+| main | function | 38-162 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_sequence_call_resolution.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -395,7 +436,7 @@ responsibility, callers, or state ownership.
 | sync_and_commit_case | function | 92-102 |
 | assert_cross_failure | function | 105-125 |
 | run_relation_and_truth_regressions | function | 128-209 |
-| main | function | 212-864 |
+| main | function | 212-865 |
 
 </details>
 
@@ -446,6 +487,23 @@ responsibility, callers, or state ownership.
 | run_main | function | 30-31 |
 | sync_once | function | 34-127 |
 | main | function | 130-142 |
+
+</details>
+
+<details>
+<summary><code>scripts/toolchain_identity.py</code> — 9 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _sha256 | function | 21-22 |
+| source_tool_paths | function | 25-31 |
+| tool_manifest | function | 34-41 |
+| toolchain_digest | function | 44-51 |
+| _git_value | function | 54-62 |
+| producer_metadata | function | 65-69 |
+| sync_vendored_tools | function | 72-86 |
+| write_toolchain_lock | function | 89-114 |
+| validate_toolchain_lock | function | 117-184 |
 
 </details>
 
@@ -541,8 +599,18 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| validate | function | 63-140 |
-| main | function | 143-157 |
+| validate | function | 65-142 |
+| main | function | 145-159 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_schema_toolchain.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| validate | function | 15-54 |
+| main | function | 57-72 |
 
 </details>
 

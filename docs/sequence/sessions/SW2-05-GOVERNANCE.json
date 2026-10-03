@@ -4,12 +4,14 @@
     "diagram": "docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd",
     "entries": [
       "scripts/initialize_project_truth.py::main",
+      "scripts/migrate_governance_v1.py::main",
+      "scripts/validate_schema_toolchain.py::main",
       "scripts/project_profile.py::parse_profile",
       "scripts/generate_project_docs.py::main",
       "scripts/governance_engine.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-05-GOVERNANCE.actual.json",
-    "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
+    "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
   },
   "critical": true,
   "evidence_boundary": "SW2-05 DURING evidence binds the current schema/profile parsing, initialization, Project Truth generation, and governance-engine path at phase opening. Explicit version contracts, toolchain locking, supported migrations, and compatibility policy remain NOT_PROVEN until dedicated implementation evidence exists.",
@@ -19,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-05-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
+    "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
   },
   "implementation_base_sha": "733cf7dcb6def0fc1adc36cee7cc5243b8eaf060",
   "mode": "DURING",
@@ -44,6 +46,8 @@
   "tests": [
     "scripts/selftest_governance_engine.py",
     "scripts/selftest_project_truth_compiler.py",
-    "scripts/selftest_strict_project_workflow.py"
+    "scripts/selftest_strict_project_workflow.py",
+    "scripts/selftest_schema_toolchain.py",
+    "scripts/validate_schema_toolchain.py"
   ]
 }

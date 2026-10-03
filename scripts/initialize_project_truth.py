@@ -7,6 +7,8 @@ import argparse
 import shutil
 from pathlib import Path
 
+from toolchain_identity import SOURCE_ONLY_TOOLS, write_toolchain_lock
+
 
 GITATTRIBUTES_MARKER = "# BEGIN SKILL_WORKFLOW GOVERNANCE EOL"
 GITATTRIBUTES_BLOCK = """# BEGIN SKILL_WORKFLOW GOVERNANCE EOL
@@ -102,10 +104,7 @@ def main() -> int:
         tools_root = spec_root / "tools"
         tools_root.mkdir(parents=True, exist_ok=True)
         source_tools = Path(__file__).resolve().parent
-        excluded_tools = {
-            "initialize_project_truth.py",
-            "selftest_project_truth_compiler.py",
-        }
+        excluded_tools = SOURCE_ONLY_TOOLS
         for src in sorted(source_tools.glob("*.py")):
             if src.name in excluded_tools:
                 continue
@@ -117,6 +116,14 @@ def main() -> int:
             else:
                 skips += 1
                 print("SKIP " + dst.relative_to(root).as_posix())
+
+        lock_result = write_toolchain_lock(root, spec_root, tools_root, skill_root)
+        if lock_result == "WRITE":
+            writes += 1
+            print("WRITE " + (spec_root / "toolchain.lock.json").relative_to(root).as_posix())
+        else:
+            skips += 1
+            print("SKIP " + (spec_root / "toolchain.lock.json").relative_to(root).as_posix())
 
     print("SPEC_ROOT=" + str(spec_root))
     print("DOCS_ROOT=" + str(docs_root))

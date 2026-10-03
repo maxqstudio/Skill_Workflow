@@ -49,6 +49,8 @@
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
+    "python scripts/validate_schema_toolchain.py --root .",
+    "python scripts/selftest_schema_toolchain.py",
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
