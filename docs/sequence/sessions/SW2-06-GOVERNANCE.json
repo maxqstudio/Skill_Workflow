@@ -14,7 +14,7 @@
     "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
   },
   "critical": true,
-  "evidence_boundary": "SW2-06 DURING implementation evidence covers the normalized analyzer contract, preserved Python static analysis, JS/TS literal HTTP sequence analysis, and fail-safe generic inventory fallback. This session remains implementation evidence only; SW2-06 requirements and claims stay NOT_PROVEN until exact clean permanent CI accepts them. Dynamic dispatch, dependency injection, reflection, callbacks/events, framework magic, runtime ordering, and unresolved cross-language behavior remain NOT_PROVEN.",
+  "evidence_boundary": "SW2-06 accepted historical evidence: normalized language-independent analyzer contract, preserved Python and JS/TS regressions, inventory-only fail-safe fallback, and explicit NOT_PROVEN boundary for unsupported dynamic behavior.",
   "human_view": {
     "diagram": "docs/sequence/generated/SW2-06-GOVERNANCE.human.mmd",
     "document": "docs/sequence/views/SW2-06-GOVERNANCE.md",
@@ -39,9 +39,9 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "CURRENT",
+  "scope": "HISTORICAL",
   "session_id": "SW2-06-GOVERNANCE",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_analyzer_contract.py",

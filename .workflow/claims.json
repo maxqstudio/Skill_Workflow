@@ -277,6 +277,56 @@
       "tests": [
         "scripts/selftest_analyzer_contract.py"
       ]
+    },
+    {
+      "claim": "Public repository health, security, contribution, and license metadata match declared governance, with license choice explicitly approved by the Owner.",
+      "documents": [
+        "ROADMAP.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-PUBLIC-REPO-HEALTH",
+      "runtime_evidence": [],
+      "source_owners": [
+        "README.md",
+        "scripts/validate_public_docs.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_public_docs.py",
+        "scripts/validate_public_docs.py"
+      ]
+    },
+    {
+      "claim": "Actual GitHub merge and ruleset enforcement for main matches the repository's declared fail-closed governance requirements.",
+      "documents": [
+        "ROADMAP.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-MERGE-ENFORCEMENT",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        ".github/workflows/governance-selftest.yml"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": []
+    },
+    {
+      "claim": "The repository has a repeatable evidence-backed release process that preserves exact tested-head provenance and does not publish stable V2 before SW2-09 acceptance.",
+      "documents": [
+        "ROADMAP.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-RELEASE-GOVERNANCE",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        ".github/workflows/governance-selftest.yml"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_strict_project_workflow.py"
+      ]
     }
   ],
   "relations": [
