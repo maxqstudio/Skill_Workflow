@@ -113,12 +113,11 @@ jobs:
           python scripts/sync_project_truth.py --root .
           python scripts/validate_project_docs.py --root .
           python scripts/validate_human_comprehension.py --root . --require-pass
-          # Clean-worktree cross-document validation runs on the post-commit cleanup candidate.
+          # Clean-worktree cross-document and Project Truth validators run on the post-commit cleanup candidate.
           python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json --report artifacts/sequence/SW2-03-GOVERNANCE.acceptance.json
           python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
           python scripts/validate_sequence_sessions.py --root .
           python scripts/validate_handoff.py --root .
-          python scripts/validate_project_truth.py --root .
 
       - name: Assert evidence remains phase-scoped
         shell: bash
