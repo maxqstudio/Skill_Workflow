@@ -1,0 +1,42 @@
+name: SW2-05 Fixture Repair
+
+on:
+  push:
+    branches:
+      - work/sw2-05-schema-toolchain-versioning
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-05-schema-toolchain-versioning
+          fetch-depth: 0
+      - name: Add explicit v1 schema to STRICT fixture profile
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/selftest_strict_project_workflow.py')
+          text = path.read_text(encoding='utf-8')
+          old = '        profile = """profile: strict\n'
+          new = '        profile = """schema_version: 1\nprofile: strict\n'
+          if old not in text:
+              raise SystemExit('STRICT_PROFILE_FIXTURE_ANCHOR_NOT_FOUND')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+          print('STRICT_FIXTURE_PROFILE_SCHEMA_V1=PASS')
+          PY
+      - name: Commit fixture compatibility repair
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/selftest_strict_project_workflow.py
+          git diff --cached --quiet && { echo "NO_FIXTURE_REPAIR_DIFF"; exit 1; }
+          git commit -m "test(sw2-05): version STRICT profile fixture"
+          git push origin HEAD:work/sw2-05-schema-toolchain-versioning
