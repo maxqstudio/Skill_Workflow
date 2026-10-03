@@ -1,0 +1,142 @@
+name: SW2-04 Promote Evidence
+
+on:
+  push:
+    branches:
+      - work/sw2-04-documentation-system-v2
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      ACCEPTED_CANDIDATE: "ce1730687c87e2829dfb12f0bf8cb5633ca5125f"
+      ACCEPTED_SOURCE_DIGEST: "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
+
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-04-documentation-system-v2
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert accepted candidate and source binding
+        shell: bash
+        run: |
+          git merge-base --is-ancestor "$ACCEPTED_CANDIDATE" HEAD
+          python - <<'PY'
+          import json, os
+          facts = json.load(open('.workflow/generated/code_facts.json', encoding='utf-8'))
+          session = json.load(open('docs/sequence/sessions/SW2-04-GOVERNANCE.json', encoding='utf-8'))
+          expected = os.environ['ACCEPTED_SOURCE_DIGEST']
+          assert facts['source_summary']['digest'] == expected, facts['source_summary']
+          assert session['actual']['source_digest'] == expected, session
+          assert session['human_view']['source_digest'] == expected, session
+          print('SW2_04_ACCEPTED_SOURCE_BINDING=PASS')
+          PY
+
+      - name: Promote SW2-04 requirements and claims
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          acceptance = load('.workflow/acceptance.json')
+          evidence = {
+              'SW2-04-R1': 'PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: README is a concise landing page and validate_public_docs.py plus selftest_public_docs.py passed in Governance Selftest run 37095620587 on Ubuntu and Windows. The validator rejects reintroduction of deep reference-manual sections.',
+              'SW2-04-R2': 'PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: docs/README.md and docs/handbook/ provide stable getting-started, concepts, guides, reference, architecture, and sequence navigation; public-doc navigation/tamper regressions and cross-document regressions passed on Ubuntu and Windows in run 37095620587.',
+              'SW2-04-R3': 'PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: public guidance is separated under docs/handbook while canonical generated Project Truth paths remain unchanged; SYMBOL_INDEX default presentation is file-level summary plus collapsible complete symbol detail, full code_facts.json remains available, and legacy/V2 handoff compatibility plus tamper rejection passed on Ubuntu and Windows.',
+              'SW2-04-R4': 'PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: Self Governance run 37095620543 completed final Governance Engine acceptance, Governance Selftest 37095620587 passed compiler/STRICT/cross-document/read-only verification on Ubuntu and Windows, SW2 Sequence Evidence 37095620519 passed current-session generation and Mermaid rendering, and engine/consumer performance runs 37095620515 / 37095620594 succeeded.'
+          }
+          requirements = {item['id']: item for item in acceptance['requirements']}
+          assert set(requirements) == set(evidence), requirements
+          for req_id, proof in evidence.items():
+              requirements[req_id]['status'] = 'PASS'
+              requirements[req_id]['evidence'] = proof
+          write('.workflow/acceptance.json', acceptance)
+
+          claims = load('.workflow/claims.json')
+          claim_map = {item['id']: item for item in claims['claims']}
+          for claim_id in ('TRUTH-SW2-DOCS-PUBLIC-IA', 'TRUTH-SW2-DOCS-SEPARATION'):
+              assert claim_id in claim_map
+              claim_map[claim_id]['status'] = 'PASS'
+          write('.workflow/claims.json', claims)
+
+          state = load('.workflow/state.json')
+          assert state['phase'] == 'SW2-04' and state['status'] == 'IN_PROGRESS', state
+          proof = (
+              'SW2-04 Documentation System V2 feature acceptance is proven on exact cleanup candidate '
+              'ce1730687c87e2829dfb12f0bf8cb5633ca5125f: Self Governance 37095620543, '
+              'Governance Selftest 37095620587 on Ubuntu and Windows, SW2 Sequence Evidence '
+              '37095620519, SW2 Engine Performance 37095620515, and SW2 Consumer Engine '
+              'Performance 37095620594 all succeeded. Public product documentation is separated '
+              'from generated Project Truth without moving consumer canonical paths; generated '
+              'SYMBOL_INDEX uses bounded collapsible presentation while preserving full machine facts.'
+          )
+          if proof not in state.setdefault('proven', []):
+              state['proven'].append(proof)
+          state['not_proven'] = [item for item in state.get('not_proven', []) if not item.startswith('SW2-04 ')]
+          state['next_authorized_actions'] = [
+              'Run post-promotion clean-worktree permanent CI on the exact cleanup SHA.',
+              'Close SW2-04 only after post-promotion permanent CI is fully green.',
+              'Open SW2-05 Schema and Toolchain Versioning fail-closed only as a separate phase transaction.'
+          ]
+          write('.workflow/state.json', state)
+          print('SW2_04_REQUIREMENTS_PROMOTED=PASS')
+          print('SW2_04_CLAIMS_PROMOTED=PASS')
+          print('SW2_04_PHASE_REMAINS_OPEN=PASS')
+          PY
+
+      - name: Regenerate deterministic Project Truth
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-04-GOVERNANCE.json --report artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-04-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+
+      - name: Assert promotion remains phase-scoped
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(item['status'] == 'PASS' for item in acceptance['requirements'])
+          claims = json.load(open('.workflow/claims.json', encoding='utf-8'))
+          claim_map = {item['id']: item for item in claims['claims']}
+          assert claim_map['TRUTH-SW2-DOCS-PUBLIC-IA']['status'] == 'PASS'
+          assert claim_map['TRUTH-SW2-DOCS-SEPARATION']['status'] == 'PASS'
+          state = json.load(open('.workflow/state.json', encoding='utf-8'))
+          roadmap = json.load(open('.workflow/roadmap.json', encoding='utf-8'))
+          assert state['phase'] == 'SW2-04' and state['status'] == 'IN_PROGRESS'
+          assert roadmap['current_phase'] == 'SW2-04'
+          print('SW2_04_PROMOTION_ASSERTIONS=PASS')
+          PY
+
+      - name: Commit promotion evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .workflow docs artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json
+          git diff --cached --quiet && { echo "NO_PROMOTION_DIFF"; exit 1; }
+          git commit -m "gov(sw2-04): promote Documentation System V2 acceptance"
+          git push origin HEAD:work/sw2-04-documentation-system-v2
