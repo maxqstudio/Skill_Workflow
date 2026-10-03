@@ -50,7 +50,7 @@ jobs:
       - name: Governance Engine V2 regression
         run: python scripts/selftest_governance_engine.py
 
-      - name: Run synchronized Governance Engine V2
+      - name: Run final Governance Engine V2 acceptance
         shell: bash
         run: |
           expected="${{ github.event.pull_request.head.sha || github.sha }}"
@@ -59,7 +59,7 @@ jobs:
           python scripts/governance_engine.py \
             --root . \
             --base "$base" \
-            --sync \
+            --mode finalize \
             --expected-head "$expected"
 
       - name: Upload generated governance preview
@@ -85,12 +85,12 @@ jobs:
             exit 1
           fi
 
-      - name: Require engine path to remain read-only after synchronization
+      - name: Require finalize path to remain read-only after synchronization
         shell: bash
         run: |
           status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs)"
           if [ -n "$status" ]; then
-            echo "Governance Engine V2 mutated governed state unexpectedly:"
+            echo "Finalize mutated governed state unexpectedly:"
             printf '%s\n' "$status"
             exit 1
           fi

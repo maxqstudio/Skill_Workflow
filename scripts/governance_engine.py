@@ -1,27 +1,35 @@
 #!/usr/bin/env python3
-"""Governance Engine V2: one immutable snapshot plus a fail-closed DAG.
+"""Governance Engine V2: immutable snapshot, fail-closed DAG, and execution modes.
 
-SW2-01 changes orchestration only. Develop/verify/finalize execution modes remain
-SW2-02. Existing standalone validators keep their full fail-closed behavior;
-the engine may skip a nested check only when that check is already a successful
-DAG dependency in the same process and source snapshot.
+SW2-02 adds develop, verify, and finalize modes without changing standalone
+validator behavior. Fast modes may reduce intermediate work only when impact is
+known. Unknown impact escalates. Finalize remains the only complete acceptance
+mode and requires an exact expected HEAD.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
+import sys
+import tempfile
 import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
+# Direct engine execution must not create repository-local __pycache__.
+sys.dont_write_bytecode = True
+
 import sync_project_truth
 import validate_cross_document_consistency
+import validate_handoff
 import validate_human_comprehension
 import validate_project_docs
 import validate_project_truth
+import validate_sequence_sessions
 from project_snapshot import ProjectSnapshot, active_project_snapshot
 from script_runner import invoke_main
 
@@ -123,12 +131,85 @@ class ValidationDAG:
         return results
 
 
+ENGINE_DEVELOP_FILES = {
+    "scripts/governance_engine.py",
+    "scripts/project_snapshot.py",
+    "scripts/extract_project_facts.py",
+    "scripts/script_runner.py",
+}
+SEQUENCE_DEVELOP_FILES = {
+    "scripts/sequence_contract.py",
+    "scripts/generate_sequence_actual.py",
+    "scripts/generate_sequence_plan.py",
+    "scripts/validate_sequence_contract.py",
+    "scripts/validate_sequence_sessions.py",
+}
+COMPILER_DEVELOP_FILES = {
+    "scripts/generate_project_docs.py",
+    "scripts/sync_project_truth.py",
+    "scripts/validate_project_docs.py",
+    "scripts/validate_doc_quality.py",
+    "scripts/project_profile.py",
+}
+CROSSDOC_DEVELOP_FILES = {
+    "scripts/validate_cross_document_consistency.py",
+    "scripts/validate_human_comprehension.py",
+    "scripts/validate_handoff.py",
+    "scripts/validate_project_truth.py",
+}
+DEVELOP_TEST_MAP = {
+    "scripts/selftest_governance_engine.py": "engine_regression",
+    "scripts/selftest_sequence_call_resolution.py": "sequence_regression",
+    "scripts/selftest_cross_document_regressions.py": "cross_document_regression",
+    "scripts/selftest_project_truth_compiler.py": "compiler_selftest",
+}
+VERIFY_NODE_NAMES = (
+    "compile_scripts",
+    "engine_regression",
+    "sequence_regression",
+    "cross_document_regression",
+    "compiler_selftest",
+    "validate_project_docs",
+    "validate_human_comprehension",
+    "validate_sequence_sessions",
+    "validate_handoff",
+    "validate_cross_document_consistency",
+)
+FINALIZE_NODE_NAMES = (
+    "compile_scripts",
+    "engine_regression",
+    "sequence_regression",
+    "cross_document_regression",
+    "compiler_selftest",
+    "strict_workflow_selftest",
+    "sync_project_truth",
+    "validate_human_comprehension",
+    "validate_sequence_sessions",
+    "validate_handoff",
+    "validate_cross_document_consistency",
+    "validate_project_truth",
+    "governed_state_clean",
+)
+
+
 def git(root: Path, *args: str) -> str:
     return subprocess.check_output(
         ["git", "-C", str(root), *args],
         text=True,
         stderr=subprocess.STDOUT,
     ).strip()
+
+
+def git_z(root: Path, *args: str) -> list[str]:
+    payload = subprocess.check_output(
+        ["git", "-C", str(root), *args],
+        stderr=subprocess.STDOUT,
+    )
+    return [
+        item.decode("utf-8", errors="surrogateescape").replace("\\", "/")
+        for item in payload.split(b"\0")
+        if item
+    ]
 
 
 def state_base(root: Path) -> str:
@@ -140,6 +221,127 @@ def state_base(root: Path) -> str:
     except Exception:
         return ""
     return str(data.get("last_accepted_sha", "")).strip()
+
+
+def collect_changed_paths(root: Path, base: str) -> tuple[str, ...]:
+    """Collect committed, staged, unstaged, and untracked paths relative to root."""
+    paths: set[str] = set()
+    queries = (
+        ("diff", "--name-only", "-z", "--diff-filter=ACMRD", f"{base}...HEAD"),
+        ("diff", "--name-only", "-z"),
+        ("diff", "--cached", "--name-only", "-z"),
+        ("ls-files", "--others", "--exclude-standard", "-z"),
+    )
+    for args in queries:
+        try:
+            paths.update(git_z(root, *args))
+        except (OSError, subprocess.CalledProcessError) as exc:
+            raise ValueError(f"CHANGED_PATH_QUERY_FAILED:{args[0]}") from exc
+    return tuple(sorted(paths))
+
+
+def classify_path(path: str) -> str:
+    path = path.replace("\\", "/")
+    if path in ENGINE_DEVELOP_FILES:
+        return "engine"
+    if path in SEQUENCE_DEVELOP_FILES or path.startswith("docs/sequence/"):
+        return "sequence"
+    if path in COMPILER_DEVELOP_FILES:
+        return "compiler"
+    if path in CROSSDOC_DEVELOP_FILES:
+        return "cross_document"
+    if path in DEVELOP_TEST_MAP:
+        return "targeted_test"
+    if path in {"PROJECT_PROFILE.yaml", ".gitattributes"} or path.startswith(".workflow/"):
+        return "governance"
+    if path.startswith("artifacts/sequence/"):
+        return "sequence"
+    if path in {"SKILL.md", "README.md"} or path.startswith("docs/"):
+        return "documentation"
+    if path.startswith("benchmarks/"):
+        return "benchmark"
+    if path.startswith("templates/"):
+        return "template"
+    if path.startswith(".github/workflows/"):
+        return "ci"
+    if path.startswith("scripts/"):
+        return "broad_source"
+    return "unknown"
+
+
+def classify_changed_paths(paths: tuple[str, ...] | list[str]) -> tuple[str, ...]:
+    return tuple(sorted({classify_path(path) for path in paths}))
+
+
+def effective_mode(requested: str, impacts: tuple[str, ...]) -> str:
+    impact_set = set(impacts)
+    if requested == "develop" and impact_set.intersection(
+        {"unknown", "broad_source", "template", "ci"}
+    ):
+        return "verify"
+    if requested == "verify" and "unknown" in impact_set:
+        return "finalize"
+    return requested
+
+
+def develop_node_names(
+    paths: tuple[str, ...] | list[str],
+    impacts: tuple[str, ...],
+) -> tuple[str, ...]:
+    names: set[str] = set()
+    path_set = set(paths)
+    if any(path.startswith("scripts/") for path in path_set):
+        names.add("compile_scripts")
+    if path_set.intersection(ENGINE_DEVELOP_FILES):
+        names.add("engine_regression")
+    if path_set.intersection(SEQUENCE_DEVELOP_FILES) or any(
+        path.startswith("docs/sequence/") for path in path_set
+    ):
+        names.add("sequence_regression")
+    if path_set.intersection(COMPILER_DEVELOP_FILES):
+        names.add("compiler_selftest")
+    if path_set.intersection(CROSSDOC_DEVELOP_FILES):
+        names.add("cross_document_regression")
+    for path, node_name in DEVELOP_TEST_MAP.items():
+        if path in path_set:
+            names.add(node_name)
+    impact_set = set(impacts)
+    if impact_set.intersection({"governance", "documentation"}):
+        names.add("validate_project_docs")
+    if "documentation" in impact_set:
+        names.add("validate_cross_document_consistency")
+    if "benchmark" in impact_set and not names:
+        names.add("impact_only")
+    if not names:
+        names.add("impact_only")
+    ordered = [
+        name
+        for name in (
+            "compile_scripts",
+            "engine_regression",
+            "sequence_regression",
+            "cross_document_regression",
+            "compiler_selftest",
+            "validate_project_docs",
+            "validate_cross_document_consistency",
+            "impact_only",
+        )
+        if name in names
+    ]
+    return tuple(ordered)
+
+
+def planned_node_names(
+    requested: str,
+    effective: str,
+    paths: tuple[str, ...],
+    impacts: tuple[str, ...],
+) -> tuple[str, ...]:
+    if effective == "finalize":
+        return FINALIZE_NODE_NAMES
+    if effective == "verify":
+        return VERIFY_NODE_NAMES
+    return develop_node_names(paths, impacts)
 
 
 def governed_status(root: Path) -> tuple[int, str]:
@@ -166,7 +368,241 @@ def cli_action(
     return lambda: invoke_main(main_func, argv, program=program)
 
 
+def command_action(root: Path, argv: list[str]) -> Callable[[], tuple[int, str]]:
+    def run() -> tuple[int, str]:
+        env = os.environ.copy()
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
+        completed = subprocess.run(
+            argv,
+            cwd=root,
+            env=env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        return completed.returncode, completed.stdout
+
+    return run
+
+
+def compile_scripts_action(root: Path) -> Callable[[], tuple[int, str]]:
+    """Compile Python sources without materializing bytecode in the governed worktree."""
+    def run() -> tuple[int, str]:
+        with tempfile.TemporaryDirectory(prefix="skill-workflow-pycache-") as td:
+            env = os.environ.copy()
+            env["PYTHONPYCACHEPREFIX"] = td
+            completed = subprocess.run(
+                [sys.executable, "-m", "compileall", "-q", "scripts"],
+                cwd=root,
+                env=env,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+        return completed.returncode, completed.stdout
+
+    return run
+
+
+def _regression_node(name: str, root: Path, script: str) -> ValidationNode:
+    return ValidationNode(
+        name=name,
+        dependencies=("compile_scripts",),
+        action=command_action(root, [sys.executable, script]),
+    )
+
+
+def build_mode_dag(
+    root: Path,
+    *,
+    base: str,
+    mode: str,
+    node_names: tuple[str, ...],
+) -> ValidationDAG:
+    wanted = set(node_names)
+    nodes: list[ValidationNode] = []
+
+    if "impact_only" in wanted:
+        nodes.append(
+            ValidationNode(
+                name="impact_only",
+                dependencies=(),
+                action=lambda: (0, "IMPACT_CLASSIFIED_NO_EXECUTABLE_CHECK_REQUIRED\n"),
+            )
+        )
+
+    if "compile_scripts" in wanted:
+        nodes.append(
+            ValidationNode(
+                name="compile_scripts",
+                dependencies=(),
+                action=compile_scripts_action(root),
+            )
+        )
+
+    regression_specs = (
+        ("engine_regression", "scripts/selftest_governance_engine.py"),
+        ("sequence_regression", "scripts/selftest_sequence_call_resolution.py"),
+        ("cross_document_regression", "scripts/selftest_cross_document_regressions.py"),
+        ("compiler_selftest", "scripts/selftest_project_truth_compiler.py"),
+    )
+    for name, script in regression_specs:
+        if name in wanted:
+            nodes.append(_regression_node(name, root, script))
+
+    regressions = tuple(
+        name for name, _ in regression_specs if name in wanted
+    )
+    if "strict_workflow_selftest" in wanted:
+        dependencies = regressions or (
+            ("compile_scripts",) if "compile_scripts" in wanted else ()
+        )
+        nodes.append(
+            ValidationNode(
+                name="strict_workflow_selftest",
+                dependencies=dependencies,
+                action=command_action(
+                    root,
+                    [sys.executable, "scripts/selftest_strict_project_workflow.py"],
+                ),
+            )
+        )
+
+    if "sync_project_truth" in wanted:
+        dependencies = (
+            ("strict_workflow_selftest",)
+            if "strict_workflow_selftest" in wanted
+            else regressions
+        )
+        nodes.append(
+            ValidationNode(
+                name="sync_project_truth",
+                dependencies=dependencies,
+                action=cli_action(
+                    sync_project_truth.main,
+                    ["--root", str(root)],
+                    "sync_project_truth.py",
+                ),
+            )
+        )
+        docs_dependency = "sync_project_truth"
+    elif "validate_project_docs" in wanted:
+        dependencies = regressions
+        nodes.append(
+            ValidationNode(
+                name="validate_project_docs",
+                dependencies=dependencies,
+                action=cli_action(
+                    validate_project_docs.main,
+                    ["--root", str(root)],
+                    "validate_project_docs.py",
+                ),
+            )
+        )
+        docs_dependency = "validate_project_docs"
+    else:
+        docs_dependency = ""
+
+    if "validate_human_comprehension" in wanted:
+        nodes.append(
+            ValidationNode(
+                name="validate_human_comprehension",
+                dependencies=((docs_dependency,) if docs_dependency else regressions),
+                action=cli_action(
+                    validate_human_comprehension.main,
+                    ["--root", str(root), "--require-pass"],
+                    "validate_human_comprehension.py",
+                ),
+            )
+        )
+
+    if "validate_sequence_sessions" in wanted:
+        nodes.append(
+            ValidationNode(
+                name="validate_sequence_sessions",
+                dependencies=((docs_dependency,) if docs_dependency else regressions),
+                action=cli_action(
+                    validate_sequence_sessions.main,
+                    ["--root", str(root)],
+                    "validate_sequence_sessions.py",
+                ),
+            )
+        )
+
+    if "validate_handoff" in wanted:
+        nodes.append(
+            ValidationNode(
+                name="validate_handoff",
+                dependencies=((docs_dependency,) if docs_dependency else regressions),
+                action=cli_action(
+                    validate_handoff.main,
+                    ["--root", str(root)],
+                    "validate_handoff.py",
+                ),
+            )
+        )
+
+    if "validate_cross_document_consistency" in wanted:
+        dependencies: list[str] = []
+        if "validate_human_comprehension" in wanted:
+            dependencies.append("validate_human_comprehension")
+        elif docs_dependency:
+            dependencies.append(docs_dependency)
+        elif regressions:
+            dependencies.extend(regressions)
+        nodes.append(
+            ValidationNode(
+                name="validate_cross_document_consistency",
+                dependencies=tuple(dependencies),
+                action=cli_action(
+                    validate_cross_document_consistency.main,
+                    ["--root", str(root), "--base", base, "--require-base"],
+                    "validate_cross_document_consistency.py",
+                ),
+            )
+        )
+
+    if "validate_project_truth" in wanted:
+        dependencies = tuple(
+            name
+            for name in (
+                "validate_cross_document_consistency",
+                "validate_sequence_sessions",
+                "validate_handoff",
+            )
+            if name in wanted
+        )
+        nodes.append(
+            ValidationNode(
+                name="validate_project_truth",
+                dependencies=dependencies,
+                action=cli_action(
+                    validate_project_truth.main,
+                    [
+                        "--root", str(root),
+                        "--project-docs-already-validated",
+                    ],
+                    "validate_project_truth.py",
+                ),
+            )
+        )
+
+    if "governed_state_clean" in wanted:
+        nodes.append(
+            ValidationNode(
+                name="governed_state_clean",
+                dependencies=("validate_project_truth",),
+                action=lambda: governed_status(root),
+            )
+        )
+
+    return ValidationDAG(nodes)
+
+
 def build_dag(root: Path, *, base: str, sync: bool) -> ValidationDAG:
+    """Legacy SW2-01 orchestration retained for compatibility."""
     nodes: list[ValidationNode] = []
     if sync:
         nodes.append(
@@ -247,6 +683,7 @@ def main() -> int:
     parser.add_argument("--root", default=".")
     parser.add_argument("--base", default="")
     parser.add_argument("--sync", action="store_true")
+    parser.add_argument("--mode", choices=("develop", "verify", "finalize"), default="")
     parser.add_argument("--expected-head", default="")
     parser.add_argument("--report", default="")
     args = parser.parse_args()
@@ -256,23 +693,69 @@ def main() -> int:
     if not base:
         print("FAIL BASE_SHA_REQUIRED")
         return 2
+    if args.mode and args.sync:
+        print("FAIL MODE_AND_LEGACY_SYNC_ARE_MUTUALLY_EXCLUSIVE")
+        return 2
 
     snapshot = ProjectSnapshot.capture(root)
     expected_head = args.expected_head.strip()
+    failures: list[str] = []
+    changed_paths: tuple[str, ...] = ()
+    impacts: tuple[str, ...] = ()
+    requested_mode = args.mode or "legacy"
+    selected_mode = requested_mode
+    selected_nodes: tuple[str, ...] = ()
+
     if expected_head and snapshot.git_head != expected_head:
+        failures.append(
+            f"PROVENANCE_MISMATCH:observed={snapshot.git_head}:expected={expected_head}"
+        )
+    elif args.mode:
+        try:
+            changed_paths = collect_changed_paths(root, base)
+        except ValueError as exc:
+            failures.append(str(exc))
+        if not failures:
+            impacts = classify_changed_paths(changed_paths)
+            selected_mode = effective_mode(args.mode, impacts)
+            if selected_mode == "finalize" and not expected_head:
+                failures.append("FINALIZE_EXPECTED_HEAD_REQUIRED")
+            else:
+                selected_nodes = planned_node_names(
+                    args.mode,
+                    selected_mode,
+                    changed_paths,
+                    impacts,
+                )
+
+    if failures:
         report = {
-            "schema_version": 1,
+            "schema_version": 2,
             "result": "FAIL",
-            "failures": [
-                f"PROVENANCE_MISMATCH:observed={snapshot.git_head}:expected={expected_head}"
-            ],
+            "failures": failures,
+            "base_sha": base,
+            "expected_head": expected_head or "NOT_DECLARED",
+            "requested_mode": requested_mode,
+            "effective_mode": selected_mode,
+            "changed_paths": list(changed_paths),
+            "impact_classes": list(impacts),
+            "selected_nodes": list(selected_nodes),
+            "final_acceptance_authority": requested_mode == "finalize" and selected_mode == "finalize",
             "snapshot": snapshot.metrics(),
             "nodes": {},
         }
     else:
         with active_project_snapshot(snapshot):
             try:
-                results = build_dag(root, base=base, sync=args.sync).run()
+                if args.mode:
+                    results = build_mode_dag(
+                        root,
+                        base=base,
+                        mode=selected_mode,
+                        node_names=selected_nodes,
+                    ).run()
+                else:
+                    results = build_dag(root, base=base, sync=args.sync).run()
             except Exception as exc:
                 print(f"FAIL ENGINE_DAG_ERROR:{type(exc).__name__}:{exc}")
                 return 2
@@ -281,11 +764,17 @@ def main() -> int:
             name for name, result in results.items() if result.status != "PASS"
         ]
         report = {
-            "schema_version": 1,
+            "schema_version": 2,
             "result": "FAIL" if failures else "PASS",
             "failures": failures,
             "base_sha": base,
             "expected_head": expected_head or "NOT_DECLARED",
+            "requested_mode": requested_mode,
+            "effective_mode": selected_mode,
+            "changed_paths": list(changed_paths),
+            "impact_classes": list(impacts),
+            "selected_nodes": list(selected_nodes),
+            "final_acceptance_authority": bool(args.mode == "finalize" and selected_mode == "finalize"),
             "snapshot": snapshot.metrics(),
             "nodes": {
                 name: {
@@ -298,8 +787,14 @@ def main() -> int:
                 for name, result in results.items()
             },
             "boundary": (
-                "Snapshot and memoization accelerate one process only. Final acceptance authority "
-                "remains exact candidate source plus all required test/validator evidence."
+                "Develop and verify are intermediate evidence only. Unknown impact escalates. "
+                "Finalize is the only complete mode and still requires exact candidate source, "
+                "all required tests/validators, synchronized governed state, and final truth."
+                if args.mode
+                else
+                "Legacy SW2-01 orchestration retained for compatibility. Snapshot and memoization "
+                "accelerate one process only; final acceptance authority remains exact candidate "
+                "source plus all required test/validator evidence."
             ),
         }
 

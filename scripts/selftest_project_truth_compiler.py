@@ -119,6 +119,14 @@ def main() -> int:
         tool_root = root / ".workflow" / "tools"
         if not (tool_root / "sync_project_truth.py").is_file():
             raise RuntimeError("vendored workflow tools were not installed")
+        attributes = (root / ".gitattributes").read_text(encoding="utf-8")
+        for required_attribute in (
+            "/PROJECT_PROFILE.yaml text eol=lf",
+            "/.workflow/** text eol=lf",
+            "/docs/** text eol=lf",
+        ):
+            if required_attribute not in attributes:
+                raise RuntimeError("missing governance EOL attribute: " + required_attribute)
 
         (root / "app.py").write_text(
             "from fastapi import FastAPI\n"
@@ -294,6 +302,34 @@ def main() -> int:
                 raise RuntimeError("canonical doc missing from docs/: " + name)
 
         overview = root / "docs" / "SYSTEM_OVERVIEW.md"
+        facts_file = root / ".workflow" / "generated" / "code_facts.json"
+        overview.write_bytes(overview.read_bytes().replace(b"\n", b"\r\n"))
+        facts_file.write_bytes(facts_file.read_bytes().replace(b"\n", b"\r\n"))
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "generate_project_docs.py"),
+            "--root",
+            str(root),
+            "--check",
+        )
+        quality_crlf = run(
+            root,
+            sys.executable,
+            str(tool_root / "validate_doc_quality.py"),
+            "--root",
+            str(root),
+            expect=1,
+        )
+        if "NON_LF_NEWLINE" not in quality_crlf:
+            raise RuntimeError("doc quality did not preserve strict LF policy")
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "sync_project_truth.py"),
+            "--root",
+            str(root),
+        )
 
         duplicate = root / "SYSTEM_OVERVIEW.md"
         duplicate.write_text(
@@ -409,6 +445,8 @@ def main() -> int:
     print("DOC_LAYOUT=PASS")
     print("DOC_LAYOUT_DUPLICATE_DETECTION=PASS")
     print("PROJECT_DOCS_NORMALIZED=PASS")
+    print("GENERATED_CRLF_COMPARATOR=PASS")
+    print("GOVERNANCE_EOL_ATTRIBUTES=PASS")
     print("DOC_READABILITY=PASS")
     print("SELFTEST=PASS")
     return 0

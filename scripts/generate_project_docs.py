@@ -78,6 +78,11 @@ def canonical_bytes(value: Any) -> bytes:
     ).encode("utf-8")
 
 
+def canonical_generated_bytes(value: bytes) -> bytes:
+    """Normalize materialized line endings for deterministic content comparison."""
+    return value.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
 def clean(value: Any) -> str:
     return str(value or "").strip()
 
@@ -1856,7 +1861,7 @@ def main() -> int:
     if args.check:
         if not facts_output.is_file():
             facts_missing = True
-        elif facts_output.read_bytes() != expected_facts_bytes:
+        elif canonical_generated_bytes(facts_output.read_bytes()) != expected_facts_bytes:
             facts_stale = True
     else:
         facts_output.parent.mkdir(parents=True, exist_ok=True)
@@ -1895,7 +1900,7 @@ def main() -> int:
         if args.check:
             if not path.is_file():
                 missing.append("docs/" + name)
-            elif path.read_bytes() != expected.encode("utf-8"):
+            elif canonical_generated_bytes(path.read_bytes()) != expected.encode("utf-8"):
                 stale.append("docs/" + name)
         else:
             path.write_bytes(expected.encode("utf-8"))

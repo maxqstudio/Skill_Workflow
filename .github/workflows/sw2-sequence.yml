@@ -35,20 +35,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Generate current SW2-01 actual sequence evidence
+      - name: Generate current SW2-02 actual sequence evidence
         run: >-
           python scripts/generate_sequence_actual.py
           --root .
-          --output-json docs/sequence/generated/SW2-01-GOVERNANCE.actual.json
-          --output-mermaid docs/sequence/generated/SW2-01-GOVERNANCE.actual.mmd
+          --output-json docs/sequence/generated/SW2-02-GOVERNANCE.actual.json
+          --output-mermaid docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd
           --entry scripts/governance_engine.py::main
 
-      - name: Validate current SW2-01 sequence session
+      - name: Validate current SW2-02 sequence session
         run: >-
           python scripts/validate_sequence_contract.py
           --root .
-          --session docs/sequence/sessions/SW2-01-GOVERNANCE.json
-          --report artifacts/sequence/SW2-01-GOVERNANCE.acceptance.json
+          --session docs/sequence/sessions/SW2-02-GOVERNANCE.json
+          --report artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json
 
       - name: Validate aggregate sequence contract
         run: python scripts/validate_sequence_sessions.py --root .
@@ -57,10 +57,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sw2-01-sequence-evidence
+          name: sw2-02-sequence-evidence
           path: |
-            docs/sequence/generated/SW2-01-GOVERNANCE.actual.json
-            docs/sequence/generated/SW2-01-GOVERNANCE.actual.mmd
-            artifacts/sequence/SW2-01-GOVERNANCE.acceptance.json
+            docs/sequence/generated/SW2-02-GOVERNANCE.actual.json
+            docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd
+            artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json
           if-no-files-found: error
           retention-days: 14

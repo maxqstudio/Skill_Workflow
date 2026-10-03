@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 84454cca60ec9dc58e82c71eb204200f0b19b5f2d404c9fa5a00fea49b7b96c4
+Source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -11,18 +11,18 @@ Generated/refreshed: current compiler run
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 255 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
-| scripts/generate_project_docs.py | Python | 1940 | scripts | NO |
+| scripts/generate_project_docs.py | Python | 1945 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 420 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
-| scripts/governance_engine.py | Python | 318 | scripts | NO |
-| scripts/initialize_project_truth.py | Python | 100 | scripts | NO |
+| scripts/governance_engine.py | Python | 813 | scripts | NO |
+| scripts/initialize_project_truth.py | Python | 130 | scripts | NO |
 | scripts/project_profile.py | Python | 260 | scripts | NO |
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
-| scripts/selftest_governance_engine.py | Python | 152 | scripts | NO |
-| scripts/selftest_project_truth_compiler.py | Python | 418 | scripts | NO |
+| scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
+| scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 868 | scripts | NO |
 | scripts/sequence_contract.py | Python | 203 | scripts | NO |
@@ -33,7 +33,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
-| scripts/validate_sequence_contract.py | Python | 327 | scripts | NO |
-| scripts/validate_sequence_sessions.py | Python | 101 | scripts | NO |
+| scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
+| scripts/validate_sequence_sessions.py | Python | 106 | scripts | NO |
 
 Machine-derived facts do not invent semantic ownership.

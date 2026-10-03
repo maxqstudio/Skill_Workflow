@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-01",
+  "current_phase": "SW2-03",
   "phases": [
     {
       "exit_criteria": [
@@ -23,7 +23,7 @@
       ],
       "id": "SW2-01",
       "objective": "Replace repeated scans and nested validator subprocess work with one immutable project snapshot and a dependency-aware validation DAG.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Governance Engine V2"
     },
     {
@@ -35,7 +35,7 @@
       ],
       "id": "SW2-02",
       "objective": "Introduce develop, verify, and finalize execution modes so inner-loop work is fast while final acceptance remains complete.",
-      "status": "PLANNED",
+      "status": "COMPLETE",
       "title": "Fast Development Workflow"
     },
     {
@@ -47,7 +47,7 @@
       ],
       "id": "SW2-03",
       "objective": "Separate full machine sequence evidence from bounded human-facing diagrams and add Mermaid correctness gates.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Sequence V2"
     },
     {

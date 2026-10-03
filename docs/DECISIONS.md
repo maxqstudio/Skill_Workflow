@@ -34,4 +34,4 @@ Governance Engine V2 may reuse one immutable source snapshot and process-local d
 
 Rationale: Repeated source discovery, file reads, AST extraction, and nested script processes are avoidable execution cost, but persisting cache state as truth would weaken provenance and fail-closed semantics.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW2-PERFORMANCE-PARITY -->
+<!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY -->

@@ -1,35 +1,41 @@
 {
   "blocked_actions": [
-    "Do not start SW2-02 develop/verify/finalize mode work until SW2-01 is merged to main and the Owner explicitly authorizes the next phase.",
-    "Do not remove validators, weaken fail-closed semantics, or treat snapshot/cache state as acceptance authority.",
-    "Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates."
+    "Do not discard machine sequence nodes/edges merely to make human diagrams smaller.",
+    "Do not declare arbitrary participant/interaction limits without measured baseline evidence and documented rationale.",
+    "Do not treat Mermaid text generation alone as proof of renderability; SW2-03 requires a blocking parser/render gate.",
+    "Do not weaken SW2-02 mode safety or final fail-closed acceptance while changing sequence presentation.",
+    "Do not start SW2-04 Documentation System V2 before SW2-03 acceptance is complete and the Owner authorizes the next phase."
   ],
   "blockers": [],
   "last_accepted_branch": "main",
-  "last_accepted_sha": "964481ed1609f87904ba9e08890bffc0a10c3fd4",
+  "last_accepted_sha": "94717751cb0ca0a3680ccd93ac16219c9bd0425d",
   "next_authorized_actions": [
-    "Regenerate canonical project truth for the SW2-01 closure state and rerun the complete exact-head acceptance suite.",
-    "Merge PR #7 to main only after Self Governance, Governance Selftest, SW2 Sequence Evidence, SW2 Engine Performance, and SW2 Consumer Engine Performance all pass on the same final PR head.",
-    "After merge, await explicit Owner authorization before starting SW2-02 Fast Development Workflow implementation."
+    "Measure current sequence graph size and representative consumer complexity before choosing any human-diagram threshold.",
+    "Separate full machine sequence evidence from a bounded human-facing sequence projection without deleting evidence.",
+    "Add blocking Mermaid syntax/render validation using an actual renderer or equivalent parser-backed check.",
+    "Add regression fixtures proving semantic collapse/subflow behavior, complexity-policy enforcement, and machine-evidence fidelity before SW2-03 acceptance."
   ],
   "not_proven": [
-    "Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.",
-    "Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.",
-    "Performance improvement is proven for Skill Workflow and the pinned max-grounding consumer on hosted Ubuntu runners, not universally for every repository or every isolated primitive."
+    "SW2-03 full machine evidence fidelity across the new machine/human sequence split is NOT_PROVEN.",
+    "SW2-03 human-facing semantic collapsing/subflow readability is NOT_PROVEN.",
+    "SW2-03 blocking Mermaid syntax/render validation is NOT_PROVEN.",
+    "SW2-03 measurable diagram-complexity policy is NOT_PROVEN; no numeric threshold is authoritative yet.",
+    "Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion."
   ],
-  "phase": "SW2-01",
+  "phase": "SW2-03",
   "proven": [
-    "SW2-00 was accepted and merged before SW2-01 authorization.",
-    "Accepted base main 964481ed1609f87904ba9e08890bffc0a10c3fd4 uses Git-aware source inventory, excludes git-ignored files, and normalizes CRLF for cross-platform source digests.",
-    "Governance Engine V2 captures one immutable process-local project snapshot and reuses derived source facts without making cache state acceptance authority.",
-    "Governance Engine V2 executes dependency-aware validation nodes once and blocks downstream checks after dependency failure.",
-    "Governance Selftest run 37017181150 passed Engine V2 and legacy governance regressions on Ubuntu and Windows.",
-    "SW2 Sequence Evidence run 37017491861 passed the SW2-01 current session plus aggregate historical/current validation.",
-    "Skill Workflow sync_project_truth improved from 0.74522295s to 0.29126614s in run 37017491760; pinned max-grounding improved from 1.104520865s to 0.264897568s in run 37017491292.",
-    "Exact-head candidate 0b9be3b45d4f6ba129715b6378295760baef0b57 passed Governance Selftest run 37025006496, SW2 Sequence Evidence run 37025006302, SW2 Engine Performance run 37025006408, and SW2 Consumer Engine Performance run 37025006331; Self Governance run 37025007273 reached clean synchronized state and failed only because final truth gates had not yet been promoted.",
-    "Manual semantic audit verified snapshot immutability, accepted inventory/digest parity, fresh recapture, expected-head rejection, and fail-closed DAG behavior against the authority-bearing implementation and regression tests."
+    "SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.",
+    "Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.",
+    "The accepted SW2-01 engine uses one immutable process-local source snapshot, reusable derived facts, exact-head provenance checks, and a fail-closed dependency DAG.",
+    "Snapshot/cache state remains acceleration only and is not acceptance authority.",
+    "SW2-02 verify mode is proven on exact candidate 9e0ef0d098ea2f7f96424ce057ca1f4572939b52: SW2-02 Verify Evidence run 37080781127 passed on Ubuntu and Windows with verify remaining intermediate evidence and final_acceptance_authority=false.",
+    "Governance Selftest run 37080786219 permanently proves verify mode is read-only on Ubuntu and Windows after the full compiler/regression chain; compile bytecode is isolated outside the repository worktree.",
+    "Changed-file impact classification and fail-closed escalation are regression-proven for SW2-02 develop/verify planning; unknown impact still escalates rather than silently skipping verification.",
+    "SW2-02 finalize mode is proven on exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446: Finalize Evidence run 37081217929 passed on Ubuntu and Windows with the complete required acceptance DAG, final_acceptance_authority=true, exact-head provenance, and clean governed worktree.",
+    "SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.",
+    "SW2-02 Fast Development Workflow acceptance is complete on branch candidate c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a: all SW2-02 requirements and TRUTH-SW2-MODE-SAFETY are PASS, and Self Governance 37081631917, Governance Selftest 37081631955, Sequence Evidence 37081631942, Engine Performance 37081631972, and Consumer Engine Performance 37081631956 all succeeded."
   ],
   "schema_version": 1,
-  "status": "ACCEPTED",
-  "working_branch": "work/sw2-01-governance-engine-v2"
+  "status": "IN_PROGRESS",
+  "working_branch": "work/sw2-02-fast-development-workflow"
 }

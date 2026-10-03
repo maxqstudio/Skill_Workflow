@@ -1,0 +1,41 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-03-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-03-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/generate_sequence_actual.py::main",
+      "scripts/validate_sequence_contract.py::main",
+      "scripts/validate_sequence_sessions.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-03-GOVERNANCE.actual.json",
+    "source_digest": "a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-03 DURING evidence initially binds the inherited static sequence extraction and validation pipeline before Sequence V2 presentation changes. Static extraction proves source-visible structure only; human readability, Mermaid renderability, complexity policy, and any dynamic behavior remain NOT_PROVEN until dedicated evidence exists.",
+  "implementation_base_sha": "c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a",
+  "mode": "DURING",
+  "phase": "SW2-03",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-03-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_sequence_call_resolution.py",
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}

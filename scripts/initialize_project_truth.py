@@ -8,6 +8,28 @@ import shutil
 from pathlib import Path
 
 
+GITATTRIBUTES_MARKER = "# BEGIN SKILL_WORKFLOW GOVERNANCE EOL"
+GITATTRIBUTES_BLOCK = """# BEGIN SKILL_WORKFLOW GOVERNANCE EOL
+/PROJECT_PROFILE.yaml text eol=lf
+/.workflow/** text eol=lf
+/docs/** text eol=lf
+# END SKILL_WORKFLOW GOVERNANCE EOL
+"""
+
+
+def ensure_gitattributes(root: Path) -> str:
+    path = root / ".gitattributes"
+    if path.is_file():
+        current = path.read_text(encoding="utf-8")
+        if GITATTRIBUTES_MARKER in current:
+            return "SKIP"
+        separator = "" if not current or current.endswith("\n") else "\n"
+        path.write_text(current + separator + GITATTRIBUTES_BLOCK, encoding="utf-8", newline="\n")
+    else:
+        path.write_text(GITATTRIBUTES_BLOCK, encoding="utf-8", newline="\n")
+    return "WRITE"
+
+
 def copy_file(src: Path, dst: Path, force: bool) -> str:
     if dst.exists() and not force:
         return "SKIP"
@@ -39,6 +61,14 @@ def main() -> int:
 
     writes = 0
     skips = 0
+
+    attributes_result = ensure_gitattributes(root)
+    if attributes_result == "WRITE":
+        writes += 1
+        print("WRITE .gitattributes")
+    else:
+        skips += 1
+        print("SKIP .gitattributes")
 
     if profile_template.is_file():
         result = copy_file(profile_template, root / "PROJECT_PROFILE.yaml", args.force)

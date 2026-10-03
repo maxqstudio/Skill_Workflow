@@ -11,14 +11,14 @@ HEAD is recorded externally after the commit exists.
 
 | Gate | Status | Evidence / Notes |
 |---|---|---|
-| SOURCE_TESTS | PASS | |
+| SOURCE_TESTS | NOT_PROVEN | |
 | RUNTIME_E2E | NOT_APPLICABLE | |
-| PROVENANCE_SYNC | PASS | |
-| REFERENCE_SYNC | PASS | |
-| STRUCTURAL_SYNC | PASS | |
-| SEMANTIC_SYNC | PASS | |
+| PROVENANCE_SYNC | NOT_PROVEN | |
+| REFERENCE_SYNC | NOT_PROVEN | |
+| STRUCTURAL_SYNC | NOT_PROVEN | |
+| SEMANTIC_SYNC | NOT_PROVEN | |
 | BEHAVIORAL_SYNC | NOT_APPLICABLE | |
-| CROSS_DOCUMENT_CONSISTENCY | PASS | |
+| CROSS_DOCUMENT_CONSISTENCY | NOT_PROVEN | |
 | HUMAN_COMPREHENSION | PASS | |
 | SEQUENCE_SYNC | PASS | |
 | ROADMAP_SYNC | PASS | |
@@ -26,10 +26,10 @@ HEAD is recorded externally after the commit exists.
 | PROJECT_DOCS_NORMALIZED | PASS | |
 | DOC_READABILITY | PASS | |
 | PROJECT_DOCS_SYNC | PASS | |
-| DOC_SOURCE_TRACEABILITY | PASS | |
-| DOC_TEST_TRACEABILITY | PASS | |
+| DOC_SOURCE_TRACEABILITY | NOT_PROVEN | |
+| DOC_TEST_TRACEABILITY | NOT_PROVEN | |
 | TEST_RUNTIME_TRACEABILITY | NOT_APPLICABLE | |
-| PROJECT_STATE_SYNC | PASS | |
+| PROJECT_STATE_SYNC | NOT_PROVEN | |
 
 ## Critical claim traceability
 
@@ -39,12 +39,18 @@ HEAD is recorded externally after the commit exists.
 | TRUTH-SW-ROADMAP-SYNC | The current project phase must equal the roadmap current phase and exactly one roadmap phase must be CURRENT. | ROADMAP.md; CURRENT_STATE.md; PROJECT_TRUTH_SYNC.md | scripts/generate_project_docs.py; scripts/validate_project_truth.py | scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | PASS |
 | TRUTH-SW-DOCS-DETERMINISTIC | Generated project Markdown must reproduce deterministically from current source and machine-readable project truth. | DOC_SYNC_MATRIX.md; PROJECT_TRUTH_SYNC.md | scripts/generate_project_docs.py; scripts/validate_project_docs.py | scripts/selftest_project_truth_compiler.py | NOT_APPLICABLE | PASS |
 | TRUTH-SW2-PERFORMANCE-PARITY | SW2 performance improvements must preserve required governance semantics and final fail-closed acceptance. | ROADMAP.md; DECISIONS.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/governance_engine.py; scripts/project_snapshot.py | scripts/selftest_governance_engine.py; scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | PASS |
+| TRUTH-SW2-MODE-SAFETY | Develop and verify modes may reduce intermediate work only when changed-file impact is safely classified; unknown impact escalates, and finalize remains the only complete acceptance mode. | ROADMAP.md; DECISIONS.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/governance_engine.py | scripts/selftest_governance_engine.py; scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | PASS |
+| TRUTH-SW2-SEQUENCE-FIDELITY | Sequence V2 may add bounded human projections only if the full machine-generated static sequence evidence remains independently available and acceptance-traceable. | ROADMAP.md; SEQUENCE_CONTRACTS.md; PROJECT_TRUTH_SYNC.md | scripts/generate_sequence_actual.py; scripts/sequence_contract.py; scripts/validate_sequence_contract.py | scripts/selftest_sequence_call_resolution.py | NOT_APPLICABLE | NOT_PROVEN |
+| TRUTH-SW2-SEQUENCE-PRESENTATION | Governed human-facing sequence diagrams must be renderable and bounded by a documented measurable complexity policy without weakening machine evidence. | ROADMAP.md; SEQUENCE_CONTRACTS.md; PROJECT_TRUTH_SYNC.md | scripts/sequence_contract.py; scripts/validate_sequence_contract.py; scripts/validate_sequence_sessions.py | scripts/selftest_sequence_call_resolution.py | NOT_APPLICABLE | NOT_PROVEN |
 
 ## Claim relations
 
 | Claim ID | Relation | Other Claim ID | Notes |
 |---|---|---|---|
-| TRUTH-SW2-PERFORMANCE-PARITY | REQUIRES | TRUTH-SW-FAIL-CLOSED | Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proves this relation through exact-head cross-platform regression, fail-closed DAG tests, current sequence acceptance, and final Project Truth validation. |
+| TRUTH-SW2-PERFORMANCE-PARITY | REQUIRES | TRUTH-SW-FAIL-CLOSED | Performance work is valid only if fail-closed acceptance remains intact. SW2-01 proved this relation through exact-head cross-platform regression and final Project Truth validation. |
+| TRUTH-SW2-MODE-SAFETY | REQUIRES | TRUTH-SW-FAIL-CLOSED | Fast modes are valid only if they cannot replace or weaken final fail-closed acceptance. |
+| TRUTH-SW2-SEQUENCE-FIDELITY | REQUIRES | TRUTH-SW-FAIL-CLOSED | Sequence presentation work is valid only if acceptance-relevant evidence remains fail-closed and independently auditable. |
+| TRUTH-SW2-SEQUENCE-PRESENTATION | REQUIRES | TRUTH-SW2-SEQUENCE-FIDELITY | Human readability improvements must not replace or weaken the machine evidence graph. |
 
 ## Cross-document consistency audit
 
@@ -84,4 +90,4 @@ review. The compiler does not infer PASS.
 SEQUENCE_SYNC is projected from sequence acceptance evidence. The compiler does
 not infer PASS from a diagram.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW-DOCS-DETERMINISTIC TRUTH-SW-FAIL-CLOSED TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-PERFORMANCE-PARITY -->
+<!-- CLAIM_BACKLINKS: TRUTH-SW-DOCS-DETERMINISTIC TRUTH-SW-FAIL-CLOSED TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION -->

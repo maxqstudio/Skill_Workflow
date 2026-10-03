@@ -44,6 +44,8 @@ jobs:
           python-version: "3.12"
 
       - name: Compile governance scripts
+        env:
+          PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
         run: python -m compileall -q scripts
 
       - name: Governance Engine V2 regression
@@ -57,6 +59,14 @@ jobs:
 
       - name: Project Truth Compiler self-test
         run: python scripts/selftest_project_truth_compiler.py
+
+      - name: Verify mode is read-only
+        shell: bash
+        run: |
+          expected="$(git rev-parse HEAD)"
+          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          python scripts/governance_engine.py --root . --base "$base" --mode verify --expected-head "$expected"
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts)"
 
       - name: STRICT workflow self-test
         run: python scripts/selftest_strict_project_workflow.py
