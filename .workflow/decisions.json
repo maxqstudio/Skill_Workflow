@@ -62,6 +62,13 @@
       "rationale": "A common evidence contract removes governance coupling to one parser without risking a broad parser rewrite. Surface-specific analyzers can grow independently while consumers keep accepted evidence semantics and unsupported behavior cannot become false certainty.",
       "status": "ACCEPTED",
       "title": "Normalize analyzer evidence without forcing one universal parser"
+    },
+    {
+      "decision": "Skill Workflow is licensed under the MIT License, with the repository LICENSE file as the public license text.",
+      "id": "SW2-ADR-010",
+      "rationale": "The Owner explicitly selected MIT for the public project. The choice keeps reuse and redistribution permissive while preserving the required copyright and license notice.",
+      "status": "ACCEPTED",
+      "title": "Adopt the MIT License"
     }
   ],
   "schema_version": 1
