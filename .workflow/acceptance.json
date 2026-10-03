@@ -23,10 +23,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until the real SW2-02 candidate executes governance_engine.py --mode verify successfully against the accepted base and remains intermediate evidence.",
+      "evidence": "SW2-02 Verify Evidence run 37080781127 passed exact candidate 9e0ef0d098ea2f7f96424ce057ca1f4572939b52 on Ubuntu and Windows with requested_mode=verify, effective_mode=verify, result=PASS, and final_acceptance_authority=false. Governance Selftest run 37080786219 independently passed the permanent Verify mode is read-only regression and the full regression chain on Ubuntu and Windows. Exact-head PR runs 37080786150 (Self Governance), 37080786188 (Sequence Evidence), 37080786161 (Engine Performance), and 37080786184 (Consumer Engine Performance) also completed successfully.",
       "id": "SW2-02-R2",
       "requirement": "Verify mode expands to the affected governance and test scope without becoming final acceptance authority.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN until exact-head CI proves finalize executes the complete required regression, synchronization, validator, truth, and clean-state graph.",

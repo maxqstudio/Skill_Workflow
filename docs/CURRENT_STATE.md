@@ -43,10 +43,12 @@ SEQUENCE_SYNC: PASS
 - Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.
 - The accepted SW2-01 engine uses one immutable process-local source snapshot, reusable derived facts, exact-head provenance checks, and a fail-closed dependency DAG.
 - Snapshot/cache state remains acceleration only and is not acceptance authority.
+- SW2-02 verify mode is proven on exact candidate 9e0ef0d098ea2f7f96424ce057ca1f4572939b52: SW2-02 Verify Evidence run 37080781127 passed on Ubuntu and Windows with verify remaining intermediate evidence and final_acceptance_authority=false.
+- Governance Selftest run 37080786219 permanently proves verify mode is read-only on Ubuntu and Windows after the full compiler/regression chain; compile bytecode is isolated outside the repository worktree.
+- Changed-file impact classification and fail-closed escalation are regression-proven for SW2-02 develop/verify planning; unknown impact still escalates rather than silently skipping verification.
 
 ## Not proven
-- SW2-02 mode-safety is NOT_PROVEN until exact-head regressions prove develop/verify cannot bypass finalize acceptance.
-- Changed-file impact classification is NOT_PROVEN until known and unknown path classes are regression-tested.
+- SW2-02 final mode-safety remains NOT_PROVEN until exact-head finalize proves the complete acceptance graph, final acceptance authority, and clean final truth.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 - Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
 
