@@ -1928,7 +1928,7 @@
       "locator": "scripts/selftest_sequence_human_view.py::sha256"
     }
   ],
-  "observed_head": "996e12c6b5b417f6617f2e1a3e7c030a35c97d30",
+  "observed_head": "16e0ce29b56753e80c62b4af54af45a2478f15bb",
   "schema_version": 1,
   "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
 }

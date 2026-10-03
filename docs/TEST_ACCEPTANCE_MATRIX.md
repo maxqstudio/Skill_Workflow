@@ -26,7 +26,7 @@ Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd787
 - python scripts/selftest_generated_doc_presentation.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 2ff1d1501a7762baedcd848ebc117b7760b7c738 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 

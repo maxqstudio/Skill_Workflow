@@ -3,7 +3,7 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 2ff1d1501a7762baedcd848ebc117b7760b7c738
+Authority verified at SHA: 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060
 Governance profile: strict
 
 ## Current phase
@@ -14,9 +14,9 @@ ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-04-documentation-system-v2
+Branch: work/sw2-05-schema-toolchain-versioning
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 2ff1d1501a7762baedcd848ebc117b7760b7c738
+Last accepted SHA: 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060
 Current candidate SHA: external final acceptance evidence
 Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 
@@ -55,6 +55,7 @@ SEQUENCE_SYNC: PASS
 - SW2-03 merged to main as 2ff1d1501a7762baedcd848ebc117b7760b7c738 with tree equivalent to tested cleanup candidate 2581370dc757221f162bda744cd174f2e047c7cc. Post-merge main passed Self Governance 37094279185, Governance Selftest 37094279257 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37094279177, SW2 Engine Performance 37094279196, and SW2 Consumer Engine Performance 37094279186.
 - SW2-04 Documentation System V2 feature acceptance is proven on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: Self Governance 37095620543, Governance Selftest 37095620587 on Ubuntu and Windows, SW2 Sequence Evidence 37095620519, SW2 Engine Performance 37095620515, and SW2 Consumer Engine Performance 37095620594 all succeeded. Public product documentation is separated from generated Project Truth without moving consumer canonical paths; generated SYMBOL_INDEX uses bounded collapsible presentation while preserving full machine facts.
 - SW2-04 Documentation System V2 is accepted on exact post-promotion candidate d324dfcdee97efcf4de109c166b1b68a722b8add: Self Governance 37098059841, Governance Selftest 37098059808 on Ubuntu and Windows, SW2 Sequence Evidence 37098059794, SW2 Engine Performance 37098059854, and SW2 Consumer Engine Performance 37098059831 all succeeded after requirements R1-R4 were promoted.
+- SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 equals exact tested PR-head tree.
 
 ## Not proven
 - SW2-05 explicit profile/spec schema version contract and supported migration behavior are not proven.

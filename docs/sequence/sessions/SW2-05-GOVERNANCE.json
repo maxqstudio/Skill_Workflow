@@ -21,7 +21,7 @@
     "policy_id": "module-collapse-v1",
     "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
   },
-  "implementation_base_sha": "d324dfcdee97efcf4de109c166b1b68a722b8add",
+  "implementation_base_sha": "733cf7dcb6def0fc1adc36cee7cc5243b8eaf060",
   "mode": "DURING",
   "phase": "SW2-05",
   "plan": {
