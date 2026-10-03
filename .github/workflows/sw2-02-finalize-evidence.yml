@@ -1,0 +1,87 @@
+name: SW2-02 Finalize Evidence
+
+on:
+  push:
+    branches:
+      - work/sw2-02-fast-development-workflow
+
+permissions:
+  contents: read
+
+jobs:
+  finalize:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-02-fast-development-workflow
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Finalize exact branch candidate
+        shell: bash
+        run: |
+          expected="$(git rev-parse HEAD)"
+          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          python scripts/governance_engine.py \
+            --root . \
+            --base "$base" \
+            --mode finalize \
+            --expected-head "$expected" \
+            --report artifacts/sw2-02-finalize.json
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          report = json.loads(Path('artifacts/sw2-02-finalize.json').read_text(encoding='utf-8'))
+          expected = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          required_nodes = {
+              'compile_scripts',
+              'engine_regression',
+              'sequence_regression',
+              'cross_document_regression',
+              'compiler_selftest',
+              'strict_workflow_selftest',
+              'sync_project_truth',
+              'validate_human_comprehension',
+              'validate_sequence_sessions',
+              'validate_handoff',
+              'validate_cross_document_consistency',
+              'validate_project_truth',
+              'governed_state_clean',
+          }
+          selected = set(report['selected_nodes'])
+          missing = sorted(required_nodes - selected)
+          assert report['result'] == 'PASS', report
+          assert report['requested_mode'] == 'finalize', report
+          assert report['effective_mode'] == 'finalize', report
+          assert report['final_acceptance_authority'] is True, report
+          assert report['expected_head'] == expected, report
+          assert report['snapshot']['git_head'] == expected, report
+          assert not missing, {'missing_finalize_nodes': missing, 'report': report}
+          bad = {k: v['status'] for k, v in report['nodes'].items() if v['status'] != 'PASS'}
+          assert not bad, bad
+          print('SW2_02_FINALIZE_MODE=PASS')
+          PY
+          status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts)"
+          if [ -n "$status" ]; then
+            echo "FINALIZE_GOVERNED_WORKTREE_DIRTY"
+            printf '%s\n' "$status"
+            exit 1
+          fi
+          echo "SW2_02_FINALIZE_READ_ONLY=PASS"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sw2-02-finalize-${{ matrix.os }}
+          path: artifacts/sw2-02-finalize.json
+          if-no-files-found: warn
+          retention-days: 14
