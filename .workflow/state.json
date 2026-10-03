@@ -7,7 +7,7 @@
   ],
   "blockers": [],
   "last_accepted_branch": "main",
-  "last_accepted_sha": "733cf7dcb6def0fc1adc36cee7cc5243b8eaf060",
+  "last_accepted_sha": "4f3546e78e4a927359b1805fa5c69bf57ddc0040",
   "next_authorized_actions": [
     "Audit current parser/analyzer coupling without redesigning accepted governance semantics.",
     "Define the smallest language-independent analyzer contract that preserves existing Python and JS/TS evidence.",
@@ -41,9 +41,10 @@
     "SW2-04 Documentation System V2 is accepted on exact post-promotion candidate d324dfcdee97efcf4de109c166b1b68a722b8add: Self Governance 37098059841, Governance Selftest 37098059808 on Ubuntu and Windows, SW2 Sequence Evidence 37098059794, SW2 Engine Performance 37098059854, and SW2 Consumer Engine Performance 37098059831 all succeeded after requirements R1-R4 were promoted.",
     "SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 equals exact tested PR-head tree.",
     "SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence 37100862743 passed with blocking Mermaid render, and Consumer Engine Performance 37100862760 passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative.",
-    "SW2-05 Schema & Toolchain Versioning is accepted on exact clean closure candidate aa93514462e505483673a8d2a5e1248096be0407: Self Governance 37101621016, Governance Selftest 37101621006 on Ubuntu and Windows, SW2 Sequence Evidence 37101621062, SW2 Engine Performance 37101621007, and SW2 Consumer Engine Performance 37101621079 all succeeded after tracked Python bytecode was removed and ignore policy was enforced."
+    "SW2-05 Schema & Toolchain Versioning is accepted on exact clean closure candidate aa93514462e505483673a8d2a5e1248096be0407: Self Governance 37101621016, Governance Selftest 37101621006 on Ubuntu and Windows, SW2 Sequence Evidence 37101621062, SW2 Engine Performance 37101621007, and SW2 Consumer Engine Performance 37101621079 all succeeded after tracked Python bytecode was removed and ignore policy was enforced.",
+    "SW2-06 phase-open authority is accepted on main 4f3546e78e4a927359b1805fa5c69bf57ddc0040: post-merge Self Governance 37102088293, Governance Selftest 37102088281 on Ubuntu and Windows, SW2 Sequence Evidence 37102088313, SW2 Engine Performance 37102088299, and SW2 Consumer Engine Performance 37102088297 all succeeded; merged tree e9ce803f23984356adbb61eb08f2bab3bf354837 equals the exact tested PR-head tree."
   ],
   "schema_version": 1,
   "status": "IN_PROGRESS",
-  "working_branch": "work/sw2-05-schema-toolchain-versioning"
+  "working_branch": "work/sw2-06-cross-language-analyzer-architecture"
 }

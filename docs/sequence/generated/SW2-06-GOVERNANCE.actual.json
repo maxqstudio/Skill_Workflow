@@ -430,7 +430,7 @@
       "locator": "scripts/sequence_contract.py::source_files"
     }
   ],
-  "observed_head": "ee96f2f64e7c134e67330e61fbaa1e895ac097de",
+  "observed_head": "a641cd06a571f06b425892fb1254d959ce1cd11a",
   "schema_version": 1,
   "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
 }

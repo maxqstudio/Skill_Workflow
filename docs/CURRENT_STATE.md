@@ -3,7 +3,7 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060
+Authority verified at SHA: 4f3546e78e4a927359b1805fa5c69bf57ddc0040
 Governance profile: strict
 
 ## Current phase
@@ -14,9 +14,9 @@ ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-05-schema-toolchain-versioning
+Branch: work/sw2-06-cross-language-analyzer-architecture
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060
+Last accepted SHA: 4f3546e78e4a927359b1805fa5c69bf57ddc0040
 Current candidate SHA: external final acceptance evidence
 Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
 
@@ -58,6 +58,7 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 equals exact tested PR-head tree.
 - SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence 37100862743 passed with blocking Mermaid render, and Consumer Engine Performance 37100862760 passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative.
 - SW2-05 Schema & Toolchain Versioning is accepted on exact clean closure candidate aa93514462e505483673a8d2a5e1248096be0407: Self Governance 37101621016, Governance Selftest 37101621006 on Ubuntu and Windows, SW2 Sequence Evidence 37101621062, SW2 Engine Performance 37101621007, and SW2 Consumer Engine Performance 37101621079 all succeeded after tracked Python bytecode was removed and ignore policy was enforced.
+- SW2-06 phase-open authority is accepted on main 4f3546e78e4a927359b1805fa5c69bf57ddc0040: post-merge Self Governance 37102088293, Governance Selftest 37102088281 on Ubuntu and Windows, SW2 Sequence Evidence 37102088313, SW2 Engine Performance 37102088299, and SW2 Consumer Engine Performance 37102088297 all succeeded; merged tree e9ce803f23984356adbb61eb08f2bab3bf354837 equals the exact tested PR-head tree.
 
 ## Not proven
 - SW2-06 language-independent analyzer contract is not proven.
