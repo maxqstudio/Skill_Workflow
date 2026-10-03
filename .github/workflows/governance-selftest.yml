@@ -60,6 +60,7 @@ jobs:
       - name: Public documentation regression
         run: |
           python scripts/selftest_public_docs.py
+          python scripts/selftest_generated_doc_presentation.py
           python scripts/validate_public_docs.py --root .
 
       - name: Cross-document regression
