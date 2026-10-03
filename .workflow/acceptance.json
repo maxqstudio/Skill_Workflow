@@ -17,28 +17,28 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until version contracts are implemented across profile/spec parsing, templates, and validation with compatibility regression evidence.",
+      "evidence": "PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest run 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression; profile schema_version and every governed JSON spec schema_version are blocking, while missing/malformed/future versions fail closed.",
       "id": "SW2-05-R1",
       "requirement": "Profile and governed specification schemas expose explicit, auditable versions.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until a deterministic toolchain lock/identity contract is implemented and validated against vendored consumer tooling.",
+      "evidence": "PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest run 37100862749 passed cross-platform and Consumer Engine Performance run 37100862760 explicitly migrated the pinned legacy max-grounding consumer, validated .workflow/toolchain.lock.json, and preserved exact consumer HEAD provenance.",
       "id": "SW2-05-R2",
       "requirement": "Skill Workflow toolchain identity is lockable and auditable by consumer projects without making mutable cache state authoritative.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until migration commands/contracts and positive plus tamper/unsupported-version regressions exist.",
+      "evidence": "PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: selftest_schema_toolchain exercised explicit legacy migration, second-run idempotence, future profile/spec rejection, toolchain tamper rejection, and cache-not-authority semantics; Consumer Engine Performance run 37100862760 proved the migration path on a pinned real consumer.",
       "id": "SW2-05-R3",
       "requirement": "Supported schema/toolchain migrations are deterministic, explicit, and regression-tested fail closed.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until compatibility policy is source-authored, linked from public reference documentation, and validated against implemented version/migration behavior.",
+      "evidence": "PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: docs/handbook/reference/versioning.md is source-authored public compatibility policy and permanent public-documentation validation passed in Governance Selftest run 37100862749; Sequence Evidence run 37100862743 also remained SUCCESS with the SW2-05 implementation session.",
       "id": "SW2-05-R4",
       "requirement": "Release compatibility policy documents supported versions, migration expectations, and incompatible-change handling.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],

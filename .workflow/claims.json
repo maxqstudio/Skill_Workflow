@@ -184,7 +184,10 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-SCHEMA-MIGRATION",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Exact candidate eab855c08b08770d12add6ba2833230a2e6293fc; Governance Selftest run 37100862749 Ubuntu/Windows SUCCESS.",
+        "Consumer Engine Performance run 37100862760 explicit legacy migration SUCCESS."
+      ],
       "source_owners": [
         "SKILL.md",
         "scripts/project_profile.py",
@@ -194,7 +197,7 @@
         "scripts/migrate_governance_v1.py",
         "scripts/validate_schema_toolchain.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_project_truth_compiler.py",
         "scripts/selftest_strict_project_workflow.py",
@@ -210,7 +213,10 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-TOOLCHAIN-IDENTITY",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Exact candidate eab855c08b08770d12add6ba2833230a2e6293fc; Governance Selftest run 37100862749 Ubuntu/Windows SUCCESS.",
+        "Consumer Engine Performance run 37100862760 validated migrated consumer toolchain lock SUCCESS."
+      ],
       "source_owners": [
         "SKILL.md",
         "scripts/initialize_project_truth.py",
@@ -219,7 +225,7 @@
         "scripts/migrate_governance_v1.py",
         "scripts/validate_schema_toolchain.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_governance_engine.py",
         "scripts/selftest_strict_project_workflow.py",

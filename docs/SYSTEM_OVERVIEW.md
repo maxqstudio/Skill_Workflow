@@ -110,15 +110,14 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Audit every current schema_version/profile parsing surface and vendored toolchain installation path before implementation.
-- Define the smallest backward-compatible schema and toolchain lock contract with deterministic migration semantics.
-- Implement and regression-test SW2-05 incrementally while keeping all four requirements NOT_PROVEN until evidence exists.
+- Run permanent CI on the exact clean post-promotion candidate.
+- Close SW2-05 only if post-promotion permanent CI remains fully green.
+- After closure, open SW2-06 fail-closed without inheriting SW2-05 PASS into new requirements.
 
 Blocked actions:
-- Do not mark any SW2-05 requirement PASS before implementation-specific evidence exists.
+- Do not close SW2-05 before exact post-promotion permanent CI succeeds.
 - Do not change or reinterpret schema versions silently in place; supported evolution requires an explicit deterministic migration path.
 - Do not let toolchain cache, mutable upstream state, or an unbound vendored copy become acceptance authority.
-- Do not declare compatibility without positive and negative migration/version regression evidence.
 - Do not create the V2 stable release/tag in SW2-05; stable release remains SW2-09 scope.
 
 Known blockers:
@@ -145,12 +144,10 @@ Known blockers:
 - SW2-04 Documentation System V2 feature acceptance is proven on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: Self Governance 37095620543, Governance Selftest 37095620587 on Ubuntu and Windows, SW2 Sequence Evidence 37095620519, SW2 Engine Performance 37095620515, and SW2 Consumer Engine Performance 37095620594 all succeeded. Public product documentation is separated from generated Project Truth without moving consumer canonical paths; generated SYMBOL_INDEX uses bounded collapsible presentation while preserving full machine facts.
 - SW2-04 Documentation System V2 is accepted on exact post-promotion candidate d324dfcdee97efcf4de109c166b1b68a722b8add: Self Governance 37098059841, Governance Selftest 37098059808 on Ubuntu and Windows, SW2 Sequence Evidence 37098059794, SW2 Engine Performance 37098059854, and SW2 Consumer Engine Performance 37098059831 all succeeded after requirements R1-R4 were promoted.
 - SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 equals exact tested PR-head tree.
+- SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence 37100862743 passed with blocking Mermaid render, and Consumer Engine Performance 37100862760 passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative.
 
 ### Not proven
 
-- SW2-05 explicit profile/spec schema version contract and supported migration behavior are not proven.
-- SW2-05 consumer toolchain lock identity and audit contract are not proven.
-- SW2-05 release compatibility policy is not proven.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 
 ## Important limitations
