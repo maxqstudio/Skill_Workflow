@@ -1,0 +1,26 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
+%% POLICY_ID: module-collapse-v1
+%% GENERATED_BY: sequence_human_view.py
+sequenceDiagram
+    participant module_scripts_generate_sequence_actual_py_0 as scripts/generate_sequence_actual.py
+    participant module_scripts_governance_engine_py_1 as scripts/governance_engine.py
+    participant module_scripts_project_profile_py_2 as scripts/project_profile.py
+    participant module_scripts_project_snapshot_py_3 as scripts/project_snapshot.py
+    participant module_scripts_selftest_sequence_human_view_py_4 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_sequence_contract_py_5 as scripts/sequence_contract.py
+    participant module_scripts_validate_sequence_contract_py_6 as scripts/validate_sequence_contract.py
+    participant module_scripts_validate_sequence_sessions_py_7 as scripts/validate_sequence_sessions.py
+    module_scripts_generate_sequence_actual_py_0->>module_scripts_governance_engine_py_1: 1 static interaction
+    module_scripts_generate_sequence_actual_py_0->>module_scripts_project_snapshot_py_3: 2 static interactions
+    module_scripts_generate_sequence_actual_py_0->>module_scripts_sequence_contract_py_5: 2 static interactions
+    module_scripts_project_profile_py_2->>module_scripts_project_snapshot_py_3: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_4->>module_scripts_project_snapshot_py_3: 1 static interaction
+    module_scripts_sequence_contract_py_5->>module_scripts_project_snapshot_py_3: 4 static interactions
+    module_scripts_sequence_contract_py_5->>module_scripts_selftest_sequence_human_view_py_4: 2 static interactions
+    module_scripts_validate_sequence_contract_py_6->>module_scripts_project_profile_py_2: 2 static interactions
+    module_scripts_validate_sequence_contract_py_6->>module_scripts_project_snapshot_py_3: 2 static interactions
+    module_scripts_validate_sequence_contract_py_6->>module_scripts_selftest_sequence_human_view_py_4: 1 static interaction
+    module_scripts_validate_sequence_contract_py_6->>module_scripts_sequence_contract_py_5: 7 static interactions
+    module_scripts_validate_sequence_sessions_py_7->>module_scripts_project_profile_py_2: 2 static interactions
+    module_scripts_validate_sequence_sessions_py_7->>module_scripts_project_snapshot_py_3: 1 static interaction

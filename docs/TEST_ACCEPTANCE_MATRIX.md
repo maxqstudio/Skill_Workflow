@@ -7,7 +7,7 @@
 SW2-03 acceptance covers Sequence V2 only: full machine sequence evidence must retain acceptance fidelity while human-facing diagrams become bounded and semantically readable. Mermaid syntax/render correctness must become blocking and diagram complexity must be measured against a documented policy. Existing SW2-02 develop/verify/finalize mode safety remains inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository-only sequence tooling phase unless stronger runtime evidence becomes required.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
+Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -21,12 +21,14 @@ Current source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a55
 - python -m compileall -q scripts
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_sequence_call_resolution.py
+- python scripts/selftest_sequence_human_view.py
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
+- python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base f79917550fe42f98110f1a11915ad9699e5244e6 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 

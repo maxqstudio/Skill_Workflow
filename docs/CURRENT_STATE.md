@@ -3,7 +3,7 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
+Authority verified at SHA: f79917550fe42f98110f1a11915ad9699e5244e6
 Governance profile: strict
 
 ## Current phase
@@ -14,11 +14,11 @@ ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-02-fast-development-workflow
+Branch: work/sw2-03-sequence-v2
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
+Last accepted SHA: f79917550fe42f98110f1a11915ad9699e5244e6
 Current candidate SHA: external final acceptance evidence
-Current source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
+Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -49,12 +49,13 @@ SEQUENCE_SYNC: PASS
 - SW2-02 finalize mode is proven on exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446: Finalize Evidence run 37081217929 passed on Ubuntu and Windows with the complete required acceptance DAG, final_acceptance_authority=true, exact-head provenance, and clean governed worktree.
 - SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.
 - SW2-02 Fast Development Workflow acceptance is complete on branch candidate c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a: all SW2-02 requirements and TRUTH-SW2-MODE-SAFETY are PASS, and Self Governance 37081631917, Governance Selftest 37081631955, Sequence Evidence 37081631942, Engine Performance 37081631972, and Consumer Engine Performance 37081631956 all succeeded.
+- SW2-02 was merged to main as f79917550fe42f98110f1a11915ad9699e5244e6; post-merge Self Governance 37085905097, Governance Selftest 37085905094 on Ubuntu and Windows, SW2 Sequence Evidence 37085905107, SW2 Engine Performance 37085905175, and SW2 Consumer Engine Performance 37085905090 all succeeded.
 
 ## Not proven
 - SW2-03 full machine evidence fidelity across the new machine/human sequence split is NOT_PROVEN.
 - SW2-03 human-facing semantic collapsing/subflow readability is NOT_PROVEN.
 - SW2-03 blocking Mermaid syntax/render validation is NOT_PROVEN.
-- SW2-03 measurable diagram-complexity policy is NOT_PROVEN; no numeric threshold is authoritative yet.
+- SW2-03 measurable diagram-complexity policy enforcement is NOT_PROVEN; module-collapse-v1 is documented but not yet accepted.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 
 ## Known blockers
@@ -64,10 +65,10 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Measure current sequence graph size and representative consumer complexity before choosing any human-diagram threshold.
-- Separate full machine sequence evidence from a bounded human-facing sequence projection without deleting evidence.
-- Add blocking Mermaid syntax/render validation using an actual renderer or equivalent parser-backed check.
-- Add regression fixtures proving semantic collapse/subflow behavior, complexity-policy enforcement, and machine-evidence fidelity before SW2-03 acceptance.
+- Implement the module-collapse-v1 human projection while preserving the full machine graph byte-for-byte as independent evidence.
+- Prove every machine edge is accounted for by the human projection without requiring every helper to become a participant.
+- Add and keep a blocking Mermaid renderer gate in CI for governed human-facing sequence diagrams.
+- Run cross-platform regressions and exact-head governance acceptance before promoting any SW2-03 requirement or claim.
 
 ## Explicitly blocked
 - Do not discard machine sequence nodes/edges merely to make human diagrams smaller.

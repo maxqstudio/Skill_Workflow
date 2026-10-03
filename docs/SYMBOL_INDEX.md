@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
+Source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -183,6 +183,9 @@ Status: CURRENT
 | scripts/selftest_project_truth_compiler.py | main | function | 104-452 | Observed Python symbol | | | |
 | scripts/selftest_sequence_call_resolution.py | run | function | 18-28 | Observed Python symbol | | | |
 | scripts/selftest_sequence_call_resolution.py | main | function | 31-103 | Observed Python symbol | | | |
+| scripts/selftest_sequence_human_view.py | run | function | 16-32 | Observed Python symbol | | | |
+| scripts/selftest_sequence_human_view.py | sha256 | function | 35-36 | Observed Python symbol | | | |
+| scripts/selftest_sequence_human_view.py | main | function | 39-202 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | run | function | 48-68 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | write_json | function | 71-76 | Observed Python symbol | | | |
 | scripts/selftest_strict_project_workflow.py | git | function | 79-80 | Observed Python symbol | | | |
@@ -205,6 +208,15 @@ Status: CURRENT
 | scripts/sequence_contract.py | plan_locator_map | function | 141-148 | Observed Python symbol | | | |
 | scripts/sequence_contract.py | graph_edge_set | function | 151-156 | Observed Python symbol | | | |
 | scripts/sequence_contract.py | compare_plan_actual | function | 159-203 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | _clean_label | function | 21-22 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | _machine_component | function | 25-44 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | project_human_graph | function | 47-169 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | _sanitize_alias | function | 172-176 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | render_human_mermaid | function | 179-203 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | render_human_markdown | function | 206-248 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | render_human_markdown.view_link | method | 220-221 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | main | function | 251-312 | Observed Python symbol | | | |
+| scripts/sequence_human_view.py | main.resolve | method | 264-266 | Observed Python symbol | | | |
 | scripts/sync_project_truth.py | run_main | function | 30-31 | Observed Python symbol | | | |
 | scripts/sync_project_truth.py | sync_once | function | 34-127 | Observed Python symbol | | | |
 | scripts/sync_project_truth.py | main | function | 130-142 | Observed Python symbol | | | |
@@ -251,7 +263,11 @@ Status: CURRENT
 | scripts/validate_sequence_contract.py | expected_plan_mermaid | function | 38-44 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | expected_actual_mermaid | function | 47-54 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | main | function | 57-324 | Observed Python symbol | | | |
-| scripts/validate_sequence_sessions.py | main | function | 16-102 | Observed Python symbol | | | |
+| scripts/validate_sequence_human_view.py | resolve | function | 20-22 | Observed Python symbol | | | |
+| scripts/validate_sequence_human_view.py | expected_human_mermaid | function | 25-32 | Observed Python symbol | | | |
+| scripts/validate_sequence_human_view.py | main | function | 35-252 | Observed Python symbol | | | |
+| scripts/validate_sequence_sessions.py | run_validator | function | 16-36 | Observed Python symbol | | | |
+| scripts/validate_sequence_sessions.py | main | function | 39-147 | Observed Python symbol | | | |
 
 ## Coverage
 

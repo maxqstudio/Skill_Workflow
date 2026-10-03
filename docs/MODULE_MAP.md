@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
+Source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -24,8 +24,10 @@ Generated/refreshed: current compiler run
 | scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
+| scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 868 | scripts | NO |
 | scripts/sequence_contract.py | Python | 203 | scripts | NO |
+| scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 146 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 738 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
@@ -34,6 +36,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
-| scripts/validate_sequence_sessions.py | Python | 106 | scripts | NO |
+| scripts/validate_sequence_human_view.py | Python | 256 | scripts | NO |
+| scripts/validate_sequence_sessions.py | Python | 151 | scripts | NO |
 
 Machine-derived facts do not invent semantic ownership.

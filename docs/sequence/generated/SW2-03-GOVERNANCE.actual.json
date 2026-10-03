@@ -142,13 +142,6 @@
       "to": "scripts/project_snapshot.py::SnapshotError"
     },
     {
-      "action": "value.resolve",
-      "evidence": "STATIC",
-      "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
-      "resolver": "python_ast",
-      "to": "scripts/validate_sequence_contract.py::resolve"
-    },
-    {
       "action": "self.entry",
       "evidence": "STATIC",
       "from": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
@@ -161,13 +154,6 @@
       "from": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
-    },
-    {
-      "action": "root.resolve",
-      "evidence": "STATIC",
-      "from": "scripts/project_snapshot.py::active_snapshot_for",
-      "resolver": "python_ast",
-      "to": "scripts/validate_sequence_contract.py::resolve"
     },
     {
       "action": "path.read_bytes",
@@ -191,11 +177,11 @@
       "to": "scripts/project_snapshot.py::_git"
     },
     {
-      "action": "root.resolve",
+      "action": "path.read_bytes",
       "evidence": "STATIC",
-      "from": "scripts/project_snapshot.py::discover_source_paths",
+      "from": "scripts/selftest_sequence_human_view.py::sha256",
       "resolver": "python_ast",
-      "to": "scripts/validate_sequence_contract.py::resolve"
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
     },
     {
       "action": "active_snapshot_for",
@@ -203,13 +189,6 @@
       "from": "scripts/sequence_contract.py::_selected_snapshot",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::active_snapshot_for"
-    },
-    {
-      "action": "root.resolve",
-      "evidence": "STATIC",
-      "from": "scripts/sequence_contract.py::_selected_snapshot",
-      "resolver": "python_ast",
-      "to": "scripts/validate_sequence_contract.py::resolve"
     },
     {
       "action": "graph_edge_set",
@@ -240,18 +219,18 @@
       "to": "scripts/project_snapshot.py::discover_source_paths"
     },
     {
+      "action": "hashlib.sha256",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_sequence_human_view.py::sha256"
+    },
+    {
       "action": "_selected_snapshot",
       "evidence": "STATIC",
       "from": "scripts/sequence_contract.py::compute_source_digest",
       "resolver": "python_ast",
       "to": "scripts/sequence_contract.py::_selected_snapshot"
-    },
-    {
-      "action": "root.resolve",
-      "evidence": "STATIC",
-      "from": "scripts/sequence_contract.py::compute_source_digest",
-      "resolver": "python_ast",
-      "to": "scripts/validate_sequence_contract.py::resolve"
     },
     {
       "action": "sanitize_alias",
@@ -266,6 +245,13 @@
       "from": "scripts/sequence_contract.py::sha256_file",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "hashlib.sha256",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::sha256_file",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_sequence_human_view.py::sha256"
     },
     {
       "action": "render_graph_mermaid",
@@ -315,6 +301,13 @@
       "from": "scripts/validate_sequence_contract.py::main",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "hashlib.sha256",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_sequence_human_view.py::sha256"
     },
     {
       "action": "compare_plan_actual",
@@ -385,6 +378,20 @@
       "from": "scripts/validate_sequence_sessions.py::main",
       "resolver": "python_ast",
       "to": "scripts/project_profile.py::sequence_settings"
+    },
+    {
+      "action": "session.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "run_validator",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
   "entries": [
@@ -594,6 +601,15 @@
       "locator": "scripts/project_snapshot.py::discover_source_paths"
     },
     {
+      "id": "scripts/selftest_sequence_human_view.py::sha256",
+      "kind": "function",
+      "label": "scripts/selftest_sequence_human_view.py::sha256",
+      "language": "Python",
+      "line_end": 36,
+      "line_start": 35,
+      "locator": "scripts/selftest_sequence_human_view.py::sha256"
+    },
+    {
       "id": "scripts/sequence_contract.py::_selected_snapshot",
       "kind": "function",
       "label": "scripts/sequence_contract.py::_selected_snapshot",
@@ -724,12 +740,21 @@
       "kind": "function",
       "label": "scripts/validate_sequence_sessions.py::main",
       "language": "Python",
-      "line_end": 102,
-      "line_start": 16,
+      "line_end": 147,
+      "line_start": 39,
       "locator": "scripts/validate_sequence_sessions.py::main"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::run_validator",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::run_validator",
+      "language": "Python",
+      "line_end": 36,
+      "line_start": 16,
+      "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "cb983027e0d85ac8c635857be314bdb95744ef4d",
+  "observed_head": "82063037ab3bbcf5940b0bb73a234f38451fd1a5",
   "schema_version": 1,
-  "source_digest": "a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1"
+  "source_digest": "ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b"
 }
