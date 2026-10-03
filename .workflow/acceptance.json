@@ -17,19 +17,19 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "Repository health files are implemented and guarded by validate_repository_health.py, but no Owner-approved license decision/file exists; remains NOT_PROVEN.",
+      "evidence": "Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems.",
       "id": "SW2-07-R1",
       "requirement": "Repository health files are present with Owner-approved license.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "Exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: Self Governance 37113203365, Governance Selftest 37113203386 on Ubuntu and Windows, SW2 Sequence Evidence 37113203376, SW2 Engine Performance 37113203374, and SW2 Consumer Engine Performance 37113203358 all succeeded. Governance Selftest included blocking public-documentation, repository-health, cross-document, read-only verify, and STRICT regressions on both operating systems.",
+      "evidence": "Exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: Self Governance 37113203365, Governance Selftest 37113203386 on Ubuntu and Windows, SW2 Sequence Evidence 37113203376, Governance Engine Performance 37113203374, and Consumer Engine Performance 37113203358 all succeeded. Governance Selftest included blocking public-documentation, repository-health, cross-document, read-only verify, and STRICT regressions on both operating systems.",
       "id": "SW2-07-R2",
       "requirement": "Security and contribution paths are documented.",
       "status": "PASS"
     },
     {
-      "evidence": "Live ruleset 24406662 is active on the default branch and enforces PR+squash, deletion protection, and non-fast-forward protection, but lacks required_status_checks; remains NOT_PROVEN.",
+      "evidence": "Live ruleset 24406662 targets the default branch but is currently enforcement=disabled during Owner repair; its payload also still lacks required_status_checks for the six permanent acceptance checks. R3 remains NOT_PROVEN.",
       "id": "SW2-07-R3",
       "requirement": "Merge/ruleset enforcement matches declared governance.",
       "status": "NOT_PROVEN"

@@ -1,25 +1,21 @@
 {
   "blocked_actions": [
-    "Do not choose, add, or claim approval of a public license without explicit Owner approval.",
+    "Do not change the Owner-approved MIT license or SW2-ADR-010 without explicit Owner approval.",
     "Do not claim merge/ruleset enforcement from workflow files alone; actual GitHub repository configuration must be evidenced.",
     "Do not create the V2 stable release/tag in SW2-07; stable release remains SW2-09 scope.",
     "Do not weaken accepted SW2-01 through SW2-06 governance guarantees while hardening public repository operations."
   ],
   "blockers": [
-    "Owner-approved public license decision is still required before SW2-07-R1 can PASS.",
-    "Live GitHub ruleset 24406662 lacks required_status_checks for the six permanent acceptance checks, so SW2-07-R3 remains NOT_PROVEN."
+    "Live GitHub ruleset 24406662 is currently disabled and lacks required_status_checks for the six permanent acceptance checks, so SW2-07-R3 remains NOT_PROVEN."
   ],
   "last_accepted_branch": "main",
   "last_accepted_sha": "f391fe9dc5d208803118090bbe6a174e8f6c7c63",
   "next_authorized_actions": [
-    "Audit repository health files and record the exact license decision boundary without choosing a license for the Owner.",
-    "Add or repair contribution and security documentation with deterministic public-doc validation.",
-    "Audit actual GitHub main-branch/ruleset enforcement against declared governance and remediate only with evidence.",
-    "Define and test a repeatable release process without creating the V2 stable release reserved for SW2-09."
+    "Re-enable and repair live GitHub ruleset 24406662 so it requires all six permanent acceptance checks, then audit the live payload.",
+    "After R3 PASS, run final exact-head acceptance and close SW2-07 without creating the stable V2 release reserved for SW2-09."
   ],
   "not_proven": [
-    "SW2-07 repository health files exist, but an Owner-approved public license is still NOT_PROVEN.",
-    "SW2-07 live GitHub ruleset enforcement does not yet require the six permanent acceptance checks."
+    "SW2-07 live GitHub ruleset enforcement is currently disabled and does not yet require the six permanent acceptance checks."
   ],
   "phase": "SW2-07",
   "proven": [
@@ -47,7 +43,8 @@
     "SW2-06 Cross-Language Analyzer Architecture is accepted on exact clean post-promotion candidate b1b95f3f112058c90dc8aa0ceb7b279dfd6ce7ab: Self Governance 37107380727, Governance Selftest 37107380730 on Ubuntu and Windows, SW2 Sequence Evidence 37107380788, SW2 Engine Performance 37107381528, and SW2 Consumer Engine Performance 37107380729 all succeeded after R1-R4 and analyzer/dynamic-evidence claims were promoted.",
     "SW2-07 phase-open authority is accepted on main f391fe9dc5d208803118090bbe6a174e8f6c7c63: the squash-merged tree e2b32ed45a98a2b2bf79f7824e278ca0136f9136 equals tested PR-head 80b3aa5e1f7a2f8aca7ed315e3192c1a653758c0, and post-merge Self Governance 37112092243, Governance Selftest 37112092289 on Ubuntu and Windows, SW2 Sequence Evidence 37112092314, SW2 Engine Performance 37112092222, and SW2 Consumer Engine Performance 37112092263 all succeeded.",
     "SW2-07-R2 security and contribution paths are accepted on exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, README/handbook navigation, repository-health validation, and permanent cross-platform regression all passed; Self Governance 37113203365 and Governance Selftest 37113203386 (Ubuntu/Windows) are the primary acceptance evidence.",
-    "SW2-07-R4 release process is repeatable and evidence-backed: GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope."
+    "SW2-07-R4 release process is repeatable and evidence-backed: GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.",
+    "SW2-07-R1 public license is accepted: Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems."
   ],
   "schema_version": 1,
   "status": "IN_PROGRESS",

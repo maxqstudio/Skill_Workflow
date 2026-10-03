@@ -285,16 +285,20 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-PUBLIC-REPO-HEALTH",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems."
+      ],
       "source_owners": [
         "README.md",
         "CONTRIBUTING.md",
         "SECURITY.md",
         "CODE_OF_CONDUCT.md",
         "scripts/validate_public_docs.py",
-        "scripts/validate_repository_health.py"
+        "scripts/validate_repository_health.py",
+        "LICENSE",
+        ".workflow/decisions.json"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_public_docs.py",
         "scripts/selftest_repository_health.py"
@@ -308,7 +312,7 @@
       ],
       "id": "TRUTH-SW2-MERGE-ENFORCEMENT",
       "runtime_evidence": [
-        "Live ruleset 24406662 audit at SW2-07 implementation time: active default-branch PR+squash/deletion/non-fast-forward rules present, required_status_checks absent; claim remains NOT_PROVEN."
+        "Live ruleset 24406662 targets the default branch but is currently enforcement=disabled during Owner repair; its payload also still lacks required_status_checks for the six permanent acceptance checks. R3 remains NOT_PROVEN."
       ],
       "source_owners": [
         "docs/handbook/reference/repository-governance.md",
