@@ -1,0 +1,88 @@
+name: SW2-03 Contract Sync
+
+on:
+  push:
+    branches:
+      - work/sw2-03-sequence-v2
+
+permissions:
+  contents: write
+
+jobs:
+  sync-contract:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Checkout branch authority
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-03-sequence-v2
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Patch Sequence V2 contract into SKILL
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('SKILL.md')
+          text = path.read_text(encoding='utf-8')
+
+          old_a = '''Canonical Mermaid diagrams are generated files. Do not hand-edit them.\n\nThe machine-readable sequence session and plan contracts live under\n`docs/sequence/` (recommended), while acceptance reports should live under\n`artifacts/sequence/`.'''
+          new_a = '''Full machine sequence evidence is generated and MUST remain independently auditable.\nDo not hand-edit generated machine or human Mermaid artifacts.\n\nWhen a governed flow needs a human-facing diagram, generate a separate bounded\nhuman projection from the full machine graph. The human projection is a\npresentation artifact, not a replacement for `actual.json` / `actual.mmd`, and\nit MUST explicitly state that static structure does not prove runtime ordering.\n\nThe machine-readable sequence session and plan contracts live under\n`docs/sequence/` (recommended), acceptance reports should live under\n`artifacts/sequence/`, and GitHub-readable human views should live under\n`docs/sequence/views/`.'''
+          if old_a not in text:
+              raise SystemExit('SKILL_SEQUENCE_RESPONSIBILITY_ANCHOR_NOT_FOUND')
+          text = text.replace(old_a, new_a, 1)
+
+          old_b = '''The actual JSON is the machine observation of implementation.\n\nMermaid is only a deterministic rendering.'''
+          new_b = '''The actual JSON is the machine observation of implementation.\n\nMermaid is only a deterministic rendering.\n\n## Machine evidence vs human sequence view\n\nSequence V2 separates acceptance evidence from presentation:\n\n```text\nfull machine actual.json / actual.mmd\n= acceptance-relevant static evidence\n\nseparate human.json / human.mmd / docs/sequence/views/*.md\n= deterministic bounded projection for humans\n```\n\nRequired invariants:\n\n- human projection MUST NOT delete, rewrite, or replace the full machine graph;\n- every machine edge MUST remain accounted for by the projection, including\n  edges collapsed inside one semantic component and repeated cross-component\n  edges aggregated into one rendered interaction;\n- semantic collapsing or subflows are preferred over exposing every helper as\n  a participant;\n- complexity policy MUST be deterministic, measurable, documented, and tested;\n- do not invent an arbitrary global participant/interaction limit without\n  baseline evidence and rationale;\n- static human projection MUST NOT be described as runtime call ordering;\n- inherited static-analyzer limitations remain visible evidence limitations and\n  MUST NOT be hidden merely to improve the diagram.\n\nCanonical tools when vendored by the initializer:\n\n```bash\npython .workflow/tools/sequence_human_view.py ...\npython .workflow/tools/validate_sequence_human_view.py ...\npython .workflow/tools/validate_sequence_sessions.py --root .\n```\n\nA human-facing Mermaid diagram is not accepted merely because text was\ngenerated. CI MUST run an actual Mermaid parser/renderer (or equivalent\nparser-backed render check) and fail if rendering fails. Renderer absence,\nsyntax failure, or empty render output MUST NOT be converted into PASS.\n\nTherefore:\n\n```text\nMACHINE_EVIDENCE_PASS\n+ HUMAN_PROJECTION_PASS\n+ MERMAID_RENDER_FAIL\n=\nSEQUENCE_PRESENTATION FAIL\n```'''
+          if old_b not in text:
+              raise SystemExit('SKILL_SEQUENCE_V2_ANCHOR_NOT_FOUND')
+          text = text.replace(old_b, new_b, 1)
+
+          path.write_text(text, encoding='utf-8', newline='\n')
+          print('SKILL_SEQUENCE_V2_CONTRACT=PASS')
+          PY
+
+      - name: Verify vendored tools include Sequence V2
+        shell: bash
+        run: |
+          tmp="$(mktemp -d)"
+          python scripts/initialize_project_truth.py --root "$tmp"
+          test -f "$tmp/.workflow/tools/sequence_human_view.py"
+          test -f "$tmp/.workflow/tools/validate_sequence_human_view.py"
+          test -f "$tmp/.workflow/tools/validate_sequence_sessions.py"
+          python "$tmp/.workflow/tools/sequence_human_view.py" --help >/dev/null
+          python "$tmp/.workflow/tools/validate_sequence_human_view.py" --help >/dev/null
+          echo "SEQUENCE_V2_VENDORING=PASS"
+
+      - name: Run Sequence V2 regressions
+        run: |
+          python scripts/selftest_sequence_call_resolution.py
+          python scripts/selftest_sequence_human_view.py
+
+      - name: Validate synchronized governance
+        run: |
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json --no-write-report
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+
+      - name: Commit contract sync
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SKILL.md
+          git diff --cached --quiet && { echo "NO_CONTRACT_DIFF"; exit 0; }
+          git commit -m "docs(sequence): codify Sequence V2 contract"
+          git push origin HEAD:work/sw2-03-sequence-v2
