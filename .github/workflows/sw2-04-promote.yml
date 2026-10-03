@@ -38,7 +38,7 @@ jobs:
           facts = json.load(open('.workflow/generated/code_facts.json', encoding='utf-8'))
           session = json.load(open('docs/sequence/sessions/SW2-04-GOVERNANCE.json', encoding='utf-8'))
           expected = os.environ['ACCEPTED_SOURCE_DIGEST']
-          assert facts['source_summary']['digest'] == expected, facts['source_summary']
+          assert facts['source_digest'] == expected, facts.get('source_digest')
           assert session['actual']['source_digest'] == expected, session
           assert session['human_view']['source_digest'] == expected, session
           print('SW2_04_ACCEPTED_SOURCE_BINDING=PASS')
