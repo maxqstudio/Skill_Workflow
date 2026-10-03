@@ -1,0 +1,266 @@
+name: SW2-06 Regenerate Analyzer Evidence
+
+on:
+  push:
+    branches:
+      - work/sw2-06-cross-language-analyzer-architecture
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      SOURCE_COMMIT: "bb530a00bd81f5040ab845ac35013103511324a2"
+      ACCEPTED_MAIN: "4f3546e78e4a927359b1805fa5c69bf57ddc0040"
+
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-06-cross-language-analyzer-architecture
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert exact implementation lineage
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD^)" = "$SOURCE_COMMIT"
+          git merge-base --is-ancestor "$ACCEPTED_MAIN" HEAD
+
+      - name: Synchronize analyzer governance contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding="utf-8"))
+
+          def save(path, value):
+              Path(path).write_text(
+                  json.dumps(value, indent=2, sort_keys=True) + "\n",
+                  encoding="utf-8",
+                  newline="\n",
+              )
+
+          skill_path = Path("SKILL.md")
+          skill = skill_path.read_text(encoding="utf-8")
+          marker = "## What the compiler MUST NOT invent\n"
+          block = """## Structural analyzer evidence contract\n\nSupported structural analyzers MUST expose a language-independent normalized result contract rather than making governance semantics depend on one parser implementation. An analyzer may report only facts supported by deterministic evidence and MUST declare its claimed file extensions, semantic level, parse failures, limitations, and evidence strength.\n\nUnsupported languages or unsupported semantic levels MUST use an explicit inventory-only fallback. Inventory-only fallback MAY prove that a source file exists, but MUST NOT fabricate symbols, routes, calls, sequence participants, or sequence edges.\n\nStatic analyzers MUST keep dynamic dispatch, dependency injection, reflection, unresolved callbacks/events, framework magic, runtime ordering, and unresolved cross-language behavior `NOT_PROVEN` unless stronger runtime or semantic evidence exists. Adding a parser or recognizing a file extension does not upgrade those claims.\n\nCompatibility rule: introducing or replacing an analyzer MUST preserve already-accepted output semantics unless a separately versioned migration changes the contract explicitly.\n\n"""
+          if "## Structural analyzer evidence contract\n" not in skill:
+              if marker not in skill:
+                  raise SystemExit("SKILL_ANALYZER_INSERT_MARKER_MISSING")
+              skill = skill.replace(marker, block + marker, 1)
+              skill_path.write_text(skill, encoding="utf-8", newline="\n")
+
+          architecture = load(".workflow/architecture.json")
+          source_component = next(
+              item for item in architecture["components"]
+              if item["id"] == "source_extractors"
+          )
+          source_component["owns"] = [
+              "source digest",
+              "module facts",
+              "language-independent analyzer result contract",
+              "Python symbols/routes/calls",
+              "JS/TS literal HTTP sequence edges",
+              "fail-safe unsupported-language inventory",
+              "static sequence graph",
+          ]
+          source_component["purpose"] = (
+              "Observe machine-verifiable source structure through normalized language adapters, "
+              "preserve accepted Python and JS/TS evidence, and keep unsupported or dynamic behavior NOT_PROVEN."
+          )
+          save(".workflow/architecture.json", architecture)
+
+          decisions = load(".workflow/decisions.json")
+          if not any(item.get("id") == "SW2-ADR-009" for item in decisions["decisions"]):
+              decisions["decisions"].append({
+                  "id": "SW2-ADR-009",
+                  "title": "Normalize analyzer evidence without forcing one universal parser",
+                  "decision": (
+                      "SW2-06 introduces one language-independent AnalyzerResult contract and fail-safe inventory fallback while retaining separate Python and JS/TS adapters. Existing accepted output keys and resolver semantics remain compatible; unsupported semantic structure and dynamic behavior stay NOT_PROVEN."
+                  ),
+                  "rationale": (
+                      "A common evidence contract removes governance coupling to one parser without risking a broad parser rewrite. Surface-specific analyzers can grow independently while consumers keep accepted evidence semantics and unsupported behavior cannot become false certainty."
+                  ),
+                  "status": "ACCEPTED",
+              })
+          save(".workflow/decisions.json", decisions)
+
+          acceptance = load(".workflow/acceptance.json")
+          command = "python scripts/selftest_analyzer_contract.py"
+          if command not in acceptance["test_commands"]:
+              acceptance["test_commands"].insert(3, command)
+          old_finalize = next(
+              (item for item in acceptance["test_commands"] if "governance_engine.py" in item and "--mode finalize" in item),
+              None,
+          )
+          if old_finalize:
+              acceptance["test_commands"].remove(old_finalize)
+          acceptance["test_commands"].append(
+              "python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>"
+          )
+          for req in acceptance["requirements"]:
+              assert req["status"] == "NOT_PROVEN", req["id"]
+          acceptance["sequence_sync_status"] = "NOT_PROVEN"
+          save(".workflow/acceptance.json", acceptance)
+
+          claims = load(".workflow/claims.json")
+          for claim in claims["claims"]:
+              if claim["id"] == "TRUTH-SW2-ANALYZER-CONTRACT":
+                  claim["source_owners"] = [
+                      "scripts/analyzer_contract.py",
+                      "scripts/extract_project_facts.py",
+                      "scripts/generate_sequence_actual.py",
+                  ]
+                  claim["tests"] = [
+                      "scripts/selftest_analyzer_contract.py",
+                      "scripts/selftest_sequence_call_resolution.py",
+                  ]
+                  assert claim["status"] == "NOT_PROVEN"
+              elif claim["id"] == "TRUTH-SW2-DYNAMIC-EVIDENCE":
+                  claim["source_owners"] = [
+                      "scripts/analyzer_contract.py",
+                      "scripts/generate_sequence_actual.py",
+                      "scripts/validate_sequence_contract.py",
+                  ]
+                  claim["tests"] = ["scripts/selftest_analyzer_contract.py"]
+                  assert claim["status"] == "NOT_PROVEN"
+          save(".workflow/claims.json", claims)
+
+          session = load("docs/sequence/sessions/SW2-06-GOVERNANCE.json")
+          assert session["scope"] == "CURRENT"
+          assert session["status"] == "IN_PROGRESS"
+          session["evidence_boundary"] = (
+              "SW2-06 DURING implementation evidence covers the normalized analyzer contract, preserved Python static analysis, JS/TS literal HTTP sequence analysis, and fail-safe generic inventory fallback. This session remains implementation evidence only; SW2-06 requirements and claims stay NOT_PROVEN until exact clean permanent CI accepts them. Dynamic dispatch, dependency injection, reflection, callbacks/events, framework magic, runtime ordering, and unresolved cross-language behavior remain NOT_PROVEN."
+          )
+          entries = [
+              "scripts/analyzer_contract.py::run_analyzers",
+              "scripts/analyzer_contract.py::generic_fallback",
+              "scripts/extract_project_facts.py::_extract_from_snapshot",
+              "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer.analyze",
+              "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
+              "scripts/generate_sequence_actual.py::main",
+          ]
+          session["actual"]["entries"] = entries
+          if command not in session["tests"]:
+              session["tests"].insert(0, command.replace("python ", ""))
+          save("docs/sequence/sessions/SW2-06-GOVERNANCE.json", session)
+          PY
+
+      - name: Generate and validate SW2-06 sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.')
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          session_id = acceptance['sequence_session']
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [
+              sys.executable, 'scripts/generate_sequence_actual.py',
+              '--root', '.',
+              '--output-json', actual['graph'],
+              '--output-mermaid', actual['diagram'],
+          ]
+          for entry in actual['entries']:
+              cmd.extend(['--entry', entry])
+          subprocess.run(cmd, check=True)
+
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py',
+              '--root', '.',
+              '--actual-json', actual['graph'],
+              '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'],
+              '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'],
+              '--session-id', session_id,
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py',
+              '--root', '.', '--session', session_path.as_posix(),
+              '--report', session['acceptance_report'],
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_human_view.py',
+              '--root', '.', '--session', session_path.as_posix(),
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'
+          ], check=True)
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          acceptance['sequence_sync_status'] = 'PASS'
+          (root / '.workflow' / 'acceptance.json').write_text(
+              json.dumps(acceptance, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8', newline='\n'
+          )
+          PY
+
+      - name: Regenerate deterministic Project Truth
+        run: python scripts/sync_project_truth.py --root .
+
+      - name: Run implementation and governance regressions
+        shell: bash
+        run: |
+          python scripts/selftest_analyzer_contract.py
+          python scripts/selftest_sequence_call_resolution.py
+          python scripts/selftest_sequence_human_view.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_human_comprehension.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+          python scripts/validate_public_docs.py --root .
+
+      - name: Assert SW2-06 feature claims remain fail closed
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(r['status']=='NOT_PROVEN' for r in a['requirements'])
+          assert a['sequence_sync_status']=='PASS'
+          c=json.load(open('.workflow/claims.json', encoding='utf-8'))
+          for cid in ('TRUTH-SW2-ANALYZER-CONTRACT','TRUTH-SW2-DYNAMIC-EVIDENCE'):
+              item=next(x for x in c['claims'] if x['id']==cid)
+              assert item['status']=='NOT_PROVEN'
+          print('SW2_06_FAIL_CLOSED=PASS')
+          PY
+
+      - name: Commit regenerated evidence locally
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SKILL.md .workflow docs artifacts/sequence
+          git diff --cached --quiet && { echo "FAIL NO_REGENERATION_CHANGES"; exit 1; }
+          git commit -m "gov(sw2-06): synchronize analyzer contract evidence"
+
+      - name: Validate committed candidate read only
+        shell: bash
+        run: |
+          expected="$(git rev-parse HEAD)"
+          python scripts/governance_engine.py --root . --base "$ACCEPTED_MAIN" --mode verify --expected-head "$expected"
+          python scripts/validate_cross_document_consistency.py --root . --base "$ACCEPTED_MAIN"
+          python scripts/validate_project_truth.py --root .
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Push validated regeneration
+        shell: bash
+        run: git push origin HEAD:work/sw2-06-cross-language-analyzer-architecture
