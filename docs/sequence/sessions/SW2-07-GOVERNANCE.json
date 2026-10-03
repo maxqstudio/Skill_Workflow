@@ -4,24 +4,27 @@
     "diagram": "docs/sequence/generated/SW2-07-GOVERNANCE.actual.mmd",
     "entries": [
       "scripts/validate_public_docs.py::main",
+      "scripts/validate_repository_health.py::main",
+      "scripts/validate_github_ruleset.py::main",
+      "scripts/release_preflight.py::main",
       "scripts/validate_handoff.py::main",
       "scripts/validate_project_truth.py::main",
       "scripts/governance_engine.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-07-GOVERNANCE.actual.json",
-    "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
+    "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
   },
   "critical": true,
-  "evidence_boundary": "SW2-07 phase-opening static evidence binds current public-document, Project Truth, handoff, and governance-engine validation paths. Actual GitHub ruleset enforcement, Owner license approval, and repeatable release evidence remain NOT_PROVEN because they require stronger repository/configuration or Owner evidence than static source inspection.",
+  "evidence_boundary": "SW2-07 DURING static evidence binds public documentation, repository-health/license guarding, live-ruleset policy validation, release preflight, handoff, Project Truth, and governance-engine paths. Owner license approval and compliant live GitHub required-status-check enforcement remain NOT_PROVEN because they require Owner/configuration evidence beyond static source.",
   "human_view": {
     "diagram": "docs/sequence/generated/SW2-07-GOVERNANCE.human.mmd",
     "document": "docs/sequence/views/SW2-07-GOVERNANCE.md",
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-07-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
+    "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
   },
-  "implementation_base_sha": "b1b95f3f112058c90dc8aa0ceb7b279dfd6ce7ab",
+  "implementation_base_sha": "f391fe9dc5d208803118090bbe6a174e8f6c7c63",
   "mode": "DURING",
   "phase": "SW2-07",
   "plan": {
@@ -42,8 +45,10 @@
   "status": "IN_PROGRESS",
   "test_traceability_required": true,
   "tests": [
-    "scripts/validate_public_docs.py",
-    "scripts/validate_handoff.py",
+    "scripts/selftest_public_docs.py",
+    "scripts/selftest_repository_health.py",
+    "scripts/selftest_github_ruleset.py",
+    "scripts/selftest_release_preflight.py",
     "scripts/selftest_strict_project_workflow.py"
   ]
 }

@@ -71,6 +71,17 @@ jobs:
           python scripts/selftest_generated_doc_presentation.py
           python scripts/validate_public_docs.py --root .
 
+      - name: Repository health regression
+        run: |
+          python scripts/selftest_repository_health.py
+          python scripts/validate_repository_health.py --root .
+
+      - name: Ruleset policy regression
+        run: python scripts/selftest_github_ruleset.py
+
+      - name: Release preflight regression
+        run: python scripts/selftest_release_preflight.py
+
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
 

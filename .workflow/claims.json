@@ -285,15 +285,23 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-PUBLIC-REPO-HEALTH",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems."
+      ],
       "source_owners": [
         "README.md",
-        "scripts/validate_public_docs.py"
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        "CODE_OF_CONDUCT.md",
+        "scripts/validate_public_docs.py",
+        "scripts/validate_repository_health.py",
+        "LICENSE",
+        ".workflow/decisions.json"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_public_docs.py",
-        "scripts/validate_public_docs.py"
+        "scripts/selftest_repository_health.py"
       ]
     },
     {
@@ -303,13 +311,18 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-MERGE-ENFORCEMENT",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Live ruleset 24406662 targets the default branch but is currently enforcement=disabled during Owner repair; its payload also still lacks required_status_checks for the six permanent acceptance checks. R3 remains NOT_PROVEN."
+      ],
       "source_owners": [
-        "SKILL.md",
-        ".github/workflows/governance-selftest.yml"
+        "docs/handbook/reference/repository-governance.md",
+        "scripts/validate_github_ruleset.py",
+        ".github/workflows/ruleset-audit.yml"
       ],
       "status": "NOT_PROVEN",
-      "tests": []
+      "tests": [
+        "scripts/selftest_github_ruleset.py"
+      ]
     },
     {
       "claim": "The repository has a repeatable evidence-backed release process that preserves exact tested-head provenance and does not publish stable V2 before SW2-09 acceptance.",
@@ -318,14 +331,17 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-RELEASE-GOVERNANCE",
-      "runtime_evidence": [],
-      "source_owners": [
-        "SKILL.md",
-        ".github/workflows/governance-selftest.yml"
+      "runtime_evidence": [
+        "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope."
       ],
-      "status": "NOT_PROVEN",
+      "source_owners": [
+        "docs/handbook/reference/release-process.md",
+        "scripts/release_preflight.py",
+        ".github/workflows/release-preflight.yml"
+      ],
+      "status": "PASS",
       "tests": [
-        "scripts/selftest_strict_project_workflow.py"
+        "scripts/selftest_release_preflight.py"
       ]
     }
   ],

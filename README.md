@@ -60,6 +60,8 @@ Start at the [public documentation index](docs/README.md) or the [handbook](docs
 - [Governance model](docs/handbook/concepts/governance-model.md)
 - [Troubleshooting](docs/handbook/guides/troubleshooting.md)
 - [Command reference](docs/handbook/reference/commands.md)
+- [Repository governance](docs/handbook/reference/repository-governance.md)
+- [Release process](docs/handbook/reference/release-process.md)
 - [Validation architecture](docs/handbook/architecture/validation-engine.md)
 - [Sequence contracts and Sequence V2](docs/handbook/sequence/README.md)
 
@@ -72,6 +74,12 @@ The `skills` CLI can target Codex, Claude Code, Cursor, Gemini CLI, GitHub Copil
 This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [system overview](docs/SYSTEM_OVERVIEW.md), [project manifest](docs/PROJECT_MANIFEST.md), [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).
 
 Those generated governance files are evidence/navigation for this repository; the public handbook above is the product documentation entry point.
+
+## Contributing and security
+
+Public contribution and security paths are documented in [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+A public license has not yet been selected by the Owner. Repository visibility must not be treated as an implied license; the governed license decision remains explicit and separate.
 
 ## Support
 
