@@ -273,6 +273,16 @@ Machine-observable facts may include:
 - deterministic source-content digest;
 - other language facts when a supported parser/indexer exists.
 
+## Structural analyzer evidence contract
+
+Supported structural analyzers MUST expose a language-independent normalized result contract rather than making governance semantics depend on one parser implementation. An analyzer may report only facts supported by deterministic evidence and MUST declare its claimed file extensions, semantic level, parse failures, limitations, and evidence strength.
+
+Unsupported languages or unsupported semantic levels MUST use an explicit inventory-only fallback. Inventory-only fallback MAY prove that a source file exists, but MUST NOT fabricate symbols, routes, calls, sequence participants, or sequence edges.
+
+Static analyzers MUST keep dynamic dispatch, dependency injection, reflection, unresolved callbacks/events, framework magic, runtime ordering, and unresolved cross-language behavior `NOT_PROVEN` unless stronger runtime or semantic evidence exists. Adding a parser or recognizing a file extension does not upgrade those claims.
+
+Compatibility rule: introducing or replacing an analyzer MUST preserve already-accepted output semantics unless a separately versioned migration changes the contract explicitly.
+
 ## What the compiler MUST NOT invent
 
 The compiler must not infer missing:

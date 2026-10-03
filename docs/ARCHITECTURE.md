@@ -2,7 +2,7 @@
 
 # ARCHITECTURE
 
-Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
 
 ## Components
 
@@ -10,7 +10,7 @@ Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd72
 |---|---|---|---|---|
 | skill_contract | Skill Contract | Define normative governance, acceptance, documentation, and handoff behavior. | SKILL.md governance semantics, profile expectations, definition of done |  |
 | truth_compiler | Project Truth Compiler | Project machine-readable facts and semantic specs into deterministic human-facing Markdown. | generated docs, code fact projection | source_extractors, workflow_specs |
-| source_extractors | Source & Sequence Extractors | Observe machine-verifiable source structure and sequence edges without inventing semantic intent. | source digest, module facts, Python symbols/routes/calls, static sequence graph | repository source |
+| source_extractors | Source & Sequence Extractors | Observe machine-verifiable source structure through normalized language adapters, preserve accepted Python and JS/TS evidence, and keep unsupported or dynamic behavior NOT_PROVEN. | source digest, module facts, language-independent analyzer result contract, Python symbols/routes/calls, JS/TS literal HTTP sequence edges, fail-safe unsupported-language inventory, static sequence graph | repository source |
 | validators | Governance Validators | Fail closed on stale docs, broken references, sequence drift, truth inconsistencies, and handoff defects. | blocking governance gates, validation reports | truth_compiler, source_extractors, workflow_specs |
 | bootstrap | Initializer & Templates | Install project-local governance specs and tool support into consumer repositories. | PROJECT_PROFILE template, .workflow templates, vendored tool bootstrap | skill_contract |
 | ci | GitHub Actions Acceptance | Execute cross-platform self-tests and exact-candidate governance validation. | Ubuntu selftest, Windows selftest, self-governance checks | validators, repository source |
@@ -31,9 +31,9 @@ Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd72
 
 ## Observed implementation inventory
 
-Source files: 38
-Source lines: 11389
-Languages: Python=38
+Source files: 40
+Source lines: 11855
+Languages: Python=40
 
 Structural facts come from the code extractor. Component meaning comes from
 .workflow/architecture.json.

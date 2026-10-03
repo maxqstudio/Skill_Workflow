@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 38 files, 1 language categories.
+Observed source inventory: 40 files, 1 language categories.
 
 ## Major components
 
@@ -35,7 +35,7 @@ Observed source inventory: 38 files, 1 language categories.
 |---|---|---|---|
 | Skill Contract | Define normative governance, acceptance, documentation, and handoff behavior. | SKILL.md governance semantics, profile expectations, definition of done |  |
 | Project Truth Compiler | Project machine-readable facts and semantic specs into deterministic human-facing Markdown. | generated docs, code fact projection | source_extractors, workflow_specs |
-| Source & Sequence Extractors | Observe machine-verifiable source structure and sequence edges without inventing semantic intent. | source digest, module facts, Python symbols/routes/calls, static sequence graph | repository source |
+| Source & Sequence Extractors | Observe machine-verifiable source structure through normalized language adapters, preserve accepted Python and JS/TS evidence, and keep unsupported or dynamic behavior NOT_PROVEN. | source digest, module facts, language-independent analyzer result contract, Python symbols/routes/calls, JS/TS literal HTTP sequence edges, fail-safe unsupported-language inventory, static sequence graph | repository source |
 | Governance Validators | Fail closed on stale docs, broken references, sequence drift, truth inconsistencies, and handoff defects. | blocking governance gates, validation reports | truth_compiler, source_extractors, workflow_specs |
 | Initializer & Templates | Install project-local governance specs and tool support into consumer repositories. | PROJECT_PROFILE template, .workflow templates, vendored tool bootstrap | skill_contract |
 | GitHub Actions Acceptance | Execute cross-platform self-tests and exact-candidate governance validation. | Ubuntu selftest, Windows selftest, self-governance checks | validators, repository source |
@@ -159,7 +159,7 @@ Known blockers:
 
 ## Important limitations
 
-- non-Python symbol extraction requires language-specific parsers or Ctags
+- non-Python symbol extraction requires a stronger language analyzer
 - dynamic dispatch/dependency injection/reflection are not resolved
 - JS/TS function-level semantics are not inferred here
 

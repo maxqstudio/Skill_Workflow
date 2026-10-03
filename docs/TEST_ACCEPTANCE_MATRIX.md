@@ -7,7 +7,7 @@
 SW2-06 acceptance covers Cross-Language Analyzer Architecture only: a language-independent analyzer contract, preserved Python and JS/TS regression coverage, explicit fail-safe generic fallback behavior, and conservative handling of unsupported dynamic behavior. Accepted SW2-01 through SW2-05 governance, performance, sequence, documentation, schema, migration, and toolchain guarantees remain inherited authority and must not be weakened.
 
 Final tested source: external final acceptance evidence.
-Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -21,6 +21,7 @@ Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd72
 - python -m compileall -q scripts
 - python scripts/validate_schema_toolchain.py --root .
 - python scripts/selftest_schema_toolchain.py
+- python scripts/selftest_analyzer_contract.py
 - python scripts/selftest_sequence_call_resolution.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
@@ -29,7 +30,7 @@ Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd72
 - python scripts/selftest_generated_doc_presentation.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -44,7 +45,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-06-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 

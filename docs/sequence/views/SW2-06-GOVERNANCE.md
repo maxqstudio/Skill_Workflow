@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-06-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-06-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-06-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-06-GOVERNANCE.human.json)
-- Source digest: `cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac`
+- Source digest: `4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 23 | 5 |
-| Interactions / edges | 28 | 6 |
-| Internal machine edges collapsed | 17 | — |
-| Cross-component edges aggregated | 5 | — |
+| Participants / nodes | 42 | 7 |
+| Interactions / edges | 63 | 12 |
+| Internal machine edges collapsed | 37 | — |
+| Cross-component edges aggregated | 14 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -26,15 +26,23 @@ Policy `module-collapse-v1`: one participant per semantic module/external bounda
 
 ```mermaid
 sequenceDiagram
-    participant module_scripts_generate_sequence_actual_py_0 as scripts/generate_sequence_actual.py
-    participant module_scripts_governance_engine_py_1 as scripts/governance_engine.py
-    participant module_scripts_project_snapshot_py_2 as scripts/project_snapshot.py
-    participant module_scripts_selftest_sequence_human_view_py_3 as scripts/selftest_sequence_human_view.py
-    participant module_scripts_sequence_contract_py_4 as scripts/sequence_contract.py
-    module_scripts_generate_sequence_actual_py_0->>module_scripts_governance_engine_py_1: 1 static interaction
-    module_scripts_generate_sequence_actual_py_0->>module_scripts_project_snapshot_py_2: 2 static interactions
-    module_scripts_generate_sequence_actual_py_0->>module_scripts_sequence_contract_py_4: 2 static interactions
-    module_scripts_selftest_sequence_human_view_py_3->>module_scripts_project_snapshot_py_2: 1 static interaction
-    module_scripts_sequence_contract_py_4->>module_scripts_project_snapshot_py_2: 4 static interactions
-    module_scripts_sequence_contract_py_4->>module_scripts_selftest_sequence_human_view_py_3: 1 static interaction
+    participant module_scripts_analyzer_contract_py_0 as scripts/analyzer_contract.py
+    participant module_scripts_extract_project_facts_py_1 as scripts/extract_project_facts.py
+    participant module_scripts_generate_sequence_actual_py_2 as scripts/generate_sequence_actual.py
+    participant module_scripts_governance_engine_py_3 as scripts/governance_engine.py
+    participant module_scripts_project_snapshot_py_4 as scripts/project_snapshot.py
+    participant module_scripts_selftest_sequence_human_view_py_5 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_sequence_contract_py_6 as scripts/sequence_contract.py
+    module_scripts_analyzer_contract_py_0->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_extract_project_facts_py_1->>module_scripts_analyzer_contract_py_0: 5 static interactions
+    module_scripts_extract_project_facts_py_1->>module_scripts_governance_engine_py_3: 1 static interaction
+    module_scripts_extract_project_facts_py_1->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_generate_sequence_actual_py_2->>module_scripts_analyzer_contract_py_0: 7 static interactions
+    module_scripts_generate_sequence_actual_py_2->>module_scripts_governance_engine_py_3: 1 static interaction
+    module_scripts_generate_sequence_actual_py_2->>module_scripts_project_snapshot_py_4: 2 static interactions
+    module_scripts_generate_sequence_actual_py_2->>module_scripts_sequence_contract_py_6: 2 static interactions
+    module_scripts_project_snapshot_py_4->>module_scripts_selftest_sequence_human_view_py_5: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_5->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_sequence_contract_py_6->>module_scripts_project_snapshot_py_4: 3 static interactions
+    module_scripts_sequence_contract_py_6->>module_scripts_selftest_sequence_human_view_py_5: 1 static interaction
 ```

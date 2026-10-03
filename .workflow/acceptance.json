@@ -46,11 +46,12 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-06-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/validate_schema_toolchain.py --root .",
     "python scripts/selftest_schema_toolchain.py",
+    "python scripts/selftest_analyzer_contract.py",
     "python scripts/selftest_sequence_call_resolution.py",
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
@@ -59,7 +60,7 @@
     "python scripts/selftest_generated_doc_presentation.py",
     "python scripts/validate_sequence_sessions.py --root .",
     "python scripts/validate_handoff.py --root .",
-    "python scripts/governance_engine.py --root . --base 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

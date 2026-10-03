@@ -243,12 +243,13 @@
       "id": "TRUTH-SW2-ANALYZER-CONTRACT",
       "runtime_evidence": [],
       "source_owners": [
+        "scripts/analyzer_contract.py",
         "scripts/extract_project_facts.py",
-        "scripts/generate_sequence_actual.py",
-        "scripts/project_snapshot.py"
+        "scripts/generate_sequence_actual.py"
       ],
       "status": "NOT_PROVEN",
       "tests": [
+        "scripts/selftest_analyzer_contract.py",
         "scripts/selftest_sequence_call_resolution.py"
       ]
     },
@@ -262,12 +263,13 @@
       "id": "TRUTH-SW2-DYNAMIC-EVIDENCE",
       "runtime_evidence": [],
       "source_owners": [
+        "scripts/analyzer_contract.py",
         "scripts/generate_sequence_actual.py",
         "scripts/validate_sequence_contract.py"
       ],
       "status": "NOT_PROVEN",
       "tests": [
-        "scripts/selftest_sequence_call_resolution.py"
+        "scripts/selftest_analyzer_contract.py"
       ]
     }
   ],
