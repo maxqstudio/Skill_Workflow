@@ -74,4 +74,12 @@ SW2-06 introduces one language-independent AnalyzerResult contract and fail-safe
 
 Rationale: A common evidence contract removes governance coupling to one parser without risking a broad parser rewrite. Surface-specific analyzers can grow independently while consumers keep accepted evidence semantics and unsupported behavior cannot become false certainty.
 
+## SW2-ADR-010 — Adopt the MIT License
+
+Status: ACCEPTED
+
+Skill Workflow is licensed under the MIT License, with the repository LICENSE file as the public license text.
+
+Rationale: The Owner explicitly selected MIT for the public project. The choice keeps reuse and redistribution permissive while preserving the required copyright and license notice.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->
