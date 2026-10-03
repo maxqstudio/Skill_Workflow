@@ -64,7 +64,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-02
+Current phase: SW2-03
 
 Current status: IN_PROGRESS
 
@@ -110,16 +110,17 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Introduce explicit develop, verify, and finalize governance execution modes without changing standalone validator behavior.
-- Add deterministic changed-file impact classification so develop mode runs only safely mapped checks and unknown impact escalates.
-- Make verify mode expand to the affected governance/test scope and make finalize mode execute the complete required acceptance graph.
-- Add cross-platform regressions proving mode ordering, escalation, fail-closed behavior, and finalization parity before SW2-02 acceptance.
+- Measure current sequence graph size and representative consumer complexity before choosing any human-diagram threshold.
+- Separate full machine sequence evidence from a bounded human-facing sequence projection without deleting evidence.
+- Add blocking Mermaid syntax/render validation using an actual renderer or equivalent parser-backed check.
+- Add regression fixtures proving semantic collapse/subflow behavior, complexity-policy enforcement, and machine-evidence fidelity before SW2-03 acceptance.
 
 Blocked actions:
-- Do not start SW2-03 Sequence V2 work before SW2-02 acceptance is complete and the Owner explicitly authorizes the next phase.
-- Do not remove validators, weaken fail-closed semantics, or let develop/verify mode become final acceptance authority.
-- Unknown changed-file impact must escalate to a broader mode; it must never silently skip verification.
-- Do not claim Mermaid renderability or bounded human diagram complexity before SW2-03 proves those gates.
+- Do not discard machine sequence nodes/edges merely to make human diagrams smaller.
+- Do not declare arbitrary participant/interaction limits without measured baseline evidence and documented rationale.
+- Do not treat Mermaid text generation alone as proof of renderability; SW2-03 requires a blocking parser/render gate.
+- Do not weaken SW2-02 mode safety or final fail-closed acceptance while changing sequence presentation.
+- Do not start SW2-04 Documentation System V2 before SW2-03 acceptance is complete and the Owner authorizes the next phase.
 
 Known blockers:
 - None declared.
@@ -137,11 +138,15 @@ Known blockers:
 - Changed-file impact classification and fail-closed escalation are regression-proven for SW2-02 develop/verify planning; unknown impact still escalates rather than silently skipping verification.
 - SW2-02 finalize mode is proven on exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446: Finalize Evidence run 37081217929 passed on Ubuntu and Windows with the complete required acceptance DAG, final_acceptance_authority=true, exact-head provenance, and clean governed worktree.
 - SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.
+- SW2-02 Fast Development Workflow acceptance is complete on branch candidate c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a: all SW2-02 requirements and TRUTH-SW2-MODE-SAFETY are PASS, and Self Governance 37081631917, Governance Selftest 37081631955, Sequence Evidence 37081631942, Engine Performance 37081631972, and Consumer Engine Performance 37081631956 all succeeded.
 
 ### Not proven
 
+- SW2-03 full machine evidence fidelity across the new machine/human sequence split is NOT_PROVEN.
+- SW2-03 human-facing semantic collapsing/subflow readability is NOT_PROVEN.
+- SW2-03 blocking Mermaid syntax/render validation is NOT_PROVEN.
+- SW2-03 measurable diagram-complexity policy is NOT_PROVEN; no numeric threshold is authoritative yet.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
-- Mermaid renderability and bounded human-facing diagram complexity remain deferred to SW2-03.
 
 ## Important limitations
 

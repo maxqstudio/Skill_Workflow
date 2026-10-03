@@ -4,17 +4,17 @@
 
 ## Evidence boundary
 
-SW2-02 acceptance covers changed-file impact classification plus develop, verify, and finalize governance execution modes. Fast modes may reduce intermediate work only when impact is known; unknown impact must escalate. Finalize must preserve the complete accepted fail-closed governance contract. Runtime/E2E is not applicable to this repository-only orchestration phase. SW2-03 sequence-render redesign is not part of this phase.
+SW2-03 acceptance covers Sequence V2 only: full machine sequence evidence must retain acceptance fidelity while human-facing diagrams become bounded and semantically readable. Mermaid syntax/render correctness must become blocking and diagram complexity must be measured against a documented policy. Existing SW2-02 develop/verify/finalize mode safety remains inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository-only sequence tooling phase unless stronger runtime evidence becomes required.
 
 Final tested source: external final acceptance evidence.
 Current source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-02-R1 | Develop mode runs only checks that are safely mapped from the changed-file impact set and never claims final acceptance. | Governance Selftest run 37035039338 passed on Ubuntu and Windows. scripts/selftest_governance_engine.py executes a real governance_engine.py --mode develop fixture, proves only compile_scripts + engine_regression are selected for a known engine-only change, and proves develop never gains final acceptance authority. | PASS |
-| SW2-02-R2 | Verify mode expands to the affected governance and test scope without becoming final acceptance authority. | SW2-02 Verify Evidence run 37080781127 passed exact candidate 9e0ef0d098ea2f7f96424ce057ca1f4572939b52 on Ubuntu and Windows with requested_mode=verify, effective_mode=verify, result=PASS, and final_acceptance_authority=false. Governance Selftest run 37080786219 independently passed the permanent Verify mode is read-only regression and the full regression chain on Ubuntu and Windows. Exact-head PR runs 37080786150 (Self Governance), 37080786188 (Sequence Evidence), 37080786161 (Engine Performance), and 37080786184 (Consumer Engine Performance) also completed successfully. | PASS |
-| SW2-02-R3 | Finalize mode always executes the complete required acceptance graph and remains fail-closed. | SW2-02 Finalize Evidence run 37081217929 passed exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446 on Ubuntu and Windows. Each job asserted requested_mode=finalize, effective_mode=finalize, result=PASS, final_acceptance_authority=true, exact expected/snapshot HEAD binding, the complete required finalize node set, every selected node PASS, and a clean governed worktree after finalization. On the same exact candidate, Self Governance run 37081221016, Governance Selftest run 37081221039, Sequence Evidence run 37081221001, Engine Performance run 37081220933, and Consumer Engine Performance run 37081221049 all completed successfully. | PASS |
-| SW2-02-R4 | Unknown changed-file impact fails closed by escalating to a broader execution mode. | Governance Selftest run 37035039338 passed mode-planning and CLI integration regressions on Ubuntu and Windows. Unknown develop impact escalates to verify; unknown verify impact escalates to the full finalize graph, fails closed on an incomplete fixture, and remains final_acceptance_authority=false because the request began as verify. | PASS |
+| SW2-03-R1 | Full machine-generated sequence evidence retains acceptance-relevant static graph fidelity and is not reduced merely to improve human readability. | NOT_PROVEN until Sequence V2 regressions prove the machine evidence graph is retained independently from any human-facing projection. | NOT_PROVEN |
+| SW2-03-R2 | Human-facing sequence diagrams use semantic components, collapsing, or subflows instead of exposing raw helper-level call dumps as the default view. | NOT_PROVEN until representative generated flows prove a readable human projection without discarding the underlying machine evidence. | NOT_PROVEN |
+| SW2-03-R3 | Mermaid syntax and renderability validation is blocking for governed human-facing sequence diagrams. | NOT_PROVEN until CI uses an actual Mermaid parser/renderer or equivalent blocking render validation rather than text-shape checks alone. | NOT_PROVEN |
+| SW2-03-R4 | Diagram complexity is measured against a documented evidence-based policy and over-complex human views must be collapsed, split, or fail validation. | NOT_PROVEN until baseline measurements justify the policy and regression fixtures prove the policy is enforced; no arbitrary numeric threshold is accepted as evidence. | NOT_PROVEN |
 
 ## Test commands
 
@@ -24,11 +24,9 @@ Current source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a55
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
-- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode develop --expected-head <EXACT_HEAD>
-- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode verify --expected-head <EXACT_HEAD>
-- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode finalize --expected-head <EXACT_HEAD>
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
+- python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -42,7 +40,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-02-GOVERNANCE
+Sequence session contract: SW2-03-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

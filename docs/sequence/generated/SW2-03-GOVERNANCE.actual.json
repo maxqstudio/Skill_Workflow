@@ -1,0 +1,735 @@
+{
+  "coverage": {
+    "js_ts_http_module_scan": true,
+    "limitations": [
+      "dynamic dispatch",
+      "dependency injection",
+      "reflection",
+      "callbacks/events",
+      "framework magic not visible statically",
+      "JS/TS function-level call ownership is not fully resolved"
+    ],
+    "python_ast": true,
+    "python_parse_failures": [],
+    "python_route_decorators": true,
+    "runtime_trace": false
+  },
+  "edges": [
+    {
+      "action": "allowed",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::collect_js_http",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::allowed"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::collect_js_http",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "PyCollector",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::collect_python",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::PyCollector"
+    },
+    {
+      "action": "allowed",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::collect_python",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::allowed"
+    },
+    {
+      "action": "collector.visit",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::collect_python",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::collect_python",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "collect_js_http",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::collect_js_http"
+    },
+    {
+      "action": "collect_python",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::collect_python"
+    },
+    {
+      "action": "dedupe_edges",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::dedupe_edges"
+    },
+    {
+      "action": "dedupe_nodes",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::dedupe_nodes"
+    },
+    {
+      "action": "filter_reachable",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/generate_sequence_actual.py::filter_reachable"
+    },
+    {
+      "action": "compute_source_digest",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::compute_source_digest"
+    },
+    {
+      "action": "render_graph_mermaid",
+      "evidence": "STATIC",
+      "from": "scripts/generate_sequence_actual.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::render_graph_mermaid"
+    },
+    {
+      "action": "_clean",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::parse_profile",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::_clean"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::parse_profile",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "_bool_value",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::sequence_settings",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::_bool_value"
+    },
+    {
+      "action": "normalized_profile",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::sequence_settings",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::normalized_profile"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "value.resolve",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "action": "self.entry",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "action": "self.entry",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "action": "root.resolve",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::active_snapshot_for",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::canonical_source_bytes",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::discover_source_paths",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "_git",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::discover_source_paths",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::_git"
+    },
+    {
+      "action": "root.resolve",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::discover_source_paths",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "action": "active_snapshot_for",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::_selected_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::active_snapshot_for"
+    },
+    {
+      "action": "root.resolve",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::_selected_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "action": "graph_edge_set",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compare_plan_actual",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::graph_edge_set"
+    },
+    {
+      "action": "plan_locator_map",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compare_plan_actual",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::plan_locator_map"
+    },
+    {
+      "action": "canonical_source_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::canonical_source_bytes"
+    },
+    {
+      "action": "discover_source_paths",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::discover_source_paths"
+    },
+    {
+      "action": "_selected_snapshot",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::_selected_snapshot"
+    },
+    {
+      "action": "root.resolve",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "action": "sanitize_alias",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::render_graph_mermaid",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::sanitize_alias"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::sha256_file",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "render_graph_mermaid",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::expected_actual_mermaid",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::render_graph_mermaid"
+    },
+    {
+      "action": "render_graph_mermaid",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::expected_plan_mermaid",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::render_graph_mermaid"
+    },
+    {
+      "action": "sha256_file",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::expected_plan_mermaid",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::sha256_file"
+    },
+    {
+      "action": "parse_profile",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "action": "sequence_settings",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::sequence_settings"
+    },
+    {
+      "action": "actual_diagram_path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "pd.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "compare_plan_actual",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::compare_plan_actual"
+    },
+    {
+      "action": "compute_source_digest",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::compute_source_digest"
+    },
+    {
+      "action": "is_ancestor",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::is_ancestor"
+    },
+    {
+      "action": "sha256_file",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::sha256_file"
+    },
+    {
+      "action": "expected_actual_mermaid",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::expected_actual_mermaid"
+    },
+    {
+      "action": "expected_plan_mermaid",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::expected_plan_mermaid"
+    },
+    {
+      "action": "git_show_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::git_show_bytes"
+    },
+    {
+      "action": "resolve",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_contract.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "action": "parse_profile",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "action": "sequence_settings",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::sequence_settings"
+    }
+  ],
+  "entries": [
+    "scripts/generate_sequence_actual.py::main",
+    "scripts/validate_sequence_contract.py::main",
+    "scripts/validate_sequence_sessions.py::main"
+  ],
+  "generated": true,
+  "generated_by": "generate_sequence_actual.py",
+  "nodes": [
+    {
+      "id": "scripts/generate_sequence_actual.py::PyCollector",
+      "kind": "class",
+      "label": "scripts/generate_sequence_actual.py::PyCollector",
+      "language": "Python",
+      "line_end": 130,
+      "line_start": 58,
+      "locator": "scripts/generate_sequence_actual.py::PyCollector"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::allowed",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::allowed",
+      "language": "Python",
+      "line_end": 35,
+      "line_start": 33,
+      "locator": "scripts/generate_sequence_actual.py::allowed"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::collect_js_http",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::collect_js_http",
+      "language": "Python",
+      "line_end": 264,
+      "line_start": 210,
+      "locator": "scripts/generate_sequence_actual.py::collect_js_http"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::collect_python",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::collect_python",
+      "language": "Python",
+      "line_end": 200,
+      "line_start": 133,
+      "locator": "scripts/generate_sequence_actual.py::collect_python"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::dedupe_edges",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::dedupe_edges",
+      "language": "Python",
+      "line_end": 290,
+      "line_start": 276,
+      "locator": "scripts/generate_sequence_actual.py::dedupe_edges"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::dedupe_nodes",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::dedupe_nodes",
+      "language": "Python",
+      "line_end": 273,
+      "line_start": 267,
+      "locator": "scripts/generate_sequence_actual.py::dedupe_nodes"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::filter_reachable",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::filter_reachable",
+      "language": "Python",
+      "line_end": 333,
+      "line_start": 293,
+      "locator": "scripts/generate_sequence_actual.py::filter_reachable"
+    },
+    {
+      "id": "scripts/generate_sequence_actual.py::main",
+      "kind": "function",
+      "label": "scripts/generate_sequence_actual.py::main",
+      "language": "Python",
+      "line_end": 416,
+      "line_start": 336,
+      "locator": "scripts/generate_sequence_actual.py::main"
+    },
+    {
+      "id": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "kind": "method",
+      "label": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+      "language": "Python",
+      "line_end": 82,
+      "line_start": 73,
+      "locator": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit"
+    },
+    {
+      "id": "scripts/project_profile.py::_bool_value",
+      "kind": "function",
+      "label": "scripts/project_profile.py::_bool_value",
+      "language": "Python",
+      "line_end": 158,
+      "line_start": 152,
+      "locator": "scripts/project_profile.py::_bool_value"
+    },
+    {
+      "id": "scripts/project_profile.py::_clean",
+      "kind": "function",
+      "label": "scripts/project_profile.py::_clean",
+      "language": "Python",
+      "line_end": 85,
+      "line_start": 81,
+      "locator": "scripts/project_profile.py::_clean"
+    },
+    {
+      "id": "scripts/project_profile.py::normalized_profile",
+      "kind": "function",
+      "label": "scripts/project_profile.py::normalized_profile",
+      "language": "Python",
+      "line_end": 135,
+      "line_start": 131,
+      "locator": "scripts/project_profile.py::normalized_profile"
+    },
+    {
+      "id": "scripts/project_profile.py::parse_profile",
+      "kind": "function",
+      "label": "scripts/project_profile.py::parse_profile",
+      "language": "Python",
+      "line_end": 128,
+      "line_start": 88,
+      "locator": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "id": "scripts/project_profile.py::sequence_settings",
+      "kind": "function",
+      "label": "scripts/project_profile.py::sequence_settings",
+      "language": "Python",
+      "line_end": 209,
+      "line_start": 194,
+      "locator": "scripts/project_profile.py::sequence_settings"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "language": "Python",
+      "line_end": 185,
+      "line_start": 173,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "language": "Python",
+      "line_end": 188,
+      "line_start": 187,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "language": "Python",
+      "line_end": 191,
+      "line_start": 190,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "id": "scripts/project_snapshot.py::SnapshotError",
+      "kind": "class",
+      "label": "scripts/project_snapshot.py::SnapshotError",
+      "language": "Python",
+      "line_end": 37,
+      "line_start": 36,
+      "locator": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "id": "scripts/project_snapshot.py::_git",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::_git",
+      "language": "Python",
+      "line_end": 45,
+      "line_start": 40,
+      "locator": "scripts/project_snapshot.py::_git"
+    },
+    {
+      "id": "scripts/project_snapshot.py::active_snapshot_for",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::active_snapshot_for",
+      "language": "Python",
+      "line_end": 235,
+      "line_start": 231,
+      "locator": "scripts/project_snapshot.py::active_snapshot_for"
+    },
+    {
+      "id": "scripts/project_snapshot.py::canonical_source_bytes",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::canonical_source_bytes",
+      "language": "Python",
+      "line_end": 106,
+      "line_start": 104,
+      "locator": "scripts/project_snapshot.py::canonical_source_bytes"
+    },
+    {
+      "id": "scripts/project_snapshot.py::discover_source_paths",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::discover_source_paths",
+      "language": "Python",
+      "line_end": 101,
+      "line_start": 55,
+      "locator": "scripts/project_snapshot.py::discover_source_paths"
+    },
+    {
+      "id": "scripts/sequence_contract.py::_selected_snapshot",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::_selected_snapshot",
+      "language": "Python",
+      "line_end": 56,
+      "line_start": 49,
+      "locator": "scripts/sequence_contract.py::_selected_snapshot"
+    },
+    {
+      "id": "scripts/sequence_contract.py::compare_plan_actual",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::compare_plan_actual",
+      "language": "Python",
+      "line_end": 203,
+      "line_start": 159,
+      "locator": "scripts/sequence_contract.py::compare_plan_actual"
+    },
+    {
+      "id": "scripts/sequence_contract.py::compute_source_digest",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::compute_source_digest",
+      "language": "Python",
+      "line_end": 86,
+      "line_start": 70,
+      "locator": "scripts/sequence_contract.py::compute_source_digest"
+    },
+    {
+      "id": "scripts/sequence_contract.py::graph_edge_set",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::graph_edge_set",
+      "language": "Python",
+      "line_end": 156,
+      "line_start": 151,
+      "locator": "scripts/sequence_contract.py::graph_edge_set"
+    },
+    {
+      "id": "scripts/sequence_contract.py::is_ancestor",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::is_ancestor",
+      "language": "Python",
+      "line_end": 96,
+      "line_start": 89,
+      "locator": "scripts/sequence_contract.py::is_ancestor"
+    },
+    {
+      "id": "scripts/sequence_contract.py::plan_locator_map",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::plan_locator_map",
+      "language": "Python",
+      "line_end": 148,
+      "line_start": 141,
+      "locator": "scripts/sequence_contract.py::plan_locator_map"
+    },
+    {
+      "id": "scripts/sequence_contract.py::render_graph_mermaid",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::render_graph_mermaid",
+      "language": "Python",
+      "line_end": 138,
+      "line_start": 106,
+      "locator": "scripts/sequence_contract.py::render_graph_mermaid"
+    },
+    {
+      "id": "scripts/sequence_contract.py::sanitize_alias",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::sanitize_alias",
+      "language": "Python",
+      "line_end": 103,
+      "line_start": 99,
+      "locator": "scripts/sequence_contract.py::sanitize_alias"
+    },
+    {
+      "id": "scripts/sequence_contract.py::sha256_file",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::sha256_file",
+      "language": "Python",
+      "line_end": 34,
+      "line_start": 33,
+      "locator": "scripts/sequence_contract.py::sha256_file"
+    },
+    {
+      "id": "scripts/validate_sequence_contract.py::expected_actual_mermaid",
+      "kind": "function",
+      "label": "scripts/validate_sequence_contract.py::expected_actual_mermaid",
+      "language": "Python",
+      "line_end": 54,
+      "line_start": 47,
+      "locator": "scripts/validate_sequence_contract.py::expected_actual_mermaid"
+    },
+    {
+      "id": "scripts/validate_sequence_contract.py::expected_plan_mermaid",
+      "kind": "function",
+      "label": "scripts/validate_sequence_contract.py::expected_plan_mermaid",
+      "language": "Python",
+      "line_end": 44,
+      "line_start": 38,
+      "locator": "scripts/validate_sequence_contract.py::expected_plan_mermaid"
+    },
+    {
+      "id": "scripts/validate_sequence_contract.py::git_show_bytes",
+      "kind": "function",
+      "label": "scripts/validate_sequence_contract.py::git_show_bytes",
+      "language": "Python",
+      "line_end": 35,
+      "line_start": 31,
+      "locator": "scripts/validate_sequence_contract.py::git_show_bytes"
+    },
+    {
+      "id": "scripts/validate_sequence_contract.py::main",
+      "kind": "function",
+      "label": "scripts/validate_sequence_contract.py::main",
+      "language": "Python",
+      "line_end": 324,
+      "line_start": 57,
+      "locator": "scripts/validate_sequence_contract.py::main"
+    },
+    {
+      "id": "scripts/validate_sequence_contract.py::resolve",
+      "kind": "function",
+      "label": "scripts/validate_sequence_contract.py::resolve",
+      "language": "Python",
+      "line_end": 28,
+      "line_start": 26,
+      "locator": "scripts/validate_sequence_contract.py::resolve"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::main",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::main",
+      "language": "Python",
+      "line_end": 102,
+      "line_start": 16,
+      "locator": "scripts/validate_sequence_sessions.py::main"
+    }
+  ],
+  "observed_head": "cb983027e0d85ac8c635857be314bdb95744ef4d",
+  "schema_version": 1,
+  "source_digest": "a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1"
+}

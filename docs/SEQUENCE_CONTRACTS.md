@@ -31,3 +31,5 @@ Canonical Mermaid is generated and must not be hand-edited.
 
 CURRENT evidence binds to current source content. HISTORICAL evidence remains
 bound to its accepted historical source digest.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION -->

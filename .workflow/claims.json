@@ -89,6 +89,44 @@
         "scripts/selftest_governance_engine.py",
         "scripts/selftest_strict_project_workflow.py"
       ]
+    },
+    {
+      "claim": "Sequence V2 may add bounded human projections only if the full machine-generated static sequence evidence remains independently available and acceptance-traceable.",
+      "documents": [
+        "ROADMAP.md",
+        "SEQUENCE_CONTRACTS.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-SEQUENCE-FIDELITY",
+      "runtime_evidence": [],
+      "source_owners": [
+        "scripts/generate_sequence_actual.py",
+        "scripts/sequence_contract.py",
+        "scripts/validate_sequence_contract.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_sequence_call_resolution.py"
+      ]
+    },
+    {
+      "claim": "Governed human-facing sequence diagrams must be renderable and bounded by a documented measurable complexity policy without weakening machine evidence.",
+      "documents": [
+        "ROADMAP.md",
+        "SEQUENCE_CONTRACTS.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-SEQUENCE-PRESENTATION",
+      "runtime_evidence": [],
+      "source_owners": [
+        "scripts/sequence_contract.py",
+        "scripts/validate_sequence_contract.py",
+        "scripts/validate_sequence_sessions.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_sequence_call_resolution.py"
+      ]
     }
   ],
   "relations": [
@@ -102,6 +140,18 @@
       "claim_id": "TRUTH-SW2-MODE-SAFETY",
       "notes": "Fast modes are valid only if they cannot replace or weaken final fail-closed acceptance.",
       "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-SEQUENCE-FIDELITY",
+      "notes": "Sequence presentation work is valid only if acceptance-relevant evidence remains fail-closed and independently auditable.",
+      "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-SEQUENCE-PRESENTATION",
+      "notes": "Human readability improvements must not replace or weaken the machine evidence graph.",
+      "other_claim_id": "TRUTH-SW2-SEQUENCE-FIDELITY",
       "relation": "REQUIRES"
     }
   ],
