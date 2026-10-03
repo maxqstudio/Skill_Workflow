@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
+Authority verified at SHA: f79917550fe42f98110f1a11915ad9699e5244e6
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-03
+Phase: SW2-04
 Status: IN_PROGRESS
-Roadmap phase: SW2-03
+Roadmap phase: SW2-04
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-02-fast-development-workflow
+Branch: work/sw2-03-sequence-v2
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 94717751cb0ca0a3680ccd93ac16219c9bd0425d
+Last accepted SHA: f79917550fe42f98110f1a11915ad9699e5244e6
 Current candidate SHA: external final acceptance evidence
-Current source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
+Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-03-GOVERNANCE
+Current sequence session: SW2-04-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -49,12 +49,14 @@ SEQUENCE_SYNC: PASS
 - SW2-02 finalize mode is proven on exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446: Finalize Evidence run 37081217929 passed on Ubuntu and Windows with the complete required acceptance DAG, final_acceptance_authority=true, exact-head provenance, and clean governed worktree.
 - SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.
 - SW2-02 Fast Development Workflow acceptance is complete on branch candidate c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a: all SW2-02 requirements and TRUTH-SW2-MODE-SAFETY are PASS, and Self Governance 37081631917, Governance Selftest 37081631955, Sequence Evidence 37081631942, Engine Performance 37081631972, and Consumer Engine Performance 37081631956 all succeeded.
+- SW2-02 was merged to main as f79917550fe42f98110f1a11915ad9699e5244e6; post-merge Self Governance 37085905097, Governance Selftest 37085905094 on Ubuntu and Windows, SW2 Sequence Evidence 37085905107, SW2 Engine Performance 37085905175, and SW2 Consumer Engine Performance 37085905090 all succeeded.
+- SW2-03 Sequence V2 feature acceptance is proven on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: Self Governance 37087211311, Governance Selftest 37087211310 on Ubuntu and Windows, SW2 Sequence Evidence 37087211297 with blocking Mermaid render, SW2 Engine Performance 37087211307, and SW2 Consumer Engine Performance 37087211371 all succeeded. The full machine graph remains independent evidence; module-collapse-v1 produces a bounded human projection with complete machine-edge accounting.
+- SW2-03 Sequence V2 is accepted on exact cleanup candidate 7823dd1b6be1de59c1f28406c050df343a3d1934: Self Governance 37093982357, Governance Selftest 37093982276 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37093982364 with blocking Mermaid render, SW2 Engine Performance 37093982407, and SW2 Consumer Engine Performance 37093982235 all succeeded. Sequence V2 consumer vendoring and SKILL contract synchronization were also proven before closure.
 
 ## Not proven
-- SW2-03 full machine evidence fidelity across the new machine/human sequence split is NOT_PROVEN.
-- SW2-03 human-facing semantic collapsing/subflow readability is NOT_PROVEN.
-- SW2-03 blocking Mermaid syntax/render validation is NOT_PROVEN.
-- SW2-03 measurable diagram-complexity policy is NOT_PROVEN; no numeric threshold is authoritative yet.
+- SW2-04 concise public README/landing-page quality is NOT_PROVEN until the public documentation information architecture is implemented and reviewed.
+- SW2-04 separation between public guidance and machine indexes/evidence is NOT_PROVEN until deterministic generators and validators enforce the new locations.
+- SW2-04 generated-document determinism and drift detection after documentation restructuring are NOT_PROVEN until regression evidence passes.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 
 ## Known blockers
@@ -64,16 +66,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Measure current sequence graph size and representative consumer complexity before choosing any human-diagram threshold.
-- Separate full machine sequence evidence from a bounded human-facing sequence projection without deleting evidence.
-- Add blocking Mermaid syntax/render validation using an actual renderer or equivalent parser-backed check.
-- Add regression fixtures proving semantic collapse/subflow behavior, complexity-policy enforcement, and machine-evidence fidelity before SW2-03 acceptance.
+- Run clean permanent CI on the SW2-04 phase-open transition candidate.
+- Merge PR #9 only after the exact phase-open cleanup SHA passes all permanent CI.
+- After post-merge main acceptance, create work/sw2-04-documentation-system-v2 from exact accepted main and update working-branch/last-accepted authority before implementation.
 
 ## Explicitly blocked
-- Do not discard machine sequence nodes/edges merely to make human diagrams smaller.
-- Do not declare arbitrary participant/interaction limits without measured baseline evidence and documented rationale.
-- Do not treat Mermaid text generation alone as proof of renderability; SW2-03 requires a blocking parser/render gate.
-- Do not weaken SW2-02 mode safety or final fail-closed acceptance while changing sequence presentation.
-- Do not start SW2-04 Documentation System V2 before SW2-03 acceptance is complete and the Owner authorizes the next phase.
+- Do not mark any SW2-04 requirement PASS before implementation-specific evidence exists.
+- Do not manually edit deterministic generated project Markdown as semantic authority.
+- Do not remove or hide machine indexes/evidence merely to make public documentation shorter.
+- Do not weaken Project Truth, cross-document, Human Comprehension, or sequence gates while restructuring documentation.
+- Do not choose or add a repository license in SW2-04; license authority remains an Owner decision and SW2-07 scope.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

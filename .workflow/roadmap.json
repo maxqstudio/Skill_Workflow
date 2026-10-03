@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-03",
+  "current_phase": "SW2-04",
   "phases": [
     {
       "exit_criteria": [
@@ -47,7 +47,7 @@
       ],
       "id": "SW2-03",
       "objective": "Separate full machine sequence evidence from bounded human-facing diagrams and add Mermaid correctness gates.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Sequence V2"
     },
     {
@@ -59,7 +59,7 @@
       ],
       "id": "SW2-04",
       "objective": "Standardize public documentation information architecture and separate public guidance from machine indexes/evidence.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Documentation System V2"
     },
     {

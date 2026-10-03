@@ -34,4 +34,12 @@ Governance Engine V2 may reuse one immutable source snapshot and process-local d
 
 Rationale: Repeated source discovery, file reads, AST extraction, and nested script processes are avoidable execution cost, but persisting cache state as truth would weaken provenance and fail-closed semantics.
 
+## SW2-ADR-005 — Use structural module collapse for human sequence views
+
+Status: ACCEPTED
+
+Sequence V2 keeps the full symbol-level machine graph unchanged as acceptance evidence and derives a separate module-collapse-v1 human projection. The human projection permits one participant per semantic module or external boundary and one rendered interaction per directed component pair; every machine edge must be accounted for as either an internal collapsed edge or a cross-component aggregated edge. No global participant or interaction limit is authoritative in this phase.
+
+Rationale: Committed Skill Workflow sequence baselines grew from 7 participants/6 interactions (SW2-00) to 22/27 (SW2-01), 33/44 (SW2-02), and 37/53 at the SW2-03 pre-V2 baseline. The measured growth demonstrates that raw helper-level diagrams scale with implementation detail, but it does not justify inventing an absolute readability threshold. Structural module/pair ceilings are deterministic, measurable, and preserve complete machine evidence.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY -->

@@ -545,11 +545,18 @@ For each phase/session, declare one mode:
 - AFTER — post-implementation reconstruction; retrospective plan is forbidden
   and only final generated actual behavior is accepted.
 
-Canonical Mermaid diagrams are generated files. Do not hand-edit them.
+Full machine sequence evidence is generated and MUST remain independently auditable.
+Do not hand-edit generated machine or human Mermaid artifacts.
+
+When a governed flow needs a human-facing diagram, generate a separate bounded
+human projection from the full machine graph. The human projection is a
+presentation artifact, not a replacement for `actual.json` / `actual.mmd`, and
+it MUST explicitly state that static structure does not prove runtime ordering.
 
 The machine-readable sequence session and plan contracts live under
-`docs/sequence/` (recommended), while acceptance reports should live under
-`artifacts/sequence/`.
+`docs/sequence/` (recommended), acceptance reports should live under
+`artifacts/sequence/`, and GitHub-readable human views should live under
+`docs/sequence/views/`.
 
 ## MODULE_MAP.md
 Fast file-level navigation map. Recommended columns: Module/File | Responsibility | Called By | Calls/Depends On | State Touched | Tests.
@@ -1558,6 +1565,56 @@ The plan JSON is the BEFORE design contract.
 The actual JSON is the machine observation of implementation.
 
 Mermaid is only a deterministic rendering.
+
+## Machine evidence vs human sequence view
+
+Sequence V2 separates acceptance evidence from presentation:
+
+```text
+full machine actual.json / actual.mmd
+= acceptance-relevant static evidence
+
+separate human.json / human.mmd / docs/sequence/views/*.md
+= deterministic bounded projection for humans
+```
+
+Required invariants:
+
+- human projection MUST NOT delete, rewrite, or replace the full machine graph;
+- every machine edge MUST remain accounted for by the projection, including
+  edges collapsed inside one semantic component and repeated cross-component
+  edges aggregated into one rendered interaction;
+- semantic collapsing or subflows are preferred over exposing every helper as
+  a participant;
+- complexity policy MUST be deterministic, measurable, documented, and tested;
+- do not invent an arbitrary global participant/interaction limit without
+  baseline evidence and rationale;
+- static human projection MUST NOT be described as runtime call ordering;
+- inherited static-analyzer limitations remain visible evidence limitations and
+  MUST NOT be hidden merely to improve the diagram.
+
+Canonical tools when vendored by the initializer:
+
+```bash
+python .workflow/tools/sequence_human_view.py ...
+python .workflow/tools/validate_sequence_human_view.py ...
+python .workflow/tools/validate_sequence_sessions.py --root .
+```
+
+A human-facing Mermaid diagram is not accepted merely because text was
+generated. CI MUST run an actual Mermaid parser/renderer (or equivalent
+parser-backed render check) and fail if rendering fails. Renderer absence,
+syntax failure, or empty render output MUST NOT be converted into PASS.
+
+Therefore:
+
+```text
+MACHINE_EVIDENCE_PASS
++ HUMAN_PROJECTION_PASS
++ MERMAID_RENDER_FAIL
+=
+SEQUENCE_PRESENTATION FAIL
+```
 
 ## Source-content binding
 

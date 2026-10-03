@@ -54,6 +54,9 @@ jobs:
       - name: Sequence call-resolution regression
         run: python scripts/selftest_sequence_call_resolution.py
 
+      - name: Sequence human-view regression
+        run: python scripts/selftest_sequence_human_view.py
+
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
 

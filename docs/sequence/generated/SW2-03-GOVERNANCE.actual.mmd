@@ -1,6 +1,6 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
-%% OBSERVED_HEAD: cb983027e0d85ac8c635857be314bdb95744ef4d
+%% SOURCE_DIGEST: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
+%% OBSERVED_HEAD: 82063037ab3bbcf5940b0bb73a234f38451fd1a5
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
     participant scripts_generate_sequence_actual_py__PyCollector_0 as scripts/generate_sequence_actual.py::PyCollector
@@ -25,21 +25,23 @@ sequenceDiagram
     participant scripts_project_snapshot_py__active_snapshot_for_19 as scripts/project_snapshot.py::active_snapshot_for
     participant scripts_project_snapshot_py__canonical_source_bytes_20 as scripts/project_snapshot.py::canonical_source_bytes
     participant scripts_project_snapshot_py__discover_source_paths_21 as scripts/project_snapshot.py::discover_source_paths
-    participant scripts_sequence_contract_py___selected_snapshot_22 as scripts/sequence_contract.py::_selected_snapshot
-    participant scripts_sequence_contract_py__compare_plan_actual_23 as scripts/sequence_contract.py::compare_plan_actual
-    participant scripts_sequence_contract_py__compute_source_digest_24 as scripts/sequence_contract.py::compute_source_digest
-    participant scripts_sequence_contract_py__graph_edge_set_25 as scripts/sequence_contract.py::graph_edge_set
-    participant scripts_sequence_contract_py__is_ancestor_26 as scripts/sequence_contract.py::is_ancestor
-    participant scripts_sequence_contract_py__plan_locator_map_27 as scripts/sequence_contract.py::plan_locator_map
-    participant scripts_sequence_contract_py__render_graph_mermaid_28 as scripts/sequence_contract.py::render_graph_mermaid
-    participant scripts_sequence_contract_py__sanitize_alias_29 as scripts/sequence_contract.py::sanitize_alias
-    participant scripts_sequence_contract_py__sha256_file_30 as scripts/sequence_contract.py::sha256_file
-    participant scripts_validate_sequence_contract_py__expected_actual_mermaid_31 as scripts/validate_sequence_contract.py::expected_actual_mermaid
-    participant scripts_validate_sequence_contract_py__expected_plan_mermaid_32 as scripts/validate_sequence_contract.py::expected_plan_mermaid
-    participant scripts_validate_sequence_contract_py__git_show_bytes_33 as scripts/validate_sequence_contract.py::git_show_bytes
-    participant scripts_validate_sequence_contract_py__main_34 as scripts/validate_sequence_contract.py::main
-    participant scripts_validate_sequence_contract_py__resolve_35 as scripts/validate_sequence_contract.py::resolve
-    participant scripts_validate_sequence_sessions_py__main_36 as scripts/validate_sequence_sessions.py::main
+    participant scripts_selftest_sequence_human_view_py__sha256_22 as scripts/selftest_sequence_human_view.py::sha256
+    participant scripts_sequence_contract_py___selected_snapshot_23 as scripts/sequence_contract.py::_selected_snapshot
+    participant scripts_sequence_contract_py__compare_plan_actual_24 as scripts/sequence_contract.py::compare_plan_actual
+    participant scripts_sequence_contract_py__compute_source_digest_25 as scripts/sequence_contract.py::compute_source_digest
+    participant scripts_sequence_contract_py__graph_edge_set_26 as scripts/sequence_contract.py::graph_edge_set
+    participant scripts_sequence_contract_py__is_ancestor_27 as scripts/sequence_contract.py::is_ancestor
+    participant scripts_sequence_contract_py__plan_locator_map_28 as scripts/sequence_contract.py::plan_locator_map
+    participant scripts_sequence_contract_py__render_graph_mermaid_29 as scripts/sequence_contract.py::render_graph_mermaid
+    participant scripts_sequence_contract_py__sanitize_alias_30 as scripts/sequence_contract.py::sanitize_alias
+    participant scripts_sequence_contract_py__sha256_file_31 as scripts/sequence_contract.py::sha256_file
+    participant scripts_validate_sequence_contract_py__expected_actual_mermaid_32 as scripts/validate_sequence_contract.py::expected_actual_mermaid
+    participant scripts_validate_sequence_contract_py__expected_plan_mermaid_33 as scripts/validate_sequence_contract.py::expected_plan_mermaid
+    participant scripts_validate_sequence_contract_py__git_show_bytes_34 as scripts/validate_sequence_contract.py::git_show_bytes
+    participant scripts_validate_sequence_contract_py__main_35 as scripts/validate_sequence_contract.py::main
+    participant scripts_validate_sequence_contract_py__resolve_36 as scripts/validate_sequence_contract.py::resolve
+    participant scripts_validate_sequence_sessions_py__main_37 as scripts/validate_sequence_sessions.py::main
+    participant scripts_validate_sequence_sessions_py__run_validator_38 as scripts/validate_sequence_sessions.py::run_validator
     scripts_generate_sequence_actual_py__collect_js_http_2->>scripts_generate_sequence_actual_py__allowed_1: allowed [STATIC]
     scripts_generate_sequence_actual_py__collect_js_http_2->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: path.read_text [STATIC]
     scripts_generate_sequence_actual_py__collect_python_3->>scripts_generate_sequence_actual_py__PyCollector_0: PyCollector [STATIC]
@@ -51,45 +53,46 @@ sequenceDiagram
     scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__dedupe_edges_4: dedupe_edges [STATIC]
     scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__dedupe_nodes_5: dedupe_nodes [STATIC]
     scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__filter_reachable_6: filter_reachable [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_sequence_contract_py__compute_source_digest_24: compute_source_digest [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_sequence_contract_py__render_graph_mermaid_28: render_graph_mermaid [STATIC]
+    scripts_generate_sequence_actual_py__main_7->>scripts_sequence_contract_py__compute_source_digest_25: compute_source_digest [STATIC]
+    scripts_generate_sequence_actual_py__main_7->>scripts_sequence_contract_py__render_graph_mermaid_29: render_graph_mermaid [STATIC]
     scripts_project_profile_py__parse_profile_12->>scripts_project_profile_py___clean_10: _clean [STATIC]
     scripts_project_profile_py__parse_profile_12->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: path.read_text [STATIC]
     scripts_project_profile_py__sequence_settings_13->>scripts_project_profile_py___bool_value_9: _bool_value [STATIC]
     scripts_project_profile_py__sequence_settings_13->>scripts_project_profile_py__normalized_profile_11: normalized_profile [STATIC]
     scripts_project_snapshot_py__ProjectSnapshot_entry_14->>scripts_project_snapshot_py__SnapshotError_17: SnapshotError [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_entry_14->>scripts_validate_sequence_contract_py__resolve_35: value.resolve [STATIC]
     scripts_project_snapshot_py__ProjectSnapshot_read_bytes_15->>scripts_project_snapshot_py__ProjectSnapshot_entry_14: self.entry [STATIC]
     scripts_project_snapshot_py__ProjectSnapshot_read_text_16->>scripts_project_snapshot_py__ProjectSnapshot_entry_14: self.entry [STATIC]
-    scripts_project_snapshot_py__active_snapshot_for_19->>scripts_validate_sequence_contract_py__resolve_35: root.resolve [STATIC]
     scripts_project_snapshot_py__canonical_source_bytes_20->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_15: path.read_bytes [STATIC]
     scripts_project_snapshot_py__discover_source_paths_21->>scripts_project_snapshot_py__SnapshotError_17: SnapshotError [STATIC]
     scripts_project_snapshot_py__discover_source_paths_21->>scripts_project_snapshot_py___git_18: _git [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_21->>scripts_validate_sequence_contract_py__resolve_35: root.resolve [STATIC]
-    scripts_sequence_contract_py___selected_snapshot_22->>scripts_project_snapshot_py__active_snapshot_for_19: active_snapshot_for [STATIC]
-    scripts_sequence_contract_py___selected_snapshot_22->>scripts_validate_sequence_contract_py__resolve_35: root.resolve [STATIC]
-    scripts_sequence_contract_py__compare_plan_actual_23->>scripts_sequence_contract_py__graph_edge_set_25: graph_edge_set [STATIC]
-    scripts_sequence_contract_py__compare_plan_actual_23->>scripts_sequence_contract_py__plan_locator_map_27: plan_locator_map [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_24->>scripts_project_snapshot_py__canonical_source_bytes_20: canonical_source_bytes [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_24->>scripts_project_snapshot_py__discover_source_paths_21: discover_source_paths [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_24->>scripts_sequence_contract_py___selected_snapshot_22: _selected_snapshot [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_24->>scripts_validate_sequence_contract_py__resolve_35: root.resolve [STATIC]
-    scripts_sequence_contract_py__render_graph_mermaid_28->>scripts_sequence_contract_py__sanitize_alias_29: sanitize_alias [STATIC]
-    scripts_sequence_contract_py__sha256_file_30->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_15: path.read_bytes [STATIC]
-    scripts_validate_sequence_contract_py__expected_actual_mermaid_31->>scripts_sequence_contract_py__render_graph_mermaid_28: render_graph_mermaid [STATIC]
-    scripts_validate_sequence_contract_py__expected_plan_mermaid_32->>scripts_sequence_contract_py__render_graph_mermaid_28: render_graph_mermaid [STATIC]
-    scripts_validate_sequence_contract_py__expected_plan_mermaid_32->>scripts_sequence_contract_py__sha256_file_30: sha256_file [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_project_profile_py__parse_profile_12: parse_profile [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_project_profile_py__sequence_settings_13: sequence_settings [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: actual_diagram_path.read_text [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: pd.read_text [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_sequence_contract_py__compare_plan_actual_23: compare_plan_actual [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_sequence_contract_py__compute_source_digest_24: compute_source_digest [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_sequence_contract_py__is_ancestor_26: is_ancestor [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_sequence_contract_py__sha256_file_30: sha256_file [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_validate_sequence_contract_py__expected_actual_mermaid_31: expected_actual_mermaid [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_validate_sequence_contract_py__expected_plan_mermaid_32: expected_plan_mermaid [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_validate_sequence_contract_py__git_show_bytes_33: git_show_bytes [STATIC]
-    scripts_validate_sequence_contract_py__main_34->>scripts_validate_sequence_contract_py__resolve_35: resolve [STATIC]
-    scripts_validate_sequence_sessions_py__main_36->>scripts_project_profile_py__parse_profile_12: parse_profile [STATIC]
-    scripts_validate_sequence_sessions_py__main_36->>scripts_project_profile_py__sequence_settings_13: sequence_settings [STATIC]
+    scripts_selftest_sequence_human_view_py__sha256_22->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_15: path.read_bytes [STATIC]
+    scripts_sequence_contract_py___selected_snapshot_23->>scripts_project_snapshot_py__active_snapshot_for_19: active_snapshot_for [STATIC]
+    scripts_sequence_contract_py__compare_plan_actual_24->>scripts_sequence_contract_py__graph_edge_set_26: graph_edge_set [STATIC]
+    scripts_sequence_contract_py__compare_plan_actual_24->>scripts_sequence_contract_py__plan_locator_map_28: plan_locator_map [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_25->>scripts_project_snapshot_py__canonical_source_bytes_20: canonical_source_bytes [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_25->>scripts_project_snapshot_py__discover_source_paths_21: discover_source_paths [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_25->>scripts_selftest_sequence_human_view_py__sha256_22: hashlib.sha256 [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_25->>scripts_sequence_contract_py___selected_snapshot_23: _selected_snapshot [STATIC]
+    scripts_sequence_contract_py__render_graph_mermaid_29->>scripts_sequence_contract_py__sanitize_alias_30: sanitize_alias [STATIC]
+    scripts_sequence_contract_py__sha256_file_31->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_15: path.read_bytes [STATIC]
+    scripts_sequence_contract_py__sha256_file_31->>scripts_selftest_sequence_human_view_py__sha256_22: hashlib.sha256 [STATIC]
+    scripts_validate_sequence_contract_py__expected_actual_mermaid_32->>scripts_sequence_contract_py__render_graph_mermaid_29: render_graph_mermaid [STATIC]
+    scripts_validate_sequence_contract_py__expected_plan_mermaid_33->>scripts_sequence_contract_py__render_graph_mermaid_29: render_graph_mermaid [STATIC]
+    scripts_validate_sequence_contract_py__expected_plan_mermaid_33->>scripts_sequence_contract_py__sha256_file_31: sha256_file [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_project_profile_py__parse_profile_12: parse_profile [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_project_profile_py__sequence_settings_13: sequence_settings [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: actual_diagram_path.read_text [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: pd.read_text [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_selftest_sequence_human_view_py__sha256_22: hashlib.sha256 [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_sequence_contract_py__compare_plan_actual_24: compare_plan_actual [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_sequence_contract_py__compute_source_digest_25: compute_source_digest [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_sequence_contract_py__is_ancestor_27: is_ancestor [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_sequence_contract_py__sha256_file_31: sha256_file [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_validate_sequence_contract_py__expected_actual_mermaid_32: expected_actual_mermaid [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_validate_sequence_contract_py__expected_plan_mermaid_33: expected_plan_mermaid [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_validate_sequence_contract_py__git_show_bytes_34: git_show_bytes [STATIC]
+    scripts_validate_sequence_contract_py__main_35->>scripts_validate_sequence_contract_py__resolve_36: resolve [STATIC]
+    scripts_validate_sequence_sessions_py__main_37->>scripts_project_profile_py__parse_profile_12: parse_profile [STATIC]
+    scripts_validate_sequence_sessions_py__main_37->>scripts_project_profile_py__sequence_settings_13: sequence_settings [STATIC]
+    scripts_validate_sequence_sessions_py__main_37->>scripts_project_snapshot_py__ProjectSnapshot_read_text_16: session.read_text [STATIC]
+    scripts_validate_sequence_sessions_py__main_37->>scripts_validate_sequence_sessions_py__run_validator_38: run_validator [STATIC]
