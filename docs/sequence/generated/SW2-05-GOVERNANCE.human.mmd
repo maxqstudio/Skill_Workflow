@@ -1,5 +1,5 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
+%% SOURCE_DIGEST: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
 %% POLICY_ID: module-collapse-v1
 %% GENERATED_BY: sequence_human_view.py
 sequenceDiagram
@@ -7,19 +7,36 @@ sequenceDiagram
     participant module_scripts_generate_project_docs_py_1 as scripts/generate_project_docs.py
     participant module_scripts_governance_engine_py_2 as scripts/governance_engine.py
     participant module_scripts_initialize_project_truth_py_3 as scripts/initialize_project_truth.py
-    participant module_scripts_project_profile_py_4 as scripts/project_profile.py
-    participant module_scripts_project_snapshot_py_5 as scripts/project_snapshot.py
-    participant module_scripts_script_runner_py_6 as scripts/script_runner.py
-    participant module_scripts_selftest_sequence_human_view_py_7 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_migrate_governance_v1_py_4 as scripts/migrate_governance_v1.py
+    participant module_scripts_project_profile_py_5 as scripts/project_profile.py
+    participant module_scripts_project_snapshot_py_6 as scripts/project_snapshot.py
+    participant module_scripts_schema_contract_py_7 as scripts/schema_contract.py
+    participant module_scripts_script_runner_py_8 as scripts/script_runner.py
+    participant module_scripts_selftest_sequence_human_view_py_9 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_toolchain_identity_py_10 as scripts/toolchain_identity.py
+    participant module_scripts_validate_schema_toolchain_py_11 as scripts/validate_schema_toolchain.py
     module_scripts_extract_project_facts_py_0->>module_scripts_governance_engine_py_2: 1 static interaction
-    module_scripts_extract_project_facts_py_0->>module_scripts_project_snapshot_py_5: 3 static interactions
+    module_scripts_extract_project_facts_py_0->>module_scripts_project_snapshot_py_6: 3 static interactions
     module_scripts_generate_project_docs_py_1->>module_scripts_extract_project_facts_py_0: 1 static interaction
-    module_scripts_generate_project_docs_py_1->>module_scripts_project_profile_py_4: 6 static interactions
-    module_scripts_generate_project_docs_py_1->>module_scripts_project_snapshot_py_5: 4 static interactions
-    module_scripts_generate_project_docs_py_1->>module_scripts_selftest_sequence_human_view_py_7: 1 static interaction
-    module_scripts_governance_engine_py_2->>module_scripts_project_snapshot_py_5: 4 static interactions
-    module_scripts_governance_engine_py_2->>module_scripts_script_runner_py_6: 1 static interaction
-    module_scripts_initialize_project_truth_py_3->>module_scripts_project_snapshot_py_5: 1 static interaction
-    module_scripts_project_profile_py_4->>module_scripts_project_snapshot_py_5: 1 static interaction
-    module_scripts_project_snapshot_py_5->>module_scripts_selftest_sequence_human_view_py_7: 1 static interaction
-    module_scripts_selftest_sequence_human_view_py_7->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_generate_project_docs_py_1->>module_scripts_project_profile_py_5: 6 static interactions
+    module_scripts_generate_project_docs_py_1->>module_scripts_project_snapshot_py_6: 4 static interactions
+    module_scripts_generate_project_docs_py_1->>module_scripts_schema_contract_py_7: 1 static interaction
+    module_scripts_generate_project_docs_py_1->>module_scripts_selftest_sequence_human_view_py_9: 1 static interaction
+    module_scripts_governance_engine_py_2->>module_scripts_project_snapshot_py_6: 4 static interactions
+    module_scripts_governance_engine_py_2->>module_scripts_script_runner_py_8: 1 static interaction
+    module_scripts_initialize_project_truth_py_3->>module_scripts_project_snapshot_py_6: 1 static interaction
+    module_scripts_initialize_project_truth_py_3->>module_scripts_toolchain_identity_py_10: 1 static interaction
+    module_scripts_migrate_governance_v1_py_4->>module_scripts_project_profile_py_5: 2 static interactions
+    module_scripts_migrate_governance_v1_py_4->>module_scripts_project_snapshot_py_6: 3 static interactions
+    module_scripts_migrate_governance_v1_py_4->>module_scripts_schema_contract_py_7: 5 static interactions
+    module_scripts_migrate_governance_v1_py_4->>module_scripts_toolchain_identity_py_10: 3 static interactions
+    module_scripts_project_profile_py_5->>module_scripts_project_snapshot_py_6: 1 static interaction
+    module_scripts_project_profile_py_5->>module_scripts_schema_contract_py_7: 1 static interaction
+    module_scripts_project_snapshot_py_6->>module_scripts_selftest_sequence_human_view_py_9: 1 static interaction
+    module_scripts_schema_contract_py_7->>module_scripts_project_snapshot_py_6: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_9->>module_scripts_project_snapshot_py_6: 1 static interaction
+    module_scripts_toolchain_identity_py_10->>module_scripts_project_snapshot_py_6: 5 static interactions
+    module_scripts_toolchain_identity_py_10->>module_scripts_selftest_sequence_human_view_py_9: 2 static interactions
+    module_scripts_validate_schema_toolchain_py_11->>module_scripts_project_profile_py_5: 1 static interaction
+    module_scripts_validate_schema_toolchain_py_11->>module_scripts_schema_contract_py_7: 1 static interaction
+    module_scripts_validate_schema_toolchain_py_11->>module_scripts_toolchain_identity_py_10: 1 static interaction

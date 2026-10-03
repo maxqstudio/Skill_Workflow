@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 12,
-    "interaction_count": 12,
+    "interaction_ceiling": 25,
+    "interaction_count": 25,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 8,
-    "participant_count": 8,
+    "participant_ceiling": 12,
+    "participant_count": 12,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -94,6 +94,20 @@
     },
     {
       "actions": [
+        "require_json_schema_version"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/schema_contract.py"
+    },
+    {
+      "actions": [
         "hashlib.sha256"
       ],
       "evidence": [
@@ -153,6 +167,81 @@
     },
     {
       "actions": [
+        "write_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/initialize_project_truth.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
+    },
+    {
+      "actions": [
+        "parse_profile"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_profile.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "governed_spec_paths",
+        "require_json_schema_version",
+        "require_profile_schema_version",
+        "validate_spec_tree_versions"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/schema_contract.py"
+    },
+    {
+      "actions": [
+        "sync_vendored_tools",
+        "validate_toolchain_lock",
+        "write_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
+    },
+    {
+      "actions": [
         "path.read_text"
       ],
       "evidence": [
@@ -164,6 +253,20 @@
         "python_ast"
       ],
       "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "require_profile_schema_version"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_profile.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/schema_contract.py"
     },
     {
       "actions": [
@@ -181,6 +284,20 @@
     },
     {
       "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/schema_contract.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
         "path.read_bytes"
       ],
       "evidence": [
@@ -192,10 +309,86 @@
         "python_ast"
       ],
       "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "dst.read_bytes",
+        "lock_path.read_text",
+        "path.read_bytes",
+        "src.read_bytes",
+        "target.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/toolchain_identity.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "hashlib.sha256"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/toolchain_identity.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
+        "parse_profile"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_schema_toolchain.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_profile.py"
+    },
+    {
+      "actions": [
+        "validate_spec_tree_versions"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_schema_toolchain.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/schema_contract.py"
+    },
+    {
+      "actions": [
+        "validate_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_schema_toolchain.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
     }
   ],
   "entries": [
     "scripts/initialize_project_truth.py::main",
+    "scripts/migrate_governance_v1.py::main",
+    "scripts/validate_schema_toolchain.py::main",
     "scripts/project_profile.py::parse_profile",
     "scripts/generate_project_docs.py::main",
     "scripts/governance_engine.py::main"
@@ -302,6 +495,18 @@
       ]
     },
     {
+      "id": "module:scripts/migrate_governance_v1.py",
+      "kind": "module",
+      "label": "scripts/migrate_governance_v1.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/migrate_governance_v1.py::add_profile_version",
+        "scripts/migrate_governance_v1.py::add_spec_version",
+        "scripts/migrate_governance_v1.py::inspect_specs",
+        "scripts/migrate_governance_v1.py::main"
+      ]
+    },
+    {
       "id": "module:scripts/project_profile.py",
       "kind": "module",
       "label": "scripts/project_profile.py",
@@ -341,6 +546,19 @@
       ]
     },
     {
+      "id": "module:scripts/schema_contract.py",
+      "kind": "module",
+      "label": "scripts/schema_contract.py",
+      "machine_node_count": 5,
+      "machine_nodes": [
+        "scripts/schema_contract.py::_profile_version",
+        "scripts/schema_contract.py::governed_spec_paths",
+        "scripts/schema_contract.py::require_json_schema_version",
+        "scripts/schema_contract.py::require_profile_schema_version",
+        "scripts/schema_contract.py::validate_spec_tree_versions"
+      ]
+    },
+    {
       "id": "module:scripts/script_runner.py",
       "kind": "module",
       "label": "scripts/script_runner.py",
@@ -357,16 +575,43 @@
       "machine_nodes": [
         "scripts/selftest_sequence_human_view.py::sha256"
       ]
+    },
+    {
+      "id": "module:scripts/toolchain_identity.py",
+      "kind": "module",
+      "label": "scripts/toolchain_identity.py",
+      "machine_node_count": 9,
+      "machine_nodes": [
+        "scripts/toolchain_identity.py::_git_value",
+        "scripts/toolchain_identity.py::_sha256",
+        "scripts/toolchain_identity.py::producer_metadata",
+        "scripts/toolchain_identity.py::source_tool_paths",
+        "scripts/toolchain_identity.py::sync_vendored_tools",
+        "scripts/toolchain_identity.py::tool_manifest",
+        "scripts/toolchain_identity.py::toolchain_digest",
+        "scripts/toolchain_identity.py::validate_toolchain_lock",
+        "scripts/toolchain_identity.py::write_toolchain_lock"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_schema_toolchain.py",
+      "kind": "module",
+      "label": "scripts/validate_schema_toolchain.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/validate_schema_toolchain.py::main",
+        "scripts/validate_schema_toolchain.py::validate"
+      ]
     }
   ],
-  "observed_head": "996e12c6b5b417f6617f2e1a3e7c030a35c97d30",
+  "observed_head": "59280590379f5284740826610e3a943cb4220dc5",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 13,
-    "cross_component_machine_edges": 25,
-    "internal_machine_edges_collapsed": 131,
-    "machine_edge_count": 156,
-    "machine_node_count": 90,
+    "aggregated_cross_component_edges": 27,
+    "cross_component_machine_edges": 52,
+    "internal_machine_edges_collapsed": 146,
+    "machine_edge_count": 198,
+    "machine_node_count": 110,
     "node_map": {
       "scripts/extract_project_facts.py::PythonFacts": "module:scripts/extract_project_facts.py",
       "scripts/extract_project_facts.py::_extract_from_snapshot": "module:scripts/extract_project_facts.py",
@@ -433,6 +678,10 @@
       "scripts/initialize_project_truth.py::copy_file": "module:scripts/initialize_project_truth.py",
       "scripts/initialize_project_truth.py::ensure_gitattributes": "module:scripts/initialize_project_truth.py",
       "scripts/initialize_project_truth.py::main": "module:scripts/initialize_project_truth.py",
+      "scripts/migrate_governance_v1.py::add_profile_version": "module:scripts/migrate_governance_v1.py",
+      "scripts/migrate_governance_v1.py::add_spec_version": "module:scripts/migrate_governance_v1.py",
+      "scripts/migrate_governance_v1.py::inspect_specs": "module:scripts/migrate_governance_v1.py",
+      "scripts/migrate_governance_v1.py::main": "module:scripts/migrate_governance_v1.py",
       "scripts/project_profile.py::_bool_value": "module:scripts/project_profile.py",
       "scripts/project_profile.py::_clean": "module:scripts/project_profile.py",
       "scripts/project_profile.py::contract_settings": "module:scripts/project_profile.py",
@@ -456,11 +705,27 @@
       "scripts/project_snapshot.py::canonical_source_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::discover_source_paths": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::resolve_snapshot": "module:scripts/project_snapshot.py",
+      "scripts/schema_contract.py::_profile_version": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::governed_spec_paths": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::require_json_schema_version": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::validate_spec_tree_versions": "module:scripts/schema_contract.py",
       "scripts/script_runner.py::invoke_main": "module:scripts/script_runner.py",
-      "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py"
+      "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
+      "scripts/toolchain_identity.py::_git_value": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::_sha256": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::producer_metadata": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_tool_paths": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::sync_vendored_tools": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::tool_manifest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::toolchain_digest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::validate_toolchain_lock": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::write_toolchain_lock": "module:scripts/toolchain_identity.py",
+      "scripts/validate_schema_toolchain.py::main": "module:scripts/validate_schema_toolchain.py",
+      "scripts/validate_schema_toolchain.py::validate": "module:scripts/validate_schema_toolchain.py"
     },
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
+  "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
 }

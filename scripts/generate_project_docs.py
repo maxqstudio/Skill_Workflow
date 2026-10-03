@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from schema_contract import require_json_schema_version
 from extract_project_facts import extract_project_facts
 from project_profile import (
     contract_settings,
@@ -140,7 +141,9 @@ def read_specs(spec_root: Path) -> tuple[dict[str, dict], list[dict]]:
         if not path.is_file():
             missing.append(name)
         else:
-            specs[name] = load_json(path)
+            item = load_json(path)
+            require_json_schema_version(item, name)
+            specs[name] = item
     if missing:
         raise ValueError("Missing specs: " + ", ".join(missing))
 
@@ -149,6 +152,7 @@ def read_specs(spec_root: Path) -> tuple[dict[str, dict], list[dict]]:
     if workflow_root.is_dir():
         for path in sorted(workflow_root.glob("*.json")):
             item = load_json(path)
+            require_json_schema_version(item, "workflows/" + path.name)
             if not clean(item.get("flow_id")):
                 raise ValueError("Workflow missing flow_id: " + str(path))
             workflows.append(item)

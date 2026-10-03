@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-05",
+  "current_phase": "SW2-06",
   "phases": [
     {
       "exit_criteria": [
@@ -71,7 +71,7 @@
       ],
       "id": "SW2-05",
       "objective": "Version project schemas, toolchain bundles, migrations, and compatibility guarantees.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Schema & Toolchain Versioning"
     },
     {
@@ -83,7 +83,7 @@
       ],
       "id": "SW2-06",
       "objective": "Introduce analyzer interfaces so structural evidence can grow beyond Python without coupling governance semantics to one parser.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Cross-Language Analyzer Architecture"
     },
     {

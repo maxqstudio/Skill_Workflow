@@ -18,6 +18,7 @@ REQUIRED_PUBLIC_FILES = (
     "docs/handbook/concepts/governance-model.md",
     "docs/handbook/guides/troubleshooting.md",
     "docs/handbook/reference/commands.md",
+    "docs/handbook/reference/versioning.md",
     "docs/handbook/architecture/validation-engine.md",
     "docs/handbook/sequence/README.md",
 )
@@ -46,6 +47,7 @@ HANDBOOK_LINKS = (
     "concepts/governance-model.md",
     "guides/troubleshooting.md",
     "reference/commands.md",
+    "reference/versioning.md",
     "architecture/validation-engine.md",
     "sequence/README.md",
 )

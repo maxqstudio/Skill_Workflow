@@ -4,21 +4,24 @@
 
 ## Evidence boundary
 
-SW2-05 acceptance covers Schema & Toolchain Versioning only: profile/spec schema versions, auditable toolchain identity, deterministic supported migrations, and release compatibility policy. SW2-01 through SW2-04 accepted governance, performance, sequence, and documentation guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository phase unless implementation introduces behavior requiring stronger runtime evidence.
+SW2-06 acceptance covers Cross-Language Analyzer Architecture only: a language-independent analyzer contract, preserved Python and JS/TS regression coverage, explicit fail-safe generic fallback behavior, and conservative handling of unsupported dynamic behavior. Accepted SW2-01 through SW2-05 governance, performance, sequence, documentation, schema, migration, and toolchain guarantees remain inherited authority and must not be weakened.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
+Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-05-R1 | Profile and governed specification schemas expose explicit, auditable versions. | NOT_PROVEN until version contracts are implemented across profile/spec parsing, templates, and validation with compatibility regression evidence. | NOT_PROVEN |
-| SW2-05-R2 | Skill Workflow toolchain identity is lockable and auditable by consumer projects without making mutable cache state authoritative. | NOT_PROVEN until a deterministic toolchain lock/identity contract is implemented and validated against vendored consumer tooling. | NOT_PROVEN |
-| SW2-05-R3 | Supported schema/toolchain migrations are deterministic, explicit, and regression-tested fail closed. | NOT_PROVEN until migration commands/contracts and positive plus tamper/unsupported-version regressions exist. | NOT_PROVEN |
-| SW2-05-R4 | Release compatibility policy documents supported versions, migration expectations, and incompatible-change handling. | NOT_PROVEN until compatibility policy is source-authored, linked from public reference documentation, and validated against implemented version/migration behavior. | NOT_PROVEN |
+| SW2-06-R1 | Analyzer contract is language-independent. | Phase-open baseline only; dedicated analyzer-interface evidence is not yet accepted. | NOT_PROVEN |
+| SW2-06-R2 | Python and JS/TS remain fully regression-covered. | Existing analyzers are preserved at phase opening, but regression coverage under the new contract is not yet accepted. | NOT_PROVEN |
+| SW2-06-R3 | Generic fallback behavior is explicit and fail-safe. | No accepted generic fallback contract exists at phase opening. | NOT_PROVEN |
+| SW2-06-R4 | Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. | Phase-open evidence records current static-analysis limitations; dedicated negative-path proof is not yet accepted. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
+- python scripts/validate_schema_toolchain.py --root .
+- python scripts/selftest_schema_toolchain.py
+- python scripts/selftest_sequence_call_resolution.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
@@ -26,7 +29,7 @@ Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd787
 - python scripts/selftest_generated_doc_presentation.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 2ff1d1501a7762baedcd848ebc117b7760b7c738 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -40,8 +43,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-05-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-06-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 

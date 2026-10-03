@@ -16,7 +16,7 @@ Status: CURRENT
 
 | Flow | Mode | Critical | Sequence session | Status |
 |---|---|---|---|---|
-| FLOW-GOVERNANCE-CHANGE | DURING | YES | SW2-00-GOVERNANCE | PASS |
+| FLOW-GOVERNANCE-CHANGE | DURING | YES | SW2-00-GOVERNANCE | NOT_PROVEN |
 
 ## Mismatch handling
 
@@ -32,4 +32,4 @@ Canonical Mermaid is generated and must not be hand-edited.
 CURRENT evidence binds to current source content. HISTORICAL evidence remains
 bound to its accepted historical source digest.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION -->
+<!-- CLAIM_BACKLINKS: TRUTH-SW2-ANALYZER-CONTRACT TRUTH-SW2-DYNAMIC-EVIDENCE TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION -->

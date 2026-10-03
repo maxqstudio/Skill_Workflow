@@ -20,6 +20,7 @@ The handbook is the stable public documentation entry point for Skill Workflow. 
 ## Reference
 
 - [Command reference](reference/commands.md) — initializer, sync, validators, sequence tools, and governance-engine commands.
+- [Schema and toolchain versioning](reference/versioning.md) — supported schema versions, explicit migration, toolchain locks, and compatibility rules.
 
 ## Architecture
 

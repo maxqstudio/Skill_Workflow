@@ -48,6 +48,11 @@ jobs:
           PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
         run: python -m compileall -q scripts
 
+      - name: Schema and toolchain version regression
+        run: |
+          python scripts/selftest_schema_toolchain.py
+          python scripts/validate_schema_toolchain.py --root .
+
       - name: Governance Engine V2 regression
         run: python scripts/selftest_governance_engine.py
 
