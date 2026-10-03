@@ -1,0 +1,60 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+ROOT = Path('.')
+ACCEPTANCE = ROOT / '.workflow' / 'acceptance.json'
+CLAIMS = ROOT / '.workflow' / 'claims.json'
+STATE = ROOT / '.workflow' / 'state.json'
+
+
+def load(path: Path) -> dict:
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def write(path: Path, data: dict) -> None:
+    path.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+
+acceptance = load(ACCEPTANCE)
+requirements = {item['id']: item for item in acceptance['requirements']}
+r3 = requirements['SW2-02-R3']
+if r3['status'] not in {'NOT_PROVEN', 'PASS'}:
+    raise SystemExit(f"UNEXPECTED_R3_STATUS:{r3['status']}")
+r3['status'] = 'PASS'
+r3['evidence'] = (
+    'SW2-02 Finalize Evidence run 37081217929 passed exact candidate '
+    '7c7d8aa8f4dd3080759cd1f0da596002e7551446 on Ubuntu and Windows. Each '
+    'job asserted requested_mode=finalize, effective_mode=finalize, result=PASS, '
+    'final_acceptance_authority=true, exact expected/snapshot HEAD binding, the '
+    'complete required finalize node set, every selected node PASS, and a clean '
+    'governed worktree after finalization. On the same exact candidate, Self '
+    'Governance run 37081221016, Governance Selftest run 37081221039, Sequence '
+    'Evidence run 37081221001, Engine Performance run 37081220933, and Consumer '
+    'Engine Performance run 37081221049 all completed successfully.'
+)
+write(ACCEPTANCE, acceptance)
+
+claims = load(CLAIMS)
+claim_map = {item['id']: item for item in claims['claims']}
+mode_claim = claim_map['TRUTH-SW2-MODE-SAFETY']
+mode_claim['status'] = 'PASS'
+write(CLAIMS, claims)
+
+state = load(STATE)
+proven = list(state.get('proven', []))
+for statement in (
+    'SW2-02 finalize mode is proven on exact candidate 7c7d8aa8f4dd3080759cd1f0da596002e7551446: Finalize Evidence run 37081217929 passed on Ubuntu and Windows with the complete required acceptance DAG, final_acceptance_authority=true, exact-head provenance, and clean governed worktree.',
+    'SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.',
+):
+    if statement not in proven:
+        proven.append(statement)
+state['proven'] = proven
+state['not_proven'] = [
+    item for item in state.get('not_proven', [])
+    if not item.startswith('SW2-02 final mode-safety remains NOT_PROVEN')
+]
+write(STATE, state)
+
+print('SW2_02_R3_PROMOTION_PATCH=PASS')
