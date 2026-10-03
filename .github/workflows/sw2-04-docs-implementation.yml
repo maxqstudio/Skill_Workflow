@@ -1,0 +1,939 @@
+name: SW2-04 Documentation System Implementation
+
+on:
+  push:
+    branches:
+      - work/sw2-04-documentation-system-v2
+
+permissions:
+  contents: write
+
+jobs:
+  implement:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-04-documentation-system-v2
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Write public documentation system
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          PUBLIC = '<!-- PUBLIC PRODUCT DOCUMENTATION - SOURCE-AUTHORED -->\n\n'
+          files = {
+          'README.md': '''# Skill Workflow
+
+Strict, deterministic project handoff and governance for long-running software work across humans and coding agents.
+
+Skill Workflow gives a repository an explicit map of authority, current phase, architecture, workflows, code ownership, evidence, and legal next actions. It is designed to reduce context loss **without turning documentation into a second source of truth**.
+
+## Why Skill Workflow
+
+Use it when a project is large enough that a new room, agent, or developer should not have to reconstruct the system from old chats and a blind source scan.
+
+It provides:
+
+- explicit project/roadmap authority;
+- LITE, STANDARD, and STRICT governance profiles;
+- deterministic Project Truth documentation for STANDARD/STRICT projects;
+- exact tested-SHA and fail-closed acceptance rules;
+- develop / verify / finalize execution modes;
+- machine-backed sequence evidence plus bounded human sequence views;
+- cross-document, handoff, and Human Comprehension gates;
+- project-local vendored governance tools for portability.
+
+## Quick start
+
+Install with the open `skills` CLI:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow
+```
+
+For a specific agent, for example Codex:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a codex -y
+```
+
+See the [installation guide](docs/handbook/getting-started/installation.md) for global installs, multiple agents, and supported agent examples. Then use the [adoption guide](docs/handbook/getting-started/adoption.md) to add Project Truth governance to a repository.
+
+## How it works
+
+```text
+PROJECT_PROFILE.yaml
++ .workflow/*.json
++ source facts
++ tests/runtime evidence
+        ↓
+deterministic compiler + validators
+        ↓
+generated Project Truth + acceptance evidence
+        ↓
+final exact-head acceptance
+```
+
+Generated Markdown is a projection. Source code, structured project authority, and test/runtime evidence remain the underlying truth.
+
+## Documentation
+
+Start at the [public documentation index](docs/README.md) or the [handbook](docs/handbook/README.md).
+
+- [Getting started](docs/handbook/getting-started/adoption.md)
+- [Governance model](docs/handbook/concepts/governance-model.md)
+- [Troubleshooting](docs/handbook/guides/troubleshooting.md)
+- [Command reference](docs/handbook/reference/commands.md)
+- [Validation architecture](docs/handbook/architecture/validation-engine.md)
+- [Sequence contracts and Sequence V2](docs/handbook/sequence/README.md)
+
+## Supported agents
+
+The `skills` CLI can target Codex, Claude Code, Cursor, Gemini CLI, GitHub Copilot, OpenCode, Qwen Code, Roo Code, Windsurf, Cline, and other supported agents. Agent-specific examples live in the [installation guide](docs/handbook/getting-started/installation.md).
+
+## Project state and governance
+
+This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).
+
+Those generated governance files are evidence/navigation for this repository; the public handbook above is the product documentation entry point.
+
+## Support
+
+If Skill Workflow is useful for your projects, optional support is available through [Saweria](https://saweria.co/maxq) or [PayPal](https://paypal.me/JacksonJackson1501). Access to the public repository and its features is not affected by support.
+''',
+          'docs/README.md': PUBLIC + '''# Skill Workflow Documentation
+
+This directory contains two intentionally different documentation layers.
+
+## Public handbook
+
+Use the [Skill Workflow handbook](handbook/README.md) to learn and use the project:
+
+- [Installation](handbook/getting-started/installation.md)
+- [Repository adoption](handbook/getting-started/adoption.md)
+- [Governance model](handbook/concepts/governance-model.md)
+- [Troubleshooting](handbook/guides/troubleshooting.md)
+- [Command reference](handbook/reference/commands.md)
+- [Validation architecture](handbook/architecture/validation-engine.md)
+- [Sequence contracts](handbook/sequence/README.md)
+
+These files are source-authored product guidance.
+
+## Generated governance reference
+
+The uppercase Markdown files beside this README are deterministic Project Truth projections for **this repository's own development state**. They are not the public tutorial/manual and must not be edited as independent semantic authority.
+
+Useful maintainer entry points:
+
+- [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) — governed repository overview
+- [CURRENT_STATE.md](CURRENT_STATE.md) — current phase, proven/not-proven state, and legal next actions
+- [ROADMAP.md](ROADMAP.md) — generated roadmap projection
+- [PROJECT_TRUTH_SYNC.md](PROJECT_TRUTH_SYNC.md) — traceability ledger
+- [MODULE_MAP.md](MODULE_MAP.md), [FLOW_INDEX.md](FLOW_INDEX.md), and [SYMBOL_INDEX.md](SYMBOL_INDEX.md) — engineering navigation indexes
+- [sequence/](sequence/) — machine and human sequence acceptance evidence
+
+The authority for generated files is source plus `.workflow/*.json`, tests/runtime evidence, and the deterministic compiler—not manual edits to generated Markdown.
+''',
+          'docs/handbook/README.md': PUBLIC + '''# Skill Workflow Handbook
+
+The handbook is the stable public documentation entry point for Skill Workflow. It explains how to install, adopt, operate, and reason about the system without mixing product guidance with this repository's generated governance state.
+
+## Getting started
+
+- [Installation](getting-started/installation.md) — install for one or more coding agents.
+- [Adopting Skill Workflow](getting-started/adoption.md) — choose a profile, initialize Project Truth, and establish acceptance authority.
+
+## Concepts
+
+- [Governance model](concepts/governance-model.md) — authority, profiles, deterministic docs, exact-head evidence, and fail-closed acceptance.
+
+## Guides
+
+- [Troubleshooting](guides/troubleshooting.md) — diagnose common governance and documentation failures without bypassing gates.
+
+## Reference
+
+- [Command reference](reference/commands.md) — initializer, sync, validators, sequence tools, and governance-engine commands.
+
+## Architecture
+
+- [Validation architecture](architecture/validation-engine.md) — snapshot reuse, develop/verify/finalize modes, validation DAG, and evidence boundaries.
+
+## Sequence
+
+- [Sequence contracts and Sequence V2](sequence/README.md) — BEFORE/DURING/AFTER modes, full machine evidence, bounded human projections, and blocking Mermaid rendering.
+
+## Repository governance state
+
+The public handbook is not the live project-state authority for this repository. Maintainers should use [CURRENT_STATE](../CURRENT_STATE.md), [ROADMAP](../ROADMAP.md), and [PROJECT_TRUTH_SYNC](../PROJECT_TRUTH_SYNC.md) for governed development state and evidence.
+''',
+          'docs/handbook/getting-started/installation.md': PUBLIC + '''# Installation
+
+Skill Workflow is distributed through the open `skills` CLI.
+
+## Default project-local install
+
+```bash
+npx skills add maxqstudio/Skill_Workflow
+```
+
+A project-local install is the safest default when the skill should travel with one repository.
+
+## Agent-specific install
+
+Use `-a` to select an agent:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow -a codex -y
+npx skills add maxqstudio/Skill_Workflow -a claude-code -y
+npx skills add maxqstudio/Skill_Workflow -a cursor -y
+npx skills add maxqstudio/Skill_Workflow -a gemini-cli -y
+npx skills add maxqstudio/Skill_Workflow -a github-copilot -y
+npx skills add maxqstudio/Skill_Workflow -a opencode -y
+npx skills add maxqstudio/Skill_Workflow -a qwen-code -y
+npx skills add maxqstudio/Skill_Workflow -a roo-code -y
+npx skills add maxqstudio/Skill_Workflow -a windsurf -y
+npx skills add maxqstudio/Skill_Workflow -a cline -y
+```
+
+Use `-g` for a global install. Multiple `-a` flags can install the skill for several agents in one command.
+
+## Multi-agent example
+
+```bash
+npx skills add maxqstudio/Skill_Workflow \
+  -a codex \
+  -a claude-code \
+  -a cursor \
+  -a gemini-cli \
+  -a github-copilot \
+  -a opencode \
+  -y
+```
+
+To install all skills in this repository for all supported/detected agents:
+
+```bash
+npx skills add maxqstudio/Skill_Workflow --all
+```
+
+Update installed skills later with:
+
+```bash
+npx skills update
+```
+
+## What is canonical
+
+`SKILL.md` is the canonical skill contract. Project-local Project Truth tools are vendored into `.workflow/tools/` when the initializer is used, so governed projects do not depend on a particular agent's global installation path.
+
+Continue with [repository adoption](adoption.md).
+''',
+          'docs/handbook/getting-started/adoption.md': PUBLIC + '''# Adopting Skill Workflow
+
+Adoption starts by making project authority explicit before adding more process.
+
+## 1. Choose the governance profile
+
+Every governed project defines `PROJECT_PROFILE.yaml`.
+
+- **LITE** — small, low-complexity projects; manual Markdown may be allowed when explicitly configured.
+- **STANDARD** — normal multi-session/multi-agent work; deterministic generated Project Truth is required.
+- **STRICT** — audit-sensitive, production, financial/trading, research/ML, hardware, or complex multi-repository systems; full truth-ledger discipline is required.
+
+Choose by risk, workflow complexity, runtime dependencies, and evidence requirements—not source-line count alone.
+
+## 2. Initialize Project Truth
+
+From a Skill Workflow checkout/package, run the initializer against the target repository:
+
+```bash
+python scripts/initialize_project_truth.py --root /path/to/project
+```
+
+The initializer creates the profile/spec skeleton and vendors the runtime tools under `.workflow/tools/`.
+
+## 3. Populate semantic authority
+
+Code can reveal structure, but it cannot safely invent Owner intent, legal state transitions, authority precedence, acceptance meaning, or design rationale. Declare those facts in `.workflow/*.json`.
+
+The core model is:
+
+```text
+source code                  = implementation facts
+.workflow/*.json             = semantic/governance intent
+tests + runtime evidence     = behavioral truth
+generated Markdown           = deterministic human projection
+```
+
+## 4. Synchronize generated documentation
+
+```bash
+python .workflow/tools/sync_project_truth.py --root .
+```
+
+For STANDARD/STRICT projects, do not repair generated Markdown by hand. Change source and/or the structured authority, then regenerate.
+
+## 5. Work in the right execution mode
+
+- `develop` may run targeted work based on safely classified impact.
+- `verify` is intermediate, read-only evidence.
+- `finalize` is the only complete final acceptance authority.
+
+Unknown impact escalates rather than silently skipping required work.
+
+## 6. Accept only exact evidence
+
+A safe final boundary requires the tested source, generated docs, evidence, and final Git HEAD to agree. `NOT_RUN`, `NOT_PROVEN`, or a failed required gate cannot be rewritten as PASS.
+
+Read the [governance model](../concepts/governance-model.md) before tightening a project to STRICT.
+''',
+          'docs/handbook/concepts/governance-model.md': PUBLIC + '''# Governance Model
+
+Skill Workflow separates **authority**, **projection**, and **evidence** so documentation can help orientation without becoming a competing truth source.
+
+## Authority layers
+
+```text
+source code
+= implementation
+
+.workflow/*.json
+= semantic and governance contract
+
+tests / runtime / physical evidence
+= observed behavior
+
+generated Project Truth Markdown
+= deterministic projection for humans
+```
+
+When these layers disagree, repair the layer that is actually wrong. Do not edit a generated projection to hide a source/spec conflict.
+
+## Profiles are adaptive
+
+LITE, STANDARD, and STRICT exist because a small utility and an audit-sensitive trading system should not carry identical ceremony. Validators derive required documents from `PROJECT_PROFILE.yaml` rather than one universal pack.
+
+## Roadmap authority is mandatory
+
+`.workflow/roadmap.json` is the machine-readable roadmap authority. Exactly one phase is `CURRENT`, and `.workflow/state.json::phase` must match `roadmap.current_phase`. Phase drift blocks acceptance.
+
+## Fail-closed acceptance
+
+Important distinctions remain explicit:
+
+```text
+source changed    != source tests passed
+unit PASS         != runtime PASS
+runtime starts    != UI/E2E PASS
+historical proof  != current execution
+recorded PASS     != executable validator PASS
+```
+
+Final acceptance therefore binds exact source provenance, required validation, project state, documentation sync, sequence sync when applicable, and runtime/E2E evidence when required.
+
+## Generated documentation
+
+STANDARD and STRICT use deterministic compilation. An LLM can propose structured spec changes, but canonical tracked Project Truth must be reproducible from machine-readable inputs.
+
+## Public documentation vs project state
+
+In the Skill Workflow repository itself, `docs/handbook/` is source-authored product documentation. The uppercase generated files in `docs/` are this repository's governed Project Truth. This separation is repository product information architecture; it does **not** move or weaken the canonical generated-doc layout used by consumer projects.
+''',
+          'docs/handbook/guides/troubleshooting.md': PUBLIC + '''# Troubleshooting
+
+Repair the failing authority or evidence. Do not bypass the gate just to obtain green output.
+
+## Project docs are stale
+
+Typical signal: `PROJECT_DOCS_SYNC = FAIL`.
+
+Repair path:
+
+```text
+identify changed source/spec authority
+→ update the correct .workflow JSON or source
+→ run sync_project_truth.py
+→ rerun validators
+```
+
+Do not hand-edit generated Project Truth as the fix.
+
+## Roadmap and current phase disagree
+
+Typical signal: `ROADMAP_SYNC = FAIL`.
+
+Update `.workflow/state.json` and `.workflow/roadmap.json` in the same phase-transition transaction. Exactly one roadmap phase must remain `CURRENT`.
+
+## Cross-document validation fails
+
+Use the reported broken path, symbol, claim, or stale-document relation. A structurally valid link does not prove semantic correctness; after mechanical repair, review the mapped source/tests as well.
+
+## Sequence validation fails
+
+Classify the mismatch before changing anything:
+
+- `CODE_DEFECT`
+- `PLAN_CHANGE` (BEFORE mode only, requiring authorized plan change)
+- `GENERATOR_DEFECT`
+
+For human Sequence V2 views, full machine evidence remains authoritative evidence. Do not delete machine edges to make a diagram prettier.
+
+## Mermaid text exists but rendering fails
+
+Rendering failure is still failure. Governed human-facing Mermaid must pass the parser/renderer gate and produce non-empty output.
+
+## A fast mode passes but final acceptance does not
+
+This is expected when intermediate evidence is insufficient. `develop` and `verify` cannot replace `finalize`.
+
+## A validator reports PASS but the behavior is still uncertain
+
+Respect the validator's evidence boundary. Structural/project-state validators do not prove runtime, scientific, UI, device, or semantic behavior unless that evidence is explicitly part of their contract.
+''',
+          'docs/handbook/reference/commands.md': PUBLIC + '''# Command Reference
+
+Commands below assume a governed target repository with tools vendored under `.workflow/tools/` unless noted otherwise.
+
+## Initialize
+
+From the Skill Workflow package/checkout:
+
+```bash
+python scripts/initialize_project_truth.py --root /path/to/project
+```
+
+## Synchronize Project Truth
+
+```bash
+python .workflow/tools/sync_project_truth.py --root .
+```
+
+## Documentation validation
+
+```bash
+python .workflow/tools/validate_project_docs.py --root .
+python .workflow/tools/validate_doc_quality.py --root .
+python .workflow/tools/validate_human_comprehension.py --root . --require-pass
+python .workflow/tools/validate_cross_document_consistency.py --root . --base <LAST_ACCEPTED_SHA> --require-base
+```
+
+## Project truth and handoff
+
+```bash
+python .workflow/tools/validate_handoff.py --root .
+python .workflow/tools/validate_project_truth.py --root .
+```
+
+## Sequence evidence
+
+```bash
+python .workflow/tools/generate_sequence_actual.py --root . --output-json <actual.json> --output-mermaid <actual.mmd> --entry <path::symbol>
+python .workflow/tools/sequence_human_view.py --root . --actual-json <actual.json> --actual-mermaid <actual.mmd> --output-json <human.json> --output-mermaid <human.mmd> --output-markdown <view.md> --session-id <session>
+python .workflow/tools/validate_sequence_contract.py --root . --session <session.json>
+python .workflow/tools/validate_sequence_human_view.py --root . --session <session.json>
+python .workflow/tools/validate_sequence_sessions.py --root .
+```
+
+## Governance Engine V2
+
+Repository-specific wrappers may vary, but the engine exposes three semantic modes:
+
+```text
+develop  = targeted intermediate work
+verify   = read-only intermediate evidence
+finalize = complete final acceptance
+```
+
+For final acceptance, provide the accepted base and exact expected candidate HEAD when the project contract requires them.
+
+## Regression self-tests in Skill Workflow
+
+The upstream repository includes compiler, STRICT-workflow, governance-engine, cross-document, sequence-resolution, human-sequence, and public-documentation regressions. Consumer projects should run the validators and tests required by their own `PROJECT_PROFILE.yaml` and acceptance contract rather than copying upstream CI blindly.
+''',
+          'docs/handbook/architecture/validation-engine.md': PUBLIC + '''# Validation Architecture
+
+Skill Workflow V2 improves speed by reusing work **inside one execution** while preserving fresh final acceptance.
+
+## Immutable process-local snapshot
+
+The engine can discover source files, read bytes, calculate digests, and derive facts once per execution. Reuse is an acceleration mechanism, not authority.
+
+```text
+cache/snapshot hit != PASS
+```
+
+Final acceptance starts from an exact candidate and must re-establish the evidence required by the project contract.
+
+## Execution modes
+
+### Develop
+
+Runs targeted work only when changed-file impact can be classified safely. Unknown impact escalates.
+
+### Verify
+
+Produces intermediate, read-only evidence. It cannot claim complete acceptance.
+
+### Finalize
+
+Runs the complete required validation DAG and is the only final acceptance authority.
+
+## Validation DAG
+
+The V2 engine avoids repeated nested validators by sharing one snapshot and executing required gates through dependency-aware orchestration. It optimizes duplicate work rather than deleting gates.
+
+Typical final concerns include:
+
+```text
+source facts / tests
+→ generated Project Truth
+→ doc structure + reproducibility
+→ sequence evidence when required
+→ cross-document consistency
+→ Human Comprehension
+→ project-state/provenance truth
+→ runtime/E2E when required
+→ exact-head / clean-worktree final boundary
+```
+
+## Evidence boundaries
+
+Every validator should state what it proves and what it does not. Static structure does not automatically prove runtime ordering, and a documentation layout PASS does not prove semantic understanding.
+
+## Documentation layers in this repository
+
+`docs/handbook/` is the public product layer. Generated uppercase files under `docs/` remain the self-governed Project Truth layer. Keeping those layers separate avoids forcing a breaking path migration onto consumer projects merely to improve this repository's public presentation.
+''',
+          'docs/handbook/sequence/README.md': PUBLIC + '''# Sequence Contracts and Sequence V2
+
+Sequence evidence makes important flow assumptions explicit and auditable.
+
+## Three modes
+
+- **BEFORE** — a real plan exists before implementation and is frozen, then compared with generated actual behavior.
+- **DURING** — implementation already exists/in progress; retrospective plan creation is forbidden.
+- **AFTER** — final behavior is reconstructed after implementation; retrospective plan creation is also forbidden.
+
+## Full machine evidence stays intact
+
+Sequence V2 does not make acceptance graphs smaller by deleting evidence. The full static machine graph remains independently available as `actual.json` / `actual.mmd`.
+
+## Human projection is separate
+
+A bounded human view is derived from the machine graph. `module-collapse-v1` groups helper-level nodes into semantic modules/external boundaries and aggregates repeated directed component interactions.
+
+Every machine edge must still be accounted for as either:
+
+- an internal edge collapsed inside one semantic component; or
+- a cross-component edge represented in an aggregated human interaction.
+
+The human projection is presentation, not replacement evidence.
+
+## No invented universal size limit
+
+Sequence complexity policy must be measurable and deterministic. Sequence V2 uses structural module/pair ceilings rather than pretending one arbitrary participant count is universally readable.
+
+## Mermaid rendering is blocking
+
+Generated Mermaid text is not sufficient proof. Governed human views must pass an actual parser/renderer check and produce non-empty render output.
+
+## Static evidence is not runtime ordering
+
+Static AST/module evidence proves source-visible structure only. Reflection, dynamic dispatch, framework behavior, and actual runtime order may require stronger runtime or semantic evidence when the project contract demands it.
+
+For the repository's current governed sequence state, see [SEQUENCE_CONTRACTS](../../SEQUENCE_CONTRACTS.md) and the [sequence evidence directory](../../sequence/).
+'''
+          }
+
+          for raw_path, content in files.items():
+              path = Path(raw_path)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(content.rstrip() + '\n', encoding='utf-8', newline='\n')
+              print('WRITE', raw_path)
+          PY
+
+      - name: Add public documentation validators
+        shell: bash
+        run: |
+          cat > scripts/validate_public_docs.py <<'PY'
+          #!/usr/bin/env python3
+          """Validate Skill Workflow's source-authored public documentation layer."""
+
+          from __future__ import annotations
+
+          import argparse
+          import json
+          from pathlib import Path
+
+          from validate_doc_quality import GENERATED_MARKER, normalized_shape
+
+          PUBLIC_MARKER = "PUBLIC PRODUCT DOCUMENTATION - SOURCE-AUTHORED"
+          REQUIRED_PUBLIC_FILES = (
+              "docs/README.md",
+              "docs/handbook/README.md",
+              "docs/handbook/getting-started/installation.md",
+              "docs/handbook/getting-started/adoption.md",
+              "docs/handbook/concepts/governance-model.md",
+              "docs/handbook/guides/troubleshooting.md",
+              "docs/handbook/reference/commands.md",
+              "docs/handbook/architecture/validation-engine.md",
+              "docs/handbook/sequence/README.md",
+          )
+          README_REQUIRED_HEADINGS = (
+              "# Skill Workflow",
+              "## Why Skill Workflow",
+              "## Quick start",
+              "## How it works",
+              "## Documentation",
+              "## Supported agents",
+              "## Project state and governance",
+              "## Support",
+          )
+          README_DEEP_REFERENCE_HEADINGS = (
+              "## Project Truth Compiler",
+              "## Why SYMBOL_INDEX matters",
+              "## Automatic structural indexing",
+              "## Generated Sequence Contract acceptance",
+              "## Agent discipline: docs are a hard gate",
+              "## Project Truth Synchronization",
+              "## Cross-document consistency validator",
+          )
+          HANDBOOK_LINKS = (
+              "getting-started/installation.md",
+              "getting-started/adoption.md",
+              "concepts/governance-model.md",
+              "guides/troubleshooting.md",
+              "reference/commands.md",
+              "architecture/validation-engine.md",
+              "sequence/README.md",
+          )
+          GENERATED_REFERENCE_FILES = (
+              "docs/SYSTEM_OVERVIEW.md",
+              "docs/CURRENT_STATE.md",
+              "docs/ROADMAP.md",
+              "docs/PROJECT_TRUTH_SYNC.md",
+              "docs/MODULE_MAP.md",
+              "docs/FLOW_INDEX.md",
+              "docs/SYMBOL_INDEX.md",
+          )
+
+
+          def validate(root: Path) -> dict[str, object]:
+              failures: list[str] = []
+              public_files_checked = 0
+
+              readme_path = root / "README.md"
+              if not readme_path.is_file():
+                  failures.append("README_MISSING")
+                  readme = ""
+              else:
+                  readme = readme_path.read_text(encoding="utf-8", errors="strict")
+                  ok, shape = normalized_shape(readme)
+                  if not ok:
+                      failures.extend("README_QUALITY:" + item for item in shape)
+                  for heading in README_REQUIRED_HEADINGS:
+                      if heading not in readme:
+                          failures.append("README_SECTION_MISSING:" + heading)
+                  for heading in README_DEEP_REFERENCE_HEADINGS:
+                      if heading in readme:
+                          failures.append("README_DEEP_REFERENCE_SECTION_PRESENT:" + heading)
+                  if "docs/handbook/README.md" not in readme:
+                      failures.append("README_HANDBOOK_LINK_MISSING")
+                  for machine_index in ("docs/SYMBOL_INDEX.md", "docs/MODULE_MAP.md", "docs/FLOW_INDEX.md"):
+                      if machine_index in readme:
+                          failures.append("README_MACHINE_INDEX_DIRECT_LINK:" + machine_index)
+
+              for relative in REQUIRED_PUBLIC_FILES:
+                  path = root / relative
+                  if not path.is_file():
+                      failures.append("PUBLIC_DOC_MISSING:" + relative)
+                      continue
+                  public_files_checked += 1
+                  text = path.read_text(encoding="utf-8", errors="strict")
+                  if PUBLIC_MARKER not in text:
+                      failures.append("PUBLIC_DOC_MARKER_MISSING:" + relative)
+                  if GENERATED_MARKER in text:
+                      failures.append("PUBLIC_DOC_GENERATED_MARKER_PRESENT:" + relative)
+                  ok, shape = normalized_shape(text)
+                  if not ok:
+                      failures.extend("PUBLIC_DOC_QUALITY:" + relative + ":" + item for item in shape)
+
+              docs_index = root / "docs" / "README.md"
+              if docs_index.is_file():
+                  text = docs_index.read_text(encoding="utf-8")
+                  if "handbook/README.md" not in text:
+                      failures.append("DOCS_INDEX_HANDBOOK_LINK_MISSING")
+                  for reference in ("SYSTEM_OVERVIEW.md", "CURRENT_STATE.md", "ROADMAP.md", "PROJECT_TRUTH_SYNC.md"):
+                      if reference not in text:
+                          failures.append("DOCS_INDEX_GOVERNANCE_LINK_MISSING:" + reference)
+
+              handbook_index = root / "docs" / "handbook" / "README.md"
+              if handbook_index.is_file():
+                  text = handbook_index.read_text(encoding="utf-8")
+                  for link in HANDBOOK_LINKS:
+                      if link not in text:
+                          failures.append("HANDBOOK_NAV_LINK_MISSING:" + link)
+
+              for relative in GENERATED_REFERENCE_FILES:
+                  path = root / relative
+                  if not path.is_file():
+                      failures.append("GENERATED_GOVERNANCE_REFERENCE_MISSING:" + relative)
+                      continue
+                  if GENERATED_MARKER not in path.read_text(encoding="utf-8", errors="strict"):
+                      failures.append("GENERATED_GOVERNANCE_MARKER_MISSING:" + relative)
+
+              return {
+                  "schema_version": 1,
+                  "result": "FAIL" if failures else "PASS",
+                  "public_files_checked": public_files_checked,
+                  "public_marker": PUBLIC_MARKER,
+                  "public_root": "docs/handbook",
+                  "generated_governance_root": "docs",
+                  "canonical_consumer_layout_changed": False,
+                  "failures": failures,
+                  "evidence_boundary": (
+                      "This gate proves public documentation structure, navigation, source-authored/generated-layer separation, "
+                      "and obvious README reference-manual regressions. It does not by itself prove semantic documentation quality."
+                  ),
+              }
+
+
+          def main() -> int:
+              parser = argparse.ArgumentParser()
+              parser.add_argument("--root", default=".")
+              parser.add_argument("--report", default="")
+              args = parser.parse_args()
+              report = validate(Path(args.root).resolve())
+              payload = json.dumps(report, indent=2, sort_keys=True)
+              print(payload)
+              if args.report:
+                  output = Path(args.report)
+                  if not output.is_absolute():
+                      output = Path(args.root).resolve() / output
+                  output.parent.mkdir(parents=True, exist_ok=True)
+                  output.write_text(payload + "\n", encoding="utf-8", newline="\n")
+              return 0 if report["result"] == "PASS" else 1
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main())
+          PY
+
+          cat > scripts/selftest_public_docs.py <<'PY'
+          #!/usr/bin/env python3
+          """Regression tests for public documentation separation."""
+
+          from __future__ import annotations
+
+          import tempfile
+          from pathlib import Path
+
+          from validate_public_docs import (
+              GENERATED_REFERENCE_FILES,
+              HANDBOOK_LINKS,
+              PUBLIC_MARKER,
+              README_REQUIRED_HEADINGS,
+              REQUIRED_PUBLIC_FILES,
+              validate,
+          )
+          from validate_doc_quality import GENERATED_MARKER
+
+
+          def main() -> int:
+              with tempfile.TemporaryDirectory() as temp:
+                  root = Path(temp)
+                  readme = "\n\n".join(README_REQUIRED_HEADINGS) + "\n\n[Handbook](docs/handbook/README.md)\n"
+                  (root / "README.md").write_text(readme, encoding="utf-8", newline="\n")
+
+                  for relative in REQUIRED_PUBLIC_FILES:
+                      path = root / relative
+                      path.parent.mkdir(parents=True, exist_ok=True)
+                      body = f"<!-- {PUBLIC_MARKER} -->\n\n# Public doc\n"
+                      if relative == "docs/README.md":
+                          body += "\n[Handbook](handbook/README.md)\n\nSYSTEM_OVERVIEW.md CURRENT_STATE.md ROADMAP.md PROJECT_TRUTH_SYNC.md\n"
+                      if relative == "docs/handbook/README.md":
+                          body += "\n" + "\n".join(f"[{link}]({link})" for link in HANDBOOK_LINKS) + "\n"
+                      path.write_text(body, encoding="utf-8", newline="\n")
+
+                  for relative in GENERATED_REFERENCE_FILES:
+                      path = root / relative
+                      path.parent.mkdir(parents=True, exist_ok=True)
+                      path.write_text(f"<!-- {GENERATED_MARKER} -->\n\n# Generated\n", encoding="utf-8", newline="\n")
+
+                  assert validate(root)["result"] == "PASS"
+
+                  target = root / REQUIRED_PUBLIC_FILES[-1]
+                  original = target.read_text(encoding="utf-8")
+                  target.write_text(original.replace(PUBLIC_MARKER, "MARKER REMOVED"), encoding="utf-8", newline="\n")
+                  assert validate(root)["result"] == "FAIL"
+                  target.write_text(original, encoding="utf-8", newline="\n")
+
+                  readme_path = root / "README.md"
+                  original_readme = readme_path.read_text(encoding="utf-8")
+                  readme_path.write_text(original_readme + "\n## Project Truth Compiler\n", encoding="utf-8", newline="\n")
+                  assert validate(root)["result"] == "FAIL"
+                  readme_path.write_text(original_readme, encoding="utf-8", newline="\n")
+
+                  missing = root / "docs/handbook/guides/troubleshooting.md"
+                  missing.unlink()
+                  assert validate(root)["result"] == "FAIL"
+
+              print("PUBLIC_DOC_BASELINE=PASS")
+              print("PUBLIC_DOC_MARKER_TAMPER_REJECTION=PASS")
+              print("README_REFERENCE_MANUAL_REGRESSION_REJECTION=PASS")
+              print("PUBLIC_DOC_MISSING_FILE_REJECTION=PASS")
+              print("RESULT=PASS")
+              return 0
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main())
+          PY
+
+          python -m compileall -q scripts/validate_public_docs.py scripts/selftest_public_docs.py
+
+      - name: Wire public documentation gate into permanent CI
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/governance-selftest.yml')
+          text = path.read_text(encoding='utf-8')
+          anchor = '''      - name: Sequence human-view regression\n        run: python scripts/selftest_sequence_human_view.py\n\n      - name: Cross-document regression\n'''
+          replacement = '''      - name: Sequence human-view regression\n        run: python scripts/selftest_sequence_human_view.py\n\n      - name: Public documentation regression\n        run: |\n          python scripts/selftest_public_docs.py\n          python scripts/validate_public_docs.py --root .\n\n      - name: Cross-document regression\n'''
+          if anchor not in text:
+              raise SystemExit('PUBLIC_DOC_CI_ANCHOR_NOT_FOUND')
+          path.write_text(text.replace(anchor, replacement, 1), encoding='utf-8', newline='\n')
+          print('PUBLIC_DOC_PERMANENT_CI=PASS')
+          PY
+
+      - name: Record Documentation System V2 decision and test contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          decisions = load('.workflow/decisions.json')
+          if not any(item.get('id') == 'SW2-ADR-006' for item in decisions['decisions']):
+              decisions['decisions'].append({
+                  'id': 'SW2-ADR-006',
+                  'title': 'Separate public product documentation without moving consumer Project Truth paths',
+                  'decision': 'Skill Workflow repository product documentation uses a source-authored public navigator at docs/README.md and handbook under docs/handbook/, while canonical deterministic Project Truth and machine indexes remain at their established docs/ paths. The public layer must never replace project-state authority or machine evidence.',
+                  'rationale': 'The existing README mixed landing, installation matrix, governance theory, tool reference, and generated project-state concepts. Moving canonical consumer Project Truth paths merely to improve this repository presentation would create avoidable migration risk. A distinct public layer improves GitHub readability while preserving compatibility and audit evidence.',
+                  'status': 'ACCEPTED'
+              })
+          write('.workflow/decisions.json', decisions)
+
+          acceptance = load('.workflow/acceptance.json')
+          for command in ('python scripts/selftest_public_docs.py', 'python scripts/validate_public_docs.py --root .'):
+              if command not in acceptance['test_commands']:
+                  acceptance['test_commands'].insert(1, command)
+          write('.workflow/acceptance.json', acceptance)
+
+          claims = load('.workflow/claims.json')
+          claim_map = {claim['id']: claim for claim in claims['claims']}
+          for claim_id in ('TRUTH-SW2-DOCS-PUBLIC-IA', 'TRUTH-SW2-DOCS-SEPARATION'):
+              claim = claim_map[claim_id]
+              if 'scripts/validate_public_docs.py' not in claim['source_owners']:
+                  claim['source_owners'].append('scripts/validate_public_docs.py')
+              if 'scripts/selftest_public_docs.py' not in claim['tests']:
+                  claim['tests'].append('scripts/selftest_public_docs.py')
+          write('.workflow/claims.json', claims)
+
+          session_path = Path('docs/sequence/sessions/SW2-04-GOVERNANCE.json')
+          session = load(session_path)
+          entry = 'scripts/validate_public_docs.py::main'
+          if entry not in session['actual']['entries']:
+              session['actual']['entries'].append(entry)
+          if 'scripts/selftest_public_docs.py' not in session['tests']:
+              session['tests'].append('scripts/selftest_public_docs.py')
+          write(session_path, session)
+          print('SW2_04_PUBLIC_DOC_AUTHORITY=PASS')
+          PY
+
+      - name: Run public documentation regressions
+        run: |
+          python scripts/selftest_public_docs.py
+          python scripts/validate_public_docs.py --root . --report artifacts/public_docs_report.json
+
+      - name: Regenerate SW2-04 sequence evidence after source change
+        run: |
+          python scripts/generate_sequence_actual.py --root . --output-json docs/sequence/generated/SW2-04-GOVERNANCE.actual.json --output-mermaid docs/sequence/generated/SW2-04-GOVERNANCE.actual.mmd --entry scripts/generate_project_docs.py::main --entry scripts/validate_project_docs.py::main --entry scripts/validate_doc_quality.py::main --entry scripts/validate_human_comprehension.py::main --entry scripts/validate_public_docs.py::main
+          python scripts/sequence_human_view.py --root . --actual-json docs/sequence/generated/SW2-04-GOVERNANCE.actual.json --actual-mermaid docs/sequence/generated/SW2-04-GOVERNANCE.actual.mmd --output-json docs/sequence/generated/SW2-04-GOVERNANCE.human.json --output-mermaid docs/sequence/generated/SW2-04-GOVERNANCE.human.mmd --output-markdown docs/sequence/views/SW2-04-GOVERNANCE.md --session-id SW2-04-GOVERNANCE
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.load(open('docs/sequence/generated/SW2-04-GOVERNANCE.actual.json', encoding='utf-8'))
+          human = json.load(open('docs/sequence/generated/SW2-04-GOVERNANCE.human.json', encoding='utf-8'))
+          digest = actual['source_digest']
+          assert digest and human['source_digest'] == digest
+          session_path = Path('docs/sequence/sessions/SW2-04-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          acceptance['sequence_sync_status'] = 'PASS'
+          acceptance['truth_gates']['SEQUENCE_SYNC'] = 'PASS'
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          print('SW2_04_SEQUENCE_REBOUND=PASS')
+          PY
+
+      - name: Regenerate and validate Project Truth
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root . --report artifacts/public_docs_report.json
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-04-GOVERNANCE.json --report artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-04-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+
+      - name: Assert phase remains fail closed
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(item['status'] == 'NOT_PROVEN' for item in acceptance['requirements']), acceptance['requirements']
+          claims = json.load(open('.workflow/claims.json', encoding='utf-8'))
+          claim_map = {item['id']: item for item in claims['claims']}
+          assert claim_map['TRUTH-SW2-DOCS-PUBLIC-IA']['status'] == 'NOT_PROVEN'
+          assert claim_map['TRUTH-SW2-DOCS-SEPARATION']['status'] == 'NOT_PROVEN'
+          state = json.load(open('.workflow/state.json', encoding='utf-8'))
+          assert state['phase'] == 'SW2-04' and state['status'] == 'IN_PROGRESS'
+          print('SW2_04_IMPLEMENTATION_STILL_NOT_PROVEN=PASS')
+          PY
+
+      - name: Commit implementation candidate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md docs scripts .github/workflows/governance-selftest.yml .workflow artifacts/public_docs_report.json artifacts/sequence/SW2-04-GOVERNANCE.acceptance.json
+          git diff --cached --quiet && { echo "NO_IMPLEMENTATION_DIFF"; exit 1; }
+          git commit -m "feat(sw2-04): add public documentation system"
+          git push origin HEAD:work/sw2-04-documentation-system-v2
