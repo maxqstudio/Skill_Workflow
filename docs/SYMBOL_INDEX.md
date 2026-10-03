@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
+Source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -28,14 +28,18 @@ responsibility, callers, or state ownership.
 | scripts/migrate_governance_v1.py | 4 | 0 | 4 | 0 |
 | scripts/project_profile.py | 10 | 0 | 10 | 0 |
 | scripts/project_snapshot.py | 18 | 3 | 7 | 8 |
+| scripts/release_preflight.py | 4 | 0 | 4 | 0 |
 | scripts/schema_contract.py | 5 | 0 | 5 | 0 |
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_governance_engine.py | 15 | 0 | 11 | 4 |
 | scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_release_preflight.py | 5 | 0 | 5 | 0 |
+| scripts/selftest_repository_health.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_schema_toolchain.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_sequence_call_resolution.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_sequence_human_view.py | 3 | 0 | 3 | 0 |
@@ -46,11 +50,13 @@ responsibility, callers, or state ownership.
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
 | scripts/validate_cross_document_consistency.py | 22 | 0 | 22 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
+| scripts/validate_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/validate_handoff.py | 5 | 0 | 5 | 0 |
 | scripts/validate_human_comprehension.py | 3 | 0 | 3 | 0 |
 | scripts/validate_project_docs.py | 1 | 0 | 1 | 0 |
 | scripts/validate_project_truth.py | 6 | 0 | 6 | 0 |
 | scripts/validate_public_docs.py | 2 | 0 | 2 | 0 |
+| scripts/validate_repository_health.py | 3 | 0 | 3 | 0 |
 | scripts/validate_schema_toolchain.py | 2 | 0 | 2 | 0 |
 | scripts/validate_sequence_contract.py | 5 | 0 | 5 | 0 |
 | scripts/validate_sequence_human_view.py | 3 | 0 | 3 | 0 |
@@ -333,6 +339,18 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/release_preflight.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 15-16 |
+| _load | function | 19-20 |
+| validate | function | 23-131 |
+| main | function | 134-155 |
+
+</details>
+
+<details>
 <summary><code>scripts/schema_contract.py</code> — 5 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -385,6 +403,16 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_github_ruleset.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| good_ruleset | function | 11-32 |
+| main | function | 35-60 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_governance_engine.py</code> — 15 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -425,6 +453,29 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | main | function | 20-64 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_release_preflight.py</code> — 5 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 14-15 |
+| write_json | function | 18-20 |
+| commit_all | function | 23-26 |
+| governance_report | function | 29-39 |
+| main | function | 42-112 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_repository_health.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| write_json | function | 13-15 |
+| main | function | 18-66 |
 
 </details>
 
@@ -584,6 +635,16 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/validate_github_ruleset.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| validate | function | 20-84 |
+| main | function | 87-100 |
+
+</details>
+
+<details>
 <summary><code>scripts/validate_handoff.py</code> — 5 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -635,8 +696,19 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| validate | function | 65-142 |
-| main | function | 145-159 |
+| validate | function | 69-146 |
+| main | function | 149-163 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_repository_health.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _load_json | function | 22-23 |
+| validate | function | 26-89 |
+| main | function | 92-108 |
 
 </details>
 

@@ -27,7 +27,7 @@ The permanent checks currently expected by SW2 governance are:
 
 A workflow file proves only that a check can run. It does not prove GitHub requires that check before merge.
 
-`validate_github_ruleset.py` validates an exported GitHub ruleset payload against the declared policy. The manual `SW2 Ruleset Audit` workflow fetches the live repository ruleset and applies the same validator.
+`scripts/validate_github_ruleset.py` validates an exported GitHub ruleset payload against the declared policy. The manual `SW2 Ruleset Audit` workflow fetches the live repository ruleset and applies the same validator.
 
 If the live ruleset lacks required status checks, SW2-07 merge/ruleset enforcement remains `NOT_PROVEN` even when all CI happens to be green.
 

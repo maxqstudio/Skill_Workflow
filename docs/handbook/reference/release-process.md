@@ -12,14 +12,14 @@ A release preflight is bound to:
 
 - one exact candidate commit SHA;
 - one semantic version tag in `vMAJOR.MINOR.PATCH` form, optionally with a prerelease suffix;
-- one successful `governance_engine.py --mode finalize` report for that exact SHA;
+- one successful `scripts/governance_engine.py --mode finalize` report for that exact SHA;
 - a clean worktree.
 
 Cache state and mutable upstream state are never release authority.
 
 ## Automated preflight
 
-The manual `Release Preflight` workflow checks out the exact requested candidate, runs finalize governance, and then runs `release_preflight.py`.
+The manual `Release Preflight` workflow checks out the exact requested candidate, runs finalize governance, and then runs `scripts/release_preflight.py`.
 
 The preflight validates:
 

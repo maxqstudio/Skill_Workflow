@@ -288,12 +288,16 @@
       "runtime_evidence": [],
       "source_owners": [
         "README.md",
-        "scripts/validate_public_docs.py"
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        "CODE_OF_CONDUCT.md",
+        "scripts/validate_public_docs.py",
+        "scripts/validate_repository_health.py"
       ],
       "status": "NOT_PROVEN",
       "tests": [
         "scripts/selftest_public_docs.py",
-        "scripts/validate_public_docs.py"
+        "scripts/selftest_repository_health.py"
       ]
     },
     {
@@ -303,13 +307,18 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-MERGE-ENFORCEMENT",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "Live ruleset 24406662 audit at SW2-07 implementation time: active default-branch PR+squash/deletion/non-fast-forward rules present, required_status_checks absent; claim remains NOT_PROVEN."
+      ],
       "source_owners": [
-        "SKILL.md",
-        ".github/workflows/governance-selftest.yml"
+        "docs/handbook/reference/repository-governance.md",
+        "scripts/validate_github_ruleset.py",
+        ".github/workflows/ruleset-audit.yml"
       ],
       "status": "NOT_PROVEN",
-      "tests": []
+      "tests": [
+        "scripts/selftest_github_ruleset.py"
+      ]
     },
     {
       "claim": "The repository has a repeatable evidence-backed release process that preserves exact tested-head provenance and does not publish stable V2 before SW2-09 acceptance.",
@@ -320,12 +329,13 @@
       "id": "TRUTH-SW2-RELEASE-GOVERNANCE",
       "runtime_evidence": [],
       "source_owners": [
-        "SKILL.md",
-        ".github/workflows/governance-selftest.yml"
+        "docs/handbook/reference/release-process.md",
+        "scripts/release_preflight.py",
+        ".github/workflows/release-preflight.yml"
       ],
       "status": "NOT_PROVEN",
       "tests": [
-        "scripts/selftest_strict_project_workflow.py"
+        "scripts/selftest_release_preflight.py"
       ]
     }
   ],

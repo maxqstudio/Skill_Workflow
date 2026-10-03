@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
+Source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -21,14 +21,18 @@ Generated/refreshed: current compiler run
 | scripts/migrate_governance_v1.py | Python | 137 | scripts | NO |
 | scripts/project_profile.py | Python | 264 | scripts | NO |
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
+| scripts/release_preflight.py | Python | 159 | scripts | NO |
 | scripts/schema_contract.py | Python | 88 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
+| scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 68 | scripts | NO |
+| scripts/selftest_release_preflight.py | Python | 116 | scripts | NO |
+| scripts/selftest_repository_health.py | Python | 70 | scripts | NO |
 | scripts/selftest_schema_toolchain.py | Python | 166 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
@@ -39,11 +43,13 @@ Generated/refreshed: current compiler run
 | scripts/toolchain_identity.py | Python | 184 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 738 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
+| scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
-| scripts/validate_public_docs.py | Python | 163 | scripts | NO |
+| scripts/validate_public_docs.py | Python | 167 | scripts | NO |
+| scripts/validate_repository_health.py | Python | 112 | scripts | NO |
 | scripts/validate_schema_toolchain.py | Python | 76 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
 | scripts/validate_sequence_human_view.py | Python | 256 | scripts | NO |

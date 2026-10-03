@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 40 files, 1 language categories.
+Observed source inventory: 46 files, 1 language categories.
 
 ## Major components
 
@@ -122,7 +122,8 @@ Blocked actions:
 - Do not weaken accepted SW2-01 through SW2-06 governance guarantees while hardening public repository operations.
 
 Known blockers:
-- None declared.
+- Owner-approved public license decision is still required before SW2-07-R1 can PASS.
+- Live GitHub ruleset 24406662 lacks required_status_checks for the six permanent acceptance checks, so SW2-07-R3 remains NOT_PROVEN.
 
 ## Proven vs not proven
 
@@ -150,13 +151,14 @@ Known blockers:
 - SW2-06 phase-open authority is accepted on main 4f3546e78e4a927359b1805fa5c69bf57ddc0040: post-merge Self Governance 37102088293, Governance Selftest 37102088281 on Ubuntu and Windows, SW2 Sequence Evidence 37102088313, SW2 Engine Performance 37102088299, and SW2 Consumer Engine Performance 37102088297 all succeeded; merged tree e9ce803f23984356adbb61eb08f2bab3bf354837 equals the exact tested PR-head tree.
 - SW2-06 Cross-Language Analyzer Architecture feature acceptance is proven on exact clean candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd: Self Governance 37107117800, Governance Selftest 37107117851 on Ubuntu and Windows, SW2 Sequence Evidence 37107117803, SW2 Engine Performance 37107117811, and SW2 Consumer Engine Performance 37107117823 all succeeded. The normalized analyzer contract preserves accepted Python and JS/TS semantics, generic fallback is inventory-only and fail-safe, and unsupported dynamic behavior remains NOT_PROVEN without stronger evidence.
 - SW2-06 Cross-Language Analyzer Architecture is accepted on exact clean post-promotion candidate b1b95f3f112058c90dc8aa0ceb7b279dfd6ce7ab: Self Governance 37107380727, Governance Selftest 37107380730 on Ubuntu and Windows, SW2 Sequence Evidence 37107380788, SW2 Engine Performance 37107381528, and SW2 Consumer Engine Performance 37107380729 all succeeded after R1-R4 and analyzer/dynamic-evidence claims were promoted.
+- SW2-07 phase-open authority is accepted on main f391fe9dc5d208803118090bbe6a174e8f6c7c63: the squash-merged tree e2b32ed45a98a2b2bf79f7824e278ca0136f9136 equals tested PR-head 80b3aa5e1f7a2f8aca7ed315e3192c1a653758c0, and post-merge Self Governance 37112092243, Governance Selftest 37112092289 on Ubuntu and Windows, SW2 Sequence Evidence 37112092314, SW2 Engine Performance 37112092222, and SW2 Consumer Engine Performance 37112092263 all succeeded.
 
 ### Not proven
 
-- SW2-07 repository health files and an Owner-approved public license are not proven complete.
-- SW2-07 security and contribution paths are not proven complete.
-- SW2-07 actual GitHub merge/ruleset enforcement is not proven to match declared governance.
-- SW2-07 release process is not proven repeatable and evidence-backed.
+- SW2-07 repository health files exist, but an Owner-approved public license is still NOT_PROVEN.
+- SW2-07 security and contribution paths are implemented but not yet accepted on a clean exact candidate.
+- SW2-07 live GitHub ruleset enforcement does not yet require the six permanent acceptance checks.
+- SW2-07 release preflight is implemented but not yet accepted on a clean exact candidate.
 
 ## Important limitations
 

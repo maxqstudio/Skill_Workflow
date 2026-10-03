@@ -7,7 +7,7 @@
   "critical": true,
   "evidence_boundary": "Static generated actual graph proves only extracted structural edges. Dynamic behavior requires runtime trace or semantic evidence when applicable.",
   "failures": [],
-  "final_head": "e21b3c70db8ac8ee73d7e8b4f804024c0d611bf0",
+  "final_head": "f70e1accb0f64a061192aa159c3db5b638e14fd2",
   "mismatch_resolution_required": false,
   "mode": "DURING",
   "phase": "SW2-07",
@@ -18,6 +18,6 @@
   "scope": "CURRENT",
   "session": "docs/sequence/sessions/SW2-07-GOVERNANCE.json",
   "session_id": "SW2-07-GOVERNANCE",
-  "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce",
+  "source_digest": "e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8",
   "warnings": []
 }

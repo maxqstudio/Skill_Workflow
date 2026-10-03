@@ -7,14 +7,14 @@
 SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, actual merge/ruleset enforcement aligned with declared governance, and a repeatable evidence-backed release process. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
+Current source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-07-R1 | Repository health files are present with Owner-approved license. | NOT_PROVEN at phase opening. License selection is an Owner decision and no license may be inferred or auto-selected. | NOT_PROVEN |
-| SW2-07-R2 | Security and contribution paths are documented. | NOT_PROVEN until public repository health documents and their validation are complete. | NOT_PROVEN |
-| SW2-07-R3 | Merge/ruleset enforcement matches declared governance. | NOT_PROVEN until actual GitHub repository configuration is audited and evidenced; workflow presence alone is insufficient. | NOT_PROVEN |
-| SW2-07-R4 | Release process is repeatable and evidence-backed. | NOT_PROVEN until release governance is documented and regression-tested without publishing the SW2-09 stable release. | NOT_PROVEN |
+| SW2-07-R1 | Repository health files are present with Owner-approved license. | Repository health files are implemented and guarded by validate_repository_health.py, but no Owner-approved license decision/file exists; remains NOT_PROVEN. | NOT_PROVEN |
+| SW2-07-R2 | Security and contribution paths are documented. | CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, README navigation, and repository-health validation are implemented; clean exact-candidate acceptance is still pending. | NOT_PROVEN |
+| SW2-07-R3 | Merge/ruleset enforcement matches declared governance. | Live ruleset 24406662 is active on the default branch and enforces PR+squash, deletion protection, and non-fast-forward protection, but lacks required_status_checks; remains NOT_PROVEN. | NOT_PROVEN |
+| SW2-07-R4 | Release process is repeatable and evidence-backed. | Read-only exact-head release preflight, manual workflow, stable SW2-09 boundary, and regression tests are implemented; clean exact-candidate acceptance is still pending. | NOT_PROVEN |
 
 ## Test commands
 
@@ -25,11 +25,14 @@ Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd40686
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/selftest_public_docs.py
-- python scripts/selftest_generated_doc_presentation.py
 - python scripts/validate_public_docs.py --root .
+- python scripts/selftest_repository_health.py
+- python scripts/validate_repository_health.py --root .
+- python scripts/selftest_github_ruleset.py
+- python scripts/selftest_release_preflight.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base f391fe9dc5d208803118090bbe6a174e8f6c7c63 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 

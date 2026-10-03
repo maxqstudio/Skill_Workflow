@@ -17,25 +17,25 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN at phase opening. License selection is an Owner decision and no license may be inferred or auto-selected.",
+      "evidence": "Repository health files are implemented and guarded by validate_repository_health.py, but no Owner-approved license decision/file exists; remains NOT_PROVEN.",
       "id": "SW2-07-R1",
       "requirement": "Repository health files are present with Owner-approved license.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "NOT_PROVEN until public repository health documents and their validation are complete.",
+      "evidence": "CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, README navigation, and repository-health validation are implemented; clean exact-candidate acceptance is still pending.",
       "id": "SW2-07-R2",
       "requirement": "Security and contribution paths are documented.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "NOT_PROVEN until actual GitHub repository configuration is audited and evidenced; workflow presence alone is insufficient.",
+      "evidence": "Live ruleset 24406662 is active on the default branch and enforces PR+squash, deletion protection, and non-fast-forward protection, but lacks required_status_checks; remains NOT_PROVEN.",
       "id": "SW2-07-R3",
       "requirement": "Merge/ruleset enforcement matches declared governance.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "NOT_PROVEN until release governance is documented and regression-tested without publishing the SW2-09 stable release.",
+      "evidence": "Read-only exact-head release preflight, manual workflow, stable SW2-09 boundary, and regression tests are implemented; clean exact-candidate acceptance is still pending.",
       "id": "SW2-07-R4",
       "requirement": "Release process is repeatable and evidence-backed.",
       "status": "NOT_PROVEN"
@@ -55,11 +55,14 @@
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/selftest_public_docs.py",
-    "python scripts/selftest_generated_doc_presentation.py",
     "python scripts/validate_public_docs.py --root .",
+    "python scripts/selftest_repository_health.py",
+    "python scripts/validate_repository_health.py --root .",
+    "python scripts/selftest_github_ruleset.py",
+    "python scripts/selftest_release_preflight.py",
     "python scripts/validate_sequence_sessions.py --root .",
     "python scripts/validate_handoff.py --root .",
-    "python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base f391fe9dc5d208803118090bbe6a174e8f6c7c63 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 13,
-    "interaction_count": 13,
+    "interaction_ceiling": 16,
+    "interaction_count": 16,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 10,
-    "participant_count": 10,
+    "participant_ceiling": 13,
+    "participant_count": 13,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -84,6 +84,20 @@
         "python_ast"
       ],
       "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/release_preflight.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
     },
     {
       "actions": [
@@ -215,10 +229,42 @@
         "python_ast"
       ],
       "to": "module:scripts/validate_doc_quality.py"
+    },
+    {
+      "actions": [
+        "path.read_text",
+        "readme_path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_repository_health.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "normalized_shape"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_repository_health.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_doc_quality.py"
     }
   ],
   "entries": [
     "scripts/validate_public_docs.py::main",
+    "scripts/validate_repository_health.py::main",
+    "scripts/validate_github_ruleset.py::main",
+    "scripts/release_preflight.py::main",
     "scripts/validate_handoff.py::main",
     "scripts/validate_project_truth.py::main",
     "scripts/governance_engine.py::main"
@@ -293,6 +339,18 @@
       ]
     },
     {
+      "id": "module:scripts/release_preflight.py",
+      "kind": "module",
+      "label": "scripts/release_preflight.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/release_preflight.py::_load",
+        "scripts/release_preflight.py::git",
+        "scripts/release_preflight.py::main",
+        "scripts/release_preflight.py::validate"
+      ]
+    },
+    {
       "id": "module:scripts/schema_contract.py",
       "kind": "module",
       "label": "scripts/schema_contract.py",
@@ -327,6 +385,16 @@
       "machine_node_count": 1,
       "machine_nodes": [
         "scripts/validate_doc_quality.py::normalized_shape"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_github_ruleset.py",
+      "kind": "module",
+      "label": "scripts/validate_github_ruleset.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/validate_github_ruleset.py::main",
+        "scripts/validate_github_ruleset.py::validate"
       ]
     },
     {
@@ -365,16 +433,27 @@
         "scripts/validate_public_docs.py::main",
         "scripts/validate_public_docs.py::validate"
       ]
+    },
+    {
+      "id": "module:scripts/validate_repository_health.py",
+      "kind": "module",
+      "label": "scripts/validate_repository_health.py",
+      "machine_node_count": 3,
+      "machine_nodes": [
+        "scripts/validate_repository_health.py::_load_json",
+        "scripts/validate_repository_health.py::main",
+        "scripts/validate_repository_health.py::validate"
+      ]
     }
   ],
-  "observed_head": "e21b3c70db8ac8ee73d7e8b4f804024c0d611bf0",
+  "observed_head": "f70e1accb0f64a061192aa159c3db5b638e14fd2",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 22,
-    "cross_component_machine_edges": 35,
-    "internal_machine_edges_collapsed": 62,
-    "machine_edge_count": 97,
-    "machine_node_count": 59,
+    "aggregated_cross_component_edges": 24,
+    "cross_component_machine_edges": 40,
+    "internal_machine_edges_collapsed": 68,
+    "machine_edge_count": 108,
+    "machine_node_count": 68,
     "node_map": {
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
@@ -417,11 +496,17 @@
       "scripts/project_snapshot.py::active_project_snapshot": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::canonical_source_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::discover_source_paths": "module:scripts/project_snapshot.py",
+      "scripts/release_preflight.py::_load": "module:scripts/release_preflight.py",
+      "scripts/release_preflight.py::git": "module:scripts/release_preflight.py",
+      "scripts/release_preflight.py::main": "module:scripts/release_preflight.py",
+      "scripts/release_preflight.py::validate": "module:scripts/release_preflight.py",
       "scripts/schema_contract.py::_profile_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
       "scripts/script_runner.py::invoke_main": "module:scripts/script_runner.py",
       "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
       "scripts/validate_doc_quality.py::normalized_shape": "module:scripts/validate_doc_quality.py",
+      "scripts/validate_github_ruleset.py::main": "module:scripts/validate_github_ruleset.py",
+      "scripts/validate_github_ruleset.py::validate": "module:scripts/validate_github_ruleset.py",
       "scripts/validate_handoff.py::git_root": "module:scripts/validate_handoff.py",
       "scripts/validate_handoff.py::has_placeholder": "module:scripts/validate_handoff.py",
       "scripts/validate_handoff.py::main": "module:scripts/validate_handoff.py",
@@ -434,10 +519,13 @@
       "scripts/validate_project_truth.py::run_git": "module:scripts/validate_project_truth.py",
       "scripts/validate_project_truth.py::split_refs": "module:scripts/validate_project_truth.py",
       "scripts/validate_public_docs.py::main": "module:scripts/validate_public_docs.py",
-      "scripts/validate_public_docs.py::validate": "module:scripts/validate_public_docs.py"
+      "scripts/validate_public_docs.py::validate": "module:scripts/validate_public_docs.py",
+      "scripts/validate_repository_health.py::_load_json": "module:scripts/validate_repository_health.py",
+      "scripts/validate_repository_health.py::main": "module:scripts/validate_repository_health.py",
+      "scripts/validate_repository_health.py::validate": "module:scripts/validate_repository_health.py"
     },
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
+  "source_digest": "e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8"
 }

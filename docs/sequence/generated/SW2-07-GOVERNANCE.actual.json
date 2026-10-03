@@ -508,6 +508,34 @@
       "to": "scripts/project_snapshot.py::_git"
     },
     {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/release_preflight.py::_load",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "validate",
+      "evidence": "STATIC",
+      "from": "scripts/release_preflight.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/release_preflight.py::validate"
+    },
+    {
+      "action": "_load",
+      "evidence": "STATIC",
+      "from": "scripts/release_preflight.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/release_preflight.py::_load"
+    },
+    {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": "scripts/release_preflight.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/release_preflight.py::git"
+    },
+    {
       "action": "_profile_version",
       "evidence": "STATIC",
       "from": "scripts/schema_contract.py::require_profile_schema_version",
@@ -520,6 +548,13 @@
       "from": "scripts/selftest_sequence_human_view.py::sha256",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "validate",
+      "evidence": "STATIC",
+      "from": "scripts/validate_github_ruleset.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_github_ruleset.py::validate"
     },
     {
       "action": "contract_settings",
@@ -779,10 +814,55 @@
       "from": "scripts/validate_public_docs.py::validate",
       "resolver": "python_ast",
       "to": "scripts/validate_doc_quality.py::normalized_shape"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::_load_json",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "validate",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_repository_health.py::validate"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "readme_path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "normalized_shape",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/validate_doc_quality.py::normalized_shape"
+    },
+    {
+      "action": "_load_json",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/validate_repository_health.py::_load_json"
     }
   ],
   "entries": [
     "scripts/validate_public_docs.py::main",
+    "scripts/validate_repository_health.py::main",
+    "scripts/validate_github_ruleset.py::main",
+    "scripts/release_preflight.py::main",
     "scripts/validate_handoff.py::main",
     "scripts/validate_project_truth.py::main",
     "scripts/governance_engine.py::main"
@@ -1160,6 +1240,42 @@
       "locator": "scripts/project_snapshot.py::discover_source_paths"
     },
     {
+      "id": "scripts/release_preflight.py::_load",
+      "kind": "function",
+      "label": "scripts/release_preflight.py::_load",
+      "language": "Python",
+      "line_end": 20,
+      "line_start": 19,
+      "locator": "scripts/release_preflight.py::_load"
+    },
+    {
+      "id": "scripts/release_preflight.py::git",
+      "kind": "function",
+      "label": "scripts/release_preflight.py::git",
+      "language": "Python",
+      "line_end": 16,
+      "line_start": 15,
+      "locator": "scripts/release_preflight.py::git"
+    },
+    {
+      "id": "scripts/release_preflight.py::main",
+      "kind": "function",
+      "label": "scripts/release_preflight.py::main",
+      "language": "Python",
+      "line_end": 155,
+      "line_start": 134,
+      "locator": "scripts/release_preflight.py::main"
+    },
+    {
+      "id": "scripts/release_preflight.py::validate",
+      "kind": "function",
+      "label": "scripts/release_preflight.py::validate",
+      "language": "Python",
+      "line_end": 131,
+      "line_start": 23,
+      "locator": "scripts/release_preflight.py::validate"
+    },
+    {
       "id": "scripts/schema_contract.py::_profile_version",
       "kind": "function",
       "label": "scripts/schema_contract.py::_profile_version",
@@ -1203,6 +1319,24 @@
       "line_end": 117,
       "line_start": 66,
       "locator": "scripts/validate_doc_quality.py::normalized_shape"
+    },
+    {
+      "id": "scripts/validate_github_ruleset.py::main",
+      "kind": "function",
+      "label": "scripts/validate_github_ruleset.py::main",
+      "language": "Python",
+      "line_end": 100,
+      "line_start": 87,
+      "locator": "scripts/validate_github_ruleset.py::main"
+    },
+    {
+      "id": "scripts/validate_github_ruleset.py::validate",
+      "kind": "function",
+      "label": "scripts/validate_github_ruleset.py::validate",
+      "language": "Python",
+      "line_end": 84,
+      "line_start": 20,
+      "locator": "scripts/validate_github_ruleset.py::validate"
     },
     {
       "id": "scripts/validate_handoff.py::git_root",
@@ -1308,8 +1442,8 @@
       "kind": "function",
       "label": "scripts/validate_public_docs.py::main",
       "language": "Python",
-      "line_end": 159,
-      "line_start": 145,
+      "line_end": 163,
+      "line_start": 149,
       "locator": "scripts/validate_public_docs.py::main"
     },
     {
@@ -1317,12 +1451,39 @@
       "kind": "function",
       "label": "scripts/validate_public_docs.py::validate",
       "language": "Python",
-      "line_end": 142,
-      "line_start": 65,
+      "line_end": 146,
+      "line_start": 69,
       "locator": "scripts/validate_public_docs.py::validate"
+    },
+    {
+      "id": "scripts/validate_repository_health.py::_load_json",
+      "kind": "function",
+      "label": "scripts/validate_repository_health.py::_load_json",
+      "language": "Python",
+      "line_end": 23,
+      "line_start": 22,
+      "locator": "scripts/validate_repository_health.py::_load_json"
+    },
+    {
+      "id": "scripts/validate_repository_health.py::main",
+      "kind": "function",
+      "label": "scripts/validate_repository_health.py::main",
+      "language": "Python",
+      "line_end": 108,
+      "line_start": 92,
+      "locator": "scripts/validate_repository_health.py::main"
+    },
+    {
+      "id": "scripts/validate_repository_health.py::validate",
+      "kind": "function",
+      "label": "scripts/validate_repository_health.py::validate",
+      "language": "Python",
+      "line_end": 89,
+      "line_start": 26,
+      "locator": "scripts/validate_repository_health.py::validate"
     }
   ],
-  "observed_head": "e21b3c70db8ac8ee73d7e8b4f804024c0d611bf0",
+  "observed_head": "f70e1accb0f64a061192aa159c3db5b638e14fd2",
   "schema_version": 1,
-  "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
+  "source_digest": "e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8"
 }
