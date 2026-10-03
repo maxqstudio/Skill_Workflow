@@ -20,12 +20,21 @@ def _load(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def validate(root: Path, *, expected_head: str, version: str, governance_report: Path) -> dict[str, object]:
+def validate(
+    root: Path,
+    *,
+    expected_head: str,
+    version: str,
+    governance_report: Path,
+    evidence_only: bool = False,
+) -> dict[str, object]:
     failures: list[str] = []
     stable = "-" not in version
 
     if not VERSION_RE.fullmatch(version):
         failures.append("INVALID_RELEASE_VERSION")
+    if evidence_only and stable:
+        failures.append("EVIDENCE_MODE_REQUIRES_PRERELEASE")
 
     try:
         observed_head = git(root, "rev-parse", "HEAD")
@@ -50,26 +59,33 @@ def validate(root: Path, *, expected_head: str, version: str, governance_report:
         except (OSError, subprocess.CalledProcessError):
             failures.append("GIT_TAG_QUERY_FAILED")
 
+    report_label = "VERIFY" if evidence_only else "FINALIZE"
     if not governance_report.is_file():
         governance = {}
-        failures.append("FINALIZE_REPORT_MISSING")
+        failures.append(report_label + "_REPORT_MISSING")
     else:
         try:
             governance = _load(governance_report)
         except (OSError, ValueError, TypeError):
             governance = {}
-            failures.append("FINALIZE_REPORT_INVALID")
+            failures.append(report_label + "_REPORT_INVALID")
 
     if governance:
         if governance.get("result") != "PASS":
-            failures.append("FINALIZE_REPORT_NOT_PASS")
-        if governance.get("final_acceptance_authority") is not True:
-            failures.append("FINALIZE_REPORT_NOT_AUTHORITY")
+            failures.append(report_label + "_REPORT_NOT_PASS")
         report_head = governance.get("expected_head")
         if report_head != expected_head:
-            failures.append(f"FINALIZE_REPORT_HEAD_MISMATCH:{report_head}")
-        if governance.get("effective_mode") != "finalize":
-            failures.append("FINALIZE_REPORT_WRONG_MODE")
+            failures.append(f"{report_label}_REPORT_HEAD_MISMATCH:{report_head}")
+        if evidence_only:
+            if governance.get("effective_mode") != "verify":
+                failures.append("EVIDENCE_REPORT_WRONG_MODE")
+            if governance.get("final_acceptance_authority") is not False:
+                failures.append("EVIDENCE_REPORT_MUST_NOT_BE_AUTHORITY")
+        else:
+            if governance.get("effective_mode") != "finalize":
+                failures.append("FINALIZE_REPORT_WRONG_MODE")
+            if governance.get("final_acceptance_authority") is not True:
+                failures.append("FINALIZE_REPORT_NOT_AUTHORITY")
 
     acceptance_path = root / ".workflow" / "acceptance.json"
     roadmap_path = root / ".workflow" / "roadmap.json"
@@ -84,16 +100,30 @@ def validate(root: Path, *, expected_head: str, version: str, governance_report:
         failures.append("ACCEPTANCE_REQUIREMENTS_INVALID")
         requirements = []
     for item in requirements:
-        if not isinstance(item, dict) or item.get("status") != "PASS":
-            ident = item.get("id", "UNKNOWN") if isinstance(item, dict) else "UNKNOWN"
-            failures.append("RELEASE_REQUIREMENT_NOT_PASS:" + str(ident))
+        if not isinstance(item, dict):
+            failures.append("ACCEPTANCE_REQUIREMENT_INVALID")
+            continue
+        ident = str(item.get("id", "UNKNOWN"))
+        status = item.get("status")
+        if evidence_only:
+            if status == "FAIL":
+                failures.append("EVIDENCE_REQUIREMENT_FAIL:" + ident)
+            elif status not in {"PASS", "NOT_PROVEN", "NOT_APPLICABLE"}:
+                failures.append(f"EVIDENCE_REQUIREMENT_INVALID_STATUS:{ident}:{status}")
+        elif status != "PASS":
+            failures.append("RELEASE_REQUIREMENT_NOT_PASS:" + ident)
 
     gates = acceptance.get("truth_gates", {}) if isinstance(acceptance, dict) else {}
     if not isinstance(gates, dict):
         failures.append("TRUTH_GATES_INVALID")
         gates = {}
     for name, status in sorted(gates.items()):
-        if status not in {"PASS", "NOT_APPLICABLE"}:
+        if evidence_only:
+            if status == "FAIL":
+                failures.append(f"EVIDENCE_TRUTH_GATE_FAIL:{name}")
+            elif status not in {"PASS", "NOT_PROVEN", "NOT_APPLICABLE"}:
+                failures.append(f"EVIDENCE_TRUTH_GATE_INVALID_STATUS:{name}:{status}")
+        elif status not in {"PASS", "NOT_APPLICABLE"}:
             failures.append(f"RELEASE_TRUTH_GATE_NOT_PROVEN:{name}:{status}")
 
     current_phase = "UNKNOWN"
@@ -114,19 +144,23 @@ def validate(root: Path, *, expected_head: str, version: str, governance_report:
                     if ident.startswith("SW2-") and ident != "SW2-09" and phase.get("status") != "COMPLETE":
                         failures.append("PRIOR_PHASE_NOT_COMPLETE:" + ident)
 
+    passed = not failures
+    publication_authority = bool(passed and not evidence_only)
     return {
         "schema_version": 1,
-        "result": "FAIL" if failures else "PASS",
+        "result": "PASS" if passed else "FAIL",
         "expected_head": expected_head,
         "observed_head": observed_head,
         "version": version,
         "stable": stable,
+        "evidence_only": evidence_only,
+        "publication_authority": publication_authority,
         "current_phase": current_phase,
-        "finalize_report": str(governance_report),
+        "governance_report": str(governance_report),
         "failures": failures,
         "evidence_boundary": (
-            "Release preflight is read-only evidence. It validates exact-head provenance, clean state, complete governance, version/tag safety, "
-            "and stable-release phase boundaries. It never creates a Git tag or GitHub release."
+            "Evidence-only mode is a non-authoritative dry run: it proves exact-head, clean-state, version/tag, verify-report, and fail-closed status semantics while allowing explicit NOT_PROVEN items; it can never authorize publication and rejects stable versions. "
+            "Strict mode requires complete PASS governance, a finalize authority report, and stable-release phase boundaries. Neither mode creates a Git tag or GitHub release."
         ),
     }
 
@@ -137,13 +171,20 @@ def main() -> int:
     parser.add_argument("--expected-head", required=True)
     parser.add_argument("--version", required=True)
     parser.add_argument("--governance-report", required=True)
+    parser.add_argument("--evidence-only", action="store_true")
     parser.add_argument("--report", default="")
     args = parser.parse_args()
     root = Path(args.root).resolve()
     governance_report = Path(args.governance_report)
     if not governance_report.is_absolute():
         governance_report = root / governance_report
-    report = validate(root, expected_head=args.expected_head, version=args.version, governance_report=governance_report)
+    report = validate(
+        root,
+        expected_head=args.expected_head,
+        version=args.version,
+        governance_report=governance_report,
+        evidence_only=args.evidence_only,
+    )
     payload = json.dumps(report, indent=2, sort_keys=True)
     print(payload)
     if args.report:

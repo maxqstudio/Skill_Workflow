@@ -11,6 +11,11 @@ on:
         description: Release version such as v2.0.0-rc.1 or v2.0.0
         required: true
         type: string
+      evidence_only:
+        description: Non-authoritative prerelease dry run for process evidence
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -41,31 +46,58 @@ jobs:
           PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
         run: python -m compileall -q scripts
 
-      - name: Finalize governed candidate
+      - name: Run governed candidate mode
         shell: bash
         run: |
           base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          mode="finalize"
+          if [ "${{ inputs.evidence_only }}" = "true" ]; then
+            mode="verify"
+          fi
           python scripts/governance_engine.py \
             --root . \
             --base "$base" \
-            --mode finalize \
+            --mode "$mode" \
             --expected-head "${{ inputs.candidate_sha }}" \
-            --report "${RUNNER_TEMP}/finalize.json"
+            --report "${RUNNER_TEMP}/governance.json"
 
       - name: Validate release preflight
         shell: bash
         run: |
-          python scripts/release_preflight.py \
-            --root . \
-            --expected-head "${{ inputs.candidate_sha }}" \
-            --version "${{ inputs.version }}" \
-            --governance-report "${RUNNER_TEMP}/finalize.json" \
+          args=(
+            --root .
+            --expected-head "${{ inputs.candidate_sha }}"
+            --version "${{ inputs.version }}"
+            --governance-report "${RUNNER_TEMP}/governance.json"
             --report "${RUNNER_TEMP}/release-preflight.json"
+          )
+          if [ "${{ inputs.evidence_only }}" = "true" ]; then
+            args+=(--evidence-only)
+          fi
+          python scripts/release_preflight.py "${args[@]}"
+
+      - name: Assert authority boundary
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads((Path(os.environ["RUNNER_TEMP"]) / "release-preflight.json").read_text(encoding="utf-8"))
+          assert report["result"] == "PASS"
+          evidence_only = "${{ inputs.evidence_only }}" == "true"
+          assert report["evidence_only"] is evidence_only
+          assert report["publication_authority"] is (not evidence_only)
+          if evidence_only:
+              assert report["stable"] is False
+          print("RELEASE_PREFLIGHT_AUTHORITY_BOUNDARY=PASS")
+          PY
 
       - name: Upload preflight evidence
         uses: actions/upload-artifact@v4
         with:
           name: release-preflight-${{ inputs.candidate_sha }}
           path: |
-            ${{ runner.temp }}/finalize.json
+            ${{ runner.temp }}/governance.json
             ${{ runner.temp }}/release-preflight.json
