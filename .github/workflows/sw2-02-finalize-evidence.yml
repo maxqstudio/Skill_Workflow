@@ -1,3 +1,4 @@
+# Trigger exact-head SW2-02 finalize evidence.
 name: SW2-02 Finalize Evidence
 
 on:
