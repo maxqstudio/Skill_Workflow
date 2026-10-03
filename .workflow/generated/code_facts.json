@@ -192,14 +192,14 @@
       "file": "scripts/validate_sequence_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 327
+      "lines": 328
     },
     {
       "directory": "scripts",
       "file": "scripts/validate_sequence_sessions.py",
       "is_test": false,
       "language": "Python",
-      "lines": 101
+      "lines": 106
     }
   ],
   "python_calls": [
@@ -12897,6 +12897,10 @@
     },
     {
       "caller": "scripts/validate_sequence_contract.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_sequence_contract.py::main",
       "target_token": "ap.parse_args"
     },
     {
@@ -13662,6 +13666,10 @@
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "os.environ.copy"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
@@ -15645,7 +15653,7 @@
     {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
-      "line_end": 323,
+      "line_end": 324,
       "line_start": 57,
       "locator": "scripts/validate_sequence_contract.py::main",
       "symbol": "main"
@@ -15653,20 +15661,20 @@
     {
       "file": "scripts/validate_sequence_sessions.py",
       "kind": "function",
-      "line_end": 97,
-      "line_start": 15,
+      "line_end": 102,
+      "line_start": 16,
       "locator": "scripts/validate_sequence_sessions.py::main",
       "symbol": "main"
     }
   ],
   "schema_version": 1,
-  "source_digest": "9efac7410f3537a7da8fe5a6706288784fbcd13b35d3ad7c4f0d0c65ddb3e16f",
+  "source_digest": "a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1",
   "source_summary": {
     "files": 27,
     "languages": {
       "Python": 27
     },
-    "lines": 9518,
+    "lines": 9524,
     "test_files": 0
   },
   "tests": []

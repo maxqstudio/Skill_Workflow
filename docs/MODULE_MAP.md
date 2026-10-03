@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 9efac7410f3537a7da8fe5a6706288784fbcd13b35d3ad7c4f0d0c65ddb3e16f
+Source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -33,7 +33,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
-| scripts/validate_sequence_contract.py | Python | 327 | scripts | NO |
-| scripts/validate_sequence_sessions.py | Python | 101 | scripts | NO |
+| scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
+| scripts/validate_sequence_sessions.py | Python | 106 | scripts | NO |
 
 Machine-derived facts do not invent semantic ownership.

@@ -628,7 +628,7 @@
       "locator": "scripts/validate_sequence_contract.py::resolve"
     }
   ],
-  "observed_head": "5012954ccbfc336dbe89ec7c96bca4be0b83f753",
+  "observed_head": "b2c4b05b08a4367cbc0057c31661187555553d13",
   "schema_version": 1,
-  "source_digest": "9efac7410f3537a7da8fe5a6706288784fbcd13b35d3ad7c4f0d0c65ddb3e16f"
+  "source_digest": "a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1"
 }

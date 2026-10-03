@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 9efac7410f3537a7da8fe5a6706288784fbcd13b35d3ad7c4f0d0c65ddb3e16f
+Source digest: a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -250,8 +250,8 @@ Status: CURRENT
 | scripts/validate_sequence_contract.py | git_show_bytes | function | 31-35 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | expected_plan_mermaid | function | 38-44 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | expected_actual_mermaid | function | 47-54 | Observed Python symbol | | | |
-| scripts/validate_sequence_contract.py | main | function | 57-323 | Observed Python symbol | | | |
-| scripts/validate_sequence_sessions.py | main | function | 15-97 | Observed Python symbol | | | |
+| scripts/validate_sequence_contract.py | main | function | 57-324 | Observed Python symbol | | | |
+| scripts/validate_sequence_sessions.py | main | function | 16-102 | Observed Python symbol | | | |
 
 ## Coverage
 
