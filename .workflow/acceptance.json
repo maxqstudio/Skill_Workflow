@@ -46,17 +46,19 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-03-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_sequence_call_resolution.py",
+    "python scripts/selftest_sequence_human_view.py",
     "python scripts/selftest_cross_document_regressions.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
+    "python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-03-GOVERNANCE.json",
     "python scripts/validate_sequence_sessions.py --root .",
     "python scripts/validate_handoff.py --root .",
-    "python scripts/governance_engine.py --root . --base 94717751cb0ca0a3680ccd93ac16219c9bd0425d --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base f79917550fe42f98110f1a11915ad9699e5244e6 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
@@ -74,7 +76,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "PASS",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"

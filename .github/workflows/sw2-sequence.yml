@@ -13,6 +13,8 @@ jobs:
   sequence-evidence:
     name: SW2 Sequence Evidence (ubuntu-latest)
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
 
     steps:
       - name: Checkout exact candidate
@@ -35,20 +37,56 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Generate current SW2-02 actual sequence evidence
+      - name: Set up Node for Mermaid renderer
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.14.0"
+
+      - name: Generate current SW2-03 machine sequence evidence
         run: >-
           python scripts/generate_sequence_actual.py
           --root .
-          --output-json docs/sequence/generated/SW2-02-GOVERNANCE.actual.json
-          --output-mermaid docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd
-          --entry scripts/governance_engine.py::main
+          --output-json docs/sequence/generated/SW2-03-GOVERNANCE.actual.json
+          --output-mermaid docs/sequence/generated/SW2-03-GOVERNANCE.actual.mmd
+          --entry scripts/generate_sequence_actual.py::main
+          --entry scripts/validate_sequence_contract.py::main
+          --entry scripts/validate_sequence_sessions.py::main
 
-      - name: Validate current SW2-02 sequence session
+      - name: Generate bounded SW2-03 human view
+        run: >-
+          python scripts/sequence_human_view.py
+          --root .
+          --actual-json docs/sequence/generated/SW2-03-GOVERNANCE.actual.json
+          --actual-mermaid docs/sequence/generated/SW2-03-GOVERNANCE.actual.mmd
+          --output-json docs/sequence/generated/SW2-03-GOVERNANCE.human.json
+          --output-mermaid docs/sequence/generated/SW2-03-GOVERNANCE.human.mmd
+          --output-markdown docs/sequence/views/SW2-03-GOVERNANCE.md
+          --session-id SW2-03-GOVERNANCE
+
+      - name: Validate current SW2-03 machine session
         run: >-
           python scripts/validate_sequence_contract.py
           --root .
-          --session docs/sequence/sessions/SW2-02-GOVERNANCE.json
-          --report artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json
+          --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
+          --report artifacts/sequence/SW2-03-GOVERNANCE.acceptance.json
+
+      - name: Validate deterministic human projection
+        run: >-
+          python scripts/validate_sequence_human_view.py
+          --root .
+          --session docs/sequence/sessions/SW2-03-GOVERNANCE.json
+
+      - name: Render Mermaid human diagram
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/puppeteer-config.json" <<'JSON'
+          {"args":["--no-sandbox"]}
+          JSON
+          npx -y -p @mermaid-js/mermaid-cli@12.0.0 mmdc \
+            -p "$RUNNER_TEMP/puppeteer-config.json" \
+            -i docs/sequence/generated/SW2-03-GOVERNANCE.human.mmd \
+            -o "$RUNNER_TEMP/SW2-03-GOVERNANCE.svg"
+          test -s "$RUNNER_TEMP/SW2-03-GOVERNANCE.svg"
 
       - name: Validate aggregate sequence contract
         run: python scripts/validate_sequence_sessions.py --root .
@@ -57,10 +95,14 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sw2-02-sequence-evidence
+          name: sw2-03-sequence-evidence
           path: |
-            docs/sequence/generated/SW2-02-GOVERNANCE.actual.json
-            docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd
-            artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json
+            docs/sequence/generated/SW2-03-GOVERNANCE.actual.json
+            docs/sequence/generated/SW2-03-GOVERNANCE.actual.mmd
+            docs/sequence/generated/SW2-03-GOVERNANCE.human.json
+            docs/sequence/generated/SW2-03-GOVERNANCE.human.mmd
+            docs/sequence/views/SW2-03-GOVERNANCE.md
+            artifacts/sequence/SW2-03-GOVERNANCE.acceptance.json
+            ${{ runner.temp }}/SW2-03-GOVERNANCE.svg
           if-no-files-found: error
           retention-days: 14

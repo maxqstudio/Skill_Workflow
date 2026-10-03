@@ -8,11 +8,19 @@
       "scripts/validate_sequence_sessions.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-03-GOVERNANCE.actual.json",
-    "source_digest": "a0add19a3da0e9b99cca9a00844a7eda747c4f1451bcce3cbce590a553dbc7f1"
+    "source_digest": "PENDING_GENERATION"
   },
   "critical": true,
-  "evidence_boundary": "SW2-03 DURING evidence initially binds the inherited static sequence extraction and validation pipeline before Sequence V2 presentation changes. Static extraction proves source-visible structure only; human readability, Mermaid renderability, complexity policy, and any dynamic behavior remain NOT_PROVEN until dedicated evidence exists.",
-  "implementation_base_sha": "c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a",
+  "evidence_boundary": "SW2-03 DURING evidence binds full static machine sequence extraction independently from a deterministic module-level human projection. Static extraction proves source-visible structure only; the human view does not prove runtime ordering. Mermaid renderability and the structural complexity policy require dedicated blocking evidence before SW2-03 acceptance.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-03-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-03-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-03-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "PENDING_GENERATION"
+  },
+  "implementation_base_sha": "f79917550fe42f98110f1a11915ad9699e5244e6",
   "mode": "DURING",
   "phase": "SW2-03",
   "plan": {
@@ -34,6 +42,7 @@
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_sequence_call_resolution.py",
+    "scripts/selftest_sequence_human_view.py",
     "scripts/selftest_governance_engine.py",
     "scripts/selftest_project_truth_compiler.py",
     "scripts/selftest_strict_project_workflow.py"
