@@ -1,0 +1,25 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
+%% POLICY_ID: module-collapse-v1
+%% GENERATED_BY: sequence_human_view.py
+sequenceDiagram
+    participant module_scripts_extract_project_facts_py_0 as scripts/extract_project_facts.py
+    participant module_scripts_generate_project_docs_py_1 as scripts/generate_project_docs.py
+    participant module_scripts_governance_engine_py_2 as scripts/governance_engine.py
+    participant module_scripts_initialize_project_truth_py_3 as scripts/initialize_project_truth.py
+    participant module_scripts_project_profile_py_4 as scripts/project_profile.py
+    participant module_scripts_project_snapshot_py_5 as scripts/project_snapshot.py
+    participant module_scripts_script_runner_py_6 as scripts/script_runner.py
+    participant module_scripts_selftest_sequence_human_view_py_7 as scripts/selftest_sequence_human_view.py
+    module_scripts_extract_project_facts_py_0->>module_scripts_governance_engine_py_2: 1 static interaction
+    module_scripts_extract_project_facts_py_0->>module_scripts_project_snapshot_py_5: 3 static interactions
+    module_scripts_generate_project_docs_py_1->>module_scripts_extract_project_facts_py_0: 1 static interaction
+    module_scripts_generate_project_docs_py_1->>module_scripts_project_profile_py_4: 6 static interactions
+    module_scripts_generate_project_docs_py_1->>module_scripts_project_snapshot_py_5: 4 static interactions
+    module_scripts_generate_project_docs_py_1->>module_scripts_selftest_sequence_human_view_py_7: 1 static interaction
+    module_scripts_governance_engine_py_2->>module_scripts_project_snapshot_py_5: 4 static interactions
+    module_scripts_governance_engine_py_2->>module_scripts_script_runner_py_6: 1 static interaction
+    module_scripts_initialize_project_truth_py_3->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_project_profile_py_4->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_project_snapshot_py_5->>module_scripts_selftest_sequence_human_view_py_7: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_7->>module_scripts_project_snapshot_py_5: 1 static interaction

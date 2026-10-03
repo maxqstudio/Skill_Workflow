@@ -4,30 +4,26 @@
 
 ## Evidence boundary
 
-SW2-04 acceptance covers Documentation System V2 only: public-facing documentation must become concise and navigable while deterministic generated Project Truth and machine evidence remain independently auditable and drift-detectable. Existing SW2-01 through SW2-03 governance, mode-safety, and Sequence V2 guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository documentation-system phase unless stronger runtime evidence becomes necessary.
+SW2-05 acceptance covers Schema & Toolchain Versioning only: profile/spec schema versions, auditable toolchain identity, deterministic supported migrations, and release compatibility policy. SW2-01 through SW2-04 accepted governance, performance, sequence, and documentation guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository phase unless implementation introduces behavior requiring stronger runtime evidence.
 
 Final tested source: external final acceptance evidence.
 Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-04-R1 | README is a concise public landing page that explains purpose, value, getting started, support, and maintenance without embedding the full governance reference manual. | PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: README is a concise landing page and validate_public_docs.py plus selftest_public_docs.py passed in Governance Selftest run 37095620587 on Ubuntu and Windows. The validator rejects reintroduction of deep reference-manual sections. | PASS |
-| SW2-04-R2 | Concept, guide, reference, architecture, and sequence documentation have stable public locations and navigation. | PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: docs/README.md and docs/handbook/ provide stable getting-started, concepts, guides, reference, architecture, and sequence navigation; public-doc navigation/tamper regressions and cross-document regressions passed on Ubuntu and Windows in run 37095620587. | PASS |
-| SW2-04-R3 | Machine indexes and evidence no longer dominate human-facing documentation while remaining fully available and auditable. | PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: public guidance is separated under docs/handbook while canonical generated Project Truth paths remain unchanged; SYMBOL_INDEX default presentation is file-level summary plus collapsible complete symbol detail, full code_facts.json remains available, and legacy/V2 handoff compatibility plus tamper rejection passed on Ubuntu and Windows. | PASS |
-| SW2-04-R4 | Generated documentation remains deterministic and drift-detectable after the documentation-system restructuring. | PASS on exact cleanup candidate ce1730687c87e2829dfb12f0bf8cb5633ca5125f: Self Governance run 37095620543 completed final Governance Engine acceptance, Governance Selftest 37095620587 passed compiler/STRICT/cross-document/read-only verification on Ubuntu and Windows, SW2 Sequence Evidence 37095620519 passed current-session generation and Mermaid rendering, and engine/consumer performance runs 37095620515 / 37095620594 succeeded. | PASS |
+| SW2-05-R1 | Profile and governed specification schemas expose explicit, auditable versions. | NOT_PROVEN until version contracts are implemented across profile/spec parsing, templates, and validation with compatibility regression evidence. | NOT_PROVEN |
+| SW2-05-R2 | Skill Workflow toolchain identity is lockable and auditable by consumer projects without making mutable cache state authoritative. | NOT_PROVEN until a deterministic toolchain lock/identity contract is implemented and validated against vendored consumer tooling. | NOT_PROVEN |
+| SW2-05-R3 | Supported schema/toolchain migrations are deterministic, explicit, and regression-tested fail closed. | NOT_PROVEN until migration commands/contracts and positive plus tamper/unsupported-version regressions exist. | NOT_PROVEN |
+| SW2-05-R4 | Release compatibility policy documents supported versions, migration expectations, and incompatible-change handling. | NOT_PROVEN until compatibility policy is source-authored, linked from public reference documentation, and validated against implemented version/migration behavior. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
-- python scripts/validate_public_docs.py --root .
-- python scripts/selftest_generated_doc_presentation.py
-- python scripts/selftest_public_docs.py
 - python scripts/selftest_governance_engine.py
-- python scripts/selftest_sequence_call_resolution.py
-- python scripts/selftest_sequence_human_view.py
-- python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
+- python scripts/selftest_public_docs.py
+- python scripts/selftest_generated_doc_presentation.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
 - python scripts/governance_engine.py --root . --base 2ff1d1501a7762baedcd848ebc117b7760b7c738 --mode finalize --expected-head <EXACT_HEAD>
@@ -44,7 +40,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-04-GOVERNANCE
+Sequence session contract: SW2-05-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-04",
+  "current_phase": "SW2-05",
   "phases": [
     {
       "exit_criteria": [
@@ -59,7 +59,7 @@
       ],
       "id": "SW2-04",
       "objective": "Standardize public documentation information architecture and separate public guidance from machine indexes/evidence.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Documentation System V2"
     },
     {
@@ -71,7 +71,7 @@
       ],
       "id": "SW2-05",
       "objective": "Version project schemas, toolchain bundles, migrations, and compatibility guarantees.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Schema & Toolchain Versioning"
     },
     {

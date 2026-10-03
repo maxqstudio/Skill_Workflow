@@ -58,4 +58,4 @@ SYMBOL_INDEX.md uses a file-level summary as the default GitHub view and determi
 
 Rationale: The previous single table exposed every Python symbol with repeated Observed Python symbol text and empty Responsibility/Reads-Writes/Called-By/Tests columns. Collapsible deterministic grouping improves presentation without reducing extracted evidence or breaking existing consumer indexes.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY -->
+<!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

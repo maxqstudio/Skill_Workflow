@@ -44,6 +44,8 @@ HEAD is recorded externally after the commit exists.
 | TRUTH-SW2-SEQUENCE-PRESENTATION | Governed human-facing sequence diagrams must be renderable and bounded by a documented measurable complexity policy without weakening machine evidence. | ROADMAP.md; SEQUENCE_CONTRACTS.md; PROJECT_TRUTH_SYNC.md | scripts/sequence_contract.py; scripts/validate_sequence_contract.py; scripts/validate_sequence_sessions.py | scripts/selftest_sequence_call_resolution.py | NOT_APPLICABLE | PASS |
 | TRUTH-SW2-DOCS-PUBLIC-IA | Documentation System V2 provides a concise public landing page and stable public information architecture without treating machine indexes as the primary human entry point. | ROADMAP.md; DOC_SYNC_MATRIX.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/generate_project_docs.py; scripts/validate_project_docs.py; scripts/validate_public_docs.py | scripts/selftest_project_truth_compiler.py; scripts/selftest_strict_project_workflow.py; scripts/selftest_public_docs.py | NOT_APPLICABLE | PASS |
 | TRUTH-SW2-DOCS-SEPARATION | Public guidance and deterministic machine indexes/evidence are separated without weakening generated-document determinism, drift detection, or acceptance traceability. | ROADMAP.md; DOC_SYNC_MATRIX.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/generate_project_docs.py; scripts/validate_project_docs.py; scripts/validate_cross_document_consistency.py; scripts/validate_public_docs.py; scripts/validate_handoff.py | scripts/selftest_cross_document_regressions.py; scripts/selftest_project_truth_compiler.py; scripts/selftest_strict_project_workflow.py; scripts/selftest_public_docs.py; scripts/selftest_generated_doc_presentation.py | NOT_APPLICABLE | PASS |
+| TRUTH-SW2-SCHEMA-MIGRATION | Governed profile/spec schemas and supported migrations are explicitly versioned, deterministic, and fail closed for unsupported or malformed versions. | ROADMAP.md; DECISIONS.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/project_profile.py; scripts/initialize_project_truth.py; scripts/generate_project_docs.py | scripts/selftest_project_truth_compiler.py; scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | NOT_PROVEN |
+| TRUTH-SW2-TOOLCHAIN-IDENTITY | Consumer projects can lock and audit the Skill Workflow toolchain identity without treating cache or mutable upstream state as acceptance authority. | ROADMAP.md; DECISIONS.md; PROJECT_TRUTH_SYNC.md | SKILL.md; scripts/initialize_project_truth.py; scripts/governance_engine.py | scripts/selftest_governance_engine.py; scripts/selftest_strict_project_workflow.py | NOT_APPLICABLE | NOT_PROVEN |
 
 ## Claim relations
 
@@ -55,6 +57,8 @@ HEAD is recorded externally after the commit exists.
 | TRUTH-SW2-SEQUENCE-PRESENTATION | REQUIRES | TRUTH-SW2-SEQUENCE-FIDELITY | Human readability improvements must not replace or weaken the machine evidence graph. |
 | TRUTH-SW2-DOCS-PUBLIC-IA | REQUIRES | TRUTH-SW-DOCS-DETERMINISTIC | Public documentation restructuring is valid only if deterministic generated Project Truth remains intact. |
 | TRUTH-SW2-DOCS-SEPARATION | REQUIRES | TRUTH-SW-DOCS-DETERMINISTIC | Separating machine indexes from public guidance must preserve deterministic generation and drift detection. |
+| TRUTH-SW2-SCHEMA-MIGRATION | REQUIRES | TRUTH-SW-FAIL-CLOSED | Schema evolution is valid only when unsupported or malformed versions cannot silently bypass final governance. |
+| TRUTH-SW2-TOOLCHAIN-IDENTITY | REQUIRES | TRUTH-SW2-PERFORMANCE-PARITY | Toolchain locking may improve reproducibility but must preserve the accepted rule that cache/acceleration state is never acceptance authority. |
 
 ## Cross-document consistency audit
 
@@ -94,4 +98,4 @@ review. The compiler does not infer PASS.
 SEQUENCE_SYNC is projected from sequence acceptance evidence. The compiler does
 not infer PASS from a diagram.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW-DOCS-DETERMINISTIC TRUTH-SW-FAIL-CLOSED TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-DOCS-PUBLIC-IA TRUTH-SW2-DOCS-SEPARATION TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION -->
+<!-- CLAIM_BACKLINKS: TRUTH-SW-DOCS-DETERMINISTIC TRUTH-SW-FAIL-CLOSED TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-DOCS-PUBLIC-IA TRUTH-SW2-DOCS-SEPARATION TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

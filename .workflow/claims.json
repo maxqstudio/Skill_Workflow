@@ -175,6 +175,47 @@
         "scripts/selftest_public_docs.py",
         "scripts/selftest_generated_doc_presentation.py"
       ]
+    },
+    {
+      "claim": "Governed profile/spec schemas and supported migrations are explicitly versioned, deterministic, and fail closed for unsupported or malformed versions.",
+      "documents": [
+        "ROADMAP.md",
+        "DECISIONS.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-SCHEMA-MIGRATION",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        "scripts/project_profile.py",
+        "scripts/initialize_project_truth.py",
+        "scripts/generate_project_docs.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_project_truth_compiler.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
+    },
+    {
+      "claim": "Consumer projects can lock and audit the Skill Workflow toolchain identity without treating cache or mutable upstream state as acceptance authority.",
+      "documents": [
+        "ROADMAP.md",
+        "DECISIONS.md",
+        "PROJECT_TRUTH_SYNC.md"
+      ],
+      "id": "TRUTH-SW2-TOOLCHAIN-IDENTITY",
+      "runtime_evidence": [],
+      "source_owners": [
+        "SKILL.md",
+        "scripts/initialize_project_truth.py",
+        "scripts/governance_engine.py"
+      ],
+      "status": "NOT_PROVEN",
+      "tests": [
+        "scripts/selftest_governance_engine.py",
+        "scripts/selftest_strict_project_workflow.py"
+      ]
     }
   ],
   "relations": [
@@ -212,6 +253,18 @@
       "claim_id": "TRUTH-SW2-DOCS-SEPARATION",
       "notes": "Separating machine indexes from public guidance must preserve deterministic generation and drift detection.",
       "other_claim_id": "TRUTH-SW-DOCS-DETERMINISTIC",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-SCHEMA-MIGRATION",
+      "notes": "Schema evolution is valid only when unsupported or malformed versions cannot silently bypass final governance.",
+      "other_claim_id": "TRUTH-SW-FAIL-CLOSED",
+      "relation": "REQUIRES"
+    },
+    {
+      "claim_id": "TRUTH-SW2-TOOLCHAIN-IDENTITY",
+      "notes": "Toolchain locking may improve reproducibility but must preserve the accepted rule that cache/acceleration state is never acceptance authority.",
+      "other_claim_id": "TRUTH-SW2-PERFORMANCE-PARITY",
       "relation": "REQUIRES"
     }
   ],

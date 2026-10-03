@@ -1,0 +1,49 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/initialize_project_truth.py::main",
+      "scripts/project_profile.py::parse_profile",
+      "scripts/generate_project_docs.py::main",
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-05-GOVERNANCE.actual.json",
+    "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-05 DURING evidence binds the current schema/profile parsing, initialization, Project Truth generation, and governance-engine path at phase opening. Explicit version contracts, toolchain locking, supported migrations, and compatibility policy remain NOT_PROVEN until dedicated implementation evidence exists.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-05-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-05-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-05-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
+  },
+  "implementation_base_sha": "d324dfcdee97efcf4de109c166b1b68a722b8add",
+  "mode": "DURING",
+  "phase": "SW2-05",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-05-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}
