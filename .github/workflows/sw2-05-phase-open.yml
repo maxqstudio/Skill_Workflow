@@ -1,0 +1,295 @@
+name: SW2-05 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-04-documentation-system-v2
+
+permissions:
+  contents: write
+
+jobs:
+  transition:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      ACCEPTED_SW2_04_HEAD: "d324dfcdee97efcf4de109c166b1b68a722b8add"
+
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-04-documentation-system-v2
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert accepted SW2-04 authority
+        shell: bash
+        run: |
+          git merge-base --is-ancestor "$ACCEPTED_SW2_04_HEAD" HEAD
+          python - <<'PY'
+          import json
+          acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(item['status'] == 'PASS' for item in acceptance['requirements'])
+          assert {item['id'] for item in acceptance['requirements']} == {'SW2-04-R1','SW2-04-R2','SW2-04-R3','SW2-04-R4'}
+          state = json.load(open('.workflow/state.json', encoding='utf-8'))
+          roadmap = json.load(open('.workflow/roadmap.json', encoding='utf-8'))
+          assert state['phase'] == 'SW2-04' and state['status'] == 'IN_PROGRESS'
+          assert roadmap['current_phase'] == 'SW2-04'
+          print('SW2_04_CLOSURE_AUTHORITY=PASS')
+          PY
+
+      - name: Close SW2-04 and open SW2-05 fail closed
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap = load('.workflow/roadmap.json')
+          phases = {item['id']: item for item in roadmap['phases']}
+          assert phases['SW2-04']['status'] == 'CURRENT'
+          assert phases['SW2-05']['status'] == 'PLANNED'
+          phases['SW2-04']['status'] = 'COMPLETE'
+          phases['SW2-05']['status'] = 'CURRENT'
+          roadmap['current_phase'] = 'SW2-05'
+          write('.workflow/roadmap.json', roadmap)
+
+          acceptance = load('.workflow/acceptance.json')
+          acceptance['evidence_boundary'] = (
+              'SW2-05 acceptance covers Schema & Toolchain Versioning only: profile/spec schema versions, '
+              'auditable toolchain identity, deterministic supported migrations, and release compatibility policy. '
+              'SW2-01 through SW2-04 accepted governance, performance, sequence, and documentation guarantees are '
+              'inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository phase '
+              'unless implementation introduces behavior requiring stronger runtime evidence.'
+          )
+          acceptance['requirements'] = [
+              {
+                  'id': 'SW2-05-R1',
+                  'requirement': 'Profile and governed specification schemas expose explicit, auditable versions.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN until version contracts are implemented across profile/spec parsing, templates, and validation with compatibility regression evidence.'
+              },
+              {
+                  'id': 'SW2-05-R2',
+                  'requirement': 'Skill Workflow toolchain identity is lockable and auditable by consumer projects without making mutable cache state authoritative.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN until a deterministic toolchain lock/identity contract is implemented and validated against vendored consumer tooling.'
+              },
+              {
+                  'id': 'SW2-05-R3',
+                  'requirement': 'Supported schema/toolchain migrations are deterministic, explicit, and regression-tested fail closed.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN until migration commands/contracts and positive plus tamper/unsupported-version regressions exist.'
+              },
+              {
+                  'id': 'SW2-05-R4',
+                  'requirement': 'Release compatibility policy documents supported versions, migration expectations, and incompatible-change handling.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN until compatibility policy is source-authored, linked from public reference documentation, and validated against implemented version/migration behavior.'
+              }
+          ]
+          acceptance['sequence_mode'] = 'DURING'
+          acceptance['sequence_session'] = 'SW2-05-GOVERNANCE'
+          acceptance['sequence_sync_status'] = 'PASS'
+          acceptance['runtime_status'] = 'NOT_APPLICABLE'
+          acceptance['runtime_checks'] = []
+          acceptance['test_commands'] = [
+              'python -m compileall -q scripts',
+              'python scripts/selftest_governance_engine.py',
+              'python scripts/selftest_project_truth_compiler.py',
+              'python scripts/selftest_strict_project_workflow.py',
+              'python scripts/selftest_public_docs.py',
+              'python scripts/selftest_generated_doc_presentation.py',
+              'python scripts/validate_sequence_sessions.py --root .',
+              'python scripts/validate_handoff.py --root .',
+              'python scripts/governance_engine.py --root . --base 2ff1d1501a7762baedcd848ebc117b7760b7c738 --mode finalize --expected-head <EXACT_HEAD>'
+          ]
+          for gate in list(acceptance['truth_gates']):
+              if gate in {'BEHAVIORAL_SYNC','RUNTIME_E2E','TEST_RUNTIME_TRACEABILITY'}:
+                  acceptance['truth_gates'][gate] = 'NOT_APPLICABLE'
+              elif gate in {'DOC_LAYOUT','DOC_READABILITY','HUMAN_COMPREHENSION','PROJECT_DOCS_NORMALIZED','PROJECT_DOCS_SYNC','ROADMAP_SYNC','SEQUENCE_SYNC'}:
+                  acceptance['truth_gates'][gate] = 'PASS'
+              else:
+                  acceptance['truth_gates'][gate] = 'NOT_PROVEN'
+          write('.workflow/acceptance.json', acceptance)
+
+          claims = load('.workflow/claims.json')
+          ids = {item['id'] for item in claims['claims']}
+          if 'TRUTH-SW2-SCHEMA-MIGRATION' not in ids:
+              claims['claims'].append({
+                  'id': 'TRUTH-SW2-SCHEMA-MIGRATION',
+                  'claim': 'Governed profile/spec schemas and supported migrations are explicitly versioned, deterministic, and fail closed for unsupported or malformed versions.',
+                  'documents': ['ROADMAP.md','DECISIONS.md','PROJECT_TRUTH_SYNC.md'],
+                  'runtime_evidence': [],
+                  'source_owners': ['SKILL.md','scripts/project_profile.py','scripts/initialize_project_truth.py','scripts/generate_project_docs.py'],
+                  'status': 'NOT_PROVEN',
+                  'tests': ['scripts/selftest_project_truth_compiler.py','scripts/selftest_strict_project_workflow.py']
+              })
+          if 'TRUTH-SW2-TOOLCHAIN-IDENTITY' not in ids:
+              claims['claims'].append({
+                  'id': 'TRUTH-SW2-TOOLCHAIN-IDENTITY',
+                  'claim': 'Consumer projects can lock and audit the Skill Workflow toolchain identity without treating cache or mutable upstream state as acceptance authority.',
+                  'documents': ['ROADMAP.md','DECISIONS.md','PROJECT_TRUTH_SYNC.md'],
+                  'runtime_evidence': [],
+                  'source_owners': ['SKILL.md','scripts/initialize_project_truth.py','scripts/governance_engine.py'],
+                  'status': 'NOT_PROVEN',
+                  'tests': ['scripts/selftest_governance_engine.py','scripts/selftest_strict_project_workflow.py']
+              })
+          relation_keys = {(item['claim_id'], item['other_claim_id'], item['relation']) for item in claims.get('relations', [])}
+          for relation in [
+              {
+                  'claim_id': 'TRUTH-SW2-SCHEMA-MIGRATION',
+                  'other_claim_id': 'TRUTH-SW-FAIL-CLOSED',
+                  'relation': 'REQUIRES',
+                  'notes': 'Schema evolution is valid only when unsupported or malformed versions cannot silently bypass final governance.'
+              },
+              {
+                  'claim_id': 'TRUTH-SW2-TOOLCHAIN-IDENTITY',
+                  'other_claim_id': 'TRUTH-SW2-PERFORMANCE-PARITY',
+                  'relation': 'REQUIRES',
+                  'notes': 'Toolchain locking may improve reproducibility but must preserve the accepted rule that cache/acceleration state is never acceptance authority.'
+              }
+          ]:
+              key = (relation['claim_id'], relation['other_claim_id'], relation['relation'])
+              if key not in relation_keys:
+                  claims.setdefault('relations', []).append(relation)
+          write('.workflow/claims.json', claims)
+
+          state = load('.workflow/state.json')
+          proof = (
+              'SW2-04 Documentation System V2 is accepted on exact post-promotion candidate '
+              'd324dfcdee97efcf4de109c166b1b68a722b8add: Self Governance 37098059841, '
+              'Governance Selftest 37098059808 on Ubuntu and Windows, SW2 Sequence Evidence '
+              '37098059794, SW2 Engine Performance 37098059854, and SW2 Consumer Engine '
+              'Performance 37098059831 all succeeded after requirements R1-R4 were promoted.'
+          )
+          if proof not in state.setdefault('proven', []):
+              state['proven'].append(proof)
+          state['phase'] = 'SW2-05'
+          state['status'] = 'IN_PROGRESS'
+          state['blocked_actions'] = [
+              'Do not mark any SW2-05 requirement PASS before implementation-specific evidence exists.',
+              'Do not change or reinterpret schema versions silently in place; supported evolution requires an explicit deterministic migration path.',
+              'Do not let toolchain cache, mutable upstream state, or an unbound vendored copy become acceptance authority.',
+              'Do not declare compatibility without positive and negative migration/version regression evidence.',
+              'Do not create the V2 stable release/tag in SW2-05; stable release remains SW2-09 scope.'
+          ]
+          state['not_proven'] = [
+              'SW2-05 explicit profile/spec schema version contract and supported migration behavior are not proven.',
+              'SW2-05 consumer toolchain lock identity and audit contract are not proven.',
+              'SW2-05 release compatibility policy is not proven.',
+              'Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.'
+          ]
+          state['next_authorized_actions'] = [
+              'Audit every current schema_version/profile parsing surface and vendored toolchain installation path before implementation.',
+              'Define the smallest backward-compatible schema and toolchain lock contract with deterministic migration semantics.',
+              'Implement and regression-test SW2-05 incrementally while keeping all four requirements NOT_PROVEN until evidence exists.'
+          ]
+          write('.workflow/state.json', state)
+
+          old = load('docs/sequence/sessions/SW2-04-GOVERNANCE.json')
+          old['scope'] = 'HISTORICAL'
+          old['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-04-GOVERNANCE.json', old)
+          print('SW2_04_COMPLETE=PASS')
+          print('SW2_05_FAIL_CLOSED_OPEN=PASS')
+          PY
+
+      - name: Generate SW2-05 current sequence evidence
+        run: |
+          python scripts/generate_sequence_actual.py --root . --output-json docs/sequence/generated/SW2-05-GOVERNANCE.actual.json --output-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd --entry scripts/initialize_project_truth.py::main --entry scripts/project_profile.py::parse_profile --entry scripts/generate_project_docs.py::main --entry scripts/governance_engine.py::main
+          python scripts/sequence_human_view.py --root . --actual-json docs/sequence/generated/SW2-05-GOVERNANCE.actual.json --actual-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd --output-json docs/sequence/generated/SW2-05-GOVERNANCE.human.json --output-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.human.mmd --output-markdown docs/sequence/views/SW2-05-GOVERNANCE.md --session-id SW2-05-GOVERNANCE
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.load(open('docs/sequence/generated/SW2-05-GOVERNANCE.actual.json', encoding='utf-8'))
+          human = json.load(open('docs/sequence/generated/SW2-05-GOVERNANCE.human.json', encoding='utf-8'))
+          digest = actual['source_digest']
+          assert digest and human['source_digest'] == digest
+          session = {
+              'acceptance_report': 'artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json',
+              'actual': {
+                  'diagram': 'docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd',
+                  'entries': [
+                      'scripts/initialize_project_truth.py::main',
+                      'scripts/project_profile.py::parse_profile',
+                      'scripts/generate_project_docs.py::main',
+                      'scripts/governance_engine.py::main'
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-05-GOVERNANCE.actual.json',
+                  'source_digest': digest
+              },
+              'critical': True,
+              'evidence_boundary': 'SW2-05 DURING evidence binds the current schema/profile parsing, initialization, Project Truth generation, and governance-engine path at phase opening. Explicit version contracts, toolchain locking, supported migrations, and compatibility policy remain NOT_PROVEN until dedicated implementation evidence exists.',
+              'human_view': {
+                  'diagram': 'docs/sequence/generated/SW2-05-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-05-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'graph': 'docs/sequence/generated/SW2-05-GOVERNANCE.human.json',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': digest
+              },
+              'implementation_base_sha': 'd324dfcdee97efcf4de109c166b1b68a722b8add',
+              'mode': 'DURING',
+              'phase': 'SW2-05',
+              'plan': {'contract':'','diagram':'','frozen':False,'frozen_commit':'','required':False,'sha256':''},
+              'runtime_trace': {'graph':'','required':False},
+              'schema_version': 1,
+              'scope': 'CURRENT',
+              'session_id': 'SW2-05-GOVERNANCE',
+              'status': 'IN_PROGRESS',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_governance_engine.py',
+                  'scripts/selftest_project_truth_compiler.py',
+                  'scripts/selftest_strict_project_workflow.py'
+              ]
+          }
+          Path('docs/sequence/sessions/SW2-05-GOVERNANCE.json').write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+
+      - name: Regenerate and validate transitioned Project Truth
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json --report artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+          python - <<'PY'
+          import json
+          a = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(item['status'] == 'NOT_PROVEN' for item in a['requirements'])
+          assert {item['id'] for item in a['requirements']} == {'SW2-05-R1','SW2-05-R2','SW2-05-R3','SW2-05-R4'}
+          r = json.load(open('.workflow/roadmap.json', encoding='utf-8'))
+          phases = {item['id']: item for item in r['phases']}
+          assert r['current_phase'] == 'SW2-05'
+          assert phases['SW2-04']['status'] == 'COMPLETE'
+          assert phases['SW2-05']['status'] == 'CURRENT'
+          s = json.load(open('.workflow/state.json', encoding='utf-8'))
+          assert s['phase'] == 'SW2-05' and s['status'] == 'IN_PROGRESS'
+          print('SW2_05_TRANSITION_ASSERTIONS=PASS')
+          PY
+
+      - name: Commit transition transaction
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .workflow docs artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
+          git diff --cached --quiet && { echo "NO_TRANSITION_DIFF"; exit 1; }
+          git commit -m "gov(sw2-05): close SW2-04 and open schema toolchain versioning"
+          git push origin HEAD:work/sw2-04-documentation-system-v2
