@@ -1,0 +1,49 @@
+name: SW2 Ruleset Audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout exact main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch active default-branch ruleset
+        shell: bash
+        run: |
+          id="$(gh api "/repos/${GITHUB_REPOSITORY}/rulesets" --jq '[.[] | select(.target == "branch" and .enforcement == "active")][0].id')"
+          test -n "$id"
+          gh api "/repos/${GITHUB_REPOSITORY}/rulesets/${id}" > "${RUNNER_TEMP}/ruleset.json"
+
+      - name: Validate live merge enforcement
+        shell: bash
+        run: |
+          python scripts/validate_github_ruleset.py \
+            --ruleset "${RUNNER_TEMP}/ruleset.json" \
+            --report "${RUNNER_TEMP}/ruleset-audit.json"
+
+      - name: Upload ruleset evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-ruleset-audit
+          path: |
+            ${{ runner.temp }}/ruleset.json
+            ${{ runner.temp }}/ruleset-audit.json
+          if-no-files-found: ignore

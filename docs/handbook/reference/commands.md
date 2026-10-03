@@ -54,6 +54,34 @@ finalize = complete final acceptance
 
 For final acceptance, provide the accepted base and exact expected candidate HEAD when the project contract requires them.
 
+## Skill Workflow repository hardening
+
+The following commands apply to this producer repository rather than ordinary consumers:
+
+```bash
+python scripts/validate_public_docs.py --root .
+python scripts/validate_repository_health.py --root .
+python scripts/selftest_repository_health.py
+python scripts/selftest_github_ruleset.py
+python scripts/selftest_release_preflight.py
+```
+
+A live GitHub ruleset payload can be checked with:
+
+```bash
+python scripts/validate_github_ruleset.py --ruleset <ruleset.json>
+```
+
+Release preflight requires an exact finalized candidate and never publishes a release itself:
+
+```bash
+python scripts/release_preflight.py \
+  --root . \
+  --expected-head <EXACT_HEAD> \
+  --version <vMAJOR.MINOR.PATCH[-PRERELEASE]> \
+  --governance-report <finalize.json>
+```
+
 ## Upstream regression tests
 
-The Skill Workflow repository includes compiler, STRICT-workflow, governance-engine, cross-document, sequence-resolution, human-sequence, and public-documentation regressions. Consumer projects should run the validators and tests required by their own `PROJECT_PROFILE.yaml` and acceptance contract rather than copying upstream CI blindly.
+The Skill Workflow repository includes compiler, STRICT-workflow, governance-engine, cross-document, sequence-resolution, human-sequence, public-documentation, repository-health, live-ruleset-policy, and release-preflight regressions. Consumer projects should run the validators and tests required by their own `PROJECT_PROFILE.yaml` and acceptance contract rather than copying upstream CI blindly.
