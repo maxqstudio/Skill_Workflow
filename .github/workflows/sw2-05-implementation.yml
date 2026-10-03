@@ -1,0 +1,990 @@
+name: SW2-05 Schema Toolchain Implementation
+
+on:
+  push:
+    branches:
+      - work/sw2-05-schema-toolchain-versioning
+
+permissions:
+  contents: write
+
+jobs:
+  implement:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      ACCEPTED_MAIN: "733cf7dcb6def0fc1adc36cee7cc5243b8eaf060"
+
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-05-schema-toolchain-versioning
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Implement schema version and toolchain identity contracts
+        shell: bash
+        run: |
+          cat > scripts/schema_contract.py <<'PYFILE'
+          #!/usr/bin/env python3
+          """Version contracts for Skill Workflow profiles and governed JSON specs."""
+
+          from __future__ import annotations
+
+          import json
+          from pathlib import Path
+
+          PROFILE_SCHEMA_VERSION = 1
+          GOVERNED_SPEC_SCHEMA_VERSION = 1
+          TOOLCHAIN_LOCK_SCHEMA_VERSION = 1
+          TOOLCHAIN_CONTRACT_VERSION = 1
+
+
+          def _profile_version(value: object) -> int:
+              if isinstance(value, bool):
+                  raise ValueError("PROJECT_PROFILE_SCHEMA_VERSION_INVALID:boolean")
+              if isinstance(value, int):
+                  return value
+              raw = str(value).strip()
+              if raw.isdigit():
+                  return int(raw)
+              raise ValueError("PROJECT_PROFILE_SCHEMA_VERSION_INVALID:" + raw)
+
+
+          def require_profile_schema_version(data: dict, label: str = "PROJECT_PROFILE.yaml") -> int:
+              if "schema_version" not in data:
+                  raise ValueError(
+                      "PROJECT_PROFILE_SCHEMA_VERSION_MISSING:"
+                      + label
+                      + ":run scripts/migrate_governance_v1.py"
+                  )
+              version = _profile_version(data["schema_version"])
+              if version != PROFILE_SCHEMA_VERSION:
+                  raise ValueError(
+                      "PROJECT_PROFILE_SCHEMA_VERSION_UNSUPPORTED:"
+                      + str(version)
+                      + ":supported="
+                      + str(PROFILE_SCHEMA_VERSION)
+                  )
+              return version
+
+
+          def require_json_schema_version(data: dict, label: str) -> int:
+              if "schema_version" not in data:
+                  raise ValueError(
+                      "SPEC_SCHEMA_VERSION_MISSING:"
+                      + label
+                      + ":run scripts/migrate_governance_v1.py"
+                  )
+              value = data["schema_version"]
+              if isinstance(value, bool) or not isinstance(value, int):
+                  raise ValueError(
+                      "SPEC_SCHEMA_VERSION_INVALID:" + label + ":" + repr(value)
+                  )
+              if value != GOVERNED_SPEC_SCHEMA_VERSION:
+                  raise ValueError(
+                      "SPEC_SCHEMA_VERSION_UNSUPPORTED:"
+                      + label
+                      + ":"
+                      + str(value)
+                      + ":supported="
+                      + str(GOVERNED_SPEC_SCHEMA_VERSION)
+                  )
+              return value
+
+
+          def governed_spec_paths(spec_root: Path) -> list[Path]:
+              paths = [
+                  path
+                  for path in sorted(spec_root.glob("*.json"))
+                  if path.name != "toolchain.lock.json"
+              ]
+              workflow_root = spec_root / "workflows"
+              if workflow_root.is_dir():
+                  paths.extend(sorted(workflow_root.glob("*.json")))
+              return paths
+
+
+          def validate_spec_tree_versions(spec_root: Path) -> list[str]:
+              failures: list[str] = []
+              for path in governed_spec_paths(spec_root):
+                  try:
+                      data = json.loads(path.read_text(encoding="utf-8"))
+                      if not isinstance(data, dict):
+                          raise ValueError("top-level object required")
+                      require_json_schema_version(
+                          data, path.relative_to(spec_root).as_posix()
+                      )
+                  except Exception as exc:
+                      failures.append(str(exc))
+              return failures
+          PYFILE
+
+          cat > scripts/toolchain_identity.py <<'PYFILE'
+          #!/usr/bin/env python3
+          """Deterministic identity and lock validation for vendored governance tools."""
+
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import shutil
+          import subprocess
+          from pathlib import Path
+
+          from schema_contract import (
+              TOOLCHAIN_CONTRACT_VERSION,
+              TOOLCHAIN_LOCK_SCHEMA_VERSION,
+          )
+
+          SOURCE_ONLY_TOOLS = {
+              "initialize_project_truth.py",
+              "migrate_governance_v1.py",
+              "selftest_project_truth_compiler.py",
+          }
+
+
+          def _sha256(path: Path) -> str:
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+          def source_tool_paths(skill_root: Path) -> list[Path]:
+              source_tools = skill_root / "scripts"
+              return [
+                  path
+                  for path in sorted(source_tools.glob("*.py"))
+                  if path.name not in SOURCE_ONLY_TOOLS
+              ]
+
+
+          def tool_manifest(tool_root: Path) -> dict[str, str]:
+              if not tool_root.is_dir():
+                  return {}
+              return {
+                  path.name: _sha256(path)
+                  for path in sorted(tool_root.glob("*.py"))
+                  if path.is_file()
+              }
+
+
+          def toolchain_digest(manifest: dict[str, str]) -> str:
+              payload = json.dumps(
+                  manifest,
+                  sort_keys=True,
+                  separators=(",", ":"),
+                  ensure_ascii=False,
+              ).encode("utf-8")
+              return hashlib.sha256(payload).hexdigest()
+
+
+          def _git_value(root: Path, *args: str) -> str:
+              try:
+                  return subprocess.check_output(
+                      ["git", "-C", str(root), *args],
+                      text=True,
+                      stderr=subprocess.DEVNULL,
+                  ).strip()
+              except Exception:
+                  return ""
+
+
+          def producer_metadata(skill_root: Path) -> dict[str, str]:
+              return {
+                  "repository": _git_value(skill_root, "config", "--get", "remote.origin.url"),
+                  "commit_hint": _git_value(skill_root, "rev-parse", "HEAD"),
+              }
+
+
+          def sync_vendored_tools(skill_root: Path, tool_root: Path) -> dict[str, object]:
+              tool_root.mkdir(parents=True, exist_ok=True)
+              writes = 0
+              skips = 0
+              files: list[str] = []
+              for src in source_tool_paths(skill_root):
+                  dst = tool_root / src.name
+                  files.append(src.name)
+                  source_bytes = src.read_bytes()
+                  if dst.is_file() and dst.read_bytes() == source_bytes:
+                      skips += 1
+                      continue
+                  shutil.copyfile(src, dst)
+                  writes += 1
+              return {"writes": writes, "skips": skips, "files": files}
+
+
+          def write_toolchain_lock(
+              project_root: Path,
+              spec_root: Path,
+              tool_root: Path,
+              skill_root: Path,
+          ) -> str:
+              project_root = project_root.resolve()
+              spec_root = spec_root.resolve()
+              tool_root = tool_root.resolve()
+              relative_tool_root = tool_root.relative_to(project_root).as_posix()
+              manifest = tool_manifest(tool_root)
+              payload = {
+                  "schema_version": TOOLCHAIN_LOCK_SCHEMA_VERSION,
+                  "toolchain_contract_version": TOOLCHAIN_CONTRACT_VERSION,
+                  "tool_root": relative_tool_root,
+                  "toolchain_digest": toolchain_digest(manifest),
+                  "files": manifest,
+                  "producer": producer_metadata(skill_root.resolve()),
+              }
+              target = spec_root / "toolchain.lock.json"
+              expected = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+              if target.is_file() and target.read_text(encoding="utf-8") == expected:
+                  return "SKIP"
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_text(expected, encoding="utf-8", newline="\n")
+              return "WRITE"
+
+
+          def validate_toolchain_lock(project_root: Path, spec_root: Path) -> list[str]:
+              failures: list[str] = []
+              lock_path = spec_root / "toolchain.lock.json"
+              if not lock_path.is_file():
+                  return ["TOOLCHAIN_LOCK_MISSING:.workflow/toolchain.lock.json"]
+              try:
+                  lock = json.loads(lock_path.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  return ["TOOLCHAIN_LOCK_INVALID_JSON:" + str(exc)]
+              if not isinstance(lock, dict):
+                  return ["TOOLCHAIN_LOCK_TOP_LEVEL_OBJECT_REQUIRED"]
+
+              version = lock.get("schema_version")
+              if isinstance(version, bool) or version != TOOLCHAIN_LOCK_SCHEMA_VERSION:
+                  failures.append(
+                      "TOOLCHAIN_LOCK_SCHEMA_VERSION_UNSUPPORTED:"
+                      + repr(version)
+                      + ":supported="
+                      + str(TOOLCHAIN_LOCK_SCHEMA_VERSION)
+                  )
+              contract_version = lock.get("toolchain_contract_version")
+              if isinstance(contract_version, bool) or contract_version != TOOLCHAIN_CONTRACT_VERSION:
+                  failures.append(
+                      "TOOLCHAIN_CONTRACT_VERSION_UNSUPPORTED:"
+                      + repr(contract_version)
+                      + ":supported="
+                      + str(TOOLCHAIN_CONTRACT_VERSION)
+                  )
+
+              raw_tool_root = str(lock.get("tool_root", "")).strip()
+              tool_path = Path(raw_tool_root)
+              if (
+                  not raw_tool_root
+                  or tool_path.is_absolute()
+                  or ".." in tool_path.parts
+              ):
+                  failures.append("TOOLCHAIN_TOOL_ROOT_INVALID:" + raw_tool_root)
+                  return failures
+              tool_root = project_root / tool_path
+              if not tool_root.is_dir():
+                  failures.append("TOOLCHAIN_TOOL_ROOT_MISSING:" + raw_tool_root)
+                  return failures
+
+              declared = lock.get("files")
+              if not isinstance(declared, dict):
+                  failures.append("TOOLCHAIN_FILES_MANIFEST_INVALID")
+                  return failures
+              actual = tool_manifest(tool_root)
+              if declared != actual:
+                  missing = sorted(set(declared) - set(actual))
+                  extra = sorted(set(actual) - set(declared))
+                  changed = sorted(
+                      name
+                      for name in set(declared).intersection(actual)
+                      if declared[name] != actual[name]
+                  )
+                  failures.append(
+                      "TOOLCHAIN_MANIFEST_MISMATCH:missing="
+                      + ",".join(missing)
+                      + ";extra="
+                      + ",".join(extra)
+                      + ";changed="
+                      + ",".join(changed)
+                  )
+              expected_digest = toolchain_digest(actual)
+              if str(lock.get("toolchain_digest", "")) != expected_digest:
+                  failures.append("TOOLCHAIN_DIGEST_MISMATCH")
+
+              producer = lock.get("producer")
+              if not isinstance(producer, dict):
+                  failures.append("TOOLCHAIN_PRODUCER_METADATA_INVALID")
+              return failures
+          PYFILE
+
+          cat > scripts/validate_schema_toolchain.py <<'PYFILE'
+          #!/usr/bin/env python3
+          """Validate governed schema versions and vendored toolchain identity."""
+
+          from __future__ import annotations
+
+          import argparse
+          import json
+          from pathlib import Path
+
+          from project_profile import parse_profile
+          from schema_contract import validate_spec_tree_versions
+          from toolchain_identity import validate_toolchain_lock
+
+
+          def validate(root: Path) -> dict[str, object]:
+              failures: list[str] = []
+              profile_version: int | None = None
+              try:
+                  profile = parse_profile(root / "PROJECT_PROFILE.yaml")
+                  profile_version = int(str(profile["schema_version"]).strip())
+              except Exception as exc:
+                  failures.append(str(exc))
+
+              spec_root = root / ".workflow"
+              if not spec_root.is_dir():
+                  failures.append("SPEC_ROOT_MISSING:.workflow")
+                  spec_failures: list[str] = []
+              else:
+                  spec_failures = validate_spec_tree_versions(spec_root)
+                  failures.extend(spec_failures)
+
+              tool_root = spec_root / "tools"
+              lock_path = spec_root / "toolchain.lock.json"
+              if tool_root.is_dir() or lock_path.is_file():
+                  toolchain_status = "PASS"
+                  lock_failures = validate_toolchain_lock(root, spec_root)
+                  failures.extend(lock_failures)
+                  if lock_failures:
+                      toolchain_status = "FAIL"
+              else:
+                  toolchain_status = "NOT_APPLICABLE_PRODUCER_REPO"
+
+              return {
+                  "schema_version": 1,
+                  "result": "FAIL" if failures else "PASS",
+                  "profile_schema_version": profile_version,
+                  "governed_specs_checked": len(
+                      [p for p in spec_root.glob("*.json") if p.name != "toolchain.lock.json"]
+                  ) + len(list((spec_root / "workflows").glob("*.json"))) if spec_root.is_dir() else 0,
+                  "toolchain_lock": toolchain_status,
+                  "failures": failures,
+                  "evidence_boundary": (
+                      "This gate proves supported schema-version declarations and exact vendored-tool file identity. "
+                      "It does not treat producer commit hints, cache state, or mutable upstream state as acceptance authority."
+                  ),
+              }
+
+
+          def main() -> int:
+              parser = argparse.ArgumentParser()
+              parser.add_argument("--root", default=".")
+              parser.add_argument("--report", default="")
+              args = parser.parse_args()
+              root = Path(args.root).resolve()
+              report = validate(root)
+              payload = json.dumps(report, indent=2, sort_keys=True)
+              print(payload)
+              if args.report:
+                  output = Path(args.report)
+                  if not output.is_absolute():
+                      output = root / output
+                  output.parent.mkdir(parents=True, exist_ok=True)
+                  output.write_text(payload + "\n", encoding="utf-8", newline="\n")
+              return 0 if report["result"] == "PASS" else 1
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main())
+          PYFILE
+
+          cat > scripts/migrate_governance_v1.py <<'PYFILE'
+          #!/usr/bin/env python3
+          """Explicit deterministic migration of legacy governance state to schema v1."""
+
+          from __future__ import annotations
+
+          import argparse
+          import json
+          from pathlib import Path
+
+          from project_profile import parse_profile
+          from schema_contract import (
+              GOVERNED_SPEC_SCHEMA_VERSION,
+              PROFILE_SCHEMA_VERSION,
+              governed_spec_paths,
+              require_json_schema_version,
+              require_profile_schema_version,
+              validate_spec_tree_versions,
+          )
+          from toolchain_identity import (
+              sync_vendored_tools,
+              validate_toolchain_lock,
+              write_toolchain_lock,
+          )
+
+
+          def add_profile_version(path: Path) -> bool:
+              data = parse_profile(path, require_schema_version=False)
+              if "schema_version" in data:
+                  require_profile_schema_version(data, path.name)
+                  return False
+              lines = path.read_text(encoding="utf-8").splitlines()
+              insert_at = 0
+              while insert_at < len(lines):
+                  stripped = lines[insert_at].strip()
+                  if stripped and not stripped.startswith("#"):
+                      break
+                  insert_at += 1
+              lines.insert(insert_at, "schema_version: " + str(PROFILE_SCHEMA_VERSION))
+              path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8", newline="\n")
+              return True
+
+
+          def inspect_specs(spec_root: Path) -> list[Path]:
+              missing: list[Path] = []
+              for path in governed_spec_paths(spec_root):
+                  data = json.loads(path.read_text(encoding="utf-8"))
+                  if not isinstance(data, dict):
+                      raise ValueError("SPEC_TOP_LEVEL_OBJECT_REQUIRED:" + path.as_posix())
+                  if "schema_version" not in data:
+                      missing.append(path)
+                  else:
+                      require_json_schema_version(
+                          data, path.relative_to(spec_root).as_posix()
+                      )
+              return missing
+
+
+          def add_spec_version(path: Path) -> None:
+              data = json.loads(path.read_text(encoding="utf-8"))
+              upgraded = {"schema_version": GOVERNED_SPEC_SCHEMA_VERSION}
+              upgraded.update(data)
+              path.write_text(
+                  json.dumps(upgraded, indent=2) + "\n",
+                  encoding="utf-8",
+                  newline="\n",
+              )
+
+
+          def main() -> int:
+              parser = argparse.ArgumentParser()
+              parser.add_argument("--root", default=".")
+              parser.add_argument("--check", action="store_true")
+              args = parser.parse_args()
+
+              root = Path(args.root).resolve()
+              skill_root = Path(__file__).resolve().parent.parent
+              profile_path = root / "PROJECT_PROFILE.yaml"
+              spec_root = root / ".workflow"
+              if not profile_path.is_file() or not spec_root.is_dir():
+                  print("FAIL GOVERNANCE_ROOT_INCOMPLETE")
+                  return 1
+
+              try:
+                  profile_data = parse_profile(profile_path, require_schema_version=False)
+                  profile_missing = "schema_version" not in profile_data
+                  if not profile_missing:
+                      require_profile_schema_version(profile_data, profile_path.name)
+                  missing_specs = inspect_specs(spec_root)
+              except Exception as exc:
+                  print("FAIL MIGRATION_PRECHECK:" + str(exc))
+                  return 1
+
+              tool_root = spec_root / "tools"
+              lock_failures = (
+                  validate_toolchain_lock(root, spec_root)
+                  if tool_root.is_dir() or (spec_root / "toolchain.lock.json").is_file()
+                  else ["TOOLCHAIN_LOCK_MISSING:.workflow/toolchain.lock.json"]
+              )
+              required = profile_missing or bool(missing_specs) or bool(lock_failures)
+              if args.check:
+                  print("MIGRATION_REQUIRED=" + ("YES" if required else "NO"))
+                  print("PROFILE_VERSION_MISSING=" + ("YES" if profile_missing else "NO"))
+                  print("SPEC_VERSIONS_MISSING=" + str(len(missing_specs)))
+                  print("TOOLCHAIN_LOCK_ISSUES=" + str(len(lock_failures)))
+                  return 1 if required else 0
+
+              changes = 0
+              if profile_missing and add_profile_version(profile_path):
+                  changes += 1
+              for path in missing_specs:
+                  add_spec_version(path)
+                  changes += 1
+
+              sync = sync_vendored_tools(skill_root, tool_root)
+              changes += int(sync["writes"])
+              if write_toolchain_lock(root, spec_root, tool_root, skill_root) == "WRITE":
+                  changes += 1
+
+              try:
+                  parse_profile(profile_path)
+                  spec_failures = validate_spec_tree_versions(spec_root)
+                  if spec_failures:
+                      raise ValueError(";".join(spec_failures))
+                  lock_failures = validate_toolchain_lock(root, spec_root)
+                  if lock_failures:
+                      raise ValueError(";".join(lock_failures))
+              except Exception as exc:
+                  print("FAIL MIGRATION_POSTCHECK:" + str(exc))
+                  return 1
+
+              print("MIGRATION_TARGET_SCHEMA=1")
+              print("MIGRATION_CHANGES=" + str(changes))
+              print("TOOL_FILES_SYNCED=" + str(sync["writes"]))
+              print("RESULT=PASS")
+              return 0
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main())
+          PYFILE
+
+          cat > scripts/selftest_schema_toolchain.py <<'PYFILE'
+          #!/usr/bin/env python3
+          """Adversarial regression for schema migration and toolchain locking."""
+
+          from __future__ import annotations
+
+          import json
+          import subprocess
+          import sys
+          import tempfile
+          from pathlib import Path
+
+
+          def run(cwd: Path, *args: str, expect: int = 0) -> str:
+              proc = subprocess.run(
+                  list(args),
+                  cwd=cwd,
+                  text=True,
+                  stdout=subprocess.PIPE,
+                  stderr=subprocess.STDOUT,
+                  check=False,
+              )
+              if proc.returncode != expect:
+                  raise RuntimeError(
+                      "command failed expected=" + str(expect) + " actual=" + str(proc.returncode) + "\n" + proc.stdout
+                  )
+              return proc.stdout
+
+
+          def write_json(path: Path, value: dict) -> None:
+              path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+          def main() -> int:
+              skill_root = Path(__file__).resolve().parent.parent
+              with tempfile.TemporaryDirectory(prefix="skill-workflow-schema-v1-") as td:
+                  root = Path(td)
+                  run(
+                      skill_root,
+                      sys.executable,
+                      str(skill_root / "scripts" / "initialize_project_truth.py"),
+                      "--root",
+                      str(root),
+                  )
+                  profile_path = root / "PROJECT_PROFILE.yaml"
+                  spec_root = root / ".workflow"
+                  tool_root = spec_root / "tools"
+                  lock_path = spec_root / "toolchain.lock.json"
+                  validator = tool_root / "validate_schema_toolchain.py"
+                  migration = skill_root / "scripts" / "migrate_governance_v1.py"
+
+                  profile_text = profile_path.read_text(encoding="utf-8")
+                  assert "schema_version: 1" in profile_text
+                  assert lock_path.is_file()
+                  baseline = run(root, sys.executable, str(validator), "--root", str(root))
+                  assert '"result": "PASS"' in baseline
+
+                  tamper = tool_root / "sync_project_truth.py"
+                  tamper.write_text(tamper.read_text(encoding="utf-8") + "\n# tamper\n", encoding="utf-8", newline="\n")
+                  tampered = run(root, sys.executable, str(validator), "--root", str(root), expect=1)
+                  assert "TOOLCHAIN_MANIFEST_MISMATCH" in tampered
+                  run(root, sys.executable, str(migration), "--root", str(root))
+                  run(root, sys.executable, str(validator), "--root", str(root))
+
+                  profile_path.write_text(
+                      profile_path.read_text(encoding="utf-8").replace("schema_version: 1\n", "", 1),
+                      encoding="utf-8",
+                      newline="\n",
+                  )
+                  state_path = spec_root / "state.json"
+                  state = json.loads(state_path.read_text(encoding="utf-8"))
+                  state.pop("schema_version", None)
+                  write_json(state_path, state)
+                  flow_path = spec_root / "workflows" / "FLOW-EXAMPLE.json"
+                  flow = json.loads(flow_path.read_text(encoding="utf-8"))
+                  flow.pop("schema_version", None)
+                  write_json(flow_path, flow)
+                  lock_path.unlink()
+
+                  legacy = run(root, sys.executable, str(validator), "--root", str(root), expect=1)
+                  assert "PROJECT_PROFILE_SCHEMA_VERSION_MISSING" in legacy
+                  assert "SPEC_SCHEMA_VERSION_MISSING" in legacy
+                  assert "TOOLCHAIN_LOCK_MISSING" in legacy
+
+                  run(root, sys.executable, str(migration), "--root", str(root))
+                  migrated = run(root, sys.executable, str(validator), "--root", str(root))
+                  assert '"result": "PASS"' in migrated
+                  stable_before = {
+                      path.relative_to(root).as_posix(): path.read_bytes()
+                      for path in (profile_path, state_path, flow_path, lock_path)
+                  }
+                  second = run(root, sys.executable, str(migration), "--root", str(root))
+                  stable_after = {
+                      path.relative_to(root).as_posix(): path.read_bytes()
+                      for path in (profile_path, state_path, flow_path, lock_path)
+                  }
+                  assert stable_before == stable_after
+                  assert "MIGRATION_CHANGES=0" in second
+
+                  good_profile = profile_path.read_text(encoding="utf-8")
+                  bad_profile = good_profile.replace("schema_version: 1", "schema_version: 99", 1)
+                  profile_path.write_text(bad_profile, encoding="utf-8", newline="\n")
+                  unsupported_profile = run(root, sys.executable, str(migration), "--root", str(root), expect=1)
+                  assert "PROJECT_PROFILE_SCHEMA_VERSION_UNSUPPORTED" in unsupported_profile
+                  assert profile_path.read_text(encoding="utf-8") == bad_profile
+                  profile_path.write_text(good_profile, encoding="utf-8", newline="\n")
+
+                  state = json.loads(state_path.read_text(encoding="utf-8"))
+                  state["schema_version"] = 99
+                  write_json(state_path, state)
+                  bad_state = state_path.read_bytes()
+                  unsupported_spec = run(root, sys.executable, str(migration), "--root", str(root), expect=1)
+                  assert "SPEC_SCHEMA_VERSION_UNSUPPORTED" in unsupported_spec
+                  assert state_path.read_bytes() == bad_state
+
+              print("SCHEMA_V1_BASELINE=PASS")
+              print("LEGACY_EXPLICIT_MIGRATION=PASS")
+              print("MIGRATION_IDEMPOTENCE=PASS")
+              print("FUTURE_PROFILE_VERSION_REJECTION=PASS")
+              print("FUTURE_SPEC_VERSION_REJECTION=PASS")
+              print("TOOLCHAIN_TAMPER_REJECTION=PASS")
+              print("CACHE_NOT_AUTHORITY=PASS")
+              print("RESULT=PASS")
+              return 0
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main())
+          PYFILE
+
+      - name: Patch existing governance surfaces
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def replace_once(path: str, old: str, new: str) -> None:
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit('PATCH_ANCHOR_NOT_FOUND:' + path + ':' + old[:80])
+              p.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+
+          def ensure_profile_version(path: str) -> None:
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if 'schema_version:' in text:
+                  return
+              lines = text.splitlines()
+              insert_at = 0
+              while insert_at < len(lines):
+                  stripped = lines[insert_at].strip()
+                  if stripped and not stripped.startswith('#'):
+                      break
+                  insert_at += 1
+              lines.insert(insert_at, 'schema_version: 1')
+              p.write_text('\n'.join(lines).rstrip() + '\n', encoding='utf-8', newline='\n')
+
+          ensure_profile_version('PROJECT_PROFILE.yaml')
+          ensure_profile_version('templates/PROJECT_PROFILE.yaml')
+
+          replace_once(
+              'scripts/project_profile.py',
+              'from pathlib import Path\n',
+              'from pathlib import Path\n\nfrom schema_contract import require_profile_schema_version\n',
+          )
+          replace_once(
+              'scripts/project_profile.py',
+              'def parse_profile(path: Path) -> dict:\n',
+              'def parse_profile(path: Path, require_schema_version: bool = True) -> dict:\n',
+          )
+          replace_once(
+              'scripts/project_profile.py',
+              '    return data\n\n\ndef normalized_profile',
+              '    if require_schema_version:\n        require_profile_schema_version(data, PROFILE_FILE)\n    return data\n\n\ndef normalized_profile',
+          )
+
+          replace_once(
+              'scripts/generate_project_docs.py',
+              'from typing import Any\n\nfrom extract_project_facts',
+              'from typing import Any\n\nfrom schema_contract import require_json_schema_version\nfrom extract_project_facts',
+          )
+          replace_once(
+              'scripts/generate_project_docs.py',
+              '            specs[name] = load_json(path)\n',
+              '            item = load_json(path)\n            require_json_schema_version(item, name)\n            specs[name] = item\n',
+          )
+          replace_once(
+              'scripts/generate_project_docs.py',
+              '            item = load_json(path)\n            if not clean(item.get("flow_id")):\n',
+              '            item = load_json(path)\n            require_json_schema_version(item, "workflows/" + path.name)\n            if not clean(item.get("flow_id")):\n',
+          )
+
+          replace_once(
+              'scripts/initialize_project_truth.py',
+              'from pathlib import Path\n',
+              'from pathlib import Path\n\nfrom toolchain_identity import SOURCE_ONLY_TOOLS, write_toolchain_lock\n',
+          )
+          replace_once(
+              'scripts/initialize_project_truth.py',
+              '        excluded_tools = {\n            "initialize_project_truth.py",\n            "selftest_project_truth_compiler.py",\n        }\n',
+              '        excluded_tools = SOURCE_ONLY_TOOLS\n',
+          )
+          replace_once(
+              'scripts/initialize_project_truth.py',
+              '            else:\n                skips += 1\n                print("SKIP " + dst.relative_to(root).as_posix())\n\n    print("SPEC_ROOT=" + str(spec_root))\n',
+              '            else:\n                skips += 1\n                print("SKIP " + dst.relative_to(root).as_posix())\n\n        lock_result = write_toolchain_lock(root, spec_root, tools_root, skill_root)\n        if lock_result == "WRITE":\n            writes += 1\n            print("WRITE " + (spec_root / "toolchain.lock.json").relative_to(root).as_posix())\n        else:\n            skips += 1\n            print("SKIP " + (spec_root / "toolchain.lock.json").relative_to(root).as_posix())\n\n    print("SPEC_ROOT=" + str(spec_root))\n',
+          )
+
+          replace_once(
+              'scripts/validate_public_docs.py',
+              '    "docs/handbook/reference/commands.md",\n',
+              '    "docs/handbook/reference/commands.md",\n    "docs/handbook/reference/versioning.md",\n',
+          )
+          replace_once(
+              'scripts/validate_public_docs.py',
+              '    "reference/commands.md",\n',
+              '    "reference/commands.md",\n    "reference/versioning.md",\n',
+          )
+
+          handbook = Path('docs/handbook/README.md')
+          text = handbook.read_text(encoding='utf-8')
+          anchor = '- [Command reference](reference/commands.md) — initializer, sync, validators, sequence tools, and governance-engine commands.\n'
+          addition = anchor + '- [Schema and toolchain versioning](reference/versioning.md) — supported schema versions, explicit migration, toolchain locks, and compatibility rules.\n'
+          if 'reference/versioning.md' not in text:
+              if anchor not in text:
+                  raise SystemExit('HANDBOOK_REFERENCE_ANCHOR_NOT_FOUND')
+              handbook.write_text(text.replace(anchor, addition, 1), encoding='utf-8', newline='\n')
+
+          skill = Path('SKILL.md')
+          text = skill.read_text(encoding='utf-8')
+          anchor = 'Every project MUST define `PROJECT_PROFILE.yaml`.\n'
+          addition = anchor + '\n`PROJECT_PROFILE.yaml` MUST declare `schema_version: 1`. Governed `.workflow/*.json` and `.workflow/workflows/*.json` specs MUST also declare supported schema versions. Missing or unknown versions fail closed; legacy state must be migrated explicitly rather than silently reinterpreted.\n'
+          if 'legacy state must be migrated explicitly' not in text:
+              if anchor not in text:
+                  raise SystemExit('SKILL_PROFILE_VERSION_ANCHOR_NOT_FOUND')
+              text = text.replace(anchor, addition, 1)
+          anchor2 = 'Initializer vendors runtime tools into `.workflow/tools/`. This keeps project\ngovernance tooling project-local and independent of Codex/Claude/Cursor skill\ninstallation paths.\n'
+          addition2 = anchor2 + '\nThe initializer also writes `.workflow/toolchain.lock.json`, binding the exact vendored Python tool bytes by SHA-256-derived manifest digest. The digest is acceptance-relevant; producer repository/commit metadata is provenance only and mutable upstream/cache state is never authority. For legacy projects, run `python scripts/migrate_governance_v1.py --root <project>` from the intended Skill Workflow source checkout. Migration is explicit, deterministic, idempotent, and rejects unknown future schema versions.\n'
+          if '.workflow/toolchain.lock.json' not in text:
+              if anchor2 not in text:
+                  raise SystemExit('SKILL_TOOLCHAIN_ANCHOR_NOT_FOUND')
+              text = text.replace(anchor2, addition2, 1)
+          skill.write_text(text, encoding='utf-8', newline='\n')
+
+          Path('docs/handbook/reference/versioning.md').write_text('''<!-- PUBLIC PRODUCT DOCUMENTATION - SOURCE-AUTHORED -->
+
+# Schema and toolchain versioning
+
+Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`; a stable Skill Workflow V2 release/tag is intentionally deferred to SW2-09.
+
+## Supported schema
+
+`PROJECT_PROFILE.yaml` must declare:
+
+```yaml
+schema_version: 1
+```
+
+Every governed JSON semantic spec under `.workflow/*.json` and `.workflow/workflows/*.json` must declare integer `schema_version: 1`. Missing, malformed, or unknown future versions fail closed. Tooling must never guess that an unknown schema is compatible.
+
+## Explicit migration
+
+Legacy unversioned governance state is migrated from the intended Skill Workflow source checkout:
+
+```bash
+python scripts/migrate_governance_v1.py --root <project>
+```
+
+The v1 migration adds only missing v1 schema metadata to governance profile/spec files, synchronizes the governed vendored tool set, and writes a toolchain lock. Running the same migration again is byte-stable for the governed migration targets. A project declaring an unsupported future version is rejected without being downgraded or silently rewritten.
+
+Use check mode when auditing before mutation:
+
+```bash
+python scripts/migrate_governance_v1.py --root <project> --check
+```
+
+## Toolchain lock
+
+Projects with vendored governance tools store `.workflow/toolchain.lock.json`. The lock records the exact `.workflow/tools/*.py` file hashes and a deterministic manifest digest. Final validation recomputes those hashes; a changed, missing, or unexpected vendored Python tool invalidates the lock.
+
+Producer repository and commit fields are provenance hints. The file manifest and digest bind the actual vendored tool bytes; cache state, mutable upstream state, and an unlocked tool directory are not acceptance authority.
+
+Validate directly with:
+
+```bash
+python .workflow/tools/validate_schema_toolchain.py --root .
+```
+
+## Compatibility policy
+
+- Schema v1 is the only supported profile/governance-spec schema in this phase.
+- Backward compatibility for legacy unversioned projects is provided through the explicit v1 migration command, not silent parser fallback.
+- Unknown future versions fail closed. Existing tools never downgrade them.
+- An incompatible schema change requires a new schema version, an explicit deterministic migration path, negative tests for unsupported versions, and an update to this compatibility policy.
+- Stable product release/version labels are separate from schema versions and remain SW2-09 scope.
+''', encoding='utf-8', newline='\n')
+
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          for command in (
+              'python scripts/selftest_schema_toolchain.py',
+              'python scripts/validate_schema_toolchain.py --root .',
+          ):
+              if command not in acceptance['test_commands']:
+                  acceptance['test_commands'].insert(1, command)
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          claims_path = Path('.workflow/claims.json')
+          claims = json.loads(claims_path.read_text(encoding='utf-8'))
+          claim_map = {item['id']: item for item in claims['claims']}
+          schema_claim = claim_map['TRUTH-SW2-SCHEMA-MIGRATION']
+          for owner in (
+              'scripts/schema_contract.py',
+              'scripts/migrate_governance_v1.py',
+              'scripts/validate_schema_toolchain.py',
+              'scripts/project_profile.py',
+              'scripts/generate_project_docs.py',
+          ):
+              if owner not in schema_claim['source_owners']:
+                  schema_claim['source_owners'].append(owner)
+          for test in ('scripts/selftest_schema_toolchain.py', 'scripts/validate_schema_toolchain.py'):
+              if test not in schema_claim['tests']:
+                  schema_claim['tests'].append(test)
+          tool_claim = claim_map['TRUTH-SW2-TOOLCHAIN-IDENTITY']
+          for owner in (
+              'scripts/toolchain_identity.py',
+              'scripts/initialize_project_truth.py',
+              'scripts/migrate_governance_v1.py',
+              'scripts/validate_schema_toolchain.py',
+          ):
+              if owner not in tool_claim['source_owners']:
+                  tool_claim['source_owners'].append(owner)
+          for test in ('scripts/selftest_schema_toolchain.py', 'scripts/validate_schema_toolchain.py'):
+              if test not in tool_claim['tests']:
+                  tool_claim['tests'].append(test)
+          claims_path.write_text(json.dumps(claims, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          decisions_path = Path('.workflow/decisions.json')
+          decisions = json.loads(decisions_path.read_text(encoding='utf-8'))
+          if not any(item.get('id') == 'SW2-ADR-008' for item in decisions['decisions']):
+              decisions['decisions'].append({
+                  'id': 'SW2-ADR-008',
+                  'title': 'Separate schema compatibility from release naming and bind vendored tools by content digest',
+                  'decision': 'Governance profile/spec schema version 1 is explicit and blocking. Legacy unversioned state requires the deterministic migrate_governance_v1.py path. Vendored consumer tools are bound by .workflow/toolchain.lock.json exact file hashes and manifest digest; producer commit metadata is provenance only. Stable Skill Workflow V2 release naming remains SW2-09 scope.',
+                  'rationale': 'The existing JSON schema_version fields were not enforced and PROJECT_PROFILE.yaml had no version. Tool vendoring also had no byte-level identity, allowing accidental drift. The smallest compatible contract makes existing v1 semantics explicit without inventing a premature product release version.',
+                  'status': 'ACCEPTED'
+              })
+          decisions_path.write_text(json.dumps(decisions, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          contracts_path = Path('.workflow/contracts.json')
+          contracts = json.loads(contracts_path.read_text(encoding='utf-8'))
+          names = {item.get('name') for item in contracts['data_contracts']}
+          if '.workflow/toolchain.lock.json' not in names:
+              contracts['data_contracts'].append({
+                  'name': '.workflow/toolchain.lock.json',
+                  'source_of_truth': 'deterministic manifest of the project-local vendored governance tool bytes',
+                  'mutability': 'generated by initializer or explicit governance migration/toolchain synchronization',
+                  'retention': 'tracked with the consumer project governance state',
+                  'legal_writes': ['scripts/initialize_project_truth.py', 'scripts/migrate_governance_v1.py'],
+                  'invariants': [
+                      'toolchain file hashes and manifest digest match .workflow/tools/*.py',
+                      'cache state and mutable upstream state are not acceptance authority',
+                      'producer repository/commit metadata is provenance only'
+                  ]
+              })
+          contracts_path.write_text(json.dumps(contracts, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          session_path = Path('docs/sequence/sessions/SW2-05-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          session['actual']['entries'] = [
+              'scripts/initialize_project_truth.py::main',
+              'scripts/migrate_governance_v1.py::main',
+              'scripts/validate_schema_toolchain.py::main',
+              'scripts/project_profile.py::parse_profile',
+              'scripts/generate_project_docs.py::main',
+              'scripts/governance_engine.py::main'
+          ]
+          for test in ('scripts/selftest_schema_toolchain.py', 'scripts/validate_schema_toolchain.py'):
+              if test not in session['tests']:
+                  session['tests'].append(test)
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          print('SW2_05_SOURCE_PATCH=PASS')
+          PY
+
+      - name: Run schema and migration regressions
+        run: |
+          python -m compileall -q scripts
+          python scripts/selftest_schema_toolchain.py
+          python scripts/validate_schema_toolchain.py --root .
+          python scripts/selftest_public_docs.py
+          python scripts/validate_public_docs.py --root .
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_strict_project_workflow.py
+
+      - name: Rebind current sequence and regenerate Project Truth
+        run: |
+          python scripts/generate_sequence_actual.py --root . --output-json docs/sequence/generated/SW2-05-GOVERNANCE.actual.json --output-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd --entry scripts/initialize_project_truth.py::main --entry scripts/migrate_governance_v1.py::main --entry scripts/validate_schema_toolchain.py::main --entry scripts/project_profile.py::parse_profile --entry scripts/generate_project_docs.py::main --entry scripts/governance_engine.py::main
+          python scripts/sequence_human_view.py --root . --actual-json docs/sequence/generated/SW2-05-GOVERNANCE.actual.json --actual-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd --output-json docs/sequence/generated/SW2-05-GOVERNANCE.human.json --output-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.human.mmd --output-markdown docs/sequence/views/SW2-05-GOVERNANCE.md --session-id SW2-05-GOVERNANCE
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.load(open('docs/sequence/generated/SW2-05-GOVERNANCE.actual.json', encoding='utf-8'))
+          human = json.load(open('docs/sequence/generated/SW2-05-GOVERNANCE.human.json', encoding='utf-8'))
+          session_path = Path('docs/sequence/sessions/SW2-05-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          digest = actual['source_digest']
+          assert human['source_digest'] == digest
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_schema_toolchain.py --root . --report artifacts/schema_toolchain_report.json
+          python scripts/validate_public_docs.py --root . --report artifacts/public_docs_report.json
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json --report artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+
+      - name: Assert SW2-05 remains fail closed
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          a = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(item['status'] == 'NOT_PROVEN' for item in a['requirements'])
+          claims = {item['id']: item for item in json.load(open('.workflow/claims.json', encoding='utf-8'))['claims']}
+          assert claims['TRUTH-SW2-SCHEMA-MIGRATION']['status'] == 'NOT_PROVEN'
+          assert claims['TRUTH-SW2-TOOLCHAIN-IDENTITY']['status'] == 'NOT_PROVEN'
+          print('SW2_05_REQUIREMENTS_STILL_NOT_PROVEN=PASS')
+          PY
+
+      - name: Commit implementation candidate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT_PROFILE.yaml SKILL.md scripts templates docs .workflow artifacts/schema_toolchain_report.json artifacts/public_docs_report.json artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
+          git diff --cached --quiet && { echo "NO_SW2_05_IMPLEMENTATION_DIFF"; exit 1; }
+          git commit -m "feat(sw2-05): add schema and toolchain version contracts"
+          git push origin HEAD:work/sw2-05-schema-toolchain-versioning
