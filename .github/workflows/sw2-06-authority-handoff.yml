@@ -1,0 +1,141 @@
+name: SW2-06 Authority Handoff
+
+on:
+  push:
+    branches:
+      - work/sw2-06-cross-language-analyzer-architecture
+
+permissions:
+  contents: write
+
+jobs:
+  handoff:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      ACCEPTED_MAIN: "4f3546e78e4a927359b1805fa5c69bf57ddc0040"
+
+    steps:
+      - name: Checkout SW2-06 branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-06-cross-language-analyzer-architecture
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert accepted main ancestry and fail-closed phase
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD^)" = "$ACCEPTED_MAIN"
+          python - <<'PY'
+          import json
+          state = json.load(open('.workflow/state.json', encoding='utf-8'))
+          acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert state['phase'] == 'SW2-06' and state['status'] == 'IN_PROGRESS'
+          assert {x['id']: x['status'] for x in acceptance['requirements']} == {f'SW2-06-R{i}': 'NOT_PROVEN' for i in range(1, 5)}
+          PY
+
+      - name: Synchronize accepted authority metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          main = '4f3546e78e4a927359b1805fa5c69bf57ddc0040'
+          branch = 'work/sw2-06-cross-language-analyzer-architecture'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def save(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          state = load('.workflow/state.json')
+          state['last_accepted_sha'] = main
+          state['last_accepted_branch'] = 'main'
+          state['working_branch'] = branch
+          proof = (
+              'SW2-06 phase-open authority is accepted on main ' + main + ': post-merge Self Governance 37102088293, '
+              'Governance Selftest 37102088281 on Ubuntu and Windows, SW2 Sequence Evidence 37102088313, '
+              'SW2 Engine Performance 37102088299, and SW2 Consumer Engine Performance 37102088297 all succeeded; '
+              'merged tree e9ce803f23984356adbb61eb08f2bab3bf354837 equals the exact tested PR-head tree.'
+          )
+          if proof not in state['proven']:
+              state['proven'].append(proof)
+          save('.workflow/state.json', state)
+
+          session_path = Path('docs/sequence/sessions/SW2-06-GOVERNANCE.json')
+          session = load(session_path)
+          session['implementation_base_sha'] = main
+          save(session_path, session)
+          print('SW2_06_AUTHORITY_METADATA=PASS')
+          PY
+
+      - name: Rebind current sequence and deterministic Project Truth
+        shell: bash
+        run: |
+          python scripts/generate_sequence_actual.py --root . --output-json docs/sequence/generated/SW2-06-GOVERNANCE.actual.json --output-mermaid docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd --entry scripts/generate_sequence_actual.py::collect_python --entry scripts/generate_sequence_actual.py::collect_js_http --entry scripts/generate_sequence_actual.py::main --entry scripts/sequence_contract.py::source_files --entry scripts/project_snapshot.py::discover_source_paths
+          python scripts/sequence_human_view.py --root . --actual-json docs/sequence/generated/SW2-06-GOVERNANCE.actual.json --actual-mermaid docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd --output-json docs/sequence/generated/SW2-06-GOVERNANCE.human.json --output-mermaid docs/sequence/generated/SW2-06-GOVERNANCE.human.mmd --output-markdown docs/sequence/views/SW2-06-GOVERNANCE.md --session-id SW2-06-GOVERNANCE
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.load(open('docs/sequence/generated/SW2-06-GOVERNANCE.actual.json', encoding='utf-8'))
+          human = json.load(open('docs/sequence/generated/SW2-06-GOVERNANCE.human.json', encoding='utf-8'))
+          session_path = Path('docs/sequence/sessions/SW2-06-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          assert human['source_digest'] == actual['source_digest']
+          session['actual']['source_digest'] = actual['source_digest']
+          session['human_view']['source_digest'] = actual['source_digest']
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_schema_toolchain.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-06-GOVERNANCE.json --report artifacts/sequence/SW2-06-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-06-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+
+      - name: Assert handoff remains fail closed
+        run: |
+          python - <<'PY'
+          import json
+          state = json.load(open('.workflow/state.json', encoding='utf-8'))
+          assert state['last_accepted_sha'] == '4f3546e78e4a927359b1805fa5c69bf57ddc0040'
+          assert state['working_branch'] == 'work/sw2-06-cross-language-analyzer-architecture'
+          acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert all(x['status'] == 'NOT_PROVEN' for x in acceptance['requirements'])
+          claims = json.load(open('.workflow/claims.json', encoding='utf-8'))
+          cmap = {x['id']: x['status'] for x in claims['claims']}
+          assert cmap['TRUTH-SW2-ANALYZER-CONTRACT'] == 'NOT_PROVEN'
+          assert cmap['TRUTH-SW2-DYNAMIC-EVIDENCE'] == 'NOT_PROVEN'
+          print('SW2_06_AUTHORITY_HANDOFF_FAIL_CLOSED=PASS')
+          PY
+
+      - name: Commit authority handoff evidence locally
+        shell: bash
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .workflow docs artifacts/sequence/SW2-06-GOVERNANCE.acceptance.json
+          git diff --cached --quiet && { echo NO_HANDOFF_CHANGES; exit 1; }
+          git commit -m "gov(sw2-06): synchronize accepted main authority"
+
+      - name: Validate committed handoff read only
+        shell: bash
+        run: |
+          test -z "$(git status --porcelain --untracked-files=all)"
+          python scripts/validate_schema_toolchain.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_cross_document_consistency.py --root . --base "$ACCEPTED_MAIN" --require-base
+          python scripts/validate_project_truth.py --root .
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Push accepted-authority handoff
+        shell: bash
+        run: git push origin HEAD:work/sw2-06-cross-language-analyzer-architecture
