@@ -7,9 +7,9 @@ Authority verified at SHA: 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-05
+Phase: SW2-06
 Status: IN_PROGRESS
-Roadmap phase: SW2-05
+Roadmap phase: SW2-06
 ROADMAP_SYNC: PASS
 
 ## Source
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-05-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-06-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -57,8 +57,13 @@ SEQUENCE_SYNC: PASS
 - SW2-04 Documentation System V2 is accepted on exact post-promotion candidate d324dfcdee97efcf4de109c166b1b68a722b8add: Self Governance 37098059841, Governance Selftest 37098059808 on Ubuntu and Windows, SW2 Sequence Evidence 37098059794, SW2 Engine Performance 37098059854, and SW2 Consumer Engine Performance 37098059831 all succeeded after requirements R1-R4 were promoted.
 - SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 equals exact tested PR-head tree.
 - SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence 37100862743 passed with blocking Mermaid render, and Consumer Engine Performance 37100862760 passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative.
+- SW2-05 Schema & Toolchain Versioning is accepted on exact clean closure candidate aa93514462e505483673a8d2a5e1248096be0407: Self Governance 37101621016, Governance Selftest 37101621006 on Ubuntu and Windows, SW2 Sequence Evidence 37101621062, SW2 Engine Performance 37101621007, and SW2 Consumer Engine Performance 37101621079 all succeeded after tracked Python bytecode was removed and ignore policy was enforced.
 
 ## Not proven
+- SW2-06 language-independent analyzer contract is not proven.
+- SW2-06 Python and JS/TS analyzer regression coverage under the new contract is not proven.
+- SW2-06 generic fallback behavior is not proven explicit and fail-safe.
+- SW2-06 unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 
 ## Known blockers
@@ -68,14 +73,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run permanent CI on the exact clean post-promotion candidate.
-- Close SW2-05 only if post-promotion permanent CI remains fully green.
-- After closure, open SW2-06 fail-closed without inheriting SW2-05 PASS into new requirements.
+- Audit current parser/analyzer coupling without redesigning accepted governance semantics.
+- Define the smallest language-independent analyzer contract that preserves existing Python and JS/TS evidence.
+- Add regression and negative-path evidence for Python, JS/TS, and generic fail-safe fallback behavior.
+- Keep dynamic dispatch, reflection, framework magic, dependency injection, and unresolved calls NOT_PROVEN unless stronger evidence is added.
 
 ## Explicitly blocked
-- Do not close SW2-05 before exact post-promotion permanent CI succeeds.
-- Do not change or reinterpret schema versions silently in place; supported evolution requires an explicit deterministic migration path.
-- Do not let toolchain cache, mutable upstream state, or an unbound vendored copy become acceptance authority.
-- Do not create the V2 stable release/tag in SW2-05; stable release remains SW2-09 scope.
+- Do not claim the SW2-06 analyzer abstraction is proven before dedicated implementation evidence passes.
+- Do not weaken accepted Python or JS/TS regression behavior while introducing analyzer interfaces.
+- Do not turn generic fallback or unresolved dynamic behavior into false structural certainty.
+- Do not address repository merge/ruleset enforcement in SW2-06; that remains SW2-07 scope.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

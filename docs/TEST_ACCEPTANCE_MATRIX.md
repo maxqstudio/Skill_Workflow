@@ -4,23 +4,24 @@
 
 ## Evidence boundary
 
-SW2-05 acceptance covers Schema & Toolchain Versioning only: profile/spec schema versions, auditable toolchain identity, deterministic supported migrations, and release compatibility policy. SW2-01 through SW2-04 accepted governance, performance, sequence, and documentation guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository phase unless implementation introduces behavior requiring stronger runtime evidence.
+SW2-06 acceptance covers Cross-Language Analyzer Architecture only: a language-independent analyzer contract, preserved Python and JS/TS regression coverage, explicit fail-safe generic fallback behavior, and conservative handling of unsupported dynamic behavior. Accepted SW2-01 through SW2-05 governance, performance, sequence, documentation, schema, migration, and toolchain guarantees remain inherited authority and must not be weakened.
 
 Final tested source: external final acceptance evidence.
 Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-05-R1 | Profile and governed specification schemas expose explicit, auditable versions. | PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest run 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression; profile schema_version and every governed JSON spec schema_version are blocking, while missing/malformed/future versions fail closed. | PASS |
-| SW2-05-R2 | Skill Workflow toolchain identity is lockable and auditable by consumer projects without making mutable cache state authoritative. | PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest run 37100862749 passed cross-platform and Consumer Engine Performance run 37100862760 explicitly migrated the pinned legacy max-grounding consumer, validated .workflow/toolchain.lock.json, and preserved exact consumer HEAD provenance. | PASS |
-| SW2-05-R3 | Supported schema/toolchain migrations are deterministic, explicit, and regression-tested fail closed. | PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: selftest_schema_toolchain exercised explicit legacy migration, second-run idempotence, future profile/spec rejection, toolchain tamper rejection, and cache-not-authority semantics; Consumer Engine Performance run 37100862760 proved the migration path on a pinned real consumer. | PASS |
-| SW2-05-R4 | Release compatibility policy documents supported versions, migration expectations, and incompatible-change handling. | PASS on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: docs/handbook/reference/versioning.md is source-authored public compatibility policy and permanent public-documentation validation passed in Governance Selftest run 37100862749; Sequence Evidence run 37100862743 also remained SUCCESS with the SW2-05 implementation session. | PASS |
+| SW2-06-R1 | Analyzer contract is language-independent. | Phase-open baseline only; dedicated analyzer-interface evidence is not yet accepted. | NOT_PROVEN |
+| SW2-06-R2 | Python and JS/TS remain fully regression-covered. | Existing analyzers are preserved at phase opening, but regression coverage under the new contract is not yet accepted. | NOT_PROVEN |
+| SW2-06-R3 | Generic fallback behavior is explicit and fail-safe. | No accepted generic fallback contract exists at phase opening. | NOT_PROVEN |
+| SW2-06-R4 | Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. | Phase-open evidence records current static-analysis limitations; dedicated negative-path proof is not yet accepted. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
 - python scripts/validate_schema_toolchain.py --root .
 - python scripts/selftest_schema_toolchain.py
+- python scripts/selftest_sequence_call_resolution.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
@@ -42,8 +43,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-05-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-06-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 

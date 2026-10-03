@@ -1,0 +1,16 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+%% POLICY_ID: module-collapse-v1
+%% GENERATED_BY: sequence_human_view.py
+sequenceDiagram
+    participant module_scripts_generate_sequence_actual_py_0 as scripts/generate_sequence_actual.py
+    participant module_scripts_governance_engine_py_1 as scripts/governance_engine.py
+    participant module_scripts_project_snapshot_py_2 as scripts/project_snapshot.py
+    participant module_scripts_selftest_sequence_human_view_py_3 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_sequence_contract_py_4 as scripts/sequence_contract.py
+    module_scripts_generate_sequence_actual_py_0->>module_scripts_governance_engine_py_1: 1 static interaction
+    module_scripts_generate_sequence_actual_py_0->>module_scripts_project_snapshot_py_2: 2 static interactions
+    module_scripts_generate_sequence_actual_py_0->>module_scripts_sequence_contract_py_4: 2 static interactions
+    module_scripts_selftest_sequence_human_view_py_3->>module_scripts_project_snapshot_py_2: 1 static interaction
+    module_scripts_sequence_contract_py_4->>module_scripts_project_snapshot_py_2: 4 static interactions
+    module_scripts_sequence_contract_py_4->>module_scripts_selftest_sequence_human_view_py_3: 1 static interaction

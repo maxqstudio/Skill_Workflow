@@ -1,0 +1,49 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-06-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/generate_sequence_actual.py::collect_python",
+      "scripts/generate_sequence_actual.py::collect_js_http",
+      "scripts/generate_sequence_actual.py::main",
+      "scripts/sequence_contract.py::source_files",
+      "scripts/project_snapshot.py::discover_source_paths"
+    ],
+    "graph": "docs/sequence/generated/SW2-06-GOVERNANCE.actual.json",
+    "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-06 phase-opening static evidence binds the current Python AST, JS/TS HTTP scan, shared source inventory, and sequence generation surfaces before analyzer-interface work. A language-independent analyzer contract, generic fallback semantics, and stronger evidence for dynamic behavior remain NOT_PROVEN.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-06-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-06-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-06-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
+  },
+  "implementation_base_sha": "aa93514462e505483673a8d2a5e1248096be0407",
+  "mode": "DURING",
+  "phase": "SW2-06",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-06-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_sequence_call_resolution.py",
+    "scripts/selftest_governance_engine.py"
+  ]
+}
