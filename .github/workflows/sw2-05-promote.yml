@@ -53,27 +53,14 @@ jobs:
               return json.loads(Path(path).read_text(encoding="utf-8"))
 
           def save(path, value):
-              Path(path).write_text(
-                  json.dumps(value, indent=2, sort_keys=True) + "\n",
-                  encoding="utf-8",
-                  newline="\n",
-              )
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
 
           acceptance = load(".workflow/acceptance.json")
           evidence = {
-              "SW2-05-R1": (
-                  f"PASS on exact candidate {candidate}: Governance Selftest run {governance_run} passed Ubuntu and Windows with permanent schema/toolchain regression; "
-                  "profile schema_version and every governed JSON spec schema_version are blocking, while missing/malformed/future versions fail closed."
-              ),
-              "SW2-05-R2": (
-                  f"PASS on exact candidate {candidate}: Governance Selftest run {governance_run} passed cross-platform and Consumer Engine Performance run {consumer_run} explicitly migrated the pinned legacy max-grounding consumer, validated .workflow/toolchain.lock.json, and preserved exact consumer HEAD provenance."
-              ),
-              "SW2-05-R3": (
-                  f"PASS on exact candidate {candidate}: selftest_schema_toolchain exercised explicit legacy migration, second-run idempotence, future profile/spec rejection, toolchain tamper rejection, and cache-not-authority semantics; Consumer Engine Performance run {consumer_run} proved the migration path on a pinned real consumer."
-              ),
-              "SW2-05-R4": (
-                  f"PASS on exact candidate {candidate}: docs/handbook/reference/versioning.md is source-authored public compatibility policy and permanent public-documentation validation passed in Governance Selftest run {governance_run}; Sequence Evidence run {sequence_run} also remained SUCCESS with the SW2-05 implementation session."
-              ),
+              "SW2-05-R1": f"PASS on exact candidate {candidate}: Governance Selftest run {governance_run} passed Ubuntu and Windows with permanent schema/toolchain regression; profile schema_version and every governed JSON spec schema_version are blocking, while missing/malformed/future versions fail closed.",
+              "SW2-05-R2": f"PASS on exact candidate {candidate}: Governance Selftest run {governance_run} passed cross-platform and Consumer Engine Performance run {consumer_run} explicitly migrated the pinned legacy max-grounding consumer, validated .workflow/toolchain.lock.json, and preserved exact consumer HEAD provenance.",
+              "SW2-05-R3": f"PASS on exact candidate {candidate}: selftest_schema_toolchain exercised explicit legacy migration, second-run idempotence, future profile/spec rejection, toolchain tamper rejection, and cache-not-authority semantics; Consumer Engine Performance run {consumer_run} proved the migration path on a pinned real consumer.",
+              "SW2-05-R4": f"PASS on exact candidate {candidate}: docs/handbook/reference/versioning.md is source-authored public compatibility policy and permanent public-documentation validation passed in Governance Selftest run {governance_run}; Sequence Evidence run {sequence_run} also remained SUCCESS with the SW2-05 implementation session.",
           }
           for item in acceptance["requirements"]:
               if item["id"] in evidence:
@@ -98,9 +85,7 @@ jobs:
           save(".workflow/claims.json", claims)
 
           state = load(".workflow/state.json")
-          proven = (
-              f"SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate {candidate}: Governance Selftest {governance_run} passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence {sequence_run} passed with blocking Mermaid render, and Consumer Engine Performance {consumer_run} passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative."
-          )
+          proven = f"SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate {candidate}: Governance Selftest {governance_run} passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence {sequence_run} passed with blocking Mermaid render, and Consumer Engine Performance {consumer_run} passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative."
           if proven not in state["proven"]:
               state["proven"].append(proven)
           resolved = {
@@ -143,16 +128,13 @@ jobs:
           python - <<'PY'
           import json
           acceptance = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
-          statuses = {item['id']: item['status'] for item in acceptance['requirements']}
-          expected = {f'SW2-05-R{i}': 'PASS' for i in range(1, 5)}
-          assert statuses == expected, statuses
+          assert {item['id']: item['status'] for item in acceptance['requirements']} == {f'SW2-05-R{i}': 'PASS' for i in range(1, 5)}
           claims = json.load(open('.workflow/claims.json', encoding='utf-8'))
           cmap = {item['id']: item['status'] for item in claims['claims']}
           assert cmap['TRUTH-SW2-SCHEMA-MIGRATION'] == 'PASS'
           assert cmap['TRUTH-SW2-TOOLCHAIN-IDENTITY'] == 'PASS'
           state = json.load(open('.workflow/state.json', encoding='utf-8'))
-          assert state['phase'] == 'SW2-05'
-          assert state['status'] == 'IN_PROGRESS'
+          assert state['phase'] == 'SW2-05' and state['status'] == 'IN_PROGRESS'
           print('SW2_05_PROMOTION_ASSERTIONS=PASS')
           PY
 
@@ -166,9 +148,12 @@ jobs:
           git commit -m "gov(sw2-05): promote accepted schema and toolchain evidence"
           echo "LOCAL_PROMOTION_HEAD=$(git rev-parse HEAD)"
 
-      - name: Validate clean committed promotion candidate
+      - name: Diagnose and validate clean committed promotion candidate
         shell: bash
         run: |
+          echo "WORKTREE_STATUS_BEGIN"
+          git status --porcelain --untracked-files=all
+          echo "WORKTREE_STATUS_END"
           test -z "$(git status --porcelain --untracked-files=all)"
           python scripts/validate_schema_toolchain.py --root .
           python scripts/validate_project_docs.py --root .
