@@ -90,7 +90,7 @@
       "exit_criteria": [
         "Repository health files are present with Owner-approved license.",
         "Security and contribution paths are documented.",
-        "Merge/ruleset enforcement matches declared governance.",
+        "Repository merge-governance boundary matches the explicit Owner decision, and any absence of platform enforcement is documented without false claims.",
         "Release process is repeatable and evidence-backed."
       ],
       "id": "SW2-07",

@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, actual merge/ruleset enforcement aligned with declared governance, and a repeatable evidence-backed release process. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.",
+  "evidence_boundary": "SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, an explicit repository merge-governance boundary, and a repeatable evidence-backed release process. The Owner explicitly chose not to require a GitHub ruleset; SW2-07 therefore must document that no automatic merge protection is claimed. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -29,10 +29,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "Live ruleset 24406662 targets the default branch but is currently enforcement=disabled during Owner repair; its payload also still lacks required_status_checks for the six permanent acceptance checks. R3 remains NOT_PROVEN.",
+      "evidence": "Owner explicitly decided to continue SW2-07 without a GitHub ruleset and deleted the prior ruleset. Live GitHub repository ruleset audit returned an empty list, including inherited rulesets. This PASS proves alignment with the Owner-approved repository governance boundary; it does not claim automatic merge protection or required-check enforcement.",
       "id": "SW2-07-R3",
-      "requirement": "Merge/ruleset enforcement matches declared governance.",
-      "status": "NOT_PROVEN"
+      "requirement": "Repository merge-governance boundary matches the explicit Owner decision without false enforcement claims.",
+      "status": "PASS"
     },
     {
       "evidence": "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.",

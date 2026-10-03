@@ -2,19 +2,13 @@
 
 # Repository governance
 
-Skill Workflow treats GitHub repository configuration as runtime governance, not documentation.
+Skill Workflow treats GitHub repository configuration and CI evidence as separate governance surfaces.
 
-## Declared default-branch policy
+## Current repository policy
 
-For this repository, the intended default-branch policy is:
+For this repository, the Owner has explicitly chosen not to require a GitHub ruleset. The permanent CI suite remains required acceptance evidence for governed phase closure, but GitHub is not claimed to automatically block merges when those checks fail.
 
-- changes reach `main` through pull requests;
-- direct deletion and non-fast-forward updates are blocked;
-- squash is the governed merge method;
-- the permanent acceptance checks are required before merge;
-- repository configuration is audited independently of workflow files.
-
-The permanent checks currently expected by SW2 governance are:
+The permanent SW2 acceptance checks are:
 
 - `Self Governance (ubuntu-latest)`;
 - `Governance Selftest (ubuntu-latest)`;
@@ -25,12 +19,12 @@ The permanent checks currently expected by SW2 governance are:
 
 ## Evidence boundary
 
-A workflow file proves only that a check can run. It does not prove GitHub requires that check before merge.
+A successful workflow proves that a check ran and passed on the tested candidate. It does not prove GitHub enforces that check before merge.
 
-`scripts/validate_github_ruleset.py` validates an exported GitHub ruleset payload against the declared policy. The manual `SW2 Ruleset Audit` workflow fetches the live repository ruleset and applies the same validator.
+`scripts/validate_github_ruleset.py` and the manual `SW2 Ruleset Audit` workflow remain available for repositories that choose ruleset enforcement, but SW2-07 does not require this repository to configure one.
 
-If the live ruleset lacks required status checks, SW2-07 merge/ruleset enforcement remains `NOT_PROVEN` even when all CI happens to be green.
+The accepted boundary is explicit: no repository ruleset is currently configured, and project documentation must not describe merge protection as automatic.
 
 ## Owner and administrator changes
 
-Changing repository rules is an administrative action. Record the exact live configuration used as acceptance evidence and rerun the audit after any ruleset modification.
+If repository-level enforcement is added later, audit the exact live configuration and update Project Truth before claiming that enforcement exists.
