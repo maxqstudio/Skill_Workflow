@@ -52,6 +52,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Explicitly migrate pinned legacy consumer to schema v1
+        run: |
+          python scripts/migrate_governance_v1.py --root consumer
+          python scripts/migrate_governance_v1.py --root consumer
+          python scripts/validate_schema_toolchain.py --root consumer
+          test "$(git -C consumer rev-parse HEAD)" = "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f"
+
       - name: Measure candidate engine on pinned consumer
         run: >-
           python scripts/benchmark_governance.py
@@ -60,7 +67,7 @@ jobs:
           --repeats 3
           --expected-head 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f
           --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json
-          --label "SW2-01 max-grounding with candidate Engine V2"
+          --label "SW2-05 migrated max-grounding consumer with candidate Engine V2"
           --output ../artifacts/performance/sw2-01-max-grounding-engine.json
 
       - name: Upload consumer performance evidence
