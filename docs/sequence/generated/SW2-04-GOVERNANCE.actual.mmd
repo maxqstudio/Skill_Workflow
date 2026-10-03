@@ -1,6 +1,6 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
-%% OBSERVED_HEAD: 3f2078d68e7a9a98a650c741abf9b7391ba60b56
+%% SOURCE_DIGEST: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
+%% OBSERVED_HEAD: ef927386a13c5c77597e764f8a81b475a7b9b80e
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
     participant scripts_extract_project_facts_py__PythonFacts_0 as scripts/extract_project_facts.py::PythonFacts
@@ -75,6 +75,8 @@ sequenceDiagram
     participant scripts_validate_human_comprehension_py__main_69 as scripts/validate_human_comprehension.py::main
     participant scripts_validate_human_comprehension_py__parse_gate_rows_70 as scripts/validate_human_comprehension.py::parse_gate_rows
     participant scripts_validate_project_docs_py__main_71 as scripts/validate_project_docs.py::main
+    participant scripts_validate_public_docs_py__main_72 as scripts/validate_public_docs.py::main
+    participant scripts_validate_public_docs_py__validate_73 as scripts/validate_public_docs.py::validate
     scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_extract_project_facts_py__PythonFacts_0: PythonFacts [STATIC]
     scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_extract_project_facts_py__is_test_file_3: is_test_file [STATIC]
     scripts_extract_project_facts_py___extract_from_snapshot_1->>scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_42: visitor.visit [STATIC]
@@ -214,3 +216,9 @@ sequenceDiagram
     scripts_validate_project_docs_py__main_71->>scripts_project_profile_py__documentation_settings_46: documentation_settings [STATIC]
     scripts_validate_project_docs_py__main_71->>scripts_project_profile_py__parse_profile_48: parse_profile [STATIC]
     scripts_validate_project_docs_py__main_71->>scripts_script_runner_py__invoke_main_64: invoke_main [STATIC]
+    scripts_validate_public_docs_py__main_72->>scripts_validate_public_docs_py__validate_73: validate [STATIC]
+    scripts_validate_public_docs_py__validate_73->>scripts_project_snapshot_py__ProjectSnapshot_read_text_55: docs_index.read_text [STATIC]
+    scripts_validate_public_docs_py__validate_73->>scripts_project_snapshot_py__ProjectSnapshot_read_text_55: handbook_index.read_text [STATIC]
+    scripts_validate_public_docs_py__validate_73->>scripts_project_snapshot_py__ProjectSnapshot_read_text_55: path.read_text [STATIC]
+    scripts_validate_public_docs_py__validate_73->>scripts_project_snapshot_py__ProjectSnapshot_read_text_55: readme_path.read_text [STATIC]
+    scripts_validate_public_docs_py__validate_73->>scripts_validate_doc_quality_py__normalized_shape_67: normalized_shape [STATIC]

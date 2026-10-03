@@ -49,6 +49,8 @@
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
+    "python scripts/validate_public_docs.py --root .",
+    "python scripts/selftest_public_docs.py",
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_sequence_call_resolution.py",
     "python scripts/selftest_sequence_human_view.py",

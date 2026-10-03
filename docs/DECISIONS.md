@@ -42,4 +42,12 @@ Sequence V2 keeps the full symbol-level machine graph unchanged as acceptance ev
 
 Rationale: Committed Skill Workflow sequence baselines grew from 7 participants/6 interactions (SW2-00) to 22/27 (SW2-01), 33/44 (SW2-02), and 37/53 at the SW2-03 pre-V2 baseline. The measured growth demonstrates that raw helper-level diagrams scale with implementation detail, but it does not justify inventing an absolute readability threshold. Structural module/pair ceilings are deterministic, measurable, and preserve complete machine evidence.
 
+## SW2-ADR-006 — Separate public product documentation without moving consumer Project Truth paths
+
+Status: ACCEPTED
+
+Skill Workflow repository product documentation uses a source-authored public navigator at docs/README.md and handbook under docs/handbook/, while canonical deterministic Project Truth and machine indexes remain at their established docs/ paths. The public layer must never replace project-state authority or machine evidence.
+
+Rationale: The previous README mixed landing, installation matrix, governance theory, tool reference, and generated project-state concepts. Moving canonical consumer Project Truth paths only to improve repository presentation would create avoidable migration risk. A distinct public layer improves GitHub readability while preserving compatibility and audit evidence.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY -->

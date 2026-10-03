@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-04-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-04-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-04-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-04-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-04-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-04-GOVERNANCE.human.json)
-- Source digest: `ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b`
+- Source digest: `df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 72 | 10 |
-| Interactions / edges | 139 | 15 |
-| Internal machine edges collapsed | 108 | — |
-| Cross-component edges aggregated | 16 | — |
+| Participants / nodes | 74 | 11 |
+| Interactions / edges | 145 | 17 |
+| Internal machine edges collapsed | 109 | — |
+| Cross-component edges aggregated | 19 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -36,6 +36,7 @@ sequenceDiagram
     participant module_scripts_validate_doc_quality_py_7 as scripts/validate_doc_quality.py
     participant module_scripts_validate_human_comprehension_py_8 as scripts/validate_human_comprehension.py
     participant module_scripts_validate_project_docs_py_9 as scripts/validate_project_docs.py
+    participant module_scripts_validate_public_docs_py_10 as scripts/validate_public_docs.py
     module_scripts_extract_project_facts_py_0->>module_scripts_governance_engine_py_2: 1 static interaction
     module_scripts_extract_project_facts_py_0->>module_scripts_project_snapshot_py_4: 3 static interactions
     module_scripts_generate_project_docs_py_1->>module_scripts_extract_project_facts_py_0: 1 static interaction
@@ -51,4 +52,6 @@ sequenceDiagram
     module_scripts_validate_human_comprehension_py_8->>module_scripts_project_snapshot_py_4: 1 static interaction
     module_scripts_validate_project_docs_py_9->>module_scripts_project_profile_py_3: 2 static interactions
     module_scripts_validate_project_docs_py_9->>module_scripts_script_runner_py_5: 1 static interaction
+    module_scripts_validate_public_docs_py_10->>module_scripts_project_snapshot_py_4: 4 static interactions
+    module_scripts_validate_public_docs_py_10->>module_scripts_validate_doc_quality_py_7: 1 static interaction
 ```

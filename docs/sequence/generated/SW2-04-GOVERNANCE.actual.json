@@ -987,13 +987,56 @@
       "from": "scripts/validate_project_docs.py::main",
       "resolver": "python_ast",
       "to": "scripts/script_runner.py::invoke_main"
+    },
+    {
+      "action": "validate",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_public_docs.py::validate"
+    },
+    {
+      "action": "docs_index.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "handbook_index.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "readme_path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "normalized_shape",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/validate_doc_quality.py::normalized_shape"
     }
   ],
   "entries": [
     "scripts/generate_project_docs.py::main",
     "scripts/validate_project_docs.py::main",
     "scripts/validate_doc_quality.py::main",
-    "scripts/validate_human_comprehension.py::main"
+    "scripts/validate_human_comprehension.py::main",
+    "scripts/validate_public_docs.py::main"
   ],
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
@@ -1645,9 +1688,27 @@
       "line_end": 80,
       "line_start": 19,
       "locator": "scripts/validate_project_docs.py::main"
+    },
+    {
+      "id": "scripts/validate_public_docs.py::main",
+      "kind": "function",
+      "label": "scripts/validate_public_docs.py::main",
+      "language": "Python",
+      "line_end": 157,
+      "line_start": 143,
+      "locator": "scripts/validate_public_docs.py::main"
+    },
+    {
+      "id": "scripts/validate_public_docs.py::validate",
+      "kind": "function",
+      "label": "scripts/validate_public_docs.py::validate",
+      "language": "Python",
+      "line_end": 140,
+      "line_start": 63,
+      "locator": "scripts/validate_public_docs.py::validate"
     }
   ],
-  "observed_head": "3f2078d68e7a9a98a650c741abf9b7391ba60b56",
+  "observed_head": "ef927386a13c5c77597e764f8a81b475a7b9b80e",
   "schema_version": 1,
-  "source_digest": "ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b"
+  "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd"
 }

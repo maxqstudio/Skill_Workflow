@@ -119,6 +119,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_public_docs.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 68
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_sequence_call_resolution.py",
       "is_test": false,
       "language": "Python",
@@ -200,6 +207,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 365
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/validate_public_docs.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 161
     },
     {
       "directory": "scripts",
@@ -8293,6 +8307,98 @@
       "target_token": "print"
     },
     {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "target.read_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "target.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "original.replace"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "target.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "readme_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "readme_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "readme_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "missing.unlink"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
       "caller": "scripts/selftest_sequence_call_resolution.py::run",
       "target_token": "subprocess.run"
     },
@@ -13645,6 +13751,166 @@
       "target_token": "report_path.write_text"
     },
     {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "readme_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "readme_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "normalized_shape"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "normalized_shape"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "docs_index.is_file"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "docs_index.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "handbook_index.is_file"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "handbook_index.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "output.is_absolute"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "output.parent.mkdir"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::main",
+      "target_token": "output.write_text"
+    },
+    {
       "caller": "scripts/validate_sequence_contract.py::resolve",
       "target_token": "Path"
     },
@@ -16656,6 +16922,14 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_public_docs.py",
+      "kind": "function",
+      "line_end": 64,
+      "line_start": 20,
+      "locator": "scripts/selftest_public_docs.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_sequence_call_resolution.py",
       "kind": "function",
       "line_end": 28,
@@ -17272,6 +17546,22 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/validate_public_docs.py",
+      "kind": "function",
+      "line_end": 140,
+      "line_start": 63,
+      "locator": "scripts/validate_public_docs.py::validate",
+      "symbol": "validate"
+    },
+    {
+      "file": "scripts/validate_public_docs.py",
+      "kind": "function",
+      "line_end": 157,
+      "line_start": 143,
+      "locator": "scripts/validate_public_docs.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
       "line_end": 28,
@@ -17353,13 +17643,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b",
+  "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd",
   "source_summary": {
-    "files": 30,
+    "files": 32,
     "languages": {
-      "Python": 30
+      "Python": 32
     },
-    "lines": 10347,
+    "lines": 10576,
     "test_files": 0
   },
   "tests": []

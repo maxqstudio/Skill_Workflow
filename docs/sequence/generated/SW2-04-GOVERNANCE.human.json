@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 15,
-    "interaction_count": 15,
+    "interaction_ceiling": 17,
+    "interaction_count": 17,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 10,
-    "participant_count": 10,
+    "participant_ceiling": 11,
+    "participant_count": 11,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -237,13 +237,45 @@
         "python_ast"
       ],
       "to": "module:scripts/script_runner.py"
+    },
+    {
+      "actions": [
+        "docs_index.read_text",
+        "handbook_index.read_text",
+        "path.read_text",
+        "readme_path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_public_docs.py",
+      "machine_edge_count": 4,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "normalized_shape"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_public_docs.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_doc_quality.py"
     }
   ],
   "entries": [
     "scripts/generate_project_docs.py::main",
     "scripts/validate_project_docs.py::main",
     "scripts/validate_doc_quality.py::main",
-    "scripts/validate_human_comprehension.py::main"
+    "scripts/validate_human_comprehension.py::main",
+    "scripts/validate_public_docs.py::main"
   ],
   "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
   "generated": true,
@@ -400,16 +432,26 @@
       "machine_nodes": [
         "scripts/validate_project_docs.py::main"
       ]
+    },
+    {
+      "id": "module:scripts/validate_public_docs.py",
+      "kind": "module",
+      "label": "scripts/validate_public_docs.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/validate_public_docs.py::main",
+        "scripts/validate_public_docs.py::validate"
+      ]
     }
   ],
-  "observed_head": "3f2078d68e7a9a98a650c741abf9b7391ba60b56",
+  "observed_head": "ef927386a13c5c77597e764f8a81b475a7b9b80e",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 16,
-    "cross_component_machine_edges": 31,
-    "internal_machine_edges_collapsed": 108,
-    "machine_edge_count": 139,
-    "machine_node_count": 72,
+    "aggregated_cross_component_edges": 19,
+    "cross_component_machine_edges": 36,
+    "internal_machine_edges_collapsed": 109,
+    "machine_edge_count": 145,
+    "machine_node_count": 74,
     "node_map": {
       "scripts/extract_project_facts.py::PythonFacts": "module:scripts/extract_project_facts.py",
       "scripts/extract_project_facts.py::_extract_from_snapshot": "module:scripts/extract_project_facts.py",
@@ -482,10 +524,12 @@
       "scripts/validate_human_comprehension.py::git_root": "module:scripts/validate_human_comprehension.py",
       "scripts/validate_human_comprehension.py::main": "module:scripts/validate_human_comprehension.py",
       "scripts/validate_human_comprehension.py::parse_gate_rows": "module:scripts/validate_human_comprehension.py",
-      "scripts/validate_project_docs.py::main": "module:scripts/validate_project_docs.py"
+      "scripts/validate_project_docs.py::main": "module:scripts/validate_project_docs.py",
+      "scripts/validate_public_docs.py::main": "module:scripts/validate_public_docs.py",
+      "scripts/validate_public_docs.py::validate": "module:scripts/validate_public_docs.py"
     },
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b"
+  "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd"
 }

@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
+Source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
 Status: CURRENT
 
 | File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
@@ -181,6 +181,7 @@ Status: CURRENT
 | scripts/selftest_project_truth_compiler.py | write_json | function | 39-40 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | test_gitignored_source_files_are_excluded | function | 43-101 | Observed Python symbol | | | |
 | scripts/selftest_project_truth_compiler.py | main | function | 104-452 | Observed Python symbol | | | |
+| scripts/selftest_public_docs.py | main | function | 20-64 | Observed Python symbol | | | |
 | scripts/selftest_sequence_call_resolution.py | run | function | 18-28 | Observed Python symbol | | | |
 | scripts/selftest_sequence_call_resolution.py | main | function | 31-103 | Observed Python symbol | | | |
 | scripts/selftest_sequence_human_view.py | run | function | 16-32 | Observed Python symbol | | | |
@@ -258,6 +259,8 @@ Status: CURRENT
 | scripts/validate_project_truth.py | split_refs | function | 86-87 | Observed Python symbol | | | |
 | scripts/validate_project_truth.py | file_exists | function | 90-96 | Observed Python symbol | | | |
 | scripts/validate_project_truth.py | main | function | 99-361 | Observed Python symbol | | | |
+| scripts/validate_public_docs.py | validate | function | 63-140 | Observed Python symbol | | | |
+| scripts/validate_public_docs.py | main | function | 143-157 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | resolve | function | 26-28 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | git_show_bytes | function | 31-35 | Observed Python symbol | | | |
 | scripts/validate_sequence_contract.py | expected_plan_mermaid | function | 38-44 | Observed Python symbol | | | |

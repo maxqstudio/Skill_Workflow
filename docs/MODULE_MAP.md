@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
+Source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -23,6 +23,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
+| scripts/selftest_public_docs.py | Python | 68 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 868 | scripts | NO |
@@ -35,6 +36,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
+| scripts/validate_public_docs.py | Python | 161 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
 | scripts/validate_sequence_human_view.py | Python | 256 | scripts | NO |
 | scripts/validate_sequence_sessions.py | Python | 151 | scripts | NO |
