@@ -42,4 +42,20 @@ Sequence V2 keeps the full symbol-level machine graph unchanged as acceptance ev
 
 Rationale: Committed Skill Workflow sequence baselines grew from 7 participants/6 interactions (SW2-00) to 22/27 (SW2-01), 33/44 (SW2-02), and 37/53 at the SW2-03 pre-V2 baseline. The measured growth demonstrates that raw helper-level diagrams scale with implementation detail, but it does not justify inventing an absolute readability threshold. Structural module/pair ceilings are deterministic, measurable, and preserve complete machine evidence.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY -->
+## SW2-ADR-006 — Separate public product documentation without moving consumer Project Truth paths
+
+Status: ACCEPTED
+
+Skill Workflow repository product documentation uses a source-authored public navigator at docs/README.md and handbook under docs/handbook/, while canonical deterministic Project Truth and machine indexes remain at their established docs/ paths. The public layer must never replace project-state authority or machine evidence.
+
+Rationale: The previous README mixed landing, installation matrix, governance theory, tool reference, and generated project-state concepts. Moving canonical consumer Project Truth paths only to improve repository presentation would create avoidable migration risk. A distinct public layer improves GitHub readability while preserving compatibility and audit evidence.
+
+## SW2-ADR-007 — Collapse generated symbol detail without dropping machine facts
+
+Status: ACCEPTED
+
+SYMBOL_INDEX.md uses a file-level summary as the default GitHub view and deterministic per-file collapsible detail. Every extracted symbol remains rendered, while empty semantic columns and repetitive placeholder responsibility text are removed. Full machine facts remain in .workflow/generated/code_facts.json. Handoff validation accepts legacy tables for compatibility and validates V2 presentation structure fail-closed.
+
+Rationale: The previous single table exposed every Python symbol with repeated Observed Python symbol text and empty Responsibility/Reads-Writes/Called-By/Tests columns. Collapsible deterministic grouping improves presentation without reducing extracted evidence or breaking existing consumer indexes.
+
+<!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

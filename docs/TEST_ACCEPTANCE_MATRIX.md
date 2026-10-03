@@ -4,30 +4,29 @@
 
 ## Evidence boundary
 
-SW2-04 acceptance covers Documentation System V2 only: public-facing documentation must become concise and navigable while deterministic generated Project Truth and machine evidence remain independently auditable and drift-detectable. Existing SW2-01 through SW2-03 governance, mode-safety, and Sequence V2 guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository documentation-system phase unless stronger runtime evidence becomes necessary.
+SW2-05 acceptance covers Schema & Toolchain Versioning only: profile/spec schema versions, auditable toolchain identity, deterministic supported migrations, and release compatibility policy. SW2-01 through SW2-04 accepted governance, performance, sequence, and documentation guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository phase unless implementation introduces behavior requiring stronger runtime evidence.
 
 Final tested source: external final acceptance evidence.
-Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
+Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-04-R1 | README is a concise public landing page that explains purpose, value, getting started, support, and maintenance without embedding the full governance reference manual. | NOT_PROVEN until README/public landing-page restructuring is implemented and validated against the accepted documentation information architecture. | NOT_PROVEN |
-| SW2-04-R2 | Concept, guide, reference, architecture, and sequence documentation have stable public locations and navigation. | NOT_PROVEN until the public documentation tree, navigation, redirects/migration handling where applicable, and cross-document validation are implemented. | NOT_PROVEN |
-| SW2-04-R3 | Machine indexes and evidence no longer dominate human-facing documentation while remaining fully available and auditable. | NOT_PROVEN until machine indexes/evidence are separated from public guidance with deterministic references and no loss of acceptance evidence. | NOT_PROVEN |
-| SW2-04-R4 | Generated documentation remains deterministic and drift-detectable after the documentation-system restructuring. | NOT_PROVEN until compiler, sync, cross-document, Human Comprehension, and clean-worktree regressions pass on the restructured documentation system. | NOT_PROVEN |
+| SW2-05-R1 | Profile and governed specification schemas expose explicit, auditable versions. | NOT_PROVEN until version contracts are implemented across profile/spec parsing, templates, and validation with compatibility regression evidence. | NOT_PROVEN |
+| SW2-05-R2 | Skill Workflow toolchain identity is lockable and auditable by consumer projects without making mutable cache state authoritative. | NOT_PROVEN until a deterministic toolchain lock/identity contract is implemented and validated against vendored consumer tooling. | NOT_PROVEN |
+| SW2-05-R3 | Supported schema/toolchain migrations are deterministic, explicit, and regression-tested fail closed. | NOT_PROVEN until migration commands/contracts and positive plus tamper/unsupported-version regressions exist. | NOT_PROVEN |
+| SW2-05-R4 | Release compatibility policy documents supported versions, migration expectations, and incompatible-change handling. | NOT_PROVEN until compatibility policy is source-authored, linked from public reference documentation, and validated against implemented version/migration behavior. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
 - python scripts/selftest_governance_engine.py
-- python scripts/selftest_sequence_call_resolution.py
-- python scripts/selftest_sequence_human_view.py
-- python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
+- python scripts/selftest_public_docs.py
+- python scripts/selftest_generated_doc_presentation.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base f79917550fe42f98110f1a11915ad9699e5244e6 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 2ff1d1501a7762baedcd848ebc117b7760b7c738 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -41,7 +40,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-04-GOVERNANCE
+Sequence session contract: SW2-05-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

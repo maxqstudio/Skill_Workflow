@@ -1139,40 +1139,91 @@ Machine-derived facts do not invent semantic ownership.
 
 
 def render_symbols(facts: dict) -> str:
-    rows = []
-    for item in facts.get("python_symbols", []):
-        start = clean(item.get("line_start"))
-        end = clean(item.get("line_end"))
-        line_range = start + ("-" + end if end else "")
-        rows.append(
-            "| "
-            + cell(item.get("file"))
-            + " | "
-            + cell(item.get("symbol"))
-            + " | "
-            + cell(item.get("kind"))
-            + " | "
-            + cell(line_range)
-            + " | Observed Python symbol | | | |"
+    symbols = list(facts.get("python_symbols", []))
+    grouped: dict[str, list[dict]] = {}
+    for item in symbols:
+        file_name = clean(item.get("file")) or "UNKNOWN"
+        grouped.setdefault(file_name, []).append(item)
+
+    summary_rows: list[str] = []
+    detail_sections: list[str] = []
+    for file_name in sorted(grouped):
+        items = sorted(
+            grouped[file_name],
+            key=lambda item: (
+                int(item.get("line_start") or 0),
+                clean(item.get("symbol")),
+                clean(item.get("kind")),
+            ),
         )
-    if not rows:
-        rows.append("| | | | | | | | |")
+        classes = sum(1 for item in items if clean(item.get("kind")) == "class")
+        functions = sum(1 for item in items if clean(item.get("kind")) == "function")
+        methods = sum(1 for item in items if clean(item.get("kind")) == "method")
+        summary_rows.append(
+            "| " + cell(file_name) + " | " + str(len(items)) + " | "
+            + str(classes) + " | " + str(functions) + " | " + str(methods) + " |"
+        )
+
+        detail_rows: list[str] = []
+        for item in items:
+            start_line = clean(item.get("line_start"))
+            end_line = clean(item.get("line_end"))
+            line_range = start_line + ("-" + end_line if end_line else "")
+            detail_rows.append(
+                "| " + cell(item.get("symbol")) + " | " + cell(item.get("kind"))
+                + " | " + cell(line_range) + " |"
+            )
+
+        label = (
+            file_name.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+        )
+        detail_sections.extend(
+            [
+                "<details>",
+                "<summary><code>" + label + "</code> — " + str(len(items)) + " symbols</summary>",
+                "",
+                "| Symbol | Kind | Lines@SHA |",
+                "|---|---|---|",
+                *detail_rows,
+                "",
+                "</details>",
+                "",
+            ]
+        )
+
+    if not summary_rows:
+        summary_rows.append("| None observed | 0 | 0 | 0 | 0 |")
+    details = "\n".join(detail_sections).rstrip() or "_No Python symbols observed._"
     return """# SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
 Source digest: {digest}
 Status: CURRENT
 
-| File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
-|---|---|---|---|---|---|---|---|
-{rows}
+The default view summarizes machine-observed symbols by file. Expand a file only
+when exact symbol navigation is needed. Full machine facts remain available in
+`.workflow/generated/code_facts.json`; this projection does not invent semantic
+responsibility, callers, or state ownership.
+
+## File summary
+
+| File | Symbols | Classes | Functions | Methods |
+|---|---:|---:|---:|---:|
+{summary}
+
+## Detailed symbols
+
+{details}
 
 ## Coverage
 
 {coverage}
 """.format(
         digest=facts["source_digest"],
-        rows="\n".join(rows),
+        summary="\n".join(summary_rows),
+        details=details,
         coverage=bullets(facts.get("coverage", {}).get("limitations", [])),
     )
 
