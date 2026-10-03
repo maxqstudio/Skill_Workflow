@@ -1181,8 +1181,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::main",
       "language": "Python",
-      "line_end": 1941,
-      "line_start": 1802,
+      "line_end": 1992,
+      "line_start": 1853,
       "locator": "scripts/generate_project_docs.py::main"
     },
     {
@@ -1208,8 +1208,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_acceptance",
       "language": "Python",
-      "line_end": 1338,
-      "line_start": 1246,
+      "line_end": 1389,
+      "line_start": 1297,
       "locator": "scripts/generate_project_docs.py::render_acceptance"
     },
     {
@@ -1217,8 +1217,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_all",
       "language": "Python",
-      "line_end": 1799,
-      "line_start": 1718,
+      "line_end": 1850,
+      "line_start": 1769,
       "locator": "scripts/generate_project_docs.py::render_all"
     },
     {
@@ -1226,8 +1226,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_api",
       "language": "Python",
-      "line_end": 1564,
-      "line_start": 1537,
+      "line_end": 1615,
+      "line_start": 1588,
       "locator": "scripts/generate_project_docs.py::render_api"
     },
     {
@@ -1253,8 +1253,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_changelog",
       "language": "Python",
-      "line_end": 1704,
-      "line_start": 1688,
+      "line_end": 1755,
+      "line_start": 1739,
       "locator": "scripts/generate_project_docs.py::render_changelog"
     },
     {
@@ -1271,8 +1271,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_data",
       "language": "Python",
-      "line_end": 1592,
-      "line_start": 1567,
+      "line_end": 1643,
+      "line_start": 1618,
       "locator": "scripts/generate_project_docs.py::render_data"
     },
     {
@@ -1280,8 +1280,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_decisions",
       "language": "Python",
-      "line_end": 1659,
-      "line_start": 1641,
+      "line_end": 1710,
+      "line_start": 1692,
       "locator": "scripts/generate_project_docs.py::render_decisions"
     },
     {
@@ -1289,8 +1289,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_defects",
       "language": "Python",
-      "line_end": 1685,
-      "line_start": 1662,
+      "line_end": 1736,
+      "line_start": 1713,
       "locator": "scripts/generate_project_docs.py::render_defects"
     },
     {
@@ -1298,8 +1298,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_doc_sync",
       "language": "Python",
-      "line_end": 1385,
-      "line_start": 1341,
+      "line_end": 1436,
+      "line_start": 1392,
       "locator": "scripts/generate_project_docs.py::render_doc_sync"
     },
     {
@@ -1307,8 +1307,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_flows",
       "language": "Python",
-      "line_end": 1243,
-      "line_start": 1180,
+      "line_end": 1294,
+      "line_start": 1231,
       "locator": "scripts/generate_project_docs.py::render_flows"
     },
     {
@@ -1316,8 +1316,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_glossary",
       "language": "Python",
-      "line_end": 1715,
-      "line_start": 1707,
+      "line_end": 1766,
+      "line_start": 1758,
       "locator": "scripts/generate_project_docs.py::render_glossary"
     },
     {
@@ -1352,8 +1352,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_runbook",
       "language": "Python",
-      "line_end": 1638,
-      "line_start": 1623,
+      "line_end": 1689,
+      "line_start": 1674,
       "locator": "scripts/generate_project_docs.py::render_runbook"
     },
     {
@@ -1370,7 +1370,7 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_symbols",
       "language": "Python",
-      "line_end": 1177,
+      "line_end": 1228,
       "line_start": 1141,
       "locator": "scripts/generate_project_docs.py::render_symbols"
     },
@@ -1388,8 +1388,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_truth",
       "language": "Python",
-      "line_end": 1534,
-      "line_start": 1388,
+      "line_end": 1585,
+      "line_start": 1439,
       "locator": "scripts/generate_project_docs.py::render_truth"
     },
     {
@@ -1397,8 +1397,8 @@
       "kind": "function",
       "label": "scripts/generate_project_docs.py::render_ui",
       "language": "Python",
-      "line_end": 1620,
-      "line_start": 1595,
+      "line_end": 1671,
+      "line_start": 1646,
       "locator": "scripts/generate_project_docs.py::render_ui"
     },
     {
@@ -1708,7 +1708,7 @@
       "locator": "scripts/validate_public_docs.py::validate"
     }
   ],
-  "observed_head": "ef927386a13c5c77597e764f8a81b475a7b9b80e",
+  "observed_head": "b384ccc7e8973bc2878dc182760c9745c4194e55",
   "schema_version": 1,
-  "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd"
+  "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
 }

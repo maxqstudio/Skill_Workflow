@@ -50,4 +50,12 @@ Skill Workflow repository product documentation uses a source-authored public na
 
 Rationale: The previous README mixed landing, installation matrix, governance theory, tool reference, and generated project-state concepts. Moving canonical consumer Project Truth paths only to improve repository presentation would create avoidable migration risk. A distinct public layer improves GitHub readability while preserving compatibility and audit evidence.
 
+## SW2-ADR-007 — Collapse generated symbol detail without dropping machine facts
+
+Status: ACCEPTED
+
+SYMBOL_INDEX.md uses a file-level summary as the default GitHub view and deterministic per-file collapsible detail. Every extracted symbol remains rendered, while empty semantic columns and repetitive placeholder responsibility text are removed. Full machine facts remain in .workflow/generated/code_facts.json. Handoff validation accepts legacy tables for compatibility and validates V2 presentation structure fail-closed.
+
+Rationale: The previous single table exposed every Python symbol with repeated Observed Python symbol text and empty Responsibility/Reads-Writes/Called-By/Tests columns. Collapsible deterministic grouping improves presentation without reducing extracted evidence or breaking existing consumer indexes.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY -->

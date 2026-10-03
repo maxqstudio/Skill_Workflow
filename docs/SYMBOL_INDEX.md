@@ -3,274 +3,582 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
+Source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 Status: CURRENT
 
-| File | Symbol | Kind | Lines@SHA | Responsibility | Reads/Writes | Called By | Tests |
-|---|---|---|---|---|---|---|---|
-| scripts/benchmark_governance.py | git | function | 31-39 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | timed | function | 42-59 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | run_command | function | 62-78 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | governance_tool | function | 81-88 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | copy_for_sync | function | 91-103 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | baseline_comparison | function | 106-137 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | main | function | 140-284 | Observed Python symbol | | | |
-| scripts/benchmark_governance.py | _cached_facts | function | 287-289 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | call_name | function | 37-43 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | literal_string | function | 46-49 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts | class | 52-127 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.__init__ | method | 53-59 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.locator | method | 61-63 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_ClassDef | method | 65-77 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts._function | method | 79-107 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_FunctionDef | method | 109-110 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_AsyncFunctionDef | method | 112-117 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | PythonFacts.visit_Call | method | 119-127 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | is_test_file | function | 130-140 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | _extract_from_snapshot | function | 143-216 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | extract_project_facts | function | 219-228 | Observed Python symbol | | | |
-| scripts/extract_project_facts.py | main | function | 231-251 | Observed Python symbol | | | |
-| scripts/generate_module_map.py | head | function | 28-36 | Observed Python symbol | | | |
-| scripts/generate_module_map.py | language | function | 39-47 | Observed Python symbol | | | |
-| scripts/generate_module_map.py | main | function | 50-116 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | git_root | function | 53-62 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | load_json | function | 65-69 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | canonical_bytes | function | 72-78 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | canonical_generated_bytes | function | 81-83 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | clean | function | 86-87 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | cell | function | 90-91 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | bullets | function | 94-96 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | normalize_markdown | function | 99-132 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | read_specs | function | 135-155 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | validate_inputs | function | 158-270 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | input_digest | function | 273-292 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | generated_header | function | 295-299 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | claim_backlink_comment | function | 302-311 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | auth_lookup | function | 314-318 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_system_overview | function | 321-591 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_project_manifest | function | 594-696 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_current_state | function | 699-800 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_roadmap | function | 803-863 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_authority | function | 866-901 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_architecture | function | 904-983 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_workflows | function | 986-1052 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_sequence | function | 1055-1106 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_modules | function | 1109-1138 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_symbols | function | 1141-1177 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_flows | function | 1180-1243 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_acceptance | function | 1246-1338 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_doc_sync | function | 1341-1385 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_truth | function | 1388-1534 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_api | function | 1537-1564 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_data | function | 1567-1592 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_ui | function | 1595-1620 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_runbook | function | 1623-1638 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_decisions | function | 1641-1659 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_defects | function | 1662-1685 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_changelog | function | 1688-1704 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_glossary | function | 1707-1715 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | render_all | function | 1718-1799 | Observed Python symbol | | | |
-| scripts/generate_project_docs.py | main | function | 1802-1941 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | allowed | function | 33-35 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | call_name | function | 38-49 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | literal_string | function | 52-55 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector | class | 58-130 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.__init__ | method | 59-67 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.symbol_id | method | 69-71 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_ClassDef | method | 73-86 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector._visit_function | method | 88-117 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_FunctionDef | method | 119-120 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_AsyncFunctionDef | method | 122-123 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | PyCollector.visit_Call | method | 125-130 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | collect_python | function | 133-200 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | collect_js_http | function | 210-264 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | dedupe_nodes | function | 267-273 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | dedupe_edges | function | 276-290 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | filter_reachable | function | 293-333 | Observed Python symbol | | | |
-| scripts/generate_sequence_actual.py | main | function | 336-416 | Observed Python symbol | | | |
-| scripts/generate_sequence_plan.py | main | function | 15-45 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | git_head | function | 28-36 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | allowed | function | 39-41 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols | function | 44-92 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols.Visitor | class | 56-88 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols.Visitor.__init__ | method | 57-58 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols.Visitor._emit | method | 60-70 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols.Visitor.visit_ClassDef | method | 72-76 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols.Visitor.visit_FunctionDef | method | 78-82 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | python_symbols.Visitor.visit_AsyncFunctionDef | method | 84-88 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | ctags_symbols | function | 95-155 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | dedupe | function | 158-171 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | write_markdown | function | 174-201 | Observed Python symbol | | | |
-| scripts/generate_symbol_index.py | main | function | 204-257 | Observed Python symbol | | | |
-| scripts/governance_engine.py | NodeResult | class | 38-44 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationNode | class | 48-51 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG | class | 54-131 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG.__init__ | method | 55-67 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG._assert_acyclic | method | 69-85 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG._assert_acyclic.visit | method | 73-82 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG.run | method | 87-131 | Observed Python symbol | | | |
-| scripts/governance_engine.py | ValidationDAG.run.execute | method | 90-127 | Observed Python symbol | | | |
-| scripts/governance_engine.py | git | function | 195-200 | Observed Python symbol | | | |
-| scripts/governance_engine.py | git_z | function | 203-212 | Observed Python symbol | | | |
-| scripts/governance_engine.py | state_base | function | 215-223 | Observed Python symbol | | | |
-| scripts/governance_engine.py | collect_changed_paths | function | 226-240 | Observed Python symbol | | | |
-| scripts/governance_engine.py | classify_path | function | 243-269 | Observed Python symbol | | | |
-| scripts/governance_engine.py | classify_changed_paths | function | 272-273 | Observed Python symbol | | | |
-| scripts/governance_engine.py | effective_mode | function | 276-284 | Observed Python symbol | | | |
-| scripts/governance_engine.py | develop_node_names | function | 287-331 | Observed Python symbol | | | |
-| scripts/governance_engine.py | planned_node_names | function | 334-344 | Observed Python symbol | | | |
-| scripts/governance_engine.py | governed_status | function | 347-360 | Observed Python symbol | | | |
-| scripts/governance_engine.py | cli_action | function | 363-368 | Observed Python symbol | | | |
-| scripts/governance_engine.py | command_action | function | 371-386 | Observed Python symbol | | | |
-| scripts/governance_engine.py | command_action.run | method | 372-384 | Observed Python symbol | | | |
-| scripts/governance_engine.py | compile_scripts_action | function | 389-406 | Observed Python symbol | | | |
-| scripts/governance_engine.py | compile_scripts_action.run | method | 391-404 | Observed Python symbol | | | |
-| scripts/governance_engine.py | _regression_node | function | 409-414 | Observed Python symbol | | | |
-| scripts/governance_engine.py | build_mode_dag | function | 417-601 | Observed Python symbol | | | |
-| scripts/governance_engine.py | build_dag | function | 604-678 | Observed Python symbol | | | |
-| scripts/governance_engine.py | main | function | 681-809 | Observed Python symbol | | | |
-| scripts/initialize_project_truth.py | ensure_gitattributes | function | 20-30 | Observed Python symbol | | | |
-| scripts/initialize_project_truth.py | copy_file | function | 33-38 | Observed Python symbol | | | |
-| scripts/initialize_project_truth.py | main | function | 41-126 | Observed Python symbol | | | |
-| scripts/project_profile.py | _clean | function | 81-85 | Observed Python symbol | | | |
-| scripts/project_profile.py | parse_profile | function | 88-128 | Observed Python symbol | | | |
-| scripts/project_profile.py | normalized_profile | function | 131-135 | Observed Python symbol | | | |
-| scripts/project_profile.py | contract_settings | function | 138-149 | Observed Python symbol | | | |
-| scripts/project_profile.py | _bool_value | function | 152-158 | Observed Python symbol | | | |
-| scripts/project_profile.py | runtime_settings | function | 161-167 | Observed Python symbol | | | |
-| scripts/project_profile.py | documentation_settings | function | 170-191 | Observed Python symbol | | | |
-| scripts/project_profile.py | sequence_settings | function | 194-209 | Observed Python symbol | | | |
-| scripts/project_profile.py | required_docs | function | 212-224 | Observed Python symbol | | | |
-| scripts/project_profile.py | validate_profile | function | 227-260 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | SnapshotError | class | 36-37 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | _git | function | 40-45 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | _git_optional | function | 48-52 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | discover_source_paths | function | 55-101 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | canonical_source_bytes | function | 104-106 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | SnapshotFile | class | 110-116 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | SnapshotFile.text | method | 115-116 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot | class | 120-214 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.capture | method | 134-168 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.source_files | method | 170-171 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.entry | method | 173-185 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.read_bytes | method | 187-188 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.read_text | method | 190-191 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.memoized | method | 193-200 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | ProjectSnapshot.metrics | method | 202-214 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | active_project_snapshot | function | 223-228 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | active_snapshot_for | function | 231-235 | Observed Python symbol | | | |
-| scripts/project_snapshot.py | resolve_snapshot | function | 238-247 | Observed Python symbol | | | |
-| scripts/script_runner.py | invoke_main | function | 12-35 | Observed Python symbol | | | |
-| scripts/selftest_cross_document_regressions.py | main | function | 7-35 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | require | function | 28-30 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | git | function | 33-39 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | git_text | function | 42-47 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | snapshot_parity_and_immutability | function | 50-85 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | snapshot_fact_reuse | function | 88-107 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_executes_once | function | 110-129 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_executes_once.action | method | 113-118 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_executes_once.action.run | method | 114-116 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_fail_closed | function | 132-169 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_fail_closed.fail | method | 135-136 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | dag_fail_closed.downstream | method | 138-141 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | mode_planning_contract | function | 172-258 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | changed_path_collection_contract | function | 261-283 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | mode_cli_integration_contract | function | 286-379 | Observed Python symbol | | | |
-| scripts/selftest_governance_engine.py | main | function | 382-391 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | run | function | 16-36 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | write_json | function | 39-40 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | test_gitignored_source_files_are_excluded | function | 43-101 | Observed Python symbol | | | |
-| scripts/selftest_project_truth_compiler.py | main | function | 104-452 | Observed Python symbol | | | |
-| scripts/selftest_public_docs.py | main | function | 20-64 | Observed Python symbol | | | |
-| scripts/selftest_sequence_call_resolution.py | run | function | 18-28 | Observed Python symbol | | | |
-| scripts/selftest_sequence_call_resolution.py | main | function | 31-103 | Observed Python symbol | | | |
-| scripts/selftest_sequence_human_view.py | run | function | 16-32 | Observed Python symbol | | | |
-| scripts/selftest_sequence_human_view.py | sha256 | function | 35-36 | Observed Python symbol | | | |
-| scripts/selftest_sequence_human_view.py | main | function | 39-202 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | run | function | 48-68 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | write_json | function | 71-76 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | git | function | 79-80 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | clone_fixture | function | 83-89 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | sync_and_commit_case | function | 92-102 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | assert_cross_failure | function | 105-125 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | run_relation_and_truth_regressions | function | 128-209 | Observed Python symbol | | | |
-| scripts/selftest_strict_project_workflow.py | main | function | 212-864 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | load_json | function | 24-25 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | write_json | function | 28-30 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | sha256_file | function | 33-34 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | git | function | 37-42 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | git_head | function | 45-46 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | _selected_snapshot | function | 49-56 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | source_files | function | 59-67 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | compute_source_digest | function | 70-86 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | is_ancestor | function | 89-96 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | sanitize_alias | function | 99-103 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | render_graph_mermaid | function | 106-138 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | plan_locator_map | function | 141-148 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | graph_edge_set | function | 151-156 | Observed Python symbol | | | |
-| scripts/sequence_contract.py | compare_plan_actual | function | 159-203 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | _clean_label | function | 21-22 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | _machine_component | function | 25-44 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | project_human_graph | function | 47-169 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | _sanitize_alias | function | 172-176 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | render_human_mermaid | function | 179-203 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | render_human_markdown | function | 206-248 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | render_human_markdown.view_link | method | 220-221 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | main | function | 251-312 | Observed Python symbol | | | |
-| scripts/sequence_human_view.py | main.resolve | method | 264-266 | Observed Python symbol | | | |
-| scripts/sync_project_truth.py | run_main | function | 30-31 | Observed Python symbol | | | |
-| scripts/sync_project_truth.py | sync_once | function | 34-127 | Observed Python symbol | | | |
-| scripts/sync_project_truth.py | main | function | 130-142 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | git | function | 62-67 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | git_root | function | 70-71 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | read | function | 74-75 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | source_has_symbol | function | 78-111 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | strip_fences | function | 114-130 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | is_template_document | function | 133-137 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | all_docs | function | 140-146 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | parse_table | function | 149-162 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | scalar_fields | function | 165-175 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | normalize_repo | function | 178-182 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | normalize_branch | function | 185-186 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | normalize_sha | function | 189-191 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | likely_path | function | 194-201 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | resolve_ref | function | 204-215 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | truth_claims | function | 218-247 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | claim_rows | function | 250-274 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | split_refs | function | 277-278 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | resolve_declared_doc_ref | function | 281-289 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | diff_changes | function | 292-302 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | is_source | function | 305-309 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | required_docs_for_diff | function | 312-382 | Observed Python symbol | | | |
-| scripts/validate_cross_document_consistency.py | main | function | 385-734 | Observed Python symbol | | | |
-| scripts/validate_doc_quality.py | normalized_shape | function | 66-117 | Observed Python symbol | | | |
-| scripts/validate_doc_quality.py | main | function | 120-265 | Observed Python symbol | | | |
-| scripts/validate_handoff.py | git_root | function | 36-45 | Observed Python symbol | | | |
-| scripts/validate_handoff.py | read | function | 48-49 | Observed Python symbol | | | |
-| scripts/validate_handoff.py | has_placeholder | function | 52-56 | Observed Python symbol | | | |
-| scripts/validate_handoff.py | main | function | 59-374 | Observed Python symbol | | | |
-| scripts/validate_human_comprehension.py | git_root | function | 60-69 | Observed Python symbol | | | |
-| scripts/validate_human_comprehension.py | parse_gate_rows | function | 72-89 | Observed Python symbol | | | |
-| scripts/validate_human_comprehension.py | main | function | 92-210 | Observed Python symbol | | | |
-| scripts/validate_project_docs.py | main | function | 19-80 | Observed Python symbol | | | |
-| scripts/validate_project_truth.py | run_git | function | 57-62 | Observed Python symbol | | | |
-| scripts/validate_project_truth.py | git_root | function | 65-66 | Observed Python symbol | | | |
-| scripts/validate_project_truth.py | parse_table | function | 69-83 | Observed Python symbol | | | |
-| scripts/validate_project_truth.py | split_refs | function | 86-87 | Observed Python symbol | | | |
-| scripts/validate_project_truth.py | file_exists | function | 90-96 | Observed Python symbol | | | |
-| scripts/validate_project_truth.py | main | function | 99-361 | Observed Python symbol | | | |
-| scripts/validate_public_docs.py | validate | function | 63-140 | Observed Python symbol | | | |
-| scripts/validate_public_docs.py | main | function | 143-157 | Observed Python symbol | | | |
-| scripts/validate_sequence_contract.py | resolve | function | 26-28 | Observed Python symbol | | | |
-| scripts/validate_sequence_contract.py | git_show_bytes | function | 31-35 | Observed Python symbol | | | |
-| scripts/validate_sequence_contract.py | expected_plan_mermaid | function | 38-44 | Observed Python symbol | | | |
-| scripts/validate_sequence_contract.py | expected_actual_mermaid | function | 47-54 | Observed Python symbol | | | |
-| scripts/validate_sequence_contract.py | main | function | 57-324 | Observed Python symbol | | | |
-| scripts/validate_sequence_human_view.py | resolve | function | 20-22 | Observed Python symbol | | | |
-| scripts/validate_sequence_human_view.py | expected_human_mermaid | function | 25-32 | Observed Python symbol | | | |
-| scripts/validate_sequence_human_view.py | main | function | 35-252 | Observed Python symbol | | | |
-| scripts/validate_sequence_sessions.py | run_validator | function | 16-36 | Observed Python symbol | | | |
-| scripts/validate_sequence_sessions.py | main | function | 39-147 | Observed Python symbol | | | |
+The default view summarizes machine-observed symbols by file. Expand a file only
+when exact symbol navigation is needed. Full machine facts remain available in
+`.workflow/generated/code_facts.json`; this projection does not invent semantic
+responsibility, callers, or state ownership.
+
+## File summary
+
+| File | Symbols | Classes | Functions | Methods |
+|---|---:|---:|---:|---:|
+| scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
+| scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
+| scripts/generate_module_map.py | 3 | 0 | 3 | 0 |
+| scripts/generate_project_docs.py | 38 | 0 | 38 | 0 |
+| scripts/generate_sequence_actual.py | 17 | 1 | 9 | 7 |
+| scripts/generate_sequence_plan.py | 1 | 0 | 1 | 0 |
+| scripts/generate_symbol_index.py | 13 | 1 | 7 | 5 |
+| scripts/governance_engine.py | 27 | 3 | 17 | 7 |
+| scripts/initialize_project_truth.py | 3 | 0 | 3 | 0 |
+| scripts/project_profile.py | 10 | 0 | 10 | 0 |
+| scripts/project_snapshot.py | 18 | 3 | 7 | 8 |
+| scripts/script_runner.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_governance_engine.py | 15 | 0 | 11 | 4 |
+| scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
+| scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_sequence_call_resolution.py | 2 | 0 | 2 | 0 |
+| scripts/selftest_sequence_human_view.py | 3 | 0 | 3 | 0 |
+| scripts/selftest_strict_project_workflow.py | 8 | 0 | 8 | 0 |
+| scripts/sequence_contract.py | 14 | 0 | 14 | 0 |
+| scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
+| scripts/sync_project_truth.py | 3 | 0 | 3 | 0 |
+| scripts/validate_cross_document_consistency.py | 22 | 0 | 22 | 0 |
+| scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
+| scripts/validate_handoff.py | 5 | 0 | 5 | 0 |
+| scripts/validate_human_comprehension.py | 3 | 0 | 3 | 0 |
+| scripts/validate_project_docs.py | 1 | 0 | 1 | 0 |
+| scripts/validate_project_truth.py | 6 | 0 | 6 | 0 |
+| scripts/validate_public_docs.py | 2 | 0 | 2 | 0 |
+| scripts/validate_sequence_contract.py | 5 | 0 | 5 | 0 |
+| scripts/validate_sequence_human_view.py | 3 | 0 | 3 | 0 |
+| scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
+
+## Detailed symbols
+
+<details>
+<summary><code>scripts/benchmark_governance.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 31-39 |
+| timed | function | 42-59 |
+| run_command | function | 62-78 |
+| governance_tool | function | 81-88 |
+| copy_for_sync | function | 91-103 |
+| baseline_comparison | function | 106-137 |
+| main | function | 140-284 |
+| _cached_facts | function | 287-289 |
+
+</details>
+
+<details>
+<summary><code>scripts/extract_project_facts.py</code> — 14 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| call_name | function | 37-43 |
+| literal_string | function | 46-49 |
+| PythonFacts | class | 52-127 |
+| PythonFacts.__init__ | method | 53-59 |
+| PythonFacts.locator | method | 61-63 |
+| PythonFacts.visit_ClassDef | method | 65-77 |
+| PythonFacts._function | method | 79-107 |
+| PythonFacts.visit_FunctionDef | method | 109-110 |
+| PythonFacts.visit_AsyncFunctionDef | method | 112-117 |
+| PythonFacts.visit_Call | method | 119-127 |
+| is_test_file | function | 130-140 |
+| _extract_from_snapshot | function | 143-216 |
+| extract_project_facts | function | 219-228 |
+| main | function | 231-251 |
+
+</details>
+
+<details>
+<summary><code>scripts/generate_module_map.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| head | function | 28-36 |
+| language | function | 39-47 |
+| main | function | 50-116 |
+
+</details>
+
+<details>
+<summary><code>scripts/generate_project_docs.py</code> — 38 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git_root | function | 53-62 |
+| load_json | function | 65-69 |
+| canonical_bytes | function | 72-78 |
+| canonical_generated_bytes | function | 81-83 |
+| clean | function | 86-87 |
+| cell | function | 90-91 |
+| bullets | function | 94-96 |
+| normalize_markdown | function | 99-132 |
+| read_specs | function | 135-155 |
+| validate_inputs | function | 158-270 |
+| input_digest | function | 273-292 |
+| generated_header | function | 295-299 |
+| claim_backlink_comment | function | 302-311 |
+| auth_lookup | function | 314-318 |
+| render_system_overview | function | 321-591 |
+| render_project_manifest | function | 594-696 |
+| render_current_state | function | 699-800 |
+| render_roadmap | function | 803-863 |
+| render_authority | function | 866-901 |
+| render_architecture | function | 904-983 |
+| render_workflows | function | 986-1052 |
+| render_sequence | function | 1055-1106 |
+| render_modules | function | 1109-1138 |
+| render_symbols | function | 1141-1228 |
+| render_flows | function | 1231-1294 |
+| render_acceptance | function | 1297-1389 |
+| render_doc_sync | function | 1392-1436 |
+| render_truth | function | 1439-1585 |
+| render_api | function | 1588-1615 |
+| render_data | function | 1618-1643 |
+| render_ui | function | 1646-1671 |
+| render_runbook | function | 1674-1689 |
+| render_decisions | function | 1692-1710 |
+| render_defects | function | 1713-1736 |
+| render_changelog | function | 1739-1755 |
+| render_glossary | function | 1758-1766 |
+| render_all | function | 1769-1850 |
+| main | function | 1853-1992 |
+
+</details>
+
+<details>
+<summary><code>scripts/generate_sequence_actual.py</code> — 17 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| allowed | function | 33-35 |
+| call_name | function | 38-49 |
+| literal_string | function | 52-55 |
+| PyCollector | class | 58-130 |
+| PyCollector.__init__ | method | 59-67 |
+| PyCollector.symbol_id | method | 69-71 |
+| PyCollector.visit_ClassDef | method | 73-86 |
+| PyCollector._visit_function | method | 88-117 |
+| PyCollector.visit_FunctionDef | method | 119-120 |
+| PyCollector.visit_AsyncFunctionDef | method | 122-123 |
+| PyCollector.visit_Call | method | 125-130 |
+| collect_python | function | 133-200 |
+| collect_js_http | function | 210-264 |
+| dedupe_nodes | function | 267-273 |
+| dedupe_edges | function | 276-290 |
+| filter_reachable | function | 293-333 |
+| main | function | 336-416 |
+
+</details>
+
+<details>
+<summary><code>scripts/generate_sequence_plan.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 15-45 |
+
+</details>
+
+<details>
+<summary><code>scripts/generate_symbol_index.py</code> — 13 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git_head | function | 28-36 |
+| allowed | function | 39-41 |
+| python_symbols | function | 44-92 |
+| python_symbols.Visitor | class | 56-88 |
+| python_symbols.Visitor.__init__ | method | 57-58 |
+| python_symbols.Visitor._emit | method | 60-70 |
+| python_symbols.Visitor.visit_ClassDef | method | 72-76 |
+| python_symbols.Visitor.visit_FunctionDef | method | 78-82 |
+| python_symbols.Visitor.visit_AsyncFunctionDef | method | 84-88 |
+| ctags_symbols | function | 95-155 |
+| dedupe | function | 158-171 |
+| write_markdown | function | 174-201 |
+| main | function | 204-257 |
+
+</details>
+
+<details>
+<summary><code>scripts/governance_engine.py</code> — 27 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| NodeResult | class | 38-44 |
+| ValidationNode | class | 48-51 |
+| ValidationDAG | class | 54-131 |
+| ValidationDAG.__init__ | method | 55-67 |
+| ValidationDAG._assert_acyclic | method | 69-85 |
+| ValidationDAG._assert_acyclic.visit | method | 73-82 |
+| ValidationDAG.run | method | 87-131 |
+| ValidationDAG.run.execute | method | 90-127 |
+| git | function | 195-200 |
+| git_z | function | 203-212 |
+| state_base | function | 215-223 |
+| collect_changed_paths | function | 226-240 |
+| classify_path | function | 243-269 |
+| classify_changed_paths | function | 272-273 |
+| effective_mode | function | 276-284 |
+| develop_node_names | function | 287-331 |
+| planned_node_names | function | 334-344 |
+| governed_status | function | 347-360 |
+| cli_action | function | 363-368 |
+| command_action | function | 371-386 |
+| command_action.run | method | 372-384 |
+| compile_scripts_action | function | 389-406 |
+| compile_scripts_action.run | method | 391-404 |
+| _regression_node | function | 409-414 |
+| build_mode_dag | function | 417-601 |
+| build_dag | function | 604-678 |
+| main | function | 681-809 |
+
+</details>
+
+<details>
+<summary><code>scripts/initialize_project_truth.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| ensure_gitattributes | function | 20-30 |
+| copy_file | function | 33-38 |
+| main | function | 41-126 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_profile.py</code> — 10 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _clean | function | 81-85 |
+| parse_profile | function | 88-128 |
+| normalized_profile | function | 131-135 |
+| contract_settings | function | 138-149 |
+| _bool_value | function | 152-158 |
+| runtime_settings | function | 161-167 |
+| documentation_settings | function | 170-191 |
+| sequence_settings | function | 194-209 |
+| required_docs | function | 212-224 |
+| validate_profile | function | 227-260 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_snapshot.py</code> — 18 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| SnapshotError | class | 36-37 |
+| _git | function | 40-45 |
+| _git_optional | function | 48-52 |
+| discover_source_paths | function | 55-101 |
+| canonical_source_bytes | function | 104-106 |
+| SnapshotFile | class | 110-116 |
+| SnapshotFile.text | method | 115-116 |
+| ProjectSnapshot | class | 120-214 |
+| ProjectSnapshot.capture | method | 134-168 |
+| ProjectSnapshot.source_files | method | 170-171 |
+| ProjectSnapshot.entry | method | 173-185 |
+| ProjectSnapshot.read_bytes | method | 187-188 |
+| ProjectSnapshot.read_text | method | 190-191 |
+| ProjectSnapshot.memoized | method | 193-200 |
+| ProjectSnapshot.metrics | method | 202-214 |
+| active_project_snapshot | function | 223-228 |
+| active_snapshot_for | function | 231-235 |
+| resolve_snapshot | function | 238-247 |
+
+</details>
+
+<details>
+<summary><code>scripts/script_runner.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| invoke_main | function | 12-35 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_cross_document_regressions.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 7-35 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_generated_doc_presentation.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 10-50 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_governance_engine.py</code> — 15 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| require | function | 28-30 |
+| git | function | 33-39 |
+| git_text | function | 42-47 |
+| snapshot_parity_and_immutability | function | 50-85 |
+| snapshot_fact_reuse | function | 88-107 |
+| dag_executes_once | function | 110-129 |
+| dag_executes_once.action | method | 113-118 |
+| dag_executes_once.action.run | method | 114-116 |
+| dag_fail_closed | function | 132-169 |
+| dag_fail_closed.fail | method | 135-136 |
+| dag_fail_closed.downstream | method | 138-141 |
+| mode_planning_contract | function | 172-258 |
+| changed_path_collection_contract | function | 261-283 |
+| mode_cli_integration_contract | function | 286-379 |
+| main | function | 382-391 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_project_truth_compiler.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 16-36 |
+| write_json | function | 39-40 |
+| test_gitignored_source_files_are_excluded | function | 43-101 |
+| main | function | 104-452 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_public_docs.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 20-64 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_sequence_call_resolution.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 18-28 |
+| main | function | 31-103 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_sequence_human_view.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 16-32 |
+| sha256 | function | 35-36 |
+| main | function | 39-202 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_strict_project_workflow.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 48-68 |
+| write_json | function | 71-76 |
+| git | function | 79-80 |
+| clone_fixture | function | 83-89 |
+| sync_and_commit_case | function | 92-102 |
+| assert_cross_failure | function | 105-125 |
+| run_relation_and_truth_regressions | function | 128-209 |
+| main | function | 212-864 |
+
+</details>
+
+<details>
+<summary><code>scripts/sequence_contract.py</code> — 14 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| load_json | function | 24-25 |
+| write_json | function | 28-30 |
+| sha256_file | function | 33-34 |
+| git | function | 37-42 |
+| git_head | function | 45-46 |
+| _selected_snapshot | function | 49-56 |
+| source_files | function | 59-67 |
+| compute_source_digest | function | 70-86 |
+| is_ancestor | function | 89-96 |
+| sanitize_alias | function | 99-103 |
+| render_graph_mermaid | function | 106-138 |
+| plan_locator_map | function | 141-148 |
+| graph_edge_set | function | 151-156 |
+| compare_plan_actual | function | 159-203 |
+
+</details>
+
+<details>
+<summary><code>scripts/sequence_human_view.py</code> — 9 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _clean_label | function | 21-22 |
+| _machine_component | function | 25-44 |
+| project_human_graph | function | 47-169 |
+| _sanitize_alias | function | 172-176 |
+| render_human_mermaid | function | 179-203 |
+| render_human_markdown | function | 206-248 |
+| render_human_markdown.view_link | method | 220-221 |
+| main | function | 251-312 |
+| main.resolve | method | 264-266 |
+
+</details>
+
+<details>
+<summary><code>scripts/sync_project_truth.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run_main | function | 30-31 |
+| sync_once | function | 34-127 |
+| main | function | 130-142 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_cross_document_consistency.py</code> — 22 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 62-67 |
+| git_root | function | 70-71 |
+| read | function | 74-75 |
+| source_has_symbol | function | 78-111 |
+| strip_fences | function | 114-130 |
+| is_template_document | function | 133-137 |
+| all_docs | function | 140-146 |
+| parse_table | function | 149-162 |
+| scalar_fields | function | 165-175 |
+| normalize_repo | function | 178-182 |
+| normalize_branch | function | 185-186 |
+| normalize_sha | function | 189-191 |
+| likely_path | function | 194-201 |
+| resolve_ref | function | 204-215 |
+| truth_claims | function | 218-247 |
+| claim_rows | function | 250-274 |
+| split_refs | function | 277-278 |
+| resolve_declared_doc_ref | function | 281-289 |
+| diff_changes | function | 292-302 |
+| is_source | function | 305-309 |
+| required_docs_for_diff | function | 312-382 |
+| main | function | 385-734 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_doc_quality.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| normalized_shape | function | 66-117 |
+| main | function | 120-265 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_handoff.py</code> — 5 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git_root | function | 36-45 |
+| read | function | 48-49 |
+| has_placeholder | function | 52-62 |
+| validate_symbol_index_shape | function | 65-96 |
+| main | function | 99-413 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_human_comprehension.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git_root | function | 60-69 |
+| parse_gate_rows | function | 72-89 |
+| main | function | 92-210 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_project_docs.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 19-80 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_project_truth.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run_git | function | 57-62 |
+| git_root | function | 65-66 |
+| parse_table | function | 69-83 |
+| split_refs | function | 86-87 |
+| file_exists | function | 90-96 |
+| main | function | 99-361 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_public_docs.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| validate | function | 63-140 |
+| main | function | 143-157 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_sequence_contract.py</code> — 5 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| resolve | function | 26-28 |
+| git_show_bytes | function | 31-35 |
+| expected_plan_mermaid | function | 38-44 |
+| expected_actual_mermaid | function | 47-54 |
+| main | function | 57-324 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_sequence_human_view.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| resolve | function | 20-22 |
+| expected_human_mermaid | function | 25-32 |
+| main | function | 35-252 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_sequence_sessions.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run_validator | function | 16-36 |
+| main | function | 39-147 |
+
+</details>
 
 ## Coverage
 

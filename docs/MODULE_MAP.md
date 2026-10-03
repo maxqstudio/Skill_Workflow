@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
+Source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -11,7 +11,7 @@ Generated/refreshed: current compiler run
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 255 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
-| scripts/generate_project_docs.py | Python | 1945 | scripts | NO |
+| scripts/generate_project_docs.py | Python | 1996 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 420 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
@@ -21,6 +21,7 @@ Generated/refreshed: current compiler run
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
+| scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 68 | scripts | NO |
@@ -32,7 +33,7 @@ Generated/refreshed: current compiler run
 | scripts/sync_project_truth.py | Python | 146 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 738 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
-| scripts/validate_handoff.py | Python | 378 | scripts | NO |
+| scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |

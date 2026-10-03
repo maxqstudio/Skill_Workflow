@@ -38,7 +38,7 @@
       "file": "scripts/generate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 1945
+      "lines": 1996
     },
     {
       "directory": "scripts",
@@ -102,6 +102,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 39
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/selftest_generated_doc_presentation.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 54
     },
     {
       "directory": "scripts",
@@ -185,7 +192,7 @@
       "file": "scripts/validate_handoff.py",
       "is_test": false,
       "language": "Python",
-      "lines": 378
+      "lines": 417
     },
     {
       "directory": "scripts",
@@ -2996,6 +3003,10 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
       "target_token": "facts.get"
     },
     {
@@ -3008,6 +3019,26 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "grouped.setdefault"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
       "target_token": "clean"
     },
     {
@@ -3016,7 +3047,95 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "rows.append"
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "summary_rows.append"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "detail_rows.append"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
@@ -3040,15 +3159,23 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
+      "target_token": "file_name.replace"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "cell"
+      "target_token": "detail_sections.extend"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "rows.append"
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::render_symbols",
+      "target_token": "summary_rows.append"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_symbols",
@@ -6988,6 +7115,78 @@
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "render_symbols"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "rendered.count"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "rendered.count"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "validate_symbol_index_shape"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "has_placeholder"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "validate_symbol_index_shape"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "rendered.replace"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "validate_symbol_index_shape"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "item.startswith"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_generated_doc_presentation.py::main",
       "target_token": "print"
     },
     {
@@ -12136,11 +12335,63 @@
     },
     {
       "caller": "scripts/validate_handoff.py::has_placeholder",
+      "target_token": "re.sub"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::has_placeholder",
       "target_token": "any"
     },
     {
       "caller": "scripts/validate_handoff.py::has_placeholder",
       "target_token": "pattern.search"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "zip"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "re.findall"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "re.findall"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "re.findall"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "re.findall"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "target_token": "failures.append"
     },
     {
       "caller": "scripts/validate_handoff.py::main",
@@ -12684,7 +12935,11 @@
     },
     {
       "caller": "scripts/validate_handoff.py::main",
-      "target_token": "failures.append"
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": "scripts/validate_handoff.py::main",
+      "target_token": "validate_symbol_index_shape"
     },
     {
       "caller": "scripts/validate_handoff.py::main",
@@ -15924,7 +16179,7 @@
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1177,
+      "line_end": 1228,
       "line_start": 1141,
       "locator": "scripts/generate_project_docs.py::render_symbols",
       "symbol": "render_symbols"
@@ -15932,112 +16187,112 @@
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1243,
-      "line_start": 1180,
+      "line_end": 1294,
+      "line_start": 1231,
       "locator": "scripts/generate_project_docs.py::render_flows",
       "symbol": "render_flows"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1338,
-      "line_start": 1246,
+      "line_end": 1389,
+      "line_start": 1297,
       "locator": "scripts/generate_project_docs.py::render_acceptance",
       "symbol": "render_acceptance"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1385,
-      "line_start": 1341,
+      "line_end": 1436,
+      "line_start": 1392,
       "locator": "scripts/generate_project_docs.py::render_doc_sync",
       "symbol": "render_doc_sync"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1534,
-      "line_start": 1388,
+      "line_end": 1585,
+      "line_start": 1439,
       "locator": "scripts/generate_project_docs.py::render_truth",
       "symbol": "render_truth"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1564,
-      "line_start": 1537,
+      "line_end": 1615,
+      "line_start": 1588,
       "locator": "scripts/generate_project_docs.py::render_api",
       "symbol": "render_api"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1592,
-      "line_start": 1567,
+      "line_end": 1643,
+      "line_start": 1618,
       "locator": "scripts/generate_project_docs.py::render_data",
       "symbol": "render_data"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1620,
-      "line_start": 1595,
+      "line_end": 1671,
+      "line_start": 1646,
       "locator": "scripts/generate_project_docs.py::render_ui",
       "symbol": "render_ui"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1638,
-      "line_start": 1623,
+      "line_end": 1689,
+      "line_start": 1674,
       "locator": "scripts/generate_project_docs.py::render_runbook",
       "symbol": "render_runbook"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1659,
-      "line_start": 1641,
+      "line_end": 1710,
+      "line_start": 1692,
       "locator": "scripts/generate_project_docs.py::render_decisions",
       "symbol": "render_decisions"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1685,
-      "line_start": 1662,
+      "line_end": 1736,
+      "line_start": 1713,
       "locator": "scripts/generate_project_docs.py::render_defects",
       "symbol": "render_defects"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1704,
-      "line_start": 1688,
+      "line_end": 1755,
+      "line_start": 1739,
       "locator": "scripts/generate_project_docs.py::render_changelog",
       "symbol": "render_changelog"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1715,
-      "line_start": 1707,
+      "line_end": 1766,
+      "line_start": 1758,
       "locator": "scripts/generate_project_docs.py::render_glossary",
       "symbol": "render_glossary"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1799,
-      "line_start": 1718,
+      "line_end": 1850,
+      "line_start": 1769,
       "locator": "scripts/generate_project_docs.py::render_all",
       "symbol": "render_all"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1941,
-      "line_start": 1802,
+      "line_end": 1992,
+      "line_start": 1853,
       "locator": "scripts/generate_project_docs.py::main",
       "symbol": "main"
     },
@@ -16770,6 +17025,14 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_generated_doc_presentation.py",
+      "kind": "function",
+      "line_end": 50,
+      "line_start": 10,
+      "locator": "scripts/selftest_generated_doc_presentation.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
       "line_end": 30,
@@ -17452,7 +17715,7 @@
     {
       "file": "scripts/validate_handoff.py",
       "kind": "function",
-      "line_end": 56,
+      "line_end": 62,
       "line_start": 52,
       "locator": "scripts/validate_handoff.py::has_placeholder",
       "symbol": "has_placeholder"
@@ -17460,8 +17723,16 @@
     {
       "file": "scripts/validate_handoff.py",
       "kind": "function",
-      "line_end": 374,
-      "line_start": 59,
+      "line_end": 96,
+      "line_start": 65,
+      "locator": "scripts/validate_handoff.py::validate_symbol_index_shape",
+      "symbol": "validate_symbol_index_shape"
+    },
+    {
+      "file": "scripts/validate_handoff.py",
+      "kind": "function",
+      "line_end": 413,
+      "line_start": 99,
       "locator": "scripts/validate_handoff.py::main",
       "symbol": "main"
     },
@@ -17643,13 +17914,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd",
+  "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde",
   "source_summary": {
-    "files": 32,
+    "files": 33,
     "languages": {
-      "Python": 32
+      "Python": 33
     },
-    "lines": 10576,
+    "lines": 10720,
     "test_files": 0
   },
   "tests": []

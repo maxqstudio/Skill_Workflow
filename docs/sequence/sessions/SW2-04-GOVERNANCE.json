@@ -10,7 +10,7 @@
       "scripts/validate_public_docs.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-04-GOVERNANCE.actual.json",
-    "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd"
+    "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
   },
   "critical": true,
   "evidence_boundary": "SW2-04 DURING evidence binds the documentation compiler/validation pipeline at phase opening. Static extraction proves source-visible structure only; public information-architecture quality, README concision, machine/public separation, and post-restructure determinism remain NOT_PROVEN until dedicated SW2-04 evidence exists.",
@@ -20,7 +20,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-04-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd"
+    "source_digest": "a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde"
   },
   "implementation_base_sha": "2ff1d1501a7762baedcd848ebc117b7760b7c738",
   "mode": "DURING",
@@ -47,6 +47,7 @@
     "scripts/selftest_cross_document_regressions.py",
     "scripts/selftest_project_truth_compiler.py",
     "scripts/selftest_strict_project_workflow.py",
-    "scripts/selftest_public_docs.py"
+    "scripts/selftest_public_docs.py",
+    "scripts/selftest_generated_doc_presentation.py"
   ]
 }

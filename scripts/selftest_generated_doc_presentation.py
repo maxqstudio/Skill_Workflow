@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from generate_project_docs import render_symbols
+from validate_handoff import has_placeholder, validate_symbol_index_shape
 
 
 def main() -> int:
@@ -29,11 +30,22 @@ def main() -> int:
     assert "Observed Python symbol" not in rendered
     assert "| Responsibility | Reads/Writes | Called By | Tests |" not in rendered
     assert "fixture limitation" in rendered
+    assert validate_symbol_index_shape(rendered) == []
+    assert not has_placeholder(rendered)
+
+    legacy = "Authority SHA: test\n| File | Symbol | Kind |\n|---|---|---|\n"
+    assert validate_symbol_index_shape(legacy) == []
+    tampered = rendered.replace("</details>", "", 1)
+    failures = validate_symbol_index_shape(tampered)
+    assert any(item.startswith("SYMBOL_INDEX_V2_DETAILS_UNBALANCED:") for item in failures)
 
     print("SYMBOL_SUMMARY_PRESENT=PASS")
     print("SYMBOL_DETAIL_RETENTION=PASS")
     print("SYMBOL_COLLAPSIBLE_PRESENTATION=PASS")
     print("EMPTY_SEMANTIC_COLUMNS_REMOVED=PASS")
+    print("HANDOFF_LEGACY_COMPATIBILITY=PASS")
+    print("HANDOFF_V2_TAMPER_REJECTION=PASS")
+    print("PRESENTATION_TAGS_NOT_PLACEHOLDERS=PASS")
     print("RESULT=PASS")
     return 0
 

@@ -18,7 +18,7 @@ Branch: work/sw2-04-documentation-system-v2
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 2ff1d1501a7762baedcd848ebc117b7760b7c738
 Current candidate SHA: external final acceptance evidence
-Current source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
+Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

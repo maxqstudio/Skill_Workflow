@@ -69,7 +69,7 @@ The `skills` CLI can target Codex, Claude Code, Cursor, Gemini CLI, GitHub Copil
 
 ## Project state and governance
 
-This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).
+This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [system overview](docs/SYSTEM_OVERVIEW.md), [project manifest](docs/PROJECT_MANIFEST.md), [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).
 
 Those generated governance files are evidence/navigation for this repository; the public handbook above is the product documentation entry point.
 

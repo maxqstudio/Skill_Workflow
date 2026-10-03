@@ -7,7 +7,7 @@
 SW2-04 acceptance covers Documentation System V2 only: public-facing documentation must become concise and navigable while deterministic generated Project Truth and machine evidence remain independently auditable and drift-detectable. Existing SW2-01 through SW2-03 governance, mode-safety, and Sequence V2 guarantees are inherited authority and must not be weakened. Runtime/E2E is not applicable to this repository documentation-system phase unless stronger runtime evidence becomes necessary.
 
 Final tested source: external final acceptance evidence.
-Current source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6531acdd
+Current source digest: a8b08970f0af0315865c851c1bd61ba27dbd3a6de476966627e9fd78732ecbde
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -20,6 +20,7 @@ Current source digest: df4e2c3cd22ad1bfe02673c988e499d98e41f9a9b6e9f3beadb9c8ea6
 
 - python -m compileall -q scripts
 - python scripts/validate_public_docs.py --root .
+- python scripts/selftest_generated_doc_presentation.py
 - python scripts/selftest_public_docs.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_sequence_call_resolution.py
