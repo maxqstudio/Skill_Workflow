@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8
+Source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -345,8 +345,8 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | git | function | 15-16 |
 | _load | function | 19-20 |
-| validate | function | 23-131 |
-| main | function | 134-155 |
+| validate | function | 23-173 |
+| main | function | 176-204 |
 
 </details>
 
@@ -464,8 +464,8 @@ responsibility, callers, or state ownership.
 | run | function | 14-15 |
 | write_json | function | 18-20 |
 | commit_all | function | 23-26 |
-| governance_report | function | 29-39 |
-| main | function | 42-112 |
+| governance_report | function | 29-50 |
+| main | function | 53-244 |
 
 </details>
 

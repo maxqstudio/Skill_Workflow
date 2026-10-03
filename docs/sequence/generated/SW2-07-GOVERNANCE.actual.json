@@ -1262,8 +1262,8 @@
       "kind": "function",
       "label": "scripts/release_preflight.py::main",
       "language": "Python",
-      "line_end": 155,
-      "line_start": 134,
+      "line_end": 204,
+      "line_start": 176,
       "locator": "scripts/release_preflight.py::main"
     },
     {
@@ -1271,7 +1271,7 @@
       "kind": "function",
       "label": "scripts/release_preflight.py::validate",
       "language": "Python",
-      "line_end": 131,
+      "line_end": 173,
       "line_start": 23,
       "locator": "scripts/release_preflight.py::validate"
     },
@@ -1483,7 +1483,7 @@
       "locator": "scripts/validate_repository_health.py::validate"
     }
   ],
-  "observed_head": "f70e1accb0f64a061192aa159c3db5b638e14fd2",
+  "observed_head": "2b824a02a3a95acd1fba5391c35f765e275bf9f6",
   "schema_version": 1,
-  "source_digest": "e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8"
+  "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
 }

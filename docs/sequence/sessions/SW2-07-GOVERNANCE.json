@@ -12,7 +12,7 @@
       "scripts/governance_engine.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-07-GOVERNANCE.actual.json",
-    "source_digest": "e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8"
+    "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
   },
   "critical": true,
   "evidence_boundary": "SW2-07 DURING static evidence binds public documentation, repository-health/license guarding, live-ruleset policy validation, release preflight, handoff, Project Truth, and governance-engine paths. Owner license approval and compliant live GitHub required-status-check enforcement remain NOT_PROVEN because they require Owner/configuration evidence beyond static source.",
@@ -22,7 +22,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-07-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8"
+    "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
   },
   "implementation_base_sha": "f391fe9dc5d208803118090bbe6a174e8f6c7c63",
   "mode": "DURING",

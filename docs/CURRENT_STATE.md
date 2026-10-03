@@ -18,7 +18,7 @@ Branch: work/sw2-07-public-project-hardening
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: f391fe9dc5d208803118090bbe6a174e8f6c7c63
 Current candidate SHA: external final acceptance evidence
-Current source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8
+Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

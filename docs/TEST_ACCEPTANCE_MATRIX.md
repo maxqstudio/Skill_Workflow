@@ -7,7 +7,7 @@
 SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, actual merge/ruleset enforcement aligned with declared governance, and a repeatable evidence-backed release process. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.
 
 Final tested source: external final acceptance evidence.
-Current source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd9fddba8
+Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
