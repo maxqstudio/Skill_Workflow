@@ -32,8 +32,9 @@ jobs:
       - name: Assert exact implementation lineage
         shell: bash
         run: |
-          test "$(git rev-parse HEAD^)" = "$SOURCE_COMMIT"
+          git merge-base --is-ancestor "$SOURCE_COMMIT" HEAD
           git merge-base --is-ancestor "$ACCEPTED_MAIN" HEAD
+          test "$(git diff --name-only "$SOURCE_COMMIT"..HEAD)" = ".github/workflows/sw2-06-regenerate-analyzer-evidence.yml"
 
       - name: Synchronize analyzer governance contract
         shell: bash
@@ -101,12 +102,10 @@ jobs:
           command = "python scripts/selftest_analyzer_contract.py"
           if command not in acceptance["test_commands"]:
               acceptance["test_commands"].insert(3, command)
-          old_finalize = next(
-              (item for item in acceptance["test_commands"] if "governance_engine.py" in item and "--mode finalize" in item),
-              None,
-          )
-          if old_finalize:
-              acceptance["test_commands"].remove(old_finalize)
+          acceptance["test_commands"] = [
+              item for item in acceptance["test_commands"]
+              if not ("governance_engine.py" in item and "--mode finalize" in item)
+          ]
           acceptance["test_commands"].append(
               "python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>"
           )
@@ -144,7 +143,7 @@ jobs:
           session["evidence_boundary"] = (
               "SW2-06 DURING implementation evidence covers the normalized analyzer contract, preserved Python static analysis, JS/TS literal HTTP sequence analysis, and fail-safe generic inventory fallback. This session remains implementation evidence only; SW2-06 requirements and claims stay NOT_PROVEN until exact clean permanent CI accepts them. Dynamic dispatch, dependency injection, reflection, callbacks/events, framework magic, runtime ordering, and unresolved cross-language behavior remain NOT_PROVEN."
           )
-          entries = [
+          session["actual"]["entries"] = [
               "scripts/analyzer_contract.py::run_analyzers",
               "scripts/analyzer_contract.py::generic_fallback",
               "scripts/extract_project_facts.py::_extract_from_snapshot",
@@ -152,9 +151,9 @@ jobs:
               "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
               "scripts/generate_sequence_actual.py::main",
           ]
-          session["actual"]["entries"] = entries
-          if command not in session["tests"]:
-              session["tests"].insert(0, command.replace("python ", ""))
+          analyzer_test = "scripts/selftest_analyzer_contract.py"
+          if analyzer_test not in session["tests"]:
+              session["tests"].insert(0, analyzer_test)
           save("docs/sequence/sessions/SW2-06-GOVERNANCE.json", session)
           PY
 
@@ -168,7 +167,8 @@ jobs:
           from pathlib import Path
 
           root = Path('.')
-          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          acceptance_path = root / '.workflow' / 'acceptance.json'
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
           session_id = acceptance['sequence_session']
           session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
           session = json.loads(session_path.read_text(encoding='utf-8'))
@@ -182,6 +182,9 @@ jobs:
           for entry in actual['entries']:
               cmd.extend(['--entry', entry])
           subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          source_digest = graph['source_digest']
+          session['actual']['source_digest'] = source_digest
 
           human = session['human_view']
           subprocess.run([
@@ -194,6 +197,15 @@ jobs:
               '--output-markdown', human['document'],
               '--session-id', session_id,
           ], check=True)
+          human_graph = json.loads((root / human['graph']).read_text(encoding='utf-8'))
+          if human_graph.get('source_digest') != source_digest:
+              raise SystemExit('HUMAN_SOURCE_DIGEST_MISMATCH')
+          session['human_view']['source_digest'] = source_digest
+          session_path.write_text(
+              json.dumps(session, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8', newline='\n'
+          )
+
           subprocess.run([
               sys.executable, 'scripts/validate_sequence_contract.py',
               '--root', '.', '--session', session_path.as_posix(),
@@ -206,9 +218,9 @@ jobs:
           subprocess.run([
               sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'
           ], check=True)
-          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
           acceptance['sequence_sync_status'] = 'PASS'
-          (root / '.workflow' / 'acceptance.json').write_text(
+          acceptance_path.write_text(
               json.dumps(acceptance, indent=2, sort_keys=True) + '\n',
               encoding='utf-8', newline='\n'
           )
