@@ -12,7 +12,7 @@ Current source digest: e014b0c093e9b95d6fad08feca6b64e6431b111ad75259d3bfc2674dd
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
 | SW2-07-R1 | Repository health files are present with Owner-approved license. | Repository health files are implemented and guarded by validate_repository_health.py, but no Owner-approved license decision/file exists; remains NOT_PROVEN. | NOT_PROVEN |
-| SW2-07-R2 | Security and contribution paths are documented. | CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, README navigation, and repository-health validation are implemented; clean exact-candidate acceptance is still pending. | NOT_PROVEN |
+| SW2-07-R2 | Security and contribution paths are documented. | Exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: Self Governance 37113203365, Governance Selftest 37113203386 on Ubuntu and Windows, SW2 Sequence Evidence 37113203376, SW2 Engine Performance 37113203374, and SW2 Consumer Engine Performance 37113203358 all succeeded. Governance Selftest included blocking public-documentation, repository-health, cross-document, read-only verify, and STRICT regressions on both operating systems. | PASS |
 | SW2-07-R3 | Merge/ruleset enforcement matches declared governance. | Live ruleset 24406662 is active on the default branch and enforces PR+squash, deletion protection, and non-fast-forward protection, but lacks required_status_checks; remains NOT_PROVEN. | NOT_PROVEN |
 | SW2-07-R4 | Release process is repeatable and evidence-backed. | Read-only exact-head release preflight, manual workflow, stable SW2-09 boundary, and regression tests are implemented; clean exact-candidate acceptance is still pending. | NOT_PROVEN |
 
