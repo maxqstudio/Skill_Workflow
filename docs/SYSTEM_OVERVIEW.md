@@ -153,12 +153,12 @@ Known blockers:
 - SW2-06 Cross-Language Analyzer Architecture is accepted on exact clean post-promotion candidate b1b95f3f112058c90dc8aa0ceb7b279dfd6ce7ab: Self Governance 37107380727, Governance Selftest 37107380730 on Ubuntu and Windows, SW2 Sequence Evidence 37107380788, SW2 Engine Performance 37107381528, and SW2 Consumer Engine Performance 37107380729 all succeeded after R1-R4 and analyzer/dynamic-evidence claims were promoted.
 - SW2-07 phase-open authority is accepted on main f391fe9dc5d208803118090bbe6a174e8f6c7c63: the squash-merged tree e2b32ed45a98a2b2bf79f7824e278ca0136f9136 equals tested PR-head 80b3aa5e1f7a2f8aca7ed315e3192c1a653758c0, and post-merge Self Governance 37112092243, Governance Selftest 37112092289 on Ubuntu and Windows, SW2 Sequence Evidence 37112092314, SW2 Engine Performance 37112092222, and SW2 Consumer Engine Performance 37112092263 all succeeded.
 - SW2-07-R2 security and contribution paths are accepted on exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, README/handbook navigation, repository-health validation, and permanent cross-platform regression all passed; Self Governance 37113203365 and Governance Selftest 37113203386 (Ubuntu/Windows) are the primary acceptance evidence.
+- SW2-07-R4 release process is repeatable and evidence-backed: GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.
 
 ### Not proven
 
 - SW2-07 repository health files exist, but an Owner-approved public license is still NOT_PROVEN.
 - SW2-07 live GitHub ruleset enforcement does not yet require the six permanent acceptance checks.
-- SW2-07 release preflight is implemented but not yet accepted on a clean exact candidate.
 
 ## Important limitations
 

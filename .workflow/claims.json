@@ -327,13 +327,15 @@
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-RELEASE-GOVERNANCE",
-      "runtime_evidence": [],
+      "runtime_evidence": [
+        "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope."
+      ],
       "source_owners": [
         "docs/handbook/reference/release-process.md",
         "scripts/release_preflight.py",
         ".github/workflows/release-preflight.yml"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_release_preflight.py"
       ]
