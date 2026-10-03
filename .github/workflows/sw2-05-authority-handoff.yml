@@ -1,0 +1,144 @@
+name: SW2-05 Authority Handoff
+
+on:
+  push:
+    branches:
+      - work/sw2-05-schema-toolchain-versioning
+
+permissions:
+  contents: write
+
+jobs:
+  handoff:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      ACCEPTED_MAIN: "733cf7dcb6def0fc1adc36cee7cc5243b8eaf060"
+      WORK_BRANCH: "work/sw2-05-schema-toolchain-versioning"
+
+    steps:
+      - name: Checkout SW2-05 branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-05-schema-toolchain-versioning
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert accepted main ancestry and fail-closed phase
+        shell: bash
+        run: |
+          git merge-base --is-ancestor "$ACCEPTED_MAIN" HEAD
+          python - <<'PY'
+          import json
+          a = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          s = json.load(open('.workflow/state.json', encoding='utf-8'))
+          r = json.load(open('.workflow/roadmap.json', encoding='utf-8'))
+          assert s['phase'] == 'SW2-05' and s['status'] == 'IN_PROGRESS'
+          assert r['current_phase'] == 'SW2-05'
+          assert all(item['status'] == 'NOT_PROVEN' for item in a['requirements'])
+          assert {item['id'] for item in a['requirements']} == {'SW2-05-R1','SW2-05-R2','SW2-05-R3','SW2-05-R4'}
+          print('SW2_05_BASE_AUTHORITY=PASS')
+          PY
+
+      - name: Synchronize accepted authority metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          accepted = os.environ['ACCEPTED_MAIN']
+          branch = os.environ['WORK_BRANCH']
+
+          state = load('.workflow/state.json')
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = accepted
+          state['working_branch'] = branch
+          proof = (
+              'SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: '
+              'post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, '
+              'SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine '
+              'Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 '
+              'equals exact tested PR-head tree.'
+          )
+          if proof not in state.setdefault('proven', []):
+              state['proven'].append(proof)
+          state['next_authorized_actions'] = [
+              'Audit every current schema_version/profile parsing surface and vendored toolchain installation path before implementation.',
+              'Define the smallest backward-compatible schema and toolchain lock contract with deterministic migration semantics.',
+              'Implement and regression-test SW2-05 incrementally while keeping all four requirements NOT_PROVEN until evidence exists.'
+          ]
+          write('.workflow/state.json', state)
+
+          acceptance = load('.workflow/acceptance.json')
+          old_base = '--base 2ff1d1501a7762baedcd848ebc117b7760b7c738'
+          new_base = '--base ' + accepted
+          acceptance['test_commands'] = [cmd.replace(old_base, new_base) for cmd in acceptance['test_commands']]
+          write('.workflow/acceptance.json', acceptance)
+
+          session = load('docs/sequence/sessions/SW2-05-GOVERNANCE.json')
+          session['implementation_base_sha'] = accepted
+          write('docs/sequence/sessions/SW2-05-GOVERNANCE.json', session)
+          print('SW2_05_AUTHORITY_METADATA_SYNC=PASS')
+          PY
+
+      - name: Rebind current sequence and deterministic Project Truth
+        run: |
+          python scripts/generate_sequence_actual.py --root . --output-json docs/sequence/generated/SW2-05-GOVERNANCE.actual.json --output-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd --entry scripts/initialize_project_truth.py::main --entry scripts/project_profile.py::parse_profile --entry scripts/generate_project_docs.py::main --entry scripts/governance_engine.py::main
+          python scripts/sequence_human_view.py --root . --actual-json docs/sequence/generated/SW2-05-GOVERNANCE.actual.json --actual-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd --output-json docs/sequence/generated/SW2-05-GOVERNANCE.human.json --output-mermaid docs/sequence/generated/SW2-05-GOVERNANCE.human.mmd --output-markdown docs/sequence/views/SW2-05-GOVERNANCE.md --session-id SW2-05-GOVERNANCE
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.load(open('docs/sequence/generated/SW2-05-GOVERNANCE.actual.json', encoding='utf-8'))
+          human = json.load(open('docs/sequence/generated/SW2-05-GOVERNANCE.human.json', encoding='utf-8'))
+          session_path = Path('docs/sequence/sessions/SW2-05-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          digest = actual['source_digest']
+          assert digest == human['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json --report artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+
+      - name: Assert handoff remains fail closed
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os
+          a = json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          s = json.load(open('.workflow/state.json', encoding='utf-8'))
+          session = json.load(open('docs/sequence/sessions/SW2-05-GOVERNANCE.json', encoding='utf-8'))
+          assert all(item['status'] == 'NOT_PROVEN' for item in a['requirements'])
+          assert s['last_accepted_sha'] == os.environ['ACCEPTED_MAIN']
+          assert s['working_branch'] == os.environ['WORK_BRANCH']
+          assert session['implementation_base_sha'] == os.environ['ACCEPTED_MAIN']
+          print('SW2_05_HANDOFF_FAIL_CLOSED=PASS')
+          PY
+
+      - name: Commit authority handoff evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .workflow docs artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
+          git diff --cached --quiet && { echo "NO_AUTHORITY_HANDOFF_DIFF"; exit 1; }
+          git commit -m "gov(sw2-05): synchronize accepted main authority"
+          git push origin HEAD:work/sw2-05-schema-toolchain-versioning
