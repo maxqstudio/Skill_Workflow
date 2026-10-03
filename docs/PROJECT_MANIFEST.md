@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-03-sequence-v2
+Active branch: work/sw2-04-documentation-system-v2
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: f79917550fe42f98110f1a11915ad9699e5244e6
+Last accepted SHA: 2ff1d1501a7762baedcd848ebc117b7760b7c738
 Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 
 ## Authorities

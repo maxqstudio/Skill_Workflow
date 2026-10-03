@@ -3,7 +3,7 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: f79917550fe42f98110f1a11915ad9699e5244e6
+Authority verified at SHA: 2ff1d1501a7762baedcd848ebc117b7760b7c738
 Governance profile: strict
 
 ## Current phase
@@ -14,9 +14,9 @@ ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-03-sequence-v2
+Branch: work/sw2-04-documentation-system-v2
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: f79917550fe42f98110f1a11915ad9699e5244e6
+Last accepted SHA: 2ff1d1501a7762baedcd848ebc117b7760b7c738
 Current candidate SHA: external final acceptance evidence
 Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab274ff3f6b
 
@@ -52,6 +52,7 @@ SEQUENCE_SYNC: PASS
 - SW2-02 was merged to main as f79917550fe42f98110f1a11915ad9699e5244e6; post-merge Self Governance 37085905097, Governance Selftest 37085905094 on Ubuntu and Windows, SW2 Sequence Evidence 37085905107, SW2 Engine Performance 37085905175, and SW2 Consumer Engine Performance 37085905090 all succeeded.
 - SW2-03 Sequence V2 feature acceptance is proven on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: Self Governance 37087211311, Governance Selftest 37087211310 on Ubuntu and Windows, SW2 Sequence Evidence 37087211297 with blocking Mermaid render, SW2 Engine Performance 37087211307, and SW2 Consumer Engine Performance 37087211371 all succeeded. The full machine graph remains independent evidence; module-collapse-v1 produces a bounded human projection with complete machine-edge accounting.
 - SW2-03 Sequence V2 is accepted on exact cleanup candidate 7823dd1b6be1de59c1f28406c050df343a3d1934: Self Governance 37093982357, Governance Selftest 37093982276 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37093982364 with blocking Mermaid render, SW2 Engine Performance 37093982407, and SW2 Consumer Engine Performance 37093982235 all succeeded. Sequence V2 consumer vendoring and SKILL contract synchronization were also proven before closure.
+- SW2-03 merged to main as 2ff1d1501a7762baedcd848ebc117b7760b7c738 with tree equivalent to tested cleanup candidate 2581370dc757221f162bda744cd174f2e047c7cc. Post-merge main passed Self Governance 37094279185, Governance Selftest 37094279257 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37094279177, SW2 Engine Performance 37094279196, and SW2 Consumer Engine Performance 37094279186.
 
 ## Not proven
 - SW2-04 concise public README/landing-page quality is NOT_PROVEN until the public documentation information architecture is implemented and reviewed.
@@ -66,9 +67,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run clean permanent CI on the SW2-04 phase-open transition candidate.
-- Merge PR #9 only after the exact phase-open cleanup SHA passes all permanent CI.
-- After post-merge main acceptance, create work/sw2-04-documentation-system-v2 from exact accepted main and update working-branch/last-accepted authority before implementation.
+- Audit the current public README, generated docs, machine indexes, and navigation boundaries against SW2-04-R1..R4.
+- Implement the smallest deterministic Documentation System V2 structure that separates public guidance from machine indexes/evidence.
+- Keep every SW2-04 requirement and documentation claim NOT_PROVEN until dedicated clean acceptance evidence exists.
 
 ## Explicitly blocked
 - Do not mark any SW2-04 requirement PASS before implementation-specific evidence exists.

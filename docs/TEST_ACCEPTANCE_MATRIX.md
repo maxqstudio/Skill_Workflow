@@ -27,7 +27,7 @@ Current source digest: ccff23f0d81e0af3724984f243150b652f50864cf1659760bf163ab27
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base f79917550fe42f98110f1a11915ad9699e5244e6 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 2ff1d1501a7762baedcd848ebc117b7760b7c738 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 

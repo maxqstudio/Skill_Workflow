@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run clean permanent CI on the SW2-04 phase-open transition candidate.
-- Merge PR #9 only after the exact phase-open cleanup SHA passes all permanent CI.
-- After post-merge main acceptance, create work/sw2-04-documentation-system-v2 from exact accepted main and update working-branch/last-accepted authority before implementation.
+- Audit the current public README, generated docs, machine indexes, and navigation boundaries against SW2-04-R1..R4.
+- Implement the smallest deterministic Documentation System V2 structure that separates public guidance from machine indexes/evidence.
+- Keep every SW2-04 requirement and documentation claim NOT_PROVEN until dedicated clean acceptance evidence exists.
 
 Blocked actions:
 - Do not mark any SW2-04 requirement PASS before implementation-specific evidence exists.
@@ -141,6 +141,7 @@ Known blockers:
 - SW2-02 was merged to main as f79917550fe42f98110f1a11915ad9699e5244e6; post-merge Self Governance 37085905097, Governance Selftest 37085905094 on Ubuntu and Windows, SW2 Sequence Evidence 37085905107, SW2 Engine Performance 37085905175, and SW2 Consumer Engine Performance 37085905090 all succeeded.
 - SW2-03 Sequence V2 feature acceptance is proven on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: Self Governance 37087211311, Governance Selftest 37087211310 on Ubuntu and Windows, SW2 Sequence Evidence 37087211297 with blocking Mermaid render, SW2 Engine Performance 37087211307, and SW2 Consumer Engine Performance 37087211371 all succeeded. The full machine graph remains independent evidence; module-collapse-v1 produces a bounded human projection with complete machine-edge accounting.
 - SW2-03 Sequence V2 is accepted on exact cleanup candidate 7823dd1b6be1de59c1f28406c050df343a3d1934: Self Governance 37093982357, Governance Selftest 37093982276 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37093982364 with blocking Mermaid render, SW2 Engine Performance 37093982407, and SW2 Consumer Engine Performance 37093982235 all succeeded. Sequence V2 consumer vendoring and SKILL contract synchronization were also proven before closure.
+- SW2-03 merged to main as 2ff1d1501a7762baedcd848ebc117b7760b7c738 with tree equivalent to tested cleanup candidate 2581370dc757221f162bda744cd174f2e047c7cc. Post-merge main passed Self Governance 37094279185, Governance Selftest 37094279257 on Ubuntu and Windows, dynamic-current-session SW2 Sequence Evidence 37094279177, SW2 Engine Performance 37094279196, and SW2 Consumer Engine Performance 37094279186.
 
 ### Not proven
 
