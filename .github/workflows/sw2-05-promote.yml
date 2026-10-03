@@ -32,8 +32,10 @@ jobs:
       - name: Assert promotion lineage
         shell: bash
         run: |
-          test "$(git rev-parse HEAD^)" = "$ACCEPTED_CANDIDATE"
           git merge-base --is-ancestor "$ACCEPTED_MAIN" HEAD
+          git merge-base --is-ancestor "$ACCEPTED_CANDIDATE" HEAD
+          unexpected="$(git diff --name-only "$ACCEPTED_CANDIDATE"..HEAD | grep -v '^.github/workflows/sw2-05-promote.yml$' || true)"
+          test -z "$unexpected" || { echo "UNEXPECTED_POST_ACCEPTANCE_CHANGE=$unexpected"; exit 1; }
 
       - name: Promote SW2-05 evidence
         shell: bash
@@ -135,8 +137,6 @@ jobs:
           python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-05-GOVERNANCE.json
           python scripts/validate_sequence_sessions.py --root .
           python scripts/validate_handoff.py --root .
-          python scripts/validate_cross_document_consistency.py --root . --base "$ACCEPTED_MAIN" --require-base
-          python scripts/validate_project_truth.py --root .
 
       - name: Assert promotion state
         run: |
@@ -156,7 +156,7 @@ jobs:
           print('SW2_05_PROMOTION_ASSERTIONS=PASS')
           PY
 
-      - name: Commit promoted evidence
+      - name: Commit promotion candidate locally
         shell: bash
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -164,4 +164,19 @@ jobs:
           git add .workflow docs
           git diff --cached --quiet && { echo "NO_PROMOTION_CHANGES"; exit 1; }
           git commit -m "gov(sw2-05): promote accepted schema and toolchain evidence"
-          git push origin HEAD:work/sw2-05-schema-toolchain-versioning
+          echo "LOCAL_PROMOTION_HEAD=$(git rev-parse HEAD)"
+
+      - name: Validate clean committed promotion candidate
+        shell: bash
+        run: |
+          test -z "$(git status --porcelain --untracked-files=all)"
+          python scripts/validate_schema_toolchain.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_cross_document_consistency.py --root . --base "$ACCEPTED_MAIN" --require-base
+          python scripts/validate_project_truth.py --root .
+          test -z "$(git status --porcelain --untracked-files=all)"
+          echo "POST_COMMIT_PROMOTION_VALIDATION=PASS"
+
+      - name: Push validated promotion candidate
+        shell: bash
+        run: git push origin HEAD:work/sw2-05-schema-toolchain-versioning
