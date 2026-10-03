@@ -13,6 +13,13 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from analyzer_contract import (
+    AnalyzerResult,
+    DYNAMIC_BEHAVIOR_LIMITATIONS,
+    coverage_records,
+    generic_fallback,
+    validate_result,
+)
 from project_snapshot import ProjectSnapshot, resolve_snapshot
 
 LANGUAGE_BY_EXT = {
@@ -32,6 +39,7 @@ LANGUAGE_BY_EXT = {
 }
 
 HTTP_METHODS = {"get", "post", "put", "patch", "delete", "options", "head"}
+PYTHON_FACT_EXTENSIONS = frozenset({".py"})
 
 
 def call_name(node: ast.AST) -> str:
@@ -151,7 +159,10 @@ def _extract_from_snapshot(root: Path, snapshot: ProjectSnapshot) -> dict:
 
     for path in snapshot.source_files():
         rel = path.relative_to(root).as_posix()
-        language = LANGUAGE_BY_EXT.get(path.suffix.lower(), path.suffix.lower().lstrip(".") or "text")
+        language = LANGUAGE_BY_EXT.get(
+            path.suffix.lower(),
+            path.suffix.lower().lstrip(".") or "text",
+        )
         try:
             source_text = snapshot.read_text(path, errors="ignore")
             line_count = len(source_text.splitlines())
@@ -185,7 +196,24 @@ def _extract_from_snapshot(root: Path, snapshot: ProjectSnapshot) -> dict:
     modules.sort(key=lambda x: x["file"])
     symbols.sort(key=lambda x: (x["file"], x.get("line_start") or 0, x["symbol"]))
     routes.sort(key=lambda x: (x["route"], x["method"], x["handler"]))
+    python_calls.sort(key=lambda x: (x["caller"], x["target_token"]))
     tests = sorted(set(tests))
+
+    python_result = validate_result(AnalyzerResult(
+        analyzer_id="python_facts",
+        languages=("Python",),
+        claimed_extensions=tuple(sorted(PYTHON_FACT_EXTENSIONS)),
+        semantic_level="python_ast_static",
+        facts={
+            "symbols": symbols,
+            "routes": routes,
+            "calls": python_calls,
+        },
+        parse_failures=sorted(parse_failures),
+        limitations=[*DYNAMIC_BEHAVIOR_LIMITATIONS],
+    ))
+    fallback = generic_fallback(root, snapshot, PYTHON_FACT_EXTENSIONS)
+    analyzer_results = [python_result, fallback]
 
     return {
         "schema_version": 1,
@@ -197,9 +225,9 @@ def _extract_from_snapshot(root: Path, snapshot: ProjectSnapshot) -> dict:
             "test_files": len(tests),
         },
         "modules": modules,
-        "python_symbols": symbols,
-        "python_routes": routes,
-        "python_calls": python_calls,
+        "python_symbols": python_result.facts["symbols"],
+        "python_routes": python_result.facts["routes"],
+        "python_calls": python_result.facts["calls"],
         "tests": tests,
         "coverage": {
             "module_inventory": "multi-language by extension",
@@ -207,11 +235,14 @@ def _extract_from_snapshot(root: Path, snapshot: ProjectSnapshot) -> dict:
             "route_inventory": "Python decorator routes only",
             "call_inventory": "Python AST token calls only",
             "limitations": [
-                "non-Python symbol extraction requires language-specific parsers or Ctags",
+                "non-Python symbol extraction requires a stronger language analyzer",
                 "dynamic dispatch/dependency injection/reflection are not resolved",
                 "JS/TS function-level semantics are not inferred here",
             ],
-            "python_parse_failures": parse_failures,
+            "dynamic_behavior": "NOT_PROVEN",
+            "python_parse_failures": python_result.parse_failures,
+            "analyzers": coverage_records(analyzer_results),
+            "generic_fallback": fallback.coverage_record(),
         },
     }
 
@@ -223,7 +254,7 @@ def extract_project_facts(
     root = root.resolve()
     snap = resolve_snapshot(root, snapshot)
     return snap.memoized(
-        "project_facts:v1",
+        "project_facts:v2",
         lambda: _extract_from_snapshot(root, snap),
     )
 
@@ -240,7 +271,10 @@ def main() -> int:
     if not output.is_absolute():
         output = root / output
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(facts, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    output.write_text(
+        json.dumps(facts, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     print(f"SOURCE_DIGEST={facts['source_digest']}")
     print(f"SOURCE_FILES={facts['source_summary']['files']}")

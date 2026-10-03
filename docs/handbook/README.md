@@ -25,6 +25,7 @@ The handbook is the stable public documentation entry point for Skill Workflow. 
 ## Architecture
 
 - [Validation architecture](architecture/validation-engine.md) — snapshot reuse, develop/verify/finalize modes, validation DAG, and evidence boundaries.
+- [Cross-language analyzer architecture](architecture/analyzer-contract.md) — normalized analyzer contract, current Python/JS/TS coverage, fail-safe fallback, and `NOT_PROVEN` dynamic behavior.
 
 ## Sequence
 
