@@ -1,0 +1,190 @@
+name: SW2-06 Promote Analyzer Evidence
+
+on:
+  push:
+    branches:
+      - work/sw2-06-cross-language-analyzer-architecture
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      FEATURE_CANDIDATE: "964b1ce7349c75c6e91ae6217f86c6dcfdc691fd"
+      ACCEPTED_MAIN: "4f3546e78e4a927359b1805fa5c69bf57ddc0040"
+      GOVERNANCE_RUN: "37107117851"
+      SEQUENCE_RUN: "37107117803"
+      SELF_GOVERNANCE_RUN: "37107117800"
+      ENGINE_PERF_RUN: "37107117811"
+      CONSUMER_PERF_RUN: "37107117823"
+
+    steps:
+      - name: Checkout phase branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-06-cross-language-analyzer-architecture
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assert exact feature lineage
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD^)" = "$FEATURE_CANDIDATE"
+          git merge-base --is-ancestor "$ACCEPTED_MAIN" HEAD
+          test "$(git diff --name-only "$FEATURE_CANDIDATE"..HEAD)" = ".github/workflows/sw2-06-promote-analyzer-evidence.yml"
+
+      - name: Promote exact SW2-06 evidence without closing phase
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          feature = os.environ["FEATURE_CANDIDATE"]
+          governance = os.environ["GOVERNANCE_RUN"]
+          sequence = os.environ["SEQUENCE_RUN"]
+          self_gov = os.environ["SELF_GOVERNANCE_RUN"]
+          engine = os.environ["ENGINE_PERF_RUN"]
+          consumer = os.environ["CONSUMER_PERF_RUN"]
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding="utf-8"))
+
+          def save(path, value):
+              Path(path).write_text(
+                  json.dumps(value, indent=2, sort_keys=True) + "\n",
+                  encoding="utf-8",
+                  newline="\n",
+              )
+
+          acceptance = load(".workflow/acceptance.json")
+          assert acceptance["sequence_session"] == "SW2-06-GOVERNANCE"
+          evidence = {
+              "SW2-06-R1": (
+                  f"PASS on exact clean feature candidate {feature}: Governance Selftest run {governance} passed Ubuntu and Windows with the permanent cross-language analyzer-contract regression. scripts/analyzer_contract.py exposes one normalized language-independent AnalyzerResult/StructuralAnalyzer contract while parser-specific adapters remain separate."
+              ),
+              "SW2-06-R2": (
+                  f"PASS on exact clean feature candidate {feature}: Governance Selftest run {governance} passed Ubuntu and Windows with selftest_analyzer_contract.py plus existing sequence call-resolution regressions; SW2 Sequence Evidence run {sequence} also passed with blocking Mermaid render. Accepted Python AST and JS/TS literal fetch/axios evidence semantics remain regression-covered."
+              ),
+              "SW2-06-R3": (
+                  f"PASS on exact clean feature candidate {feature}: selftest_analyzer_contract.py passed cross-platform in Governance Selftest run {governance}, proving generic_inventory is inventory-only, reports unsupported files as NOT_PROVEN, and rejects fabricated semantic facts/nodes/edges."
+              ),
+              "SW2-06-R4": (
+                  f"PASS on exact clean feature candidate {feature}: Governance Selftest run {governance} passed the negative path that rejects any static analyzer attempting to promote dynamic behavior above NOT_PROVEN; SW2 Sequence Evidence run {sequence} passed while generated coverage retains explicit static-analysis limitations."
+              ),
+          }
+          for req in acceptance["requirements"]:
+              if req["id"] not in evidence:
+                  raise SystemExit(f"UNKNOWN_SW2_06_REQUIREMENT:{req['id']}")
+              assert req["status"] == "NOT_PROVEN", req["id"]
+              req["status"] = "PASS"
+              req["evidence"] = evidence[req["id"]]
+          save(".workflow/acceptance.json", acceptance)
+
+          claims = load(".workflow/claims.json")
+          analyzer_claim = next(item for item in claims["claims"] if item["id"] == "TRUTH-SW2-ANALYZER-CONTRACT")
+          dynamic_claim = next(item for item in claims["claims"] if item["id"] == "TRUTH-SW2-DYNAMIC-EVIDENCE")
+          assert analyzer_claim["status"] == "NOT_PROVEN"
+          assert dynamic_claim["status"] == "NOT_PROVEN"
+          analyzer_claim["status"] = "PASS"
+          analyzer_claim["runtime_evidence"] = [
+              f"Exact clean feature candidate {feature}; Governance Selftest run {governance} Ubuntu/Windows SUCCESS with permanent analyzer-contract regression.",
+              f"SW2 Sequence Evidence run {sequence} SUCCESS with current SW2-06 machine/human sequence generation and blocking Mermaid render.",
+          ]
+          dynamic_claim["status"] = "PASS"
+          dynamic_claim["runtime_evidence"] = [
+              f"Exact clean feature candidate {feature}; Governance Selftest run {governance} Ubuntu/Windows SUCCESS with negative-path rejection of false dynamic proof and fail-safe unsupported-language fallback.",
+              f"SW2 Sequence Evidence run {sequence} SUCCESS while static coverage explicitly retains dynamic/reflection/DI/callback/framework limitations as NOT_PROVEN.",
+          ]
+          save(".workflow/claims.json", claims)
+
+          state = load(".workflow/state.json")
+          assert state["phase"] == "SW2-06"
+          assert state["status"] == "IN_PROGRESS"
+          proof = (
+              f"SW2-06 Cross-Language Analyzer Architecture feature acceptance is proven on exact clean candidate {feature}: Self Governance {self_gov}, Governance Selftest {governance} on Ubuntu and Windows, SW2 Sequence Evidence {sequence}, SW2 Engine Performance {engine}, and SW2 Consumer Engine Performance {consumer} all succeeded. The normalized analyzer contract preserves accepted Python and JS/TS semantics, generic fallback is inventory-only and fail-safe, and unsupported dynamic behavior remains NOT_PROVEN without stronger evidence."
+          )
+          if proof not in state["proven"]:
+              state["proven"].append(proof)
+          state["not_proven"] = [
+              "Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion."
+          ]
+          state["next_authorized_actions"] = [
+              "Run permanent CI on the exact clean post-promotion SW2-06 candidate.",
+              "Close SW2-06 only if post-promotion Self Governance, Ubuntu/Windows Governance Selftest, Sequence Evidence, Engine Performance, and Consumer Engine Performance all remain green.",
+              "After SW2-06 closure, open SW2-07 fail-closed without inheriting SW2-06 PASS into new repository-hardening requirements."
+          ]
+          state["blocked_actions"] = [
+              "Do not close SW2-06 before exact post-promotion permanent CI succeeds.",
+              "Do not weaken the accepted analyzer contract, Python/JS/TS regressions, fail-safe fallback, or dynamic NOT_PROVEN boundary during closure.",
+              "Do not claim repository merge/ruleset enforcement is complete; that remains SW2-07 scope.",
+              "Do not choose or add a public license without explicit Owner approval."
+          ]
+          save(".workflow/state.json", state)
+          PY
+
+      - name: Regenerate deterministic Project Truth
+        run: python scripts/sync_project_truth.py --root .
+
+      - name: Refresh current sequence acceptance report before commit
+        shell: bash
+        run: |
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-06-GOVERNANCE.json --report artifacts/sequence/SW2-06-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-06-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/selftest_analyzer_contract.py
+
+      - name: Assert promotion semantics before commit
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('.workflow/acceptance.json', encoding='utf-8'))
+          assert a['sequence_sync_status']=='PASS'
+          assert {r['id']:r['status'] for r in a['requirements']} == {
+              'SW2-06-R1':'PASS','SW2-06-R2':'PASS','SW2-06-R3':'PASS','SW2-06-R4':'PASS'
+          }
+          c=json.load(open('.workflow/claims.json', encoding='utf-8'))
+          for cid in ('TRUTH-SW2-ANALYZER-CONTRACT','TRUTH-SW2-DYNAMIC-EVIDENCE'):
+              item=next(x for x in c['claims'] if x['id']==cid)
+              assert item['status']=='PASS'
+              assert item['runtime_evidence']
+          s=json.load(open('.workflow/state.json', encoding='utf-8'))
+          assert s['phase']=='SW2-06' and s['status']=='IN_PROGRESS'
+          r=json.load(open('.workflow/roadmap.json', encoding='utf-8'))
+          assert r['current_phase']=='SW2-06'
+          assert next(x for x in r['phases'] if x['id']=='SW2-06')['status']=='CURRENT'
+          assert next(x for x in r['phases'] if x['id']=='SW2-07')['status']=='PLANNED'
+          print('SW2_06_PROMOTION_SEMANTICS=PASS')
+          PY
+
+      - name: Commit canonical promotion evidence locally
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .workflow docs artifacts/sequence
+          git diff --cached --quiet && { echo "FAIL NO_PROMOTION_CHANGES"; exit 1; }
+          git commit -m "gov(sw2-06): promote analyzer architecture evidence"
+
+      - name: Validate clean committed promotion read only
+        shell: bash
+        run: |
+          expected="$(git rev-parse HEAD)"
+          python scripts/governance_engine.py --root . --base "$ACCEPTED_MAIN" --mode verify --expected-head "$expected"
+          python scripts/validate_cross_document_consistency.py --root . --base "$ACCEPTED_MAIN"
+          python scripts/validate_project_truth.py --root .
+          python scripts/validate_public_docs.py --root .
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Push validated promotion
+        shell: bash
+        run: git push origin HEAD:work/sw2-06-cross-language-analyzer-architecture
