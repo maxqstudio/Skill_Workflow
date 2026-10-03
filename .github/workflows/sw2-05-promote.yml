@@ -143,17 +143,14 @@ jobs:
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add .workflow docs
+          git add .workflow docs artifacts/sequence/SW2-05-GOVERNANCE.acceptance.json
           git diff --cached --quiet && { echo "NO_PROMOTION_CHANGES"; exit 1; }
           git commit -m "gov(sw2-05): promote accepted schema and toolchain evidence"
           echo "LOCAL_PROMOTION_HEAD=$(git rev-parse HEAD)"
 
-      - name: Diagnose and validate clean committed promotion candidate
+      - name: Validate clean committed promotion candidate
         shell: bash
         run: |
-          echo "WORKTREE_STATUS_BEGIN"
-          git status --porcelain --untracked-files=all
-          echo "WORKTREE_STATUS_END"
           test -z "$(git status --porcelain --untracked-files=all)"
           python scripts/validate_schema_toolchain.py --root .
           python scripts/validate_project_docs.py --root .
