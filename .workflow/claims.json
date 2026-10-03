@@ -104,7 +104,7 @@
         "scripts/sequence_contract.py",
         "scripts/validate_sequence_contract.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_sequence_call_resolution.py"
       ]
@@ -123,7 +123,7 @@
         "scripts/validate_sequence_contract.py",
         "scripts/validate_sequence_sessions.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_sequence_call_resolution.py"
       ]

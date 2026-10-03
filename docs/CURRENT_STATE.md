@@ -50,12 +50,9 @@ SEQUENCE_SYNC: PASS
 - SW2-02 mode safety is proven end-to-end: develop is intermediate-only, verify is intermediate-only and read-only, unknown impact escalates fail-closed, and finalize is the only complete final acceptance authority.
 - SW2-02 Fast Development Workflow acceptance is complete on branch candidate c85af8edd8ab8f211ebbfd4b47f9eef0feb2196a: all SW2-02 requirements and TRUTH-SW2-MODE-SAFETY are PASS, and Self Governance 37081631917, Governance Selftest 37081631955, Sequence Evidence 37081631942, Engine Performance 37081631972, and Consumer Engine Performance 37081631956 all succeeded.
 - SW2-02 was merged to main as f79917550fe42f98110f1a11915ad9699e5244e6; post-merge Self Governance 37085905097, Governance Selftest 37085905094 on Ubuntu and Windows, SW2 Sequence Evidence 37085905107, SW2 Engine Performance 37085905175, and SW2 Consumer Engine Performance 37085905090 all succeeded.
+- SW2-03 Sequence V2 feature acceptance is proven on exact cleanup candidate 932d57a62536ebd470ebaf6d6de3da3fb86d3577: Self Governance 37087211311, Governance Selftest 37087211310 on Ubuntu and Windows, SW2 Sequence Evidence 37087211297 with blocking Mermaid render, SW2 Engine Performance 37087211307, and SW2 Consumer Engine Performance 37087211371 all succeeded. The full machine graph remains independent evidence; module-collapse-v1 produces a bounded human projection with complete machine-edge accounting.
 
 ## Not proven
-- SW2-03 full machine evidence fidelity across the new machine/human sequence split is NOT_PROVEN.
-- SW2-03 human-facing semantic collapsing/subflow readability is NOT_PROVEN.
-- SW2-03 blocking Mermaid syntax/render validation is NOT_PROVEN.
-- SW2-03 measurable diagram-complexity policy enforcement is NOT_PROVEN; module-collapse-v1 is documented but not yet accepted.
 - Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
 
 ## Known blockers
@@ -65,10 +62,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Implement the module-collapse-v1 human projection while preserving the full machine graph byte-for-byte as independent evidence.
-- Prove every machine edge is accounted for by the human projection without requiring every helper to become a participant.
-- Add and keep a blocking Mermaid renderer gate in CI for governed human-facing sequence diagrams.
-- Run cross-platform regressions and exact-head governance acceptance before promoting any SW2-03 requirement or claim.
+- Run post-promotion clean-worktree acceptance on the exact promotion cleanup SHA.
+- Close SW2-03 only after post-promotion permanent CI is fully green.
+- Open SW2-04 Documentation System V2 fail-closed only as a separate phase transaction.
 
 ## Explicitly blocked
 - Do not discard machine sequence nodes/edges merely to make human diagrams smaller.
