@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-06",
+  "current_phase": "SW2-07",
   "phases": [
     {
       "exit_criteria": [
@@ -83,7 +83,7 @@
       ],
       "id": "SW2-06",
       "objective": "Introduce analyzer interfaces so structural evidence can grow beyond Python without coupling governance semantics to one parser.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Cross-Language Analyzer Architecture"
     },
     {
@@ -95,7 +95,7 @@
       ],
       "id": "SW2-07",
       "objective": "Complete public repository health, security, contribution, and release governance.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Public Project Hardening"
     },
     {

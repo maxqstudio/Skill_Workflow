@@ -1,17 +1,96 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 6,
-    "interaction_count": 6,
+    "interaction_ceiling": 12,
+    "interaction_count": 12,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 5,
-    "participant_count": 5,
+    "participant_ceiling": 7,
+    "participant_count": 7,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
   },
   "edges": [
+    {
+      "actions": [
+        "resolve_snapshot"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/analyzer_contract.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "AnalyzerResult",
+        "coverage_records",
+        "fallback.coverage_record",
+        "generic_fallback",
+        "validate_result"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/analyzer_contract.py"
+    },
+    {
+      "actions": [
+        "visitor.visit"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/governance_engine.py"
+    },
+    {
+      "actions": [
+        "snapshot.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "AnalyzerResult",
+        "coverage_records",
+        "fallback.coverage_record",
+        "generic_fallback",
+        "result_by_id",
+        "run_analyzers"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_sequence_actual.py",
+      "machine_edge_count": 7,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/analyzer_contract.py"
+    },
     {
       "actions": [
         "collector.visit"
@@ -57,6 +136,20 @@
     },
     {
       "actions": [
+        "hashlib.sha256"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_snapshot.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
         "path.read_bytes"
       ],
       "evidence": [
@@ -79,7 +172,7 @@
         "STATIC"
       ],
       "from": "module:scripts/sequence_contract.py",
-      "machine_edge_count": 4,
+      "machine_edge_count": 3,
       "resolvers": [
         "python_ast"
       ],
@@ -101,23 +194,56 @@
     }
   ],
   "entries": [
-    "scripts/generate_sequence_actual.py::collect_python",
-    "scripts/generate_sequence_actual.py::collect_js_http",
-    "scripts/generate_sequence_actual.py::main",
-    "scripts/sequence_contract.py::source_files",
-    "scripts/project_snapshot.py::discover_source_paths"
+    "scripts/analyzer_contract.py::run_analyzers",
+    "scripts/analyzer_contract.py::generic_fallback",
+    "scripts/extract_project_facts.py::_extract_from_snapshot",
+    "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer.analyze",
+    "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
+    "scripts/generate_sequence_actual.py::main"
   ],
   "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
   "generated": true,
   "generated_by": "sequence_human_view.py",
   "nodes": [
     {
+      "id": "module:scripts/analyzer_contract.py",
+      "kind": "module",
+      "label": "scripts/analyzer_contract.py",
+      "machine_node_count": 9,
+      "machine_nodes": [
+        "scripts/analyzer_contract.py::AnalyzerContractError",
+        "scripts/analyzer_contract.py::AnalyzerResult",
+        "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
+        "scripts/analyzer_contract.py::StructuralAnalyzer.analyze",
+        "scripts/analyzer_contract.py::coverage_records",
+        "scripts/analyzer_contract.py::generic_fallback",
+        "scripts/analyzer_contract.py::result_by_id",
+        "scripts/analyzer_contract.py::run_analyzers",
+        "scripts/analyzer_contract.py::validate_result"
+      ]
+    },
+    {
+      "id": "module:scripts/extract_project_facts.py",
+      "kind": "module",
+      "label": "scripts/extract_project_facts.py",
+      "machine_node_count": 3,
+      "machine_nodes": [
+        "scripts/extract_project_facts.py::PythonFacts",
+        "scripts/extract_project_facts.py::_extract_from_snapshot",
+        "scripts/extract_project_facts.py::is_test_file"
+      ]
+    },
+    {
       "id": "module:scripts/generate_sequence_actual.py",
       "kind": "module",
       "label": "scripts/generate_sequence_actual.py",
-      "machine_node_count": 8,
+      "machine_node_count": 12,
       "machine_nodes": [
+        "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer",
+        "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
         "scripts/generate_sequence_actual.py::PyCollector",
+        "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer",
+        "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer.analyze",
         "scripts/generate_sequence_actual.py::allowed",
         "scripts/generate_sequence_actual.py::collect_js_http",
         "scripts/generate_sequence_actual.py::collect_python",
@@ -140,16 +266,20 @@
       "id": "module:scripts/project_snapshot.py",
       "kind": "module",
       "label": "scripts/project_snapshot.py",
-      "machine_node_count": 8,
+      "machine_node_count": 12,
       "machine_nodes": [
+        "scripts/project_snapshot.py::ProjectSnapshot.capture",
         "scripts/project_snapshot.py::ProjectSnapshot.entry",
         "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
         "scripts/project_snapshot.py::ProjectSnapshot.read_text",
         "scripts/project_snapshot.py::SnapshotError",
+        "scripts/project_snapshot.py::SnapshotFile",
         "scripts/project_snapshot.py::_git",
+        "scripts/project_snapshot.py::_git_optional",
         "scripts/project_snapshot.py::active_snapshot_for",
         "scripts/project_snapshot.py::canonical_source_bytes",
-        "scripts/project_snapshot.py::discover_source_paths"
+        "scripts/project_snapshot.py::discover_source_paths",
+        "scripts/project_snapshot.py::resolve_snapshot"
       ]
     },
     {
@@ -165,26 +295,41 @@
       "id": "module:scripts/sequence_contract.py",
       "kind": "module",
       "label": "scripts/sequence_contract.py",
-      "machine_node_count": 5,
+      "machine_node_count": 4,
       "machine_nodes": [
         "scripts/sequence_contract.py::_selected_snapshot",
         "scripts/sequence_contract.py::compute_source_digest",
         "scripts/sequence_contract.py::render_graph_mermaid",
-        "scripts/sequence_contract.py::sanitize_alias",
-        "scripts/sequence_contract.py::source_files"
+        "scripts/sequence_contract.py::sanitize_alias"
       ]
     }
   ],
-  "observed_head": "ee96f2f64e7c134e67330e61fbaa1e895ac097de",
+  "observed_head": "3e9c665785f036946da75412a81226652be22721",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 5,
-    "cross_component_machine_edges": 11,
-    "internal_machine_edges_collapsed": 17,
-    "machine_edge_count": 28,
-    "machine_node_count": 23,
+    "aggregated_cross_component_edges": 14,
+    "cross_component_machine_edges": 26,
+    "internal_machine_edges_collapsed": 37,
+    "machine_edge_count": 63,
+    "machine_node_count": 42,
     "node_map": {
+      "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::AnalyzerResult.coverage_record": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::StructuralAnalyzer.analyze": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::coverage_records": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::generic_fallback": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::result_by_id": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::run_analyzers": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::validate_result": "module:scripts/analyzer_contract.py",
+      "scripts/extract_project_facts.py::PythonFacts": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::_extract_from_snapshot": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::is_test_file": "module:scripts/extract_project_facts.py",
+      "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer": "module:scripts/generate_sequence_actual.py",
+      "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze": "module:scripts/generate_sequence_actual.py",
       "scripts/generate_sequence_actual.py::PyCollector": "module:scripts/generate_sequence_actual.py",
+      "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer": "module:scripts/generate_sequence_actual.py",
+      "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer.analyze": "module:scripts/generate_sequence_actual.py",
       "scripts/generate_sequence_actual.py::allowed": "module:scripts/generate_sequence_actual.py",
       "scripts/generate_sequence_actual.py::collect_js_http": "module:scripts/generate_sequence_actual.py",
       "scripts/generate_sequence_actual.py::collect_python": "module:scripts/generate_sequence_actual.py",
@@ -193,23 +338,26 @@
       "scripts/generate_sequence_actual.py::filter_reachable": "module:scripts/generate_sequence_actual.py",
       "scripts/generate_sequence_actual.py::main": "module:scripts/generate_sequence_actual.py",
       "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit": "module:scripts/governance_engine.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.capture": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::SnapshotError": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotFile": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::_git": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::_git_optional": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::active_snapshot_for": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::canonical_source_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::discover_source_paths": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::resolve_snapshot": "module:scripts/project_snapshot.py",
       "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
       "scripts/sequence_contract.py::_selected_snapshot": "module:scripts/sequence_contract.py",
       "scripts/sequence_contract.py::compute_source_digest": "module:scripts/sequence_contract.py",
       "scripts/sequence_contract.py::render_graph_mermaid": "module:scripts/sequence_contract.py",
-      "scripts/sequence_contract.py::sanitize_alias": "module:scripts/sequence_contract.py",
-      "scripts/sequence_contract.py::source_files": "module:scripts/sequence_contract.py"
+      "scripts/sequence_contract.py::sanitize_alias": "module:scripts/sequence_contract.py"
     },
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
+  "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
 }

@@ -56,6 +56,9 @@ jobs:
       - name: Governance Engine V2 regression
         run: python scripts/selftest_governance_engine.py
 
+      - name: Cross-language analyzer contract regression
+        run: python scripts/selftest_analyzer_contract.py
+
       - name: Sequence call-resolution regression
         run: python scripts/selftest_sequence_call_resolution.py
 

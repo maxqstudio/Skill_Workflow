@@ -2,8 +2,8 @@
 
 # ROADMAP
 
-Current project phase: SW2-06
-Current roadmap phase: SW2-06
+Current project phase: SW2-07
+Current roadmap phase: SW2-07
 ROADMAP_SYNC: PASS
 
 ## Phase plan
@@ -16,8 +16,8 @@ ROADMAP_SYNC: PASS
 | 4 | SW2-03 | Sequence V2 | COMPLETE | Separate full machine sequence evidence from bounded human-facing diagrams and add Mermaid correctness gates. | Full evidence graphs retain acceptance fidelity.<br>Human diagrams use semantic collapsing or subflows rather than raw helper dumps.<br>Mermaid syntax/render validation is blocking.<br>Diagram complexity thresholds are measurable and documented. |
 | 5 | SW2-04 | Documentation System V2 | COMPLETE | Standardize public documentation information architecture and separate public guidance from machine indexes/evidence. | README is a concise public landing page.<br>Concept, guide, reference, architecture, and sequence documentation have stable locations.<br>Machine indexes no longer dominate human-facing docs.<br>Generated documentation remains deterministic and drift-detectable. |
 | 6 | SW2-05 | Schema & Toolchain Versioning | COMPLETE | Version project schemas, toolchain bundles, migrations, and compatibility guarantees. | Profile/spec schemas have explicit versions.<br>Toolchain identity is lockable and auditable.<br>Supported migrations are deterministic and tested.<br>Release compatibility policy is documented. |
-| 7 | SW2-06 | Cross-Language Analyzer Architecture | CURRENT | Introduce analyzer interfaces so structural evidence can grow beyond Python without coupling governance semantics to one parser. | Analyzer contract is language-independent.<br>Python and JS/TS remain fully regression-covered.<br>Generic fallback behavior is explicit and fail-safe.<br>Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. |
-| 8 | SW2-07 | Public Project Hardening | PLANNED | Complete public repository health, security, contribution, and release governance. | Repository health files are present with Owner-approved license.<br>Security and contribution paths are documented.<br>Merge/ruleset enforcement matches declared governance.<br>Release process is repeatable and evidence-backed. |
+| 7 | SW2-06 | Cross-Language Analyzer Architecture | COMPLETE | Introduce analyzer interfaces so structural evidence can grow beyond Python without coupling governance semantics to one parser. | Analyzer contract is language-independent.<br>Python and JS/TS remain fully regression-covered.<br>Generic fallback behavior is explicit and fail-safe.<br>Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. |
+| 8 | SW2-07 | Public Project Hardening | CURRENT | Complete public repository health, security, contribution, and release governance. | Repository health files are present with Owner-approved license.<br>Security and contribution paths are documented.<br>Merge/ruleset enforcement matches declared governance.<br>Release process is repeatable and evidence-backed. |
 | 9 | SW2-08 | Regression & Adoption Validation | PLANNED | Prove V2 against representative small and large consumer projects before declaring stability. | Representative LITE, STANDARD, and STRICT fixtures pass.<br>At least one large real consumer validates performance improvement and governance parity.<br>Migration regressions and false PASS cases are covered.<br>Cross-platform acceptance remains green. |
 | 10 | SW2-09 | V2 Stable Release | PLANNED | Publish the accepted V2 contract with migration documentation, compatibility guarantees, and exact release evidence. | All prior SW2 phases are accepted.<br>Release candidate passes exact final acceptance.<br>Migration and rollback guidance are published.<br>A versioned GitHub release/tag is produced from the tested HEAD. |
 
@@ -39,4 +39,4 @@ When the project advances phase, update `.workflow/state.json` and
 
 Missing roadmap authority or phase drift is a blocking validation failure.
 
-<!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-ANALYZER-CONTRACT TRUTH-SW2-DOCS-PUBLIC-IA TRUTH-SW2-DOCS-SEPARATION TRUTH-SW2-DYNAMIC-EVIDENCE TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->
+<!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC TRUTH-SW2-ANALYZER-CONTRACT TRUTH-SW2-DOCS-PUBLIC-IA TRUTH-SW2-DOCS-SEPARATION TRUTH-SW2-DYNAMIC-EVIDENCE TRUTH-SW2-MERGE-ENFORCEMENT TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-PUBLIC-REPO-HEALTH TRUTH-SW2-RELEASE-GOVERNANCE TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-SEQUENCE-FIDELITY TRUTH-SW2-SEQUENCE-PRESENTATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

@@ -1,0 +1,49 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-07-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-07-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/validate_public_docs.py::main",
+      "scripts/validate_handoff.py::main",
+      "scripts/validate_project_truth.py::main",
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-07-GOVERNANCE.actual.json",
+    "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-07 phase-opening static evidence binds current public-document, Project Truth, handoff, and governance-engine validation paths. Actual GitHub ruleset enforcement, Owner license approval, and repeatable release evidence remain NOT_PROVEN because they require stronger repository/configuration or Owner evidence than static source inspection.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-07-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-07-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-07-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
+  },
+  "implementation_base_sha": "b1b95f3f112058c90dc8aa0ceb7b279dfd6ce7ab",
+  "mode": "DURING",
+  "phase": "SW2-07",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-07-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/validate_public_docs.py",
+    "scripts/validate_handoff.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}

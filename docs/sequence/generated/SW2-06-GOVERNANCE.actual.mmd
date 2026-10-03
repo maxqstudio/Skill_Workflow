@@ -1,56 +1,110 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
-%% OBSERVED_HEAD: ee96f2f64e7c134e67330e61fbaa1e895ac097de
+%% SOURCE_DIGEST: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
+%% OBSERVED_HEAD: 3e9c665785f036946da75412a81226652be22721
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
-    participant scripts_generate_sequence_actual_py__PyCollector_0 as scripts/generate_sequence_actual.py::PyCollector
-    participant scripts_generate_sequence_actual_py__allowed_1 as scripts/generate_sequence_actual.py::allowed
-    participant scripts_generate_sequence_actual_py__collect_js_http_2 as scripts/generate_sequence_actual.py::collect_js_http
-    participant scripts_generate_sequence_actual_py__collect_python_3 as scripts/generate_sequence_actual.py::collect_python
-    participant scripts_generate_sequence_actual_py__dedupe_edges_4 as scripts/generate_sequence_actual.py::dedupe_edges
-    participant scripts_generate_sequence_actual_py__dedupe_nodes_5 as scripts/generate_sequence_actual.py::dedupe_nodes
-    participant scripts_generate_sequence_actual_py__filter_reachable_6 as scripts/generate_sequence_actual.py::filter_reachable
-    participant scripts_generate_sequence_actual_py__main_7 as scripts/generate_sequence_actual.py::main
-    participant scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_8 as scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit
-    participant scripts_project_snapshot_py__ProjectSnapshot_entry_9 as scripts/project_snapshot.py::ProjectSnapshot.entry
-    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
-    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_11 as scripts/project_snapshot.py::ProjectSnapshot.read_text
-    participant scripts_project_snapshot_py__SnapshotError_12 as scripts/project_snapshot.py::SnapshotError
-    participant scripts_project_snapshot_py___git_13 as scripts/project_snapshot.py::_git
-    participant scripts_project_snapshot_py__active_snapshot_for_14 as scripts/project_snapshot.py::active_snapshot_for
-    participant scripts_project_snapshot_py__canonical_source_bytes_15 as scripts/project_snapshot.py::canonical_source_bytes
-    participant scripts_project_snapshot_py__discover_source_paths_16 as scripts/project_snapshot.py::discover_source_paths
-    participant scripts_selftest_sequence_human_view_py__sha256_17 as scripts/selftest_sequence_human_view.py::sha256
-    participant scripts_sequence_contract_py___selected_snapshot_18 as scripts/sequence_contract.py::_selected_snapshot
-    participant scripts_sequence_contract_py__compute_source_digest_19 as scripts/sequence_contract.py::compute_source_digest
-    participant scripts_sequence_contract_py__render_graph_mermaid_20 as scripts/sequence_contract.py::render_graph_mermaid
-    participant scripts_sequence_contract_py__sanitize_alias_21 as scripts/sequence_contract.py::sanitize_alias
-    participant scripts_sequence_contract_py__source_files_22 as scripts/sequence_contract.py::source_files
-    scripts_generate_sequence_actual_py__collect_js_http_2->>scripts_generate_sequence_actual_py__allowed_1: allowed [STATIC]
-    scripts_generate_sequence_actual_py__collect_js_http_2->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
-    scripts_generate_sequence_actual_py__collect_python_3->>scripts_generate_sequence_actual_py__PyCollector_0: PyCollector [STATIC]
-    scripts_generate_sequence_actual_py__collect_python_3->>scripts_generate_sequence_actual_py__allowed_1: allowed [STATIC]
-    scripts_generate_sequence_actual_py__collect_python_3->>scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_8: collector.visit [STATIC]
-    scripts_generate_sequence_actual_py__collect_python_3->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__collect_js_http_2: collect_js_http [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__collect_python_3: collect_python [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__dedupe_edges_4: dedupe_edges [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__dedupe_nodes_5: dedupe_nodes [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_generate_sequence_actual_py__filter_reachable_6: filter_reachable [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_sequence_contract_py__compute_source_digest_19: compute_source_digest [STATIC]
-    scripts_generate_sequence_actual_py__main_7->>scripts_sequence_contract_py__render_graph_mermaid_20: render_graph_mermaid [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_entry_9->>scripts_project_snapshot_py__SnapshotError_12: SnapshotError [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10->>scripts_project_snapshot_py__ProjectSnapshot_entry_9: self.entry [STATIC]
-    scripts_project_snapshot_py__ProjectSnapshot_read_text_11->>scripts_project_snapshot_py__ProjectSnapshot_entry_9: self.entry [STATIC]
-    scripts_project_snapshot_py__canonical_source_bytes_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: path.read_bytes [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_16->>scripts_project_snapshot_py__SnapshotError_12: SnapshotError [STATIC]
-    scripts_project_snapshot_py__discover_source_paths_16->>scripts_project_snapshot_py___git_13: _git [STATIC]
-    scripts_selftest_sequence_human_view_py__sha256_17->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: path.read_bytes [STATIC]
-    scripts_sequence_contract_py___selected_snapshot_18->>scripts_project_snapshot_py__active_snapshot_for_14: active_snapshot_for [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_19->>scripts_project_snapshot_py__canonical_source_bytes_15: canonical_source_bytes [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_19->>scripts_project_snapshot_py__discover_source_paths_16: discover_source_paths [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_19->>scripts_selftest_sequence_human_view_py__sha256_17: hashlib.sha256 [STATIC]
-    scripts_sequence_contract_py__compute_source_digest_19->>scripts_sequence_contract_py___selected_snapshot_18: _selected_snapshot [STATIC]
-    scripts_sequence_contract_py__render_graph_mermaid_20->>scripts_sequence_contract_py__sanitize_alias_21: sanitize_alias [STATIC]
-    scripts_sequence_contract_py__source_files_22->>scripts_project_snapshot_py__discover_source_paths_16: discover_source_paths [STATIC]
-    scripts_sequence_contract_py__source_files_22->>scripts_sequence_contract_py___selected_snapshot_18: _selected_snapshot [STATIC]
+    participant scripts_analyzer_contract_py__AnalyzerContractError_0 as scripts/analyzer_contract.py::AnalyzerContractError
+    participant scripts_analyzer_contract_py__AnalyzerResult_1 as scripts/analyzer_contract.py::AnalyzerResult
+    participant scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2 as scripts/analyzer_contract.py::AnalyzerResult.coverage_record
+    participant scripts_analyzer_contract_py__StructuralAnalyzer_analyze_3 as scripts/analyzer_contract.py::StructuralAnalyzer.analyze
+    participant scripts_analyzer_contract_py__coverage_records_4 as scripts/analyzer_contract.py::coverage_records
+    participant scripts_analyzer_contract_py__generic_fallback_5 as scripts/analyzer_contract.py::generic_fallback
+    participant scripts_analyzer_contract_py__result_by_id_6 as scripts/analyzer_contract.py::result_by_id
+    participant scripts_analyzer_contract_py__run_analyzers_7 as scripts/analyzer_contract.py::run_analyzers
+    participant scripts_analyzer_contract_py__validate_result_8 as scripts/analyzer_contract.py::validate_result
+    participant scripts_extract_project_facts_py__PythonFacts_9 as scripts/extract_project_facts.py::PythonFacts
+    participant scripts_extract_project_facts_py___extract_from_snapshot_10 as scripts/extract_project_facts.py::_extract_from_snapshot
+    participant scripts_extract_project_facts_py__is_test_file_11 as scripts/extract_project_facts.py::is_test_file
+    participant scripts_generate_sequence_actual_py__JsTsHttpSequenceAnalyzer_12 as scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer
+    participant scripts_generate_sequence_actual_py__JsTsHttpSequenceAnalyzer_analyze_13 as scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze
+    participant scripts_generate_sequence_actual_py__PyCollector_14 as scripts/generate_sequence_actual.py::PyCollector
+    participant scripts_generate_sequence_actual_py__PythonSequenceAnalyzer_15 as scripts/generate_sequence_actual.py::PythonSequenceAnalyzer
+    participant scripts_generate_sequence_actual_py__PythonSequenceAnalyzer_analyze_16 as scripts/generate_sequence_actual.py::PythonSequenceAnalyzer.analyze
+    participant scripts_generate_sequence_actual_py__allowed_17 as scripts/generate_sequence_actual.py::allowed
+    participant scripts_generate_sequence_actual_py__collect_js_http_18 as scripts/generate_sequence_actual.py::collect_js_http
+    participant scripts_generate_sequence_actual_py__collect_python_19 as scripts/generate_sequence_actual.py::collect_python
+    participant scripts_generate_sequence_actual_py__dedupe_edges_20 as scripts/generate_sequence_actual.py::dedupe_edges
+    participant scripts_generate_sequence_actual_py__dedupe_nodes_21 as scripts/generate_sequence_actual.py::dedupe_nodes
+    participant scripts_generate_sequence_actual_py__filter_reachable_22 as scripts/generate_sequence_actual.py::filter_reachable
+    participant scripts_generate_sequence_actual_py__main_23 as scripts/generate_sequence_actual.py::main
+    participant scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_24 as scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit
+    participant scripts_project_snapshot_py__ProjectSnapshot_capture_25 as scripts/project_snapshot.py::ProjectSnapshot.capture
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_26 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_28 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_29 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_project_snapshot_py__SnapshotFile_30 as scripts/project_snapshot.py::SnapshotFile
+    participant scripts_project_snapshot_py___git_31 as scripts/project_snapshot.py::_git
+    participant scripts_project_snapshot_py___git_optional_32 as scripts/project_snapshot.py::_git_optional
+    participant scripts_project_snapshot_py__active_snapshot_for_33 as scripts/project_snapshot.py::active_snapshot_for
+    participant scripts_project_snapshot_py__canonical_source_bytes_34 as scripts/project_snapshot.py::canonical_source_bytes
+    participant scripts_project_snapshot_py__discover_source_paths_35 as scripts/project_snapshot.py::discover_source_paths
+    participant scripts_project_snapshot_py__resolve_snapshot_36 as scripts/project_snapshot.py::resolve_snapshot
+    participant scripts_selftest_sequence_human_view_py__sha256_37 as scripts/selftest_sequence_human_view.py::sha256
+    participant scripts_sequence_contract_py___selected_snapshot_38 as scripts/sequence_contract.py::_selected_snapshot
+    participant scripts_sequence_contract_py__compute_source_digest_39 as scripts/sequence_contract.py::compute_source_digest
+    participant scripts_sequence_contract_py__render_graph_mermaid_40 as scripts/sequence_contract.py::render_graph_mermaid
+    participant scripts_sequence_contract_py__sanitize_alias_41 as scripts/sequence_contract.py::sanitize_alias
+    scripts_analyzer_contract_py__coverage_records_4->>scripts_analyzer_contract_py__validate_result_8: validate_result [STATIC]
+    scripts_analyzer_contract_py__generic_fallback_5->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_analyzer_contract_py__generic_fallback_5->>scripts_analyzer_contract_py__validate_result_8: validate_result [STATIC]
+    scripts_analyzer_contract_py__result_by_id_6->>scripts_analyzer_contract_py__AnalyzerContractError_0: AnalyzerContractError [STATIC]
+    scripts_analyzer_contract_py__run_analyzers_7->>scripts_analyzer_contract_py__AnalyzerContractError_0: AnalyzerContractError [STATIC]
+    scripts_analyzer_contract_py__run_analyzers_7->>scripts_analyzer_contract_py__StructuralAnalyzer_analyze_3: analyzer.analyze [STATIC]
+    scripts_analyzer_contract_py__run_analyzers_7->>scripts_analyzer_contract_py__validate_result_8: validate_result [STATIC]
+    scripts_analyzer_contract_py__run_analyzers_7->>scripts_project_snapshot_py__resolve_snapshot_36: resolve_snapshot [STATIC]
+    scripts_analyzer_contract_py__validate_result_8->>scripts_analyzer_contract_py__AnalyzerContractError_0: AnalyzerContractError [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2: fallback.coverage_record [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_analyzer_contract_py__coverage_records_4: coverage_records [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_analyzer_contract_py__generic_fallback_5: generic_fallback [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_analyzer_contract_py__validate_result_8: validate_result [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_extract_project_facts_py__PythonFacts_9: PythonFacts [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_extract_project_facts_py__is_test_file_11: is_test_file [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_24: visitor.visit [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_10->>scripts_project_snapshot_py__ProjectSnapshot_read_text_28: snapshot.read_text [STATIC]
+    scripts_generate_sequence_actual_py__JsTsHttpSequenceAnalyzer_analyze_13->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_generate_sequence_actual_py__JsTsHttpSequenceAnalyzer_analyze_13->>scripts_generate_sequence_actual_py__collect_js_http_18: collect_js_http [STATIC]
+    scripts_generate_sequence_actual_py__PythonSequenceAnalyzer_analyze_16->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_generate_sequence_actual_py__PythonSequenceAnalyzer_analyze_16->>scripts_generate_sequence_actual_py__collect_python_19: collect_python [STATIC]
+    scripts_generate_sequence_actual_py__collect_js_http_18->>scripts_generate_sequence_actual_py__allowed_17: allowed [STATIC]
+    scripts_generate_sequence_actual_py__collect_js_http_18->>scripts_project_snapshot_py__ProjectSnapshot_read_text_28: path.read_text [STATIC]
+    scripts_generate_sequence_actual_py__collect_python_19->>scripts_generate_sequence_actual_py__PyCollector_14: PyCollector [STATIC]
+    scripts_generate_sequence_actual_py__collect_python_19->>scripts_generate_sequence_actual_py__allowed_17: allowed [STATIC]
+    scripts_generate_sequence_actual_py__collect_python_19->>scripts_governance_engine_py__ValidationDAG__assert_acyclic_visit_24: collector.visit [STATIC]
+    scripts_generate_sequence_actual_py__collect_python_19->>scripts_project_snapshot_py__ProjectSnapshot_read_text_28: path.read_text [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2: fallback.coverage_record [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_analyzer_contract_py__coverage_records_4: coverage_records [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_analyzer_contract_py__generic_fallback_5: generic_fallback [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_analyzer_contract_py__result_by_id_6: result_by_id [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_analyzer_contract_py__run_analyzers_7: run_analyzers [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_generate_sequence_actual_py__JsTsHttpSequenceAnalyzer_12: JsTsHttpSequenceAnalyzer [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_generate_sequence_actual_py__PythonSequenceAnalyzer_15: PythonSequenceAnalyzer [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_generate_sequence_actual_py__dedupe_edges_20: dedupe_edges [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_generate_sequence_actual_py__dedupe_nodes_21: dedupe_nodes [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_generate_sequence_actual_py__filter_reachable_22: filter_reachable [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_sequence_contract_py__compute_source_digest_39: compute_source_digest [STATIC]
+    scripts_generate_sequence_actual_py__main_23->>scripts_sequence_contract_py__render_graph_mermaid_40: render_graph_mermaid [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_25->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_25->>scripts_project_snapshot_py__SnapshotFile_30: SnapshotFile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_25->>scripts_project_snapshot_py___git_optional_32: _git_optional [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_25->>scripts_project_snapshot_py__canonical_source_bytes_34: canonical_source_bytes [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_25->>scripts_project_snapshot_py__discover_source_paths_35: discover_source_paths [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_25->>scripts_selftest_sequence_human_view_py__sha256_37: hashlib.sha256 [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_26->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27->>scripts_project_snapshot_py__ProjectSnapshot_entry_26: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_28->>scripts_project_snapshot_py__ProjectSnapshot_entry_26: self.entry [STATIC]
+    scripts_project_snapshot_py___git_optional_32->>scripts_project_snapshot_py___git_31: _git [STATIC]
+    scripts_project_snapshot_py__canonical_source_bytes_34->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27: path.read_bytes [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_35->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_35->>scripts_project_snapshot_py___git_31: _git [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_36->>scripts_project_snapshot_py__ProjectSnapshot_capture_25: ProjectSnapshot.capture [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_36->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_36->>scripts_project_snapshot_py__active_snapshot_for_33: active_snapshot_for [STATIC]
+    scripts_selftest_sequence_human_view_py__sha256_37->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27: path.read_bytes [STATIC]
+    scripts_sequence_contract_py___selected_snapshot_38->>scripts_project_snapshot_py__active_snapshot_for_33: active_snapshot_for [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_39->>scripts_project_snapshot_py__canonical_source_bytes_34: canonical_source_bytes [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_39->>scripts_project_snapshot_py__discover_source_paths_35: discover_source_paths [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_39->>scripts_selftest_sequence_human_view_py__sha256_37: hashlib.sha256 [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_39->>scripts_sequence_contract_py___selected_snapshot_38: _selected_snapshot [STATIC]
+    scripts_sequence_contract_py__render_graph_mermaid_40->>scripts_sequence_contract_py__sanitize_alias_41: sanitize_alias [STATIC]

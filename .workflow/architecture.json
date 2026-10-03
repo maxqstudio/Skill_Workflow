@@ -33,10 +33,13 @@
       "owns": [
         "source digest",
         "module facts",
+        "language-independent analyzer result contract",
         "Python symbols/routes/calls",
+        "JS/TS literal HTTP sequence edges",
+        "fail-safe unsupported-language inventory",
         "static sequence graph"
       ],
-      "purpose": "Observe machine-verifiable source structure and sequence edges without inventing semantic intent."
+      "purpose": "Observe machine-verifiable source structure through normalized language adapters, preserve accepted Python and JS/TS evidence, and keep unsupported or dynamic behavior NOT_PROVEN."
     },
     {
       "depends_on": [

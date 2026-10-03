@@ -10,10 +10,10 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-05-schema-toolchain-versioning
+Active branch: work/sw2-06-cross-language-analyzer-architecture
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060
-Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+Last accepted SHA: 4f3546e78e4a927359b1805fa5c69bf57ddc0040
+Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.

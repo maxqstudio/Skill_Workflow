@@ -66,4 +66,12 @@ Governance profile/spec schema version 1 is explicit and blocking. Legacy unvers
 
 Rationale: The existing JSON schema_version fields were not enforced and PROJECT_PROFILE.yaml had no version. Tool vendoring also had no byte-level identity, allowing accidental drift. The smallest compatible contract makes existing v1 semantics explicit without inventing a premature product release version.
 
+## SW2-ADR-009 — Normalize analyzer evidence without forcing one universal parser
+
+Status: ACCEPTED
+
+SW2-06 introduces one language-independent AnalyzerResult contract and fail-safe inventory fallback while retaining separate Python and JS/TS adapters. Existing accepted output keys and resolver semantics remain compatible; unsupported semantic structure and dynamic behavior stay NOT_PROVEN.
+
+Rationale: A common evidence contract removes governance coupling to one parser without risking a broad parser rewrite. Surface-specific analyzers can grow independently while consumers keep accepted evidence semantics and unsupported behavior cannot become false certainty.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

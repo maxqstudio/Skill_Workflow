@@ -4,32 +4,32 @@
 
 ## Evidence boundary
 
-SW2-06 acceptance covers Cross-Language Analyzer Architecture only: a language-independent analyzer contract, preserved Python and JS/TS regression coverage, explicit fail-safe generic fallback behavior, and conservative handling of unsupported dynamic behavior. Accepted SW2-01 through SW2-05 governance, performance, sequence, documentation, schema, migration, and toolchain guarantees remain inherited authority and must not be weakened.
+SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, actual merge/ruleset enforcement aligned with declared governance, and a repeatable evidence-backed release process. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.
 
 Final tested source: external final acceptance evidence.
-Current source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+Current source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-06-R1 | Analyzer contract is language-independent. | Phase-open baseline only; dedicated analyzer-interface evidence is not yet accepted. | NOT_PROVEN |
-| SW2-06-R2 | Python and JS/TS remain fully regression-covered. | Existing analyzers are preserved at phase opening, but regression coverage under the new contract is not yet accepted. | NOT_PROVEN |
-| SW2-06-R3 | Generic fallback behavior is explicit and fail-safe. | No accepted generic fallback contract exists at phase opening. | NOT_PROVEN |
-| SW2-06-R4 | Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. | Phase-open evidence records current static-analysis limitations; dedicated negative-path proof is not yet accepted. | NOT_PROVEN |
+| SW2-07-R1 | Repository health files are present with Owner-approved license. | NOT_PROVEN at phase opening. License selection is an Owner decision and no license may be inferred or auto-selected. | NOT_PROVEN |
+| SW2-07-R2 | Security and contribution paths are documented. | NOT_PROVEN until public repository health documents and their validation are complete. | NOT_PROVEN |
+| SW2-07-R3 | Merge/ruleset enforcement matches declared governance. | NOT_PROVEN until actual GitHub repository configuration is audited and evidenced; workflow presence alone is insufficient. | NOT_PROVEN |
+| SW2-07-R4 | Release process is repeatable and evidence-backed. | NOT_PROVEN until release governance is documented and regression-tested without publishing the SW2-09 stable release. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
 - python scripts/validate_schema_toolchain.py --root .
-- python scripts/selftest_schema_toolchain.py
-- python scripts/selftest_sequence_call_resolution.py
+- python scripts/selftest_analyzer_contract.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/selftest_public_docs.py
 - python scripts/selftest_generated_doc_presentation.py
+- python scripts/validate_public_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -43,8 +43,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-06-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+Sequence session contract: SW2-07-GOVERNANCE
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 

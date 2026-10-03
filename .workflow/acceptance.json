@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-06 acceptance covers Cross-Language Analyzer Architecture only: a language-independent analyzer contract, preserved Python and JS/TS regression coverage, explicit fail-safe generic fallback behavior, and conservative handling of unsupported dynamic behavior. Accepted SW2-01 through SW2-05 governance, performance, sequence, documentation, schema, migration, and toolchain guarantees remain inherited authority and must not be weakened.",
+  "evidence_boundary": "SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, actual merge/ruleset enforcement aligned with declared governance, and a repeatable evidence-backed release process. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,27 +17,27 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "Phase-open baseline only; dedicated analyzer-interface evidence is not yet accepted.",
-      "id": "SW2-06-R1",
-      "requirement": "Analyzer contract is language-independent.",
+      "evidence": "NOT_PROVEN at phase opening. License selection is an Owner decision and no license may be inferred or auto-selected.",
+      "id": "SW2-07-R1",
+      "requirement": "Repository health files are present with Owner-approved license.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "Existing analyzers are preserved at phase opening, but regression coverage under the new contract is not yet accepted.",
-      "id": "SW2-06-R2",
-      "requirement": "Python and JS/TS remain fully regression-covered.",
+      "evidence": "NOT_PROVEN until public repository health documents and their validation are complete.",
+      "id": "SW2-07-R2",
+      "requirement": "Security and contribution paths are documented.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "No accepted generic fallback contract exists at phase opening.",
-      "id": "SW2-06-R3",
-      "requirement": "Generic fallback behavior is explicit and fail-safe.",
+      "evidence": "NOT_PROVEN until actual GitHub repository configuration is audited and evidenced; workflow presence alone is insufficient.",
+      "id": "SW2-07-R3",
+      "requirement": "Merge/ruleset enforcement matches declared governance.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "Phase-open evidence records current static-analysis limitations; dedicated negative-path proof is not yet accepted.",
-      "id": "SW2-06-R4",
-      "requirement": "Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists.",
+      "evidence": "NOT_PROVEN until release governance is documented and regression-tested without publishing the SW2-09 stable release.",
+      "id": "SW2-07-R4",
+      "requirement": "Release process is repeatable and evidence-backed.",
       "status": "NOT_PROVEN"
     }
   ],
@@ -45,21 +45,21 @@
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-06-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_session": "SW2-07-GOVERNANCE",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/validate_schema_toolchain.py --root .",
-    "python scripts/selftest_schema_toolchain.py",
-    "python scripts/selftest_sequence_call_resolution.py",
+    "python scripts/selftest_analyzer_contract.py",
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/selftest_public_docs.py",
     "python scripts/selftest_generated_doc_presentation.py",
+    "python scripts/validate_public_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
     "python scripts/validate_handoff.py --root .",
-    "python scripts/governance_engine.py --root . --base 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 4f3546e78e4a927359b1805fa5c69bf57ddc0040 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

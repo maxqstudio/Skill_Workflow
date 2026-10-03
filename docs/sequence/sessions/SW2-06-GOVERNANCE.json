@@ -3,26 +3,27 @@
   "actual": {
     "diagram": "docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd",
     "entries": [
-      "scripts/generate_sequence_actual.py::collect_python",
-      "scripts/generate_sequence_actual.py::collect_js_http",
-      "scripts/generate_sequence_actual.py::main",
-      "scripts/sequence_contract.py::source_files",
-      "scripts/project_snapshot.py::discover_source_paths"
+      "scripts/analyzer_contract.py::run_analyzers",
+      "scripts/analyzer_contract.py::generic_fallback",
+      "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "scripts/generate_sequence_actual.py::PythonSequenceAnalyzer.analyze",
+      "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
+      "scripts/generate_sequence_actual.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-06-GOVERNANCE.actual.json",
-    "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
+    "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
   },
   "critical": true,
-  "evidence_boundary": "SW2-06 phase-opening static evidence binds the current Python AST, JS/TS HTTP scan, shared source inventory, and sequence generation surfaces before analyzer-interface work. A language-independent analyzer contract, generic fallback semantics, and stronger evidence for dynamic behavior remain NOT_PROVEN.",
+  "evidence_boundary": "SW2-06 accepted historical evidence: normalized language-independent analyzer contract, preserved Python and JS/TS regressions, inventory-only fail-safe fallback, and explicit NOT_PROVEN boundary for unsupported dynamic behavior.",
   "human_view": {
     "diagram": "docs/sequence/generated/SW2-06-GOVERNANCE.human.mmd",
     "document": "docs/sequence/views/SW2-06-GOVERNANCE.md",
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-06-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac"
+    "source_digest": "4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce"
   },
-  "implementation_base_sha": "aa93514462e505483673a8d2a5e1248096be0407",
+  "implementation_base_sha": "4f3546e78e4a927359b1805fa5c69bf57ddc0040",
   "mode": "DURING",
   "phase": "SW2-06",
   "plan": {
@@ -38,11 +39,12 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "CURRENT",
+  "scope": "HISTORICAL",
   "session_id": "SW2-06-GOVERNANCE",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "test_traceability_required": true,
   "tests": [
+    "scripts/selftest_analyzer_contract.py",
     "scripts/selftest_sequence_call_resolution.py",
     "scripts/selftest_governance_engine.py"
   ]

@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 38 files, 1 language categories.
+Observed source inventory: 40 files, 1 language categories.
 
 ## Major components
 
@@ -35,7 +35,7 @@ Observed source inventory: 38 files, 1 language categories.
 |---|---|---|---|
 | Skill Contract | Define normative governance, acceptance, documentation, and handoff behavior. | SKILL.md governance semantics, profile expectations, definition of done |  |
 | Project Truth Compiler | Project machine-readable facts and semantic specs into deterministic human-facing Markdown. | generated docs, code fact projection | source_extractors, workflow_specs |
-| Source & Sequence Extractors | Observe machine-verifiable source structure and sequence edges without inventing semantic intent. | source digest, module facts, Python symbols/routes/calls, static sequence graph | repository source |
+| Source & Sequence Extractors | Observe machine-verifiable source structure through normalized language adapters, preserve accepted Python and JS/TS evidence, and keep unsupported or dynamic behavior NOT_PROVEN. | source digest, module facts, language-independent analyzer result contract, Python symbols/routes/calls, JS/TS literal HTTP sequence edges, fail-safe unsupported-language inventory, static sequence graph | repository source |
 | Governance Validators | Fail closed on stale docs, broken references, sequence drift, truth inconsistencies, and handoff defects. | blocking governance gates, validation reports | truth_compiler, source_extractors, workflow_specs |
 | Initializer & Templates | Install project-local governance specs and tool support into consumer repositories. | PROJECT_PROFILE template, .workflow templates, vendored tool bootstrap | skill_contract |
 | GitHub Actions Acceptance | Execute cross-platform self-tests and exact-candidate governance validation. | Ubuntu selftest, Windows selftest, self-governance checks | validators, repository source |
@@ -64,7 +64,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-06
+Current phase: SW2-07
 
 Current status: IN_PROGRESS
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Audit current parser/analyzer coupling without redesigning accepted governance semantics.
-- Define the smallest language-independent analyzer contract that preserves existing Python and JS/TS evidence.
-- Add regression and negative-path evidence for Python, JS/TS, and generic fail-safe fallback behavior.
-- Keep dynamic dispatch, reflection, framework magic, dependency injection, and unresolved calls NOT_PROVEN unless stronger evidence is added.
+- Audit repository health files and record the exact license decision boundary without choosing a license for the Owner.
+- Add or repair contribution and security documentation with deterministic public-doc validation.
+- Audit actual GitHub main-branch/ruleset enforcement against declared governance and remediate only with evidence.
+- Define and test a repeatable release process without creating the V2 stable release reserved for SW2-09.
 
 Blocked actions:
-- Do not claim the SW2-06 analyzer abstraction is proven before dedicated implementation evidence passes.
-- Do not weaken accepted Python or JS/TS regression behavior while introducing analyzer interfaces.
-- Do not turn generic fallback or unresolved dynamic behavior into false structural certainty.
-- Do not address repository merge/ruleset enforcement in SW2-06; that remains SW2-07 scope.
+- Do not choose, add, or claim approval of a public license without explicit Owner approval.
+- Do not claim merge/ruleset enforcement from workflow files alone; actual GitHub repository configuration must be evidenced.
+- Do not create the V2 stable release/tag in SW2-07; stable release remains SW2-09 scope.
+- Do not weaken accepted SW2-01 through SW2-06 governance guarantees while hardening public repository operations.
 
 Known blockers:
 - None declared.
@@ -147,18 +147,20 @@ Known blockers:
 - SW2-05 phase-open handoff is accepted on main 733cf7dcb6def0fc1adc36cee7cc5243b8eaf060: post-merge Self Governance 37098472542, Governance Selftest 37098472484 on Ubuntu and Windows, SW2 Sequence Evidence 37098472512, SW2 Engine Performance 37098472500, and SW2 Consumer Engine Performance 37098472497 all succeeded; merged tree acbac886f483cb150bdb037789fdf659964245e9 equals exact tested PR-head tree.
 - SW2-05 Schema & Toolchain Versioning feature acceptance is proven on exact candidate eab855c08b08770d12add6ba2833230a2e6293fc: Governance Selftest 37100862749 passed Ubuntu and Windows with permanent schema/toolchain regression, SW2 Sequence Evidence 37100862743 passed with blocking Mermaid render, and Consumer Engine Performance 37100862760 passed after explicit deterministic migration of the pinned legacy max-grounding consumer. Missing/malformed/future schema versions fail closed; migration is explicit and idempotent; vendored tools are bound by exact file hashes and manifest digest; cache and mutable upstream state remain non-authoritative.
 - SW2-05 Schema & Toolchain Versioning is accepted on exact clean closure candidate aa93514462e505483673a8d2a5e1248096be0407: Self Governance 37101621016, Governance Selftest 37101621006 on Ubuntu and Windows, SW2 Sequence Evidence 37101621062, SW2 Engine Performance 37101621007, and SW2 Consumer Engine Performance 37101621079 all succeeded after tracked Python bytecode was removed and ignore policy was enforced.
+- SW2-06 phase-open authority is accepted on main 4f3546e78e4a927359b1805fa5c69bf57ddc0040: post-merge Self Governance 37102088293, Governance Selftest 37102088281 on Ubuntu and Windows, SW2 Sequence Evidence 37102088313, SW2 Engine Performance 37102088299, and SW2 Consumer Engine Performance 37102088297 all succeeded; merged tree e9ce803f23984356adbb61eb08f2bab3bf354837 equals the exact tested PR-head tree.
+- SW2-06 Cross-Language Analyzer Architecture feature acceptance is proven on exact clean candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd: Self Governance 37107117800, Governance Selftest 37107117851 on Ubuntu and Windows, SW2 Sequence Evidence 37107117803, SW2 Engine Performance 37107117811, and SW2 Consumer Engine Performance 37107117823 all succeeded. The normalized analyzer contract preserves accepted Python and JS/TS semantics, generic fallback is inventory-only and fail-safe, and unsupported dynamic behavior remains NOT_PROVEN without stronger evidence.
+- SW2-06 Cross-Language Analyzer Architecture is accepted on exact clean post-promotion candidate b1b95f3f112058c90dc8aa0ceb7b279dfd6ce7ab: Self Governance 37107380727, Governance Selftest 37107380730 on Ubuntu and Windows, SW2 Sequence Evidence 37107380788, SW2 Engine Performance 37107381528, and SW2 Consumer Engine Performance 37107380729 all succeeded after R1-R4 and analyzer/dynamic-evidence claims were promoted.
 
 ### Not proven
 
-- SW2-06 language-independent analyzer contract is not proven.
-- SW2-06 Python and JS/TS analyzer regression coverage under the new contract is not proven.
-- SW2-06 generic fallback behavior is not proven explicit and fail-safe.
-- SW2-06 unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists.
-- Repository merge enforcement is still absent on main; actual alignment remains a SW2-07 exit criterion.
+- SW2-07 repository health files and an Owner-approved public license are not proven complete.
+- SW2-07 security and contribution paths are not proven complete.
+- SW2-07 actual GitHub merge/ruleset enforcement is not proven to match declared governance.
+- SW2-07 release process is not proven repeatable and evidence-backed.
 
 ## Important limitations
 
-- non-Python symbol extraction requires language-specific parsers or Ctags
+- non-Python symbol extraction requires a stronger language analyzer
 - dynamic dispatch/dependency injection/reflection are not resolved
 - JS/TS function-level semantics are not inferred here
 

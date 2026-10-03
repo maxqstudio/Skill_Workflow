@@ -3,16 +3,17 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+Source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
 |---|---|---:|---|---|
+| scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
-| scripts/extract_project_facts.py | Python | 255 | scripts | NO |
+| scripts/extract_project_facts.py | Python | 289 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
 | scripts/generate_project_docs.py | Python | 2000 | scripts | NO |
-| scripts/generate_sequence_actual.py | Python | 420 | scripts | NO |
+| scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
 | scripts/governance_engine.py | Python | 813 | scripts | NO |
@@ -22,6 +23,7 @@ Generated/refreshed: current compiler run
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
 | scripts/schema_contract.py | Python | 88 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
+| scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |

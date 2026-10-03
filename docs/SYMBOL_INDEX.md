@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: cce7650c3f7d36d1ff14410b83a7415f33ae157e19896855a2564dd7262ab5ac
+Source digest: 4598fbe238329afe4eade6b4a5dbb1b9ec7a66abe13ea80e22dd406865aa9cce
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -15,11 +15,12 @@ responsibility, callers, or state ownership.
 
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
+| scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
 | scripts/generate_module_map.py | 3 | 0 | 3 | 0 |
 | scripts/generate_project_docs.py | 38 | 0 | 38 | 0 |
-| scripts/generate_sequence_actual.py | 17 | 1 | 9 | 7 |
+| scripts/generate_sequence_actual.py | 21 | 3 | 9 | 9 |
 | scripts/generate_sequence_plan.py | 1 | 0 | 1 | 0 |
 | scripts/generate_symbol_index.py | 13 | 1 | 7 | 5 |
 | scripts/governance_engine.py | 27 | 3 | 17 | 7 |
@@ -29,6 +30,7 @@ responsibility, callers, or state ownership.
 | scripts/project_snapshot.py | 18 | 3 | 7 | 8 |
 | scripts/schema_contract.py | 5 | 0 | 5 | 0 |
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_governance_engine.py | 15 | 0 | 11 | 4 |
@@ -57,6 +59,24 @@ responsibility, callers, or state ownership.
 ## Detailed symbols
 
 <details>
+<summary><code>scripts/analyzer_contract.py</code> — 10 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| AnalyzerContractError | class | 32-33 |
+| AnalyzerResult | class | 37-62 |
+| AnalyzerResult.coverage_record | method | 51-62 |
+| StructuralAnalyzer | class | 65-70 |
+| StructuralAnalyzer.analyze | method | 69-70 |
+| validate_result | function | 73-100 |
+| run_analyzers | function | 103-123 |
+| generic_fallback | function | 126-149 |
+| coverage_records | function | 152-153 |
+| result_by_id | function | 156-162 |
+
+</details>
+
+<details>
 <summary><code>scripts/benchmark_governance.py</code> — 8 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -77,20 +97,20 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| call_name | function | 37-43 |
-| literal_string | function | 46-49 |
-| PythonFacts | class | 52-127 |
-| PythonFacts.__init__ | method | 53-59 |
-| PythonFacts.locator | method | 61-63 |
-| PythonFacts.visit_ClassDef | method | 65-77 |
-| PythonFacts._function | method | 79-107 |
-| PythonFacts.visit_FunctionDef | method | 109-110 |
-| PythonFacts.visit_AsyncFunctionDef | method | 112-117 |
-| PythonFacts.visit_Call | method | 119-127 |
-| is_test_file | function | 130-140 |
-| _extract_from_snapshot | function | 143-216 |
-| extract_project_facts | function | 219-228 |
-| main | function | 231-251 |
+| call_name | function | 45-51 |
+| literal_string | function | 54-57 |
+| PythonFacts | class | 60-135 |
+| PythonFacts.__init__ | method | 61-67 |
+| PythonFacts.locator | method | 69-71 |
+| PythonFacts.visit_ClassDef | method | 73-85 |
+| PythonFacts._function | method | 87-115 |
+| PythonFacts.visit_FunctionDef | method | 117-118 |
+| PythonFacts.visit_AsyncFunctionDef | method | 120-125 |
+| PythonFacts.visit_Call | method | 127-135 |
+| is_test_file | function | 138-148 |
+| _extract_from_snapshot | function | 151-247 |
+| extract_project_facts | function | 250-259 |
+| main | function | 262-285 |
 
 </details>
 
@@ -152,27 +172,31 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/generate_sequence_actual.py</code> — 17 symbols</summary>
+<summary><code>scripts/generate_sequence_actual.py</code> — 21 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| allowed | function | 33-35 |
-| call_name | function | 38-49 |
-| literal_string | function | 52-55 |
-| PyCollector | class | 58-130 |
-| PyCollector.__init__ | method | 59-67 |
-| PyCollector.symbol_id | method | 69-71 |
-| PyCollector.visit_ClassDef | method | 73-86 |
-| PyCollector._visit_function | method | 88-117 |
-| PyCollector.visit_FunctionDef | method | 119-120 |
-| PyCollector.visit_AsyncFunctionDef | method | 122-123 |
-| PyCollector.visit_Call | method | 125-130 |
-| collect_python | function | 133-200 |
-| collect_js_http | function | 210-264 |
-| dedupe_nodes | function | 267-273 |
-| dedupe_edges | function | 276-290 |
-| filter_reachable | function | 293-333 |
-| main | function | 336-416 |
+| allowed | function | 42-44 |
+| call_name | function | 47-53 |
+| literal_string | function | 56-59 |
+| PyCollector | class | 62-134 |
+| PyCollector.__init__ | method | 63-71 |
+| PyCollector.symbol_id | method | 73-75 |
+| PyCollector.visit_ClassDef | method | 77-90 |
+| PyCollector._visit_function | method | 92-121 |
+| PyCollector.visit_FunctionDef | method | 123-124 |
+| PyCollector.visit_AsyncFunctionDef | method | 126-127 |
+| PyCollector.visit_Call | method | 129-134 |
+| collect_python | function | 137-204 |
+| collect_js_http | function | 214-268 |
+| PythonSequenceAnalyzer | class | 271-286 |
+| PythonSequenceAnalyzer.analyze | method | 275-286 |
+| JsTsHttpSequenceAnalyzer | class | 289-306 |
+| JsTsHttpSequenceAnalyzer.analyze | method | 293-306 |
+| dedupe_nodes | function | 309-315 |
+| dedupe_edges | function | 318-332 |
+| filter_reachable | function | 335-367 |
+| main | function | 370-466 |
 
 </details>
 
@@ -327,6 +351,18 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | invoke_main | function | 12-35 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_analyzer_contract.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 15-26 |
+| require | function | 29-31 |
+| by_id | function | 34-38 |
+| main | function | 41-216 |
 
 </details>
 
@@ -650,6 +686,6 @@ responsibility, callers, or state ownership.
 
 ## Coverage
 
-- non-Python symbol extraction requires language-specific parsers or Ctags
+- non-Python symbol extraction requires a stronger language analyzer
 - dynamic dispatch/dependency injection/reflection are not resolved
 - JS/TS function-level semantics are not inferred here
