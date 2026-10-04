@@ -38,19 +38,27 @@ jobs:
           python scripts/selftest_project_truth_compiler.py
           python scripts/selftest_cross_document_regressions.py
 
-      - name: Regenerate Project Truth and current sequence
+      - name: Remove helpers before authoritative regeneration
         shell: bash
         run: |
-          python scripts/sync_project_truth.py --root .
-          python .github/tmp-sw2-15-sequence-regen.py
-
-      - name: Validate exact helper-free implementation tree
-        shell: bash
-        run: |
+          cp .github/tmp-sw2-15-sequence-regen.py "$RUNNER_TEMP/sw2-15-sequence-regen.py"
           rm -f \
             .github/workflows/tmp-sw2-15-smart-dag-impl.yml \
             .github/tmp-sw2-15-smart-dag-patch.py \
             .github/tmp-sw2-15-sequence-regen.py
+          test ! -e .github/workflows/tmp-sw2-15-smart-dag-impl.yml
+          test ! -e .github/tmp-sw2-15-smart-dag-patch.py
+          test ! -e .github/tmp-sw2-15-sequence-regen.py
+
+      - name: Regenerate helper-free Project Truth and current sequence
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python "$RUNNER_TEMP/sw2-15-sequence-regen.py"
+
+      - name: Validate exact helper-free implementation tree
+        shell: bash
+        run: |
           export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
           python -m compileall -q scripts .github/scripts
           python scripts/selftest_governance_engine.py
@@ -64,14 +72,14 @@ jobs:
           test ! -e .github/workflows/tmp-sw2-15-smart-dag-impl.yml
           test ! -e .github/tmp-sw2-15-smart-dag-patch.py
           test ! -e .github/tmp-sw2-15-sequence-regen.py
+
+      - name: Restore transport helpers and commit implementation only
+        shell: bash
+        run: |
           git checkout HEAD -- \
             .github/workflows/tmp-sw2-15-smart-dag-impl.yml \
             .github/tmp-sw2-15-smart-dag-patch.py \
             .github/tmp-sw2-15-sequence-regen.py
-
-      - name: Commit implementation without helper mutations
-        shell: bash
-        run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
