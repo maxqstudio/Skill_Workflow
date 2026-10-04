@@ -11,7 +11,7 @@
       "scripts/governance_engine.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-09-GOVERNANCE.actual.json",
-    "source_digest": "3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e"
+    "source_digest": "1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13"
   },
   "critical": true,
   "evidence_boundary": "SW2-09 phase-opening static evidence binds release preflight, schema/toolchain compatibility, public documentation, handoff, Project Truth, and final governance paths. Exact release-candidate acceptance, migration/rollback publication, and stable tag/release publication remain NOT_PROVEN until dedicated SW2-09 evidence passes.",
@@ -21,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-09-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e"
+    "source_digest": "1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13"
   },
   "implementation_base_sha": "8d0fbfd7177128774a0f321b8c95e6befdaaf659",
   "mode": "DURING",

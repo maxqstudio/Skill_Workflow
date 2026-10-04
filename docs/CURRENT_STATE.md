@@ -18,7 +18,7 @@ Branch: work/sw2-09-v2-stable-release
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
 Current candidate SHA: external final acceptance evidence
-Current source digest: 3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e
+Current source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

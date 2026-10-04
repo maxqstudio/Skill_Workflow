@@ -7,7 +7,7 @@
 SW2-09 acceptance covers V2 Stable Release only: confirmation that all prior SW2 phases are accepted; an exact final release candidate that passes complete acceptance; published migration and rollback guidance; and a versioned GitHub release/tag created from the exact tested HEAD. Accepted SW2-01 through SW2-08 guarantees remain inherited authority and must not be weakened. Publication is forbidden until release candidate and migration/rollback gates are proven.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e
+Current source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

@@ -2,7 +2,7 @@
 
 # ARCHITECTURE
 
-Current source digest: 3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e
+Current source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
 
 ## Components
 
@@ -32,7 +32,7 @@ Current source digest: 3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e6
 ## Observed implementation inventory
 
 Source files: 47
-Source lines: 12888
+Source lines: 12956
 Languages: Python=47
 
 Structural facts come from the code extractor. Component meaning comes from
