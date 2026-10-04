@@ -10,7 +10,7 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-09-v2-stable-release
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
 Current source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13

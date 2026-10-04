@@ -14,7 +14,7 @@ ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-09-v2-stable-release
+Branch: main
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
 Current candidate SHA: external final acceptance evidence
