@@ -1,21 +1,22 @@
 {
   "blocked_actions": [
+    "Do not claim SW2-08 adoption, performance, migration, or cross-platform gates PASS without fresh exact-candidate evidence.",
     "Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.",
     "Do not change the Owner-approved MIT license or SW2-ADR-010 without explicit Owner approval.",
-    "Do not create the V2 stable release/tag in SW2-07; stable release remains SW2-09 scope.",
-    "Do not weaken accepted SW2-01 through SW2-06 governance guarantees."
+    "Do not create the V2 stable release/tag in SW2-08; stable release remains SW2-09 scope.",
+    "Do not weaken accepted SW2-01 through SW2-07 governance guarantees."
   ],
   "blockers": [],
   "last_accepted_branch": "main",
-  "last_accepted_sha": "f391fe9dc5d208803118090bbe6a174e8f6c7c63",
+  "last_accepted_sha": "bcc861bf9acc4a02702f5eec8bb45345617cd94a",
   "next_authorized_actions": [
-    "Run final exact-head acceptance for SW2-07.",
-    "If final acceptance passes, close SW2-07 and advance roadmap authority to SW2-08 without creating the stable V2 release reserved for SW2-09."
+    "Run final exact-head SW2-08 acceptance with R1-R4 promoted and no temporary workflow present.",
+    "If final acceptance passes, close SW2-08 and advance roadmap authority to SW2-09 without creating the stable release until SW2-09 acceptance."
   ],
   "not_proven": [
-    "Automatic GitHub merge protection and required-check enforcement are intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this is non-blocking for the revised SW2-07 scope."
+    "Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking."
   ],
-  "phase": "SW2-07",
+  "phase": "SW2-08",
   "proven": [
     "SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.",
     "Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.",
@@ -43,9 +44,15 @@
     "SW2-07-R2 security and contribution paths are accepted on exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, README/handbook navigation, repository-health validation, and permanent cross-platform regression all passed; Self Governance 37113203365 and Governance Selftest 37113203386 (Ubuntu/Windows) are the primary acceptance evidence.",
     "SW2-07-R4 release process is repeatable and evidence-backed: GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.",
     "SW2-07-R1 public license is accepted: Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems.",
-    "SW2-07-R3 repository governance boundary is accepted: Owner explicitly decided to continue SW2-07 without a GitHub ruleset and deleted the prior ruleset. Live GitHub repository ruleset audit returned an empty list, including inherited rulesets. This PASS proves alignment with the Owner-approved repository governance boundary; it does not claim automatic merge protection or required-check enforcement."
+    "SW2-07-R3 repository governance boundary is accepted: Owner explicitly decided to continue SW2-07 without a GitHub ruleset and deleted the prior ruleset. Live GitHub repository ruleset audit returned an empty list, including inherited rulesets. This PASS proves alignment with the Owner-approved repository governance boundary; it does not claim automatic merge protection or required-check enforcement.",
+    "SW2-07 Public Project Hardening is accepted on exact final candidate 8dec9e65915c4b3e7d7fb13398887a2bc7f3df11: Self Governance 37137071114, Governance Selftest 37137071141 on Ubuntu and Windows, SW2 Sequence Evidence 37137071123, SW2 Engine Performance 37137071109, and SW2 Consumer Engine Performance 37137071136 all succeeded with R1-R4 PASS under the Owner-approved no-ruleset boundary.",
+    "SW2-07 was squash-merged to main as bcc861bf9acc4a02702f5eec8bb45345617cd94a with tree 302fb02616bea09e963fed1c4b999403d06ccbd5. Post-merge main passed Self Governance 37137234396, Governance Selftest 37137234403 on Ubuntu and Windows, SW2 Sequence Evidence 37137234389, SW2 Engine Performance 37137234372, and SW2 Consumer Engine Performance 37137234449.",
+    "SW2-08-R1 representative adoption matrix is accepted on exact clean candidate a1357f0f5a14874ccbc301191e7e05afd3fa13ae: Governance Selftest 37166844760 passed LITE, STANDARD, and STRICT fixtures on Ubuntu and Windows; Self Governance 37166844768, SW2 Sequence Evidence 37166844763, Governance Engine Performance 37166844780, and Consumer Engine Performance 37166844767 also succeeded.",
+    "SW2-08-R2 large-consumer adoption is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: pinned max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f passed 153 source tests, deterministic/idempotent candidate-toolchain migration, full STRICT governance parity, and comparative hosted-runner improvements of 11.12% for extract_project_facts and 60.48% for sync_project_truth in Consumer run 37167140718.",
+    "SW2-08-R3 migration and false-PASS regressions are accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: Governance Selftest 37167140719 passed on Ubuntu and Windows with migration idempotence, future-version rejection, toolchain-tamper rejection, unknown/invalid claim-relation rejection, real claim-conflict detection, and explicit PROJECT_STATE_SYNC fail-closed evidence.",
+    "SW2-08-R4 cross-platform acceptance is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: all six permanent checks succeeded and Governance Selftest 37167140719 passed the complete permanent matrix on Ubuntu and Windows."
   ],
   "schema_version": 1,
   "status": "IN_PROGRESS",
-  "working_branch": "work/sw2-07-public-project-hardening"
+  "working_branch": "work/sw2-08-regression-adoption-validation"
 }

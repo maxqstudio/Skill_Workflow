@@ -13,6 +13,8 @@ jobs:
   max-grounding-performance:
     name: Consumer Engine Performance (max-grounding)
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
 
     steps:
       - name: Checkout exact Skill Workflow candidate
@@ -52,12 +54,22 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install pinned consumer test dependencies
+        working-directory: consumer
+        run: python -m pip install '.[service,test]'
+
       - name: Explicitly migrate pinned legacy consumer to schema v1
         run: |
           python scripts/migrate_governance_v1.py --root consumer
           python scripts/migrate_governance_v1.py --root consumer
           python scripts/validate_schema_toolchain.py --root consumer
           test "$(git -C consumer rev-parse HEAD)" = "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f"
+
+      - name: Run consumer source acceptance under candidate toolchain
+        working-directory: consumer
+        run: |
+          python -m unittest discover -s tests -v
+          python -m compileall -q src tests integration .workflow/tools
 
       - name: Measure candidate engine on pinned consumer
         run: >-
@@ -67,14 +79,69 @@ jobs:
           --repeats 3
           --expected-head 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f
           --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json
-          --label "SW2-05 migrated max-grounding consumer with candidate Engine V2"
+          --label "SW2-08 migrated max-grounding consumer with candidate Engine V2"
           --output ../artifacts/performance/sw2-01-max-grounding-engine.json
 
-      - name: Upload consumer performance evidence
+      - name: Synchronize migrated consumer governance
+        working-directory: consumer
+        run: python .workflow/tools/sync_project_truth.py --root .
+
+      - name: Commit migrated consumer snapshot locally
+        shell: bash
+        run: |
+          git -C consumer config user.name "Skill Workflow SW2-08"
+          git -C consumer config user.email "skill-workflow-sw2-08@example.invalid"
+          git -C consumer add -A
+          git -C consumer commit -m "test: SW2-08 candidate toolchain migration"
+          echo "MIGRATED_CONSUMER_HEAD=$(git -C consumer rev-parse HEAD)" >> "$GITHUB_ENV"
+          test -z "$(git -C consumer status --porcelain)"
+
+      - name: Validate migrated consumer governance parity
+        working-directory: consumer
+        shell: bash
+        run: |
+          python .workflow/tools/validate_project_docs.py --root .
+          python .workflow/tools/validate_doc_quality.py --root .
+          python .workflow/tools/validate_handoff.py --root .
+          python .workflow/tools/validate_human_comprehension.py --root . --require-pass
+          python .workflow/tools/validate_sequence_sessions.py --root .
+          BASE=$(python -c "import json; print(json.load(open('.workflow/state.json', encoding='utf-8'))['last_accepted_sha'])")
+          python .workflow/tools/validate_cross_document_consistency.py --root . --base "$BASE" --require-base
+          python .workflow/tools/validate_project_truth.py --root . --project-docs-already-validated
+          test -z "$(git status --porcelain)"
+
+      - name: Record machine-readable consumer parity evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          out = Path('artifacts/performance/sw2-08-max-grounding-parity.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps({
+              'schema_version': 1,
+              'result': 'PASS',
+              'consumer': 'maxqstudio/max-grounding',
+              'consumer_upstream_sha': '4c45a23c48b7954bbfb0ab86bcc92c975f345a1f',
+              'consumer_migrated_local_sha': os.environ['MIGRATED_CONSUMER_HEAD'],
+              'skill_workflow_candidate_sha': os.environ.get('GITHUB_HEAD_SHA') or os.environ.get('GITHUB_SHA'),
+              'source_acceptance': 'PASS',
+              'schema_migration': 'PASS',
+              'project_truth_sync': 'PASS',
+              'governance_parity': 'PASS',
+              'publication_authority': False,
+          }, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+
+      - name: Upload consumer performance and parity evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sw2-01-max-grounding-engine-performance
-          path: artifacts/performance/sw2-01-max-grounding-engine.json
+          name: sw2-08-max-grounding-performance-parity
+          path: |
+            artifacts/performance/sw2-01-max-grounding-engine.json
+            artifacts/performance/sw2-08-max-grounding-parity.json
           if-no-files-found: error
           retention-days: 14

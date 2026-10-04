@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-07",
+  "current_phase": "SW2-08",
   "phases": [
     {
       "exit_criteria": [
@@ -95,7 +95,7 @@
       ],
       "id": "SW2-07",
       "objective": "Complete public repository health, security, contribution, and release governance.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Public Project Hardening"
     },
     {
@@ -107,7 +107,7 @@
       ],
       "id": "SW2-08",
       "objective": "Prove V2 against representative small and large consumer projects before declaring stability.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Regression & Adoption Validation"
     },
     {

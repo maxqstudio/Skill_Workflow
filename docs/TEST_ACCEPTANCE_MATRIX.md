@@ -4,17 +4,17 @@
 
 ## Evidence boundary
 
-SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, an explicit repository merge-governance boundary, and a repeatable evidence-backed release process. The Owner explicitly chose not to require a GitHub ruleset; SW2-07 therefore must document that no automatic merge protection is claimed. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.
+SW2-08 acceptance covers Regression & Adoption Validation only: representative LITE, STANDARD, and STRICT adoption fixtures; at least one large real consumer with measured performance and governance parity; migration and false-PASS regressions; and cross-platform acceptance. Accepted SW2-01 through SW2-07 guarantees remain inherited authority and must not be weakened. Stable V2 publication remains SW2-09 scope.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
+Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-07-R1 | Repository health files are present with Owner-approved license. | Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems. | PASS |
-| SW2-07-R2 | Security and contribution paths are documented. | Exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: Self Governance 37113203365, Governance Selftest 37113203386 on Ubuntu and Windows, SW2 Sequence Evidence 37113203376, Governance Engine Performance 37113203374, and Consumer Engine Performance 37113203358 all succeeded. Governance Selftest included blocking public-documentation, repository-health, cross-document, read-only verify, and STRICT regressions on both operating systems. | PASS |
-| SW2-07-R3 | Repository merge-governance boundary matches the explicit Owner decision without false enforcement claims. | Owner explicitly decided to continue SW2-07 without a GitHub ruleset and deleted the prior ruleset. Live GitHub repository ruleset audit returned an empty list, including inherited rulesets. This PASS proves alignment with the Owner-approved repository governance boundary; it does not claim automatic merge protection or required-check enforcement. | PASS |
-| SW2-07-R4 | Release process is repeatable and evidence-backed. | GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope. | PASS |
+| SW2-08-R1 | Representative LITE, STANDARD, and STRICT fixtures pass. | Exact clean candidate a1357f0f5a14874ccbc301191e7e05afd3fa13ae proved the representative adoption matrix: Governance Selftest run 37166844760 passed on Ubuntu and Windows, with LITE and STANDARD adoption fixtures PASS and the existing STRICT end-to-end workflow self-test PASS on both operating systems. The same exact candidate also passed Self Governance run 37166844768, SW2 Sequence Evidence run 37166844763, Governance Engine Performance run 37166844780, and Consumer Engine Performance run 37166844767. | PASS |
+| SW2-08-R2 | At least one large real consumer validates performance improvement and governance parity. | Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed all six permanent checks. Consumer Engine Performance run 37167140718 validated pinned maxqstudio/max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f after deterministic candidate-toolchain migration: 153 source tests PASS, compile PASS, migration idempotence PASS, synchronized migrated Project Truth PASS, all STRICT governance validators PASS with clean worktree, and machine-readable parity evidence was uploaded. Against the accepted hosted-runner baseline, extract_project_facts improved by 11.12% and sync_project_truth improved by 60.48%; these are comparative CI measurements, not absolute performance guarantees. Self Governance 37167140714, Governance Selftest 37167140719 on Ubuntu and Windows, SW2 Sequence Evidence 37167140716, Governance Engine Performance 37167140743, and Consumer Engine Performance 37167140718 all succeeded. | PASS |
+| SW2-08-R3 | Migration regressions and false PASS cases are covered. | Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed Governance Selftest run 37167140719 on Ubuntu and Windows. The permanent schema/toolchain regression proved legacy explicit migration, migration idempotence, rejection of future profile/spec versions, toolchain-tamper rejection, and cache non-authority. The permanent STRICT workflow self-test also proved rejection of unknown relation targets, invalid relation types, independently conflicting claim text, and explicit PROJECT_STATE_SYNC failure. These adversarial cases prove migration regressions and representative false-PASS paths fail closed. | PASS |
+| SW2-08-R4 | Cross-platform acceptance remains green. | Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 kept the full SW2-08 adoption/regression scope green: Self Governance 37167140714 SUCCESS, Governance Selftest 37167140719 SUCCESS on both Ubuntu and Windows, SW2 Sequence Evidence 37167140716 SUCCESS, Governance Engine Performance 37167140743 SUCCESS, and Consumer Engine Performance 37167140718 SUCCESS. Cross-platform acceptance is therefore proven for the permanent Ubuntu/Windows governance matrix; the max-grounding real-consumer parity lane remains Ubuntu-hosted. | PASS |
 
 ## Test commands
 
@@ -23,6 +23,7 @@ Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f12
 - python scripts/selftest_analyzer_contract.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
+- python scripts/selftest_adoption_profiles.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/selftest_public_docs.py
 - python scripts/validate_public_docs.py --root .
@@ -32,7 +33,8 @@ Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f12
 - python scripts/selftest_release_preflight.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base f391fe9dc5d208803118090bbe6a174e8f6c7c63 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/benchmark_governance.py --root . --tool-root . --repeats 1 --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base bcc861bf9acc4a02702f5eec8bb45345617cd94a --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -46,7 +48,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-07-GOVERNANCE
+Sequence session contract: SW2-08-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

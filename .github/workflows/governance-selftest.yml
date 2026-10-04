@@ -96,5 +96,8 @@ jobs:
           python scripts/governance_engine.py --root . --base "$base" --mode verify --expected-head "$expected"
           test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts)"
 
+      - name: LITE and STANDARD adoption fixtures
+        run: python scripts/selftest_adoption_profiles.py
+
       - name: STRICT workflow self-test
         run: python scripts/selftest_strict_project_workflow.py
