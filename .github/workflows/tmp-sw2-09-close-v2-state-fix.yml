@@ -1,0 +1,68 @@
+name: TEMP SW2-09 V2 Closure State Repair
+
+on:
+  push:
+    branches:
+      - work/sw2-09-v2-closure
+
+permissions:
+  contents: write
+
+env:
+  RELEASE_SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  repair-state:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Repair released state pointer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('.workflow/state.json')
+          data=json.loads(path.read_text(encoding='utf-8'))
+          assert data['phase'] == 'SW2-09'
+          assert data['status'] == 'V2_STABLE_RELEASED'
+          assert data['last_accepted_branch'] == 'main'
+          assert data['last_accepted_sha'] == 'd61d216f1c9b29d6bdd90e1a929cd4199c8e93f6'
+          data['working_branch']='main'
+          path.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+          python scripts/sync_project_truth.py --root .
+          rm .github/workflows/tmp-sw2-09-close-v2-state-fix.yml
+      - name: Commit clean repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          test -n "$(git status --porcelain)"
+          git commit -m "SW2-09: align released state with main"
+          test -z "$(git status --porcelain)"
+      - name: Validate repaired closure
+        shell: bash
+        env:
+          PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
+        run: |
+          set -euo pipefail
+          python scripts/validate_cross_document_consistency.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_project_truth.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+          python scripts/governance_engine.py --root . --base "$RELEASE_SHA" --mode finalize --expected-head "$(git rev-parse HEAD)"
+          test -z "$(git status --porcelain)"
+      - name: Push repaired closure
+        shell: bash
+        run: git push origin "HEAD:${GITHUB_REF_NAME}"
