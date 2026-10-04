@@ -11,10 +11,10 @@ Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a74
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-11-R1 | AGENTS.md is mandatory, source-authored, and located at repository root for LITE, STANDARD, and STRICT. | Implementation and exact-head acceptance pending. | NOT_PROVEN |
-| SW2-11-R2 | Initializer and migration create missing AGENTS.md deterministically while preserving existing project-specific content by default. | Cross-platform regression evidence pending. | NOT_PROVEN |
-| SW2-11-R3 | Project-doc and repository-health validation fail closed for missing/generated/malformed root AGENTS.md and regression protects the behavior. | Cross-platform regression evidence pending. | NOT_PROVEN |
-| SW2-11-R4 | Skill Workflow self-governance, synchronized Project Truth/sequence evidence, and the complete permanent matrix pass on the exact candidate. | Exact candidate evidence pending. | NOT_PROVEN |
+| SW2-11-R1 | AGENTS.md is mandatory, source-authored, and located at repository root for LITE, STANDARD, and STRICT. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: root AGENTS.md and templates/AGENTS.md are source-authored; project-doc/repository-health validation and LITE/STANDARD/STRICT adoption coverage passed in Governance Selftest 37199687921 on Ubuntu and Windows. | PASS |
+| SW2-11-R2 | Initializer and migration create missing AGENTS.md deterministically while preserving existing project-specific content by default. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: initializer creation plus explicit legacy migration/idempotence regression passed in Governance Selftest 37199687921 on Ubuntu and Windows; initializer preserves existing files unless --force through the existing copy_file force contract. | PASS |
+| SW2-11-R3 | Project-doc and repository-health validation fail closed for missing/generated/malformed root AGENTS.md and regression protects the behavior. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: missing root AGENTS.md rejection, source-authored/normalized validation, repository-health regression, and Project Truth regression passed in Governance Selftest 37199687921 on Ubuntu and Windows. | PASS |
+| SW2-11-R4 | Skill Workflow self-governance, synchronized Project Truth/sequence evidence, and the complete permanent matrix pass on the exact candidate. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded. | PASS |
 
 ## Test commands
 
