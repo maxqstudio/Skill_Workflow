@@ -23,10 +23,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN at phase opening. Existing consumer benchmarks are inherited evidence only; SW2-08 requires fresh exact-candidate measurement on at least one large real consumer with governance-parity proof.",
+      "evidence": "Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed all six permanent checks. Consumer Engine Performance run 37167140718 validated pinned maxqstudio/max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f after deterministic candidate-toolchain migration: 153 source tests PASS, compile PASS, migration idempotence PASS, synchronized migrated Project Truth PASS, all STRICT governance validators PASS with clean worktree, and machine-readable parity evidence was uploaded. Against the accepted hosted-runner baseline, extract_project_facts improved by 11.12% and sync_project_truth improved by 60.48%; these are comparative CI measurements, not absolute performance guarantees. Self Governance 37167140714, Governance Selftest 37167140719 on Ubuntu and Windows, SW2 Sequence Evidence 37167140716, Governance Engine Performance 37167140743, and Consumer Engine Performance 37167140718 all succeeded.",
       "id": "SW2-08-R2",
       "requirement": "At least one large real consumer validates performance improvement and governance parity.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN at phase opening. Existing migration and fail-closed tests are inherited, but SW2-08 requires explicit adoption-regression coverage for migration failures and false PASS cases.",

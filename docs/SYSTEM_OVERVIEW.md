@@ -110,9 +110,8 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run fresh exact-candidate large-consumer performance and governance-parity evidence.
-- Prove migration regressions and false-PASS cases with focused fail-closed regression evidence.
-- Keep the resulting SW2-08 adoption/regression coverage green on Ubuntu and Windows before closure.
+- Prove migration regressions and false-PASS cases with the existing permanent fail-closed regression suite if coverage is sufficient; add only missing cases.
+- Keep the final SW2-08 adoption/regression coverage green on Ubuntu and Windows before closure.
 
 Blocked actions:
 - Do not claim SW2-08 adoption, performance, migration, or cross-platform gates PASS without fresh exact-candidate evidence.
@@ -158,6 +157,7 @@ Known blockers:
 - SW2-07 Public Project Hardening is accepted on exact final candidate 8dec9e65915c4b3e7d7fb13398887a2bc7f3df11: Self Governance 37137071114, Governance Selftest 37137071141 on Ubuntu and Windows, SW2 Sequence Evidence 37137071123, SW2 Engine Performance 37137071109, and SW2 Consumer Engine Performance 37137071136 all succeeded with R1-R4 PASS under the Owner-approved no-ruleset boundary.
 - SW2-07 was squash-merged to main as bcc861bf9acc4a02702f5eec8bb45345617cd94a with tree 302fb02616bea09e963fed1c4b999403d06ccbd5. Post-merge main passed Self Governance 37137234396, Governance Selftest 37137234403 on Ubuntu and Windows, SW2 Sequence Evidence 37137234389, SW2 Engine Performance 37137234372, and SW2 Consumer Engine Performance 37137234449.
 - SW2-08-R1 representative adoption matrix is accepted on exact clean candidate a1357f0f5a14874ccbc301191e7e05afd3fa13ae: Governance Selftest 37166844760 passed LITE, STANDARD, and STRICT fixtures on Ubuntu and Windows; Self Governance 37166844768, SW2 Sequence Evidence 37166844763, Governance Engine Performance 37166844780, and Consumer Engine Performance 37166844767 also succeeded.
+- SW2-08-R2 large-consumer adoption is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: pinned max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f passed 153 source tests, deterministic/idempotent candidate-toolchain migration, full STRICT governance parity, and comparative hosted-runner improvements of 11.12% for extract_project_facts and 60.48% for sync_project_truth in Consumer run 37167140718.
 
 ### Not proven
 
