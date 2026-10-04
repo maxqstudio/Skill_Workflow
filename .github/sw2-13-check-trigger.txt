@@ -1,1 +1,0 @@
-SW2-13 external verification trigger. This file is transient and must be removed before acceptance.
