@@ -12,7 +12,7 @@
       "scripts/governance_engine.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-11-GOVERNANCE.actual.json",
-    "source_digest": ""
+    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
   },
   "critical": true,
   "evidence_boundary": "SW2-11 sequence evidence covers root AGENTS.md initialization/migration, fail-closed validation, Project Truth synchronization, sequence validation, and final governance acceptance. It does not authorize unrelated V2 behavior or release changes.",
@@ -22,7 +22,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-11-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": ""
+    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
   },
   "implementation_base_sha": "51963cac28f78e8c9c5052bcbdc5270b5bc93989",
   "mode": "DURING",

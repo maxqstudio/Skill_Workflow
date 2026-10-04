@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 26,
-    "interaction_count": 26,
+    "interaction_ceiling": 27,
+    "interaction_count": 27,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 14,
-    "participant_count": 14,
+    "participant_ceiling": 15,
+    "participant_count": 15,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -188,6 +188,20 @@
         "python_ast"
       ],
       "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "buffer.write"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/script_runner.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_adoption_profiles.py"
     },
     {
       "actions": [
@@ -518,6 +532,15 @@
       ]
     },
     {
+      "id": "module:scripts/selftest_adoption_profiles.py",
+      "kind": "module",
+      "label": "scripts/selftest_adoption_profiles.py",
+      "machine_node_count": 1,
+      "machine_nodes": [
+        "scripts/selftest_adoption_profiles.py::write"
+      ]
+    },
+    {
       "id": "module:scripts/selftest_sequence_human_view.py",
       "kind": "module",
       "label": "scripts/selftest_sequence_human_view.py",
@@ -594,14 +617,14 @@
       ]
     }
   ],
-  "observed_head": "765e4f537d364f90a8bbca274e78c95cc38ed1c6",
+  "observed_head": "bab6b0a28f83fd6cd8f70d1858cc6065575a9ad8",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 26,
-    "cross_component_machine_edges": 52,
+    "cross_component_machine_edges": 53,
     "internal_machine_edges_collapsed": 62,
-    "machine_edge_count": 114,
-    "machine_node_count": 71,
+    "machine_edge_count": 115,
+    "machine_node_count": 72,
     "node_map": {
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
@@ -654,6 +677,7 @@
       "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::validate_spec_tree_versions": "module:scripts/schema_contract.py",
       "scripts/script_runner.py::invoke_main": "module:scripts/script_runner.py",
+      "scripts/selftest_adoption_profiles.py::write": "module:scripts/selftest_adoption_profiles.py",
       "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
       "scripts/sync_project_truth.py::main": "module:scripts/sync_project_truth.py",
       "scripts/sync_project_truth.py::run_main": "module:scripts/sync_project_truth.py",
@@ -678,5 +702,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9"
+  "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
 }

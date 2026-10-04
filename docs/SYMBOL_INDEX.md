@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
+Source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -15,7 +15,6 @@ responsibility, callers, or state ownership.
 
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
-| artifacts/tmp/sw2_11_apply.py | 8 | 0 | 8 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -65,22 +64,6 @@ responsibility, callers, or state ownership.
 | scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
 
 ## Detailed symbols
-
-<details>
-<summary><code>artifacts/tmp/sw2_11_apply.py</code> — 8 symbols</summary>
-
-| Symbol | Kind | Lines@SHA |
-|---|---|---|
-| run | function | 13-14 |
-| output | function | 17-18 |
-| write | function | 21-24 |
-| replace_once | function | 27-32 |
-| apply_source_changes | function | 115-218 |
-| apply_authority_changes | function | 221-289 |
-| generate_and_validate | function | 292-308 |
-| commit_validate_push | function | 311-329 |
-
-</details>
 
 <details>
 <summary><code>scripts/analyzer_contract.py</code> — 10 symbols</summary>

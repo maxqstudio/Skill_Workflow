@@ -3,12 +3,11 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
+Source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
 |---|---|---:|---|---|
-| artifacts/tmp/sw2_11_apply.py | Python | 336 | artifacts/tmp | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |

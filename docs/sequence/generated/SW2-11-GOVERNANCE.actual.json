@@ -620,6 +620,13 @@
       "to": "scripts/schema_contract.py::require_json_schema_version"
     },
     {
+      "action": "buffer.write",
+      "evidence": "STATIC",
+      "from": "scripts/script_runner.py::invoke_main",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_adoption_profiles.py::write"
+    },
+    {
       "action": "path.read_bytes",
       "evidence": "STATIC",
       "from": "scripts/selftest_sequence_human_view.py::sha256",
@@ -1372,6 +1379,15 @@
       "locator": "scripts/script_runner.py::invoke_main"
     },
     {
+      "id": "scripts/selftest_adoption_profiles.py::write",
+      "kind": "function",
+      "label": "scripts/selftest_adoption_profiles.py::write",
+      "language": "Python",
+      "line_end": 19,
+      "line_start": 17,
+      "locator": "scripts/selftest_adoption_profiles.py::write"
+    },
+    {
       "id": "scripts/selftest_sequence_human_view.py::sha256",
       "kind": "function",
       "label": "scripts/selftest_sequence_human_view.py::sha256",
@@ -1552,7 +1568,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "765e4f537d364f90a8bbca274e78c95cc38ed1c6",
+  "observed_head": "bab6b0a28f83fd6cd8f70d1858cc6065575a9ad8",
   "schema_version": 1,
-  "source_digest": "058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9"
+  "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
 }

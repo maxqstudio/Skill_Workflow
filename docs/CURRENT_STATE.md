@@ -18,7 +18,7 @@ Branch: work/sw2-11-root-agents-contract
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 51963cac28f78e8c9c5052bcbdc5270b5bc93989
 Current candidate SHA: external final acceptance evidence
-Current source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
+Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

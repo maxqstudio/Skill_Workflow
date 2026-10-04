@@ -1,5 +1,5 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
+%% SOURCE_DIGEST: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 %% POLICY_ID: module-collapse-v1
 %% GENERATED_BY: sequence_human_view.py
 sequenceDiagram
@@ -10,36 +10,38 @@ sequenceDiagram
     participant module_scripts_project_snapshot_py_4 as scripts/project_snapshot.py
     participant module_scripts_schema_contract_py_5 as scripts/schema_contract.py
     participant module_scripts_script_runner_py_6 as scripts/script_runner.py
-    participant module_scripts_selftest_sequence_human_view_py_7 as scripts/selftest_sequence_human_view.py
-    participant module_scripts_sync_project_truth_py_8 as scripts/sync_project_truth.py
-    participant module_scripts_toolchain_identity_py_9 as scripts/toolchain_identity.py
-    participant module_scripts_validate_doc_quality_py_10 as scripts/validate_doc_quality.py
-    participant module_scripts_validate_project_docs_py_11 as scripts/validate_project_docs.py
-    participant module_scripts_validate_repository_health_py_12 as scripts/validate_repository_health.py
-    participant module_scripts_validate_sequence_sessions_py_13 as scripts/validate_sequence_sessions.py
+    participant module_scripts_selftest_adoption_profiles_py_7 as scripts/selftest_adoption_profiles.py
+    participant module_scripts_selftest_sequence_human_view_py_8 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_sync_project_truth_py_9 as scripts/sync_project_truth.py
+    participant module_scripts_toolchain_identity_py_10 as scripts/toolchain_identity.py
+    participant module_scripts_validate_doc_quality_py_11 as scripts/validate_doc_quality.py
+    participant module_scripts_validate_project_docs_py_12 as scripts/validate_project_docs.py
+    participant module_scripts_validate_repository_health_py_13 as scripts/validate_repository_health.py
+    participant module_scripts_validate_sequence_sessions_py_14 as scripts/validate_sequence_sessions.py
     module_scripts_governance_engine_py_0->>module_scripts_project_snapshot_py_4: 4 static interactions
     module_scripts_governance_engine_py_0->>module_scripts_script_runner_py_6: 1 static interaction
     module_scripts_initialize_project_truth_py_1->>module_scripts_project_snapshot_py_4: 1 static interaction
-    module_scripts_initialize_project_truth_py_1->>module_scripts_toolchain_identity_py_9: 1 static interaction
+    module_scripts_initialize_project_truth_py_1->>module_scripts_toolchain_identity_py_10: 1 static interaction
     module_scripts_migrate_governance_v1_py_2->>module_scripts_project_profile_py_3: 2 static interactions
     module_scripts_migrate_governance_v1_py_2->>module_scripts_project_snapshot_py_4: 4 static interactions
     module_scripts_migrate_governance_v1_py_2->>module_scripts_schema_contract_py_5: 5 static interactions
-    module_scripts_migrate_governance_v1_py_2->>module_scripts_toolchain_identity_py_9: 3 static interactions
+    module_scripts_migrate_governance_v1_py_2->>module_scripts_toolchain_identity_py_10: 3 static interactions
     module_scripts_project_profile_py_3->>module_scripts_project_snapshot_py_4: 1 static interaction
     module_scripts_project_profile_py_3->>module_scripts_schema_contract_py_5: 1 static interaction
-    module_scripts_project_snapshot_py_4->>module_scripts_selftest_sequence_human_view_py_7: 1 static interaction
+    module_scripts_project_snapshot_py_4->>module_scripts_selftest_sequence_human_view_py_8: 1 static interaction
     module_scripts_schema_contract_py_5->>module_scripts_project_snapshot_py_4: 1 static interaction
-    module_scripts_selftest_sequence_human_view_py_7->>module_scripts_project_snapshot_py_4: 1 static interaction
-    module_scripts_sync_project_truth_py_8->>module_scripts_project_profile_py_3: 2 static interactions
-    module_scripts_sync_project_truth_py_8->>module_scripts_project_snapshot_py_4: 4 static interactions
-    module_scripts_sync_project_truth_py_8->>module_scripts_script_runner_py_6: 1 static interaction
-    module_scripts_toolchain_identity_py_9->>module_scripts_project_snapshot_py_4: 5 static interactions
-    module_scripts_toolchain_identity_py_9->>module_scripts_selftest_sequence_human_view_py_7: 2 static interactions
-    module_scripts_validate_project_docs_py_11->>module_scripts_project_profile_py_3: 2 static interactions
-    module_scripts_validate_project_docs_py_11->>module_scripts_project_snapshot_py_4: 1 static interaction
-    module_scripts_validate_project_docs_py_11->>module_scripts_script_runner_py_6: 1 static interaction
-    module_scripts_validate_project_docs_py_11->>module_scripts_validate_doc_quality_py_10: 1 static interaction
-    module_scripts_validate_repository_health_py_12->>module_scripts_project_snapshot_py_4: 3 static interactions
-    module_scripts_validate_repository_health_py_12->>module_scripts_validate_doc_quality_py_10: 1 static interaction
-    module_scripts_validate_sequence_sessions_py_13->>module_scripts_project_profile_py_3: 2 static interactions
-    module_scripts_validate_sequence_sessions_py_13->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_script_runner_py_6->>module_scripts_selftest_adoption_profiles_py_7: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_8->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_sync_project_truth_py_9->>module_scripts_project_profile_py_3: 2 static interactions
+    module_scripts_sync_project_truth_py_9->>module_scripts_project_snapshot_py_4: 4 static interactions
+    module_scripts_sync_project_truth_py_9->>module_scripts_script_runner_py_6: 1 static interaction
+    module_scripts_toolchain_identity_py_10->>module_scripts_project_snapshot_py_4: 5 static interactions
+    module_scripts_toolchain_identity_py_10->>module_scripts_selftest_sequence_human_view_py_8: 2 static interactions
+    module_scripts_validate_project_docs_py_12->>module_scripts_project_profile_py_3: 2 static interactions
+    module_scripts_validate_project_docs_py_12->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_validate_project_docs_py_12->>module_scripts_script_runner_py_6: 1 static interaction
+    module_scripts_validate_project_docs_py_12->>module_scripts_validate_doc_quality_py_11: 1 static interaction
+    module_scripts_validate_repository_health_py_13->>module_scripts_project_snapshot_py_4: 3 static interactions
+    module_scripts_validate_repository_health_py_13->>module_scripts_validate_doc_quality_py_11: 1 static interaction
+    module_scripts_validate_sequence_sessions_py_14->>module_scripts_project_profile_py_3: 2 static interactions
+    module_scripts_validate_sequence_sessions_py_14->>module_scripts_project_snapshot_py_4: 1 static interaction

@@ -7,7 +7,7 @@
 SW2-11 covers the mandatory root AGENTS.md operating contract only: source-authored root presence for every governance profile, deterministic initialization/preservation, explicit migration for existing governed projects, fail-closed validation, regression coverage, and synchronized public/governance documentation. It must not weaken accepted V2 guarantees or change the stable v2.0.0 release target.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
+Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
