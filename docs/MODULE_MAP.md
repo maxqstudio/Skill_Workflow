@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
+Source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -17,8 +17,8 @@ Generated/refreshed: current compiler run
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
 | scripts/governance_engine.py | Python | 813 | scripts | NO |
-| scripts/initialize_project_truth.py | Python | 137 | scripts | NO |
-| scripts/migrate_governance_v1.py | Python | 137 | scripts | NO |
+| scripts/initialize_project_truth.py | Python | 156 | scripts | NO |
+| scripts/migrate_governance_v1.py | Python | 149 | scripts | NO |
 | scripts/project_profile.py | Python | 264 | scripts | NO |
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
 | scripts/release_preflight.py | Python | 234 | scripts | NO |
@@ -33,8 +33,8 @@ Generated/refreshed: current compiler run
 | scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
-| scripts/selftest_repository_health.py | Python | 70 | scripts | NO |
-| scripts/selftest_schema_toolchain.py | Python | 166 | scripts | NO |
+| scripts/selftest_repository_health.py | Python | 77 | scripts | NO |
+| scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 869 | scripts | NO |
@@ -47,10 +47,10 @@ Generated/refreshed: current compiler run
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
-| scripts/validate_project_docs.py | Python | 84 | scripts | NO |
+| scripts/validate_project_docs.py | Python | 97 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
 | scripts/validate_public_docs.py | Python | 194 | scripts | NO |
-| scripts/validate_repository_health.py | Python | 112 | scripts | NO |
+| scripts/validate_repository_health.py | Python | 127 | scripts | NO |
 | scripts/validate_schema_toolchain.py | Python | 76 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
 | scripts/validate_sequence_human_view.py | Python | 256 | scripts | NO |

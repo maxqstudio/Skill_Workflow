@@ -12,6 +12,7 @@ from toolchain_identity import SOURCE_ONLY_TOOLS, write_toolchain_lock
 
 GITATTRIBUTES_MARKER = "# BEGIN SKILL_WORKFLOW GOVERNANCE EOL"
 GITATTRIBUTES_BLOCK = """# BEGIN SKILL_WORKFLOW GOVERNANCE EOL
+/AGENTS.md text eol=lf
 /PROJECT_PROFILE.yaml text eol=lf
 /.workflow/** text eol=lf
 /docs/** text eol=lf
@@ -24,7 +25,15 @@ def ensure_gitattributes(root: Path) -> str:
     if path.is_file():
         current = path.read_text(encoding="utf-8")
         if GITATTRIBUTES_MARKER in current:
-            return "SKIP"
+            if "/AGENTS.md text eol=lf" in current:
+                return "SKIP"
+            current = current.replace(
+                GITATTRIBUTES_MARKER + "\n",
+                GITATTRIBUTES_MARKER + "\n/AGENTS.md text eol=lf\n",
+                1,
+            )
+            path.write_text(current, encoding="utf-8", newline="\n")
+            return "WRITE"
         separator = "" if not current or current.endswith("\n") else "\n"
         path.write_text(current + separator + GITATTRIBUTES_BLOCK, encoding="utf-8", newline="\n")
     else:
@@ -52,6 +61,7 @@ def main() -> int:
     skill_root = Path(__file__).resolve().parent.parent
     template_root = skill_root / "templates" / "workflow_specs"
     profile_template = skill_root / "templates" / "PROJECT_PROFILE.yaml"
+    agents_template = skill_root / "templates" / "AGENTS.md"
 
     if not template_root.is_dir():
         print("FAIL WORKFLOW_SPEC_TEMPLATES_NOT_FOUND:" + str(template_root))
@@ -71,6 +81,15 @@ def main() -> int:
     else:
         skips += 1
         print("SKIP .gitattributes")
+
+    if agents_template.is_file():
+        result = copy_file(agents_template, root / "AGENTS.md", args.force)
+        if result == "WRITE":
+            writes += 1
+            print("WRITE AGENTS.md")
+        else:
+            skips += 1
+            print("SKIP AGENTS.md")
 
     if profile_template.is_file():
         result = copy_file(profile_template, root / "PROJECT_PROFILE.yaml", args.force)

@@ -47,6 +47,7 @@ def main() -> int:
             str(root),
         )
         profile_path = root / "PROJECT_PROFILE.yaml"
+        agents_path = root / "AGENTS.md"
         spec_root = root / ".workflow"
         tool_root = spec_root / "tools"
         lock_path = spec_root / "toolchain.lock.json"
@@ -55,6 +56,7 @@ def main() -> int:
 
         profile_text = profile_path.read_text(encoding="utf-8")
         assert "schema_version: 1" in profile_text
+        assert agents_path.is_file()
         assert lock_path.is_file()
         baseline = run(root, sys.executable, str(validator), "--root", str(root))
         assert '"result": "PASS"' in baseline
@@ -93,6 +95,7 @@ def main() -> int:
         flow.pop("schema_version", None)
         write_json(flow_path, flow)
         lock_path.unlink()
+        agents_path.unlink()
 
         legacy = run(
             root,
@@ -109,14 +112,15 @@ def main() -> int:
         run(root, sys.executable, str(migration), "--root", str(root))
         migrated = run(root, sys.executable, str(validator), "--root", str(root))
         assert '"result": "PASS"' in migrated
+        assert agents_path.is_file()
         stable_before = {
             path.relative_to(root).as_posix(): path.read_bytes()
-            for path in (profile_path, state_path, flow_path, lock_path)
+            for path in (agents_path, profile_path, state_path, flow_path, lock_path)
         }
         second = run(root, sys.executable, str(migration), "--root", str(root))
         stable_after = {
             path.relative_to(root).as_posix(): path.read_bytes()
-            for path in (profile_path, state_path, flow_path, lock_path)
+            for path in (agents_path, profile_path, state_path, flow_path, lock_path)
         }
         assert stable_before == stable_after
         assert "MIGRATION_CHANGES=0" in second
@@ -152,6 +156,7 @@ def main() -> int:
         assert state_path.read_bytes() == bad_state
 
     print("SCHEMA_V1_BASELINE=PASS")
+    print("ROOT_AGENTS_MIGRATION=PASS")
     print("LEGACY_EXPLICIT_MIGRATION=PASS")
     print("MIGRATION_IDEMPOTENCE=PASS")
     print("FUTURE_PROFILE_VERSION_REJECTION=PASS")

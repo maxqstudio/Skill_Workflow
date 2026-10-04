@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
+Authority verified at SHA: 51963cac28f78e8c9c5052bcbdc5270b5bc93989
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-10
-Status: SW2_10_DOCUMENTATION_POLISH_ACCEPTED
-Roadmap phase: SW2-10
+Phase: SW2-11
+Status: SW2_11_ROOT_AGENTS_CONTRACT_ACCEPTED
+Roadmap phase: SW2-11
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
 Branch: main
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
+Last accepted SHA: 51963cac28f78e8c9c5052bcbdc5270b5bc93989
 Current candidate SHA: external final acceptance evidence
-Current source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
+Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-10-GOVERNANCE
+Current sequence session: SW2-11-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -80,9 +80,12 @@ SEQUENCE_SYNC: PASS
 - SW2-09-R4 stable publication is proven: strict publication run 37185074131 granted publication_authority=true for v2.0.0 from exact tested main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6; the tag target and GitHub release target both resolve to that SHA; publication evidence artifact 11296387707 has SHA-256 bdb6d403e616fde05d07bd9b49c20948d28e0555fbea3cb08b3147521760a68d.
 - SW2-10 documentation cleanup is Owner-authorized after the accepted v2.0.0 release; scope is public documentation accuracy, information architecture, discoverability, and GitHub-readable sequence guidance without changing accepted V2 behavior.
 - SW2-10 Documentation Polish & Discoverability is accepted on exact candidate 0e6b1cc80682fe2adf77495359900bcd341c28df: Self Governance 37189710272 SUCCESS; Governance Selftest 37189710279 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37189710273 SUCCESS; Governance Engine Performance 37189710274 SUCCESS; Consumer Engine Performance 37189710271 SUCCESS. The accepted scope corrects stale public license/release wording, improves role/task navigation, documents the public/generated/sequence documentation layers, preserves canonical generated paths, and leaves V2 behavior and the v2.0.0 release target unchanged.
+- SW2-10 Documentation Polish & Discoverability was accepted and squash-merged to main as 51963cac28f78e8c9c5052bcbdc5270b5bc93989; post-merge Self Governance 37190063064, Governance Selftest 37190063086 on Ubuntu and Windows, SW2 Sequence Evidence 37190063053, Governance Engine Performance 37190063093, and Consumer Engine Performance 37190063075 all succeeded.
+- SW2-11 Root AGENTS.md Contract is Owner-authorized: AGENTS.md must become a mandatory source-authored root document for every governed project; the previously proposed optimization roadmap shifts forward by one phase.
+- SW2-11 Root AGENTS.md Contract is accepted on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded. AGENTS.md is mandatory and source-authored at repository root for LITE, STANDARD, and STRICT; initialization/migration and fail-closed validation are regression-proven.
 
 ## Not proven
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
+- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
 - None declared.
@@ -91,15 +94,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Treat the polished public documentation and synchronized Project Truth from SW2-10 as the accepted documentation baseline.
-- Preserve the accepted v2.0.0 release target and all V2 behavioral/governance guarantees.
-- For future documentation architecture or compatibility changes, declare a new governed acceptance boundary before implementation.
+- Treat mandatory source-authored root AGENTS.md as part of the accepted Skill Workflow project contract.
+- Preserve existing project-specific AGENTS.md by default during initialization and migration.
+- Open SW2-12 Repository Hygiene & Dead Artifact Cleanup as a separate governed phase before changing cleanup behavior.
 
 ## Explicitly blocked
 - Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag.
-- Do not move canonical generated governance paths merely to make the docs directory look cleaner.
-- Do not manually patch generated Project Truth Markdown.
-- Do not claim GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
-- Do not change the Owner-approved MIT license or accepted V2 guarantees in this documentation-only phase.
+- Do not weaken accepted V2 governance guarantees or make root AGENTS.md optional for any governance profile.
+- Do not treat AGENTS.md as generated Project Truth or move it under docs/.
+- Do not overwrite an existing project-specific AGENTS.md during initialization or migration unless --force is explicitly requested.
+- Do not begin SW2-12 implementation without opening its governed acceptance boundary.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

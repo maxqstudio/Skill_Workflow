@@ -1,0 +1,54 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-11-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-11-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/initialize_project_truth.py::main",
+      "scripts/migrate_governance_v1.py::main",
+      "scripts/validate_repository_health.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/sync_project_truth.py::main",
+      "scripts/validate_sequence_sessions.py::main",
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-11-GOVERNANCE.actual.json",
+    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-11 sequence evidence covers root AGENTS.md initialization/migration, fail-closed validation, Project Truth synchronization, sequence validation, and final governance acceptance. It does not authorize unrelated V2 behavior or release changes.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-11-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-11-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-11-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+  },
+  "implementation_base_sha": "51963cac28f78e8c9c5052bcbdc5270b5bc93989",
+  "mode": "DURING",
+  "phase": "SW2-11",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-11-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_repository_health.py",
+    "scripts/selftest_schema_toolchain.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_adoption_profiles.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}

@@ -140,14 +140,14 @@
       "file": "scripts/initialize_project_truth.py",
       "is_test": false,
       "language": "Python",
-      "lines": 137
+      "lines": 156
     },
     {
       "directory": "scripts",
       "file": "scripts/migrate_governance_v1.py",
       "is_test": false,
       "language": "Python",
-      "lines": 137
+      "lines": 149
     },
     {
       "directory": "scripts",
@@ -252,14 +252,14 @@
       "file": "scripts/selftest_repository_health.py",
       "is_test": false,
       "language": "Python",
-      "lines": 70
+      "lines": 77
     },
     {
       "directory": "scripts",
       "file": "scripts/selftest_schema_toolchain.py",
       "is_test": false,
       "language": "Python",
-      "lines": 166
+      "lines": 171
     },
     {
       "directory": "scripts",
@@ -350,7 +350,7 @@
       "file": "scripts/validate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 84
+      "lines": 97
     },
     {
       "directory": "scripts",
@@ -371,7 +371,7 @@
       "file": "scripts/validate_repository_health.py",
       "is_test": false,
       "language": "Python",
-      "lines": 112
+      "lines": 127
     },
     {
       "directory": "scripts",
@@ -6653,6 +6653,10 @@
     },
     {
       "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "current.replace"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
       "target_token": "path.is_file"
     },
     {
@@ -6668,8 +6672,8 @@
       "target_token": "path.write_text"
     },
     {
-      "caller": "scripts/initialize_project_truth.py::main",
-      "target_token": "Path"
+      "caller": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "target_token": "path.write_text"
     },
     {
       "caller": "scripts/initialize_project_truth.py::main",
@@ -6682,6 +6686,14 @@
     {
       "caller": "scripts/initialize_project_truth.py::main",
       "target_token": "Path"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "agents_template.is_file"
     },
     {
       "caller": "scripts/initialize_project_truth.py::main",
@@ -6706,6 +6718,10 @@
     {
       "caller": "scripts/initialize_project_truth.py::main",
       "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "copy_file"
     },
     {
       "caller": "scripts/initialize_project_truth.py::main",
@@ -6746,6 +6762,14 @@
     {
       "caller": "scripts/initialize_project_truth.py::main",
       "target_token": "generated.mkdir"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/initialize_project_truth.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/initialize_project_truth.py::main",
@@ -6981,11 +7005,35 @@
     },
     {
       "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
       "target_token": "add_profile_version"
     },
     {
       "caller": "scripts/migrate_governance_v1.py::main",
       "target_token": "add_spec_version"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "agents_path.is_file"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "agents_path.is_file"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "agents_path.write_bytes"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "agents_template.is_file"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "agents_template.read_bytes"
     },
     {
       "caller": "scripts/migrate_governance_v1.py::main",
@@ -7034,6 +7082,14 @@
     {
       "caller": "scripts/migrate_governance_v1.py::main",
       "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/migrate_governance_v1.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/migrate_governance_v1.py::main",
@@ -10817,7 +10873,15 @@
     },
     {
       "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
       "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "validate"
     },
     {
       "caller": "scripts/selftest_repository_health.py::main",
@@ -10869,6 +10933,18 @@
     },
     {
       "caller": "scripts/selftest_schema_toolchain.py::main",
+      "target_token": "agents_path.is_file"
+    },
+    {
+      "caller": "scripts/selftest_schema_toolchain.py::main",
+      "target_token": "agents_path.is_file"
+    },
+    {
+      "caller": "scripts/selftest_schema_toolchain.py::main",
+      "target_token": "agents_path.unlink"
+    },
+    {
+      "caller": "scripts/selftest_schema_toolchain.py::main",
       "target_token": "flow.pop"
     },
     {
@@ -10914,6 +10990,10 @@
     {
       "caller": "scripts/selftest_schema_toolchain.py::main",
       "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/selftest_schema_toolchain.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_schema_toolchain.py::main",
@@ -16457,6 +16537,14 @@
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "agents_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "agents_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
       "target_token": "ap.add_argument"
     },
     {
@@ -16549,6 +16637,18 @@
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
       "target_token": "profile_path.is_file"
     },
     {
@@ -16574,6 +16674,10 @@
     {
       "caller": "scripts/validate_project_docs.py::main",
       "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "validate_doc_quality.normalized_shape"
     },
     {
       "caller": "scripts/validate_project_truth.py::file_exists",
@@ -17357,7 +17461,19 @@
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "checked.append"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "decisions_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "failures.append"
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
@@ -17393,6 +17509,10 @@
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "isinstance"
     },
     {
@@ -17406,6 +17526,14 @@
     {
       "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "normalized_shape"
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
@@ -17414,6 +17542,14 @@
     {
       "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "path.read_text"
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
@@ -20257,24 +20393,24 @@
     {
       "file": "scripts/initialize_project_truth.py",
       "kind": "function",
-      "line_end": 32,
-      "line_start": 22,
+      "line_end": 41,
+      "line_start": 23,
       "locator": "scripts/initialize_project_truth.py::ensure_gitattributes",
       "symbol": "ensure_gitattributes"
     },
     {
       "file": "scripts/initialize_project_truth.py",
       "kind": "function",
-      "line_end": 40,
-      "line_start": 35,
+      "line_end": 49,
+      "line_start": 44,
       "locator": "scripts/initialize_project_truth.py::copy_file",
       "symbol": "copy_file"
     },
     {
       "file": "scripts/initialize_project_truth.py",
       "kind": "function",
-      "line_end": 133,
-      "line_start": 43,
+      "line_end": 152,
+      "line_start": 52,
       "locator": "scripts/initialize_project_truth.py::main",
       "symbol": "main"
     },
@@ -20305,7 +20441,7 @@
     {
       "file": "scripts/migrate_governance_v1.py",
       "kind": "function",
-      "line_end": 133,
+      "line_end": 145,
       "line_start": 67,
       "locator": "scripts/migrate_governance_v1.py::main",
       "symbol": "main"
@@ -20945,7 +21081,7 @@
     {
       "file": "scripts/selftest_repository_health.py",
       "kind": "function",
-      "line_end": 66,
+      "line_end": 73,
       "line_start": 18,
       "locator": "scripts/selftest_repository_health.py::main",
       "symbol": "main"
@@ -20969,7 +21105,7 @@
     {
       "file": "scripts/selftest_schema_toolchain.py",
       "kind": "function",
-      "line_end": 162,
+      "line_end": 167,
       "line_start": 38,
       "locator": "scripts/selftest_schema_toolchain.py::main",
       "symbol": "main"
@@ -21633,7 +21769,7 @@
     {
       "file": "scripts/validate_project_docs.py",
       "kind": "function",
-      "line_end": 80,
+      "line_end": 93,
       "line_start": 19,
       "locator": "scripts/validate_project_docs.py::main",
       "symbol": "main"
@@ -21705,24 +21841,24 @@
     {
       "file": "scripts/validate_repository_health.py",
       "kind": "function",
-      "line_end": 23,
-      "line_start": 22,
+      "line_end": 24,
+      "line_start": 23,
       "locator": "scripts/validate_repository_health.py::_load_json",
       "symbol": "_load_json"
     },
     {
       "file": "scripts/validate_repository_health.py",
       "kind": "function",
-      "line_end": 89,
-      "line_start": 26,
+      "line_end": 104,
+      "line_start": 27,
       "locator": "scripts/validate_repository_health.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/validate_repository_health.py",
       "kind": "function",
-      "line_end": 108,
-      "line_start": 92,
+      "line_end": 123,
+      "line_start": 107,
       "locator": "scripts/validate_repository_health.py::main",
       "symbol": "main"
     },
@@ -21824,13 +21960,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2",
+  "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313",
   "source_summary": {
     "files": 47,
     "languages": {
       "Python": 47
     },
-    "lines": 12964,
+    "lines": 13035,
     "test_files": 0
   },
   "tests": []

@@ -14,6 +14,7 @@ REQUIRED_HEALTH_FILES = (
     "SECURITY.md",
     "CODE_OF_CONDUCT.md",
 )
+REQUIRED_ROOT_FILES = ("AGENTS.md",)
 README_HEALTH_LINKS = REQUIRED_HEALTH_FILES
 LICENSE_FILES = ("LICENSE", "LICENSE.md", "LICENSE.txt")
 LICENSE_DECISION_ID = "SW2-ADR-010"
@@ -35,6 +36,19 @@ def validate(root: Path, *, require_owner_approved_license: bool = False) -> dic
         for relative in README_HEALTH_LINKS:
             if relative not in readme:
                 failures.append("README_HEALTH_LINK_MISSING:" + relative)
+
+    for relative in REQUIRED_ROOT_FILES:
+        path = root / relative
+        if not path.is_file():
+            failures.append("REPOSITORY_ROOT_FILE_MISSING:" + relative)
+            continue
+        checked.append(relative)
+        text = path.read_text(encoding="utf-8", errors="strict")
+        if GENERATED_MARKER in text:
+            failures.append("REPOSITORY_ROOT_FILE_GENERATED:" + relative)
+        ok, shape = normalized_shape(text)
+        if not ok:
+            failures.extend("REPOSITORY_ROOT_FILE_QUALITY:" + relative + ":" + item for item in shape)
 
     for relative in REQUIRED_HEALTH_FILES:
         path = root / relative
@@ -77,13 +91,14 @@ def validate(root: Path, *, require_owner_approved_license: bool = False) -> dic
         "schema_version": 1,
         "result": "FAIL" if failures else "PASS",
         "repository_health_files_checked": checked,
+        "required_root_files": list(REQUIRED_ROOT_FILES),
         "license_files": license_paths,
         "license_decision_id": LICENSE_DECISION_ID,
         "license_status": "PASS" if license_proven else "NOT_PROVEN",
         "require_owner_approved_license": require_owner_approved_license,
         "failures": failures,
         "evidence_boundary": (
-            "This gate proves repository-health file presence/shape and guards against an unapproved license file. "
+            "This gate proves mandatory root AGENTS.md plus repository-health file presence/shape and guards against an unapproved license file. "
             "It does not infer an Owner license choice. License PASS requires an accepted SW2-ADR-010 decision plus a license file."
         ),
     }

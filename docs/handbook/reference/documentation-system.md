@@ -6,9 +6,9 @@ Skill Workflow separates documentation by authority and audience so public guida
 
 ## Documentation layers
 
-### 1. Public product documentation
+### 1. Source-authored root and public documentation
 
-`README.md`, `docs/README.md`, and `docs/handbook/` are source-authored. They explain the product, adoption flow, operating model, architecture, and reference material.
+`README.md`, root `AGENTS.md`, `docs/README.md`, and `docs/handbook/` are source-authored. `AGENTS.md` is mandatory at repository root for every governance profile and provides the coding-agent startup/operating contract; it is not generated Project Truth. The other public documents explain the product, adoption flow, operating model, architecture, and reference material.
 
 Edit these files directly when the product guidance itself changes.
 
@@ -38,6 +38,7 @@ The CI sequence lane regenerates the current graph, validates the machine contra
 
 | Change | Edit directly? | Then |
 | --- | --- | --- |
+| Root `AGENTS.md` operating contract | Yes | run root/project-doc validation |
 | Public explanation / tutorial | Yes | run public-doc validation |
 | `.workflow/*.json` authority | Yes, under governance | regenerate Project Truth |
 | Generated uppercase Markdown | No | change authority/source and regenerate |

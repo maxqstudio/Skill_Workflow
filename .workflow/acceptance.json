@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-10 covers documentation polish and discoverability only. It may change source-authored public documentation, documentation validation coverage, and generated projections caused by synchronized governance state. It must not alter accepted V2 runtime/governance behavior, move the v2.0.0 tag, or relocate canonical generated governance paths.",
+  "evidence_boundary": "SW2-11 covers the mandatory root AGENTS.md operating contract only: source-authored root presence for every governance profile, deterministic initialization/preservation, explicit migration for existing governed projects, fail-closed validation, regression coverage, and synchronized public/governance documentation. It must not weaken accepted V2 guarantees or change the stable v2.0.0 release target.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,27 +17,27 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "Run 37189418677 rewrites the public landing surfaces, binds the stable v2.0.0 state, and corrects the MIT license statement before exact-head validation.",
-      "id": "SW2-10-R1",
-      "requirement": "Public landing pages are accurate and no longer contain stale license or pre-publication V2 claims.",
+      "evidence": "PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: root AGENTS.md and templates/AGENTS.md are source-authored; project-doc/repository-health validation and LITE/STANDARD/STRICT adoption coverage passed in Governance Selftest 37199687921 on Ubuntu and Windows.",
+      "id": "SW2-11-R1",
+      "requirement": "AGENTS.md is mandatory, source-authored, and located at repository root for LITE, STANDARD, and STRICT.",
       "status": "PASS"
     },
     {
-      "evidence": "Run 37189418677 normalizes README, docs index, and handbook navigation into explicit public-handbook, generated-Project-Truth, and sequence-evidence layers.",
-      "id": "SW2-10-R2",
-      "requirement": "Public navigation clearly separates product guidance from generated governance evidence.",
+      "evidence": "PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: initializer creation plus explicit legacy migration/idempotence regression passed in Governance Selftest 37199687921 on Ubuntu and Windows; initializer preserves existing files unless --force through the existing copy_file force contract.",
+      "id": "SW2-11-R2",
+      "requirement": "Initializer and migration create missing AGENTS.md deterministically while preserving existing project-specific content by default.",
       "status": "PASS"
     },
     {
-      "evidence": "Run 37189418677 adds the source-authored Documentation system reference and extends public-doc validation/selftests so the new navigation contract cannot silently disappear.",
-      "id": "SW2-10-R3",
-      "requirement": "Documentation architecture and GitHub sequence presentation are documented and regression-protected.",
+      "evidence": "PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: missing root AGENTS.md rejection, source-authored/normalized validation, repository-health regression, and Project Truth regression passed in Governance Selftest 37199687921 on Ubuntu and Windows.",
+      "id": "SW2-11-R3",
+      "requirement": "Project-doc and repository-health validation fail closed for missing/generated/malformed root AGENTS.md and regression protects the behavior.",
       "status": "PASS"
     },
     {
-      "evidence": "Exact candidate 0e6b1cc80682fe2adf77495359900bcd341c28df passed the complete permanent PR matrix: Self Governance 37189710272 SUCCESS; Governance Selftest 37189710279 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37189710273 SUCCESS; Governance Engine Performance 37189710274 SUCCESS; Consumer Engine Performance 37189710271 SUCCESS. The candidate had already passed clean-worktree cross-document consistency, Project Truth validation, sequence validation, and Governance Engine finalize before PR CI.",
-      "id": "SW2-10-R4",
-      "requirement": "The exact documentation candidate passes synchronized Project Truth, sequence validation, and complete final governance acceptance.",
+      "evidence": "PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded.",
+      "id": "SW2-11-R4",
+      "requirement": "Skill Workflow self-governance, synchronized Project Truth/sequence evidence, and the complete permanent matrix pass on the exact candidate.",
       "status": "PASS"
     }
   ],
@@ -45,24 +45,20 @@
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-10-GOVERNANCE",
+  "sequence_session": "SW2-11-GOVERNANCE",
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
-    "python scripts/validate_schema_toolchain.py --root .",
     "python scripts/selftest_schema_toolchain.py",
-    "python scripts/selftest_governance_engine.py",
+    "python scripts/selftest_repository_health.py",
+    "python scripts/validate_repository_health.py --root .",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_adoption_profiles.py",
     "python scripts/selftest_strict_project_workflow.py",
-    "python scripts/selftest_public_docs.py",
-    "python scripts/validate_public_docs.py --root .",
-    "python scripts/selftest_repository_health.py",
-    "python scripts/validate_repository_health.py --root .",
-    "python scripts/selftest_release_preflight.py",
+    "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/validate_handoff.py --root .",
-    "python scripts/governance_engine.py --root . --base 8d0fbfd7177128774a0f321b8c95e6befdaaf659 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/validate_cross_document_consistency.py --root . --base 51963cac28f78e8c9c5052bcbdc5270b5bc93989 --require-base",
+    "python scripts/governance_engine.py --root . --base 51963cac28f78e8c9c5052bcbdc5270b5bc93989 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

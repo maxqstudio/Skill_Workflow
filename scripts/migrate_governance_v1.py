@@ -73,6 +73,8 @@ def main() -> int:
     root = Path(args.root).resolve()
     skill_root = Path(__file__).resolve().parent.parent
     profile_path = root / "PROJECT_PROFILE.yaml"
+    agents_path = root / "AGENTS.md"
+    agents_template = skill_root / "templates" / "AGENTS.md"
     spec_root = root / ".workflow"
     if not profile_path.is_file() or not spec_root.is_dir():
         print("FAIL GOVERNANCE_ROOT_INCOMPLETE")
@@ -84,6 +86,7 @@ def main() -> int:
         if not profile_missing:
             require_profile_schema_version(profile_data, profile_path.name)
         missing_specs = inspect_specs(spec_root)
+        agents_missing = not agents_path.is_file()
     except Exception as exc:
         print("FAIL MIGRATION_PRECHECK:" + str(exc))
         return 1
@@ -94,15 +97,22 @@ def main() -> int:
         if tool_root.is_dir() or (spec_root / "toolchain.lock.json").is_file()
         else ["TOOLCHAIN_LOCK_MISSING:.workflow/toolchain.lock.json"]
     )
-    required = profile_missing or bool(missing_specs) or bool(lock_failures)
+    required = agents_missing or profile_missing or bool(missing_specs) or bool(lock_failures)
     if args.check:
         print("MIGRATION_REQUIRED=" + ("YES" if required else "NO"))
+        print("AGENTS_MISSING=" + ("YES" if agents_missing else "NO"))
         print("PROFILE_VERSION_MISSING=" + ("YES" if profile_missing else "NO"))
         print("SPEC_VERSIONS_MISSING=" + str(len(missing_specs)))
         print("TOOLCHAIN_LOCK_ISSUES=" + str(len(lock_failures)))
         return 1 if required else 0
 
     changes = 0
+    if agents_missing:
+        if not agents_template.is_file():
+            print("FAIL AGENTS_TEMPLATE_MISSING")
+            return 1
+        agents_path.write_bytes(agents_template.read_bytes())
+        changes += 1
     if profile_missing and add_profile_version(profile_path):
         changes += 1
     for path in missing_specs:
@@ -115,6 +125,8 @@ def main() -> int:
         changes += 1
 
     try:
+        if not agents_path.is_file():
+            raise ValueError("ROOT_AGENTS_MISSING_AFTER_MIGRATION")
         parse_profile(profile_path)
         spec_failures = validate_spec_tree_versions(spec_root)
         if spec_failures:

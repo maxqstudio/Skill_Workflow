@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
+Source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -277,9 +277,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| ensure_gitattributes | function | 22-32 |
-| copy_file | function | 35-40 |
-| main | function | 43-133 |
+| ensure_gitattributes | function | 23-41 |
+| copy_file | function | 44-49 |
+| main | function | 52-152 |
 
 </details>
 
@@ -291,7 +291,7 @@ responsibility, callers, or state ownership.
 | add_profile_version | function | 26-40 |
 | inspect_specs | function | 43-53 |
 | add_spec_version | function | 56-64 |
-| main | function | 67-133 |
+| main | function | 67-145 |
 
 </details>
 
@@ -491,7 +491,7 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | write_json | function | 13-15 |
-| main | function | 18-66 |
+| main | function | 18-73 |
 
 </details>
 
@@ -502,7 +502,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 13-31 |
 | write_json | function | 34-35 |
-| main | function | 38-162 |
+| main | function | 38-167 |
 
 </details>
 
@@ -689,7 +689,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 19-80 |
+| main | function | 19-93 |
 
 </details>
 
@@ -722,9 +722,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _load_json | function | 22-23 |
-| validate | function | 26-89 |
-| main | function | 92-108 |
+| _load_json | function | 23-24 |
+| validate | function | 27-104 |
+| main | function | 107-123 |
 
 </details>
 
