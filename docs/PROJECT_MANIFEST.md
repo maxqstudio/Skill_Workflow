@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: main
+Active branch: work/sw2-12-repository-hygiene
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 51963cac28f78e8c9c5052bcbdc5270b5bc93989
+Last accepted SHA: 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1
 Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
 
 ## Authorities

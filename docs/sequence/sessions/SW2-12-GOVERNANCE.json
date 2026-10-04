@@ -1,0 +1,52 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-12-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-12-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/validate_repository_health.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/validate_cross_document_consistency.py::main",
+      "scripts/sync_project_truth.py::main",
+      "scripts/validate_sequence_sessions.py::main",
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-12-GOVERNANCE.actual.json",
+    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-12 sequence evidence covers repository-health/reference validation, Project Truth synchronization, cross-document consistency, sequence validation, and final governance acceptance for repository hygiene. It does not authorize unrelated behavior or release-tag changes.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-12-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-12-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-12-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+  },
+  "implementation_base_sha": "2fc16cce4c7753ad103bac401d1825a9bd8bd3a1",
+  "mode": "DURING",
+  "phase": "SW2-12",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-12-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_repository_health.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_cross_document_regressions.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}
