@@ -35,7 +35,7 @@
       "status": "PASS"
     },
     {
-      "evidence": "Run 37189418677 regenerates and validates the candidate; permanent PR CI must independently prove the final exact head before merge.",
+      "evidence": "Exact candidate 0e6b1cc80682fe2adf77495359900bcd341c28df passed the complete permanent PR matrix: Self Governance 37189710272 SUCCESS; Governance Selftest 37189710279 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37189710273 SUCCESS; Governance Engine Performance 37189710274 SUCCESS; Consumer Engine Performance 37189710271 SUCCESS. The candidate had already passed clean-worktree cross-document consistency, Project Truth validation, sequence validation, and Governance Engine finalize before PR CI.",
       "id": "SW2-10-R4",
       "requirement": "The exact documentation candidate passes synchronized Project Truth, sequence validation, and complete final governance acceptance.",
       "status": "PASS"

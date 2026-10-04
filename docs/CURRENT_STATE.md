@@ -8,13 +8,13 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-10
-Status: SW2_10_DOCUMENTATION_POLISH_READY
+Status: SW2_10_DOCUMENTATION_POLISH_ACCEPTED
 Roadmap phase: SW2-10
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-10-docs-polish
+Branch: main
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
 Current candidate SHA: external final acceptance evidence
@@ -79,6 +79,7 @@ SEQUENCE_SYNC: PASS
 - SW2-09 pre-publication main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6 with tree b57951a255bbd5a6cca3a17635c401eb2520565b passed the complete post-merge permanent matrix: Self Governance 37184904751 SUCCESS; Governance Selftest 37184904785 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37184904776 SUCCESS; Governance Engine Performance 37184904813 SUCCESS; Consumer Engine Performance 37184904805 SUCCESS.
 - SW2-09-R4 stable publication is proven: strict publication run 37185074131 granted publication_authority=true for v2.0.0 from exact tested main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6; the tag target and GitHub release target both resolve to that SHA; publication evidence artifact 11296387707 has SHA-256 bdb6d403e616fde05d07bd9b49c20948d28e0555fbea3cb08b3147521760a68d.
 - SW2-10 documentation cleanup is Owner-authorized after the accepted v2.0.0 release; scope is public documentation accuracy, information architecture, discoverability, and GitHub-readable sequence guidance without changing accepted V2 behavior.
+- SW2-10 Documentation Polish & Discoverability is accepted on exact candidate 0e6b1cc80682fe2adf77495359900bcd341c28df: Self Governance 37189710272 SUCCESS; Governance Selftest 37189710279 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37189710273 SUCCESS; Governance Engine Performance 37189710274 SUCCESS; Consumer Engine Performance 37189710271 SUCCESS. The accepted scope corrects stale public license/release wording, improves role/task navigation, documents the public/generated/sequence documentation layers, preserves canonical generated paths, and leaves V2 behavior and the v2.0.0 release target unchanged.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
@@ -90,9 +91,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Polish source-authored public documentation only; generated Project Truth must be regenerated, never manually repaired.
+- Treat the polished public documentation and synchronized Project Truth from SW2-10 as the accepted documentation baseline.
 - Preserve the accepted v2.0.0 release target and all V2 behavioral/governance guarantees.
-- Require exact-candidate permanent CI before SW2-10 closure.
+- For future documentation architecture or compatibility changes, declare a new governed acceptance boundary before implementation.
 
 ## Explicitly blocked
 - Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag.
