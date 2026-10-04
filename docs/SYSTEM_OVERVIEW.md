@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run complete permanent CI on the clean post-R3 promotion candidate and require all six checks PASS.
-- If that exact candidate passes, promote SW2-09-R2 release-candidate acceptance without publishing.
-- After R2 is PASS on a fresh exact candidate, run strict v2.0.0 publication-ready preflight; create no tag/release before publication_authority=true.
+- Run complete permanent CI on the clean post-R2 promotion candidate and require all six checks PASS.
+- If that exact candidate passes, run strict v2.0.0 publication-ready preflight against the exact candidate and require publication_authority=true with only SW2-09-R4 publication-pending.
+- Do not create or move any tag/release until strict publication preflight passes on the exact publication candidate.
 
 Blocked actions:
 - Do not create or publish the V2 stable tag/release before SW2-09-R2 and SW2-09-R3 are PASS on an exact publication candidate.
@@ -164,6 +164,7 @@ Known blockers:
 - SW2-08 is accepted and squash-merged to main as 8d0fbfd7177128774a0f321b8c95e6befdaaf659 with tree 0c43d4459518a0380e230935ae523ef85fb56904 equal to the exact tested candidate tree. Post-merge Self Governance 37167640353, Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence 37167640369, Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352 all succeeded.
 - SW2-09-R1 all prior SW2 phases accepted is proven by accepted SW2-00 through SW2-08 authority and green post-merge main 8d0fbfd7177128774a0f321b8c95e6befdaaf659.
 - SW2-09-R3 migration/rollback guidance and synchronized Project Truth are accepted on exact tree-equivalent evidence head aef29794d2f94bd6066410408ad948882ccf10ef: all six permanent checks succeeded; Governance Selftest 37184136532 passed Ubuntu/Windows; all canonical claims are PASS with document/source/test traceability; changed release, migration, and repository-governance semantics were explicitly audited against their source owners and regression tests.
+- SW2-09-R2 final release-candidate acceptance is proven on exact tree-equivalent head 91c1c82ceaeae145806c50b6574d76ded637072d: all six permanent checks succeeded, both Ubuntu and Windows Governance Selftest lanes passed, and all final truth gates were PASS or NOT_APPLICABLE. This evidence does not authorize publication by itself.
 
 ### Not proven
 
