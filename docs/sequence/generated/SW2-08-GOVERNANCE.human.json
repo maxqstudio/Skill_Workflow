@@ -1,0 +1,693 @@
+{
+  "complexity": {
+    "absolute_numeric_limit": null,
+    "interaction_ceiling": 24,
+    "interaction_count": 24,
+    "max_interactions_per_directed_component_pair": 1,
+    "max_participants_per_semantic_component": 1,
+    "participant_ceiling": 14,
+    "participant_count": 14,
+    "participant_granularity": "semantic_module_or_external_boundary",
+    "policy_id": "module-collapse-v1",
+    "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
+  },
+  "edges": [
+    {
+      "actions": [
+        "extract_project_facts"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/benchmark_governance.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/extract_project_facts.py"
+    },
+    {
+      "actions": [
+        "ProjectSnapshot.capture",
+        "active_project_snapshot",
+        "fresh_snapshot.metrics",
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/benchmark_governance.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "compute_source_digest"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/benchmark_governance.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/sequence_contract.py"
+    },
+    {
+      "actions": [
+        "AnalyzerResult",
+        "coverage_records",
+        "fallback.coverage_record",
+        "generic_fallback",
+        "validate_result"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/analyzer_contract.py"
+    },
+    {
+      "actions": [
+        "visitor.visit"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/governance_engine.py"
+    },
+    {
+      "actions": [
+        "resolve_snapshot",
+        "snap.memoized",
+        "snapshot.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "ProjectSnapshot.capture",
+        "active_project_snapshot",
+        "path.read_text",
+        "snapshot.metrics"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/governance_engine.py",
+      "machine_edge_count": 4,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "invoke_main"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/governance_engine.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/script_runner.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/initialize_project_truth.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "write_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/initialize_project_truth.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
+    },
+    {
+      "actions": [
+        "parse_profile"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_profile.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "governed_spec_paths",
+        "require_json_schema_version",
+        "require_profile_schema_version",
+        "validate_spec_tree_versions"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/schema_contract.py"
+    },
+    {
+      "actions": [
+        "sync_vendored_tools",
+        "validate_toolchain_lock",
+        "write_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/migrate_governance_v1.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_profile.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "require_profile_schema_version"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_profile.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/schema_contract.py"
+    },
+    {
+      "actions": [
+        "hashlib.sha256"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_snapshot.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/schema_contract.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "path.read_bytes"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/selftest_sequence_human_view.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "acceptance_path.read_text",
+        "actual_json.read_bytes",
+        "actual_json.read_text",
+        "actual_mmd.read_bytes",
+        "claims_path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/selftest_strict_project_workflow.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "active_snapshot_for",
+        "canonical_source_bytes",
+        "discover_source_paths"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/sequence_contract.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "hashlib.sha256"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/sequence_contract.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
+        "dst.read_bytes",
+        "lock_path.read_text",
+        "path.read_bytes",
+        "src.read_bytes",
+        "target.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/toolchain_identity.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "hashlib.sha256"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/toolchain_identity.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_sequence_human_view.py"
+    }
+  ],
+  "entries": [
+    "scripts/initialize_project_truth.py::main",
+    "scripts/migrate_governance_v1.py::main",
+    "scripts/benchmark_governance.py::main",
+    "scripts/selftest_strict_project_workflow.py::main",
+    "scripts/governance_engine.py::main"
+  ],
+  "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
+  "generated": true,
+  "generated_by": "sequence_human_view.py",
+  "nodes": [
+    {
+      "id": "module:scripts/analyzer_contract.py",
+      "kind": "module",
+      "label": "scripts/analyzer_contract.py",
+      "machine_node_count": 6,
+      "machine_nodes": [
+        "scripts/analyzer_contract.py::AnalyzerContractError",
+        "scripts/analyzer_contract.py::AnalyzerResult",
+        "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
+        "scripts/analyzer_contract.py::coverage_records",
+        "scripts/analyzer_contract.py::generic_fallback",
+        "scripts/analyzer_contract.py::validate_result"
+      ]
+    },
+    {
+      "id": "module:scripts/benchmark_governance.py",
+      "kind": "module",
+      "label": "scripts/benchmark_governance.py",
+      "machine_node_count": 8,
+      "machine_nodes": [
+        "scripts/benchmark_governance.py::_cached_facts",
+        "scripts/benchmark_governance.py::baseline_comparison",
+        "scripts/benchmark_governance.py::copy_for_sync",
+        "scripts/benchmark_governance.py::git",
+        "scripts/benchmark_governance.py::governance_tool",
+        "scripts/benchmark_governance.py::main",
+        "scripts/benchmark_governance.py::run_command",
+        "scripts/benchmark_governance.py::timed"
+      ]
+    },
+    {
+      "id": "module:scripts/extract_project_facts.py",
+      "kind": "module",
+      "label": "scripts/extract_project_facts.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/extract_project_facts.py::PythonFacts",
+        "scripts/extract_project_facts.py::_extract_from_snapshot",
+        "scripts/extract_project_facts.py::extract_project_facts",
+        "scripts/extract_project_facts.py::is_test_file"
+      ]
+    },
+    {
+      "id": "module:scripts/governance_engine.py",
+      "kind": "module",
+      "label": "scripts/governance_engine.py",
+      "machine_node_count": 20,
+      "machine_nodes": [
+        "scripts/governance_engine.py::ValidationDAG",
+        "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
+        "scripts/governance_engine.py::ValidationNode",
+        "scripts/governance_engine.py::_regression_node",
+        "scripts/governance_engine.py::build_dag",
+        "scripts/governance_engine.py::build_mode_dag",
+        "scripts/governance_engine.py::classify_changed_paths",
+        "scripts/governance_engine.py::classify_path",
+        "scripts/governance_engine.py::cli_action",
+        "scripts/governance_engine.py::collect_changed_paths",
+        "scripts/governance_engine.py::command_action",
+        "scripts/governance_engine.py::compile_scripts_action",
+        "scripts/governance_engine.py::develop_node_names",
+        "scripts/governance_engine.py::effective_mode",
+        "scripts/governance_engine.py::git",
+        "scripts/governance_engine.py::git_z",
+        "scripts/governance_engine.py::governed_status",
+        "scripts/governance_engine.py::main",
+        "scripts/governance_engine.py::planned_node_names",
+        "scripts/governance_engine.py::state_base"
+      ]
+    },
+    {
+      "id": "module:scripts/initialize_project_truth.py",
+      "kind": "module",
+      "label": "scripts/initialize_project_truth.py",
+      "machine_node_count": 3,
+      "machine_nodes": [
+        "scripts/initialize_project_truth.py::copy_file",
+        "scripts/initialize_project_truth.py::ensure_gitattributes",
+        "scripts/initialize_project_truth.py::main"
+      ]
+    },
+    {
+      "id": "module:scripts/migrate_governance_v1.py",
+      "kind": "module",
+      "label": "scripts/migrate_governance_v1.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/migrate_governance_v1.py::add_profile_version",
+        "scripts/migrate_governance_v1.py::add_spec_version",
+        "scripts/migrate_governance_v1.py::inspect_specs",
+        "scripts/migrate_governance_v1.py::main"
+      ]
+    },
+    {
+      "id": "module:scripts/project_profile.py",
+      "kind": "module",
+      "label": "scripts/project_profile.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/project_profile.py::_clean",
+        "scripts/project_profile.py::parse_profile"
+      ]
+    },
+    {
+      "id": "module:scripts/project_snapshot.py",
+      "kind": "module",
+      "label": "scripts/project_snapshot.py",
+      "machine_node_count": 15,
+      "machine_nodes": [
+        "scripts/project_snapshot.py::ProjectSnapshot.capture",
+        "scripts/project_snapshot.py::ProjectSnapshot.entry",
+        "scripts/project_snapshot.py::ProjectSnapshot.memoized",
+        "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+        "scripts/project_snapshot.py::SnapshotError",
+        "scripts/project_snapshot.py::SnapshotFile",
+        "scripts/project_snapshot.py::_git",
+        "scripts/project_snapshot.py::_git_optional",
+        "scripts/project_snapshot.py::active_project_snapshot",
+        "scripts/project_snapshot.py::active_snapshot_for",
+        "scripts/project_snapshot.py::canonical_source_bytes",
+        "scripts/project_snapshot.py::discover_source_paths",
+        "scripts/project_snapshot.py::resolve_snapshot"
+      ]
+    },
+    {
+      "id": "module:scripts/schema_contract.py",
+      "kind": "module",
+      "label": "scripts/schema_contract.py",
+      "machine_node_count": 5,
+      "machine_nodes": [
+        "scripts/schema_contract.py::_profile_version",
+        "scripts/schema_contract.py::governed_spec_paths",
+        "scripts/schema_contract.py::require_json_schema_version",
+        "scripts/schema_contract.py::require_profile_schema_version",
+        "scripts/schema_contract.py::validate_spec_tree_versions"
+      ]
+    },
+    {
+      "id": "module:scripts/script_runner.py",
+      "kind": "module",
+      "label": "scripts/script_runner.py",
+      "machine_node_count": 1,
+      "machine_nodes": [
+        "scripts/script_runner.py::invoke_main"
+      ]
+    },
+    {
+      "id": "module:scripts/selftest_sequence_human_view.py",
+      "kind": "module",
+      "label": "scripts/selftest_sequence_human_view.py",
+      "machine_node_count": 1,
+      "machine_nodes": [
+        "scripts/selftest_sequence_human_view.py::sha256"
+      ]
+    },
+    {
+      "id": "module:scripts/selftest_strict_project_workflow.py",
+      "kind": "module",
+      "label": "scripts/selftest_strict_project_workflow.py",
+      "machine_node_count": 8,
+      "machine_nodes": [
+        "scripts/selftest_strict_project_workflow.py::assert_cross_failure",
+        "scripts/selftest_strict_project_workflow.py::clone_fixture",
+        "scripts/selftest_strict_project_workflow.py::git",
+        "scripts/selftest_strict_project_workflow.py::main",
+        "scripts/selftest_strict_project_workflow.py::run",
+        "scripts/selftest_strict_project_workflow.py::run_relation_and_truth_regressions",
+        "scripts/selftest_strict_project_workflow.py::sync_and_commit_case",
+        "scripts/selftest_strict_project_workflow.py::write_json"
+      ]
+    },
+    {
+      "id": "module:scripts/sequence_contract.py",
+      "kind": "module",
+      "label": "scripts/sequence_contract.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/sequence_contract.py::_selected_snapshot",
+        "scripts/sequence_contract.py::compute_source_digest"
+      ]
+    },
+    {
+      "id": "module:scripts/toolchain_identity.py",
+      "kind": "module",
+      "label": "scripts/toolchain_identity.py",
+      "machine_node_count": 9,
+      "machine_nodes": [
+        "scripts/toolchain_identity.py::_git_value",
+        "scripts/toolchain_identity.py::_sha256",
+        "scripts/toolchain_identity.py::producer_metadata",
+        "scripts/toolchain_identity.py::source_tool_paths",
+        "scripts/toolchain_identity.py::sync_vendored_tools",
+        "scripts/toolchain_identity.py::tool_manifest",
+        "scripts/toolchain_identity.py::toolchain_digest",
+        "scripts/toolchain_identity.py::validate_toolchain_lock",
+        "scripts/toolchain_identity.py::write_toolchain_lock"
+      ]
+    }
+  ],
+  "observed_head": "0c8521b6b0501efee5191cb02ff865e876783805",
+  "policy_id": "module-collapse-v1",
+  "projection": {
+    "aggregated_cross_component_edges": 34,
+    "cross_component_machine_edges": 58,
+    "internal_machine_edges_collapsed": 88,
+    "machine_edge_count": 146,
+    "machine_node_count": 88,
+    "node_map": {
+      "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::AnalyzerResult.coverage_record": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::coverage_records": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::generic_fallback": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::validate_result": "module:scripts/analyzer_contract.py",
+      "scripts/benchmark_governance.py::_cached_facts": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::baseline_comparison": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::copy_for_sync": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::git": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::governance_tool": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::main": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::run_command": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::timed": "module:scripts/benchmark_governance.py",
+      "scripts/extract_project_facts.py::PythonFacts": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::_extract_from_snapshot": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::extract_project_facts": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::is_test_file": "module:scripts/extract_project_facts.py",
+      "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::_regression_node": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::build_dag": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::build_mode_dag": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::classify_changed_paths": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::classify_path": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::cli_action": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::collect_changed_paths": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::command_action": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::compile_scripts_action": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::develop_node_names": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::effective_mode": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::git": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::git_z": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::governed_status": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::main": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::planned_node_names": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::state_base": "module:scripts/governance_engine.py",
+      "scripts/initialize_project_truth.py::copy_file": "module:scripts/initialize_project_truth.py",
+      "scripts/initialize_project_truth.py::ensure_gitattributes": "module:scripts/initialize_project_truth.py",
+      "scripts/initialize_project_truth.py::main": "module:scripts/initialize_project_truth.py",
+      "scripts/migrate_governance_v1.py::add_profile_version": "module:scripts/migrate_governance_v1.py",
+      "scripts/migrate_governance_v1.py::add_spec_version": "module:scripts/migrate_governance_v1.py",
+      "scripts/migrate_governance_v1.py::inspect_specs": "module:scripts/migrate_governance_v1.py",
+      "scripts/migrate_governance_v1.py::main": "module:scripts/migrate_governance_v1.py",
+      "scripts/project_profile.py::_clean": "module:scripts/project_profile.py",
+      "scripts/project_profile.py::parse_profile": "module:scripts/project_profile.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.capture": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.memoized": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.metrics": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotError": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotFile": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::_git": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::_git_optional": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::active_project_snapshot": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::active_snapshot_for": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::canonical_source_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::discover_source_paths": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::resolve_snapshot": "module:scripts/project_snapshot.py",
+      "scripts/schema_contract.py::_profile_version": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::governed_spec_paths": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::require_json_schema_version": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
+      "scripts/schema_contract.py::validate_spec_tree_versions": "module:scripts/schema_contract.py",
+      "scripts/script_runner.py::invoke_main": "module:scripts/script_runner.py",
+      "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
+      "scripts/selftest_strict_project_workflow.py::assert_cross_failure": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::clone_fixture": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::git": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::main": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::run": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::run_relation_and_truth_regressions": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::sync_and_commit_case": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/selftest_strict_project_workflow.py::write_json": "module:scripts/selftest_strict_project_workflow.py",
+      "scripts/sequence_contract.py::_selected_snapshot": "module:scripts/sequence_contract.py",
+      "scripts/sequence_contract.py::compute_source_digest": "module:scripts/sequence_contract.py",
+      "scripts/toolchain_identity.py::_git_value": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::_sha256": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::producer_metadata": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_tool_paths": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::sync_vendored_tools": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::tool_manifest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::toolchain_digest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::validate_toolchain_lock": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::write_toolchain_lock": "module:scripts/toolchain_identity.py"
+    },
+    "unresolved_machine_edges": []
+  },
+  "schema_version": 1,
+  "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
+}

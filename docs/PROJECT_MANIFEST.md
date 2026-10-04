@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-07-public-project-hardening
+Active branch: work/sw2-08-regression-adoption-validation
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: f391fe9dc5d208803118090bbe6a174e8f6c7c63
+Last accepted SHA: bcc861bf9acc4a02702f5eec8bb45345617cd94a
 Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
 
 ## Authorities
