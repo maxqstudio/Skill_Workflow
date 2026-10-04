@@ -41,7 +41,7 @@
   "schema_version": 1,
   "scope": "CURRENT",
   "session_id": "SW2-12-GOVERNANCE",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_repository_health.py",

@@ -21,6 +21,19 @@
     ],
     "sequence_acceptance_report_count": 12
   },
+  "implementation_candidate_sha": "9fdf530d46eeee297e8c784044369ac2342f5c60",
+  "permanent_matrix": {
+    "consumer_performance_run": 37203995252,
+    "engine_performance_run": 37203995219,
+    "governance_selftest_platforms": [
+      "ubuntu-latest",
+      "windows-latest"
+    ],
+    "governance_selftest_run": 37203995235,
+    "result": "PASS",
+    "self_governance_run": 37203995211,
+    "sequence_run": 37203995267
+  },
   "phase": "SW2-12",
   "remote_branches": [
     {
@@ -146,8 +159,8 @@
     {
       "classification": "KEEP_ACTIVE",
       "name": "work/sw2-12-repository-hygiene",
-      "rationale": "Active governed SW2-12 working branch.",
-      "sha": "605c6821bae04f5fff123afc39dd22ab08dd17cc"
+      "rationale": "Active governed branch as observed at the exact accepted implementation candidate before closure promotion.",
+      "sha": "9fdf530d46eeee297e8c784044369ac2342f5c60"
     },
     {
       "classification": "NOT_PROVEN_SAFE_TO_DELETE",

@@ -1633,7 +1633,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "605c6821bae04f5fff123afc39dd22ab08dd17cc",
+  "observed_head": "de496ccc5199fefdd4072b3d81db4bd095bbf853",
   "schema_version": 1,
   "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
 }
