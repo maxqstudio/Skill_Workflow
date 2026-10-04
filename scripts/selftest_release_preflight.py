@@ -63,8 +63,10 @@ def main() -> int:
         acceptance = {
             "schema_version": 1,
             "requirements": [
-                {"id": "R1", "status": "PASS"},
-                {"id": "R4", "status": "NOT_PROVEN"},
+                {"id": "SW2-09-R1", "status": "PASS"},
+                {"id": "SW2-09-R2", "status": "PASS"},
+                {"id": "SW2-09-R3", "status": "PASS"},
+                {"id": "SW2-09-R4", "status": "NOT_PROVEN"},
             ],
             "truth_gates": {
                 "SOURCE_TESTS": "PASS",
@@ -80,7 +82,7 @@ def main() -> int:
                 "current_phase": "SW2-07",
                 "phases": [
                     {"id": "SW2-07", "status": "CURRENT"},
-                    {"id": "SW2-08", "status": "PLANNED"},
+                    {"id": "SW2-08", "status": "COMPLETE"},
                     {"id": "SW2-09", "status": "PLANNED"},
                 ],
             },
@@ -116,7 +118,8 @@ def main() -> int:
         )
         assert strict_incomplete["result"] == "FAIL"
         assert "FINALIZE_REPORT_WRONG_REQUESTED_MODE" in strict_incomplete["failures"]
-        assert "RELEASE_REQUIREMENT_NOT_PASS:R4" in strict_incomplete["failures"]
+        assert "RELEASE_REQUIREMENT_NOT_PASS:SW2-09-R4" in strict_incomplete["failures"]
+        assert "RELEASE_TRUTH_GATE_NOT_PROVEN:RELEASE_EVIDENCE:NOT_PROVEN" in strict_incomplete["failures"]
         assert strict_incomplete["publication_authority"] is False
 
         evidence_stable = validate(
@@ -141,7 +144,7 @@ def main() -> int:
         assert wrong_requested["result"] == "FAIL"
         assert "EVIDENCE_REPORT_WRONG_REQUESTED_MODE" in wrong_requested["failures"]
 
-        acceptance["requirements"][1]["status"] = "FAIL"
+        acceptance["requirements"][3]["status"] = "FAIL"
         write_json(acceptance_path, acceptance)
         failed_head = commit_all(root, "fixture explicit failure")
         governance_report(report_path, failed_head, requested_mode="verify", effective_mode="finalize")
@@ -153,10 +156,10 @@ def main() -> int:
             evidence_only=True,
         )
         assert evidence_failure["result"] == "FAIL"
-        assert "EVIDENCE_REQUIREMENT_FAIL:R4" in evidence_failure["failures"]
+        assert "EVIDENCE_REQUIREMENT_FAIL:SW2-09-R4" in evidence_failure["failures"]
         assert evidence_failure["publication_authority"] is False
 
-        acceptance["requirements"][1]["status"] = "PASS"
+        acceptance["requirements"][3]["status"] = "PASS"
         acceptance["truth_gates"]["RELEASE_EVIDENCE"] = "PASS"
         write_json(acceptance_path, acceptance)
         strict_head = commit_all(root, "fixture strict prerelease")
@@ -170,7 +173,7 @@ def main() -> int:
         )
         assert prerelease["result"] == "PASS"
         assert prerelease["publication_authority"] is True
-        assert prerelease["evidence_only"] is False
+        assert prerelease["pending_publication_requirements"] == []
 
         stable_too_early = validate(
             root,
@@ -182,6 +185,8 @@ def main() -> int:
         assert "STABLE_RELEASE_OUTSIDE_SW2_09" in stable_too_early["failures"]
         assert stable_too_early["publication_authority"] is False
 
+        acceptance["requirements"][3]["status"] = "NOT_PROVEN"
+        write_json(acceptance_path, acceptance)
         write_json(
             roadmap_path,
             {
@@ -194,7 +199,7 @@ def main() -> int:
                 ],
             },
         )
-        stable_head = commit_all(root, "fixture stable")
+        stable_head = commit_all(root, "fixture stable publication pending")
         governance_report(report_path, stable_head, requested_mode="finalize")
         stable = validate(
             root,
@@ -204,11 +209,46 @@ def main() -> int:
         )
         assert stable["result"] == "PASS"
         assert stable["publication_authority"] is True
+        assert stable["pending_publication_requirements"] == ["SW2-09-R4"]
+
+        acceptance["requirements"][2]["status"] = "NOT_PROVEN"
+        write_json(acceptance_path, acceptance)
+        non_publication_gap_head = commit_all(root, "fixture non-publication gap")
+        governance_report(report_path, non_publication_gap_head, requested_mode="finalize")
+        non_publication_gap = validate(
+            root,
+            expected_head=non_publication_gap_head,
+            version="v2.0.0",
+            governance_report=report_path,
+        )
+        assert non_publication_gap["result"] == "FAIL"
+        assert "RELEASE_REQUIREMENT_NOT_PASS:SW2-09-R3" in non_publication_gap["failures"]
+        assert non_publication_gap["publication_authority"] is False
+        acceptance["requirements"][2]["status"] = "PASS"
+
+        acceptance["requirements"] = acceptance["requirements"][:3]
+        write_json(acceptance_path, acceptance)
+        missing_r4_head = commit_all(root, "fixture missing publication requirement")
+        governance_report(report_path, missing_r4_head, requested_mode="finalize")
+        missing_r4 = validate(
+            root,
+            expected_head=missing_r4_head,
+            version="v2.0.0",
+            governance_report=report_path,
+        )
+        assert missing_r4["result"] == "FAIL"
+        assert "STABLE_RELEASE_REQUIREMENT_MISSING:SW2-09-R4" in missing_r4["failures"]
+        assert missing_r4["publication_authority"] is False
+
+        acceptance["requirements"].append({"id": "SW2-09-R4", "status": "NOT_PROVEN"})
+        write_json(acceptance_path, acceptance)
+        restored_head = commit_all(root, "fixture restore publication pending")
+        governance_report(report_path, restored_head, requested_mode="finalize")
 
         (root / "DIRTY.txt").write_text("dirty\n", encoding="utf-8", newline="\n")
         dirty = validate(
             root,
-            expected_head=stable_head,
+            expected_head=restored_head,
             version="v2.0.0",
             governance_report=report_path,
         )
@@ -217,10 +257,10 @@ def main() -> int:
         assert dirty["publication_authority"] is False
         (root / "DIRTY.txt").unlink()
 
-        governance_report(report_path, stable_head, requested_mode="finalize", result="FAIL")
+        governance_report(report_path, restored_head, requested_mode="finalize", result="FAIL")
         failed_finalize = validate(
             root,
-            expected_head=stable_head,
+            expected_head=restored_head,
             version="v2.0.0",
             governance_report=report_path,
         )
@@ -237,7 +277,9 @@ def main() -> int:
     print("STRICT_INCOMPLETE_REJECTION=PASS")
     print("STRICT_PRERELEASE_PREFLIGHT=PASS")
     print("STABLE_PHASE_BOUNDARY_REJECTION=PASS")
-    print("STABLE_SW2_09_PREFLIGHT=PASS")
+    print("STABLE_PUBLICATION_PENDING_PREFLIGHT=PASS")
+    print("NON_PUBLICATION_REQUIREMENT_REJECTION=PASS")
+    print("MISSING_PUBLICATION_REQUIREMENT_REJECTION=PASS")
     print("DIRTY_WORKTREE_REJECTION=PASS")
     print("FAILED_FINALIZE_REJECTION=PASS")
     print("RESULT=PASS")
