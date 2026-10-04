@@ -1,0 +1,294 @@
+name: SW2-13 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-13-skill-core-reference-split
+    paths:
+      - .github/workflows/tmp-sw2-13-open.yml
+
+permissions:
+  contents: write
+
+jobs:
+  open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      BASE_SHA: 1c81c3012d9a5891e8145726c38165e113057676
+      BRANCH: work/sw2-13-skill-core-reference-split
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-13-skill-core-reference-split
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Remove transient helper before governed mutation
+        shell: bash
+        run: git rm .github/workflows/tmp-sw2-13-open.yml
+
+      - name: Open SW2-13 authority boundary
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path('.')
+          base = os.environ['BASE_SHA']
+          branch = os.environ['BRANCH']
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, data):
+              Path(path).parent.mkdir(parents=True, exist_ok=True)
+              Path(path).write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+          roadmap = load('.workflow/roadmap.json')
+          roadmap['current_phase'] = 'SW2-13'
+          found12 = found13 = False
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-12':
+                  phase['status'] = 'COMPLETE'
+                  found12 = True
+              elif phase['id'] == 'SW2-13':
+                  phase['status'] = 'CURRENT'
+                  found13 = True
+              elif phase.get('status') == 'CURRENT':
+                  phase['status'] = 'PLANNED'
+          if not (found12 and found13):
+              raise SystemExit('SW2-12/SW2-13 roadmap phase missing')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          merged_proof = (
+              'SW2-12 Repository Hygiene & Dead Artifact Cleanup was squash-merged to main as '
+              '1c81c3012d9a5891e8145726c38165e113057676 with tree '
+              'd2c0c11626196069547021ef1a1f9a8220368464 equal to the exact tested clean closure tree. '
+              'Post-merge main passed Self Governance 37204813037, Governance Selftest 37204813031 '
+              'on Ubuntu and Windows, SW2 Sequence Evidence 37204813032, Governance Engine Performance '
+              '37204813028, and Consumer Engine Performance 37204813038.'
+          )
+          if merged_proof not in state.get('proven', []):
+              state.setdefault('proven', []).append(merged_proof)
+          state['phase'] = 'SW2-13'
+          state['status'] = 'SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS'
+          state['working_branch'] = branch
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = base
+          state['blockers'] = []
+          state['not_proven'] = [
+              'SW2-13 root SKILL.md invariant-preservation mapping is not yet proven complete.',
+              'SW2-13 reference split, context-cost reduction, and deterministic reference-resolution contract are not yet proven.',
+              'SW2-13 behavioral parity after progressive disclosure is not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.'
+          ]
+          state['next_authorized_actions'] = [
+              'Inventory every normative SKILL.md section and classify it as CORE invariant, ROUTING instruction, or REFERENCE detail before moving content.',
+              'Create stable root references/ documents with deterministic one-level links from SKILL.md and add fail-closed validation for missing, broken, or ambiguous required references.',
+              'Measure root SKILL.md size/line reduction and prove behavioral parity with targeted negative-path regression plus the complete permanent acceptance matrix.'
+          ]
+          state['blocked_actions'] = [
+              'Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.',
+              'Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.',
+              'Do not introduce multi-hop reference chains for required operating rules.',
+              'Do not mark SW2-13 requirements PASS before reference integrity, context-cost, and behavioral evidence exists.',
+              'Do not begin SW2-14 implementation until SW2-13 is accepted.'
+          ]
+          write('.workflow/state.json', state)
+
+          previous = load('docs/sequence/sessions/SW2-12-GOVERNANCE.json')
+          previous['scope'] = 'HISTORICAL'
+          previous['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-12-GOVERNANCE.json', previous)
+
+          acceptance = {
+              'evidence_boundary': 'SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.',
+              'human_comprehension_questions': {
+                  'How does failure/recovery behave?': 'PASS',
+                  'How does important data flow through the system?': 'PASS',
+                  'What are the important lifecycle states and transitions?': 'PASS',
+                  'What are the main user/domain workflows?': 'PASS',
+                  'What are the major components and how do they relate?': 'PASS',
+                  'What is mutable and what is immutable?': 'PASS',
+                  'What is proven and what is not proven?': 'PASS',
+                  'What is the current project state?': 'PASS',
+                  'What is the project and what problem does it solve?': 'PASS',
+                  'What may happen next and what is blocked?': 'PASS',
+                  'Who uses it and what are the primary outcomes?': 'PASS',
+                  'Who/what is authoritative for important decisions?': 'PASS'
+              },
+              'human_comprehension_status': 'PASS',
+              'requirements': [
+                  {
+                      'evidence': 'NOT_PROVEN until every normative SKILL.md section is mapped and all accepted non-negotiable safety/authority invariants are shown to remain in the eager core.',
+                      'id': 'SW2-13-R1',
+                      'requirement': 'Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail.',
+                      'status': 'NOT_PROVEN'
+                  },
+                  {
+                      'evidence': 'NOT_PROVEN until detailed guidance is moved into stable bundled references and root SKILL.md context cost is measured before/after without semantic loss.',
+                      'id': 'SW2-13-R2',
+                      'requirement': 'Detailed guidance has stable reference locations and the root skill context cost is measurably reduced.',
+                      'status': 'NOT_PROVEN'
+                  },
+                  {
+                      'evidence': 'NOT_PROVEN until required one-level references resolve deterministically and negative-path tests reject missing, broken, duplicate, or ambiguous required references.',
+                      'id': 'SW2-13-R3',
+                      'requirement': 'Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed.',
+                      'status': 'NOT_PROVEN'
+                  },
+                  {
+                      'evidence': 'NOT_PROVEN until targeted behavioral parity regression plus all six permanent checks pass on the exact clean SW2-13 candidate on Ubuntu and Windows.',
+                      'id': 'SW2-13-R4',
+                      'requirement': 'Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate.',
+                      'status': 'NOT_PROVEN'
+                  }
+              ],
+              'runtime_checks': [],
+              'runtime_status': 'NOT_APPLICABLE',
+              'schema_version': 1,
+              'sequence_mode': 'DURING',
+              'sequence_session': 'SW2-13-GOVERNANCE',
+              'sequence_sync_status': 'PASS',
+              'test_commands': [
+                  'python -m compileall -q scripts',
+                  'python scripts/selftest_project_truth_compiler.py',
+                  'python scripts/selftest_cross_document_regressions.py',
+                  'python scripts/selftest_strict_project_workflow.py',
+                  'python scripts/validate_project_docs.py --root .',
+                  'python scripts/validate_sequence_sessions.py --root .',
+                  f'python scripts/validate_cross_document_consistency.py --root . --base {base} --require-base',
+                  f'python scripts/governance_engine.py --root . --base {base} --mode finalize --expected-head <EXACT_HEAD>'
+              ],
+              'truth_gates': {
+                  'BEHAVIORAL_SYNC': 'NOT_APPLICABLE',
+                  'CROSS_DOCUMENT_CONSISTENCY': 'NOT_PROVEN',
+                  'DOC_LAYOUT': 'PASS',
+                  'DOC_READABILITY': 'PASS',
+                  'DOC_SOURCE_TRACEABILITY': 'NOT_PROVEN',
+                  'DOC_TEST_TRACEABILITY': 'NOT_PROVEN',
+                  'HUMAN_COMPREHENSION': 'PASS',
+                  'PROJECT_DOCS_NORMALIZED': 'PASS',
+                  'PROJECT_DOCS_SYNC': 'PASS',
+                  'PROJECT_STATE_SYNC': 'NOT_PROVEN',
+                  'PROVENANCE_SYNC': 'NOT_PROVEN',
+                  'REFERENCE_SYNC': 'NOT_PROVEN',
+                  'ROADMAP_SYNC': 'PASS',
+                  'RUNTIME_E2E': 'NOT_APPLICABLE',
+                  'SEMANTIC_SYNC': 'NOT_PROVEN',
+                  'SEQUENCE_SYNC': 'PASS',
+                  'SOURCE_TESTS': 'NOT_PROVEN',
+                  'STRUCTURAL_SYNC': 'NOT_PROVEN',
+                  'TEST_RUNTIME_TRACEABILITY': 'NOT_APPLICABLE'
+              }
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          session = {
+              'acceptance_report': 'artifacts/sequence/SW2-13-GOVERNANCE.acceptance.json',
+              'actual': {
+                  'diagram': 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd',
+                  'entries': [
+                      'scripts/validate_project_docs.py::main',
+                      'scripts/validate_cross_document_consistency.py::main',
+                      'scripts/sync_project_truth.py::main',
+                      'scripts/validate_sequence_sessions.py::main',
+                      'scripts/governance_engine.py::main'
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.json',
+                  'source_digest': ''
+              },
+              'critical': True,
+              'evidence_boundary': 'SW2-13 sequence evidence covers Project Truth synchronization, cross-document consistency, sequence validation, and final governance acceptance while the skill/reference packaging contract is introduced. It does not authorize unrelated V2 behavior or release-tag changes.',
+              'human_view': {
+                  'diagram': 'docs/sequence/generated/SW2-13-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-13-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'graph': 'docs/sequence/generated/SW2-13-GOVERNANCE.human.json',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': ''
+              },
+              'implementation_base_sha': base,
+              'mode': 'DURING',
+              'phase': 'SW2-13',
+              'plan': {'contract': '', 'diagram': '', 'frozen': False, 'frozen_commit': '', 'required': False, 'sha256': ''},
+              'runtime_trace': {'graph': '', 'required': False},
+              'schema_version': 1,
+              'scope': 'CURRENT',
+              'session_id': 'SW2-13-GOVERNANCE',
+              'status': 'IN_PROGRESS',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_project_truth_compiler.py',
+                  'scripts/selftest_cross_document_regressions.py',
+                  'scripts/selftest_strict_project_workflow.py'
+              ]
+          }
+          write('docs/sequence/sessions/SW2-13-GOVERNANCE.json', session)
+          PY
+
+      - name: Generate current SW2-13 sequence evidence
+        shell: bash
+        run: |
+          python scripts/generate_sequence_actual.py --root . \
+            --output-json docs/sequence/generated/SW2-13-GOVERNANCE.actual.json \
+            --output-mermaid docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd \
+            --entry scripts/validate_project_docs.py::main \
+            --entry scripts/validate_cross_document_consistency.py::main \
+            --entry scripts/sync_project_truth.py::main \
+            --entry scripts/validate_sequence_sessions.py::main \
+            --entry scripts/governance_engine.py::main
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.loads(Path('docs/sequence/generated/SW2-13-GOVERNANCE.actual.json').read_text(encoding='utf-8'))
+          path = Path('docs/sequence/sessions/SW2-13-GOVERNANCE.json')
+          session = json.loads(path.read_text(encoding='utf-8'))
+          digest = actual['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          path.write_text(json.dumps(session, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          print('SOURCE_DIGEST=' + digest)
+          PY
+          python scripts/sequence_human_view.py --root . \
+            --actual-json docs/sequence/generated/SW2-13-GOVERNANCE.actual.json \
+            --actual-mermaid docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd \
+            --output-json docs/sequence/generated/SW2-13-GOVERNANCE.human.json \
+            --output-mermaid docs/sequence/generated/SW2-13-GOVERNANCE.human.mmd \
+            --output-markdown docs/sequence/views/SW2-13-GOVERNANCE.md \
+            --session-id SW2-13-GOVERNANCE
+          python scripts/validate_sequence_contract.py --root . \
+            --session docs/sequence/sessions/SW2-13-GOVERNANCE.json \
+            --report artifacts/sequence/SW2-13-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . \
+            --session docs/sequence/sessions/SW2-13-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+
+      - name: Regenerate Project Truth and validate phase-open state
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/selftest_repository_health.py
+          python scripts/validate_repository_health.py --root .
+
+      - name: Commit clean phase-open candidate
+        shell: bash
+        run: |
+          test ! -e .github/workflows/tmp-sw2-13-open.yml
+          git status --short
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "SW2-13: open governed Skill Core / Reference Split phase"
+          git push origin HEAD:work/sw2-13-skill-core-reference-split
