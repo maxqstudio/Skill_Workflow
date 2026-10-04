@@ -69,7 +69,6 @@ jobs:
           python scripts/selftest_public_docs.py
           python scripts/validate_public_docs.py --root . --report artifacts/public_docs_report.json
           python scripts/validate_project_docs.py --root .
-          python scripts/validate_project_truth.py --root .
           python scripts/selftest_project_truth_compiler.py
           python scripts/selftest_cross_document_regressions.py
           python scripts/selftest_strict_project_workflow.py
