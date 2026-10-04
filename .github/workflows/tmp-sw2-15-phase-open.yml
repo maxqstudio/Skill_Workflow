@@ -1,0 +1,303 @@
+name: TEMP SW2-15 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-15-smart-validation-dag
+    paths:
+      - .github/workflows/tmp-sw2-15-phase-open.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-15-smart-validation-dag
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Transition governed authority to SW2-15
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ROOT = Path('.')
+          ACCEPTED = '71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4'
+          BRANCH = 'work/sw2-15-smart-validation-dag'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, data):
+              Path(path).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap = load('.workflow/roadmap.json')
+          roadmap['current_phase'] = 'SW2-15'
+          seen14 = seen15 = False
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-14':
+                  phase['status'] = 'COMPLETE'
+                  seen14 = True
+              elif phase['id'] == 'SW2-15':
+                  phase['status'] = 'CURRENT'
+                  seen15 = True
+          if not (seen14 and seen15):
+              raise RuntimeError('ROADMAP_SW2_14_15_MISSING')
+          if sum(1 for p in roadmap['phases'] if p['status'] == 'CURRENT') != 1:
+              raise RuntimeError('ROADMAP_CURRENT_PHASE_CARDINALITY')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          state['phase'] = 'SW2-15'
+          state['status'] = 'IN_PROGRESS'
+          state['working_branch'] = BRANCH
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = ACCEPTED
+          state['blockers'] = []
+          state['blocked_actions'] = [
+              'Do not weaken or bypass exhaustive finalize validation.',
+              'Do not treat develop/verify node selection, cache state, or prior PASS results as final acceptance authority.',
+              'Do not skip mandatory validation dependencies when impact classification is incomplete or ambiguous.',
+              'Do not let smart node selection suppress adversarial false-PASS regressions; uncertain impact must broaden fail-closed.',
+              'Do not begin SW2-16 implementation until SW2-15 is accepted on main.',
+          ]
+          state['next_authorized_actions'] = [
+              'Map the current Governance Engine validation DAG, node dependencies, repeated work, and mode-specific execution before changing selection behavior.',
+              'Define deterministic impact-to-node selection for develop and dependency closure for verify, with unknown impact broadening fail-closed.',
+              'Add adversarial regressions proving smart selection cannot skip a required failing dependency.',
+              'Keep finalize exhaustive and prove complete DAG parity before SW2-15 closure.',
+          ]
+          state['not_proven'] = [
+              'SW2-15 safe impacted-node selection for develop is not yet proven.',
+              'SW2-15 complete dependency closure for verify is not yet proven.',
+              'SW2-15 exhaustive finalize DAG parity is not yet proven.',
+              'SW2-15 adversarial false-PASS resistance across cross-platform and real-consumer acceptance is not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.',
+          ]
+          proven = list(state.get('proven', []))
+          closure = (
+              'SW2-14 Incremental Project Truth Compiler is accepted on main '
+              '71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 with tree '
+              'fb2878299cf28e6671ed73842996c5a861617554 equal to exact tested candidate '
+              'efd5ac9b3af4623c385413fc11a7f7999ef1edc0. Post-merge main passed '
+              'Self Governance 37241577980; Governance Selftest 37241577983 on Ubuntu and Windows; '
+              'SW2 Sequence Evidence 37241577995; Governance Engine Performance 37241578003; '
+              'and Consumer Engine Performance 37241577997.'
+          )
+          if closure not in proven:
+              proven.append(closure)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
+
+          previous = load('docs/sequence/sessions/SW2-14-GOVERNANCE.json')
+          previous['scope'] = 'HISTORICAL'
+          previous['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-14-GOVERNANCE.json', previous)
+
+          questions = {
+              'How does failure/recovery behave?': 'PASS',
+              'How does important data flow through the system?': 'PASS',
+              'What are the important lifecycle states and transitions?': 'PASS',
+              'What are the main user/domain workflows?': 'PASS',
+              'What are the major components and how do they relate?': 'PASS',
+              'What is mutable and what is immutable?': 'PASS',
+              'What is proven and what is not proven?': 'PASS',
+              'What is the current project state?': 'PASS',
+              'What is the project and what problem does it solve?': 'PASS',
+              'What may happen next and what is blocked?': 'PASS',
+              'Who uses it and what are the primary outcomes?': 'PASS',
+              'Who/what is authoritative for important decisions?': 'PASS',
+          }
+          gates = {
+              'BEHAVIORAL_SYNC': 'NOT_APPLICABLE',
+              'CROSS_DOCUMENT_CONSISTENCY': 'NOT_PROVEN',
+              'DOC_LAYOUT': 'PASS',
+              'DOC_READABILITY': 'PASS',
+              'DOC_SOURCE_TRACEABILITY': 'NOT_PROVEN',
+              'DOC_TEST_TRACEABILITY': 'NOT_PROVEN',
+              'HUMAN_COMPREHENSION': 'PASS',
+              'PROJECT_DOCS_NORMALIZED': 'PASS',
+              'PROJECT_DOCS_SYNC': 'PASS',
+              'PROJECT_STATE_SYNC': 'NOT_PROVEN',
+              'PROVENANCE_SYNC': 'NOT_PROVEN',
+              'REFERENCE_SYNC': 'NOT_PROVEN',
+              'ROADMAP_SYNC': 'PASS',
+              'RUNTIME_E2E': 'NOT_APPLICABLE',
+              'SEMANTIC_SYNC': 'NOT_PROVEN',
+              'SEQUENCE_SYNC': 'NOT_PROVEN',
+              'SOURCE_TESTS': 'NOT_PROVEN',
+              'STRUCTURAL_SYNC': 'NOT_PROVEN',
+              'TEST_RUNTIME_TRACEABILITY': 'NOT_APPLICABLE',
+          }
+          acceptance = {
+              'evidence_boundary': 'SW2-15 covers Smart Validation DAG only: safe impacted-node selection in develop, complete affected dependency closure in verify, exhaustive finalize authority, and adversarial false-PASS regression. It must not weaken SW2-14 incremental Project Truth semantics, accepted exact-head authority, sequence evidence, cross-platform/consumer acceptance, or any prior V2 guarantee.',
+              'human_comprehension_questions': questions,
+              'human_comprehension_status': 'PASS',
+              'requirements': [
+                  {
+                      'id': 'SW2-15-R1',
+                      'requirement': 'Develop mode executes only safely impacted validation nodes and their mandatory prerequisites.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until the current validation DAG and impact classes are mapped and negative-path tests prove unsafe or unknown impact cannot silently narrow develop execution.',
+                  },
+                  {
+                      'id': 'SW2-15-R2',
+                      'requirement': 'Verify mode executes the complete dependency closure for affected governance semantics without redundant unrelated validation.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until dependency-closure planning is deterministic and regression evidence proves every affected required prerequisite and dependent gate executes exactly as declared.',
+                  },
+                  {
+                      'id': 'SW2-15-R3',
+                      'requirement': 'Finalize executes the complete authoritative validation DAG and remains the only final acceptance authority.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until exhaustive finalize parity proves every required final node executes with exact-head provenance and clean governed state after smart selection changes.',
+                  },
+                  {
+                      'id': 'SW2-15-R4',
+                      'requirement': 'Adversarial false-PASS regression and the complete permanent matrix prove smart validation cannot skip required failures across platforms and the real consumer.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until adversarial skip/dependency failures, Ubuntu/Windows governance, sequence evidence, engine performance, and real-consumer acceptance all pass on the final candidate.',
+                  },
+              ],
+              'runtime_checks': [],
+              'runtime_status': 'NOT_APPLICABLE',
+              'schema_version': 1,
+              'sequence_mode': 'DURING',
+              'sequence_session': 'SW2-15-GOVERNANCE',
+              'sequence_sync_status': 'NOT_PROVEN',
+              'test_commands': [
+                  'python scripts/selftest_governance_engine.py',
+                  'python scripts/selftest_project_truth_compiler.py',
+                  'python scripts/selftest_cross_document_regressions.py',
+                  'python scripts/selftest_strict_project_workflow.py',
+                  'python scripts/validate_project_docs.py --root .',
+                  'python scripts/validate_sequence_sessions.py --root .',
+                  'python scripts/governance_engine.py --root . --base 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 --mode finalize --expected-head <EXACT_HEAD>',
+              ],
+              'truth_gates': gates,
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          session = {
+              'acceptance_report': 'artifacts/sequence/SW2-15-GOVERNANCE.acceptance.json',
+              'actual': {
+                  'diagram': 'docs/sequence/generated/SW2-15-GOVERNANCE.actual.mmd',
+                  'entries': [
+                      'scripts/governance_engine.py::main',
+                      'scripts/sync_project_truth.py::main',
+                      'scripts/generate_project_docs.py::main',
+                      'scripts/validate_project_docs.py::main',
+                      'scripts/validate_cross_document_consistency.py::main',
+                      'scripts/validate_sequence_sessions.py::main',
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-15-GOVERNANCE.actual.json',
+                  'source_digest': '',
+              },
+              'critical': True,
+              'evidence_boundary': 'SW2-15 sequence evidence covers Governance Engine mode planning, Project Truth synchronization, deterministic document generation/validation, cross-document consistency, and sequence validation as the baseline for Smart Validation DAG work. Static structure alone does not prove safe node selection, dependency-closure completeness, or absence of false skips.',
+              'human_view': {
+                  'diagram': 'docs/sequence/generated/SW2-15-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-15-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'graph': 'docs/sequence/generated/SW2-15-GOVERNANCE.human.json',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': '',
+              },
+              'implementation_base_sha': ACCEPTED,
+              'mode': 'DURING',
+              'phase': 'SW2-15',
+              'plan': {
+                  'contract': '', 'diagram': '', 'frozen': False,
+                  'frozen_commit': '', 'required': False, 'sha256': '',
+              },
+              'runtime_trace': {'graph': '', 'required': False},
+              'schema_version': 1,
+              'scope': 'CURRENT',
+              'session_id': 'SW2-15-GOVERNANCE',
+              'status': 'IN_PROGRESS',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_governance_engine.py',
+                  'scripts/selftest_project_truth_compiler.py',
+                  'scripts/selftest_cross_document_regressions.py',
+                  'scripts/selftest_strict_project_workflow.py',
+              ],
+          }
+          write('docs/sequence/sessions/SW2-15-GOVERNANCE.json', session)
+          PY
+
+      - name: Generate current SW2-15 machine and human sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-15-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id'],
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', 'docs/sequence/sessions/SW2-15-GOVERNANCE.json'
+          ], check=True)
+          PY
+
+      - name: Regenerate Project Truth for SW2-15 phase open
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+
+      - name: Remove temporary workflow and validate helper-free tree
+        shell: bash
+        run: |
+          rm -f .github/workflows/tmp-sw2-15-phase-open.yml
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python .github/scripts/validate_skill_reference_split.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          test -z "$(git status --porcelain --untracked-files=all -- .github/workflows | grep 'tmp-sw2-15-phase-open' || true)"
+
+      - name: Commit phase-open authority
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'SW2-15: open Smart Validation DAG phase'
+          git push origin HEAD:work/sw2-15-smart-validation-dag
