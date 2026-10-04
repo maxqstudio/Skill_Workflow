@@ -102,6 +102,20 @@
   },
   "edges": [
     {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "_normalized_text",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::main",
+      "resolver": "python_ast",
+      "to": ".github/scripts/validate_skill_reference_split.py::_normalized_text"
+    },
+    {
       "action": "validate",
       "evidence": "STATIC",
       "from": ".github/scripts/validate_skill_reference_split.py::main",
@@ -109,32 +123,11 @@
       "to": ".github/scripts/validate_skill_reference_split.py::validate"
     },
     {
-      "action": "skill.read_bytes",
-      "evidence": "STATIC",
-      "from": ".github/scripts/validate_skill_reference_split.py::main",
-      "resolver": "python_ast",
-      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
-    },
-    {
-      "action": "skill.read_text",
-      "evidence": "STATIC",
-      "from": ".github/scripts/validate_skill_reference_split.py::main",
-      "resolver": "python_ast",
-      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
-    },
-    {
-      "action": "skill.read_bytes",
+      "action": "_normalized_text",
       "evidence": "STATIC",
       "from": ".github/scripts/validate_skill_reference_split.py::validate",
       "resolver": "python_ast",
-      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
-    },
-    {
-      "action": "path.read_text",
-      "evidence": "STATIC",
-      "from": ".github/scripts/validate_skill_reference_split.py::validate",
-      "resolver": "python_ast",
-      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+      "to": ".github/scripts/validate_skill_reference_split.py::_normalized_text"
     },
     {
       "action": "ValidationNode",
@@ -926,12 +919,21 @@
   "generated_by": "generate_sequence_actual.py",
   "nodes": [
     {
+      "id": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
+      "kind": "function",
+      "label": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
+      "language": "Python",
+      "line_end": 36,
+      "line_start": 35,
+      "locator": ".github/scripts/validate_skill_reference_split.py::_normalized_text"
+    },
+    {
       "id": ".github/scripts/validate_skill_reference_split.py::main",
       "kind": "function",
       "label": ".github/scripts/validate_skill_reference_split.py::main",
       "language": "Python",
-      "line_end": 94,
-      "line_start": 82,
+      "line_end": 98,
+      "line_start": 86,
       "locator": ".github/scripts/validate_skill_reference_split.py::main"
     },
     {
@@ -939,8 +941,8 @@
       "kind": "function",
       "label": ".github/scripts/validate_skill_reference_split.py::validate",
       "language": "Python",
-      "line_end": 79,
-      "line_start": 35,
+      "line_end": 83,
+      "line_start": 39,
       "locator": ".github/scripts/validate_skill_reference_split.py::validate"
     },
     {
@@ -1601,7 +1603,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "777c8f75ab53eecd75b79b418f516392208ae808",
+  "observed_head": "e73928ddfc0e3894c6f75d1837d90bd0021c44b8",
   "schema_version": 1,
-  "source_digest": "886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70"
+  "source_digest": "87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6"
 }

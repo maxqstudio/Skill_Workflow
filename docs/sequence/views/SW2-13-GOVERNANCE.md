@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-13-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-13-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-13-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-13-GOVERNANCE.human.json)
-- Source digest: `886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70`
+- Source digest: `87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 75 | 13 |
-| Interactions / edges | 116 | 19 |
-| Internal machine edges collapsed | 79 | — |
-| Cross-component edges aggregated | 18 | — |
+| Participants / nodes | 76 | 13 |
+| Interactions / edges | 115 | 19 |
+| Internal machine edges collapsed | 81 | — |
+| Cross-component edges aggregated | 15 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -39,7 +39,7 @@ sequenceDiagram
     participant module_scripts_validate_doc_quality_py_10 as scripts/validate_doc_quality.py
     participant module_scripts_validate_project_docs_py_11 as scripts/validate_project_docs.py
     participant module_scripts_validate_sequence_sessions_py_12 as scripts/validate_sequence_sessions.py
-    module__github_scripts_validate_skill_reference_split_py_0->>module_scripts_project_snapshot_py_3: 4 static interactions
+    module__github_scripts_validate_skill_reference_split_py_0->>module_scripts_project_snapshot_py_3: 1 static interaction
     module_scripts_governance_engine_py_1->>module_scripts_project_snapshot_py_3: 4 static interactions
     module_scripts_governance_engine_py_1->>module_scripts_script_runner_py_5: 1 static interaction
     module_scripts_project_profile_py_2->>module_scripts_project_snapshot_py_3: 1 static interaction

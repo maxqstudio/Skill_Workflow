@@ -14,15 +14,13 @@
   "edges": [
     {
       "actions": [
-        "path.read_text",
-        "skill.read_bytes",
-        "skill.read_text"
+        "path.read_bytes"
       ],
       "evidence": [
         "STATIC"
       ],
       "from": "module:.github/scripts/validate_skill_reference_split.py",
-      "machine_edge_count": 4,
+      "machine_edge_count": 1,
       "resolvers": [
         "python_ast"
       ],
@@ -312,8 +310,9 @@
       "id": "module:.github/scripts/validate_skill_reference_split.py",
       "kind": "module",
       "label": ".github/scripts/validate_skill_reference_split.py",
-      "machine_node_count": 2,
+      "machine_node_count": 3,
       "machine_nodes": [
+        ".github/scripts/validate_skill_reference_split.py::_normalized_text",
         ".github/scripts/validate_skill_reference_split.py::main",
         ".github/scripts/validate_skill_reference_split.py::validate"
       ]
@@ -488,15 +487,16 @@
       ]
     }
   ],
-  "observed_head": "777c8f75ab53eecd75b79b418f516392208ae808",
+  "observed_head": "e73928ddfc0e3894c6f75d1837d90bd0021c44b8",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 18,
-    "cross_component_machine_edges": 37,
-    "internal_machine_edges_collapsed": 79,
-    "machine_edge_count": 116,
-    "machine_node_count": 75,
+    "aggregated_cross_component_edges": 15,
+    "cross_component_machine_edges": 34,
+    "internal_machine_edges_collapsed": 81,
+    "machine_edge_count": 115,
+    "machine_node_count": 76,
     "node_map": {
+      ".github/scripts/validate_skill_reference_split.py::_normalized_text": "module:.github/scripts/validate_skill_reference_split.py",
       ".github/scripts/validate_skill_reference_split.py::main": "module:.github/scripts/validate_skill_reference_split.py",
       ".github/scripts/validate_skill_reference_split.py::validate": "module:.github/scripts/validate_skill_reference_split.py",
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
@@ -576,5 +576,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70"
+  "source_digest": "87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6"
 }

@@ -84,7 +84,7 @@
       "file": ".github/scripts/validate_skill_reference_split.py",
       "is_test": false,
       "language": "Python",
-      "lines": 97
+      "lines": 101
     },
     {
       "directory": "scripts",
@@ -554,12 +554,20 @@
       "target_token": "module.validate"
     },
     {
+      "caller": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
+      "target_token": "path.read_bytes"
+    },
+    {
       "caller": ".github/scripts/validate_skill_reference_split.py::main",
       "target_token": "Path"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::main",
       "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "_normalized_text"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::main",
@@ -595,11 +603,11 @@
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::main",
-      "target_token": "skill.read_bytes"
+      "target_token": "text.encode"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::main",
-      "target_token": "skill.read_text"
+      "target_token": "text.splitlines"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::main",
@@ -612,6 +620,14 @@
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
       "target_token": "LINK_RE.findall"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "_normalized_text"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "_normalized_text"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
@@ -679,23 +695,11 @@
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
-      "target_token": "len"
-    },
-    {
-      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
       "target_token": "links.count"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
       "target_token": "path.is_file"
-    },
-    {
-      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
-      "target_token": "path.read_text"
-    },
-    {
-      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
-      "target_token": "raw.decode"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
@@ -715,7 +719,7 @@
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
-      "target_token": "skill.read_bytes"
+      "target_token": "text.encode"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
@@ -19719,16 +19723,24 @@
     {
       "file": ".github/scripts/validate_skill_reference_split.py",
       "kind": "function",
-      "line_end": 79,
+      "line_end": 36,
       "line_start": 35,
+      "locator": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
+      "symbol": "_normalized_text"
+    },
+    {
+      "file": ".github/scripts/validate_skill_reference_split.py",
+      "kind": "function",
+      "line_end": 83,
+      "line_start": 39,
       "locator": ".github/scripts/validate_skill_reference_split.py::validate",
       "symbol": "validate"
     },
     {
       "file": ".github/scripts/validate_skill_reference_split.py",
       "kind": "function",
-      "line_end": 94,
-      "line_start": 82,
+      "line_end": 98,
+      "line_start": 86,
       "locator": ".github/scripts/validate_skill_reference_split.py::main",
       "symbol": "main"
     },
@@ -22390,13 +22402,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70",
+  "source_digest": "87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6",
   "source_summary": {
     "files": 49,
     "languages": {
       "Python": 49
     },
-    "lines": 13241,
+    "lines": 13245,
     "test_files": 0
   },
   "tests": []

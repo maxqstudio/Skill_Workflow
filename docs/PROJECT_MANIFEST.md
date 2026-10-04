@@ -13,7 +13,7 @@ Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-13-skill-core-reference-split
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 1c81c3012d9a5891e8145726c38165e113057676
-Current source digest: 886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70
+Current source digest: 87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.

@@ -95,5 +95,7 @@
     "python scripts/validate_repository_health.py --root .",
     "python scripts/validate_public_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root ."
-  ]
+  ],
+  "windows_newline_portability_repair": "PASS_TARGETED",
+  "newline_policy": "Normalize CRLF/CR to LF before frontmatter, line-budget, byte-budget, invariant, and reference checks."
 }
