@@ -23,6 +23,19 @@ def main() -> int:
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
+    agents_path = root / "AGENTS.md"
+    if not agents_path.is_file():
+        print("FAIL MISSING_ROOT_AGENTS")
+        return 1
+    agents_text = agents_path.read_text(encoding="utf-8", errors="strict")
+    if validate_doc_quality.GENERATED_MARKER in agents_text:
+        print("FAIL ROOT_AGENTS_MUST_BE_SOURCE_AUTHORED")
+        return 1
+    agents_ok, agents_failures = validate_doc_quality.normalized_shape(agents_text)
+    if not agents_ok:
+        print("FAIL ROOT_AGENTS_QUALITY:" + ";".join(agents_failures))
+        return 1
+
     profile_path = root / PROFILE_FILE
     if not profile_path.is_file():
         print("FAIL MISSING_PROJECT_PROFILE")

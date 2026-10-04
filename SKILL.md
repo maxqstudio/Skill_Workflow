@@ -27,7 +27,8 @@ Do not begin by reading the entire repository blindly.
 
 Build a project map first:
 
-PROJECT_PROFILE.yaml
+AGENTS.md
+→ PROJECT_PROFILE.yaml
 → docs/SYSTEM_OVERVIEW.md
 → docs/CURRENT_STATE.md
 → docs/ROADMAP.md
@@ -45,11 +46,13 @@ The documents are navigation and contract aids. Source and runtime remain eviden
 
 Do not impose the same documentation ceremony on every project.
 
+Every project MUST keep a source-authored `AGENTS.md` at repository root. It is the agent startup/operating contract, is mandatory for LITE, STANDARD, and STRICT, and MUST NOT be generated or relocated under `docs/`. Existing project-specific `AGENTS.md` content is preserved by default during initialization/migration.
+
 Every project MUST define `PROJECT_PROFILE.yaml`.
 
 `PROJECT_PROFILE.yaml` MUST declare `schema_version: 1`. Governed `.workflow/*.json` and `.workflow/workflows/*.json` specs MUST also declare supported schema versions. Missing or unknown versions fail closed; legacy state must be migrated explicitly rather than silently reinterpreted.
 
-Every required `.md` document name below resolves under repository-root `docs/`. `PROJECT_PROFILE.yaml` and `README.md` remain at repository root.
+Every profile-required generated `.md` document name below resolves under repository-root `docs/`. `README.md`, `AGENTS.md`, and `PROJECT_PROFILE.yaml` remain at repository root; `AGENTS.md` is mandatory source-authored operating guidance rather than generated Project Truth.
 
 Supported profiles:
 
@@ -394,6 +397,7 @@ Repository-root exceptions are intentionally limited to:
 
 ```text
 README.md
+AGENTS.md
 PROJECT_PROFILE.yaml
 .workflow/
 ```
@@ -419,6 +423,7 @@ DOC_LAYOUT = FAIL
 ```text
 <repo>/
 ├─ README.md
+├─ AGENTS.md
 ├─ PROJECT_PROFILE.yaml
 ├─ .workflow/
 │  ├─ project.json
@@ -503,6 +508,10 @@ semantic understanding. HUMAN_COMPREHENSION remains the semantic human-facing
 gate.
 
 # 3. Document responsibilities
+
+## AGENTS.md
+
+Mandatory source-authored repository-root operating contract for coding agents. It defines the project-specific read order, non-negotiable operating constraints, generated-document handling, acceptance discipline, and handoff expectations. It is read before `PROJECT_PROFILE.yaml`. It must not duplicate machine-readable project state or pretend to replace `.workflow/*.json`; if it conflicts with current authority/evidence, stop and resolve the conflict rather than guessing.
 
 ## PROJECT_PROFILE.yaml
 
@@ -620,18 +629,19 @@ DECISIONS records durable decisions with date, context, reason, alternatives, im
 
 # 5. New-room startup procedure
 
-1. Read PROJECT_PROFILE.yaml.
-2. Resolve the required document set for the selected profile.
-3. Read docs/SYSTEM_OVERVIEW.md for the human/domain mental model.
-4. Read docs/CURRENT_STATE.md.
-5. Read docs/ROADMAP.md and verify its current phase matches CURRENT_STATE.
-6. Read docs/PROJECT_MANIFEST.md.
-7. Read only the authority/architecture/workflow/index/contracts required by the profile.
-8. Read docs/SEQUENCE_CONTRACTS.md when sequence policy is enabled.
-9. Read docs/TEST_ACCEPTANCE_MATRIX.md.
-10. Read docs/DOC_SYNC_MATRIX.md when required.
-11. Read docs/PROJECT_TRUTH_SYNC.md when required or present for critical flows.
-12. Open only exact relevant source ranges first.
+1. Read root `AGENTS.md`.
+2. Read PROJECT_PROFILE.yaml.
+3. Resolve the required document set for the selected profile.
+4. Read docs/SYSTEM_OVERVIEW.md for the human/domain mental model.
+5. Read docs/CURRENT_STATE.md.
+6. Read docs/ROADMAP.md and verify its current phase matches CURRENT_STATE.
+7. Read docs/PROJECT_MANIFEST.md.
+8. Read only the authority/architecture/workflow/index/contracts required by the profile.
+9. Read docs/SEQUENCE_CONTRACTS.md when sequence policy is enabled.
+10. Read docs/TEST_ACCEPTANCE_MATRIX.md.
+11. Read docs/DOC_SYNC_MATRIX.md when required.
+12. Read docs/PROJECT_TRUTH_SYNC.md when required or present for critical flows.
+13. Open only exact relevant source ranges first.
 
 Do not create or maintain documents that the profile marks not applicable.
 
@@ -826,9 +836,10 @@ what is forbidden.
 # 16. Fast orientation mode
 
 Read:
-1. PROJECT_PROFILE
-2. SYSTEM_OVERVIEW
-3. CURRENT_STATE
+1. AGENTS.md
+2. PROJECT_PROFILE
+3. SYSTEM_OVERVIEW
+4. CURRENT_STATE
 4. ROADMAP
 5. PROJECT_MANIFEST
 6. only profile-required authority/architecture/workflow docs
@@ -937,6 +948,7 @@ Do not declare completion while any affected document remains stale.
 
 ```text
 SESSION START
+→ read AGENTS.md
 → read PROJECT_PROFILE
 → read SYSTEM_OVERVIEW
 → read CURRENT_STATE
@@ -1023,6 +1035,7 @@ FLOW_INDEX remains semantic-verified. Do not automatically claim an end-to-end c
 
 The task is NOT DONE if any applies:
 
+- root `AGENTS.md` is missing, generated, or malformed;
 - `.workflow/roadmap.json` is missing;
 - `.workflow/state.json::phase` differs from `.workflow/roadmap.json::current_phase`;
 - ROADMAP_SYNC is not PASS for generated-documentation mode;

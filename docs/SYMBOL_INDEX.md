@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
+Source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -15,6 +15,7 @@ responsibility, callers, or state ownership.
 
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
+| artifacts/tmp/sw2_11_apply.py | 8 | 0 | 8 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -64,6 +65,22 @@ responsibility, callers, or state ownership.
 | scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
 
 ## Detailed symbols
+
+<details>
+<summary><code>artifacts/tmp/sw2_11_apply.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 13-14 |
+| output | function | 17-18 |
+| write | function | 21-24 |
+| replace_once | function | 27-32 |
+| apply_source_changes | function | 115-218 |
+| apply_authority_changes | function | 221-289 |
+| generate_and_validate | function | 292-308 |
+| commit_validate_push | function | 311-329 |
+
+</details>
 
 <details>
 <summary><code>scripts/analyzer_contract.py</code> — 10 symbols</summary>
@@ -277,9 +294,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| ensure_gitattributes | function | 22-32 |
-| copy_file | function | 35-40 |
-| main | function | 43-133 |
+| ensure_gitattributes | function | 23-41 |
+| copy_file | function | 44-49 |
+| main | function | 52-152 |
 
 </details>
 
@@ -291,7 +308,7 @@ responsibility, callers, or state ownership.
 | add_profile_version | function | 26-40 |
 | inspect_specs | function | 43-53 |
 | add_spec_version | function | 56-64 |
-| main | function | 67-133 |
+| main | function | 67-145 |
 
 </details>
 
@@ -491,7 +508,7 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | write_json | function | 13-15 |
-| main | function | 18-66 |
+| main | function | 18-73 |
 
 </details>
 
@@ -502,7 +519,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 13-31 |
 | write_json | function | 34-35 |
-| main | function | 38-162 |
+| main | function | 38-167 |
 
 </details>
 
@@ -689,7 +706,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 19-80 |
+| main | function | 19-93 |
 
 </details>
 
@@ -722,9 +739,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _load_json | function | 22-23 |
-| validate | function | 26-89 |
-| main | function | 92-108 |
+| _load_json | function | 23-24 |
+| validate | function | 27-104 |
+| main | function | 107-123 |
 
 </details>
 

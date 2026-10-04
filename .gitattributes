@@ -1,4 +1,5 @@
 # BEGIN SKILL_WORKFLOW GOVERNANCE EOL
+/AGENTS.md text eol=lf
 /PROJECT_PROFILE.yaml text eol=lf
 /.workflow/** text eol=lf
 /docs/** text eol=lf

@@ -7,7 +7,7 @@ import json
 import tempfile
 from pathlib import Path
 
-from validate_repository_health import REQUIRED_HEALTH_FILES, validate
+from validate_repository_health import REQUIRED_HEALTH_FILES, REQUIRED_ROOT_FILES, validate
 
 
 def write_json(path: Path, value: object) -> None:
@@ -23,7 +23,7 @@ def main() -> int:
             encoding="utf-8",
             newline="\n",
         )
-        for relative in REQUIRED_HEALTH_FILES:
+        for relative in REQUIRED_ROOT_FILES + REQUIRED_HEALTH_FILES:
             (root / relative).write_text(f"# {relative}\n\nFixture policy.\n", encoding="utf-8", newline="\n")
         write_json(root / ".workflow" / "decisions.json", {"schema_version": 1, "decisions": []})
 
@@ -54,6 +54,12 @@ def main() -> int:
         assert approved["result"] == "PASS"
         assert approved["license_status"] == "PASS"
 
+        (root / "AGENTS.md").unlink()
+        missing_agents = validate(root)
+        assert missing_agents["result"] == "FAIL"
+        assert "REPOSITORY_ROOT_FILE_MISSING:AGENTS.md" in missing_agents["failures"]
+        (root / "AGENTS.md").write_text("# AGENTS.md\n\nFixture policy.\n", encoding="utf-8", newline="\n")
+
         (root / "SECURITY.md").unlink()
         assert validate(root)["result"] == "FAIL"
 
@@ -61,6 +67,7 @@ def main() -> int:
     print("LICENSE_NOT_PROVEN_WITHOUT_OWNER_DECISION=PASS")
     print("UNAPPROVED_LICENSE_REJECTION=PASS")
     print("OWNER_APPROVED_LICENSE_FIXTURE=PASS")
+    print("MISSING_ROOT_AGENTS_REJECTION=PASS")
     print("MISSING_SECURITY_POLICY_REJECTION=PASS")
     print("RESULT=PASS")
     return 0

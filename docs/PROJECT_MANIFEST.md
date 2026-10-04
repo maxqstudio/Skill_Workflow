@@ -10,10 +10,10 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: main
+Active branch: work/sw2-11-root-agents-contract
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
-Current source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
+Last accepted SHA: 51963cac28f78e8c9c5052bcbdc5270b5bc93989
+Current source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.

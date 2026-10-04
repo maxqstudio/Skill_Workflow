@@ -4,35 +4,31 @@
 
 ## Evidence boundary
 
-SW2-10 covers documentation polish and discoverability only. It may change source-authored public documentation, documentation validation coverage, and generated projections caused by synchronized governance state. It must not alter accepted V2 runtime/governance behavior, move the v2.0.0 tag, or relocate canonical generated governance paths.
+SW2-11 covers the mandatory root AGENTS.md operating contract only: source-authored root presence for every governance profile, deterministic initialization/preservation, explicit migration for existing governed projects, fail-closed validation, regression coverage, and synchronized public/governance documentation. It must not weaken accepted V2 guarantees or change the stable v2.0.0 release target.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
+Current source digest: 058d6c15e4043b9ad527079f05e7670cd021ee48ae99d8ef4e44c51f6a989ef9
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-10-R1 | Public landing pages are accurate and no longer contain stale license or pre-publication V2 claims. | Run 37189418677 rewrites the public landing surfaces, binds the stable v2.0.0 state, and corrects the MIT license statement before exact-head validation. | PASS |
-| SW2-10-R2 | Public navigation clearly separates product guidance from generated governance evidence. | Run 37189418677 normalizes README, docs index, and handbook navigation into explicit public-handbook, generated-Project-Truth, and sequence-evidence layers. | PASS |
-| SW2-10-R3 | Documentation architecture and GitHub sequence presentation are documented and regression-protected. | Run 37189418677 adds the source-authored Documentation system reference and extends public-doc validation/selftests so the new navigation contract cannot silently disappear. | PASS |
-| SW2-10-R4 | The exact documentation candidate passes synchronized Project Truth, sequence validation, and complete final governance acceptance. | Exact candidate 0e6b1cc80682fe2adf77495359900bcd341c28df passed the complete permanent PR matrix: Self Governance 37189710272 SUCCESS; Governance Selftest 37189710279 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37189710273 SUCCESS; Governance Engine Performance 37189710274 SUCCESS; Consumer Engine Performance 37189710271 SUCCESS. The candidate had already passed clean-worktree cross-document consistency, Project Truth validation, sequence validation, and Governance Engine finalize before PR CI. | PASS |
+| SW2-11-R1 | AGENTS.md is mandatory, source-authored, and located at repository root for LITE, STANDARD, and STRICT. | Implementation and exact-head acceptance pending. | NOT_PROVEN |
+| SW2-11-R2 | Initializer and migration create missing AGENTS.md deterministically while preserving existing project-specific content by default. | Cross-platform regression evidence pending. | NOT_PROVEN |
+| SW2-11-R3 | Project-doc and repository-health validation fail closed for missing/generated/malformed root AGENTS.md and regression protects the behavior. | Cross-platform regression evidence pending. | NOT_PROVEN |
+| SW2-11-R4 | Skill Workflow self-governance, synchronized Project Truth/sequence evidence, and the complete permanent matrix pass on the exact candidate. | Exact candidate evidence pending. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
-- python scripts/validate_schema_toolchain.py --root .
 - python scripts/selftest_schema_toolchain.py
-- python scripts/selftest_governance_engine.py
+- python scripts/selftest_repository_health.py
+- python scripts/validate_repository_health.py --root .
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_adoption_profiles.py
 - python scripts/selftest_strict_project_workflow.py
-- python scripts/selftest_public_docs.py
-- python scripts/validate_public_docs.py --root .
-- python scripts/selftest_repository_health.py
-- python scripts/validate_repository_health.py --root .
-- python scripts/selftest_release_preflight.py
+- python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/validate_handoff.py --root .
-- python scripts/governance_engine.py --root . --base 8d0fbfd7177128774a0f321b8c95e6befdaaf659 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/validate_cross_document_consistency.py --root . --base 51963cac28f78e8c9c5052bcbdc5270b5bc93989 --require-base
+- python scripts/governance_engine.py --root . --base 51963cac28f78e8c9c5052bcbdc5270b5bc93989 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -46,7 +42,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-10-GOVERNANCE
+Sequence session contract: SW2-11-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

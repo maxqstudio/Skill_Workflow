@@ -35,7 +35,7 @@ For a specific agent, for example Codex:
 npx skills add maxqstudio/Skill_Workflow -a codex -y
 ```
 
-Then follow [Installation](docs/handbook/getting-started/installation.md) and [Repository adoption](docs/handbook/getting-started/adoption.md).
+Then follow [Installation](docs/handbook/getting-started/installation.md) and [Repository adoption](docs/handbook/getting-started/adoption.md). Every governed project also keeps a mandatory source-authored [`AGENTS.md`](AGENTS.md) at repository root as the coding-agent operating contract.
 
 ## How it works
 

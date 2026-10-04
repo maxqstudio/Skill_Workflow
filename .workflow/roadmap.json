@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-10",
+  "current_phase": "SW2-11",
   "phases": [
     {
       "exit_criteria": [
@@ -131,8 +131,117 @@
       ],
       "id": "SW2-10",
       "objective": "Polish the public documentation experience after V2 release without weakening or relocating canonical generated governance authority.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Documentation Polish & Discoverability"
+    },
+    {
+      "id": "SW2-11",
+      "title": "Root AGENTS.md Contract",
+      "status": "CURRENT",
+      "objective": "Make source-authored root AGENTS.md mandatory for every governed project and enforce deterministic initialization, migration, validation, and agent read-order behavior without weakening existing Project Truth authority.",
+      "exit_criteria": [
+        "AGENTS.md is mandatory at repository root for LITE, STANDARD, and STRICT projects and is explicitly source-authored rather than generated.",
+        "Initialization creates templates/AGENTS.md at project root without overwriting existing project-specific content unless --force is explicitly used.",
+        "Existing governed projects have an explicit migration path that restores missing AGENTS.md deterministically and idempotently.",
+        "Project-doc and repository-health validators fail closed when root AGENTS.md is missing, generated, or malformed, with regression coverage.",
+        "Skill Workflow itself contains a valid AGENTS.md, public documentation explains the contract, and the exact candidate passes the complete permanent acceptance matrix on Ubuntu and Windows."
+      ]
+    },
+    {
+      "id": "SW2-12",
+      "title": "Repository Hygiene & Dead Artifact Cleanup",
+      "status": "PLANNED",
+      "objective": "Remove stale temporary workflows and dead/transient artifacts while preserving accepted evidence and compatibility contracts.",
+      "exit_criteria": [
+        "Temporary/dead workflow and artifact inventory is evidence-backed.",
+        "Only safe stale items are removed.",
+        "Historical acceptance evidence remains auditable.",
+        "Complete regression remains green."
+      ]
+    },
+    {
+      "id": "SW2-13",
+      "title": "Skill Core / Reference Split",
+      "status": "PLANNED",
+      "objective": "Reduce root SKILL.md context cost by keeping non-negotiable invariants and routing detailed guidance into deterministic reference documents.",
+      "exit_criteria": [
+        "Root skill preserves all safety/authority invariants.",
+        "Detailed guidance has stable reference locations.",
+        "Supported agents can resolve required references deterministically.",
+        "Behavioral regression proves no governance guarantee was lost."
+      ]
+    },
+    {
+      "id": "SW2-14",
+      "title": "Incremental Project Truth Compiler",
+      "status": "PLANNED",
+      "objective": "Regenerate only impacted facts and projections during development while retaining exhaustive final consistency validation.",
+      "exit_criteria": [
+        "Impact graph is deterministic and fail-closed.",
+        "Unchanged projections are not rewritten in develop/verify.",
+        "Unknown impact broadens validation.",
+        "Finalize remains exhaustive and parity-proven."
+      ]
+    },
+    {
+      "id": "SW2-15",
+      "title": "Smart Validation DAG",
+      "status": "PLANNED",
+      "objective": "Minimize repeated validation work across develop and verify while preserving complete finalize authority.",
+      "exit_criteria": [
+        "Develop runs safe impacted checks only.",
+        "Verify runs dependency closure.",
+        "Finalize executes the complete authoritative DAG.",
+        "False-PASS adversarial regression remains green."
+      ]
+    },
+    {
+      "id": "SW2-16",
+      "title": "Historical Evidence Freeze",
+      "status": "PLANNED",
+      "objective": "Freeze accepted historical evidence by digest/schema identity so normal development does not replay immutable closed phases.",
+      "exit_criteria": [
+        "Closed evidence is immutable and content-addressed.",
+        "Normal validation verifies historical identity without regeneration.",
+        "Schema migrations explicitly opt into replay.",
+        "Audit mode can still reproduce historical evidence when required."
+      ]
+    },
+    {
+      "id": "SW2-17",
+      "title": "Generator Modularization",
+      "status": "PLANNED",
+      "objective": "Split oversized deterministic document generation into small projection modules without changing canonical outputs.",
+      "exit_criteria": [
+        "Projection modules have narrow responsibilities.",
+        "Output is byte-equivalent unless an accepted format migration says otherwise.",
+        "Unit regression covers each projection.",
+        "No unnecessary framework or plugin abstraction is introduced."
+      ]
+    },
+    {
+      "id": "SW2-18",
+      "title": "Unified CI Orchestrator",
+      "status": "PLANNED",
+      "objective": "Consolidate repeated CI setup and applicability decisions into one explicit validation DAG while retaining named evidence gates.",
+      "exit_criteria": [
+        "Repeated checkout/setup/provenance logic is centralized.",
+        "Docs-only changes do not run irrelevant heavy benchmarks.",
+        "Required checks remain independently visible and fail-closed.",
+        "Cross-platform and consumer acceptance remain green."
+      ]
+    },
+    {
+      "id": "SW2-19",
+      "title": "Performance Budget & V2.1 Release",
+      "status": "PLANNED",
+      "objective": "Lock measured performance budgets and publish V2.1 only after the efficiency/maintainability program preserves or strengthens governance parity.",
+      "exit_criteria": [
+        "Measured develop/verify/finalize budgets are evidence-backed.",
+        "Generated-doc drift and false PASS remain zero in regression.",
+        "Ubuntu/Windows and real-consumer parity pass.",
+        "Versioned V2.1 release is produced from the exact tested head."
+      ]
     }
   ],
   "schema_version": 1

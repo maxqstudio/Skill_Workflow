@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 47 files, 1 language categories.
+Observed source inventory: 48 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-10
+Current phase: SW2-11
 
-Current status: SW2_10_DOCUMENTATION_POLISH_ACCEPTED
+Current status: IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat the polished public documentation and synchronized Project Truth from SW2-10 as the accepted documentation baseline.
-- Preserve the accepted v2.0.0 release target and all V2 behavioral/governance guarantees.
-- For future documentation architecture or compatibility changes, declare a new governed acceptance boundary before implementation.
+- Implement and regression-prove the mandatory root AGENTS.md contract for all governance profiles.
+- Prove initializer preservation/force behavior and deterministic migration for existing governed projects.
+- Regenerate Project Truth and sequence evidence from source authority, then run the complete permanent matrix.
 
 Blocked actions:
 - Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag.
-- Do not move canonical generated governance paths merely to make the docs directory look cleaner.
-- Do not manually patch generated Project Truth Markdown.
-- Do not claim GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
-- Do not change the Owner-approved MIT license or accepted V2 guarantees in this documentation-only phase.
+- Do not weaken accepted V2 governance guarantees while adding the root AGENTS.md contract.
+- Do not treat AGENTS.md as generated Project Truth or move it under docs/.
+- Do not overwrite an existing project-specific AGENTS.md during initialization or migration unless --force is explicitly requested.
+- Do not claim SW2-11 accepted until the exact candidate passes the complete permanent matrix.
 
 Known blockers:
 - None declared.
@@ -169,10 +169,13 @@ Known blockers:
 - SW2-09-R4 stable publication is proven: strict publication run 37185074131 granted publication_authority=true for v2.0.0 from exact tested main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6; the tag target and GitHub release target both resolve to that SHA; publication evidence artifact 11296387707 has SHA-256 bdb6d403e616fde05d07bd9b49c20948d28e0555fbea3cb08b3147521760a68d.
 - SW2-10 documentation cleanup is Owner-authorized after the accepted v2.0.0 release; scope is public documentation accuracy, information architecture, discoverability, and GitHub-readable sequence guidance without changing accepted V2 behavior.
 - SW2-10 Documentation Polish & Discoverability is accepted on exact candidate 0e6b1cc80682fe2adf77495359900bcd341c28df: Self Governance 37189710272 SUCCESS; Governance Selftest 37189710279 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37189710273 SUCCESS; Governance Engine Performance 37189710274 SUCCESS; Consumer Engine Performance 37189710271 SUCCESS. The accepted scope corrects stale public license/release wording, improves role/task navigation, documents the public/generated/sequence documentation layers, preserves canonical generated paths, and leaves V2 behavior and the v2.0.0 release target unchanged.
+- SW2-10 Documentation Polish & Discoverability was accepted and squash-merged to main as 51963cac28f78e8c9c5052bcbdc5270b5bc93989; post-merge Self Governance 37190063064, Governance Selftest 37190063086 on Ubuntu and Windows, SW2 Sequence Evidence 37190063053, Governance Engine Performance 37190063093, and Consumer Engine Performance 37190063075 all succeeded.
+- SW2-11 Root AGENTS.md Contract is Owner-authorized: AGENTS.md must become a mandatory source-authored root document for every governed project; the previously proposed optimization roadmap shifts forward by one phase.
 
 ### Not proven
 
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
+- SW2-11 final acceptance remains NOT_PROVEN until the exact candidate passes all permanent checks on Ubuntu and Windows.
+- Automatic GitHub merge protection remains intentionally NOT_PROVEN because no repository ruleset is configured; this is non-blocking.
 
 ## Important limitations
 
