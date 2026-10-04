@@ -17,10 +17,10 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN at phase opening. Existing profile logic supports LITE, STANDARD, and STRICT, but one representative adoption matrix has not yet been accepted for SW2-08.",
+      "evidence": "Exact clean candidate a1357f0f5a14874ccbc301191e7e05afd3fa13ae proved the representative adoption matrix: Governance Selftest run 37166844760 passed on Ubuntu and Windows, with LITE and STANDARD adoption fixtures PASS and the existing STRICT end-to-end workflow self-test PASS on both operating systems. The same exact candidate also passed Self Governance run 37166844768, SW2 Sequence Evidence run 37166844763, Governance Engine Performance run 37166844780, and Consumer Engine Performance run 37166844767.",
       "id": "SW2-08-R1",
       "requirement": "Representative LITE, STANDARD, and STRICT fixtures pass.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN at phase opening. Existing consumer benchmarks are inherited evidence only; SW2-08 requires fresh exact-candidate measurement on at least one large real consumer with governance-parity proof.",
@@ -53,6 +53,7 @@
     "python scripts/selftest_analyzer_contract.py",
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
+    "python scripts/selftest_adoption_profiles.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/selftest_public_docs.py",
     "python scripts/validate_public_docs.py --root .",
