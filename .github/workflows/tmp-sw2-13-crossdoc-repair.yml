@@ -1,0 +1,131 @@
+name: SW2-13 Crossdoc Skill Reference Repair
+
+on:
+  push:
+    branches:
+      - work/sw2-13-skill-core-reference-split
+    paths:
+      - .github/workflows/tmp-sw2-13-crossdoc-repair.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      BASE_SHA: 1c81c3012d9a5891e8145726c38165e113057676
+      BRANCH: work/sw2-13-skill-core-reference-split
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-13-skill-core-reference-split
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply minimum-scope repair and regenerate governed evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          helper=.github/workflows/tmp-sw2-13-crossdoc-repair.yml
+          rm "$helper"
+
+          python - <<'PY'
+          from pathlib import Path
+
+          validator = Path('scripts/validate_cross_document_consistency.py')
+          text = validator.read_text(encoding='utf-8')
+          anchor = '''def is_template_document(root: Path, doc: Path) -> bool:\n    try:\n        return "templates" in doc.relative_to(root).parts\n    except ValueError:\n        return False\n\n\n'''
+          insertion = anchor + '''def is_skill_reference_document(root: Path, doc: Path) -> bool:\n    """Return True only for bundled top-level SKILL.md reference fragments."""\n    try:\n        relative = doc.relative_to(root)\n    except ValueError:\n        return False\n    return len(relative.parts) >= 2 and relative.parts[0] == "references"\n\n\n'''
+          if anchor not in text:
+              raise SystemExit('VALIDATOR_INSERT_ANCHOR_MISSING')
+          text = text.replace(anchor, insertion, 1)
+          old = '''        if doc.name not in {"PROJECT_TRUTH_SYNC.md", "README.md", "SKILL.md"}:\n            for claim_id in sorted(ids):\n'''
+          new = '''        if (\n            doc.name not in {"PROJECT_TRUTH_SYNC.md", "README.md", "SKILL.md"}\n            and not is_skill_reference_document(root, doc)\n        ):\n            for claim_id in sorted(ids):\n'''
+          if old not in text:
+              raise SystemExit('VALIDATOR_CLAIM_ANCHOR_MISSING')
+          validator.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+
+          selftest = Path('scripts/selftest_cross_document_regressions.py')
+          text = selftest.read_text(encoding='utf-8')
+          old_import = 'from validate_cross_document_consistency import is_template_document\n'
+          new_import = 'from validate_cross_document_consistency import is_skill_reference_document, is_template_document\n'
+          if old_import not in text:
+              raise SystemExit('SELFTEST_IMPORT_ANCHOR_MISSING')
+          text = text.replace(old_import, new_import, 1)
+          old_assert = '''    if is_template_document(root, root / "docs" / "PROJECT_TRUTH_SYNC.md"):\n        raise RuntimeError("canonical document was misclassified as template")\n\n    print("CLAIM_BACKLINK_PROJECTION=PASS")\n    print("TEMPLATE_PATH_SYMBOL_SCOPE=PASS")\n'''
+          new_assert = '''    if is_template_document(root, root / "docs" / "PROJECT_TRUTH_SYNC.md"):\n        raise RuntimeError("canonical document was misclassified as template")\n    if not is_skill_reference_document(root, root / "references" / "project-truth-synchronization.md"):\n        raise RuntimeError("bundled skill reference was not recognized")\n    if is_skill_reference_document(root, root / "docs" / "PROJECT_TRUTH_SYNC.md"):\n        raise RuntimeError("canonical project document was misclassified as a skill reference")\n\n    print("CLAIM_BACKLINK_PROJECTION=PASS")\n    print("TEMPLATE_PATH_SYMBOL_SCOPE=PASS")\n    print("SKILL_REFERENCE_CLAIM_SCOPE=PASS")\n'''
+          if old_assert not in text:
+              raise SystemExit('SELFTEST_ASSERT_ANCHOR_MISSING')
+          selftest.write_text(text.replace(old_assert, new_assert, 1), encoding='utf-8', newline='\n')
+          PY
+
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_cross_document_consistency.py --root . --base "$BASE_SHA" --require-base --allow-dirty
+
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.')
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          session_id = str(acceptance.get('sequence_session', '')).strip()
+          if not session_id:
+              raise SystemExit('CURRENT_SEQUENCE_SESSION_MISSING')
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session.get('actual') or {}
+          graph = str(actual.get('graph', '')).strip()
+          diagram = str(actual.get('diagram', '')).strip()
+          entries = [str(item).strip() for item in actual.get('entries', []) if str(item).strip()]
+          if not graph or not diagram or not entries:
+              raise SystemExit('CURRENT_SEQUENCE_ACTUAL_CONTRACT_INCOMPLETE')
+          command = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', graph, '--output-mermaid', diagram]
+          for entry in entries:
+              command.extend(['--entry', entry])
+          subprocess.run(command, check=True)
+          human = session.get('human_view') or {}
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+                  '--actual-json', graph, '--actual-mermaid', diagram,
+                  '--output-json', str(human['graph']), '--output-mermaid', str(human['diagram']),
+                  '--output-markdown', str(human['document']), '--session-id', session_id,
+              ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', session_path.as_posix(), '--report', str(session['acceptance_report']),
+          ], check=True)
+          if human:
+              subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', session_path.as_posix()], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          PY
+
+          python scripts/sync_project_truth.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_cross_document_consistency.py --root . --base "$BASE_SHA" --require-base --allow-dirty
+          python .github/scripts/selftest_skill_reference_split.py
+          python .github/scripts/validate_skill_reference_split.py --root .
+          python scripts/selftest_repository_health.py
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+
+          git restore "$helper"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/validate_cross_document_consistency.py scripts/selftest_cross_document_regressions.py .workflow docs artifacts/sequence
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git commit -m 'SW2-13: preserve skill-reference claim scope'
+          git push origin "HEAD:$BRANCH"
