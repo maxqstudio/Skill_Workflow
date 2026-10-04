@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
+Source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -57,7 +57,7 @@ responsibility, callers, or state ownership.
 | scripts/validate_project_docs.py | 1 | 0 | 1 | 0 |
 | scripts/validate_project_truth.py | 6 | 0 | 6 | 0 |
 | scripts/validate_public_docs.py | 2 | 0 | 2 | 0 |
-| scripts/validate_repository_health.py | 3 | 0 | 3 | 0 |
+| scripts/validate_repository_health.py | 4 | 0 | 4 | 0 |
 | scripts/validate_schema_toolchain.py | 2 | 0 | 2 | 0 |
 | scripts/validate_sequence_contract.py | 5 | 0 | 5 | 0 |
 | scripts/validate_sequence_human_view.py | 3 | 0 | 3 | 0 |
@@ -491,7 +491,7 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | write_json | function | 13-15 |
-| main | function | 18-73 |
+| main | function | 18-86 |
 
 </details>
 
@@ -718,13 +718,14 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/validate_repository_health.py</code> — 3 symbols</summary>
+<summary><code>scripts/validate_repository_health.py</code> — 4 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _load_json | function | 23-24 |
-| validate | function | 27-104 |
-| main | function | 107-123 |
+| _load_json | function | 24-25 |
+| _temporary_workflows | function | 28-36 |
+| validate | function | 39-123 |
+| main | function | 126-142 |
 
 </details>
 

@@ -484,9 +484,10 @@
       "id": "module:scripts/validate_repository_health.py",
       "kind": "module",
       "label": "scripts/validate_repository_health.py",
-      "machine_node_count": 3,
+      "machine_node_count": 4,
       "machine_nodes": [
         "scripts/validate_repository_health.py::_load_json",
+        "scripts/validate_repository_health.py::_temporary_workflows",
         "scripts/validate_repository_health.py::main",
         "scripts/validate_repository_health.py::validate"
       ]
@@ -502,14 +503,14 @@
       ]
     }
   ],
-  "observed_head": "cdb941da73401ebdc81a3838ea3ed0a43948af65",
+  "observed_head": "605c6821bae04f5fff123afc39dd22ab08dd17cc",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 17,
     "cross_component_machine_edges": 37,
-    "internal_machine_edges_collapsed": 80,
-    "machine_edge_count": 117,
-    "machine_node_count": 76,
+    "internal_machine_edges_collapsed": 81,
+    "machine_edge_count": 118,
+    "machine_node_count": 77,
     "node_map": {
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
@@ -583,6 +584,7 @@
       "scripts/validate_doc_quality.py::normalized_shape": "module:scripts/validate_doc_quality.py",
       "scripts/validate_project_docs.py::main": "module:scripts/validate_project_docs.py",
       "scripts/validate_repository_health.py::_load_json": "module:scripts/validate_repository_health.py",
+      "scripts/validate_repository_health.py::_temporary_workflows": "module:scripts/validate_repository_health.py",
       "scripts/validate_repository_health.py::main": "module:scripts/validate_repository_health.py",
       "scripts/validate_repository_health.py::validate": "module:scripts/validate_repository_health.py",
       "scripts/validate_sequence_sessions.py::main": "module:scripts/validate_sequence_sessions.py",
@@ -591,5 +593,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+  "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
 }

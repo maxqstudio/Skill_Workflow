@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Inventory tracked temporary workflows, transient artifacts, obsolete generated leftovers, and their live references before deletion.
-- Classify each candidate as KEEP, REMOVE, or NOT_PROVEN using repository references, acceptance history, and compatibility contracts.
-- Remove only evidence-backed stale items, preserve historical acceptance auditability, regenerate affected Project Truth/sequence evidence, and run complete acceptance before closure.
+- Regenerate current Project Truth and SW2-12 sequence evidence after the cleanup implementation.
+- Open the SW2-12 pull request and obtain exact-head permanent check evidence.
+- Promote SW2-12-R4 only after the exact cleanup candidate satisfies the complete permanent acceptance matrix.
 
 Blocked actions:
 - Do not mark any SW2-12 requirement PASS before cleanup-specific evidence exists.
@@ -177,9 +177,8 @@ Known blockers:
 
 ### Not proven
 
-- SW2-12 temporary/dead workflow and transient-artifact inventory is not yet proven complete.
-- SW2-12 safe-removal classification and reference audit are not yet proven.
-- SW2-12 historical acceptance evidence auditability after cleanup is not yet proven.
+- SW2-12 final exact-candidate permanent acceptance matrix is not yet proven.
+- Deletion safety for historical remote branches is intentionally NOT_PROVEN; they are retained for auditability.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

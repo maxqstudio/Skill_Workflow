@@ -7,13 +7,13 @@
 SW2-12 covers repository hygiene and dead/transient artifact cleanup only: evidence-backed inventory, safe-removal classification, preservation of historical acceptance auditability and compatibility contracts, deterministic synchronization, and exact-candidate regression. It must not alter accepted V2 behavior, the stable v2.0.0 tag target, or root AGENTS.md governance semantics.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
+Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-12-R1 | Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers. | NOT_PROVEN until tracked candidates and repository references are inventoried with explicit KEEP/REMOVE/NOT_PROVEN classification. | NOT_PROVEN |
-| SW2-12-R2 | Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts. | NOT_PROVEN until every removal is justified by reference/history audit and the resulting candidate passes targeted regression. | NOT_PROVEN |
-| SW2-12-R3 | Historical acceptance and release evidence remains auditable after cleanup. | NOT_PROVEN until historical sequence sessions, release evidence, accepted SHAs/run identifiers, and public compatibility references are revalidated after cleanup. | NOT_PROVEN |
+| SW2-12-R1 | Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers. | PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications. | PASS |
+| SW2-12-R2 | Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts. | PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery. | PASS |
+| SW2-12-R3 | Historical acceptance and release evidence remains auditable after cleanup. | PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6. | PASS |
 | SW2-12-R4 | Project Truth, current sequence evidence, and the complete permanent acceptance matrix pass on the exact clean cleanup candidate. | NOT_PROVEN until the exact final cleanup head passes all six permanent checks including Ubuntu and Windows Governance Selftest. | NOT_PROVEN |
 
 ## Test commands

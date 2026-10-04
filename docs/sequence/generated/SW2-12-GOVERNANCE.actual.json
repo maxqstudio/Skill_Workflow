@@ -893,6 +893,13 @@
       "to": "scripts/validate_repository_health.py::_load_json"
     },
     {
+      "action": "_temporary_workflows",
+      "evidence": "STATIC",
+      "from": "scripts/validate_repository_health.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/validate_repository_health.py::_temporary_workflows"
+    },
+    {
       "action": "parse_profile",
       "evidence": "STATIC",
       "from": "scripts/validate_sequence_sessions.py::main",
@@ -1576,17 +1583,26 @@
       "kind": "function",
       "label": "scripts/validate_repository_health.py::_load_json",
       "language": "Python",
-      "line_end": 24,
-      "line_start": 23,
+      "line_end": 25,
+      "line_start": 24,
       "locator": "scripts/validate_repository_health.py::_load_json"
+    },
+    {
+      "id": "scripts/validate_repository_health.py::_temporary_workflows",
+      "kind": "function",
+      "label": "scripts/validate_repository_health.py::_temporary_workflows",
+      "language": "Python",
+      "line_end": 36,
+      "line_start": 28,
+      "locator": "scripts/validate_repository_health.py::_temporary_workflows"
     },
     {
       "id": "scripts/validate_repository_health.py::main",
       "kind": "function",
       "label": "scripts/validate_repository_health.py::main",
       "language": "Python",
-      "line_end": 123,
-      "line_start": 107,
+      "line_end": 142,
+      "line_start": 126,
       "locator": "scripts/validate_repository_health.py::main"
     },
     {
@@ -1594,8 +1610,8 @@
       "kind": "function",
       "label": "scripts/validate_repository_health.py::validate",
       "language": "Python",
-      "line_end": 104,
-      "line_start": 27,
+      "line_end": 123,
+      "line_start": 39,
       "locator": "scripts/validate_repository_health.py::validate"
     },
     {
@@ -1617,7 +1633,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "cdb941da73401ebdc81a3838ea3ed0a43948af65",
+  "observed_head": "605c6821bae04f5fff123afc39dd22ab08dd17cc",
   "schema_version": 1,
-  "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+  "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
 }

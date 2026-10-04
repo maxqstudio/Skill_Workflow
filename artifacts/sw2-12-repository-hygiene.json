@@ -1,0 +1,207 @@
+{
+  "baseline_main_sha": "2fc16cce4c7753ad103bac401d1825a9bd8bd3a1",
+  "evidence_boundary": "Tracked dead-workflow cleanup is proven. Historical evidence and remote branches are retained unless deletion safety is separately proven; this report does not authorize mass branch deletion.",
+  "first_failed_gate": null,
+  "historical_evidence": {
+    "benchmark_json_count": 5,
+    "classification": "KEEP_AUDIT_EVIDENCE",
+    "historical_sequence_sessions": [
+      "docs/sequence/sessions/SW2-00-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-01-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-02-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-03-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-04-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-05-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-06-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-07-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-08-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-09-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-10-GOVERNANCE.json",
+      "docs/sequence/sessions/SW2-11-GOVERNANCE.json"
+    ],
+    "sequence_acceptance_report_count": 12
+  },
+  "phase": "SW2-12",
+  "remote_branches": [
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "codex/source-inventory-respects-gitignore",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "9df9802ad8e3cb672ca706f0e936c9a1ef99919e"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "fix/deterministic-lf-sequence-actual",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "2148313678f476c4990e447b4d657724f071adff"
+    },
+    {
+      "classification": "KEEP_AUTHORITY",
+      "name": "main",
+      "rationale": "Default branch and accepted authority.",
+      "sha": "2fc16cce4c7753ad103bac401d1825a9bd8bd3a1"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "release/sw2-09-v2.0.0-publication",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "33aa198a96229f6d9076f659861ccc6ff82a4ee0"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/fix-python-class-method-symbol-resolution",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "33719c02c84aecd2fa290af438eef77ce7bc6bfb"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/fix-route-predecessor-reachability",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "808d390bd0e5d862b922a5f7ad6a4caf58a817aa"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/roadmap-governance-sync",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "556d46771835fba654cf12916c443f673dbe2401"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-00-baseline-self-governance",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "02e7ca47cf8a322a0fc88c810dc2da043545acb5"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-01-governance-engine-v2",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "54339ab3c6e00f8027ad5c1a8fcde1ae79239656"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-02-fast-development-workflow",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "1f8d20b0f5ba0c43b0e11ccc90c988889481daf0"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-03-sequence-v2",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "2581370dc757221f162bda744cd174f2e047c7cc"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-04-documentation-system-v2",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "156f76822e0e0b2c9802c938f07624dbe1991982"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-05-schema-toolchain-versioning",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "1b2c29ff7025e61e3a794f704dc85d98344b1088"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-06-cross-language-analyzer-architecture",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "80b3aa5e1f7a2f8aca7ed315e3192c1a653758c0"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-07-public-project-hardening",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "8dec9e65915c4b3e7d7fb13398887a2bc7f3df11"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-08-regression-adoption-validation",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "259f1c991db5850deb91d30d85133bf477fb9e98"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-09-v2-closure",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "c09fb340726113b6b3fa902fe68820462be046e0"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-09-v2-stable-release",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "7e7cd15b1cfd8e9f60148c76ce0a8fffcefa5bfb"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-10-docs-polish",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "a2740d99180d916acd318648b142c01b50516943"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/sw2-11-root-agents-contract",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "854ccb7e6ddbd7b35da9bc0b64372cfe65b14a40"
+    },
+    {
+      "classification": "KEEP_ACTIVE",
+      "name": "work/sw2-12-repository-hygiene",
+      "rationale": "Active governed SW2-12 working branch.",
+      "sha": "605c6821bae04f5fff123afc39dd22ab08dd17cc"
+    },
+    {
+      "classification": "NOT_PROVEN_SAFE_TO_DELETE",
+      "name": "work/windows-lf-sync-fix",
+      "rationale": "Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.",
+      "sha": "490a9f1c08e2e200dd77c0faf42ce12d9e3a236c"
+    }
+  ],
+  "removed_items": [
+    {
+      "classification": "REMOVE",
+      "former_blob_sha": "69b0241f9b4d2c198f038a4167979737a4773197",
+      "path": ".github/workflows/tmp-sw2-09-publish-v2.yml",
+      "rationale": "One-shot SW2-09 v2.0.0 publisher is obsolete after the stable tag/release was successfully published; rerunning it would fail closed because v2.0.0 already exists."
+    }
+  ],
+  "result": "PASS",
+  "schema_version": 1,
+  "stable_release": {
+    "classification": "KEEP_IMMUTABLE_RELEASE_EVIDENCE",
+    "published_at": "2026-10-04T07:12:33Z",
+    "release_id": 402893642,
+    "target_sha": "d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6",
+    "version": "v2.0.0"
+  },
+  "tracked_temporary_workflows": [],
+  "tracked_workflows": [
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/governance-selftest.yml"
+    },
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/release-preflight.yml"
+    },
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/ruleset-audit.yml"
+    },
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/self-governance.yml"
+    },
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/sw2-baseline.yml"
+    },
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/sw2-consumer-baseline.yml"
+    },
+    {
+      "classification": "KEEP_CURRENT",
+      "path": ".github/workflows/sw2-sequence.yml"
+    }
+  ]
+}

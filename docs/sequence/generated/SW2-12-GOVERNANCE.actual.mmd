@@ -1,6 +1,6 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
-%% OBSERVED_HEAD: cdb941da73401ebdc81a3838ea3ed0a43948af65
+%% SOURCE_DIGEST: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+%% OBSERVED_HEAD: 605c6821bae04f5fff123afc39dd22ab08dd17cc
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
     participant scripts_governance_engine_py__ValidationDAG_0 as scripts/governance_engine.py::ValidationDAG
@@ -75,10 +75,11 @@ sequenceDiagram
     participant scripts_validate_doc_quality_py__normalized_shape_69 as scripts/validate_doc_quality.py::normalized_shape
     participant scripts_validate_project_docs_py__main_70 as scripts/validate_project_docs.py::main
     participant scripts_validate_repository_health_py___load_json_71 as scripts/validate_repository_health.py::_load_json
-    participant scripts_validate_repository_health_py__main_72 as scripts/validate_repository_health.py::main
-    participant scripts_validate_repository_health_py__validate_73 as scripts/validate_repository_health.py::validate
-    participant scripts_validate_sequence_sessions_py__main_74 as scripts/validate_sequence_sessions.py::main
-    participant scripts_validate_sequence_sessions_py__run_validator_75 as scripts/validate_sequence_sessions.py::run_validator
+    participant scripts_validate_repository_health_py___temporary_workflows_72 as scripts/validate_repository_health.py::_temporary_workflows
+    participant scripts_validate_repository_health_py__main_73 as scripts/validate_repository_health.py::main
+    participant scripts_validate_repository_health_py__validate_74 as scripts/validate_repository_health.py::validate
+    participant scripts_validate_sequence_sessions_py__main_75 as scripts/validate_sequence_sessions.py::main
+    participant scripts_validate_sequence_sessions_py__run_validator_76 as scripts/validate_sequence_sessions.py::run_validator
     scripts_governance_engine_py___regression_node_2->>scripts_governance_engine_py__ValidationNode_1: ValidationNode [STATIC]
     scripts_governance_engine_py___regression_node_2->>scripts_governance_engine_py__command_action_9: command_action [STATIC]
     scripts_governance_engine_py__build_dag_3->>scripts_governance_engine_py__ValidationDAG_0: ValidationDAG [STATIC]
@@ -187,12 +188,13 @@ sequenceDiagram
     scripts_validate_project_docs_py__main_70->>scripts_script_runner_py__invoke_main_44: invoke_main [STATIC]
     scripts_validate_project_docs_py__main_70->>scripts_validate_doc_quality_py__normalized_shape_69: validate_doc_quality.normalized_shape [STATIC]
     scripts_validate_repository_health_py___load_json_71->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: path.read_text [STATIC]
-    scripts_validate_repository_health_py__main_72->>scripts_validate_repository_health_py__validate_73: validate [STATIC]
-    scripts_validate_repository_health_py__validate_73->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: path.read_text [STATIC]
-    scripts_validate_repository_health_py__validate_73->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: readme_path.read_text [STATIC]
-    scripts_validate_repository_health_py__validate_73->>scripts_validate_doc_quality_py__normalized_shape_69: normalized_shape [STATIC]
-    scripts_validate_repository_health_py__validate_73->>scripts_validate_repository_health_py___load_json_71: _load_json [STATIC]
-    scripts_validate_sequence_sessions_py__main_74->>scripts_project_profile_py__parse_profile_24: parse_profile [STATIC]
-    scripts_validate_sequence_sessions_py__main_74->>scripts_project_profile_py__sequence_settings_27: sequence_settings [STATIC]
-    scripts_validate_sequence_sessions_py__main_74->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: session.read_text [STATIC]
-    scripts_validate_sequence_sessions_py__main_74->>scripts_validate_sequence_sessions_py__run_validator_75: run_validator [STATIC]
+    scripts_validate_repository_health_py__main_73->>scripts_validate_repository_health_py__validate_74: validate [STATIC]
+    scripts_validate_repository_health_py__validate_74->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: path.read_text [STATIC]
+    scripts_validate_repository_health_py__validate_74->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: readme_path.read_text [STATIC]
+    scripts_validate_repository_health_py__validate_74->>scripts_validate_doc_quality_py__normalized_shape_69: normalized_shape [STATIC]
+    scripts_validate_repository_health_py__validate_74->>scripts_validate_repository_health_py___load_json_71: _load_json [STATIC]
+    scripts_validate_repository_health_py__validate_74->>scripts_validate_repository_health_py___temporary_workflows_72: _temporary_workflows [STATIC]
+    scripts_validate_sequence_sessions_py__main_75->>scripts_project_profile_py__parse_profile_24: parse_profile [STATIC]
+    scripts_validate_sequence_sessions_py__main_75->>scripts_project_profile_py__sequence_settings_27: sequence_settings [STATIC]
+    scripts_validate_sequence_sessions_py__main_75->>scripts_project_snapshot_py__ProjectSnapshot_read_text_33: session.read_text [STATIC]
+    scripts_validate_sequence_sessions_py__main_75->>scripts_validate_sequence_sessions_py__run_validator_76: run_validator [STATIC]

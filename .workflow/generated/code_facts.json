@@ -252,7 +252,7 @@
       "file": "scripts/selftest_repository_health.py",
       "is_test": false,
       "language": "Python",
-      "lines": 77
+      "lines": 90
     },
     {
       "directory": "scripts",
@@ -371,7 +371,7 @@
       "file": "scripts/validate_repository_health.py",
       "is_test": false,
       "language": "Python",
-      "lines": 127
+      "lines": 146
     },
     {
       "directory": "scripts",
@@ -10877,11 +10877,19 @@
     },
     {
       "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
       "target_token": "tempfile.TemporaryDirectory"
     },
     {
       "caller": "scripts/selftest_repository_health.py::main",
-      "target_token": "validate"
+      "target_token": "temporary_workflow.unlink"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "temporary_workflow.write_text"
     },
     {
       "caller": "scripts/selftest_repository_health.py::main",
@@ -10902,6 +10910,22 @@
     {
       "caller": "scripts/selftest_repository_health.py::main",
       "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_repository_health.py::main",
+      "target_token": "workflow_root.mkdir"
     },
     {
       "caller": "scripts/selftest_repository_health.py::main",
@@ -17396,6 +17420,30 @@
       "target_token": "path.read_text"
     },
     {
+      "caller": "scripts/validate_repository_health.py::_temporary_workflows",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::_temporary_workflows",
+      "target_token": "path.name.startswith"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::_temporary_workflows",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::_temporary_workflows",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::_temporary_workflows",
+      "target_token": "workflow_root.is_dir"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::_temporary_workflows",
+      "target_token": "workflow_root.iterdir"
+    },
+    {
       "caller": "scripts/validate_repository_health.py::main",
       "target_token": "Path"
     },
@@ -17453,6 +17501,10 @@
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "_temporary_workflows"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "bool"
     },
     {
@@ -17505,6 +17557,10 @@
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "failures.extend"
     },
     {
@@ -17526,6 +17582,10 @@
     {
       "caller": "scripts/validate_repository_health.py::validate",
       "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_repository_health.py::validate",
+      "target_token": "list"
     },
     {
       "caller": "scripts/validate_repository_health.py::validate",
@@ -21081,7 +21141,7 @@
     {
       "file": "scripts/selftest_repository_health.py",
       "kind": "function",
-      "line_end": 73,
+      "line_end": 86,
       "line_start": 18,
       "locator": "scripts/selftest_repository_health.py::main",
       "symbol": "main"
@@ -21841,24 +21901,32 @@
     {
       "file": "scripts/validate_repository_health.py",
       "kind": "function",
-      "line_end": 24,
-      "line_start": 23,
+      "line_end": 25,
+      "line_start": 24,
       "locator": "scripts/validate_repository_health.py::_load_json",
       "symbol": "_load_json"
     },
     {
       "file": "scripts/validate_repository_health.py",
       "kind": "function",
-      "line_end": 104,
-      "line_start": 27,
+      "line_end": 36,
+      "line_start": 28,
+      "locator": "scripts/validate_repository_health.py::_temporary_workflows",
+      "symbol": "_temporary_workflows"
+    },
+    {
+      "file": "scripts/validate_repository_health.py",
+      "kind": "function",
+      "line_end": 123,
+      "line_start": 39,
       "locator": "scripts/validate_repository_health.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/validate_repository_health.py",
       "kind": "function",
-      "line_end": 123,
-      "line_start": 107,
+      "line_end": 142,
+      "line_start": 126,
       "locator": "scripts/validate_repository_health.py::main",
       "symbol": "main"
     },
@@ -21960,13 +22028,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313",
+  "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85",
   "source_summary": {
     "files": 47,
     "languages": {
       "Python": 47
     },
-    "lines": 13035,
+    "lines": 13067,
     "test_files": 0
   },
   "tests": []

@@ -11,7 +11,7 @@
       "scripts/governance_engine.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-12-GOVERNANCE.actual.json",
-    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+    "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
   },
   "critical": true,
   "evidence_boundary": "SW2-12 sequence evidence covers repository-health/reference validation, Project Truth synchronization, cross-document consistency, sequence validation, and final governance acceptance for repository hygiene. It does not authorize unrelated behavior or release-tag changes.",
@@ -21,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-12-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313"
+    "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
   },
   "implementation_base_sha": "2fc16cce4c7753ad103bac401d1825a9bd8bd3a1",
   "mode": "DURING",

@@ -18,7 +18,7 @@ Branch: work/sw2-12-repository-hygiene
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1
 Current candidate SHA: external final acceptance evidence
-Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
+Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -86,9 +86,8 @@ SEQUENCE_SYNC: PASS
 - SW2-11 Root AGENTS.md Contract was squash-merged to main as 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 with tree 355a351b6da106dfa6538add0c13f5a4d2f2d67f equal to the exact tested clean-head tree. Post-merge main passed Self Governance 37202694399, Governance Selftest 37202694460 on Ubuntu and Windows, SW2 Sequence Evidence 37202694406, Governance Engine Performance 37202694405, and Consumer Engine Performance 37202694400.
 
 ## Not proven
-- SW2-12 temporary/dead workflow and transient-artifact inventory is not yet proven complete.
-- SW2-12 safe-removal classification and reference audit are not yet proven.
-- SW2-12 historical acceptance evidence auditability after cleanup is not yet proven.
+- SW2-12 final exact-candidate permanent acceptance matrix is not yet proven.
+- Deletion safety for historical remote branches is intentionally NOT_PROVEN; they are retained for auditability.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -98,9 +97,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Inventory tracked temporary workflows, transient artifacts, obsolete generated leftovers, and their live references before deletion.
-- Classify each candidate as KEEP, REMOVE, or NOT_PROVEN using repository references, acceptance history, and compatibility contracts.
-- Remove only evidence-backed stale items, preserve historical acceptance auditability, regenerate affected Project Truth/sequence evidence, and run complete acceptance before closure.
+- Regenerate current Project Truth and SW2-12 sequence evidence after the cleanup implementation.
+- Open the SW2-12 pull request and obtain exact-head permanent check evidence.
+- Promote SW2-12-R4 only after the exact cleanup candidate satisfies the complete permanent acceptance matrix.
 
 ## Explicitly blocked
 - Do not mark any SW2-12 requirement PASS before cleanup-specific evidence exists.

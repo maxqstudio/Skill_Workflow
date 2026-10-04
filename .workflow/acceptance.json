@@ -17,22 +17,22 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until tracked candidates and repository references are inventoried with explicit KEEP/REMOVE/NOT_PROVEN classification.",
+      "evidence": "PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications.",
       "id": "SW2-12-R1",
       "requirement": "Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until every removal is justified by reference/history audit and the resulting candidate passes targeted regression.",
+      "evidence": "PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery.",
       "id": "SW2-12-R2",
       "requirement": "Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until historical sequence sessions, release evidence, accepted SHAs/run identifiers, and public compatibility references are revalidated after cleanup.",
+      "evidence": "PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6.",
       "id": "SW2-12-R3",
       "requirement": "Historical acceptance and release evidence remains auditable after cleanup.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN until the exact final cleanup head passes all six permanent checks including Ubuntu and Windows Governance Selftest.",
