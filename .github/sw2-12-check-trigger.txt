@@ -1,1 +1,0 @@
-SW2-12 external check trigger. This file is transient and must be removed before acceptance.
