@@ -61,16 +61,18 @@ jobs:
           PY
       - name: Validate ruleset policy regression
         run: python scripts/selftest_github_ruleset.py
-      - name: Synchronize and validate Project Truth
-        run: |
-          python scripts/sync_project_truth.py --root .
-          python scripts/validate_cross_document_consistency.py --root . --base 8d0fbfd7177128774a0f321b8c95e6befdaaf659 --require-base
-          python scripts/validate_project_truth.py --root . --project-docs-already-validated
-      - name: Commit clean governance-boundary repair
+      - name: Synchronize Project Truth
+        run: python scripts/sync_project_truth.py --root .
+      - name: Commit repair locally
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "SW2-09: align repository governance claim with accepted boundary"
-          git push origin HEAD:work/sw2-09-v2-stable-release
+      - name: Validate clean repaired commit
+        run: |
+          python scripts/validate_cross_document_consistency.py --root . --base 8d0fbfd7177128774a0f321b8c95e6befdaaf659 --require-base
+          python scripts/validate_project_truth.py --root . --project-docs-already-validated
+      - name: Push clean governance-boundary repair
+        run: git push origin HEAD:work/sw2-09-v2-stable-release
