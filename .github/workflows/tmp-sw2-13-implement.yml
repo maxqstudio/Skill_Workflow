@@ -28,4 +28,16 @@ jobs:
           python-version: "3.12"
 
       - name: Execute one-shot governed implementation
-        run: python .github/scripts/tmp_sw2_13_implement_once.py
+        shell: bash
+        run: |
+          set -o pipefail
+          python .github/scripts/tmp_sw2_13_implement_once.py 2>&1 | tee /tmp/sw2-13-implement.log
+
+      - name: Upload diagnostic log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-13-implement-diagnostic
+          path: /tmp/sw2-13-implement.log
+          if-no-files-found: error
+          retention-days: 3
