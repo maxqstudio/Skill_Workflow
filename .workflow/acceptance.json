@@ -29,16 +29,16 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN at phase opening. Existing migration and fail-closed tests are inherited, but SW2-08 requires explicit adoption-regression coverage for migration failures and false PASS cases.",
+      "evidence": "Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed Governance Selftest run 37167140719 on Ubuntu and Windows. The permanent schema/toolchain regression proved legacy explicit migration, migration idempotence, rejection of future profile/spec versions, toolchain-tamper rejection, and cache non-authority. The permanent STRICT workflow self-test also proved rejection of unknown relation targets, invalid relation types, independently conflicting claim text, and explicit PROJECT_STATE_SYNC failure. These adversarial cases prove migration regressions and representative false-PASS paths fail closed.",
       "id": "SW2-08-R3",
       "requirement": "Migration regressions and false PASS cases are covered.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN at phase opening. Permanent Ubuntu and Windows lanes remain inherited baseline evidence; SW2-08 must keep the new adoption/regression coverage green cross-platform before closure.",
+      "evidence": "Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 kept the full SW2-08 adoption/regression scope green: Self Governance 37167140714 SUCCESS, Governance Selftest 37167140719 SUCCESS on both Ubuntu and Windows, SW2 Sequence Evidence 37167140716 SUCCESS, Governance Engine Performance 37167140743 SUCCESS, and Consumer Engine Performance 37167140718 SUCCESS. Cross-platform acceptance is therefore proven for the permanent Ubuntu/Windows governance matrix; the max-grounding real-consumer parity lane remains Ubuntu-hosted.",
       "id": "SW2-08-R4",
       "requirement": "Cross-platform acceptance remains green.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
