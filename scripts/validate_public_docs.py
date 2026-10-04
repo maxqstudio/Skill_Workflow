@@ -64,6 +64,21 @@ GENERATED_REFERENCE_FILES = (
     "docs/FLOW_INDEX.md",
     "docs/SYMBOL_INDEX.md",
 )
+PUBLIC_CONTENT_REQUIREMENTS = {
+    "docs/handbook/reference/versioning.md": (
+        "## Explicit migration",
+        "## Rollback after migration",
+        "git revert <migration-commit>",
+        "validate_schema_toolchain.py",
+        "sync_project_truth.py",
+    ),
+    "docs/handbook/reference/release-process.md": (
+        "## Publication transaction",
+        "## Release rollback",
+        "Never move or retarget an existing stable tag",
+        "semantic patch release",
+    ),
+}
 
 
 def validate(root: Path) -> dict[str, object]:
@@ -105,6 +120,9 @@ def validate(root: Path) -> dict[str, object]:
         ok, shape = normalized_shape(text)
         if not ok:
             failures.extend("PUBLIC_DOC_QUALITY:" + relative + ":" + item for item in shape)
+        for required in PUBLIC_CONTENT_REQUIREMENTS.get(relative, ()):
+            if required not in text:
+                failures.append("PUBLIC_DOC_CONTENT_MISSING:" + relative + ":" + required)
 
     docs_index = root / "docs" / "README.md"
     if docs_index.is_file():
@@ -141,7 +159,8 @@ def validate(root: Path) -> dict[str, object]:
         "failures": failures,
         "evidence_boundary": (
             "This gate proves public documentation structure, navigation, source-authored/generated-layer separation, "
-            "and obvious README reference-manual regressions. It does not by itself prove semantic documentation quality."
+            "required migration/rollback guidance, and obvious README reference-manual regressions. It does not by itself "
+            "prove that an operational rollback has been executed against an external consumer."
         ),
     }
 

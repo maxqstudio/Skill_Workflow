@@ -10,6 +10,13 @@ import subprocess
 from pathlib import Path
 
 VERSION_RE = re.compile(r"^v(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$")
+SW2_09_RELEASE_REQUIREMENTS = {
+    "SW2-09-R1",
+    "SW2-09-R2",
+    "SW2-09-R3",
+    "SW2-09-R4",
+}
+SW2_09_PUBLICATION_REQUIREMENT = "SW2-09-R4"
 
 
 def git(root: Path, *args: str) -> str:
@@ -101,15 +108,29 @@ def validate(
     else:
         acceptance = _load(acceptance_path)
 
+    current_phase = "UNKNOWN"
+    phases: list[object] = []
+    if not roadmap_path.is_file():
+        failures.append("ROADMAP_MISSING")
+    else:
+        roadmap = _load(roadmap_path)
+        current_phase = str(roadmap.get("current_phase", "UNKNOWN"))
+        raw_phases = roadmap.get("phases", [])
+        if isinstance(raw_phases, list):
+            phases = raw_phases
+
     requirements = acceptance.get("requirements", []) if isinstance(acceptance, dict) else []
     if not isinstance(requirements, list):
         failures.append("ACCEPTANCE_REQUIREMENTS_INVALID")
         requirements = []
+    requirement_ids: set[str] = set()
+    pending_publication_requirements: list[str] = []
     for item in requirements:
         if not isinstance(item, dict):
             failures.append("ACCEPTANCE_REQUIREMENT_INVALID")
             continue
         ident = str(item.get("id", "UNKNOWN"))
+        requirement_ids.add(ident)
         status = item.get("status")
         if evidence_only:
             if status == "FAIL":
@@ -117,7 +138,16 @@ def validate(
             elif status not in {"PASS", "NOT_PROVEN", "NOT_APPLICABLE"}:
                 failures.append(f"EVIDENCE_REQUIREMENT_INVALID_STATUS:{ident}:{status}")
         elif status != "PASS":
-            failures.append("RELEASE_REQUIREMENT_NOT_PASS:" + ident)
+            publication_pending = bool(
+                stable
+                and current_phase == "SW2-09"
+                and ident == SW2_09_PUBLICATION_REQUIREMENT
+                and status == "NOT_PROVEN"
+            )
+            if publication_pending:
+                pending_publication_requirements.append(ident)
+            else:
+                failures.append("RELEASE_REQUIREMENT_NOT_PASS:" + ident)
 
     gates = acceptance.get("truth_gates", {}) if isinstance(acceptance, dict) else {}
     if not isinstance(gates, dict):
@@ -132,23 +162,18 @@ def validate(
         elif status not in {"PASS", "NOT_APPLICABLE"}:
             failures.append(f"RELEASE_TRUTH_GATE_NOT_PROVEN:{name}:{status}")
 
-    current_phase = "UNKNOWN"
-    if not roadmap_path.is_file():
-        failures.append("ROADMAP_MISSING")
-    else:
-        roadmap = _load(roadmap_path)
-        current_phase = str(roadmap.get("current_phase", "UNKNOWN"))
-        phases = roadmap.get("phases", [])
-        if stable:
-            if current_phase != "SW2-09":
-                failures.append("STABLE_RELEASE_OUTSIDE_SW2_09")
-            if isinstance(phases, list):
-                for phase in phases:
-                    if not isinstance(phase, dict):
-                        continue
-                    ident = str(phase.get("id", ""))
-                    if ident.startswith("SW2-") and ident != "SW2-09" and phase.get("status") != "COMPLETE":
-                        failures.append("PRIOR_PHASE_NOT_COMPLETE:" + ident)
+    if stable:
+        if current_phase != "SW2-09":
+            failures.append("STABLE_RELEASE_OUTSIDE_SW2_09")
+        else:
+            for ident in sorted(SW2_09_RELEASE_REQUIREMENTS - requirement_ids):
+                failures.append("STABLE_RELEASE_REQUIREMENT_MISSING:" + ident)
+        for phase in phases:
+            if not isinstance(phase, dict):
+                continue
+            ident = str(phase.get("id", ""))
+            if ident.startswith("SW2-") and ident != "SW2-09" and phase.get("status") != "COMPLETE":
+                failures.append("PRIOR_PHASE_NOT_COMPLETE:" + ident)
 
     passed = not failures
     publication_authority = bool(passed and not evidence_only)
@@ -161,6 +186,7 @@ def validate(
         "stable": stable,
         "evidence_only": evidence_only,
         "publication_authority": publication_authority,
+        "pending_publication_requirements": pending_publication_requirements,
         "governance_requested_mode": requested_mode,
         "governance_effective_mode": effective_mode,
         "current_phase": current_phase,
@@ -168,7 +194,7 @@ def validate(
         "failures": failures,
         "evidence_boundary": (
             "Evidence-only mode is a non-authoritative dry run: it requires a verify request, allows governance breadth to escalate fail-closed, proves exact-head, clean-state, version/tag, report, and status semantics while allowing explicit NOT_PROVEN items, can never authorize publication, and rejects stable versions. "
-            "Strict mode requires a finalize request, effective finalize execution, complete PASS governance, finalize authority, and stable-release phase boundaries. Neither mode creates a Git tag or GitHub release."
+            "Strict mode requires a finalize request, effective finalize execution, complete PASS governance, and stable-release phase boundaries. During a stable SW2-09 preflight only SW2-09-R4 may remain NOT_PROVEN because the tag/release publication is the action being authorized; every other release requirement and truth gate must already be PASS or NOT_APPLICABLE. Neither mode creates a Git tag or GitHub release."
         ),
     }
 

@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: bcc861bf9acc4a02702f5eec8bb45345617cd94a
+Authority verified at SHA: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-08
+Phase: SW2-09
 Status: IN_PROGRESS
-Roadmap phase: SW2-08
+Roadmap phase: SW2-09
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-08-regression-adoption-validation
+Branch: work/sw2-09-v2-stable-release
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: bcc861bf9acc4a02702f5eec8bb45345617cd94a
+Last accepted SHA: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
 Current candidate SHA: external final acceptance evidence
-Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
+Current source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-08-GOVERNANCE
+Current sequence session: SW2-09-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -72,9 +72,15 @@ SEQUENCE_SYNC: PASS
 - SW2-08-R2 large-consumer adoption is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: pinned max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f passed 153 source tests, deterministic/idempotent candidate-toolchain migration, full STRICT governance parity, and comparative hosted-runner improvements of 11.12% for extract_project_facts and 60.48% for sync_project_truth in Consumer run 37167140718.
 - SW2-08-R3 migration and false-PASS regressions are accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: Governance Selftest 37167140719 passed on Ubuntu and Windows with migration idempotence, future-version rejection, toolchain-tamper rejection, unknown/invalid claim-relation rejection, real claim-conflict detection, and explicit PROJECT_STATE_SYNC fail-closed evidence.
 - SW2-08-R4 cross-platform acceptance is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: all six permanent checks succeeded and Governance Selftest 37167140719 passed the complete permanent matrix on Ubuntu and Windows.
+- SW2-08 is accepted and squash-merged to main as 8d0fbfd7177128774a0f321b8c95e6befdaaf659 with tree 0c43d4459518a0380e230935ae523ef85fb56904 equal to the exact tested candidate tree. Post-merge Self Governance 37167640353, Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence 37167640369, Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352 all succeeded.
+- SW2-09-R1 all prior SW2 phases accepted is proven by accepted SW2-00 through SW2-08 authority and green post-merge main 8d0fbfd7177128774a0f321b8c95e6befdaaf659.
+- SW2-09-R3 migration/rollback guidance and synchronized Project Truth are accepted on exact tree-equivalent evidence head aef29794d2f94bd6066410408ad948882ccf10ef: all six permanent checks succeeded; Governance Selftest 37184136532 passed Ubuntu/Windows; all canonical claims are PASS with document/source/test traceability; changed release, migration, and repository-governance semantics were explicitly audited against their source owners and regression tests.
+- SW2-09-R2 final release-candidate acceptance is proven on exact tree-equivalent head 91c1c82ceaeae145806c50b6574d76ded637072d: all six permanent checks succeeded, both Ubuntu and Windows Governance Selftest lanes passed, and all final truth gates were PASS or NOT_APPLICABLE. This evidence does not authorize publication by itself.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
+- SW2-09 exact stable release candidate acceptance is NOT_PROVEN.
+- SW2-09 versioned GitHub tag/release publication is NOT_PROVEN.
 
 ## Known blockers
 - None declared.
@@ -83,14 +89,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run final exact-head SW2-08 acceptance with R1-R4 promoted and no temporary workflow present.
-- If final acceptance passes, close SW2-08 and advance roadmap authority to SW2-09 without creating the stable release until SW2-09 acceptance.
+- Run complete permanent CI on the clean post-R2 promotion candidate and require all six checks PASS.
+- If that exact candidate passes, run strict v2.0.0 publication-ready preflight against the exact candidate and require publication_authority=true with only SW2-09-R4 publication-pending.
+- Do not create or move any tag/release until strict publication preflight passes on the exact publication candidate.
 
 ## Explicitly blocked
-- Do not claim SW2-08 adoption, performance, migration, or cross-platform gates PASS without fresh exact-candidate evidence.
+- Do not create or publish the V2 stable tag/release before SW2-09-R2 and SW2-09-R3 are PASS on an exact publication candidate.
+- Do not publish a tag or GitHub release from a HEAD different from the exact tested publication HEAD.
 - Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
 - Do not change the Owner-approved MIT license or SW2-ADR-010 without explicit Owner approval.
-- Do not create the V2 stable release/tag in SW2-08; stable release remains SW2-09 scope.
-- Do not weaken accepted SW2-01 through SW2-07 governance guarantees.
+- Do not weaken accepted SW2-01 through SW2-08 governance guarantees.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

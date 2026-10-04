@@ -11,14 +11,14 @@ HEAD is recorded externally after the commit exists.
 
 | Gate | Status | Evidence / Notes |
 |---|---|---|
-| SOURCE_TESTS | NOT_PROVEN | |
+| SOURCE_TESTS | PASS | |
 | RUNTIME_E2E | NOT_APPLICABLE | |
-| PROVENANCE_SYNC | NOT_PROVEN | |
-| REFERENCE_SYNC | NOT_PROVEN | |
-| STRUCTURAL_SYNC | NOT_PROVEN | |
-| SEMANTIC_SYNC | NOT_PROVEN | |
+| PROVENANCE_SYNC | PASS | |
+| REFERENCE_SYNC | PASS | |
+| STRUCTURAL_SYNC | PASS | |
+| SEMANTIC_SYNC | PASS | |
 | BEHAVIORAL_SYNC | NOT_APPLICABLE | |
-| CROSS_DOCUMENT_CONSISTENCY | NOT_PROVEN | |
+| CROSS_DOCUMENT_CONSISTENCY | PASS | |
 | HUMAN_COMPREHENSION | PASS | |
 | SEQUENCE_SYNC | PASS | |
 | ROADMAP_SYNC | PASS | |
@@ -26,10 +26,10 @@ HEAD is recorded externally after the commit exists.
 | PROJECT_DOCS_NORMALIZED | PASS | |
 | DOC_READABILITY | PASS | |
 | PROJECT_DOCS_SYNC | PASS | |
-| DOC_SOURCE_TRACEABILITY | NOT_PROVEN | |
-| DOC_TEST_TRACEABILITY | NOT_PROVEN | |
+| DOC_SOURCE_TRACEABILITY | PASS | |
+| DOC_TEST_TRACEABILITY | PASS | |
 | TEST_RUNTIME_TRACEABILITY | NOT_APPLICABLE | |
-| PROJECT_STATE_SYNC | NOT_PROVEN | |
+| PROJECT_STATE_SYNC | PASS | |
 
 ## Critical claim traceability
 
@@ -49,8 +49,8 @@ HEAD is recorded externally after the commit exists.
 | TRUTH-SW2-ANALYZER-CONTRACT | Structural analyzers expose a language-independent contract while preserving accepted Python and JS/TS structural evidence and fail-safe fallback behavior. | ROADMAP.md; SEQUENCE_CONTRACTS.md; PROJECT_TRUTH_SYNC.md | scripts/analyzer_contract.py; scripts/extract_project_facts.py; scripts/generate_sequence_actual.py | scripts/selftest_analyzer_contract.py; scripts/selftest_sequence_call_resolution.py | Exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd; Governance Selftest run 37107117851 Ubuntu/Windows SUCCESS with permanent analyzer-contract regression.; SW2 Sequence Evidence run 37107117803 SUCCESS with current SW2-06 machine/human sequence generation and blocking Mermaid render. | PASS |
 | TRUTH-SW2-DYNAMIC-EVIDENCE | Unsupported dynamic dispatch, reflection, framework magic, dependency injection, callbacks, and unresolved cross-language behavior remain NOT_PROVEN unless stronger runtime or semantic evidence exists. | ROADMAP.md; SEQUENCE_CONTRACTS.md; PROJECT_TRUTH_SYNC.md | scripts/analyzer_contract.py; scripts/generate_sequence_actual.py; scripts/validate_sequence_contract.py | scripts/selftest_analyzer_contract.py | Exact clean feature candidate 964b1ce7349c75c6e91ae6217f86c6dcfdc691fd; Governance Selftest run 37107117851 Ubuntu/Windows SUCCESS with negative-path rejection of false dynamic proof and fail-safe unsupported-language fallback.; SW2 Sequence Evidence run 37107117803 SUCCESS while static coverage explicitly retains dynamic/reflection/DI/callback/framework limitations as NOT_PROVEN. | PASS |
 | TRUTH-SW2-PUBLIC-REPO-HEALTH | Public repository health, security, contribution, and license metadata match declared governance, with license choice explicitly approved by the Owner. | ROADMAP.md; PROJECT_TRUTH_SYNC.md | README.md; CONTRIBUTING.md; SECURITY.md; CODE_OF_CONDUCT.md; scripts/validate_public_docs.py; scripts/validate_repository_health.py; LICENSE; .workflow/decisions.json | scripts/selftest_public_docs.py; scripts/selftest_repository_health.py | Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems. | PASS |
-| TRUTH-SW2-MERGE-ENFORCEMENT | Actual GitHub merge and ruleset enforcement for main matches the repository's declared fail-closed governance requirements. | ROADMAP.md; PROJECT_TRUTH_SYNC.md | docs/handbook/reference/repository-governance.md; scripts/validate_github_ruleset.py; .github/workflows/ruleset-audit.yml | scripts/selftest_github_ruleset.py | Live ruleset 24406662 targets the default branch but is currently enforcement=disabled during Owner repair; its payload also still lacks required_status_checks for the six permanent acceptance checks. R3 remains NOT_PROVEN. | NOT_PROVEN |
-| TRUTH-SW2-RELEASE-GOVERNANCE | The repository has a repeatable evidence-backed release process that preserves exact tested-head provenance and does not publish stable V2 before SW2-09 acceptance. | ROADMAP.md; PROJECT_TRUTH_SYNC.md | docs/handbook/reference/release-process.md; scripts/release_preflight.py; .github/workflows/release-preflight.yml | scripts/selftest_release_preflight.py | GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope. | PASS |
+| TRUTH-SW2-MERGE-ENFORCEMENT | Repository-level merge-enforcement claims match the explicit Owner-approved boundary: when no GitHub ruleset is configured, project documentation must not claim automatic merge blocking or required-check enforcement. | ROADMAP.md; PROJECT_TRUTH_SYNC.md | docs/handbook/reference/repository-governance.md; scripts/validate_github_ruleset.py; scripts/selftest_github_ruleset.py | scripts/selftest_github_ruleset.py | SW2-07 Owner decision accepted the no-ruleset boundary. Live repository ruleset audit returned an empty list, and exact final SW2-07 candidate 8dec9e65915c4b3e7d7fb13398887a2bc7f3df11 plus post-merge main bcc861bf9acc4a02702f5eec8bb45345617cd94a passed the permanent governance suite without claiming automatic GitHub enforcement. | PASS |
+| TRUTH-SW2-RELEASE-GOVERNANCE | The repository has a repeatable evidence-backed release process that preserves exact tested-head provenance and does not publish stable V2 before SW2-09 acceptance. | ROADMAP.md; PROJECT_TRUTH_SYNC.md | docs/handbook/reference/release-process.md; scripts/release_preflight.py; .github/workflows/release-preflight.yml | scripts/selftest_release_preflight.py | GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.; Exact SW2-09 evidence head aef29794d2f94bd6066410408ad948882ccf10ef passed release-preflight regression on Ubuntu and Windows in Governance Selftest 37184136532. Stable SW2-09 strict preflight semantics permit only R4=NOT_PROVEN as publication-pending; R3 NOT_PROVEN, R4 FAIL, missing R4, dirty worktree, failed finalize, wrong phase, and stable evidence-only paths are rejected. | PASS |
 
 ## Claim relations
 

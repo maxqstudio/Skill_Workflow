@@ -305,21 +305,21 @@
       ]
     },
     {
-      "claim": "Actual GitHub merge and ruleset enforcement for main matches the repository's declared fail-closed governance requirements.",
+      "claim": "Repository-level merge-enforcement claims match the explicit Owner-approved boundary: when no GitHub ruleset is configured, project documentation must not claim automatic merge blocking or required-check enforcement.",
       "documents": [
         "ROADMAP.md",
         "PROJECT_TRUTH_SYNC.md"
       ],
       "id": "TRUTH-SW2-MERGE-ENFORCEMENT",
       "runtime_evidence": [
-        "Live ruleset 24406662 targets the default branch but is currently enforcement=disabled during Owner repair; its payload also still lacks required_status_checks for the six permanent acceptance checks. R3 remains NOT_PROVEN."
+        "SW2-07 Owner decision accepted the no-ruleset boundary. Live repository ruleset audit returned an empty list, and exact final SW2-07 candidate 8dec9e65915c4b3e7d7fb13398887a2bc7f3df11 plus post-merge main bcc861bf9acc4a02702f5eec8bb45345617cd94a passed the permanent governance suite without claiming automatic GitHub enforcement."
       ],
       "source_owners": [
         "docs/handbook/reference/repository-governance.md",
         "scripts/validate_github_ruleset.py",
-        ".github/workflows/ruleset-audit.yml"
+        "scripts/selftest_github_ruleset.py"
       ],
-      "status": "NOT_PROVEN",
+      "status": "PASS",
       "tests": [
         "scripts/selftest_github_ruleset.py"
       ]
@@ -332,7 +332,8 @@
       ],
       "id": "TRUTH-SW2-RELEASE-GOVERNANCE",
       "runtime_evidence": [
-        "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope."
+        "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.",
+        "Exact SW2-09 evidence head aef29794d2f94bd6066410408ad948882ccf10ef passed release-preflight regression on Ubuntu and Windows in Governance Selftest 37184136532. Stable SW2-09 strict preflight semantics permit only R4=NOT_PROVEN as publication-pending; R3 NOT_PROVEN, R4 FAIL, missing R4, dirty worktree, failed finalize, wrong phase, and stable evidence-only paths are rejected."
       ],
       "source_owners": [
         "docs/handbook/reference/release-process.md",

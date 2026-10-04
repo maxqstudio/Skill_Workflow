@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-08",
+  "current_phase": "SW2-09",
   "phases": [
     {
       "exit_criteria": [
@@ -107,7 +107,7 @@
       ],
       "id": "SW2-08",
       "objective": "Prove V2 against representative small and large consumer projects before declaring stability.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Regression & Adoption Validation"
     },
     {
@@ -119,7 +119,7 @@
       ],
       "id": "SW2-09",
       "objective": "Publish the accepted V2 contract with migration documentation, compatibility guarantees, and exact release evidence.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "V2 Stable Release"
     }
   ],

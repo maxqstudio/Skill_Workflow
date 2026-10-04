@@ -4,7 +4,7 @@
 
 Skill Workflow separates release **process evidence**, release **preflight authority**, and release **publication**.
 
-No stable V2 release is published during SW2-07. Stable release/tag creation remains SW2-09 scope.
+Stable V2 publication is SW2-09 scope. No stable tag or GitHub release is authoritative until the exact publication candidate passes strict preflight and the governed publication transaction completes.
 
 ## Release candidate inputs
 
@@ -41,21 +41,42 @@ A PASS in evidence-only mode is **not** permission to tag, publish, or claim fin
 
 1. requests `scripts/governance_engine.py --mode finalize` for the exact candidate;
 2. requires `requested_mode=finalize`, `effective_mode=finalize`, and `final_acceptance_authority=true`;
-3. requires every acceptance requirement to be `PASS`;
+3. requires every non-publication acceptance requirement to be `PASS`;
 4. requires every truth gate to be `PASS` or `NOT_APPLICABLE`;
 5. validates version syntax and tag non-existence;
-6. for a stable version, requires SW2-09 to be current and every prior SW2 phase to be complete.
+6. for a stable version, requires SW2-09 to be current and every prior SW2 phase to be complete;
+7. allows only `SW2-09-R4` to remain `NOT_PROVEN` during stable preflight, because creation of the exact versioned tag/release is the publication action being authorized.
+
+`SW2-09-R4` is publication-pending, not waived. Any `FAIL`, any other `NOT_PROVEN` requirement, a missing SW2-09 release requirement, or any unproven truth gate blocks publication authority. After the exact tag/release is created, R4 must be promoted from the resulting publication evidence.
 
 Only a successful strict preflight may emit `publication_authority=true`. The preflight itself is still read-only and does not create a Git tag or GitHub release.
 
 ## Evidence artifacts
 
-The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose the requested/effective governance modes, whether the run was evidence-only or strict, whether the version was stable, and whether publication authority was granted.
+The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose the requested/effective governance modes, whether the run was evidence-only or strict, whether the version was stable, whether a publication requirement is pending, and whether publication authority was granted.
 
-## Publication boundary
+## Publication transaction
 
-Publication remains a separate governed action. SW2-09 must define and prove the exact tag/release transaction, rollback guidance, release notes, and post-release verification before a stable V2 release is created.
+Publication is a separate governed action after strict preflight. The stable tag and GitHub release must both point to the exact tested publication commit. Release notes must identify that commit and the accepted compatibility/migration boundary. Publication must fail closed if the requested tag already exists or the repository HEAD no longer matches the accepted publication candidate.
+
+After publication, verify that the tag target and GitHub release target both resolve to the preflight-authorized commit before promoting `SW2-09-R4` to PASS. A publication record that points anywhere else is not acceptable evidence.
+
+## Release rollback
+
+A stable release is immutable evidence. Never move or retarget an existing stable tag to a different commit.
+
+If a published release is found defective:
+
+1. Stop recommending or automating adoption of the defective version and record the affected tag, exact commit, and failure evidence.
+2. Consumers should pin the last known-good release or accepted commit while the repair is prepared. If no earlier stable V2 tag exists, use the last accepted pre-release/main commit that is explicitly supported for recovery.
+3. Repair forward on a new branch and run the full governance, migration, compatibility, and strict release-preflight gates again.
+4. Publish a new semantic patch release from the newly tested commit. Do not overwrite release assets or silently replace the original tag target.
+5. Update the defective release notes to point users to the corrective release when GitHub metadata can be changed without altering the tag target.
+
+Deleting or recreating a stable tag is not the normal rollback path. If publication itself was incomplete before any supported release was communicated, treat cleanup as an incident and preserve an auditable record of what was removed and why.
+
+Project schema rollback is separate from release rollback; follow the [schema and toolchain versioning](versioning.md#rollback-after-migration) procedure for migrated consumer repositories.
 
 ## Failure handling
 
-Any provenance mismatch, dirty worktree, invalid version, reused tag, invalid governance report, explicit failed acceptance item, or authority-boundary violation fails closed. Strict mode additionally rejects incomplete requirements or truth gates. Repair the underlying evidence and rerun from a fresh exact candidate.
+Any provenance mismatch, dirty worktree, invalid version, reused tag, invalid governance report, explicit failed acceptance item, or authority-boundary violation fails closed. Strict mode additionally rejects incomplete non-publication requirements or truth gates. Repair the underlying evidence and rerun from a fresh exact candidate.

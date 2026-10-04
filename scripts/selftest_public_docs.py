@@ -10,6 +10,7 @@ from validate_doc_quality import GENERATED_MARKER
 from validate_public_docs import (
     GENERATED_REFERENCE_FILES,
     HANDBOOK_LINKS,
+    PUBLIC_CONTENT_REQUIREMENTS,
     PUBLIC_MARKER,
     README_REQUIRED_HEADINGS,
     REQUIRED_PUBLIC_FILES,
@@ -31,6 +32,9 @@ def main() -> int:
                 body += "\n[Handbook](handbook/README.md)\n\nSYSTEM_OVERVIEW.md CURRENT_STATE.md ROADMAP.md PROJECT_TRUTH_SYNC.md\n"
             if relative == "docs/handbook/README.md":
                 body += "\n" + "\n".join(f"[{link}]({link})" for link in HANDBOOK_LINKS) + "\n"
+            required_content = PUBLIC_CONTENT_REQUIREMENTS.get(relative, ())
+            if required_content:
+                body += "\n" + "\n\n".join(required_content) + "\n"
             path.write_text(body, encoding="utf-8", newline="\n")
 
         for relative in GENERATED_REFERENCE_FILES:
@@ -52,6 +56,16 @@ def main() -> int:
         assert validate(root)["result"] == "FAIL"
         readme_path.write_text(original_readme, encoding="utf-8", newline="\n")
 
+        rollback_path = root / "docs/handbook/reference/release-process.md"
+        rollback_text = rollback_path.read_text(encoding="utf-8")
+        rollback_path.write_text(
+            rollback_text.replace("## Release rollback", "## Recovery notes"),
+            encoding="utf-8",
+            newline="\n",
+        )
+        assert validate(root)["result"] == "FAIL"
+        rollback_path.write_text(rollback_text, encoding="utf-8", newline="\n")
+
         missing = root / "docs/handbook/guides/troubleshooting.md"
         missing.unlink()
         assert validate(root)["result"] == "FAIL"
@@ -59,6 +73,7 @@ def main() -> int:
     print("PUBLIC_DOC_BASELINE=PASS")
     print("PUBLIC_DOC_MARKER_TAMPER_REJECTION=PASS")
     print("README_REFERENCE_MANUAL_REGRESSION_REJECTION=PASS")
+    print("ROLLBACK_GUIDANCE_REGRESSION_REJECTION=PASS")
     print("PUBLIC_DOC_MISSING_FILE_REJECTION=PASS")
     print("RESULT=PASS")
     return 0

@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
+Source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -344,10 +344,10 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| git | function | 15-16 |
-| _load | function | 19-20 |
-| validate | function | 23-173 |
-| main | function | 176-204 |
+| git | function | 22-23 |
+| _load | function | 26-27 |
+| validate | function | 30-199 |
+| main | function | 202-230 |
 
 </details>
 
@@ -468,7 +468,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 20-64 |
+| main | function | 21-79 |
 
 </details>
 
@@ -481,7 +481,7 @@ responsibility, callers, or state ownership.
 | write_json | function | 18-20 |
 | commit_all | function | 23-26 |
 | governance_report | function | 29-50 |
-| main | function | 53-244 |
+| main | function | 53-286 |
 
 </details>
 
@@ -712,8 +712,8 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| validate | function | 69-146 |
-| main | function | 149-163 |
+| validate | function | 84-165 |
+| main | function | 168-182 |
 
 </details>
 
