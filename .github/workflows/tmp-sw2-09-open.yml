@@ -1,0 +1,246 @@
+name: TEMP SW2-09 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-09-v2-stable-release
+
+permissions:
+  contents: write
+
+jobs:
+  open-phase:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-09-v2-stable-release
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Remove temporary workflow from final tree
+        run: git rm .github/workflows/tmp-sw2-09-open.yml
+      - name: Open SW2-09 authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          roadmap_path = root / '.workflow' / 'roadmap.json'
+          acceptance_path = root / '.workflow' / 'acceptance.json'
+          state_path = root / '.workflow' / 'state.json'
+          old_session_path = root / 'docs' / 'sequence' / 'sessions' / 'SW2-08-GOVERNANCE.json'
+          new_session_path = root / 'docs' / 'sequence' / 'sessions' / 'SW2-09-GOVERNANCE.json'
+
+          roadmap = json.loads(roadmap_path.read_text(encoding='utf-8'))
+          roadmap['current_phase'] = 'SW2-09'
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-08':
+                  phase['status'] = 'COMPLETE'
+              elif phase['id'] == 'SW2-09':
+                  phase['status'] = 'CURRENT'
+          roadmap_path.write_text(json.dumps(roadmap, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          acceptance['evidence_boundary'] = (
+              'SW2-09 acceptance covers V2 Stable Release only: confirmation that all prior SW2 phases are accepted; '
+              'an exact final release candidate that passes complete acceptance; published migration and rollback guidance; '
+              'and a versioned GitHub release/tag created from the exact tested HEAD. Accepted SW2-01 through SW2-08 '
+              'guarantees remain inherited authority and must not be weakened. Publication is forbidden until release '
+              'candidate and migration/rollback gates are proven.'
+          )
+          acceptance['requirements'] = [
+              {
+                  'id': 'SW2-09-R1',
+                  'requirement': 'All prior SW2 phases are accepted.',
+                  'status': 'PASS',
+                  'evidence': (
+                      'SW2-00 through SW2-08 are accepted. SW2-08 was squash-merged to main as '
+                      '8d0fbfd7177128774a0f321b8c95e6befdaaf659 with tree 0c43d4459518a0380e230935ae523ef85fb56904, '
+                      'equal to the exact tested SW2-08 candidate tree. Post-merge main passed Self Governance 37167640353, '
+                      'Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence 37167640369, '
+                      'Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352.'
+                  ),
+              },
+              {
+                  'id': 'SW2-09-R2',
+                  'requirement': 'Release candidate passes exact final acceptance.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN at phase opening. A final publication candidate has not yet been designated and accepted on its exact HEAD.',
+              },
+              {
+                  'id': 'SW2-09-R3',
+                  'requirement': 'Migration and rollback guidance are published.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN at phase opening. Existing compatibility and migration material must be audited and completed with explicit rollback guidance for the V2 stable release.',
+              },
+              {
+                  'id': 'SW2-09-R4',
+                  'requirement': 'A versioned GitHub release/tag is produced from the tested HEAD.',
+                  'status': 'NOT_PROVEN',
+                  'evidence': 'NOT_PROVEN at phase opening. No SW2-09 stable tag or GitHub release may be created until R2 and R3 pass and the publication HEAD is exact-bound.',
+              },
+          ]
+          acceptance['sequence_mode'] = 'DURING'
+          acceptance['sequence_session'] = 'SW2-09-GOVERNANCE'
+          acceptance['sequence_sync_status'] = 'PASS'
+          acceptance['test_commands'] = [
+              'python -m compileall -q scripts',
+              'python scripts/validate_schema_toolchain.py --root .',
+              'python scripts/selftest_schema_toolchain.py',
+              'python scripts/selftest_governance_engine.py',
+              'python scripts/selftest_project_truth_compiler.py',
+              'python scripts/selftest_adoption_profiles.py',
+              'python scripts/selftest_strict_project_workflow.py',
+              'python scripts/selftest_public_docs.py',
+              'python scripts/validate_public_docs.py --root .',
+              'python scripts/selftest_repository_health.py',
+              'python scripts/validate_repository_health.py --root .',
+              'python scripts/selftest_release_preflight.py',
+              'python scripts/validate_sequence_sessions.py --root .',
+              'python scripts/validate_handoff.py --root .',
+              'python scripts/governance_engine.py --root . --base 8d0fbfd7177128774a0f321b8c95e6befdaaf659 --mode finalize --expected-head <EXACT_HEAD>',
+          ]
+          acceptance['truth_gates']['SEQUENCE_SYNC'] = 'PASS'
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['phase'] = 'SW2-09'
+          state['status'] = 'IN_PROGRESS'
+          state['working_branch'] = 'work/sw2-09-v2-stable-release'
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = '8d0fbfd7177128774a0f321b8c95e6befdaaf659'
+          state['blockers'] = []
+          state['blocked_actions'] = [
+              'Do not create or publish the V2 stable tag/release before SW2-09-R2 and SW2-09-R3 are PASS on an exact publication candidate.',
+              'Do not publish a tag or GitHub release from a HEAD different from the exact tested publication HEAD.',
+              'Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.',
+              'Do not change the Owner-approved MIT license or SW2-ADR-010 without explicit Owner approval.',
+              'Do not weaken accepted SW2-01 through SW2-08 governance guarantees.',
+          ]
+          state['not_proven'] = [
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.',
+              'SW2-09 exact stable release candidate acceptance is NOT_PROVEN.',
+              'SW2-09 migration and rollback guidance publication is NOT_PROVEN.',
+              'SW2-09 versioned GitHub tag/release publication is NOT_PROVEN.',
+          ]
+          final_proof = (
+              'SW2-08 is accepted and squash-merged to main as 8d0fbfd7177128774a0f321b8c95e6befdaaf659 with '
+              'tree 0c43d4459518a0380e230935ae523ef85fb56904 equal to the exact tested candidate tree. Post-merge '
+              'Self Governance 37167640353, Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence '
+              '37167640369, Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352 all succeeded.'
+          )
+          if final_proof not in state.get('proven', []):
+              state.setdefault('proven', []).append(final_proof)
+          r1_proof = 'SW2-09-R1 all prior SW2 phases accepted is proven by accepted SW2-00 through SW2-08 authority and green post-merge main 8d0fbfd7177128774a0f321b8c95e6befdaaf659.'
+          if r1_proof not in state.get('proven', []):
+              state.setdefault('proven', []).append(r1_proof)
+          state['next_authorized_actions'] = [
+              'Audit and complete V2 migration plus rollback guidance without publishing a release.',
+              'Designate an exact SW2-09 release candidate and run complete final acceptance.',
+              'Only after R2 and R3 PASS, create the versioned GitHub tag/release from that exact tested HEAD and verify publication evidence.',
+          ]
+          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          old_session = json.loads(old_session_path.read_text(encoding='utf-8'))
+          old_session['scope'] = 'HISTORICAL'
+          old_session['status'] = 'COMPLETE'
+          old_session_path.write_text(json.dumps(old_session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          new_session = {
+              'acceptance_report': 'artifacts/sequence/SW2-09-GOVERNANCE.acceptance.json',
+              'actual': {
+                  'diagram': 'docs/sequence/generated/SW2-09-GOVERNANCE.actual.mmd',
+                  'entries': [
+                      'scripts/release_preflight.py::main',
+                      'scripts/validate_schema_toolchain.py::main',
+                      'scripts/validate_public_docs.py::main',
+                      'scripts/validate_handoff.py::main',
+                      'scripts/validate_project_truth.py::main',
+                      'scripts/governance_engine.py::main',
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-09-GOVERNANCE.actual.json',
+                  'source_digest': '',
+              },
+              'critical': True,
+              'evidence_boundary': (
+                  'SW2-09 phase-opening static evidence binds release preflight, schema/toolchain compatibility, public documentation, '
+                  'handoff, Project Truth, and final governance paths. Exact release-candidate acceptance, migration/rollback publication, '
+                  'and stable tag/release publication remain NOT_PROVEN until dedicated SW2-09 evidence passes.'
+              ),
+              'human_view': {
+                  'diagram': 'docs/sequence/generated/SW2-09-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-09-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'graph': 'docs/sequence/generated/SW2-09-GOVERNANCE.human.json',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': '',
+              },
+              'implementation_base_sha': '8d0fbfd7177128774a0f321b8c95e6befdaaf659',
+              'mode': 'DURING',
+              'phase': 'SW2-09',
+              'plan': {'contract': '', 'diagram': '', 'frozen': False, 'frozen_commit': '', 'required': False, 'sha256': ''},
+              'runtime_trace': {'graph': '', 'required': False},
+              'schema_version': 1,
+              'scope': 'CURRENT',
+              'session_id': 'SW2-09-GOVERNANCE',
+              'status': 'IN_PROGRESS',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_release_preflight.py',
+                  'scripts/selftest_schema_toolchain.py',
+                  'scripts/selftest_strict_project_workflow.py',
+              ],
+          }
+          new_session_path.write_text(json.dumps(new_session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+      - name: Generate SW2-09 sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+
+          root = Path('.')
+          session_path = root / 'docs/sequence/sessions/SW2-09-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = str(graph['source_digest'])
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id'],
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', session_path.as_posix(), '--report', session['acceptance_report'],
+          ], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', session_path.as_posix()], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          PY
+      - name: Synchronize Project Truth
+        run: python scripts/sync_project_truth.py --root .
+      - name: Commit clean SW2-09 phase-open candidate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "SW2-09: open V2 stable release phase"
+          git push origin HEAD:work/sw2-09-v2-stable-release
