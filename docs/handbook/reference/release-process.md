@@ -4,7 +4,7 @@
 
 Skill Workflow separates release **process evidence**, release **preflight authority**, and release **publication**.
 
-Stable V2 publication is SW2-09 scope. No stable tag or GitHub release is authoritative until the exact publication candidate passes strict preflight and the governed publication transaction completes.
+Skill Workflow V2.0.0 has been published from its exact accepted release commit. The rules below describe the evidence boundary that produced that release and remain the reference for governed publication: no new stable tag or GitHub release is authoritative until its exact publication candidate passes strict preflight and the governed publication transaction completes.
 
 ## Release candidate inputs
 

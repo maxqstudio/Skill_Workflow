@@ -23,7 +23,7 @@ A successful workflow proves that a check ran and passed on the tested candidate
 
 `scripts/validate_github_ruleset.py` and the manual `SW2 Ruleset Audit` workflow remain available for repositories that choose ruleset enforcement, but SW2-07 does not require this repository to configure one.
 
-The accepted boundary is explicit: no repository ruleset is currently configured, and project documentation must not describe merge protection as automatic.
+The accepted V2 boundary remains explicit: no repository ruleset is currently configured, and project documentation must not describe merge protection as automatic. Permanent CI is acceptance evidence, not platform-enforced merge protection.
 
 ## Owner and administrator changes
 

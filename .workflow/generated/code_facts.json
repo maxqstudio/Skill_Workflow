@@ -364,7 +364,7 @@
       "file": "scripts/validate_public_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 186
+      "lines": 194
     },
     {
       "directory": "scripts",
@@ -21689,16 +21689,16 @@
     {
       "file": "scripts/validate_public_docs.py",
       "kind": "function",
-      "line_end": 165,
-      "line_start": 84,
+      "line_end": 173,
+      "line_start": 92,
       "locator": "scripts/validate_public_docs.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/validate_public_docs.py",
       "kind": "function",
-      "line_end": 182,
-      "line_start": 168,
+      "line_end": 190,
+      "line_start": 176,
       "locator": "scripts/validate_public_docs.py::main",
       "symbol": "main"
     },
@@ -21824,13 +21824,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13",
+  "source_digest": "21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2",
   "source_summary": {
     "files": 47,
     "languages": {
       "Python": 47
     },
-    "lines": 12956,
+    "lines": 12964,
     "test_files": 0
   },
   "tests": []

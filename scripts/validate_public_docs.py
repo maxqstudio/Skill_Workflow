@@ -21,6 +21,7 @@ REQUIRED_PUBLIC_FILES = (
     "docs/handbook/reference/versioning.md",
     "docs/handbook/reference/repository-governance.md",
     "docs/handbook/reference/release-process.md",
+    "docs/handbook/reference/documentation-system.md",
     "docs/handbook/architecture/validation-engine.md",
     "docs/handbook/sequence/README.md",
 )
@@ -52,6 +53,7 @@ HANDBOOK_LINKS = (
     "reference/versioning.md",
     "reference/repository-governance.md",
     "reference/release-process.md",
+    "reference/documentation-system.md",
     "architecture/validation-engine.md",
     "sequence/README.md",
 )
@@ -77,6 +79,12 @@ PUBLIC_CONTENT_REQUIREMENTS = {
         "## Release rollback",
         "Never move or retarget an existing stable tag",
         "semantic patch release",
+    ),
+    "docs/handbook/reference/documentation-system.md": (
+        "## Documentation layers",
+        "## GitHub-facing sequence views",
+        "Generated Markdown is a projection",
+        "docs/sequence/views/",
     ),
 }
 
