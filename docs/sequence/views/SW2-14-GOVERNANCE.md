@@ -9,15 +9,15 @@
 - Machine graph: [docs/sequence/generated/SW2-14-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-14-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-14-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-14-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-14-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-14-GOVERNANCE.human.json)
-- Source digest: `0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285`
+- Source digest: `e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 126 | 15 |
-| Interactions / edges | 223 | 26 |
-| Internal machine edges collapsed | 168 | — |
+| Participants / nodes | 130 | 16 |
+| Interactions / edges | 230 | 27 |
+| Internal machine edges collapsed | 174 | — |
 | Cross-component edges aggregated | 29 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
@@ -32,39 +32,41 @@ sequenceDiagram
     participant module_scripts_governance_engine_py_3 as scripts/governance_engine.py
     participant module_scripts_project_profile_py_4 as scripts/project_profile.py
     participant module_scripts_project_snapshot_py_5 as scripts/project_snapshot.py
-    participant module_scripts_schema_contract_py_6 as scripts/schema_contract.py
-    participant module_scripts_script_runner_py_7 as scripts/script_runner.py
-    participant module_scripts_selftest_adoption_profiles_py_8 as scripts/selftest_adoption_profiles.py
-    participant module_scripts_selftest_sequence_human_view_py_9 as scripts/selftest_sequence_human_view.py
-    participant module_scripts_sync_project_truth_py_10 as scripts/sync_project_truth.py
-    participant module_scripts_validate_cross_document_consistency_py_11 as scripts/validate_cross_document_consistency.py
-    participant module_scripts_validate_doc_quality_py_12 as scripts/validate_doc_quality.py
-    participant module_scripts_validate_project_docs_py_13 as scripts/validate_project_docs.py
-    participant module_scripts_validate_sequence_sessions_py_14 as scripts/validate_sequence_sessions.py
+    participant module_scripts_project_truth_impact_py_6 as scripts/project_truth_impact.py
+    participant module_scripts_schema_contract_py_7 as scripts/schema_contract.py
+    participant module_scripts_script_runner_py_8 as scripts/script_runner.py
+    participant module_scripts_selftest_adoption_profiles_py_9 as scripts/selftest_adoption_profiles.py
+    participant module_scripts_selftest_sequence_human_view_py_10 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_sync_project_truth_py_11 as scripts/sync_project_truth.py
+    participant module_scripts_validate_cross_document_consistency_py_12 as scripts/validate_cross_document_consistency.py
+    participant module_scripts_validate_doc_quality_py_13 as scripts/validate_doc_quality.py
+    participant module_scripts_validate_project_docs_py_14 as scripts/validate_project_docs.py
+    participant module_scripts_validate_sequence_sessions_py_15 as scripts/validate_sequence_sessions.py
     module_scripts_extract_project_facts_py_1->>module_scripts_analyzer_contract_py_0: 5 static interactions
     module_scripts_extract_project_facts_py_1->>module_scripts_governance_engine_py_3: 1 static interaction
     module_scripts_extract_project_facts_py_1->>module_scripts_project_snapshot_py_5: 3 static interactions
     module_scripts_generate_project_docs_py_2->>module_scripts_extract_project_facts_py_1: 1 static interaction
     module_scripts_generate_project_docs_py_2->>module_scripts_project_profile_py_4: 6 static interactions
     module_scripts_generate_project_docs_py_2->>module_scripts_project_snapshot_py_5: 4 static interactions
-    module_scripts_generate_project_docs_py_2->>module_scripts_schema_contract_py_6: 1 static interaction
-    module_scripts_generate_project_docs_py_2->>module_scripts_selftest_sequence_human_view_py_9: 1 static interaction
+    module_scripts_generate_project_docs_py_2->>module_scripts_project_truth_impact_py_6: 1 static interaction
+    module_scripts_generate_project_docs_py_2->>module_scripts_schema_contract_py_7: 1 static interaction
+    module_scripts_generate_project_docs_py_2->>module_scripts_selftest_sequence_human_view_py_10: 1 static interaction
     module_scripts_governance_engine_py_3->>module_scripts_project_snapshot_py_5: 4 static interactions
-    module_scripts_governance_engine_py_3->>module_scripts_script_runner_py_7: 1 static interaction
+    module_scripts_governance_engine_py_3->>module_scripts_script_runner_py_8: 1 static interaction
     module_scripts_project_profile_py_4->>module_scripts_project_snapshot_py_5: 1 static interaction
-    module_scripts_project_profile_py_4->>module_scripts_schema_contract_py_6: 1 static interaction
-    module_scripts_project_snapshot_py_5->>module_scripts_selftest_sequence_human_view_py_9: 1 static interaction
-    module_scripts_script_runner_py_7->>module_scripts_selftest_adoption_profiles_py_8: 1 static interaction
-    module_scripts_selftest_sequence_human_view_py_9->>module_scripts_project_snapshot_py_5: 1 static interaction
-    module_scripts_sync_project_truth_py_10->>module_scripts_project_profile_py_4: 2 static interactions
-    module_scripts_sync_project_truth_py_10->>module_scripts_project_snapshot_py_5: 4 static interactions
-    module_scripts_sync_project_truth_py_10->>module_scripts_script_runner_py_7: 1 static interaction
-    module_scripts_validate_cross_document_consistency_py_11->>module_scripts_project_profile_py_4: 7 static interactions
-    module_scripts_validate_cross_document_consistency_py_11->>module_scripts_project_snapshot_py_5: 1 static interaction
-    module_scripts_validate_project_docs_py_13->>module_scripts_project_profile_py_4: 2 static interactions
-    module_scripts_validate_project_docs_py_13->>module_scripts_project_snapshot_py_5: 1 static interaction
-    module_scripts_validate_project_docs_py_13->>module_scripts_script_runner_py_7: 1 static interaction
-    module_scripts_validate_project_docs_py_13->>module_scripts_validate_doc_quality_py_12: 1 static interaction
-    module_scripts_validate_sequence_sessions_py_14->>module_scripts_project_profile_py_4: 2 static interactions
-    module_scripts_validate_sequence_sessions_py_14->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_project_profile_py_4->>module_scripts_schema_contract_py_7: 1 static interaction
+    module_scripts_project_snapshot_py_5->>module_scripts_selftest_sequence_human_view_py_10: 1 static interaction
+    module_scripts_script_runner_py_8->>module_scripts_selftest_adoption_profiles_py_9: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_10->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_sync_project_truth_py_11->>module_scripts_project_profile_py_4: 2 static interactions
+    module_scripts_sync_project_truth_py_11->>module_scripts_project_snapshot_py_5: 4 static interactions
+    module_scripts_sync_project_truth_py_11->>module_scripts_script_runner_py_8: 1 static interaction
+    module_scripts_validate_cross_document_consistency_py_12->>module_scripts_project_profile_py_4: 7 static interactions
+    module_scripts_validate_cross_document_consistency_py_12->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_validate_project_docs_py_14->>module_scripts_project_profile_py_4: 2 static interactions
+    module_scripts_validate_project_docs_py_14->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_validate_project_docs_py_14->>module_scripts_script_runner_py_8: 1 static interaction
+    module_scripts_validate_project_docs_py_14->>module_scripts_validate_doc_quality_py_13: 1 static interaction
+    module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_profile_py_4: 2 static interactions
+    module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_snapshot_py_5: 1 static interaction
 ```

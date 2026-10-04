@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
+Source digest: e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -14,15 +14,16 @@ Generated/refreshed: current compiler run
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
-| scripts/generate_project_docs.py | Python | 2000 | scripts | NO |
+| scripts/generate_project_docs.py | Python | 2062 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
-| scripts/governance_engine.py | Python | 813 | scripts | NO |
+| scripts/governance_engine.py | Python | 829 | scripts | NO |
 | scripts/initialize_project_truth.py | Python | 156 | scripts | NO |
 | scripts/migrate_governance_v1.py | Python | 149 | scripts | NO |
 | scripts/project_profile.py | Python | 264 | scripts | NO |
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
+| scripts/project_truth_impact.py | Python | 174 | scripts | NO |
 | scripts/release_preflight.py | Python | 234 | scripts | NO |
 | scripts/schema_contract.py | Python | 88 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
@@ -31,8 +32,8 @@ Generated/refreshed: current compiler run
 | scripts/selftest_cross_document_regressions.py | Python | 44 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
-| scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
-| scripts/selftest_project_truth_compiler.py | Python | 456 | scripts | NO |
+| scripts/selftest_governance_engine.py | Python | 401 | scripts | NO |
+| scripts/selftest_project_truth_compiler.py | Python | 539 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
@@ -42,14 +43,14 @@ Generated/refreshed: current compiler run
 | scripts/selftest_strict_project_workflow.py | Python | 869 | scripts | NO |
 | scripts/sequence_contract.py | Python | 203 | scripts | NO |
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
-| scripts/sync_project_truth.py | Python | 146 | scripts | NO |
+| scripts/sync_project_truth.py | Python | 154 | scripts | NO |
 | scripts/toolchain_identity.py | Python | 184 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
-| scripts/validate_project_docs.py | Python | 97 | scripts | NO |
+| scripts/validate_project_docs.py | Python | 92 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
 | scripts/validate_public_docs.py | Python | 194 | scripts | NO |
 | scripts/validate_repository_health.py | Python | 146 | scripts | NO |

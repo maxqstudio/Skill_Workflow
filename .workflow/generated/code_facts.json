@@ -119,7 +119,7 @@
       "file": "scripts/generate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 2000
+      "lines": 2062
     },
     {
       "directory": "scripts",
@@ -147,7 +147,7 @@
       "file": "scripts/governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 813
+      "lines": 829
     },
     {
       "directory": "scripts",
@@ -176,6 +176,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 247
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/project_truth_impact.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 174
     },
     {
       "directory": "scripts",
@@ -238,14 +245,14 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 395
+      "lines": 401
     },
     {
       "directory": "scripts",
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
-      "lines": 456
+      "lines": 539
     },
     {
       "directory": "scripts",
@@ -315,7 +322,7 @@
       "file": "scripts/sync_project_truth.py",
       "is_test": false,
       "language": "Python",
-      "lines": 146
+      "lines": 154
     },
     {
       "directory": "scripts",
@@ -364,7 +371,7 @@
       "file": "scripts/validate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 97
+      "lines": 92
     },
     {
       "directory": "scripts",
@@ -2159,19 +2166,43 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "argparse.ArgumentParser"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "canonical_generated_bytes"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
       "target_token": "canonical_generated_bytes"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "clean"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
       "target_token": "contract_settings"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "dict"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -2203,10 +2234,6 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
-      "target_token": "expected.encode"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "expected_facts_text.encode"
     },
     {
@@ -2215,7 +2242,19 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "facts_output.is_absolute"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "facts_output.is_file"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "facts_output.is_file"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -2231,11 +2270,31 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "facts_output.read_bytes"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "facts_output.write_bytes"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
       "target_token": "git_root"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "impact_plan.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "impact_plan.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "impact_plan.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "impact_plan.get"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -2260,6 +2319,18 @@
     {
       "caller": "scripts/generate_project_docs.py::main",
       "target_token": "len"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "load_json"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -2295,7 +2366,19 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "path.is_file"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -2307,7 +2390,23 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "path.read_bytes"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "path.write_bytes"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "plan_project_truth_impact"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
@@ -2375,6 +2474,30 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "sorted"
     },
     {
@@ -2415,7 +2538,23 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "unchanged_docs.append"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
       "target_token": "validate_inputs"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "wanted_doc_names"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::main",
+      "target_token": "written_docs.append"
     },
     {
       "caller": "scripts/generate_project_docs.py::normalize_markdown",
@@ -2667,19 +2806,11 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "contracts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_all",
       "target_token": "generated_header"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
       "target_token": "normalize_markdown"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "optional_map.items"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
@@ -2791,27 +2922,15 @@
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "sequence.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "set"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_all",
       "target_token": "sorted"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "wanted.add"
+      "target_token": "wanted.intersection_update"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "wanted.add"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_all",
-      "target_token": "wanted.update"
+      "target_token": "wanted_doc_names"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_api",
@@ -5046,6 +5165,38 @@
       "target_token": "str"
     },
     {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "contracts.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "optional_map.items"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "sequence.get"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "wanted.add"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "wanted.add"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "wanted.discard"
+    },
+    {
+      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
+      "target_token": "wanted.update"
+    },
+    {
       "caller": "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
       "target_token": "AnalyzerResult"
     },
@@ -6511,7 +6662,11 @@
     },
     {
       "caller": "scripts/governance_engine.py::build_mode_dag",
-      "target_token": "tuple"
+      "target_token": "sync_args.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "sync_args.extend"
     },
     {
       "caller": "scripts/governance_engine.py::build_mode_dag",
@@ -6520,6 +6675,18 @@
     {
       "caller": "scripts/governance_engine.py::build_mode_dag",
       "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "validate_docs_args.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "validate_docs_args.extend"
     },
     {
       "caller": "scripts/governance_engine.py::classify_changed_paths",
@@ -6532,6 +6699,10 @@
     {
       "caller": "scripts/governance_engine.py::classify_changed_paths",
       "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "Path"
     },
     {
       "caller": "scripts/governance_engine.py::classify_path",
@@ -8108,6 +8279,154 @@
     {
       "caller": "scripts/project_snapshot.py::resolve_snapshot",
       "target_token": "snapshot.root.as_posix"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::normalize_path",
+      "target_token": "normalized.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::normalize_path",
+      "target_token": "value.replace"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "DOC_DEPENDENCIES.get"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "SPEC_TOKENS.get"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "affected.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "direct_docs.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "frozenset"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "normalize_path"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "normalize_path"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "path.count"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "path.endswith"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tokens.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tokens.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tokens.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tokens.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tokens.add"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "target_token": "unknown_paths.append"
     },
     {
       "caller": "scripts/release_preflight.py::_load",
@@ -9891,7 +10210,19 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "target_token": "develop_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "develop_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "effective_mode"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
@@ -9924,6 +10255,18 @@
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
@@ -10239,6 +10582,34 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "acceptance.get"
     },
     {
@@ -10267,6 +10638,14 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "control_doc.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "control_doc.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "duplicate.unlink"
     },
     {
@@ -10287,11 +10666,39 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "fh.write"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "flow.update"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "flow_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "incremental_report.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "json.loads"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -10411,6 +10818,26 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "profile.read_text"
     },
     {
@@ -10420,6 +10847,14 @@
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "project_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "repeat_report.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "repr"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -10503,11 +10938,119 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "source_report.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "state.update"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "state_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "state_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "str"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -10620,6 +11163,14 @@
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "test_gitignored_source_files_are_excluded"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "unknown_report.read_text"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "write_json"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
@@ -13586,6 +14137,22 @@
       "target_token": "str"
     },
     {
+      "caller": "scripts/sync_project_truth.py::compiler_args",
+      "target_token": "args.append"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::compiler_args",
+      "target_token": "args.append"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::compiler_args",
+      "target_token": "args.extend"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::compiler_args",
+      "target_token": "str"
+    },
+    {
       "caller": "scripts/sync_project_truth.py::main",
       "target_token": "Path"
     },
@@ -13611,6 +14178,14 @@
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::main",
       "target_token": "ap.parse_args"
     },
     {
@@ -13619,11 +14194,23 @@
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::main",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::main",
       "target_token": "sync_once"
     },
     {
       "caller": "scripts/sync_project_truth.py::main",
       "target_token": "sync_once"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::main",
+      "target_token": "tuple"
     },
     {
       "caller": "scripts/sync_project_truth.py::run_main",
@@ -13652,6 +14239,14 @@
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
       "target_token": "acceptance_path.write_bytes"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "compiler_args"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "compiler_args"
     },
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
@@ -13743,6 +14338,14 @@
     },
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
       "target_token": "profile_path.is_file"
     },
     {
@@ -13760,6 +14363,14 @@
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
       "target_token": "run_main"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "sorted"
     },
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
@@ -13795,11 +14406,23 @@
     },
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
-      "target_token": "str"
+      "target_token": "tuple"
     },
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
-      "target_token": "str"
+      "target_token": "validate_args.append"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "validate_args.append"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "validate_args.extend"
+    },
+    {
+      "caller": "scripts/sync_project_truth.py::sync_once",
+      "target_token": "validate_args.extend"
     },
     {
       "caller": "scripts/toolchain_identity.py::_git_value",
@@ -16935,11 +17558,27 @@
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
       "target_token": "ap.parse_args"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
       "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "compiler_args.append"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "compiler_args.extend"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
@@ -16964,6 +17603,14 @@
     {
       "caller": "scripts/validate_project_docs.py::main",
       "target_token": "parse_profile"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_project_docs.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/validate_project_docs.py::main",
@@ -20059,304 +20706,312 @@
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 63,
-      "line_start": 54,
+      "line_end": 64,
+      "line_start": 55,
       "locator": "scripts/generate_project_docs.py::git_root",
       "symbol": "git_root"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 70,
-      "line_start": 66,
+      "line_end": 71,
+      "line_start": 67,
       "locator": "scripts/generate_project_docs.py::load_json",
       "symbol": "load_json"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 79,
-      "line_start": 73,
+      "line_end": 80,
+      "line_start": 74,
       "locator": "scripts/generate_project_docs.py::canonical_bytes",
       "symbol": "canonical_bytes"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 84,
-      "line_start": 82,
+      "line_end": 85,
+      "line_start": 83,
       "locator": "scripts/generate_project_docs.py::canonical_generated_bytes",
       "symbol": "canonical_generated_bytes"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 88,
-      "line_start": 87,
+      "line_end": 89,
+      "line_start": 88,
       "locator": "scripts/generate_project_docs.py::clean",
       "symbol": "clean"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 92,
-      "line_start": 91,
+      "line_end": 93,
+      "line_start": 92,
       "locator": "scripts/generate_project_docs.py::cell",
       "symbol": "cell"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 97,
-      "line_start": 95,
+      "line_end": 98,
+      "line_start": 96,
       "locator": "scripts/generate_project_docs.py::bullets",
       "symbol": "bullets"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 133,
-      "line_start": 100,
+      "line_end": 134,
+      "line_start": 101,
       "locator": "scripts/generate_project_docs.py::normalize_markdown",
       "symbol": "normalize_markdown"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 159,
-      "line_start": 136,
+      "line_end": 160,
+      "line_start": 137,
       "locator": "scripts/generate_project_docs.py::read_specs",
       "symbol": "read_specs"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 274,
-      "line_start": 162,
+      "line_end": 275,
+      "line_start": 163,
       "locator": "scripts/generate_project_docs.py::validate_inputs",
       "symbol": "validate_inputs"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 296,
-      "line_start": 277,
+      "line_end": 297,
+      "line_start": 278,
       "locator": "scripts/generate_project_docs.py::input_digest",
       "symbol": "input_digest"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 303,
-      "line_start": 299,
+      "line_end": 304,
+      "line_start": 300,
       "locator": "scripts/generate_project_docs.py::generated_header",
       "symbol": "generated_header"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 315,
-      "line_start": 306,
+      "line_end": 316,
+      "line_start": 307,
       "locator": "scripts/generate_project_docs.py::claim_backlink_comment",
       "symbol": "claim_backlink_comment"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 322,
-      "line_start": 318,
+      "line_end": 323,
+      "line_start": 319,
       "locator": "scripts/generate_project_docs.py::auth_lookup",
       "symbol": "auth_lookup"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 595,
-      "line_start": 325,
+      "line_end": 596,
+      "line_start": 326,
       "locator": "scripts/generate_project_docs.py::render_system_overview",
       "symbol": "render_system_overview"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 700,
-      "line_start": 598,
+      "line_end": 701,
+      "line_start": 599,
       "locator": "scripts/generate_project_docs.py::render_project_manifest",
       "symbol": "render_project_manifest"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 804,
-      "line_start": 703,
+      "line_end": 805,
+      "line_start": 704,
       "locator": "scripts/generate_project_docs.py::render_current_state",
       "symbol": "render_current_state"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 867,
-      "line_start": 807,
+      "line_end": 868,
+      "line_start": 808,
       "locator": "scripts/generate_project_docs.py::render_roadmap",
       "symbol": "render_roadmap"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 905,
-      "line_start": 870,
+      "line_end": 906,
+      "line_start": 871,
       "locator": "scripts/generate_project_docs.py::render_authority",
       "symbol": "render_authority"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 987,
-      "line_start": 908,
+      "line_end": 988,
+      "line_start": 909,
       "locator": "scripts/generate_project_docs.py::render_architecture",
       "symbol": "render_architecture"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1056,
-      "line_start": 990,
+      "line_end": 1057,
+      "line_start": 991,
       "locator": "scripts/generate_project_docs.py::render_workflows",
       "symbol": "render_workflows"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1110,
-      "line_start": 1059,
+      "line_end": 1111,
+      "line_start": 1060,
       "locator": "scripts/generate_project_docs.py::render_sequence",
       "symbol": "render_sequence"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1142,
-      "line_start": 1113,
+      "line_end": 1143,
+      "line_start": 1114,
       "locator": "scripts/generate_project_docs.py::render_modules",
       "symbol": "render_modules"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1232,
-      "line_start": 1145,
+      "line_end": 1233,
+      "line_start": 1146,
       "locator": "scripts/generate_project_docs.py::render_symbols",
       "symbol": "render_symbols"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1298,
-      "line_start": 1235,
+      "line_end": 1299,
+      "line_start": 1236,
       "locator": "scripts/generate_project_docs.py::render_flows",
       "symbol": "render_flows"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1393,
-      "line_start": 1301,
+      "line_end": 1394,
+      "line_start": 1302,
       "locator": "scripts/generate_project_docs.py::render_acceptance",
       "symbol": "render_acceptance"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1440,
-      "line_start": 1396,
+      "line_end": 1441,
+      "line_start": 1397,
       "locator": "scripts/generate_project_docs.py::render_doc_sync",
       "symbol": "render_doc_sync"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1589,
-      "line_start": 1443,
+      "line_end": 1590,
+      "line_start": 1444,
       "locator": "scripts/generate_project_docs.py::render_truth",
       "symbol": "render_truth"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1619,
-      "line_start": 1592,
+      "line_end": 1620,
+      "line_start": 1593,
       "locator": "scripts/generate_project_docs.py::render_api",
       "symbol": "render_api"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1647,
-      "line_start": 1622,
+      "line_end": 1648,
+      "line_start": 1623,
       "locator": "scripts/generate_project_docs.py::render_data",
       "symbol": "render_data"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1675,
-      "line_start": 1650,
+      "line_end": 1676,
+      "line_start": 1651,
       "locator": "scripts/generate_project_docs.py::render_ui",
       "symbol": "render_ui"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1693,
-      "line_start": 1678,
+      "line_end": 1694,
+      "line_start": 1679,
       "locator": "scripts/generate_project_docs.py::render_runbook",
       "symbol": "render_runbook"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1714,
-      "line_start": 1696,
+      "line_end": 1715,
+      "line_start": 1697,
       "locator": "scripts/generate_project_docs.py::render_decisions",
       "symbol": "render_decisions"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1740,
-      "line_start": 1717,
+      "line_end": 1741,
+      "line_start": 1718,
       "locator": "scripts/generate_project_docs.py::render_defects",
       "symbol": "render_defects"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1759,
-      "line_start": 1743,
+      "line_end": 1760,
+      "line_start": 1744,
       "locator": "scripts/generate_project_docs.py::render_changelog",
       "symbol": "render_changelog"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1770,
-      "line_start": 1762,
+      "line_end": 1771,
+      "line_start": 1763,
       "locator": "scripts/generate_project_docs.py::render_glossary",
       "symbol": "render_glossary"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1854,
-      "line_start": 1773,
+      "line_end": 1811,
+      "line_start": 1775,
+      "locator": "scripts/generate_project_docs.py::wanted_doc_names",
+      "symbol": "wanted_doc_names"
+    },
+    {
+      "file": "scripts/generate_project_docs.py",
+      "kind": "function",
+      "line_end": 1868,
+      "line_start": 1813,
       "locator": "scripts/generate_project_docs.py::render_all",
       "symbol": "render_all"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 1996,
-      "line_start": 1857,
+      "line_end": 2059,
+      "line_start": 1872,
       "locator": "scripts/generate_project_docs.py::main",
       "symbol": "main"
     },
@@ -20707,152 +21362,152 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 200,
-      "line_start": 195,
+      "line_end": 201,
+      "line_start": 196,
       "locator": "scripts/governance_engine.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 212,
-      "line_start": 203,
+      "line_end": 213,
+      "line_start": 204,
       "locator": "scripts/governance_engine.py::git_z",
       "symbol": "git_z"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 223,
-      "line_start": 215,
+      "line_end": 224,
+      "line_start": 216,
       "locator": "scripts/governance_engine.py::state_base",
       "symbol": "state_base"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 240,
-      "line_start": 226,
+      "line_end": 241,
+      "line_start": 227,
       "locator": "scripts/governance_engine.py::collect_changed_paths",
       "symbol": "collect_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 269,
-      "line_start": 243,
+      "line_end": 272,
+      "line_start": 244,
       "locator": "scripts/governance_engine.py::classify_path",
       "symbol": "classify_path"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 273,
-      "line_start": 272,
+      "line_end": 276,
+      "line_start": 275,
       "locator": "scripts/governance_engine.py::classify_changed_paths",
       "symbol": "classify_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 284,
-      "line_start": 276,
+      "line_end": 287,
+      "line_start": 279,
       "locator": "scripts/governance_engine.py::effective_mode",
       "symbol": "effective_mode"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 331,
-      "line_start": 287,
+      "line_end": 335,
+      "line_start": 290,
       "locator": "scripts/governance_engine.py::develop_node_names",
       "symbol": "develop_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 344,
-      "line_start": 334,
+      "line_end": 348,
+      "line_start": 338,
       "locator": "scripts/governance_engine.py::planned_node_names",
       "symbol": "planned_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 360,
-      "line_start": 347,
+      "line_end": 364,
+      "line_start": 351,
       "locator": "scripts/governance_engine.py::governed_status",
       "symbol": "governed_status"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 368,
-      "line_start": 363,
+      "line_end": 372,
+      "line_start": 367,
       "locator": "scripts/governance_engine.py::cli_action",
       "symbol": "cli_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 386,
-      "line_start": 371,
+      "line_end": 390,
+      "line_start": 375,
       "locator": "scripts/governance_engine.py::command_action",
       "symbol": "command_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 384,
-      "line_start": 372,
+      "line_end": 388,
+      "line_start": 376,
       "locator": "scripts/governance_engine.py::command_action.run",
       "symbol": "command_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 406,
-      "line_start": 389,
+      "line_end": 410,
+      "line_start": 393,
       "locator": "scripts/governance_engine.py::compile_scripts_action",
       "symbol": "compile_scripts_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 404,
-      "line_start": 391,
+      "line_end": 408,
+      "line_start": 395,
       "locator": "scripts/governance_engine.py::compile_scripts_action.run",
       "symbol": "compile_scripts_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 414,
-      "line_start": 409,
+      "line_end": 418,
+      "line_start": 413,
       "locator": "scripts/governance_engine.py::_regression_node",
       "symbol": "_regression_node"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 601,
-      "line_start": 417,
+      "line_end": 616,
+      "line_start": 421,
       "locator": "scripts/governance_engine.py::build_mode_dag",
       "symbol": "build_mode_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 678,
-      "line_start": 604,
+      "line_end": 693,
+      "line_start": 619,
       "locator": "scripts/governance_engine.py::build_dag",
       "symbol": "build_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 809,
-      "line_start": 681,
+      "line_end": 825,
+      "line_start": 696,
       "locator": "scripts/governance_engine.py::main",
       "symbol": "main"
     },
@@ -21135,6 +21790,22 @@
       "line_start": 238,
       "locator": "scripts/project_snapshot.py::resolve_snapshot",
       "symbol": "resolve_snapshot"
+    },
+    {
+      "file": "scripts/project_truth_impact.py",
+      "kind": "function",
+      "line_end": 90,
+      "line_start": 86,
+      "locator": "scripts/project_truth_impact.py::normalize_path",
+      "symbol": "normalize_path"
+    },
+    {
+      "file": "scripts/project_truth_impact.py",
+      "kind": "function",
+      "line_end": 174,
+      "line_start": 93,
+      "locator": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "symbol": "plan_project_truth_impact"
     },
     {
       "file": "scripts/release_preflight.py",
@@ -21427,7 +22098,7 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 258,
+      "line_end": 264,
       "line_start": 172,
       "locator": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "symbol": "mode_planning_contract"
@@ -21435,24 +22106,24 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 283,
-      "line_start": 261,
+      "line_end": 289,
+      "line_start": 267,
       "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
       "symbol": "changed_path_collection_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 379,
-      "line_start": 286,
+      "line_end": 385,
+      "line_start": 292,
       "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
       "symbol": "mode_cli_integration_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 391,
-      "line_start": 382,
+      "line_end": 397,
+      "line_start": 388,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -21483,7 +22154,7 @@
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 452,
+      "line_end": 535,
       "line_start": 104,
       "locator": "scripts/selftest_project_truth_compiler.py::main",
       "symbol": "main"
@@ -21867,24 +22538,32 @@
     {
       "file": "scripts/sync_project_truth.py",
       "kind": "function",
-      "line_end": 31,
-      "line_start": 30,
+      "line_end": 22,
+      "line_start": 21,
       "locator": "scripts/sync_project_truth.py::run_main",
       "symbol": "run_main"
     },
     {
       "file": "scripts/sync_project_truth.py",
       "kind": "function",
-      "line_end": 127,
-      "line_start": 34,
+      "line_end": 33,
+      "line_start": 25,
+      "locator": "scripts/sync_project_truth.py::compiler_args",
+      "symbol": "compiler_args"
+    },
+    {
+      "file": "scripts/sync_project_truth.py",
+      "kind": "function",
+      "line_end": 132,
+      "line_start": 36,
       "locator": "scripts/sync_project_truth.py::sync_once",
       "symbol": "sync_once"
     },
     {
       "file": "scripts/sync_project_truth.py",
       "kind": "function",
-      "line_end": 142,
-      "line_start": 130,
+      "line_end": 150,
+      "line_start": 135,
       "locator": "scripts/sync_project_truth.py::main",
       "symbol": "main"
     },
@@ -22243,8 +22922,8 @@
     {
       "file": "scripts/validate_project_docs.py",
       "kind": "function",
-      "line_end": 93,
-      "line_start": 19,
+      "line_end": 89,
+      "line_start": 20,
       "locator": "scripts/validate_project_docs.py::main",
       "symbol": "main"
     },
@@ -22442,13 +23121,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285",
+  "source_digest": "e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247",
   "source_summary": {
-    "files": 49,
+    "files": 50,
     "languages": {
-      "Python": 49
+      "Python": 50
     },
-    "lines": 13262,
+    "lines": 13606,
     "test_files": 0
   },
   "tests": []

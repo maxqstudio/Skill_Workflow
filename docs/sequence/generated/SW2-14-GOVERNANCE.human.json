@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 26,
-    "interaction_count": 26,
+    "interaction_ceiling": 27,
+    "interaction_count": 27,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 15,
-    "participant_count": 15,
+    "participant_ceiling": 16,
+    "participant_count": 16,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -109,6 +109,20 @@
         "python_ast"
       ],
       "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "plan_project_truth_impact"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_impact.py"
     },
     {
       "actions": [
@@ -448,7 +462,7 @@
       "id": "module:scripts/generate_project_docs.py",
       "kind": "module",
       "label": "scripts/generate_project_docs.py",
-      "machine_node_count": 38,
+      "machine_node_count": 39,
       "machine_nodes": [
         "scripts/generate_project_docs.py::auth_lookup",
         "scripts/generate_project_docs.py::bullets",
@@ -487,7 +501,8 @@
         "scripts/generate_project_docs.py::render_truth",
         "scripts/generate_project_docs.py::render_ui",
         "scripts/generate_project_docs.py::render_workflows",
-        "scripts/generate_project_docs.py::validate_inputs"
+        "scripts/generate_project_docs.py::validate_inputs",
+        "scripts/generate_project_docs.py::wanted_doc_names"
       ]
     },
     {
@@ -560,6 +575,16 @@
       ]
     },
     {
+      "id": "module:scripts/project_truth_impact.py",
+      "kind": "module",
+      "label": "scripts/project_truth_impact.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/project_truth_impact.py::normalize_path",
+        "scripts/project_truth_impact.py::plan_project_truth_impact"
+      ]
+    },
+    {
       "id": "module:scripts/schema_contract.py",
       "kind": "module",
       "label": "scripts/schema_contract.py",
@@ -601,8 +626,9 @@
       "id": "module:scripts/sync_project_truth.py",
       "kind": "module",
       "label": "scripts/sync_project_truth.py",
-      "machine_node_count": 3,
+      "machine_node_count": 4,
       "machine_nodes": [
+        "scripts/sync_project_truth.py::compiler_args",
         "scripts/sync_project_truth.py::main",
         "scripts/sync_project_truth.py::run_main",
         "scripts/sync_project_truth.py::sync_once"
@@ -665,14 +691,14 @@
       ]
     }
   ],
-  "observed_head": "fcf5bbe227b1272473af758ec522bb527b1545c1",
+  "observed_head": "a29b5bd015d36feab294e6e4a7ccb6824b084ed1",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 29,
-    "cross_component_machine_edges": 55,
-    "internal_machine_edges_collapsed": 168,
-    "machine_edge_count": 223,
-    "machine_node_count": 126,
+    "cross_component_machine_edges": 56,
+    "internal_machine_edges_collapsed": 174,
+    "machine_edge_count": 230,
+    "machine_node_count": 130,
     "node_map": {
       "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
       "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
@@ -722,6 +748,7 @@
       "scripts/generate_project_docs.py::render_ui": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::render_workflows": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::validate_inputs": "module:scripts/generate_project_docs.py",
+      "scripts/generate_project_docs.py::wanted_doc_names": "module:scripts/generate_project_docs.py",
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
@@ -767,12 +794,15 @@
       "scripts/project_snapshot.py::canonical_source_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::discover_source_paths": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::resolve_snapshot": "module:scripts/project_snapshot.py",
+      "scripts/project_truth_impact.py::normalize_path": "module:scripts/project_truth_impact.py",
+      "scripts/project_truth_impact.py::plan_project_truth_impact": "module:scripts/project_truth_impact.py",
       "scripts/schema_contract.py::_profile_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_json_schema_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
       "scripts/script_runner.py::invoke_main": "module:scripts/script_runner.py",
       "scripts/selftest_adoption_profiles.py::write": "module:scripts/selftest_adoption_profiles.py",
       "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
+      "scripts/sync_project_truth.py::compiler_args": "module:scripts/sync_project_truth.py",
       "scripts/sync_project_truth.py::main": "module:scripts/sync_project_truth.py",
       "scripts/sync_project_truth.py::run_main": "module:scripts/sync_project_truth.py",
       "scripts/sync_project_truth.py::sync_once": "module:scripts/sync_project_truth.py",
@@ -804,5 +834,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285"
+  "source_digest": "e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247"
 }
