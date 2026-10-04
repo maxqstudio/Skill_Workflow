@@ -2,8 +2,8 @@
 
 # ROADMAP
 
-Current project phase: SW2-09
-Current roadmap phase: SW2-09
+Current project phase: SW2-10
+Current roadmap phase: SW2-10
 ROADMAP_SYNC: PASS
 
 ## Phase plan
@@ -19,7 +19,8 @@ ROADMAP_SYNC: PASS
 | 7 | SW2-06 | Cross-Language Analyzer Architecture | COMPLETE | Introduce analyzer interfaces so structural evidence can grow beyond Python without coupling governance semantics to one parser. | Analyzer contract is language-independent.<br>Python and JS/TS remain fully regression-covered.<br>Generic fallback behavior is explicit and fail-safe.<br>Unsupported dynamic behavior remains NOT_PROVEN unless stronger evidence exists. |
 | 8 | SW2-07 | Public Project Hardening | COMPLETE | Complete public repository health, security, contribution, and release governance. | Repository health files are present with Owner-approved license.<br>Security and contribution paths are documented.<br>Repository merge-governance boundary matches the explicit Owner decision, and any absence of platform enforcement is documented without false claims.<br>Release process is repeatable and evidence-backed. |
 | 9 | SW2-08 | Regression & Adoption Validation | COMPLETE | Prove V2 against representative small and large consumer projects before declaring stability. | Representative LITE, STANDARD, and STRICT fixtures pass.<br>At least one large real consumer validates performance improvement and governance parity.<br>Migration regressions and false PASS cases are covered.<br>Cross-platform acceptance remains green. |
-| 10 | SW2-09 | V2 Stable Release | CURRENT | Publish the accepted V2 contract with migration documentation, compatibility guarantees, and exact release evidence. | All prior SW2 phases are accepted.<br>Release candidate passes exact final acceptance.<br>Migration and rollback guidance are published.<br>A versioned GitHub release/tag is produced from the tested HEAD. |
+| 10 | SW2-09 | V2 Stable Release | COMPLETE | Publish the accepted V2 contract with migration documentation, compatibility guarantees, and exact release evidence. | All prior SW2 phases are accepted.<br>Release candidate passes exact final acceptance.<br>Migration and rollback guidance are published.<br>A versioned GitHub release/tag is produced from the tested HEAD. |
+| 11 | SW2-10 | Documentation Polish & Discoverability | CURRENT | Polish the public documentation experience after V2 release without weakening or relocating canonical generated governance authority. | Public landing pages are accurate, concise, and free of stale V2/license/release claims.<br>Documentation navigation clearly separates handbook guidance, generated Project Truth, and sequence evidence.<br>GitHub-facing sequence guidance points readers to rendered Markdown views rather than raw machine diagrams.<br>Public-doc regressions, Project Truth synchronization, sequence validation, and the complete permanent acceptance matrix pass on the exact candidate. |
 
 ## Synchronization contract
 

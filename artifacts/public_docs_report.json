@@ -1,9 +1,9 @@
 {
   "canonical_consumer_layout_changed": false,
-  "evidence_boundary": "This gate proves public documentation structure, navigation, source-authored/generated-layer separation, and obvious README reference-manual regressions. It does not by itself prove semantic documentation quality.",
+  "evidence_boundary": "This gate proves public documentation structure, navigation, source-authored/generated-layer separation, required migration/rollback guidance, and obvious README reference-manual regressions. It does not by itself prove that an operational rollback has been executed against an external consumer.",
   "failures": [],
   "generated_governance_root": "docs",
-  "public_files_checked": 10,
+  "public_files_checked": 13,
   "public_marker": "PUBLIC PRODUCT DOCUMENTATION - SOURCE-AUTHORED",
   "public_root": "docs/handbook",
   "result": "PASS",

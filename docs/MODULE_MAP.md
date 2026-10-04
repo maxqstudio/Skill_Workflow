@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
+Source digest: 21cd6cee8d4dbba64331b46be4b1f044a574484ba208a8f18e3ff4317f68cfb2
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -49,7 +49,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 84 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
-| scripts/validate_public_docs.py | Python | 186 | scripts | NO |
+| scripts/validate_public_docs.py | Python | 194 | scripts | NO |
 | scripts/validate_repository_health.py | Python | 112 | scripts | NO |
 | scripts/validate_schema_toolchain.py | Python | 76 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |

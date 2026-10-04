@@ -1,23 +1,25 @@
 # Skill Workflow
 
-Strict, deterministic project handoff and governance for long-running software work across humans and coding agents.
+Strict, deterministic project governance and handoff for long-running software work across humans and coding agents.
 
-Skill Workflow gives a repository an explicit map of authority, current phase, architecture, workflows, code ownership, evidence, and legal next actions. It reduces context loss **without turning documentation into a second source of truth**.
+**Stable release:** `v2.0.0`
+**License:** MIT
+
+Skill Workflow keeps project authority, current phase, architecture, workflows, evidence, and legal next actions explicit inside the repository. Generated documentation is a projection of governed sources—not a second source of truth.
 
 ## Why Skill Workflow
 
-Use it when a new room, agent, or developer should not have to reconstruct a project from old chats and a blind source scan.
+Use Skill Workflow when a new developer or coding agent should be able to continue a project without reconstructing intent from old chats.
 
 It provides:
 
-- explicit project and roadmap authority;
 - LITE, STANDARD, and STRICT governance profiles;
-- deterministic Project Truth documentation for STANDARD/STRICT projects;
-- exact tested-SHA and fail-closed acceptance rules;
-- develop / verify / finalize execution modes;
-- machine-backed sequence evidence plus bounded human sequence views;
+- deterministic Project Truth for STANDARD/STRICT projects;
+- exact tested-SHA acceptance and fail-closed evidence rules;
+- `develop`, `verify`, and `finalize` execution modes;
+- machine-backed sequence evidence with bounded human views;
 - cross-document, handoff, and Human Comprehension gates;
-- project-local vendored governance tools for portability.
+- project-local vendored governance tools for portable execution.
 
 ## Quick start
 
@@ -33,37 +35,38 @@ For a specific agent, for example Codex:
 npx skills add maxqstudio/Skill_Workflow -a codex -y
 ```
 
-See the [installation guide](docs/handbook/getting-started/installation.md) for global installs, multiple agents, and supported agent examples. Then use the [adoption guide](docs/handbook/getting-started/adoption.md) to add Project Truth governance to a repository.
+Then follow [Installation](docs/handbook/getting-started/installation.md) and [Repository adoption](docs/handbook/getting-started/adoption.md).
 
 ## How it works
 
 ```text
-PROJECT_PROFILE.yaml
-+ .workflow/*.json
-+ source facts
-+ tests/runtime evidence
-        ↓
-deterministic compiler + validators
-        ↓
-generated Project Truth + acceptance evidence
-        ↓
-final exact-head acceptance
+PROJECT_PROFILE.yaml + .workflow/*.json + source + tests/runtime evidence
+                            |
+                            v
+              deterministic compiler/validators
+                            |
+                            v
+             generated Project Truth + evidence
+                            |
+                            v
+                 exact-head final acceptance
 ```
 
-Generated Markdown is a projection. Source code, structured project authority, and test/runtime evidence remain the underlying truth.
+Source code owns implementation facts. `.workflow/*.json` owns declared governance/semantic intent. Tests and runtime evidence own behavioral proof. Generated Markdown makes those facts readable and traceable.
 
 ## Documentation
 
-Start at the [public documentation index](docs/README.md) or the [handbook](docs/handbook/README.md).
+| Goal | Start here |
+| --- | --- |
+| Install the skill | [Installation](docs/handbook/getting-started/installation.md) |
+| Adopt it in a repository | [Repository adoption](docs/handbook/getting-started/adoption.md) |
+| Understand the governance model | [Governance model](docs/handbook/concepts/governance-model.md) |
+| Understand the documentation layers | [Documentation system](docs/handbook/reference/documentation-system.md) |
+| Diagnose failures | [Troubleshooting](docs/handbook/guides/troubleshooting.md) |
+| Use commands directly | [Command reference](docs/handbook/reference/commands.md) |
+| Inspect release behavior | [Release process](docs/handbook/reference/release-process.md) |
 
-- [Getting started](docs/handbook/getting-started/adoption.md)
-- [Governance model](docs/handbook/concepts/governance-model.md)
-- [Troubleshooting](docs/handbook/guides/troubleshooting.md)
-- [Command reference](docs/handbook/reference/commands.md)
-- [Repository governance](docs/handbook/reference/repository-governance.md)
-- [Release process](docs/handbook/reference/release-process.md)
-- [Validation architecture](docs/handbook/architecture/validation-engine.md)
-- [Sequence contracts and Sequence V2](docs/handbook/sequence/README.md)
+The full entry points are the [documentation index](docs/README.md) and [handbook](docs/handbook/README.md).
 
 ## Supported agents
 
@@ -71,16 +74,14 @@ The `skills` CLI can target Codex, Claude Code, Cursor, Gemini CLI, GitHub Copil
 
 ## Project state and governance
 
-This repository dogfoods Skill Workflow. Maintainers and auditors can inspect the generated [system overview](docs/SYSTEM_OVERVIEW.md), [project manifest](docs/PROJECT_MANIFEST.md), [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md).
+This repository dogfoods Skill Workflow. The accepted stable V2 release is `v2.0.0`; post-release governance work continues through explicit roadmap/acceptance boundaries.
 
-Those generated governance files are evidence/navigation for this repository; the public handbook above is the product documentation entry point.
+Maintainers can inspect the generated [system overview](docs/SYSTEM_OVERVIEW.md), [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), [project manifest](docs/PROJECT_MANIFEST.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md). Those files are generated evidence/navigation for this repository, not the public product manual.
 
 ## Contributing and security
 
-Public contribution and security paths are documented in [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
-
-A public license has not yet been selected by the Owner. Repository visibility must not be treated as an implied license; the governed license decision remains explicit and separate.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Skill Workflow is distributed under the [MIT License](LICENSE).
 
 ## Support
 
-If Skill Workflow is useful for your projects, optional support is available through [Saweria](https://saweria.co/maxq) or [PayPal](https://paypal.me/JacksonJackson1501). Access to the public repository and its features is not affected by support.
+Optional support is available through [Saweria](https://saweria.co/maxq) or [PayPal](https://paypal.me/JacksonJackson1501). Support does not change access to the public repository or its features.

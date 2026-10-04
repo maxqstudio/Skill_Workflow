@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-09",
+  "current_phase": "SW2-10",
   "phases": [
     {
       "exit_criteria": [
@@ -119,8 +119,20 @@
       ],
       "id": "SW2-09",
       "objective": "Publish the accepted V2 contract with migration documentation, compatibility guarantees, and exact release evidence.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "V2 Stable Release"
+    },
+    {
+      "exit_criteria": [
+        "Public landing pages are accurate, concise, and free of stale V2/license/release claims.",
+        "Documentation navigation clearly separates handbook guidance, generated Project Truth, and sequence evidence.",
+        "GitHub-facing sequence guidance points readers to rendered Markdown views rather than raw machine diagrams.",
+        "Public-doc regressions, Project Truth synchronization, sequence validation, and the complete permanent acceptance matrix pass on the exact candidate."
+      ],
+      "id": "SW2-10",
+      "objective": "Polish the public documentation experience after V2 release without weakening or relocating canonical generated governance authority.",
+      "status": "CURRENT",
+      "title": "Documentation Polish & Discoverability"
     }
   ],
   "schema_version": 1

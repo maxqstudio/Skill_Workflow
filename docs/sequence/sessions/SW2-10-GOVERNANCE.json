@@ -1,0 +1,52 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-10-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-10-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/validate_public_docs.py::main",
+      "scripts/sync_project_truth.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/validate_cross_document_consistency.py::main",
+      "scripts/validate_sequence_sessions.py::main",
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-10-GOVERNANCE.actual.json",
+    "source_digest": ""
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-10 sequence evidence covers documentation validation, deterministic Project Truth synchronization, cross-document consistency, sequence validation, and final governance acceptance. It does not authorize V2 behavioral or release-tag changes.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-10-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-10-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-10-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": ""
+  },
+  "implementation_base_sha": "ae2d687a55f9111f2ddab5a1fdc25c8f64f2a916",
+  "mode": "DURING",
+  "phase": "SW2-10",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-10-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_public_docs.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_cross_document_regressions.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}
