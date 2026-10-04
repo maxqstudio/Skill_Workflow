@@ -291,7 +291,7 @@ jobs:
           python .github/scripts/validate_skill_reference_split.py --root .
           python scripts/validate_repository_health.py --root .
           python scripts/validate_public_docs.py --root .
-          test -z "$(git status --porcelain --untracked-files=all -- .github/workflows | grep 'tmp-sw2-15-phase-open' || true)"
+          test ! -e .github/workflows/tmp-sw2-15-phase-open.yml
 
       - name: Commit phase-open authority
         shell: bash
