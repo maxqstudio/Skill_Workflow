@@ -56,9 +56,22 @@ jobs:
           python scripts/sync_project_truth.py --root .
           python "$RUNNER_TEMP/sw2-15-sequence-regen.py"
 
-      - name: Validate exact helper-free implementation tree
+      - name: Create local helper-free proof commit
         shell: bash
         run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'SW2-15: local helper-free proof candidate'
+          echo "PROOF_PARENT=$(git rev-parse HEAD^)" >> "$GITHUB_ENV"
+          echo "PROOF_TREE=$(git rev-parse HEAD^{tree})" >> "$GITHUB_ENV"
+          echo "HELPER_FREE_PROOF_COMMIT=$(git rev-parse HEAD)"
+          echo "HELPER_FREE_PROOF_TREE=$(git rev-parse HEAD^{tree})"
+
+      - name: Validate exact clean helper-free proof commit
+        shell: bash
+        run: |
+          test -z "$(git status --porcelain --untracked-files=all)"
           export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
           python -m compileall -q scripts .github/scripts
           python scripts/selftest_governance_engine.py
@@ -72,17 +85,21 @@ jobs:
           test ! -e .github/workflows/tmp-sw2-15-smart-dag-impl.yml
           test ! -e .github/tmp-sw2-15-smart-dag-patch.py
           test ! -e .github/tmp-sw2-15-sequence-regen.py
+          echo "HELPER_FREE_PROOF_VALIDATION=PASS"
+          echo "HELPER_FREE_PROOF_TREE=$PROOF_TREE"
 
-      - name: Restore transport helpers and commit implementation only
+      - name: Rebuild transport commit without helper mutations
         shell: bash
         run: |
-          git checkout HEAD -- \
+          git reset --mixed "$PROOF_PARENT"
+          git checkout "$PROOF_PARENT" -- \
             .github/workflows/tmp-sw2-15-smart-dag-impl.yml \
             .github/tmp-sw2-15-smart-dag-patch.py \
             .github/tmp-sw2-15-sequence-regen.py
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
+          test -z "$(git diff --cached --name-only | grep -E 'tmp-sw2-15-(smart-dag|sequence)' || true)"
           git diff --cached --quiet && { echo 'NO_IMPLEMENTATION_DIFF'; exit 1; }
           git commit -m 'SW2-15: implement Smart Validation DAG planner'
           git push origin HEAD:work/sw2-15-smart-validation-dag
+          echo "TRANSPORT_COMMIT=$(git rev-parse HEAD)"
+          echo "TARGET_HELPER_FREE_TREE=$PROOF_TREE"
