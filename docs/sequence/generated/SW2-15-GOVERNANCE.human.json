@@ -1,8 +1,8 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 27,
-    "interaction_count": 27,
+    "interaction_ceiling": 26,
+    "interaction_count": 26,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
     "participant_ceiling": 16,
@@ -29,20 +29,6 @@
         "python_ast"
       ],
       "to": "module:scripts/analyzer_contract.py"
-    },
-    {
-      "actions": [
-        "visitor.visit"
-      ],
-      "evidence": [
-        "STATIC"
-      ],
-      "from": "module:scripts/extract_project_facts.py",
-      "machine_edge_count": 1,
-      "resolvers": [
-        "python_ast"
-      ],
-      "to": "module:scripts/governance_engine.py"
     },
     {
       "actions": [
@@ -509,10 +495,9 @@
       "id": "module:scripts/governance_engine.py",
       "kind": "module",
       "label": "scripts/governance_engine.py",
-      "machine_node_count": 20,
+      "machine_node_count": 22,
       "machine_nodes": [
         "scripts/governance_engine.py::ValidationDAG",
-        "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
         "scripts/governance_engine.py::ValidationNode",
         "scripts/governance_engine.py::_regression_node",
         "scripts/governance_engine.py::build_dag",
@@ -523,6 +508,7 @@
         "scripts/governance_engine.py::collect_changed_paths",
         "scripts/governance_engine.py::command_action",
         "scripts/governance_engine.py::compile_scripts_action",
+        "scripts/governance_engine.py::dependency_closure",
         "scripts/governance_engine.py::develop_node_names",
         "scripts/governance_engine.py::effective_mode",
         "scripts/governance_engine.py::git",
@@ -530,7 +516,9 @@
         "scripts/governance_engine.py::governed_status",
         "scripts/governance_engine.py::main",
         "scripts/governance_engine.py::planned_node_names",
-        "scripts/governance_engine.py::state_base"
+        "scripts/governance_engine.py::state_base",
+        "scripts/governance_engine.py::verify_node_names",
+        "scripts/governance_engine.py::verify_seed_node_names"
       ]
     },
     {
@@ -691,14 +679,14 @@
       ]
     }
   ],
-  "observed_head": "cf685e7702baafd6a2e57873a5188d66587ea97f",
+  "observed_head": "cb55226c873d2bb94fb2bfde07e237d62b76a692",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 29,
-    "cross_component_machine_edges": 56,
-    "internal_machine_edges_collapsed": 174,
-    "machine_edge_count": 230,
-    "machine_node_count": 130,
+    "cross_component_machine_edges": 55,
+    "internal_machine_edges_collapsed": 178,
+    "machine_edge_count": 233,
+    "machine_node_count": 132,
     "node_map": {
       "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
       "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
@@ -750,7 +738,6 @@
       "scripts/generate_project_docs.py::validate_inputs": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::wanted_doc_names": "module:scripts/generate_project_docs.py",
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
-      "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::_regression_node": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::build_dag": "module:scripts/governance_engine.py",
@@ -761,6 +748,7 @@
       "scripts/governance_engine.py::collect_changed_paths": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::command_action": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::compile_scripts_action": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::dependency_closure": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::develop_node_names": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::effective_mode": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::git": "module:scripts/governance_engine.py",
@@ -769,6 +757,8 @@
       "scripts/governance_engine.py::main": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::planned_node_names": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::state_base": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::verify_node_names": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::verify_seed_node_names": "module:scripts/governance_engine.py",
       "scripts/project_profile.py::_bool_value": "module:scripts/project_profile.py",
       "scripts/project_profile.py::_clean": "module:scripts/project_profile.py",
       "scripts/project_profile.py::contract_settings": "module:scripts/project_profile.py",
@@ -834,5 +824,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872"
+  "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
 }

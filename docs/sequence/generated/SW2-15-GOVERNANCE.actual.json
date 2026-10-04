@@ -179,13 +179,6 @@
       "to": "scripts/extract_project_facts.py::is_test_file"
     },
     {
-      "action": "visitor.visit",
-      "evidence": "STATIC",
-      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
-      "resolver": "python_ast",
-      "to": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit"
-    },
-    {
       "action": "snapshot.read_text",
       "evidence": "STATIC",
       "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
@@ -1005,6 +998,13 @@
       "to": "scripts/governance_engine.py::git_z"
     },
     {
+      "action": "dependency_closure",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::develop_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::dependency_closure"
+    },
+    {
       "action": "git",
       "evidence": "STATIC",
       "from": "scripts/governance_engine.py::governed_status",
@@ -1089,11 +1089,32 @@
       "to": "scripts/governance_engine.py::develop_node_names"
     },
     {
+      "action": "verify_node_names",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::planned_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::verify_node_names"
+    },
+    {
       "action": "path.read_text",
       "evidence": "STATIC",
       "from": "scripts/governance_engine.py::state_base",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "dependency_closure",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::verify_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::dependency_closure"
+    },
+    {
+      "action": "verify_seed_node_names",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::verify_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::verify_seed_node_names"
     },
     {
       "action": "_bool_value",
@@ -2174,15 +2195,6 @@
       "locator": "scripts/governance_engine.py::ValidationDAG"
     },
     {
-      "id": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
-      "kind": "method",
-      "label": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit",
-      "language": "Python",
-      "line_end": 82,
-      "line_start": 73,
-      "locator": "scripts/governance_engine.py::ValidationDAG._assert_acyclic.visit"
-    },
-    {
       "id": "scripts/governance_engine.py::ValidationNode",
       "kind": "class",
       "label": "scripts/governance_engine.py::ValidationNode",
@@ -2196,8 +2208,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::_regression_node",
       "language": "Python",
-      "line_end": 422,
-      "line_start": 417,
+      "line_end": 552,
+      "line_start": 547,
       "locator": "scripts/governance_engine.py::_regression_node"
     },
     {
@@ -2205,8 +2217,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::build_dag",
       "language": "Python",
-      "line_end": 697,
-      "line_start": 623,
+      "line_end": 827,
+      "line_start": 753,
       "locator": "scripts/governance_engine.py::build_dag"
     },
     {
@@ -2214,8 +2226,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::build_mode_dag",
       "language": "Python",
-      "line_end": 620,
-      "line_start": 425,
+      "line_end": 750,
+      "line_start": 555,
       "locator": "scripts/governance_engine.py::build_mode_dag"
     },
     {
@@ -2223,8 +2235,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::classify_changed_paths",
       "language": "Python",
-      "line_end": 280,
-      "line_start": 279,
+      "line_end": 420,
+      "line_start": 419,
       "locator": "scripts/governance_engine.py::classify_changed_paths"
     },
     {
@@ -2232,8 +2244,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::classify_path",
       "language": "Python",
-      "line_end": 276,
-      "line_start": 244,
+      "line_end": 416,
+      "line_start": 384,
       "locator": "scripts/governance_engine.py::classify_path"
     },
     {
@@ -2241,8 +2253,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::cli_action",
       "language": "Python",
-      "line_end": 376,
-      "line_start": 371,
+      "line_end": 506,
+      "line_start": 501,
       "locator": "scripts/governance_engine.py::cli_action"
     },
     {
@@ -2250,8 +2262,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::collect_changed_paths",
       "language": "Python",
-      "line_end": 241,
-      "line_start": 227,
+      "line_end": 381,
+      "line_start": 367,
       "locator": "scripts/governance_engine.py::collect_changed_paths"
     },
     {
@@ -2259,8 +2271,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::command_action",
       "language": "Python",
-      "line_end": 394,
-      "line_start": 379,
+      "line_end": 524,
+      "line_start": 509,
       "locator": "scripts/governance_engine.py::command_action"
     },
     {
@@ -2268,17 +2280,26 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::compile_scripts_action",
       "language": "Python",
-      "line_end": 414,
-      "line_start": 397,
+      "line_end": 544,
+      "line_start": 527,
       "locator": "scripts/governance_engine.py::compile_scripts_action"
+    },
+    {
+      "id": "scripts/governance_engine.py::dependency_closure",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::dependency_closure",
+      "language": "Python",
+      "line_end": 290,
+      "line_start": 261,
+      "locator": "scripts/governance_engine.py::dependency_closure"
     },
     {
       "id": "scripts/governance_engine.py::develop_node_names",
       "kind": "function",
       "label": "scripts/governance_engine.py::develop_node_names",
       "language": "Python",
-      "line_end": 339,
-      "line_start": 294,
+      "line_end": 469,
+      "line_start": 434,
       "locator": "scripts/governance_engine.py::develop_node_names"
     },
     {
@@ -2286,8 +2307,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::effective_mode",
       "language": "Python",
-      "line_end": 291,
-      "line_start": 283,
+      "line_end": 431,
+      "line_start": 423,
       "locator": "scripts/governance_engine.py::effective_mode"
     },
     {
@@ -2295,8 +2316,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::git",
       "language": "Python",
-      "line_end": 201,
-      "line_start": 196,
+      "line_end": 341,
+      "line_start": 336,
       "locator": "scripts/governance_engine.py::git"
     },
     {
@@ -2304,8 +2325,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::git_z",
       "language": "Python",
-      "line_end": 213,
-      "line_start": 204,
+      "line_end": 353,
+      "line_start": 344,
       "locator": "scripts/governance_engine.py::git_z"
     },
     {
@@ -2313,8 +2334,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::governed_status",
       "language": "Python",
-      "line_end": 368,
-      "line_start": 355,
+      "line_end": 498,
+      "line_start": 485,
       "locator": "scripts/governance_engine.py::governed_status"
     },
     {
@@ -2322,8 +2343,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::main",
       "language": "Python",
-      "line_end": 829,
-      "line_start": 700,
+      "line_end": 962,
+      "line_start": 830,
       "locator": "scripts/governance_engine.py::main"
     },
     {
@@ -2331,8 +2352,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::planned_node_names",
       "language": "Python",
-      "line_end": 352,
-      "line_start": 342,
+      "line_end": 482,
+      "line_start": 472,
       "locator": "scripts/governance_engine.py::planned_node_names"
     },
     {
@@ -2340,9 +2361,27 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::state_base",
       "language": "Python",
-      "line_end": 224,
-      "line_start": 216,
+      "line_end": 364,
+      "line_start": 356,
       "locator": "scripts/governance_engine.py::state_base"
+    },
+    {
+      "id": "scripts/governance_engine.py::verify_node_names",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::verify_node_names",
+      "language": "Python",
+      "line_end": 333,
+      "line_start": 328,
+      "locator": "scripts/governance_engine.py::verify_node_names"
+    },
+    {
+      "id": "scripts/governance_engine.py::verify_seed_node_names",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::verify_seed_node_names",
+      "language": "Python",
+      "line_end": 325,
+      "line_start": 293,
+      "locator": "scripts/governance_engine.py::verify_seed_node_names"
     },
     {
       "id": "scripts/project_profile.py::_bool_value",
@@ -2894,7 +2933,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "cf685e7702baafd6a2e57873a5188d66587ea97f",
+  "observed_head": "cb55226c873d2bb94fb2bfde07e237d62b76a692",
   "schema_version": 1,
-  "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872"
+  "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
 }

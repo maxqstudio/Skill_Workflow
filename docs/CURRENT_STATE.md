@@ -18,7 +18,7 @@ Branch: work/sw2-15-smart-validation-dag
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4
 Current candidate SHA: external final acceptance evidence
-Current source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
+Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

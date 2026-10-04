@@ -17,6 +17,7 @@ from governance_engine import (
     ValidationNode,
     classify_changed_paths,
     collect_changed_paths,
+    dependency_closure,
     develop_node_names,
     effective_mode,
     planned_node_names,
@@ -274,6 +275,132 @@ def mode_planning_contract() -> None:
     print("MODE_PLANNING_CONTRACT=PASS")
 
 
+
+def smart_validation_dag_contract() -> None:
+    sequence_paths = ("docs/sequence/sessions/SW2-15-GOVERNANCE.json",)
+    sequence_impacts = classify_changed_paths(sequence_paths)
+    sequence_develop = planned_node_names(
+        "develop", "develop", sequence_paths, sequence_impacts
+    )
+    require(
+        sequence_develop == ("compile_scripts", "sequence_regression"),
+        f"develop prerequisite closure drifted: {sequence_develop}",
+    )
+    print("SMART_DEVELOP_IMPACT_SELECTION=PASS")
+
+    doc_paths = ("references/governance-and-project-truth.md",)
+    doc_impacts = classify_changed_paths(doc_paths)
+    doc_verify = planned_node_names("verify", "verify", doc_paths, doc_impacts)
+    expected_doc_verify = {
+        "validate_project_docs",
+        "validate_human_comprehension",
+        "validate_handoff",
+        "validate_cross_document_consistency",
+    }
+    require(
+        set(doc_verify) == expected_doc_verify,
+        f"verify documentation closure drifted: {doc_verify}",
+    )
+    require(
+        set(doc_verify).isdisjoint(
+            {
+                "engine_regression",
+                "sequence_regression",
+                "cross_document_regression",
+                "compiler_selftest",
+            }
+        ),
+        f"verify retained unrelated regressions: {doc_verify}",
+    )
+
+    engine_paths = ("scripts/governance_engine.py",)
+    engine_impacts = classify_changed_paths(engine_paths)
+    engine_verify = set(
+        planned_node_names("verify", "verify", engine_paths, engine_impacts)
+    )
+    require(
+        {
+            "compile_scripts",
+            "engine_regression",
+            "validate_project_docs",
+            "validate_human_comprehension",
+            "validate_handoff",
+            "validate_cross_document_consistency",
+        }.issubset(engine_verify),
+        f"engine verify closure incomplete: {engine_verify}",
+    )
+
+    source_paths = ("src/example.py",)
+    source_impacts = classify_changed_paths(source_paths)
+    source_verify = set(
+        planned_node_names("verify", "verify", source_paths, source_impacts)
+    )
+    require(
+        {
+            "validate_project_docs",
+            "validate_human_comprehension",
+            "validate_sequence_sessions",
+            "validate_handoff",
+            "validate_cross_document_consistency",
+        }.issubset(source_verify),
+        f"source verify closure incomplete: {source_verify}",
+    )
+    require(
+        len(doc_verify) < len(VERIFY_NODE_NAMES),
+        "smart verify did not reduce known documentation work",
+    )
+    print("SMART_VERIFY_DEPENDENCY_CLOSURE=PASS")
+
+    broad_paths = ("scripts/new_future_validator.py",)
+    broad_impacts = classify_changed_paths(broad_paths)
+    broad_verify = planned_node_names("develop", "verify", broad_paths, broad_impacts)
+    require(
+        broad_verify == VERIFY_NODE_NAMES,
+        f"broad impact was narrowed unsafely: {broad_verify}",
+    )
+
+    adversarial = (
+        (
+            ("child",),
+            {"child": ("missing",)},
+            ("child",),
+            "UNKNOWN_PLANNER_DEPENDENCY",
+        ),
+        (
+            ("a",),
+            {"a": ("b",), "b": ("a",)},
+            ("a", "b"),
+            "PLANNER_DAG_CYCLE",
+        ),
+        (
+            ("ghost",),
+            {"known": ()},
+            ("known",),
+            "UNKNOWN_PLANNER_NODE",
+        ),
+    )
+    for seeds, dependencies, order, marker_text in adversarial:
+        try:
+            dependency_closure(seeds, dependencies, order)
+        except ValueError as exc:
+            require(marker_text in str(exc), f"wrong planner failure: {exc}")
+        else:
+            raise AssertionError(marker_text + " did not fail closed")
+    print("SMART_PLANNER_FAIL_CLOSED=PASS")
+
+    finalize_nodes = planned_node_names(
+        "finalize",
+        "finalize",
+        ("scripts/governance_engine.py",),
+        ("engine",),
+    )
+    require(
+        finalize_nodes == FINALIZE_NODE_NAMES,
+        f"finalize authoritative DAG was narrowed: {finalize_nodes}",
+    )
+    print("SMART_FINALIZE_EXHAUSTIVE=PASS")
+
+
 def changed_path_collection_contract() -> None:
     with tempfile.TemporaryDirectory(prefix="sw2-impact-") as td:
         root = Path(td).resolve()
@@ -401,6 +528,7 @@ def main() -> int:
     dag_executes_once()
     dag_fail_closed()
     mode_planning_contract()
+    smart_validation_dag_contract()
     changed_path_collection_contract()
     mode_cli_integration_contract()
     print("GOVERNANCE_ENGINE_SELFTEST=PASS")

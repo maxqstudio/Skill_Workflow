@@ -7,7 +7,7 @@
 SW2-15 covers Smart Validation DAG only: safe impacted-node selection in develop, complete affected dependency closure in verify, exhaustive finalize authority, and adversarial false-PASS regression. It must not weaken SW2-14 incremental Project Truth semantics, accepted exact-head authority, sequence evidence, cross-platform/consumer acceptance, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
+Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
