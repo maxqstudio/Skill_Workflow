@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-13",
+  "current_phase": "SW2-14",
   "phases": [
     {
       "exit_criteria": [
@@ -168,7 +168,7 @@
       ],
       "id": "SW2-13",
       "objective": "Reduce root SKILL.md context cost by keeping non-negotiable invariants and routing detailed guidance into deterministic reference documents.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Skill Core / Reference Split"
     },
     {
@@ -180,7 +180,7 @@
       ],
       "id": "SW2-14",
       "objective": "Regenerate only impacted facts and projections during development while retaining exhaustive final consistency validation.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Incremental Project Truth Compiler"
     },
     {

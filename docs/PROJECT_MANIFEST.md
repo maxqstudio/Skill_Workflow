@@ -12,7 +12,7 @@ Governance profile: strict
 Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-13-skill-core-reference-split
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 1c81c3012d9a5891e8145726c38165e113057676
+Last accepted SHA: 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef
 Current source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 
 ## Authorities

@@ -64,7 +64,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-13
+Current phase: SW2-14
 
 Current status: SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS
 
@@ -110,15 +110,17 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run the complete permanent acceptance matrix on the exact clean post-promotion SW2-13 candidate.
-- If the exact post-promotion matrix passes, merge SW2-13 to main and verify post-merge main before opening SW2-14.
+- Map current Project Truth generation inputs, projections, and dependency relationships before changing regeneration behavior.
+- Define a deterministic fail-closed impact graph from changed authority/source inputs to affected generated facts and projections.
+- Implement incremental develop/verify regeneration only after negative-path tests prove unknown impact broadens validation and unchanged projections are not rewritten.
+- Keep finalize exhaustive and require parity against the accepted full regeneration path before SW2-14 closure.
 
 Blocked actions:
-- Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.
-- Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.
-- Do not introduce multi-hop reference chains for required operating rules.
-- Do not merge SW2-13 unless the complete permanent matrix passes on the exact clean post-promotion candidate.
-- Do not begin SW2-14 implementation until SW2-13 is accepted on main.
+- Do not skip or weaken exhaustive finalize validation.
+- Do not treat cache state or timestamps as semantic acceptance authority.
+- Do not suppress regeneration when impact classification is unknown or ambiguous; unknown impact must broaden work fail-closed.
+- Do not rewrite unchanged tracked projections in develop/verify merely to refresh timestamps or formatting.
+- Do not begin SW2-15 implementation until SW2-14 is accepted on main.
 
 Known blockers:
 - None declared.
@@ -177,9 +179,14 @@ Known blockers:
 - SW2-13 eager-core reduction is proven on exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62: SKILL.md is 10,868 bytes / 235 lines versus the 55,350-byte / 1,801-line accepted baseline, while four one-level bundled references preserve moved baseline bodies verbatim.
 - SW2-13 reference integrity is proven: deterministic routing depth is 1, six negative-path regressions fail closed, and Governance Selftest run 37208469609 passes the contract on Ubuntu and Windows.
 - SW2-13 feature acceptance is proven on exact clean candidate 5ad450950099679388afeaebca686cb26906be62: Self Governance 37208469566, Governance Selftest 37208469609 on Ubuntu and Windows, SW2 Sequence Evidence 37208469659, Governance Engine Performance 37208469572, and Consumer Engine Performance 37208469581 all succeeded.
+- SW2-13 Skill Core / Reference Split is accepted on main 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef with merged tree 8d1ad6cc0c635954f06f66d1bf4a639532073e23 equal to exact tested post-promotion candidate tree; post-merge Self Governance 37208968898, Governance Selftest 37208968830 on Ubuntu and Windows, SW2 Sequence Evidence 37208968839, Governance Engine Performance 37208968906, and Consumer Engine Performance 37208968813 all succeeded.
 
 ### Not proven
 
+- SW2-14 deterministic Project Truth impact graph is not yet proven.
+- SW2-14 selective regeneration and unchanged-projection preservation are not yet proven.
+- SW2-14 unknown-impact fail-closed escalation is not yet proven.
+- SW2-14 finalize parity with exhaustive accepted regeneration is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

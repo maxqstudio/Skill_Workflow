@@ -4,30 +4,27 @@
 
 ## Evidence boundary
 
-SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.
+SW2-14 covers Incremental Project Truth Compiler only: deterministic fail-closed impact analysis, selective develop/verify regeneration, preservation of unchanged projections, unknown-impact escalation, and exhaustive finalize parity. It must not weaken accepted Project Truth authority, schema/toolchain identity, sequence evidence, exact-head acceptance, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
 Current source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-13-R1 | Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail. | PASS: artifacts/sw2-13-skill-core-reference-split.json maps all normative baseline sections into CORE+ROUTING or one-level REFERENCE buckets; the eager root retains startup order, authority hierarchy, fail-closed safety, exact-head acceptance, documentation/sequence boundaries, and final-gate rules. Exact feature candidate 5ad450950099679388afeaebca686cb26906be62 passed Self Governance run 37208469566 and Governance Selftest run 37208469609 on Ubuntu and Windows. | PASS |
-| SW2-13-R2 | Detailed guidance has stable reference locations and the root skill context cost is measurably reduced. | PASS: root SKILL.md reduced from 55,350 bytes / 1,801 lines to 10,868 bytes / 235 lines (80.36% byte reduction; 86.95% line reduction). Four bundled one-level references preserve the moved baseline bodies verbatim, with per-reference SHA-256 evidence in artifacts/sw2-13-skill-core-reference-split.json. | PASS |
-| SW2-13-R3 | Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed. | PASS: four required root references resolve at routing depth 1; permanent validator plus selftest reject six negative paths: missing reference, broken root link, duplicate/ambiguous route, multi-hop chain, missing core invariant, and root line-budget overflow. Governance Selftest run 37208469609 passed the contract on Ubuntu and Windows. | PASS |
-| SW2-13-R4 | Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate. | PASS: exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62 passed all six permanent check contexts: Self Governance run 37208469566; Governance Selftest run 37208469609 on Ubuntu and Windows; SW2 Sequence Evidence run 37208469659; Governance Engine Performance run 37208469572; Consumer Engine Performance run 37208469581. Cross-document skill-reference claim scope and read-only verify also passed on both operating systems. | PASS |
+| SW2-14-R1 | Project Truth impact graph is deterministic, dependency-aware, and fail-closed. | NOT_PROVEN until the current full regeneration pipeline is mapped, impact edges are explicit/deterministic, and ambiguous or unsupported impact cannot silently narrow work. | NOT_PROVEN |
+| SW2-14-R2 | Develop/verify regenerate only affected facts and projections and do not rewrite unchanged tracked projections. | NOT_PROVEN until selective regeneration is implemented with byte/digest evidence proving unaffected projections remain untouched. | NOT_PROVEN |
+| SW2-14-R3 | Unknown or ambiguous impact broadens regeneration and validation rather than permitting a false PASS. | NOT_PROVEN until adversarial negative paths prove unknown inputs and dependency gaps escalate fail-closed to a broader safe path. | NOT_PROVEN |
+| SW2-14-R4 | Finalize remains exhaustive and produces governance-equivalent canonical outputs to the accepted full regeneration path across platforms and the permanent matrix. | NOT_PROVEN until exhaustive finalize parity, exact-head cleanliness, Ubuntu/Windows governance, sequence evidence, engine performance, and real-consumer acceptance all pass on the final candidate. | NOT_PROVEN |
 
 ## Test commands
 
-- python -m compileall -q scripts
-- python .github/scripts/validate_skill_reference_split.py --root .
-- python .github/scripts/selftest_skill_reference_split.py
 - python scripts/selftest_project_truth_compiler.py
+- python scripts/selftest_governance_engine.py
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/validate_cross_document_consistency.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --require-base
-- python scripts/governance_engine.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -41,8 +38,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-13-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-14-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 

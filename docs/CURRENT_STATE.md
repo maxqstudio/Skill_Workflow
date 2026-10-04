@@ -3,20 +3,20 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 1c81c3012d9a5891e8145726c38165e113057676
+Authority verified at SHA: 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-13
+Phase: SW2-14
 Status: SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS
-Roadmap phase: SW2-13
+Roadmap phase: SW2-14
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
 Branch: work/sw2-13-skill-core-reference-split
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 1c81c3012d9a5891e8145726c38165e113057676
+Last accepted SHA: 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef
 Current candidate SHA: external final acceptance evidence
 Current source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-13-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-14-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -89,8 +89,13 @@ SEQUENCE_SYNC: PASS
 - SW2-13 eager-core reduction is proven on exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62: SKILL.md is 10,868 bytes / 235 lines versus the 55,350-byte / 1,801-line accepted baseline, while four one-level bundled references preserve moved baseline bodies verbatim.
 - SW2-13 reference integrity is proven: deterministic routing depth is 1, six negative-path regressions fail closed, and Governance Selftest run 37208469609 passes the contract on Ubuntu and Windows.
 - SW2-13 feature acceptance is proven on exact clean candidate 5ad450950099679388afeaebca686cb26906be62: Self Governance 37208469566, Governance Selftest 37208469609 on Ubuntu and Windows, SW2 Sequence Evidence 37208469659, Governance Engine Performance 37208469572, and Consumer Engine Performance 37208469581 all succeeded.
+- SW2-13 Skill Core / Reference Split is accepted on main 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef with merged tree 8d1ad6cc0c635954f06f66d1bf4a639532073e23 equal to exact tested post-promotion candidate tree; post-merge Self Governance 37208968898, Governance Selftest 37208968830 on Ubuntu and Windows, SW2 Sequence Evidence 37208968839, Governance Engine Performance 37208968906, and Consumer Engine Performance 37208968813 all succeeded.
 
 ## Not proven
+- SW2-14 deterministic Project Truth impact graph is not yet proven.
+- SW2-14 selective regeneration and unchanged-projection preservation are not yet proven.
+- SW2-14 unknown-impact fail-closed escalation is not yet proven.
+- SW2-14 finalize parity with exhaustive accepted regeneration is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -100,14 +105,16 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run the complete permanent acceptance matrix on the exact clean post-promotion SW2-13 candidate.
-- If the exact post-promotion matrix passes, merge SW2-13 to main and verify post-merge main before opening SW2-14.
+- Map current Project Truth generation inputs, projections, and dependency relationships before changing regeneration behavior.
+- Define a deterministic fail-closed impact graph from changed authority/source inputs to affected generated facts and projections.
+- Implement incremental develop/verify regeneration only after negative-path tests prove unknown impact broadens validation and unchanged projections are not rewritten.
+- Keep finalize exhaustive and require parity against the accepted full regeneration path before SW2-14 closure.
 
 ## Explicitly blocked
-- Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.
-- Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.
-- Do not introduce multi-hop reference chains for required operating rules.
-- Do not merge SW2-13 unless the complete permanent matrix passes on the exact clean post-promotion candidate.
-- Do not begin SW2-14 implementation until SW2-13 is accepted on main.
+- Do not skip or weaken exhaustive finalize validation.
+- Do not treat cache state or timestamps as semantic acceptance authority.
+- Do not suppress regeneration when impact classification is unknown or ambiguous; unknown impact must broaden work fail-closed.
+- Do not rewrite unchanged tracked projections in develop/verify merely to refresh timestamps or formatting.
+- Do not begin SW2-15 implementation until SW2-14 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

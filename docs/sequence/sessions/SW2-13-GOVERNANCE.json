@@ -39,9 +39,9 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "CURRENT",
+  "scope": "HISTORICAL",
   "session_id": "SW2-13-GOVERNANCE",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "test_traceability_required": true,
   "tests": [
     ".github/scripts/selftest_skill_reference_split.py",

@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.",
+  "evidence_boundary": "SW2-14 covers Incremental Project Truth Compiler only: deterministic fail-closed impact analysis, selective develop/verify regeneration, preservation of unchanged projections, unknown-impact escalation, and exhaustive finalize parity. It must not weaken accepted Project Truth authority, schema/toolchain identity, sequence evidence, exact-head acceptance, or any prior V2 guarantee.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,67 +17,64 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: artifacts/sw2-13-skill-core-reference-split.json maps all normative baseline sections into CORE+ROUTING or one-level REFERENCE buckets; the eager root retains startup order, authority hierarchy, fail-closed safety, exact-head acceptance, documentation/sequence boundaries, and final-gate rules. Exact feature candidate 5ad450950099679388afeaebca686cb26906be62 passed Self Governance run 37208469566 and Governance Selftest run 37208469609 on Ubuntu and Windows.",
-      "id": "SW2-13-R1",
-      "requirement": "Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until the current full regeneration pipeline is mapped, impact edges are explicit/deterministic, and ambiguous or unsupported impact cannot silently narrow work.",
+      "id": "SW2-14-R1",
+      "requirement": "Project Truth impact graph is deterministic, dependency-aware, and fail-closed.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: root SKILL.md reduced from 55,350 bytes / 1,801 lines to 10,868 bytes / 235 lines (80.36% byte reduction; 86.95% line reduction). Four bundled one-level references preserve the moved baseline bodies verbatim, with per-reference SHA-256 evidence in artifacts/sw2-13-skill-core-reference-split.json.",
-      "id": "SW2-13-R2",
-      "requirement": "Detailed guidance has stable reference locations and the root skill context cost is measurably reduced.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until selective regeneration is implemented with byte/digest evidence proving unaffected projections remain untouched.",
+      "id": "SW2-14-R2",
+      "requirement": "Develop/verify regenerate only affected facts and projections and do not rewrite unchanged tracked projections.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: four required root references resolve at routing depth 1; permanent validator plus selftest reject six negative paths: missing reference, broken root link, duplicate/ambiguous route, multi-hop chain, missing core invariant, and root line-budget overflow. Governance Selftest run 37208469609 passed the contract on Ubuntu and Windows.",
-      "id": "SW2-13-R3",
-      "requirement": "Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until adversarial negative paths prove unknown inputs and dependency gaps escalate fail-closed to a broader safe path.",
+      "id": "SW2-14-R3",
+      "requirement": "Unknown or ambiguous impact broadens regeneration and validation rather than permitting a false PASS.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62 passed all six permanent check contexts: Self Governance run 37208469566; Governance Selftest run 37208469609 on Ubuntu and Windows; SW2 Sequence Evidence run 37208469659; Governance Engine Performance run 37208469572; Consumer Engine Performance run 37208469581. Cross-document skill-reference claim scope and read-only verify also passed on both operating systems.",
-      "id": "SW2-13-R4",
-      "requirement": "Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until exhaustive finalize parity, exact-head cleanliness, Ubuntu/Windows governance, sequence evidence, engine performance, and real-consumer acceptance all pass on the final candidate.",
+      "id": "SW2-14-R4",
+      "requirement": "Finalize remains exhaustive and produces governance-equivalent canonical outputs to the accepted full regeneration path across platforms and the permanent matrix.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-13-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_session": "SW2-14-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
-    "python -m compileall -q scripts",
-    "python .github/scripts/validate_skill_reference_split.py --root .",
-    "python .github/scripts/selftest_skill_reference_split.py",
     "python scripts/selftest_project_truth_compiler.py",
+    "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_cross_document_regressions.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/validate_cross_document_consistency.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --require-base",
-    "python scripts/governance_engine.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
-    "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
