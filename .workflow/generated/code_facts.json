@@ -238,7 +238,7 @@
       "file": "scripts/selftest_public_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 68
+      "lines": 83
     },
     {
       "directory": "scripts",
@@ -364,7 +364,7 @@
       "file": "scripts/validate_public_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 167
+      "lines": 186
     },
     {
       "directory": "scripts",
@@ -10369,6 +10369,10 @@
     },
     {
       "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "PUBLIC_CONTENT_REQUIREMENTS.get"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
       "target_token": "Path"
     },
     {
@@ -10417,6 +10421,10 @@
     },
     {
       "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
       "target_token": "readme_path.read_text"
     },
     {
@@ -10426,6 +10434,22 @@
     {
       "caller": "scripts/selftest_public_docs.py::main",
       "target_token": "readme_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "rollback_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "rollback_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "rollback_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "rollback_text.replace"
     },
     {
       "caller": "scripts/selftest_public_docs.py::main",
@@ -10442,6 +10466,10 @@
     {
       "caller": "scripts/selftest_public_docs.py::main",
       "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "validate"
     },
     {
       "caller": "scripts/selftest_public_docs.py::main",
@@ -17061,11 +17089,19 @@
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "PUBLIC_CONTENT_REQUIREMENTS.get"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "docs_index.is_file"
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "docs_index.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
@@ -20773,8 +20809,8 @@
     {
       "file": "scripts/selftest_public_docs.py",
       "kind": "function",
-      "line_end": 64,
-      "line_start": 20,
+      "line_end": 79,
+      "line_start": 21,
       "locator": "scripts/selftest_public_docs.py::main",
       "symbol": "main"
     },
@@ -21573,16 +21609,16 @@
     {
       "file": "scripts/validate_public_docs.py",
       "kind": "function",
-      "line_end": 146,
-      "line_start": 69,
+      "line_end": 165,
+      "line_start": 84,
       "locator": "scripts/validate_public_docs.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/validate_public_docs.py",
       "kind": "function",
-      "line_end": 163,
-      "line_start": 149,
+      "line_end": 182,
+      "line_start": 168,
       "locator": "scripts/validate_public_docs.py::main",
       "symbol": "main"
     },
@@ -21708,13 +21744,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39",
+  "source_digest": "3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e",
   "source_summary": {
     "files": 47,
     "languages": {
       "Python": 47
     },
-    "lines": 12854,
+    "lines": 12888,
     "test_files": 0
   },
   "tests": []

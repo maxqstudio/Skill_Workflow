@@ -1551,8 +1551,8 @@
       "kind": "function",
       "label": "scripts/validate_public_docs.py::main",
       "language": "Python",
-      "line_end": 163,
-      "line_start": 149,
+      "line_end": 182,
+      "line_start": 168,
       "locator": "scripts/validate_public_docs.py::main"
     },
     {
@@ -1560,8 +1560,8 @@
       "kind": "function",
       "label": "scripts/validate_public_docs.py::validate",
       "language": "Python",
-      "line_end": 146,
-      "line_start": 69,
+      "line_end": 165,
+      "line_start": 84,
       "locator": "scripts/validate_public_docs.py::validate"
     },
     {
@@ -1583,7 +1583,7 @@
       "locator": "scripts/validate_schema_toolchain.py::validate"
     }
   ],
-  "observed_head": "11318020ff93794040e7af4f599ceaefb0b0b24b",
+  "observed_head": "72e7bb5e18615d00f06a68161b72b9a91855aaa9",
   "schema_version": 1,
-  "source_digest": "28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39"
+  "source_digest": "3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e"
 }

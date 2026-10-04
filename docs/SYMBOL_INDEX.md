@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
+Source digest: 3f2d599a3a17997c9cb38f665f4b9f390b9f978da47e94118e5c432e61eee79e
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -468,7 +468,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 20-64 |
+| main | function | 21-79 |
 
 </details>
 
@@ -712,8 +712,8 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| validate | function | 69-146 |
-| main | function | 149-163 |
+| validate | function | 84-165 |
+| main | function | 168-182 |
 
 </details>
 
