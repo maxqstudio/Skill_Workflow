@@ -74,11 +74,11 @@ SEQUENCE_SYNC: PASS
 - SW2-08-R4 cross-platform acceptance is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: all six permanent checks succeeded and Governance Selftest 37167140719 passed the complete permanent matrix on Ubuntu and Windows.
 - SW2-08 is accepted and squash-merged to main as 8d0fbfd7177128774a0f321b8c95e6befdaaf659 with tree 0c43d4459518a0380e230935ae523ef85fb56904 equal to the exact tested candidate tree. Post-merge Self Governance 37167640353, Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence 37167640369, Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352 all succeeded.
 - SW2-09-R1 all prior SW2 phases accepted is proven by accepted SW2-00 through SW2-08 authority and green post-merge main 8d0fbfd7177128774a0f321b8c95e6befdaaf659.
+- SW2-09-R3 migration/rollback guidance and synchronized Project Truth are accepted on exact tree-equivalent evidence head aef29794d2f94bd6066410408ad948882ccf10ef: all six permanent checks succeeded; Governance Selftest 37184136532 passed Ubuntu/Windows; all canonical claims are PASS with document/source/test traceability; changed release, migration, and repository-governance semantics were explicitly audited against their source owners and regression tests.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
 - SW2-09 exact stable release candidate acceptance is NOT_PROVEN.
-- SW2-09 migration and rollback guidance publication is NOT_PROVEN.
 - SW2-09 versioned GitHub tag/release publication is NOT_PROVEN.
 
 ## Known blockers
@@ -88,9 +88,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Audit and complete V2 migration plus rollback guidance without publishing a release.
-- Designate an exact SW2-09 release candidate and run complete final acceptance.
-- Only after R2 and R3 PASS, create the versioned GitHub tag/release from that exact tested HEAD and verify publication evidence.
+- Run complete permanent CI on the clean post-R3 promotion candidate and require all six checks PASS.
+- If that exact candidate passes, promote SW2-09-R2 release-candidate acceptance without publishing.
+- After R2 is PASS on a fresh exact candidate, run strict v2.0.0 publication-ready preflight; create no tag/release before publication_authority=true.
 
 ## Explicitly blocked
 - Do not create or publish the V2 stable tag/release before SW2-09-R2 and SW2-09-R3 are PASS on an exact publication candidate.

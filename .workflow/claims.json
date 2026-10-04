@@ -332,7 +332,8 @@
       ],
       "id": "TRUTH-SW2-RELEASE-GOVERNANCE",
       "runtime_evidence": [
-        "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope."
+        "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.",
+        "Exact SW2-09 evidence head aef29794d2f94bd6066410408ad948882ccf10ef passed release-preflight regression on Ubuntu and Windows in Governance Selftest 37184136532. Stable SW2-09 strict preflight semantics permit only R4=NOT_PROVEN as publication-pending; R3 NOT_PROVEN, R4 FAIL, missing R4, dirty worktree, failed finalize, wrong phase, and stable evidence-only paths are rejected."
       ],
       "source_owners": [
         "docs/handbook/reference/release-process.md",

@@ -29,10 +29,10 @@
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "NOT_PROVEN at phase opening. Existing compatibility and migration material must be audited and completed with explicit rollback guidance for the V2 stable release.",
+      "evidence": "Published V2 migration and rollback guidance is accepted on exact tree-equivalent evidence head aef29794d2f94bd6066410408ad948882ccf10ef. Governance Selftest run 37184136532 passed on Ubuntu and Windows including release-preflight, public-documentation, cross-document, Project Truth, verify-read-only, adoption-profile, and STRICT workflow regressions. Self Governance 37184136545, SW2 Sequence Evidence 37184136523, Governance Engine Performance 37184136533, and Consumer Engine Performance 37184136502 all succeeded. Public-doc validation requires explicit migration rollback and immutable stable-release rollback guidance; release preflight regression proves stable publication may leave only SW2-09-R4 publication-pending while all other requirements remain fail-closed.",
       "id": "SW2-09-R3",
       "requirement": "Migration and rollback guidance are published.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN at phase opening. No SW2-09 stable tag or GitHub release may be created until R2 and R3 pass and the publication HEAD is exact-bound.",
@@ -66,23 +66,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
