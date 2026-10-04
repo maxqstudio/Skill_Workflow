@@ -32,19 +32,23 @@ CORE_INVARIANTS = (
 LINK_RE = re.compile(r"\[[^\]]+\]\((references/[^)#?]+\.md)(?:#[^)]+)?\)")
 
 
+def _normalized_text(path: Path) -> str:
+    return path.read_bytes().decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+
+
 def validate(root: Path) -> list[str]:
     root = root.resolve()
     failures: list[str] = []
     skill = root / "SKILL.md"
     if not skill.is_file():
         return ["SKILL_MISSING:SKILL.md"]
-    raw = skill.read_bytes()
-    text = raw.decode("utf-8")
+    text = _normalized_text(skill)
+    normalized_bytes = len(text.encode("utf-8"))
     lines = text.splitlines()
     if len(lines) > MAX_SKILL_LINES:
         failures.append(f"SKILL_LINE_BUDGET_EXCEEDED:{len(lines)}>{MAX_SKILL_LINES}")
-    if len(raw) > MAX_SKILL_BYTES:
-        failures.append(f"SKILL_BYTE_BUDGET_EXCEEDED:{len(raw)}>{MAX_SKILL_BYTES}")
+    if normalized_bytes > MAX_SKILL_BYTES:
+        failures.append(f"SKILL_BYTE_BUDGET_EXCEEDED:{normalized_bytes}>{MAX_SKILL_BYTES}")
     if not text.startswith("---\n") or "\nname: project-handoff-workflow\n" not in text or "\ndescription:" not in text:
         failures.append("SKILL_FRONTMATTER_INVALID")
     for invariant in CORE_INVARIANTS:
@@ -70,7 +74,7 @@ def validate(root: Path) -> list[str]:
         path = root / ref
         if not path.is_file():
             continue
-        body = path.read_text(encoding="utf-8")
+        body = _normalized_text(path)
         nested = LINK_RE.findall(body)
         if nested:
             failures.append("REFERENCE_CHAIN_FORBIDDEN:" + ref + ":" + ",".join(nested))
@@ -89,8 +93,8 @@ def main() -> int:
             print("FAIL", failure)
         return 1
     root = Path(args.root).resolve()
-    skill = root / "SKILL.md"
-    print(f"SKILL_REFERENCE_SPLIT=PASS lines={len(skill.read_text(encoding='utf-8').splitlines())} bytes={len(skill.read_bytes())} references={len(REQUIRED_REFERENCES)}")
+    text = _normalized_text(root / "SKILL.md")
+    print(f"SKILL_REFERENCE_SPLIT=PASS lines={len(text.splitlines())} bytes={len(text.encode('utf-8'))} references={len(REQUIRED_REFERENCES)}")
     return 0
 
 if __name__ == "__main__":
