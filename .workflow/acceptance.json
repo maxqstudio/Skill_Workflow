@@ -17,28 +17,28 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until every normative SKILL.md section is mapped and all accepted non-negotiable safety/authority invariants are shown to remain in the eager core.",
+      "evidence": "PASS: artifacts/sw2-13-skill-core-reference-split.json maps all normative baseline sections into CORE+ROUTING or one-level REFERENCE buckets; the eager root retains startup order, authority hierarchy, fail-closed safety, exact-head acceptance, documentation/sequence boundaries, and final-gate rules. Exact feature candidate 5ad450950099679388afeaebca686cb26906be62 passed Self Governance run 37208469566 and Governance Selftest run 37208469609 on Ubuntu and Windows.",
       "id": "SW2-13-R1",
       "requirement": "Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until detailed guidance is moved into stable bundled references and root SKILL.md context cost is measured before/after without semantic loss.",
+      "evidence": "PASS: root SKILL.md reduced from 55,350 bytes / 1,801 lines to 10,868 bytes / 235 lines (80.36% byte reduction; 86.95% line reduction). Four bundled one-level references preserve the moved baseline bodies verbatim, with per-reference SHA-256 evidence in artifacts/sw2-13-skill-core-reference-split.json.",
       "id": "SW2-13-R2",
       "requirement": "Detailed guidance has stable reference locations and the root skill context cost is measurably reduced.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until required one-level references resolve deterministically and negative-path tests reject missing, broken, duplicate, or ambiguous required references.",
+      "evidence": "PASS: four required root references resolve at routing depth 1; permanent validator plus selftest reject six negative paths: missing reference, broken root link, duplicate/ambiguous route, multi-hop chain, missing core invariant, and root line-budget overflow. Governance Selftest run 37208469609 passed the contract on Ubuntu and Windows.",
       "id": "SW2-13-R3",
       "requirement": "Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until targeted behavioral parity regression plus all six permanent checks pass on the exact clean SW2-13 candidate on Ubuntu and Windows.",
+      "evidence": "PASS: exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62 passed all six permanent check contexts: Self Governance run 37208469566; Governance Selftest run 37208469609 on Ubuntu and Windows; SW2 Sequence Evidence run 37208469659; Governance Engine Performance run 37208469572; Consumer Engine Performance run 37208469581. Cross-document skill-reference claim scope and read-only verify also passed on both operating systems.",
       "id": "SW2-13-R4",
       "requirement": "Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -61,23 +61,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

@@ -86,11 +86,11 @@ SEQUENCE_SYNC: PASS
 - SW2-11 Root AGENTS.md Contract was squash-merged to main as 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 with tree 355a351b6da106dfa6538add0c13f5a4d2f2d67f equal to the exact tested clean-head tree. Post-merge main passed Self Governance 37202694399, Governance Selftest 37202694460 on Ubuntu and Windows, SW2 Sequence Evidence 37202694406, Governance Engine Performance 37202694405, and Consumer Engine Performance 37202694400.
 - SW2-12 Repository Hygiene & Dead Artifact Cleanup is accepted on exact implementation candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. The obsolete one-shot SW2-09 publication workflow was removed, tracked tmp-* workflows now fail closed, and historical audit evidence/remote branches were preserved unless deletion safety was proven.
 - SW2-12 Repository Hygiene & Dead Artifact Cleanup was squash-merged to main as 1c81c3012d9a5891e8145726c38165e113057676 with tree d2c0c11626196069547021ef1a1f9a8220368464 equal to the exact tested clean closure tree. Post-merge main passed Self Governance 37204813037, Governance Selftest 37204813031 on Ubuntu and Windows, SW2 Sequence Evidence 37204813032, Governance Engine Performance 37204813028, and Consumer Engine Performance 37204813038.
+- SW2-13 eager-core reduction is proven on exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62: SKILL.md is 10,868 bytes / 235 lines versus the 55,350-byte / 1,801-line accepted baseline, while four one-level bundled references preserve moved baseline bodies verbatim.
+- SW2-13 reference integrity is proven: deterministic routing depth is 1, six negative-path regressions fail closed, and Governance Selftest run 37208469609 passes the contract on Ubuntu and Windows.
+- SW2-13 feature acceptance is proven on exact clean candidate 5ad450950099679388afeaebca686cb26906be62: Self Governance 37208469566, Governance Selftest 37208469609 on Ubuntu and Windows, SW2 Sequence Evidence 37208469659, Governance Engine Performance 37208469572, and Consumer Engine Performance 37208469581 all succeeded.
 
 ## Not proven
-- SW2-13 root SKILL.md invariant-preservation mapping is not yet proven complete.
-- SW2-13 reference split, context-cost reduction, and deterministic reference-resolution contract are not yet proven.
-- SW2-13 behavioral parity after progressive disclosure is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -100,15 +100,14 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Inventory every normative SKILL.md section and classify it as CORE invariant, ROUTING instruction, or REFERENCE detail before moving content.
-- Create stable root references/ documents with deterministic one-level links from SKILL.md and add fail-closed validation for missing, broken, or ambiguous required references.
-- Measure root SKILL.md size/line reduction and prove behavioral parity with targeted negative-path regression plus the complete permanent acceptance matrix.
+- Run the complete permanent acceptance matrix on the exact clean post-promotion SW2-13 candidate.
+- If the exact post-promotion matrix passes, merge SW2-13 to main and verify post-merge main before opening SW2-14.
 
 ## Explicitly blocked
 - Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.
 - Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.
 - Do not introduce multi-hop reference chains for required operating rules.
-- Do not mark SW2-13 requirements PASS before reference integrity, context-cost, and behavioral evidence exists.
-- Do not begin SW2-14 implementation until SW2-13 is accepted.
+- Do not merge SW2-13 unless the complete permanent matrix passes on the exact clean post-promotion candidate.
+- Do not begin SW2-14 implementation until SW2-13 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->
