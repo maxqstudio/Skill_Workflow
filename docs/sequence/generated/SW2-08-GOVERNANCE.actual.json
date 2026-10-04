@@ -823,6 +823,13 @@
       "to": "scripts/schema_contract.py::require_json_schema_version"
     },
     {
+      "action": "buffer.write",
+      "evidence": "STATIC",
+      "from": "scripts/script_runner.py::invoke_main",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_adoption_profiles.py::write"
+    },
+    {
       "action": "path.read_bytes",
       "evidence": "STATIC",
       "from": "scripts/selftest_sequence_human_view.py::sha256",
@@ -1747,6 +1754,15 @@
       "locator": "scripts/script_runner.py::invoke_main"
     },
     {
+      "id": "scripts/selftest_adoption_profiles.py::write",
+      "kind": "function",
+      "label": "scripts/selftest_adoption_profiles.py::write",
+      "language": "Python",
+      "line_end": 19,
+      "line_start": 17,
+      "locator": "scripts/selftest_adoption_profiles.py::write"
+    },
+    {
       "id": "scripts/selftest_sequence_human_view.py::sha256",
       "kind": "function",
       "label": "scripts/selftest_sequence_human_view.py::sha256",
@@ -1927,7 +1943,7 @@
       "locator": "scripts/toolchain_identity.py::write_toolchain_lock"
     }
   ],
-  "observed_head": "114b40e04046d47ef0803652aa011e9e1dc0143b",
+  "observed_head": "930e3f5f63db3b5efd08f77580e23a1c70144fbc",
   "schema_version": 1,
-  "source_digest": "7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71"
+  "source_digest": "28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39"
 }

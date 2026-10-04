@@ -18,7 +18,7 @@ Branch: work/sw2-08-regression-adoption-validation
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: bcc861bf9acc4a02702f5eec8bb45345617cd94a
 Current candidate SHA: external final acceptance evidence
-Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
+Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

@@ -7,7 +7,7 @@
 SW2-08 acceptance covers Regression & Adoption Validation only: representative LITE, STANDARD, and STRICT adoption fixtures; at least one large real consumer with measured performance and governance parity; migration and false-PASS regressions; and cross-platform acceptance. Accepted SW2-01 through SW2-07 guarantees remain inherited authority and must not be weakened. Stable V2 publication remains SW2-09 scope.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
+Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

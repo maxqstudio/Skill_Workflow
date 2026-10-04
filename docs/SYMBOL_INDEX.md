@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 7a03100586c7b394b50ebc4dcbb6a3da4c39cfcf102be83069e154f127866c71
+Source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -31,6 +31,7 @@ responsibility, callers, or state ownership.
 | scripts/release_preflight.py | 4 | 0 | 4 | 0 |
 | scripts/schema_contract.py | 5 | 0 | 5 | 0 |
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_adoption_profiles.py | 7 | 0 | 7 | 0 |
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
@@ -369,6 +370,21 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | invoke_main | function | 12-35 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_adoption_profiles.py</code> — 7 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| write | function | 17-19 |
+| profile_text | function | 22-50 |
+| seed_specs | function | 53-61 |
+| doc | function | 64-65 |
+| seed_docs | function | 68-152 |
+| run_fixture | function | 155-176 |
+| main | function | 179-185 |
 
 </details>
 
