@@ -1,0 +1,109 @@
+name: TEMP SW2-08 R3 R4 Promotion
+
+on:
+  push:
+    branches:
+      - work/sw2-08-regression-adoption-validation
+
+permissions:
+  contents: write
+
+jobs:
+  promote-r3-r4:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-08-regression-adoption-validation
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Promote exact R3 and R4 evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          acceptance_path = root / '.workflow' / 'acceptance.json'
+          state_path = root / '.workflow' / 'state.json'
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+
+          r3 = (
+              'Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed Governance Selftest '
+              'run 37167140719 on Ubuntu and Windows. The permanent schema/toolchain regression proved legacy explicit '
+              'migration, migration idempotence, rejection of future profile/spec versions, toolchain-tamper rejection, '
+              'and cache non-authority. The permanent STRICT workflow self-test also proved rejection of unknown relation '
+              'targets, invalid relation types, independently conflicting claim text, and explicit PROJECT_STATE_SYNC failure. '
+              'These adversarial cases prove migration regressions and representative false-PASS paths fail closed.'
+          )
+          r4 = (
+              'Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 kept the full SW2-08 adoption/regression '
+              'scope green: Self Governance 37167140714 SUCCESS, Governance Selftest 37167140719 SUCCESS on both Ubuntu '
+              'and Windows, SW2 Sequence Evidence 37167140716 SUCCESS, Governance Engine Performance 37167140743 SUCCESS, '
+              'and Consumer Engine Performance 37167140718 SUCCESS. Cross-platform acceptance is therefore proven for '
+              'the permanent Ubuntu/Windows governance matrix; the max-grounding real-consumer parity lane remains Ubuntu-hosted.'
+          )
+
+          found = set()
+          for requirement in acceptance['requirements']:
+              rid = requirement.get('id')
+              if rid == 'SW2-08-R3':
+                  requirement['status'] = 'PASS'
+                  requirement['evidence'] = r3
+                  found.add(rid)
+              elif rid == 'SW2-08-R4':
+                  requirement['status'] = 'PASS'
+                  requirement['evidence'] = r4
+                  found.add(rid)
+          if found != {'SW2-08-R3', 'SW2-08-R4'}:
+              raise SystemExit(f'missing requirements: {found}')
+
+          stale_prefixes = (
+              'SW2-08 fresh large-consumer performance improvement and governance parity',
+              'SW2-08 large real-consumer performance improvement and governance parity',
+              'SW2-08 migration-regression and false-PASS coverage',
+              'SW2-08 cross-platform acceptance for the new adoption/regression scope',
+          )
+          state['not_proven'] = [
+              item for item in state.get('not_proven', [])
+              if not any(item.startswith(prefix) for prefix in stale_prefixes)
+          ]
+          r3_proven = (
+              'SW2-08-R3 migration and false-PASS regressions are accepted on exact candidate '
+              '5109b17de54de8af3d69e418d07175f62cf893d2: Governance Selftest 37167140719 passed on Ubuntu '
+              'and Windows with migration idempotence, future-version rejection, toolchain-tamper rejection, unknown/invalid '
+              'claim-relation rejection, real claim-conflict detection, and explicit PROJECT_STATE_SYNC fail-closed evidence.'
+          )
+          r4_proven = (
+              'SW2-08-R4 cross-platform acceptance is accepted on exact candidate '
+              '5109b17de54de8af3d69e418d07175f62cf893d2: all six permanent checks succeeded and Governance Selftest '
+              '37167140719 passed the complete permanent matrix on Ubuntu and Windows.'
+          )
+          for item in (r3_proven, r4_proven):
+              if item not in state.get('proven', []):
+                  state.setdefault('proven', []).append(item)
+          state['next_authorized_actions'] = [
+              'Run final exact-head SW2-08 acceptance with R1-R4 promoted and no temporary workflow present.',
+              'If final acceptance passes, close SW2-08 and advance roadmap authority to SW2-09 without creating the stable release until SW2-09 acceptance.'
+          ]
+
+          for path, data in ((acceptance_path, acceptance), (state_path, state)):
+              path.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+      - name: Synchronize Project Truth
+        run: python scripts/sync_project_truth.py --root .
+      - name: Commit promotion
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .workflow/acceptance.json .workflow/state.json .workflow/generated docs PROJECT_PROFILE.yaml
+          git commit -m "SW2-08: accept migration regressions and cross-platform coverage"
+          git push origin HEAD:work/sw2-08-regression-adoption-validation
