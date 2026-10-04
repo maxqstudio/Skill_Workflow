@@ -1,0 +1,942 @@
+name: TEMP SW2-14 Implement Incremental Project Truth
+
+on:
+  push:
+    branches:
+      - work/sw2-14-incremental-project-truth
+    paths:
+      - .github/workflows/tmp-sw2-14-implement.yml
+
+permissions:
+  contents: write
+
+jobs:
+  implement:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-14-incremental-project-truth
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply SW2-14 implementation
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('.').resolve()
+
+          impact = r'''#!/usr/bin/env python3
+          """Deterministic fail-closed impact graph for Project Truth projections.
+
+          Incremental planning is intermediate evidence only. Unknown or ambiguous
+          paths broaden to the complete generated document set. Final acceptance must
+          still use exhaustive Project Truth generation/validation.
+          """
+
+          from __future__ import annotations
+
+          from pathlib import Path
+          from typing import Iterable
+
+          from project_snapshot import SOURCE_EXTENSIONS
+
+
+          DOC_DEPENDENCIES: dict[str, frozenset[str]] = {
+              "SYSTEM_OVERVIEW.md": frozenset({"project", "architecture", "state", "acceptance", "authority", "workflows", "facts"}),
+              "PROJECT_MANIFEST.md": frozenset({"project", "state", "authority", "facts"}),
+              "CURRENT_STATE.md": frozenset({"state", "roadmap", "acceptance", "project", "facts"}),
+              "ROADMAP.md": frozenset({"roadmap", "state", "acceptance"}),
+              "SOURCE_AUTHORITY_MAP.md": frozenset({"authority"}),
+              "ARCHITECTURE.md": frozenset({"architecture", "facts"}),
+              "WORKFLOW_STATE_MACHINE.md": frozenset({"workflows"}),
+              "SEQUENCE_CONTRACTS.md": frozenset({"acceptance", "workflows"}),
+              "MODULE_MAP.md": frozenset({"facts"}),
+              "SYMBOL_INDEX.md": frozenset({"facts"}),
+              "FLOW_INDEX.md": frozenset({"workflows", "facts"}),
+              "TEST_ACCEPTANCE_MATRIX.md": frozenset({"acceptance", "facts"}),
+              "DOC_SYNC_MATRIX.md": frozenset({"profile"}),
+              "PROJECT_TRUTH_SYNC.md": frozenset({"acceptance", "claims"}),
+              "API_CONTRACTS.md": frozenset({"contracts"}),
+              "DATA_CONTRACTS.md": frozenset({"contracts"}),
+              "UI_INFORMATION_ARCHITECTURE.md": frozenset({"contracts"}),
+              "RUNBOOK.md": frozenset({"contracts"}),
+              "DECISIONS.md": frozenset({"decisions"}),
+              "KNOWN_DEFECTS.md": frozenset({"known_defects"}),
+              "GLOSSARY.md": frozenset({"glossary"}),
+              "CHANGELOG.md": frozenset({"changelog"}),
+          }
+
+          SPEC_TOKENS = {
+              ".workflow/project.json": "project",
+              ".workflow/authority.json": "authority",
+              ".workflow/state.json": "state",
+              ".workflow/roadmap.json": "roadmap",
+              ".workflow/architecture.json": "architecture",
+              ".workflow/contracts.json": "contracts",
+              ".workflow/acceptance.json": "acceptance",
+              ".workflow/decisions.json": "decisions",
+              ".workflow/known_defects.json": "known_defects",
+              ".workflow/glossary.json": "glossary",
+              ".workflow/changelog.json": "changelog",
+          }
+
+          BROAD_TOOL_PATHS = {
+              "scripts/generate_project_docs.py",
+              "scripts/project_truth_impact.py",
+              "scripts/sync_project_truth.py",
+              "scripts/validate_project_docs.py",
+              "scripts/extract_project_facts.py",
+              "scripts/project_snapshot.py",
+              "scripts/project_profile.py",
+              "scripts/schema_contract.py",
+          }
+
+          NO_PROJECTION_PATHS = {
+              "README.md",
+              "SKILL.md",
+              "AGENTS.md",
+              "LICENSE",
+              ".gitattributes",
+              ".gitignore",
+              ".workflow/toolchain.lock.json",
+          }
+          NO_PROJECTION_PREFIXES = (
+              ".github/",
+              "artifacts/sequence/",
+              "benchmarks/",
+              "docs/sequence/",
+              "references/",
+              "templates/",
+          )
+
+
+          def normalize_path(value: str) -> str:
+              return value.replace("\\", "/").lstrip("./")
+
+
+          def plan_project_truth_impact(
+              changed_paths: Iterable[str],
+              available_docs: Iterable[str],
+          ) -> dict[str, object]:
+              """Return a deterministic conservative projection-impact plan."""
+              paths = tuple(sorted({normalize_path(path) for path in changed_paths if normalize_path(path)}))
+              docs = tuple(sorted(set(available_docs)))
+              docs_set = set(docs)
+              tokens: set[str] = set()
+              direct_docs: set[str] = set()
+              unknown_paths: list[str] = []
+              reasons: dict[str, str] = {}
+              broad_docs = False
+              facts_affected = False
+
+              for path in paths:
+                  if path == "PROJECT_PROFILE.yaml":
+                      broad_docs = True
+                      reasons[path] = "PROFILE_CAN_CHANGE_DOCUMENT_SET"
+                      continue
+                  if path == ".workflow/claims.json":
+                      broad_docs = True
+                      tokens.add("claims")
+                      reasons[path] = "CLAIM_BACKLINKS_CAN_TARGET_ANY_DOCUMENT"
+                      continue
+                  if path in BROAD_TOOL_PATHS or path.startswith(".workflow/tools/"):
+                      broad_docs = True
+                      facts_affected = True
+                      reasons[path] = "COMPILER_OR_FACT_TOOLING_CHANGED"
+                      continue
+                  token = SPEC_TOKENS.get(path)
+                  if token:
+                      tokens.add(token)
+                      reasons[path] = "SPEC:" + token
+                      continue
+                  if path.startswith(".workflow/workflows/") and path.endswith(".json"):
+                      tokens.add("workflows")
+                      reasons[path] = "WORKFLOW_SPEC"
+                      continue
+                  if path == ".workflow/generated/code_facts.json":
+                      tokens.add("facts")
+                      facts_affected = True
+                      reasons[path] = "FACT_ARTIFACT_CHANGED"
+                      continue
+                  if path.startswith("docs/"):
+                      name = Path(path).name
+                      if name in docs_set and path.count("/") == 1:
+                          direct_docs.add(name)
+                          reasons[path] = "GENERATED_PROJECTION_CHANGED"
+                          continue
+                  if path in NO_PROJECTION_PATHS or path.startswith(NO_PROJECTION_PREFIXES):
+                      reasons[path] = "NO_PROJECT_TRUTH_PROJECTION"
+                      continue
+                  if Path(path).suffix.lower() in SOURCE_EXTENSIONS:
+                      tokens.add("facts")
+                      facts_affected = True
+                      reasons[path] = "SOURCE_FACTS_CHANGED"
+                      continue
+
+                  broad_docs = True
+                  facts_affected = True
+                  unknown_paths.append(path)
+                  reasons[path] = "UNKNOWN_FAIL_CLOSED"
+
+              if broad_docs:
+                  affected = set(docs)
+              else:
+                  affected = set(direct_docs)
+                  for name in docs:
+                      if DOC_DEPENDENCIES.get(name, frozenset()).intersection(tokens):
+                          affected.add(name)
+
+              return {
+                  "schema_version": 1,
+                  "changed_paths": list(paths),
+                  "affected_docs": sorted(affected),
+                  "facts_affected": facts_affected,
+                  "broad": broad_docs,
+                  "unknown_paths": sorted(unknown_paths),
+                  "reasons": {key: reasons[key] for key in sorted(reasons)},
+                  "final_acceptance_authority": False,
+              }
+          '''
+          impact = "\n".join(line[10:] if line.startswith("          ") else line for line in impact.splitlines()) + "\n"
+          (root / 'scripts/project_truth_impact.py').write_text(impact, encoding='utf-8', newline='\n')
+
+          def replace_once(path: str, old: str, new: str) -> None:
+              p = root / path
+              text = p.read_text(encoding='utf-8')
+              if text.count(old) != 1:
+                  raise RuntimeError(f'PATCH_ANCHOR_COUNT:{path}:{text.count(old)}:{old[:80]!r}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+
+          # generate_project_docs.py: dependency-aware subset rendering + no-op writes.
+          replace_once(
+              'scripts/generate_project_docs.py',
+              'from extract_project_facts import extract_project_facts\n',
+              'from extract_project_facts import extract_project_facts\nfrom project_truth_impact import plan_project_truth_impact\n',
+          )
+
+          p = root / 'scripts/generate_project_docs.py'
+          text = p.read_text(encoding='utf-8')
+          marker = '\ndef render_all(\n'
+          if marker not in text:
+              raise RuntimeError('RENDER_ALL_MARKER_MISSING')
+          helper = r'''
+          def wanted_doc_names(
+              required: set[str],
+              contracts: dict[str, str],
+              sequence: dict[str, bool],
+          ) -> set[str]:
+              wanted = set(required)
+              wanted.update(
+                  {
+                      "SYSTEM_OVERVIEW.md",
+                      "PROJECT_MANIFEST.md",
+                      "CURRENT_STATE.md",
+                      "ROADMAP.md",
+                      "MODULE_MAP.md",
+                      "TEST_ACCEPTANCE_MATRIX.md",
+                      "DECISIONS.md",
+                      "KNOWN_DEFECTS.md",
+                      "GLOSSARY.md",
+                  }
+              )
+              if sequence.get("required", False):
+                  wanted.add("SEQUENCE_CONTRACTS.md")
+
+              optional_map = {
+                  "api_contracts": "API_CONTRACTS.md",
+                  "data_contracts": "DATA_CONTRACTS.md",
+                  "ui_information_architecture": "UI_INFORMATION_ARCHITECTURE.md",
+                  "runbook": "RUNBOOK.md",
+                  "decisions": "DECISIONS.md",
+                  "known_defects": "KNOWN_DEFECTS.md",
+                  "glossary": "GLOSSARY.md",
+                  "changelog": "CHANGELOG.md",
+              }
+              for key, filename in optional_map.items():
+                  if contracts.get(key) != "not_applicable":
+                      wanted.add(filename)
+              return wanted
+          '''
+          helper = "\n" + "\n".join(line[10:] if line.startswith("          ") else line for line in helper.splitlines()) + "\n"
+          text = text.replace(marker, helper + marker, 1)
+          old_sig = '''    sequence: dict[str, bool],\n    digest: str,\n) -> dict[str, str]:'''
+          new_sig = '''    sequence: dict[str, bool],\n    digest: str,\n    only: set[str] | None = None,\n) -> dict[str, str]:'''
+          if text.count(old_sig) != 1:
+              raise RuntimeError('RENDER_ALL_SIGNATURE_ANCHOR')
+          text = text.replace(old_sig, new_sig, 1)
+          start = text.index('    wanted = set(required)', text.index('def render_all('))
+          end = text.index('    result: dict[str, str] = {}', start)
+          replacement = '''    wanted = wanted_doc_names(required, contracts, sequence)\n    if only is not None:\n        wanted.intersection_update(only)\n\n'''
+          text = text[:start] + replacement + text[end:]
+
+          main_start = text.index('\ndef main() -> int:\n')
+          main_end = text.index('\n\nif __name__ == "__main__":', main_start)
+          new_main = r'''
+          def main() -> int:
+              parser = argparse.ArgumentParser()
+              parser.add_argument("--root", default=".")
+              parser.add_argument("--spec-root", default="")
+              parser.add_argument("--check", action="store_true")
+              parser.add_argument("--incremental", action="store_true")
+              parser.add_argument("--changed-path", action="append", default=[])
+              parser.add_argument(
+                  "--facts-output",
+                  default=".workflow/generated/code_facts.json",
+              )
+              parser.add_argument("--report", default="")
+              args = parser.parse_args()
+
+              root = git_root(Path(args.root).resolve())
+              profile_path = root / "PROJECT_PROFILE.yaml"
+              if not profile_path.is_file():
+                  print("FAIL MISSING_PROJECT_PROFILE")
+                  return 1
+              if args.incremental and not args.changed_path:
+                  print("FAIL INCREMENTAL_CHANGED_PATH_REQUIRED")
+                  return 2
+
+              try:
+                  profile_data = parse_profile(profile_path)
+                  profile = normalized_profile(profile_data)
+                  required = required_docs(profile_data)
+                  contracts = contract_settings(profile_data)
+                  sequence = sequence_settings(profile_data)
+                  documentation = documentation_settings(profile_data)
+              except Exception as exc:
+                  print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
+                  return 1
+
+              spec_root_value = args.spec_root or str(documentation.get("spec_root", ".workflow"))
+              spec_root = Path(spec_root_value)
+              if not spec_root.is_absolute():
+                  spec_root = root / spec_root
+              docs_root = root / str(documentation.get("docs_root", "docs"))
+
+              try:
+                  specs, workflows = read_specs(spec_root)
+                  failures = validate_inputs(profile, specs, workflows, contracts, sequence)
+              except Exception as exc:
+                  print("FAIL SPEC_ERROR:" + str(exc))
+                  return 1
+              if failures:
+                  for item in failures:
+                      print("FAIL " + item)
+                  print("RESULT=FAIL failures=" + str(len(failures)))
+                  return 1
+
+              all_wanted = wanted_doc_names(required, contracts, sequence)
+              impact_plan: dict[str, object] = {
+                  "affected_docs": sorted(all_wanted),
+                  "facts_affected": True,
+                  "broad": True,
+                  "unknown_paths": [],
+                  "changed_paths": [],
+                  "reasons": {},
+                  "final_acceptance_authority": False,
+              }
+              selected_wanted = set(all_wanted)
+              facts_affected = True
+              if args.incremental:
+                  impact_plan = plan_project_truth_impact(args.changed_path, all_wanted)
+                  selected_wanted = set(impact_plan["affected_docs"])
+                  facts_affected = bool(impact_plan["facts_affected"])
+
+              facts_output = Path(args.facts_output)
+              if not facts_output.is_absolute():
+                  facts_output = root / facts_output
+              facts_missing = False
+              facts_stale = False
+              facts_written = False
+              facts_recomputed = (not args.incremental) or facts_affected or not facts_output.is_file()
+
+              if facts_recomputed:
+                  facts = extract_project_facts(root)
+                  expected_facts_text = json.dumps(facts, indent=2, sort_keys=True) + "\n"
+                  expected_facts_bytes = expected_facts_text.encode("utf-8")
+                  if args.check:
+                      if not facts_output.is_file():
+                          facts_missing = True
+                      elif canonical_generated_bytes(facts_output.read_bytes()) != expected_facts_bytes:
+                          facts_stale = True
+                  else:
+                      facts_output.parent.mkdir(parents=True, exist_ok=True)
+                      if not facts_output.is_file() or facts_output.read_bytes() != expected_facts_bytes:
+                          facts_output.write_bytes(expected_facts_bytes)
+                          facts_written = True
+              else:
+                  try:
+                      facts = load_json(facts_output)
+                      if not clean(facts.get("source_digest")):
+                          raise ValueError("source_digest missing")
+                  except Exception as exc:
+                      print("FAIL INCREMENTAL_FACT_CACHE_INVALID:" + str(exc))
+                      return 1
+
+              digest = input_digest(
+                  profile_path.read_text(encoding="utf-8"),
+                  specs,
+                  workflows,
+                  facts["source_digest"],
+              )
+              docs = render_all(
+                  profile,
+                  specs,
+                  workflows,
+                  facts,
+                  required,
+                  contracts,
+                  sequence,
+                  digest,
+                  only=selected_wanted if args.incremental else None,
+              )
+
+              missing: list[str] = []
+              stale: list[str] = []
+              root_duplicates: list[str] = []
+              written_docs: list[str] = []
+              unchanged_docs: list[str] = []
+              if not args.check:
+                  docs_root.mkdir(parents=True, exist_ok=True)
+
+              for name, expected in docs.items():
+                  path = docs_root / name
+                  legacy_root_path = root / name
+                  if legacy_root_path.is_file():
+                      root_duplicates.append(name)
+                  expected_bytes = expected.encode("utf-8")
+                  if args.check:
+                      if not path.is_file():
+                          missing.append("docs/" + name)
+                      elif canonical_generated_bytes(path.read_bytes()) != expected_bytes:
+                          stale.append("docs/" + name)
+                  else:
+                      if path.is_file() and path.read_bytes() == expected_bytes:
+                          unchanged_docs.append("docs/" + name)
+                      else:
+                          path.write_bytes(expected_bytes)
+                          written_docs.append("docs/" + name)
+
+              report = {
+                  "schema_version": 2,
+                  "profile": profile,
+                  "docs_root": str(docs_root.relative_to(root).as_posix()),
+                  "source_digest": facts["source_digest"],
+                  "input_digest": digest,
+                  "generated_docs": sorted("docs/" + name for name in docs),
+                  "all_generated_docs": sorted("docs/" + name for name in all_wanted),
+                  "missing_docs": missing,
+                  "stale_docs": stale,
+                  "legacy_root_doc_duplicates": sorted(root_duplicates),
+                  "facts_missing": facts_missing,
+                  "facts_stale": facts_stale,
+                  "facts_affected": facts_affected,
+                  "facts_recomputed": facts_recomputed,
+                  "facts_written": facts_written,
+                  "written_docs": sorted(written_docs),
+                  "unchanged_docs": sorted(unchanged_docs),
+                  "incremental": bool(args.incremental),
+                  "impact_broad": bool(impact_plan.get("broad", False)),
+                  "unknown_paths": list(impact_plan.get("unknown_paths", [])),
+                  "changed_paths": list(impact_plan.get("changed_paths", [])),
+                  "impact_reasons": dict(impact_plan.get("reasons", {})),
+                  "project_docs_normalized": True,
+                  "doc_layout": "FAIL" if root_duplicates else "PASS",
+                  "mode": "check" if args.check else "write",
+                  "acceptance_scope": "INTERMEDIATE_IMPACT_SUBSET" if args.incremental else "EXHAUSTIVE",
+                  "final_acceptance_authority": False if args.incremental else None,
+                  "result": "FAIL" if missing or stale or root_duplicates or facts_missing or facts_stale else "PASS",
+                  "semantic_boundary": (
+                      "Compiler projects declared semantic/governance specs and machine-observed code facts; "
+                      "incremental mode is intermediate-only and unknown impact broadens fail-closed."
+                  ),
+              }
+
+              if args.report:
+                  report_path = Path(args.report)
+                  if not report_path.is_absolute():
+                      report_path = root / report_path
+                  report_path.parent.mkdir(parents=True, exist_ok=True)
+                  report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+              print(json.dumps(report, indent=2, sort_keys=True))
+              return 1 if report["result"] == "FAIL" else 0
+          '''
+          new_main = "\n" + "\n".join(line[10:] if line.startswith("          ") else line for line in new_main.splitlines())
+          text = text[:main_start] + new_main + text[main_end:]
+          p.write_text(text, encoding='utf-8', newline='\n')
+
+          # validate_project_docs.py: incremental check-through, still read-only.
+          p = root / 'scripts/validate_project_docs.py'
+          text = p.read_text(encoding='utf-8')
+          start = text.index('\ndef main() -> int:\n')
+          end = text.index('\n\nif __name__ == "__main__":', start)
+          new_main = r'''
+          def main() -> int:
+              ap = argparse.ArgumentParser()
+              ap.add_argument("--root", default=".")
+              ap.add_argument("--report", default="")
+              ap.add_argument("--incremental", action="store_true")
+              ap.add_argument("--changed-path", action="append", default=[])
+              args = ap.parse_args()
+
+              root = Path(args.root).resolve()
+              agents_path = root / "AGENTS.md"
+              if not agents_path.is_file():
+                  print("FAIL MISSING_ROOT_AGENTS")
+                  return 1
+              agents_text = agents_path.read_text(encoding="utf-8", errors="strict")
+              if validate_doc_quality.GENERATED_MARKER in agents_text:
+                  print("FAIL ROOT_AGENTS_MUST_BE_SOURCE_AUTHORED")
+                  return 1
+              agents_ok, agents_failures = validate_doc_quality.normalized_shape(agents_text)
+              if not agents_ok:
+                  print("FAIL ROOT_AGENTS_QUALITY:" + ";".join(agents_failures))
+                  return 1
+
+              profile_path = root / PROFILE_FILE
+              if not profile_path.is_file():
+                  print("FAIL MISSING_PROJECT_PROFILE")
+                  return 1
+              try:
+                  documentation = documentation_settings(parse_profile(profile_path))
+              except Exception as exc:
+                  print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
+                  return 1
+              if not documentation.get("generated", False):
+                  print("PROJECT_DOCS_SYNC=NOT_APPLICABLE")
+                  return 0
+              if args.incremental and not args.changed_path:
+                  print("FAIL INCREMENTAL_CHANGED_PATH_REQUIRED")
+                  return 2
+
+              compiler_args = ["--root", str(root), "--check"]
+              if args.incremental:
+                  compiler_args.append("--incremental")
+                  for path in args.changed_path:
+                      compiler_args.extend(["--changed-path", path])
+              if args.report:
+                  compiler_args.extend(["--report", args.report])
+              code, output = invoke_main(generate_project_docs.main, compiler_args, program="generate_project_docs.py")
+              print(output, end="")
+              if code != 0:
+                  print("PROJECT_DOCS_SYNC=FAIL")
+                  return code
+
+              quality_args = ["--root", str(root)]
+              if args.report:
+                  report_path = Path(args.report)
+                  quality_report = str(report_path.with_name(report_path.stem + ".quality" + report_path.suffix))
+                  quality_args.extend(["--report", quality_report])
+              quality_code, quality_output = invoke_main(validate_doc_quality.main, quality_args, program="validate_doc_quality.py")
+              print(quality_output, end="")
+              if quality_code != 0:
+                  print("DOC_LAYOUT=FAIL")
+                  print("DOC_READABILITY=FAIL")
+                  print("PROJECT_DOCS_SYNC=FAIL")
+                  return quality_code
+
+              print("DOC_LAYOUT=PASS")
+              print("PROJECT_DOCS_NORMALIZED=PASS")
+              print("DOC_READABILITY=PASS")
+              print("PROJECT_DOCS_INCREMENTAL=" + ("PASS" if args.incremental else "NOT_APPLICABLE"))
+              print("PROJECT_DOCS_SYNC=PASS")
+              return 0
+          '''
+          new_main = "\n" + "\n".join(line[10:] if line.startswith("          ") else line for line in new_main.splitlines())
+          p.write_text(text[:start] + new_main + text[end:], encoding='utf-8', newline='\n')
+
+          # sync_project_truth.py: full default; explicit incremental materialization only.
+          sync = r'''#!/usr/bin/env python3
+          """Synchronize Project Truth Compiler outputs and record PROJECT_DOCS_SYNC.
+
+          Default execution remains exhaustive. Explicit --incremental execution is
+          intermediate-only and uses fail-closed changed-path impact planning.
+          """
+
+          from __future__ import annotations
+
+          import argparse
+          import json
+          from pathlib import Path
+
+          import generate_project_docs
+          import validate_project_docs
+          from project_profile import PROFILE_FILE, documentation_settings, parse_profile
+          from project_snapshot import ProjectSnapshot, active_project_snapshot, active_snapshot_for
+          from script_runner import invoke_main
+
+
+          def run_main(main_func, argv: list[str], program: str) -> tuple[int, str]:
+              return invoke_main(main_func, argv, program=program)
+
+
+          def compiler_args(root: Path, *, check: bool, incremental: bool, changed_paths: tuple[str, ...]) -> list[str]:
+              args = ["--root", str(root)]
+              if check:
+                  args.append("--check")
+              if incremental:
+                  args.append("--incremental")
+                  for path in changed_paths:
+                      args.extend(["--changed-path", path])
+              return args
+
+
+          def sync_once(
+              root: Path,
+              *,
+              no_record: bool,
+              incremental: bool,
+              changed_paths: tuple[str, ...],
+          ) -> int:
+              profile_path = root / PROFILE_FILE
+              if not profile_path.is_file():
+                  print("FAIL MISSING_PROJECT_PROFILE")
+                  return 1
+              if incremental and not changed_paths:
+                  print("FAIL INCREMENTAL_CHANGED_PATH_REQUIRED")
+                  return 2
+
+              try:
+                  documentation = documentation_settings(parse_profile(profile_path))
+              except Exception as exc:
+                  print("FAIL PROJECT_PROFILE_INVALID:" + str(exc))
+                  return 1
+
+              generate_args = compiler_args(root, check=False, incremental=incremental, changed_paths=changed_paths)
+              code, output = run_main(generate_project_docs.main, generate_args, "generate_project_docs.py")
+              print(output, end="")
+              if code != 0:
+                  print("PROJECT_DOCS_SYNC=FAIL")
+                  return code
+
+              validate_args = ["--root", str(root)]
+              if incremental:
+                  validate_args.append("--incremental")
+                  for path in changed_paths:
+                      validate_args.extend(["--changed-path", path])
+              code, output = run_main(validate_project_docs.main, validate_args, "validate_project_docs.py")
+              print(output, end="")
+              if code != 0:
+                  print("PROJECT_DOCS_SYNC=FAIL")
+                  return code
+
+              if not documentation.get("generated", False):
+                  print("PROJECT_DOCS_SYNC=NOT_APPLICABLE")
+                  return 0
+              if no_record:
+                  print("PROJECT_DOCS_SYNC=PASS")
+                  return 0
+
+              spec_root = Path(str(documentation.get("spec_root", ".workflow")))
+              if not spec_root.is_absolute():
+                  spec_root = root / spec_root
+              acceptance_path = spec_root / "acceptance.json"
+              if not acceptance_path.is_file():
+                  print("FAIL ACCEPTANCE_SPEC_MISSING:" + str(acceptance_path))
+                  return 1
+
+              try:
+                  acceptance = json.loads(acceptance_path.read_text(encoding="utf-8"))
+                  gates = acceptance.setdefault("truth_gates", {})
+                  gates["ROADMAP_SYNC"] = "PASS"
+                  gates["DOC_LAYOUT"] = "PASS"
+                  gates["PROJECT_DOCS_NORMALIZED"] = "PASS"
+                  gates["DOC_READABILITY"] = "PASS"
+                  gates["PROJECT_DOCS_SYNC"] = "PASS"
+                  acceptance_path.write_bytes((json.dumps(acceptance, indent=2, sort_keys=True) + "\n").encode("utf-8"))
+              except Exception as exc:
+                  print("FAIL ACCEPTANCE_SPEC_UPDATE_ERROR:" + str(exc))
+                  return 1
+
+              try:
+                  acceptance_rel = acceptance_path.relative_to(root).as_posix()
+              except ValueError:
+                  acceptance_rel = str(acceptance_path)
+              second_paths = changed_paths
+              if incremental and acceptance_rel not in second_paths:
+                  second_paths = tuple(sorted(set(changed_paths + (acceptance_rel,))))
+
+              generate_args = compiler_args(root, check=False, incremental=incremental, changed_paths=second_paths)
+              code, output = run_main(generate_project_docs.main, generate_args, "generate_project_docs.py")
+              print(output, end="")
+              if code != 0:
+                  print("PROJECT_DOCS_SYNC=FAIL")
+                  return code
+
+              validate_args = ["--root", str(root)]
+              if incremental:
+                  validate_args.append("--incremental")
+                  for path in second_paths:
+                      validate_args.extend(["--changed-path", path])
+              code, output = run_main(validate_project_docs.main, validate_args, "validate_project_docs.py")
+              print(output, end="")
+              if code != 0:
+                  print("PROJECT_DOCS_SYNC=FAIL")
+                  return code
+
+              print("PROJECT_DOCS_SYNC=PASS")
+              print("PROJECT_DOCS_INCREMENTAL=" + ("PASS" if incremental else "NOT_APPLICABLE"))
+              print("RECORDED_GATE=" + acceptance_rel + "::truth_gates.{ROADMAP_SYNC,DOC_LAYOUT,PROJECT_DOCS_NORMALIZED,DOC_READABILITY,PROJECT_DOCS_SYNC}")
+              return 0
+
+
+          def main() -> int:
+              ap = argparse.ArgumentParser()
+              ap.add_argument("--root", default=".")
+              ap.add_argument("--no-record", action="store_true")
+              ap.add_argument("--incremental", action="store_true")
+              ap.add_argument("--changed-path", action="append", default=[])
+              args = ap.parse_args()
+
+              root = Path(args.root).resolve()
+              changed_paths = tuple(sorted(set(args.changed_path)))
+              if active_snapshot_for(root) is not None:
+                  return sync_once(root, no_record=args.no_record, incremental=args.incremental, changed_paths=changed_paths)
+
+              snapshot = ProjectSnapshot.capture(root)
+              with active_project_snapshot(snapshot):
+                  return sync_once(root, no_record=args.no_record, incremental=args.incremental, changed_paths=changed_paths)
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main())
+          '''
+          sync = "\n".join(line[10:] if line.startswith("          ") else line for line in sync.splitlines()) + "\n"
+          (root / 'scripts/sync_project_truth.py').write_text(sync, encoding='utf-8', newline='\n')
+
+          # governance_engine.py: recognized source impact, develop incremental write,
+          # verify incremental read-only, finalize exhaustive unchanged.
+          replace_once(
+              'scripts/governance_engine.py',
+              'from project_snapshot import ProjectSnapshot, active_project_snapshot\n',
+              'from project_snapshot import ProjectSnapshot, SOURCE_EXTENSIONS, active_project_snapshot\n',
+          )
+          replace_once(
+              'scripts/governance_engine.py',
+              '    "scripts/project_profile.py",\n}',
+              '    "scripts/project_profile.py",\n    "scripts/project_truth_impact.py",\n}',
+          )
+          replace_once(
+              'scripts/governance_engine.py',
+              '    if path.startswith("scripts/"):\n        return "broad_source"\n    return "unknown"\n',
+              '    if path.startswith("scripts/"):\n        return "broad_source"\n    if Path(path).suffix.lower() in SOURCE_EXTENSIONS:\n        return "source"\n    return "unknown"\n',
+          )
+          replace_once(
+              'scripts/governance_engine.py',
+              '    if impact_set.intersection({"governance", "documentation"}):\n        names.add("validate_project_docs")\n',
+              '    if impact_set.intersection({"governance", "documentation", "source"}):\n        names.add("sync_project_truth")\n',
+          )
+          replace_once(
+              'scripts/governance_engine.py',
+              '            "compiler_selftest",\n            "validate_project_docs",\n',
+              '            "compiler_selftest",\n            "sync_project_truth",\n            "validate_project_docs",\n',
+          )
+          replace_once(
+              'scripts/governance_engine.py',
+              '    node_names: tuple[str, ...],\n) -> ValidationDAG:\n',
+              '    node_names: tuple[str, ...],\n    changed_paths: tuple[str, ...] = (),\n) -> ValidationDAG:\n',
+          )
+
+          p = root / 'scripts/governance_engine.py'
+          text = p.read_text(encoding='utf-8')
+          old = '''        nodes.append(\n            ValidationNode(\n                name="sync_project_truth",\n                dependencies=dependencies,\n                action=cli_action(\n                    sync_project_truth.main,\n                    ["--root", str(root)],\n                    "sync_project_truth.py",\n                ),\n            )\n        )'''
+          new = '''        sync_args = ["--root", str(root)]\n        if mode != "finalize":\n            sync_args.append("--incremental")\n            for path in changed_paths:\n                sync_args.extend(["--changed-path", path])\n        nodes.append(\n            ValidationNode(\n                name="sync_project_truth",\n                dependencies=dependencies,\n                action=cli_action(\n                    sync_project_truth.main,\n                    sync_args,\n                    "sync_project_truth.py",\n                ),\n            )\n        )'''
+          if text.count(old) != 1:
+              raise RuntimeError(f'SYNC_NODE_PATCH_COUNT:{text.count(old)}')
+          text = text.replace(old, new, 1)
+
+          old = '''        nodes.append(\n            ValidationNode(\n                name="validate_project_docs",\n                dependencies=dependencies,\n                action=cli_action(\n                    validate_project_docs.main,\n                    ["--root", str(root)],\n                    "validate_project_docs.py",\n                ),\n            )\n        )'''
+          new = '''        validate_docs_args = ["--root", str(root)]\n        if mode == "verify":\n            validate_docs_args.append("--incremental")\n            for path in changed_paths:\n                validate_docs_args.extend(["--changed-path", path])\n        nodes.append(\n            ValidationNode(\n                name="validate_project_docs",\n                dependencies=dependencies,\n                action=cli_action(\n                    validate_project_docs.main,\n                    validate_docs_args,\n                    "validate_project_docs.py",\n                ),\n            )\n        )'''
+          if text.count(old) != 1:
+              raise RuntimeError(f'VALIDATE_DOCS_NODE_PATCH_COUNT:{text.count(old)}')
+          text = text.replace(old, new, 1)
+          old_call = '''                        mode=selected_mode,\n                        node_names=selected_nodes,\n                    ).run()'''
+          new_call = '''                        mode=selected_mode,\n                        node_names=selected_nodes,\n                        changed_paths=changed_paths,\n                    ).run()'''
+          if text.count(old_call) != 1:
+              raise RuntimeError('BUILD_MODE_CALL_PATCH')
+          text = text.replace(old_call, new_call, 1)
+          p.write_text(text, encoding='utf-8', newline='\n')
+
+          # Engine regression: known source changes stay develop and select incremental sync.
+          p = root / 'scripts/selftest_governance_engine.py'
+          text = p.read_text(encoding='utf-8')
+          anchor = '''    broad_impacts = classify_changed_paths(("scripts/new_future_validator.py",))\n'''
+          addition = '''    source_impacts = classify_changed_paths(("app.py",))\n    require(source_impacts == ("source",), f"source classification drifted: {source_impacts}")\n    require(effective_mode("develop", source_impacts) == "develop", "known source change should remain develop")\n    source_nodes = develop_node_names(("app.py",), source_impacts)\n    require("sync_project_truth" in source_nodes, "source develop missed incremental Project Truth sync")\n\n'''
+          if text.count(anchor) != 1:
+              raise RuntimeError('ENGINE_SELFTEST_ANCHOR')
+          text = text.replace(anchor, addition + anchor, 1)
+          p.write_text(text, encoding='utf-8', newline='\n')
+
+          # Compiler regression: selective writes, fact selectivity, unknown broadening,
+          # and exhaustive parity oracle.
+          p = root / 'scripts/selftest_project_truth_compiler.py'
+          text = p.read_text(encoding='utf-8')
+          anchor = '''        roadmap_bytes = roadmap_path.read_bytes()\n'''
+          addition = r'''        # SW2-14 incremental Project Truth contract.
+          control_doc = root / "docs" / "ARCHITECTURE.md"
+          control_bytes = control_doc.read_bytes()
+          state = json.loads(state_path.read_text(encoding="utf-8"))
+          state["status"] = "ACTIVE_INCREMENTAL"
+          write_json(state_path, state)
+          incremental_report = root / "incremental-state.json"
+          run(
+              root,
+              sys.executable,
+              str(tool_root / "generate_project_docs.py"),
+              "--root", str(root),
+              "--incremental",
+              "--changed-path", ".workflow/state.json",
+              "--report", str(incremental_report),
+          )
+          incremental = json.loads(incremental_report.read_text(encoding="utf-8"))
+          expected_state_docs = {
+              "docs/SYSTEM_OVERVIEW.md",
+              "docs/PROJECT_MANIFEST.md",
+              "docs/CURRENT_STATE.md",
+              "docs/ROADMAP.md",
+          }
+          if set(incremental["generated_docs"]) != expected_state_docs:
+              raise RuntimeError("incremental state dependency graph drifted: " + repr(incremental["generated_docs"]))
+          if incremental["facts_affected"] or incremental["facts_recomputed"]:
+              raise RuntimeError("governance-only incremental change recomputed source facts")
+          if "docs/ARCHITECTURE.md" in incremental["written_docs"] or control_doc.read_bytes() != control_bytes:
+              raise RuntimeError("unaffected tracked projection was rewritten")
+          run(root, sys.executable, str(tool_root / "generate_project_docs.py"), "--root", str(root), "--check")
+
+          unknown_report = root / "incremental-unknown.json"
+          run(
+              root,
+              sys.executable,
+              str(tool_root / "generate_project_docs.py"),
+              "--root", str(root),
+              "--check",
+              "--incremental",
+              "--changed-path", "future/opaque.bin",
+              "--report", str(unknown_report),
+          )
+          unknown = json.loads(unknown_report.read_text(encoding="utf-8"))
+          if not unknown["impact_broad"] or unknown["unknown_paths"] != ["future/opaque.bin"]:
+              raise RuntimeError("unknown impact did not broaden fail-closed")
+          if set(unknown["generated_docs"]) != set(unknown["all_generated_docs"]):
+              raise RuntimeError("unknown impact did not select exhaustive projection set")
+
+          with (root / "app.py").open("a", encoding="utf-8") as fh:
+              fh.write("\ndef incremental_probe():\n    return True\n")
+          source_report = root / "incremental-source.json"
+          run(
+              root,
+              sys.executable,
+              str(tool_root / "generate_project_docs.py"),
+              "--root", str(root),
+              "--incremental",
+              "--changed-path", "app.py",
+              "--report", str(source_report),
+          )
+          source_payload = json.loads(source_report.read_text(encoding="utf-8"))
+          if not source_payload["facts_affected"] or not source_payload["facts_recomputed"] or not source_payload["facts_written"]:
+              raise RuntimeError("source incremental change did not refresh facts")
+          run(root, sys.executable, str(tool_root / "generate_project_docs.py"), "--root", str(root), "--check")
+
+          repeat_report = root / "incremental-repeat.json"
+          run(
+              root,
+              sys.executable,
+              str(tool_root / "generate_project_docs.py"),
+              "--root", str(root),
+              "--incremental",
+              "--changed-path", "app.py",
+              "--report", str(repeat_report),
+          )
+          repeat = json.loads(repeat_report.read_text(encoding="utf-8"))
+          if repeat["facts_written"] or repeat["written_docs"]:
+              raise RuntimeError("byte-identical incremental rerun rewrote tracked outputs")
+          print("INCREMENTAL_IMPACT_GRAPH=PASS")
+          print("INCREMENTAL_SELECTIVE_WRITE=PASS")
+          print("INCREMENTAL_FACT_SELECTIVITY=PASS")
+          print("INCREMENTAL_UNKNOWN_BROADENING=PASS")
+          print("INCREMENTAL_FULL_PARITY=PASS")
+
+          '''
+          addition = "\n".join(line[10:] if line.startswith("          ") else line for line in addition.splitlines())
+          if text.count(anchor) != 1:
+              raise RuntimeError('COMPILER_SELFTEST_ANCHOR')
+          text = text.replace(anchor, addition + anchor, 1)
+          p.write_text(text, encoding='utf-8', newline='\n')
+
+          # Normative reference: explicit intermediate-only boundary.
+          p = root / 'references/governance-and-project-truth.md'
+          text = p.read_text(encoding='utf-8')
+          anchor = '''Low-level commands:\n\n```bash\npython .workflow/tools/generate_project_docs.py\npython .workflow/tools/validate_project_docs.py\n```\n'''
+          addition = '''\n### Incremental Project Truth (intermediate modes only)\n\n`develop` may materialize only projections affected by the observed changed-path set. `verify` may compute/check the same subset but MUST remain read-only. Unknown or ambiguous paths broaden fail-closed to the complete generated-document set. `finalize` never trusts incremental coverage: it runs the exhaustive default compiler/validator path and remains the only final acceptance authority.\n\nThe project-local tools expose explicit intermediate commands for orchestrators:\n\n```bash\npython .workflow/tools/sync_project_truth.py --incremental --changed-path <path>\npython .workflow/tools/validate_project_docs.py --incremental --changed-path <path>\n```\n\nDo not manually omit changed paths and treat the result as acceptance evidence. The governance engine supplies changed paths from Git/worktree evidence; direct incremental CLI use is intermediate evidence only.\n'''
+          if text.count(anchor) != 1:
+              raise RuntimeError('REFERENCE_INCREMENTAL_ANCHOR')
+          p.write_text(text.replace(anchor, anchor + addition, 1), encoding='utf-8', newline='\n')
+          PY
+      - name: Compile and run focused regressions
+        shell: bash
+        run: |
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_schema_toolchain.py
+          python .github/scripts/validate_skill_reference_split.py --root .
+      - name: Regenerate current Project Truth
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_cross_document_regressions.py
+      - name: Regenerate SW2-14 sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-14-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual.get('entries', []):
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          if session.get('human_view'):
+              session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id'],
+          ], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', str(session_path.relative_to(root))], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', str(session_path.relative_to(root))], check=True)
+          PY
+          python scripts/validate_sequence_sessions.py --root .
+      - name: Final source-level validation before commit
+        run: |
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/selftest_strict_project_workflow.py
+          python scripts/validate_project_docs.py --root .
+      - name: Commit implementation and remove helper
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-sw2-14-implement.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git status --short
+          test -n "$(git status --porcelain)"
+          git commit -m "SW2-14: implement incremental Project Truth compiler"
+          git push origin HEAD:work/sw2-14-incremental-project-truth
