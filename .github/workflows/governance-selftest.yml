@@ -48,6 +48,11 @@ jobs:
           PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
         run: python -m compileall -q scripts
 
+      - name: Skill core/reference split regression
+        run: |
+          python .github/scripts/selftest_skill_reference_split.py
+          python .github/scripts/validate_skill_reference_split.py --root .
+
       - name: Schema and toolchain version regression
         run: |
           python scripts/selftest_schema_toolchain.py
