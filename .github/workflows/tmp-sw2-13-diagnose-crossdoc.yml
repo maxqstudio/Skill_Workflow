@@ -1,0 +1,33 @@
+name: SW2-13 Crossdoc Diagnostic
+
+on:
+  push:
+    branches:
+      - work/sw2-13-skill-core-reference-split
+    paths:
+      - .github/workflows/tmp-sw2-13-diagnose-crossdoc.yml
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-13-skill-core-reference-split
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Print exact cross-document failures
+        shell: bash
+        run: |
+          python scripts/validate_cross_document_consistency.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --require-base --allow-dirty --report /tmp/crossdoc.json || true
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/crossdoc.json', encoding='utf-8'))
+          print('CROSSDOC_FAILURES=' + json.dumps(d['failures'], ensure_ascii=False))
+          print('REFERENCE_WARNINGS=' + json.dumps([w for w in d['warnings'] if 'references/' in w], ensure_ascii=False))
+          PY
