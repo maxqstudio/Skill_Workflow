@@ -1,0 +1,127 @@
+name: TEMP SW2-09 R2 Promotion
+
+on:
+  push:
+    branches:
+      - work/sw2-09-v2-stable-release
+
+permissions:
+  contents: write
+
+jobs:
+  promote-r2:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      ACCEPTED_BASE: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
+      EVIDENCE_HEAD: 91c1c82ceaeae145806c50b6574d76ded637072d
+      EVIDENCE_TREE: 2c5d59ffc7bcdd2a24404b940e0b268805aa3adf
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-09-v2-stable-release
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Bind exact accepted release-candidate evidence
+        shell: bash
+        run: |
+          test "$(git rev-parse ${EVIDENCE_HEAD}^{tree})" = "$EVIDENCE_TREE"
+          git merge-base --is-ancestor "$ACCEPTED_BASE" "$EVIDENCE_HEAD"
+          test "$(git diff --name-only ${EVIDENCE_HEAD}..HEAD)" = ".github/workflows/tmp-sw2-09-r2-promote.yml"
+      - name: Confirm pre-promotion authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          acceptance = json.loads(Path('.workflow/acceptance.json').read_text(encoding='utf-8'))
+          statuses = {item['id']: item['status'] for item in acceptance['requirements']}
+          expected = {
+              'SW2-09-R1': 'PASS',
+              'SW2-09-R2': 'NOT_PROVEN',
+              'SW2-09-R3': 'PASS',
+              'SW2-09-R4': 'NOT_PROVEN',
+          }
+          if statuses != expected:
+              raise SystemExit(f'unexpected SW2-09 requirement state: {statuses}')
+          bad_gates = {
+              name: status for name, status in acceptance['truth_gates'].items()
+              if status not in {'PASS', 'NOT_APPLICABLE'}
+          }
+          if bad_gates:
+              raise SystemExit(f'final truth gates not settled: {bad_gates}')
+          print('PRE_PROMOTION_BOUNDARY=PASS')
+          PY
+      - name: Remove temporary workflow from final tree
+        run: rm -f .github/workflows/tmp-sw2-09-r2-promote.yml
+      - name: Promote exact final release-candidate acceptance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          acceptance_path = Path('.workflow/acceptance.json')
+          state_path = Path('.workflow/state.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          evidence_head = '91c1c82ceaeae145806c50b6574d76ded637072d'
+          evidence = (
+              f'Exact tree-equivalent SW2-09 release candidate {evidence_head} passed the complete permanent acceptance '
+              'matrix with all final truth gates PASS or NOT_APPLICABLE: Self Governance 37184548050 SUCCESS; '
+              'Governance Selftest 37184548057 SUCCESS on Ubuntu and Windows including release-preflight, cross-document, '
+              'Project Truth, verify-read-only, adoption-profile, and STRICT regressions; SW2 Sequence Evidence '
+              '37184548068 SUCCESS; Governance Engine Performance 37184548051 SUCCESS; Consumer Engine Performance '
+              '37184548061 SUCCESS. This proves R2 only; stable publication remains blocked until strict v2.0.0 '
+              'publication preflight grants publication_authority=true, and R4 remains NOT_PROVEN until the exact tag/release exists.'
+          )
+          found = False
+          for requirement in acceptance['requirements']:
+              if requirement.get('id') == 'SW2-09-R2':
+                  requirement['status'] = 'PASS'
+                  requirement['evidence'] = evidence
+                  found = True
+          if not found:
+              raise SystemExit('SW2-09-R2 requirement missing')
+
+          state['not_proven'] = [
+              item for item in state.get('not_proven', [])
+              if not item.startswith('SW2-09 exact final release candidate acceptance is NOT_PROVEN')
+          ]
+          proven = (
+              f'SW2-09-R2 final release-candidate acceptance is proven on exact tree-equivalent head {evidence_head}: '
+              'all six permanent checks succeeded, both Ubuntu and Windows Governance Selftest lanes passed, and all final '
+              'truth gates were PASS or NOT_APPLICABLE. This evidence does not authorize publication by itself.'
+          )
+          if proven not in state.get('proven', []):
+              state.setdefault('proven', []).append(proven)
+          state['next_authorized_actions'] = [
+              'Run complete permanent CI on the clean post-R2 promotion candidate and require all six checks PASS.',
+              'If that exact candidate passes, run strict v2.0.0 publication-ready preflight against the exact candidate and require publication_authority=true with only SW2-09-R4 publication-pending.',
+              'Do not create or move any tag/release until strict publication preflight passes on the exact publication candidate.'
+          ]
+
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+      - name: Synchronize Project Truth
+        run: python scripts/sync_project_truth.py --root .
+      - name: Commit R2 promotion locally
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "SW2-09: accept exact release candidate"
+      - name: Validate clean post-R2 candidate
+        run: |
+          python scripts/selftest_release_preflight.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_handoff.py --root .
+          python scripts/validate_cross_document_consistency.py --root . --base "$ACCEPTED_BASE" --require-base
+          python scripts/validate_project_truth.py --root . --project-docs-already-validated
+      - name: Push clean R2 promotion
+        run: git push origin HEAD:work/sw2-09-v2-stable-release
