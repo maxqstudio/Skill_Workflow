@@ -4,23 +4,23 @@
 
 ## Evidence boundary
 
-SW2-08 acceptance covers Regression & Adoption Validation only: representative LITE, STANDARD, and STRICT adoption fixtures; at least one large real consumer with measured performance and governance parity; migration and false-PASS regressions; and cross-platform acceptance. Accepted SW2-01 through SW2-07 guarantees remain inherited authority and must not be weakened. Stable V2 publication remains SW2-09 scope.
+SW2-09 acceptance covers V2 Stable Release only: confirmation that all prior SW2 phases are accepted; an exact final release candidate that passes complete acceptance; published migration and rollback guidance; and a versioned GitHub release/tag created from the exact tested HEAD. Accepted SW2-01 through SW2-08 guarantees remain inherited authority and must not be weakened. Publication is forbidden until release candidate and migration/rollback gates are proven.
 
 Final tested source: external final acceptance evidence.
 Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-08-R1 | Representative LITE, STANDARD, and STRICT fixtures pass. | Exact clean candidate a1357f0f5a14874ccbc301191e7e05afd3fa13ae proved the representative adoption matrix: Governance Selftest run 37166844760 passed on Ubuntu and Windows, with LITE and STANDARD adoption fixtures PASS and the existing STRICT end-to-end workflow self-test PASS on both operating systems. The same exact candidate also passed Self Governance run 37166844768, SW2 Sequence Evidence run 37166844763, Governance Engine Performance run 37166844780, and Consumer Engine Performance run 37166844767. | PASS |
-| SW2-08-R2 | At least one large real consumer validates performance improvement and governance parity. | Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed all six permanent checks. Consumer Engine Performance run 37167140718 validated pinned maxqstudio/max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f after deterministic candidate-toolchain migration: 153 source tests PASS, compile PASS, migration idempotence PASS, synchronized migrated Project Truth PASS, all STRICT governance validators PASS with clean worktree, and machine-readable parity evidence was uploaded. Against the accepted hosted-runner baseline, extract_project_facts improved by 11.12% and sync_project_truth improved by 60.48%; these are comparative CI measurements, not absolute performance guarantees. Self Governance 37167140714, Governance Selftest 37167140719 on Ubuntu and Windows, SW2 Sequence Evidence 37167140716, Governance Engine Performance 37167140743, and Consumer Engine Performance 37167140718 all succeeded. | PASS |
-| SW2-08-R3 | Migration regressions and false PASS cases are covered. | Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 passed Governance Selftest run 37167140719 on Ubuntu and Windows. The permanent schema/toolchain regression proved legacy explicit migration, migration idempotence, rejection of future profile/spec versions, toolchain-tamper rejection, and cache non-authority. The permanent STRICT workflow self-test also proved rejection of unknown relation targets, invalid relation types, independently conflicting claim text, and explicit PROJECT_STATE_SYNC failure. These adversarial cases prove migration regressions and representative false-PASS paths fail closed. | PASS |
-| SW2-08-R4 | Cross-platform acceptance remains green. | Exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2 kept the full SW2-08 adoption/regression scope green: Self Governance 37167140714 SUCCESS, Governance Selftest 37167140719 SUCCESS on both Ubuntu and Windows, SW2 Sequence Evidence 37167140716 SUCCESS, Governance Engine Performance 37167140743 SUCCESS, and Consumer Engine Performance 37167140718 SUCCESS. Cross-platform acceptance is therefore proven for the permanent Ubuntu/Windows governance matrix; the max-grounding real-consumer parity lane remains Ubuntu-hosted. | PASS |
+| SW2-09-R1 | All prior SW2 phases are accepted. | SW2-00 through SW2-08 are accepted. SW2-08 was squash-merged to main as 8d0fbfd7177128774a0f321b8c95e6befdaaf659 with tree 0c43d4459518a0380e230935ae523ef85fb56904, equal to the exact tested SW2-08 candidate tree. Post-merge main passed Self Governance 37167640353, Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence 37167640369, Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352. | PASS |
+| SW2-09-R2 | Release candidate passes exact final acceptance. | NOT_PROVEN at phase opening. A final publication candidate has not yet been designated and accepted on its exact HEAD. | NOT_PROVEN |
+| SW2-09-R3 | Migration and rollback guidance are published. | NOT_PROVEN at phase opening. Existing compatibility and migration material must be audited and completed with explicit rollback guidance for the V2 stable release. | NOT_PROVEN |
+| SW2-09-R4 | A versioned GitHub release/tag is produced from the tested HEAD. | NOT_PROVEN at phase opening. No SW2-09 stable tag or GitHub release may be created until R2 and R3 pass and the publication HEAD is exact-bound. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
 - python scripts/validate_schema_toolchain.py --root .
-- python scripts/selftest_analyzer_contract.py
+- python scripts/selftest_schema_toolchain.py
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_adoption_profiles.py
@@ -29,12 +29,10 @@ Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bc
 - python scripts/validate_public_docs.py --root .
 - python scripts/selftest_repository_health.py
 - python scripts/validate_repository_health.py --root .
-- python scripts/selftest_github_ruleset.py
 - python scripts/selftest_release_preflight.py
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/validate_handoff.py --root .
-- python scripts/benchmark_governance.py --root . --tool-root . --repeats 1 --expected-head <EXACT_HEAD>
-- python scripts/governance_engine.py --root . --base bcc861bf9acc4a02702f5eec8bb45345617cd94a --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 8d0fbfd7177128774a0f321b8c95e6befdaaf659 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -48,7 +46,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-08-GOVERNANCE
+Sequence session contract: SW2-09-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

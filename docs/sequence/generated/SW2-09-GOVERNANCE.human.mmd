@@ -1,0 +1,40 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
+%% POLICY_ID: module-collapse-v1
+%% GENERATED_BY: sequence_human_view.py
+sequenceDiagram
+    participant module_scripts_governance_engine_py_0 as scripts/governance_engine.py
+    participant module_scripts_project_profile_py_1 as scripts/project_profile.py
+    participant module_scripts_project_snapshot_py_2 as scripts/project_snapshot.py
+    participant module_scripts_release_preflight_py_3 as scripts/release_preflight.py
+    participant module_scripts_schema_contract_py_4 as scripts/schema_contract.py
+    participant module_scripts_script_runner_py_5 as scripts/script_runner.py
+    participant module_scripts_selftest_adoption_profiles_py_6 as scripts/selftest_adoption_profiles.py
+    participant module_scripts_selftest_sequence_human_view_py_7 as scripts/selftest_sequence_human_view.py
+    participant module_scripts_toolchain_identity_py_8 as scripts/toolchain_identity.py
+    participant module_scripts_validate_doc_quality_py_9 as scripts/validate_doc_quality.py
+    participant module_scripts_validate_handoff_py_10 as scripts/validate_handoff.py
+    participant module_scripts_validate_project_truth_py_11 as scripts/validate_project_truth.py
+    participant module_scripts_validate_public_docs_py_12 as scripts/validate_public_docs.py
+    participant module_scripts_validate_schema_toolchain_py_13 as scripts/validate_schema_toolchain.py
+    module_scripts_governance_engine_py_0->>module_scripts_project_snapshot_py_2: 4 static interactions
+    module_scripts_governance_engine_py_0->>module_scripts_script_runner_py_5: 1 static interaction
+    module_scripts_project_profile_py_1->>module_scripts_project_snapshot_py_2: 1 static interaction
+    module_scripts_project_profile_py_1->>module_scripts_schema_contract_py_4: 1 static interaction
+    module_scripts_project_snapshot_py_2->>module_scripts_selftest_sequence_human_view_py_7: 1 static interaction
+    module_scripts_release_preflight_py_3->>module_scripts_project_snapshot_py_2: 1 static interaction
+    module_scripts_schema_contract_py_4->>module_scripts_project_snapshot_py_2: 1 static interaction
+    module_scripts_script_runner_py_5->>module_scripts_selftest_adoption_profiles_py_6: 1 static interaction
+    module_scripts_selftest_sequence_human_view_py_7->>module_scripts_project_snapshot_py_2: 1 static interaction
+    module_scripts_toolchain_identity_py_8->>module_scripts_project_snapshot_py_2: 2 static interactions
+    module_scripts_toolchain_identity_py_8->>module_scripts_selftest_sequence_human_view_py_7: 2 static interactions
+    module_scripts_validate_handoff_py_10->>module_scripts_project_profile_py_1: 7 static interactions
+    module_scripts_validate_handoff_py_10->>module_scripts_project_snapshot_py_2: 3 static interactions
+    module_scripts_validate_project_truth_py_11->>module_scripts_project_profile_py_1: 7 static interactions
+    module_scripts_validate_project_truth_py_11->>module_scripts_project_snapshot_py_2: 3 static interactions
+    module_scripts_validate_project_truth_py_11->>module_scripts_script_runner_py_5: 1 static interaction
+    module_scripts_validate_public_docs_py_12->>module_scripts_project_snapshot_py_2: 4 static interactions
+    module_scripts_validate_public_docs_py_12->>module_scripts_validate_doc_quality_py_9: 1 static interaction
+    module_scripts_validate_schema_toolchain_py_13->>module_scripts_project_profile_py_1: 1 static interaction
+    module_scripts_validate_schema_toolchain_py_13->>module_scripts_schema_contract_py_4: 1 static interaction
+    module_scripts_validate_schema_toolchain_py_13->>module_scripts_toolchain_identity_py_8: 1 static interaction

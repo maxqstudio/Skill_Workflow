@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-08-regression-adoption-validation
+Active branch: work/sw2-09-v2-stable-release
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: bcc861bf9acc4a02702f5eec8bb45345617cd94a
+Last accepted SHA: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
 Current source digest: 28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39
 
 ## Authorities

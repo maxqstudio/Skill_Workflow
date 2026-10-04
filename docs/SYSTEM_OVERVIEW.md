@@ -64,7 +64,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-08
+Current phase: SW2-09
 
 Current status: IN_PROGRESS
 
@@ -110,15 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run final exact-head SW2-08 acceptance with R1-R4 promoted and no temporary workflow present.
-- If final acceptance passes, close SW2-08 and advance roadmap authority to SW2-09 without creating the stable release until SW2-09 acceptance.
+- Audit and complete V2 migration plus rollback guidance without publishing a release.
+- Designate an exact SW2-09 release candidate and run complete final acceptance.
+- Only after R2 and R3 PASS, create the versioned GitHub tag/release from that exact tested HEAD and verify publication evidence.
 
 Blocked actions:
-- Do not claim SW2-08 adoption, performance, migration, or cross-platform gates PASS without fresh exact-candidate evidence.
+- Do not create or publish the V2 stable tag/release before SW2-09-R2 and SW2-09-R3 are PASS on an exact publication candidate.
+- Do not publish a tag or GitHub release from a HEAD different from the exact tested publication HEAD.
 - Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
 - Do not change the Owner-approved MIT license or SW2-ADR-010 without explicit Owner approval.
-- Do not create the V2 stable release/tag in SW2-08; stable release remains SW2-09 scope.
-- Do not weaken accepted SW2-01 through SW2-07 governance guarantees.
+- Do not weaken accepted SW2-01 through SW2-08 governance guarantees.
 
 Known blockers:
 - None declared.
@@ -160,10 +161,15 @@ Known blockers:
 - SW2-08-R2 large-consumer adoption is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: pinned max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f passed 153 source tests, deterministic/idempotent candidate-toolchain migration, full STRICT governance parity, and comparative hosted-runner improvements of 11.12% for extract_project_facts and 60.48% for sync_project_truth in Consumer run 37167140718.
 - SW2-08-R3 migration and false-PASS regressions are accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: Governance Selftest 37167140719 passed on Ubuntu and Windows with migration idempotence, future-version rejection, toolchain-tamper rejection, unknown/invalid claim-relation rejection, real claim-conflict detection, and explicit PROJECT_STATE_SYNC fail-closed evidence.
 - SW2-08-R4 cross-platform acceptance is accepted on exact candidate 5109b17de54de8af3d69e418d07175f62cf893d2: all six permanent checks succeeded and Governance Selftest 37167140719 passed the complete permanent matrix on Ubuntu and Windows.
+- SW2-08 is accepted and squash-merged to main as 8d0fbfd7177128774a0f321b8c95e6befdaaf659 with tree 0c43d4459518a0380e230935ae523ef85fb56904 equal to the exact tested candidate tree. Post-merge Self Governance 37167640353, Governance Selftest 37167640378 on Ubuntu and Windows, SW2 Sequence Evidence 37167640369, Governance Engine Performance 37167640375, and Consumer Engine Performance 37167640352 all succeeded.
+- SW2-09-R1 all prior SW2 phases accepted is proven by accepted SW2-00 through SW2-08 authority and green post-merge main 8d0fbfd7177128774a0f321b8c95e6befdaaf659.
 
 ### Not proven
 
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
+- SW2-09 exact stable release candidate acceptance is NOT_PROVEN.
+- SW2-09 migration and rollback guidance publication is NOT_PROVEN.
+- SW2-09 versioned GitHub tag/release publication is NOT_PROVEN.
 
 ## Important limitations
 

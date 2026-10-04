@@ -1,0 +1,51 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-09-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-09-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/release_preflight.py::main",
+      "scripts/validate_schema_toolchain.py::main",
+      "scripts/validate_public_docs.py::main",
+      "scripts/validate_handoff.py::main",
+      "scripts/validate_project_truth.py::main",
+      "scripts/governance_engine.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-09-GOVERNANCE.actual.json",
+    "source_digest": "28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-09 phase-opening static evidence binds release preflight, schema/toolchain compatibility, public documentation, handoff, Project Truth, and final governance paths. Exact release-candidate acceptance, migration/rollback publication, and stable tag/release publication remain NOT_PROVEN until dedicated SW2-09 evidence passes.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-09-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-09-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-09-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "28e9248984e6db5a2913164d11e71f3ccc9762253f14259cd783908bce7dba39"
+  },
+  "implementation_base_sha": "8d0fbfd7177128774a0f321b8c95e6befdaaf659",
+  "mode": "DURING",
+  "phase": "SW2-09",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-09-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_release_preflight.py",
+    "scripts/selftest_schema_toolchain.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}
