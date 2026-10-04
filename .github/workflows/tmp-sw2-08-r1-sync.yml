@@ -30,21 +30,61 @@ jobs:
           python - <<'PY'
           import json, subprocess, sys
           from pathlib import Path
+
           root = Path('.')
-          acceptance = json.loads((root/'.workflow/acceptance.json').read_text(encoding='utf-8'))
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
           sid = acceptance['sequence_session']
-          session_path = root/'docs/sequence/sessions'/f'{sid}.json'
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{sid}.json'
           session = json.loads(session_path.read_text(encoding='utf-8'))
           actual = session['actual']
-          cmd = [sys.executable,'scripts/generate_sequence_actual.py','--root','.','--output-json',actual['graph'],'--output-mermaid',actual['diagram']]
+
+          cmd = [
+              sys.executable,
+              'scripts/generate_sequence_actual.py',
+              '--root', '.',
+              '--output-json', actual['graph'],
+              '--output-mermaid', actual['diagram'],
+          ]
           for entry in actual['entries']:
-              cmd += ['--entry',entry]
-          subprocess.run(cmd,check=True)
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = str(graph['source_digest'])
+          session['actual']['source_digest'] = digest
           human = session.get('human_view') or {}
           if human:
-              subprocess.run([sys.executable,'scripts/sequence_human_view.py','--root','.','--actual-json',actual['graph'],'--actual-mermaid',actual['diagram'],'--output-json',human['graph'],'--output-mermaid',human['diagram'],'--output-markdown',human['document'],'--session-id',sid],check=True)
-          subprocess.run([sys.executable,'scripts/validate_sequence_contract.py','--root','.','--session',session_path.as_posix(),'--report',session['acceptance_report']],check=True)
-          subprocess.run([sys.executable,'scripts/validate_sequence_sessions.py','--root','.'],check=True)
+              session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/sequence_human_view.py',
+                  '--root', '.',
+                  '--actual-json', actual['graph'],
+                  '--actual-mermaid', actual['diagram'],
+                  '--output-json', human['graph'],
+                  '--output-mermaid', human['diagram'],
+                  '--output-markdown', human['document'],
+                  '--session-id', sid,
+              ], check=True)
+
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py',
+              '--root', '.',
+              '--session', session_path.as_posix(),
+              '--report', session['acceptance_report'],
+          ], check=True)
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/validate_sequence_human_view.py',
+                  '--root', '.',
+                  '--session', session_path.as_posix(),
+              ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_sessions.py',
+              '--root', '.',
+          ], check=True)
           PY
       - name: Synchronize Project Truth
         run: python scripts/sync_project_truth.py --root .
