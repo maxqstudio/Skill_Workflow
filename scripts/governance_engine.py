@@ -30,7 +30,7 @@ import validate_human_comprehension
 import validate_project_docs
 import validate_project_truth
 import validate_sequence_sessions
-from project_snapshot import ProjectSnapshot, active_project_snapshot
+from project_snapshot import ProjectSnapshot, SOURCE_EXTENSIONS, active_project_snapshot
 from script_runner import invoke_main
 
 
@@ -150,6 +150,7 @@ COMPILER_DEVELOP_FILES = {
     "scripts/validate_project_docs.py",
     "scripts/validate_doc_quality.py",
     "scripts/project_profile.py",
+    "scripts/project_truth_impact.py",
 }
 CROSSDOC_DEVELOP_FILES = {
     "scripts/validate_cross_document_consistency.py",
@@ -256,7 +257,11 @@ def classify_path(path: str) -> str:
         return "governance"
     if path.startswith("artifacts/sequence/"):
         return "sequence"
-    if path in {"SKILL.md", "README.md"} or path.startswith("docs/"):
+    if (
+        path in {"SKILL.md", "README.md"}
+        or path.startswith("docs/")
+        or path.startswith("references/")
+    ):
         return "documentation"
     if path.startswith("benchmarks/"):
         return "benchmark"
@@ -266,6 +271,8 @@ def classify_path(path: str) -> str:
         return "ci"
     if path.startswith("scripts/"):
         return "broad_source"
+    if Path(path).suffix.lower() in SOURCE_EXTENSIONS:
+        return "source"
     return "unknown"
 
 
@@ -306,8 +313,8 @@ def develop_node_names(
         if path in path_set:
             names.add(node_name)
     impact_set = set(impacts)
-    if impact_set.intersection({"governance", "documentation"}):
-        names.add("validate_project_docs")
+    if impact_set.intersection({"governance", "documentation", "source"}):
+        names.add("sync_project_truth")
     if "documentation" in impact_set:
         names.add("validate_cross_document_consistency")
     if "benchmark" in impact_set and not names:
@@ -322,6 +329,7 @@ def develop_node_names(
             "sequence_regression",
             "cross_document_regression",
             "compiler_selftest",
+            "sync_project_truth",
             "validate_project_docs",
             "validate_cross_document_consistency",
             "impact_only",
@@ -420,6 +428,7 @@ def build_mode_dag(
     base: str,
     mode: str,
     node_names: tuple[str, ...],
+    changed_paths: tuple[str, ...] = (),
 ) -> ValidationDAG:
     wanted = set(node_names)
     nodes: list[ValidationNode] = []
@@ -476,13 +485,18 @@ def build_mode_dag(
             if "strict_workflow_selftest" in wanted
             else regressions
         )
+        sync_args = ["--root", str(root)]
+        if mode != "finalize":
+            sync_args.append("--incremental")
+            for path in changed_paths:
+                sync_args.extend(["--changed-path", path])
         nodes.append(
             ValidationNode(
                 name="sync_project_truth",
                 dependencies=dependencies,
                 action=cli_action(
                     sync_project_truth.main,
-                    ["--root", str(root)],
+                    sync_args,
                     "sync_project_truth.py",
                 ),
             )
@@ -490,13 +504,18 @@ def build_mode_dag(
         docs_dependency = "sync_project_truth"
     elif "validate_project_docs" in wanted:
         dependencies = regressions
+        validate_docs_args = ["--root", str(root)]
+        if mode == "verify":
+            validate_docs_args.append("--incremental")
+            for path in changed_paths:
+                validate_docs_args.extend(["--changed-path", path])
         nodes.append(
             ValidationNode(
                 name="validate_project_docs",
                 dependencies=dependencies,
                 action=cli_action(
                     validate_project_docs.main,
-                    ["--root", str(root)],
+                    validate_docs_args,
                     "validate_project_docs.py",
                 ),
             )
@@ -753,6 +772,7 @@ def main() -> int:
                         base=base,
                         mode=selected_mode,
                         node_names=selected_nodes,
+                        changed_paths=changed_paths,
                     ).run()
                 else:
                     results = build_dag(root, base=base, sync=args.sync).run()

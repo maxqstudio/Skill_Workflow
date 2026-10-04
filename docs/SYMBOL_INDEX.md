@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
+Source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -21,7 +21,7 @@ responsibility, callers, or state ownership.
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
 | scripts/generate_module_map.py | 3 | 0 | 3 | 0 |
-| scripts/generate_project_docs.py | 38 | 0 | 38 | 0 |
+| scripts/generate_project_docs.py | 39 | 0 | 39 | 0 |
 | scripts/generate_sequence_actual.py | 21 | 3 | 9 | 9 |
 | scripts/generate_sequence_plan.py | 1 | 0 | 1 | 0 |
 | scripts/generate_symbol_index.py | 13 | 1 | 7 | 5 |
@@ -30,6 +30,7 @@ responsibility, callers, or state ownership.
 | scripts/migrate_governance_v1.py | 4 | 0 | 4 | 0 |
 | scripts/project_profile.py | 10 | 0 | 10 | 0 |
 | scripts/project_snapshot.py | 18 | 3 | 7 | 8 |
+| scripts/project_truth_impact.py | 2 | 0 | 2 | 0 |
 | scripts/release_preflight.py | 4 | 0 | 4 | 0 |
 | scripts/schema_contract.py | 5 | 0 | 5 | 0 |
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
@@ -49,7 +50,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_strict_project_workflow.py | 8 | 0 | 8 | 0 |
 | scripts/sequence_contract.py | 14 | 0 | 14 | 0 |
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
-| scripts/sync_project_truth.py | 3 | 0 | 3 | 0 |
+| scripts/sync_project_truth.py | 4 | 0 | 4 | 0 |
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
@@ -157,48 +158,49 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/generate_project_docs.py</code> — 38 symbols</summary>
+<summary><code>scripts/generate_project_docs.py</code> — 39 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| git_root | function | 54-63 |
-| load_json | function | 66-70 |
-| canonical_bytes | function | 73-79 |
-| canonical_generated_bytes | function | 82-84 |
-| clean | function | 87-88 |
-| cell | function | 91-92 |
-| bullets | function | 95-97 |
-| normalize_markdown | function | 100-133 |
-| read_specs | function | 136-159 |
-| validate_inputs | function | 162-274 |
-| input_digest | function | 277-296 |
-| generated_header | function | 299-303 |
-| claim_backlink_comment | function | 306-315 |
-| auth_lookup | function | 318-322 |
-| render_system_overview | function | 325-595 |
-| render_project_manifest | function | 598-700 |
-| render_current_state | function | 703-804 |
-| render_roadmap | function | 807-867 |
-| render_authority | function | 870-905 |
-| render_architecture | function | 908-987 |
-| render_workflows | function | 990-1056 |
-| render_sequence | function | 1059-1110 |
-| render_modules | function | 1113-1142 |
-| render_symbols | function | 1145-1232 |
-| render_flows | function | 1235-1298 |
-| render_acceptance | function | 1301-1393 |
-| render_doc_sync | function | 1396-1440 |
-| render_truth | function | 1443-1589 |
-| render_api | function | 1592-1619 |
-| render_data | function | 1622-1647 |
-| render_ui | function | 1650-1675 |
-| render_runbook | function | 1678-1693 |
-| render_decisions | function | 1696-1714 |
-| render_defects | function | 1717-1740 |
-| render_changelog | function | 1743-1759 |
-| render_glossary | function | 1762-1770 |
-| render_all | function | 1773-1854 |
-| main | function | 1857-1996 |
+| git_root | function | 55-64 |
+| load_json | function | 67-71 |
+| canonical_bytes | function | 74-80 |
+| canonical_generated_bytes | function | 83-85 |
+| clean | function | 88-89 |
+| cell | function | 92-93 |
+| bullets | function | 96-98 |
+| normalize_markdown | function | 101-134 |
+| read_specs | function | 137-160 |
+| validate_inputs | function | 163-275 |
+| input_digest | function | 278-297 |
+| generated_header | function | 300-304 |
+| claim_backlink_comment | function | 307-316 |
+| auth_lookup | function | 319-323 |
+| render_system_overview | function | 326-596 |
+| render_project_manifest | function | 599-701 |
+| render_current_state | function | 704-805 |
+| render_roadmap | function | 808-868 |
+| render_authority | function | 871-906 |
+| render_architecture | function | 909-988 |
+| render_workflows | function | 991-1057 |
+| render_sequence | function | 1060-1111 |
+| render_modules | function | 1114-1143 |
+| render_symbols | function | 1146-1233 |
+| render_flows | function | 1236-1299 |
+| render_acceptance | function | 1302-1394 |
+| render_doc_sync | function | 1397-1441 |
+| render_truth | function | 1444-1590 |
+| render_api | function | 1593-1620 |
+| render_data | function | 1623-1648 |
+| render_ui | function | 1651-1676 |
+| render_runbook | function | 1679-1694 |
+| render_decisions | function | 1697-1715 |
+| render_defects | function | 1718-1741 |
+| render_changelog | function | 1744-1760 |
+| render_glossary | function | 1763-1771 |
+| wanted_doc_names | function | 1775-1811 |
+| render_all | function | 1813-1868 |
+| main | function | 1872-2059 |
 
 </details>
 
@@ -274,25 +276,25 @@ responsibility, callers, or state ownership.
 | ValidationDAG._assert_acyclic.visit | method | 73-82 |
 | ValidationDAG.run | method | 87-131 |
 | ValidationDAG.run.execute | method | 90-127 |
-| git | function | 195-200 |
-| git_z | function | 203-212 |
-| state_base | function | 215-223 |
-| collect_changed_paths | function | 226-240 |
-| classify_path | function | 243-269 |
-| classify_changed_paths | function | 272-273 |
-| effective_mode | function | 276-284 |
-| develop_node_names | function | 287-331 |
-| planned_node_names | function | 334-344 |
-| governed_status | function | 347-360 |
-| cli_action | function | 363-368 |
-| command_action | function | 371-386 |
-| command_action.run | method | 372-384 |
-| compile_scripts_action | function | 389-406 |
-| compile_scripts_action.run | method | 391-404 |
-| _regression_node | function | 409-414 |
-| build_mode_dag | function | 417-601 |
-| build_dag | function | 604-678 |
-| main | function | 681-809 |
+| git | function | 196-201 |
+| git_z | function | 204-213 |
+| state_base | function | 216-224 |
+| collect_changed_paths | function | 227-241 |
+| classify_path | function | 244-276 |
+| classify_changed_paths | function | 279-280 |
+| effective_mode | function | 283-291 |
+| develop_node_names | function | 294-339 |
+| planned_node_names | function | 342-352 |
+| governed_status | function | 355-368 |
+| cli_action | function | 371-376 |
+| command_action | function | 379-394 |
+| command_action.run | method | 380-392 |
+| compile_scripts_action | function | 397-414 |
+| compile_scripts_action.run | method | 399-412 |
+| _regression_node | function | 417-422 |
+| build_mode_dag | function | 425-620 |
+| build_dag | function | 623-697 |
+| main | function | 700-829 |
 
 </details>
 
@@ -360,6 +362,16 @@ responsibility, callers, or state ownership.
 | active_project_snapshot | function | 223-228 |
 | active_snapshot_for | function | 231-235 |
 | resolve_snapshot | function | 238-247 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_truth_impact.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| normalize_path | function | 86-90 |
+| plan_project_truth_impact | function | 93-174 |
 
 </details>
 
@@ -468,10 +480,10 @@ responsibility, callers, or state ownership.
 | dag_fail_closed | function | 132-169 |
 | dag_fail_closed.fail | method | 135-136 |
 | dag_fail_closed.downstream | method | 138-141 |
-| mode_planning_contract | function | 172-258 |
-| changed_path_collection_contract | function | 261-283 |
-| mode_cli_integration_contract | function | 286-379 |
-| main | function | 382-391 |
+| mode_planning_contract | function | 172-274 |
+| changed_path_collection_contract | function | 277-299 |
+| mode_cli_integration_contract | function | 302-395 |
+| main | function | 398-407 |
 
 </details>
 
@@ -483,7 +495,7 @@ responsibility, callers, or state ownership.
 | run | function | 16-36 |
 | write_json | function | 39-40 |
 | test_gitignored_source_files_are_excluded | function | 43-101 |
-| main | function | 104-452 |
+| main | function | 104-535 |
 
 </details>
 
@@ -607,13 +619,14 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/sync_project_truth.py</code> — 3 symbols</summary>
+<summary><code>scripts/sync_project_truth.py</code> — 4 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| run_main | function | 30-31 |
-| sync_once | function | 34-127 |
-| main | function | 130-142 |
+| run_main | function | 21-22 |
+| compiler_args | function | 25-33 |
+| sync_once | function | 36-132 |
+| main | function | 135-150 |
 
 </details>
 
@@ -714,7 +727,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 19-93 |
+| main | function | 20-89 |
 
 </details>
 

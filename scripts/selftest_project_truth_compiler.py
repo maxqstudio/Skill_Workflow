@@ -391,6 +391,89 @@ def main() -> int:
             str(root),
         )
 
+        # SW2-14 incremental Project Truth contract.
+        control_doc = root / "docs" / "ARCHITECTURE.md"
+        control_bytes = control_doc.read_bytes()
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+        state["status"] = "ACTIVE_INCREMENTAL"
+        write_json(state_path, state)
+        incremental_report = root / "incremental-state.json"
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "generate_project_docs.py"),
+            "--root", str(root),
+            "--incremental",
+            "--changed-path", ".workflow/state.json",
+            "--report", str(incremental_report),
+        )
+        incremental = json.loads(incremental_report.read_text(encoding="utf-8"))
+        expected_state_docs = {
+            "docs/SYSTEM_OVERVIEW.md",
+            "docs/PROJECT_MANIFEST.md",
+            "docs/CURRENT_STATE.md",
+            "docs/ROADMAP.md",
+        }
+        if set(incremental["generated_docs"]) != expected_state_docs:
+            raise RuntimeError("incremental state dependency graph drifted: " + repr(incremental["generated_docs"]))
+        if incremental["facts_affected"] or incremental["facts_recomputed"]:
+            raise RuntimeError("governance-only incremental change recomputed source facts")
+        if "docs/ARCHITECTURE.md" in incremental["written_docs"] or control_doc.read_bytes() != control_bytes:
+            raise RuntimeError("unaffected tracked projection was rewritten")
+        run(root, sys.executable, str(tool_root / "generate_project_docs.py"), "--root", str(root), "--check")
+
+        unknown_report = root / "incremental-unknown.json"
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "generate_project_docs.py"),
+            "--root", str(root),
+            "--check",
+            "--incremental",
+            "--changed-path", "future/opaque.bin",
+            "--report", str(unknown_report),
+        )
+        unknown = json.loads(unknown_report.read_text(encoding="utf-8"))
+        if not unknown["impact_broad"] or unknown["unknown_paths"] != ["future/opaque.bin"]:
+            raise RuntimeError("unknown impact did not broaden fail-closed")
+        if set(unknown["generated_docs"]) != set(unknown["all_generated_docs"]):
+            raise RuntimeError("unknown impact did not select exhaustive projection set")
+
+        with (root / "app.py").open("a", encoding="utf-8") as fh:
+            fh.write("\ndef incremental_probe():\n    return True\n")
+        source_report = root / "incremental-source.json"
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "generate_project_docs.py"),
+            "--root", str(root),
+            "--incremental",
+            "--changed-path", "app.py",
+            "--report", str(source_report),
+        )
+        source_payload = json.loads(source_report.read_text(encoding="utf-8"))
+        if not source_payload["facts_affected"] or not source_payload["facts_recomputed"] or not source_payload["facts_written"]:
+            raise RuntimeError("source incremental change did not refresh facts")
+        run(root, sys.executable, str(tool_root / "generate_project_docs.py"), "--root", str(root), "--check")
+
+        repeat_report = root / "incremental-repeat.json"
+        run(
+            root,
+            sys.executable,
+            str(tool_root / "generate_project_docs.py"),
+            "--root", str(root),
+            "--incremental",
+            "--changed-path", "app.py",
+            "--report", str(repeat_report),
+        )
+        repeat = json.loads(repeat_report.read_text(encoding="utf-8"))
+        if repeat["facts_written"] or repeat["written_docs"]:
+            raise RuntimeError("byte-identical incremental rerun rewrote tracked outputs")
+        print("INCREMENTAL_IMPACT_GRAPH=PASS")
+        print("INCREMENTAL_SELECTIVE_WRITE=PASS")
+        print("INCREMENTAL_FACT_SELECTIVITY=PASS")
+        print("INCREMENTAL_UNKNOWN_BROADENING=PASS")
+        print("INCREMENTAL_FULL_PARITY=PASS")
         roadmap_bytes = roadmap_path.read_bytes()
         roadmap_path.unlink()
         missing_roadmap = run(

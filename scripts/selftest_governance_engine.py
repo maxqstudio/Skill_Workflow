@@ -181,10 +181,26 @@ def mode_planning_contract() -> None:
     require("engine_regression" in develop_nodes, "develop missed engine regression")
     require("strict_workflow_selftest" not in develop_nodes, "develop ran final-only regression")
 
+    source_impacts = classify_changed_paths(("app.py",))
+    require(source_impacts == ("source",), f"source classification drifted: {source_impacts}")
+    require(effective_mode("develop", source_impacts) == "develop", "known source change should remain develop")
+    source_nodes = develop_node_names(("app.py",), source_impacts)
+    require("sync_project_truth" in source_nodes, "source develop missed incremental Project Truth sync")
+
     broad_impacts = classify_changed_paths(("scripts/new_future_validator.py",))
     require(
         effective_mode("develop", broad_impacts) == "verify",
         "unmapped source should escalate develop to verify",
+    )
+
+    reference_impacts = classify_changed_paths(("references/governance-and-project-truth.md",))
+    require(
+        reference_impacts == ("documentation",),
+        f"normative reference fragment misclassified: {reference_impacts}",
+    )
+    require(
+        effective_mode("verify", reference_impacts) == "verify",
+        "normative reference fragment should not escalate verify to finalize",
     )
 
     support_impacts = classify_changed_paths(

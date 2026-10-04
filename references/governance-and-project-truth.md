@@ -208,6 +208,19 @@ python .workflow/tools/generate_project_docs.py
 python .workflow/tools/validate_project_docs.py
 ```
 
+### Incremental Project Truth (intermediate modes only)
+
+`develop` may materialize only projections affected by the observed changed-path set. `verify` may compute/check the same subset but MUST remain read-only. Unknown or ambiguous paths broaden fail-closed to the complete generated-document set. `finalize` never trusts incremental coverage: it runs the exhaustive default compiler/validator path and remains the only final acceptance authority.
+
+The project-local tools expose explicit intermediate commands for orchestrators:
+
+```bash
+python .workflow/tools/sync_project_truth.py --incremental --changed-path <path>
+python .workflow/tools/validate_project_docs.py --incremental --changed-path <path>
+```
+
+Do not manually omit changed paths and treat the result as acceptance evidence. The governance engine supplies changed paths from Git/worktree evidence; direct incremental CLI use is intermediate evidence only.
+
 Executable compiler regression self-test:
 
 ```bash
