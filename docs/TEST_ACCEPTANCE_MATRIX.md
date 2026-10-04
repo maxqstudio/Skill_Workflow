@@ -11,10 +11,10 @@ Current source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05e
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-14-R1 | Project Truth impact graph is deterministic, dependency-aware, and fail-closed. | NOT_PROVEN until the current full regeneration pipeline is mapped, impact edges are explicit/deterministic, and ambiguous or unsupported impact cannot silently narrow work. | NOT_PROVEN |
-| SW2-14-R2 | Develop/verify regenerate only affected facts and projections and do not rewrite unchanged tracked projections. | NOT_PROVEN until selective regeneration is implemented with byte/digest evidence proving unaffected projections remain untouched. | NOT_PROVEN |
-| SW2-14-R3 | Unknown or ambiguous impact broadens regeneration and validation rather than permitting a false PASS. | NOT_PROVEN until adversarial negative paths prove unknown inputs and dependency gaps escalate fail-closed to a broader safe path. | NOT_PROVEN |
-| SW2-14-R4 | Finalize remains exhaustive and produces governance-equivalent canonical outputs to the accepted full regeneration path across platforms and the permanent matrix. | NOT_PROVEN until exhaustive finalize parity, exact-head cleanliness, Ubuntu/Windows governance, sequence evidence, engine performance, and real-consumer acceptance all pass on the final candidate. | NOT_PROVEN |
+| SW2-14-R1 | Project Truth impact graph is deterministic, dependency-aware, and fail-closed. | PASS: exact repaired feature candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7 passed Governance Selftest run 37219195065 on Ubuntu and Windows. The permanent Project Truth Compiler self-test proved INCREMENTAL_IMPACT_GRAPH=PASS, and the Governance Engine regression proved deterministic changed-path classification with normative references mapped to documentation rather than unknown impact. | PASS |
+| SW2-14-R2 | Develop/verify regenerate only affected facts and projections and do not rewrite unchanged tracked projections. | PASS: Governance Selftest run 37219195065 passed Project Truth Compiler self-test and Verify mode is read-only on both Ubuntu and Windows for exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7. Regression evidence includes INCREMENTAL_SELECTIVE_WRITE=PASS and INCREMENTAL_FACT_SELECTIVITY=PASS: governance-only changes reuse facts, source changes refresh facts, and byte-identical unaffected tracked projections are not rewritten. | PASS |
+| SW2-14-R3 | Unknown or ambiguous impact broadens regeneration and validation rather than permitting a false PASS. | PASS: exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7 passed INCREMENTAL_UNKNOWN_BROADENING=PASS and Governance Engine mode-planning regression on Ubuntu and Windows in run 37219195065. Unknown/ambiguous impact broadens to the complete projection set and unknown verify impact escalates fail-closed rather than silently narrowing acceptance. | PASS |
+| SW2-14-R4 | Finalize remains exhaustive and produces governance-equivalent canonical outputs to the accepted full regeneration path across platforms and the permanent matrix. | PASS for feature promotion: exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7 passed INCREMENTAL_FULL_PARITY=PASS in Governance Selftest run 37219195065 on Ubuntu and Windows, SW2 Sequence Evidence run 37219195086, Governance Engine Performance run 37219195153, and Consumer Engine Performance run 37219195072. Pre-promotion Self Governance run 37219195078 executed the exhaustive finalize path with compiler, strict workflow, Project Truth sync, cross-document consistency, sequence, handoff, and clean-worktree nodes PASS; it stopped only at the intentionally unpromoted Project Truth status gate. Full post-promotion 6/6 permanent acceptance remains required before merge/closure. | PASS |
 
 ## Test commands
 
@@ -39,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-14-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 

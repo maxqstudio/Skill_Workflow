@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-14-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -90,12 +90,11 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-13 reference integrity is proven: deterministic routing depth is 1, six negative-path regressions fail closed, and Governance Selftest run 37208469609 passes the contract on Ubuntu and Windows.
 - SW2-13 feature acceptance is proven on exact clean candidate 5ad450950099679388afeaebca686cb26906be62: Self Governance 37208469566, Governance Selftest 37208469609 on Ubuntu and Windows, SW2 Sequence Evidence 37208469659, Governance Engine Performance 37208469572, and Consumer Engine Performance 37208469581 all succeeded.
 - SW2-13 Skill Core / Reference Split is accepted on main 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef with merged tree 8d1ad6cc0c635954f06f66d1bf4a639532073e23 equal to exact tested post-promotion candidate tree; post-merge Self Governance 37208968898, Governance Selftest 37208968830 on Ubuntu and Windows, SW2 Sequence Evidence 37208968839, Governance Engine Performance 37208968906, and Consumer Engine Performance 37208968813 all succeeded.
+- SW2-14 deterministic incremental Project Truth impact planning is feature-proven on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Ubuntu and Windows with INCREMENTAL_IMPACT_GRAPH, selective-write, fact-selectivity, unknown-broadening, and exhaustive-parity regressions.
+- SW2-14 preserves verify read-only safety on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Verify mode is read-only on both Ubuntu and Windows after normative references were correctly classified as documentation impact.
+- SW2-14 feature-level parity evidence is green on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: SW2 Sequence Evidence 37219195086, Governance Engine Performance 37219195153, and Consumer Engine Performance 37219195072 succeeded; pre-promotion Self Governance 37219195078 reached only the intentionally unpromoted Project Truth gate.
 
 ## Not proven
-- SW2-14 deterministic Project Truth impact graph is not yet proven.
-- SW2-14 selective regeneration and unchanged-projection preservation are not yet proven.
-- SW2-14 unknown-impact fail-closed escalation is not yet proven.
-- SW2-14 finalize parity with exhaustive accepted regeneration is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -105,10 +104,9 @@ SEQUENCE_SYNC: NOT_PROVEN
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Map current Project Truth generation inputs, projections, and dependency relationships before changing regeneration behavior.
-- Define a deterministic fail-closed impact graph from changed authority/source inputs to affected generated facts and projections.
-- Implement incremental develop/verify regeneration only after negative-path tests prove unknown impact broadens validation and unchanged projections are not rewritten.
-- Keep finalize exhaustive and require parity against the accepted full regeneration path before SW2-14 closure.
+- Run the complete permanent acceptance matrix on the post-promotion exact candidate.
+- If all six permanent contexts pass, ready and squash-merge PR #22 with exact-head locking.
+- After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-14 accepted.
 
 ## Explicitly blocked
 - Do not skip or weaken exhaustive finalize validation.
