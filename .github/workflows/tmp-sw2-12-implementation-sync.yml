@@ -1,0 +1,221 @@
+name: SW2-12 Implementation Sync
+
+on:
+  push:
+    branches:
+      - work/sw2-12-repository-hygiene
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-12-repository-hygiene
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Remove bootstrap workflow from candidate
+        shell: bash
+        run: rm .github/workflows/tmp-sw2-12-implementation-sync.yml
+
+      - name: Prove repository-health cleanup guard
+        shell: bash
+        run: |
+          python scripts/selftest_repository_health.py
+          python scripts/validate_repository_health.py --root . --require-owner-approved-license
+          if find .github/workflows -maxdepth 1 -type f -name 'tmp-*' -print -quit | grep -q .; then
+            echo 'TRACKED_TEMP_WORKFLOW_REMAINS' >&2
+            exit 1
+          fi
+          if git grep -n 'tmp-sw2-09-publish-v2.yml' -- ':!artifacts/sw2-12-repository-hygiene.json'; then
+            echo 'STALE_PUBLICATION_WORKFLOW_REFERENCE_REMAINS' >&2
+            exit 1
+          fi
+
+      - name: Capture evidence-backed hygiene inventory
+        shell: bash
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/branches?per_page=100" > "$RUNNER_TEMP/branches.json"
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v2.0.0" > "$RUNNER_TEMP/release.json"
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path('.')
+          temp = Path(os.environ['RUNNER_TEMP'])
+          branches = json.loads((temp / 'branches.json').read_text(encoding='utf-8'))
+          release = json.loads((temp / 'release.json').read_text(encoding='utf-8'))
+          expected_release = 'd61d216f1c9b29d6bdd90e1a929cd4199c8e93f6'
+          if release.get('tag_name') != 'v2.0.0' or release.get('target_commitish') != expected_release:
+              raise SystemExit('V2_RELEASE_TARGET_MISMATCH')
+
+          workflows = sorted(p.as_posix() for p in (root / '.github' / 'workflows').glob('*') if p.is_file())
+          temporary = [p for p in workflows if Path(p).name.startswith('tmp-')]
+          if temporary:
+              raise SystemExit('TEMPORARY_WORKFLOW_REMAINS:' + ','.join(temporary))
+
+          branch_inventory = []
+          for item in branches:
+              name = str(item.get('name', ''))
+              sha = str((item.get('commit') or {}).get('sha', ''))
+              if name == 'main':
+                  classification = 'KEEP_AUTHORITY'
+                  rationale = 'Default branch and accepted authority.'
+              elif name == 'work/sw2-12-repository-hygiene':
+                  classification = 'KEEP_ACTIVE'
+                  rationale = 'Active governed SW2-12 working branch.'
+              else:
+                  classification = 'NOT_PROVEN_SAFE_TO_DELETE'
+                  rationale = 'Historical/squash-candidate reachability has not been proven disposable; preserve for auditability.'
+              branch_inventory.append({'name': name, 'sha': sha, 'classification': classification, 'rationale': rationale})
+
+          session_dir = root / 'docs' / 'sequence' / 'sessions'
+          acceptance_dir = root / 'artifacts' / 'sequence'
+          benchmark_dir = root / 'benchmarks'
+          historical_sessions = []
+          for path in sorted(session_dir.glob('*.json')):
+              data = json.loads(path.read_text(encoding='utf-8'))
+              if data.get('scope') == 'HISTORICAL':
+                  historical_sessions.append(path.as_posix())
+
+          report = {
+              'schema_version': 1,
+              'phase': 'SW2-12',
+              'result': 'PASS',
+              'first_failed_gate': None,
+              'baseline_main_sha': '2fc16cce4c7753ad103bac401d1825a9bd8bd3a1',
+              'removed_items': [
+                  {
+                      'path': '.github/workflows/tmp-sw2-09-publish-v2.yml',
+                      'former_blob_sha': '69b0241f9b4d2c198f038a4167979737a4773197',
+                      'classification': 'REMOVE',
+                      'rationale': 'One-shot SW2-09 v2.0.0 publisher is obsolete after the stable tag/release was successfully published; rerunning it would fail closed because v2.0.0 already exists.'
+                  }
+              ],
+              'tracked_workflows': [{'path': path, 'classification': 'KEEP_CURRENT'} for path in workflows],
+              'tracked_temporary_workflows': temporary,
+              'historical_evidence': {
+                  'historical_sequence_sessions': historical_sessions,
+                  'sequence_acceptance_report_count': len(list(acceptance_dir.glob('*.acceptance.json'))),
+                  'benchmark_json_count': len(list(benchmark_dir.rglob('*.json'))),
+                  'classification': 'KEEP_AUDIT_EVIDENCE'
+              },
+              'remote_branches': branch_inventory,
+              'stable_release': {
+                  'version': 'v2.0.0',
+                  'target_sha': expected_release,
+                  'release_id': release.get('id'),
+                  'published_at': release.get('published_at'),
+                  'classification': 'KEEP_IMMUTABLE_RELEASE_EVIDENCE'
+              },
+              'evidence_boundary': 'Tracked dead-workflow cleanup is proven. Historical evidence and remote branches are retained unless deletion safety is separately proven; this report does not authorize mass branch deletion.'
+          }
+          out = root / 'artifacts' / 'sw2-12-repository-hygiene.json'
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          print(f'TRACKED_WORKFLOWS={len(workflows)}')
+          print('TRACKED_TEMPORARY_WORKFLOWS=0')
+          print(f'HISTORICAL_SEQUENCE_SESSIONS={len(historical_sessions)}')
+          print(f'REMOTE_BRANCHES={len(branch_inventory)}')
+          print('V2_RELEASE_TARGET=PASS')
+          print('HYGIENE_INVENTORY=PASS')
+          PY
+
+      - name: Promote implementation evidence R1-R3
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('.workflow/acceptance.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          evidence = {
+              'SW2-12-R1': 'PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications.',
+              'SW2-12-R2': 'PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery.',
+              'SW2-12-R3': 'PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6.'
+          }
+          for item in data['requirements']:
+              if item['id'] in evidence:
+                  item['status'] = 'PASS'
+                  item['evidence'] = evidence[item['id']]
+          path.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          state_path = Path('.workflow/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['not_proven'] = [
+              'SW2-12 final exact-candidate permanent acceptance matrix is not yet proven.',
+              'Deletion safety for historical remote branches is intentionally NOT_PROVEN; they are retained for auditability.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.'
+          ]
+          state['next_authorized_actions'] = [
+              'Regenerate current Project Truth and SW2-12 sequence evidence after the cleanup implementation.',
+              'Open the SW2-12 pull request and obtain exact-head permanent check evidence.',
+              'Promote SW2-12-R4 only after the exact cleanup candidate satisfies the complete permanent acceptance matrix.'
+          ]
+          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+
+      - name: Regenerate Project Truth and sequence evidence
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/generate_sequence_actual.py --root . \
+            --output-json docs/sequence/generated/SW2-12-GOVERNANCE.actual.json \
+            --output-mermaid docs/sequence/generated/SW2-12-GOVERNANCE.actual.mmd \
+            --entry scripts/validate_repository_health.py::main \
+            --entry scripts/validate_project_docs.py::main \
+            --entry scripts/validate_cross_document_consistency.py::main \
+            --entry scripts/sync_project_truth.py::main \
+            --entry scripts/validate_sequence_sessions.py::main \
+            --entry scripts/governance_engine.py::main
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          session_path = Path('docs/sequence/sessions/SW2-12-GOVERNANCE.json')
+          actual_path = Path('docs/sequence/generated/SW2-12-GOVERNANCE.actual.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = json.loads(actual_path.read_text(encoding='utf-8'))
+          digest = actual['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          python scripts/sequence_human_view.py --root . \
+            --actual-json docs/sequence/generated/SW2-12-GOVERNANCE.actual.json \
+            --actual-mermaid docs/sequence/generated/SW2-12-GOVERNANCE.actual.mmd \
+            --output-json docs/sequence/generated/SW2-12-GOVERNANCE.human.json \
+            --output-mermaid docs/sequence/generated/SW2-12-GOVERNANCE.human.mmd \
+            --output-markdown docs/sequence/views/SW2-12-GOVERNANCE.md \
+            --session-id SW2-12-GOVERNANCE
+          python scripts/validate_sequence_contract.py --root . \
+            --session docs/sequence/sessions/SW2-12-GOVERNANCE.json \
+            --report artifacts/sequence/SW2-12-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-12-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_repository_health.py --root . --require-owner-approved-license
+
+      - name: Commit clean implementation candidate
+        shell: bash
+        run: |
+          git config user.name maxqstudio
+          git config user.email jackson.cendana@gmail.com
+          git add .github/workflows/tmp-sw2-12-implementation-sync.yml .workflow docs artifacts scripts
+          git status --short
+          git diff --cached --quiet && exit 0
+          git commit -m "SW2-12: harden repository hygiene"
+          git push origin HEAD:work/sw2-12-repository-hygiene
