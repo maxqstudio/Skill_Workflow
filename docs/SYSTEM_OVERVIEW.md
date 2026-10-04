@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-11
+Current phase: SW2-12
 
-Current status: SW2_11_ROOT_AGENTS_CONTRACT_ACCEPTED
+Current status: SW2_12_REPOSITORY_HYGIENE_ACCEPTED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat mandatory source-authored root AGENTS.md as part of the accepted Skill Workflow project contract.
-- Preserve existing project-specific AGENTS.md by default during initialization and migration.
-- Open SW2-12 Repository Hygiene & Dead Artifact Cleanup as a separate governed phase before changing cleanup behavior.
+- Treat tracked .github/workflows/tmp-* files as repository-health failures and remove one-shot helpers before acceptance.
+- Preserve historical acceptance/release evidence and remote branches unless deletion safety is explicitly proven.
+- Open SW2-13 Skill Core / Reference Split as a separate governed phase before changing skill/reference packaging.
 
 Blocked actions:
 - Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag.
-- Do not weaken accepted V2 governance guarantees or make root AGENTS.md optional for any governance profile.
-- Do not treat AGENTS.md as generated Project Truth or move it under docs/.
-- Do not overwrite an existing project-specific AGENTS.md during initialization or migration unless --force is explicitly requested.
-- Do not begin SW2-12 implementation without opening its governed acceptance boundary.
+- Do not weaken accepted V2 governance guarantees or the mandatory root AGENTS.md contract.
+- Do not delete historical evidence or remote branches merely for cosmetic cleanup when deletion safety is NOT_PROVEN.
+- Do not allow tracked .github/workflows/tmp-* files in an accepted repository state.
+- Do not begin SW2-13 implementation without opening its governed acceptance boundary.
 
 Known blockers:
 - None declared.
@@ -172,9 +172,12 @@ Known blockers:
 - SW2-10 Documentation Polish & Discoverability was accepted and squash-merged to main as 51963cac28f78e8c9c5052bcbdc5270b5bc93989; post-merge Self Governance 37190063064, Governance Selftest 37190063086 on Ubuntu and Windows, SW2 Sequence Evidence 37190063053, Governance Engine Performance 37190063093, and Consumer Engine Performance 37190063075 all succeeded.
 - SW2-11 Root AGENTS.md Contract is Owner-authorized: AGENTS.md must become a mandatory source-authored root document for every governed project; the previously proposed optimization roadmap shifts forward by one phase.
 - SW2-11 Root AGENTS.md Contract is accepted on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded. AGENTS.md is mandatory and source-authored at repository root for LITE, STANDARD, and STRICT; initialization/migration and fail-closed validation are regression-proven.
+- SW2-11 Root AGENTS.md Contract was squash-merged to main as 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 with tree 355a351b6da106dfa6538add0c13f5a4d2f2d67f equal to the exact tested clean-head tree. Post-merge main passed Self Governance 37202694399, Governance Selftest 37202694460 on Ubuntu and Windows, SW2 Sequence Evidence 37202694406, Governance Engine Performance 37202694405, and Consumer Engine Performance 37202694400.
+- SW2-12 Repository Hygiene & Dead Artifact Cleanup is accepted on exact implementation candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. The obsolete one-shot SW2-09 publication workflow was removed, tracked tmp-* workflows now fail closed, and historical audit evidence/remote branches were preserved unless deletion safety was proven.
 
 ### Not proven
 
+- Deletion safety for historical remote branches remains intentionally NOT_PROVEN; they are preserved for auditability.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

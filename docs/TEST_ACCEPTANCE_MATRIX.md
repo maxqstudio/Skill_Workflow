@@ -4,31 +4,30 @@
 
 ## Evidence boundary
 
-SW2-11 covers the mandatory root AGENTS.md operating contract only: source-authored root presence for every governance profile, deterministic initialization/preservation, explicit migration for existing governed projects, fail-closed validation, regression coverage, and synchronized public/governance documentation. It must not weaken accepted V2 guarantees or change the stable v2.0.0 release target.
+SW2-12 covers repository hygiene and dead/transient artifact cleanup only: evidence-backed inventory, safe-removal classification, preservation of historical acceptance auditability and compatibility contracts, deterministic synchronization, and exact-candidate regression. It must not alter accepted V2 behavior, the stable v2.0.0 tag target, or root AGENTS.md governance semantics.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 5ec30f2e453e6b6f959eaf7c1ebdc8df29718a41b14bfe022e8f98a740b73313
+Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-11-R1 | AGENTS.md is mandatory, source-authored, and located at repository root for LITE, STANDARD, and STRICT. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: root AGENTS.md and templates/AGENTS.md are source-authored; project-doc/repository-health validation and LITE/STANDARD/STRICT adoption coverage passed in Governance Selftest 37199687921 on Ubuntu and Windows. | PASS |
-| SW2-11-R2 | Initializer and migration create missing AGENTS.md deterministically while preserving existing project-specific content by default. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: initializer creation plus explicit legacy migration/idempotence regression passed in Governance Selftest 37199687921 on Ubuntu and Windows; initializer preserves existing files unless --force through the existing copy_file force contract. | PASS |
-| SW2-11-R3 | Project-doc and repository-health validation fail closed for missing/generated/malformed root AGENTS.md and regression protects the behavior. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: missing root AGENTS.md rejection, source-authored/normalized validation, repository-health regression, and Project Truth regression passed in Governance Selftest 37199687921 on Ubuntu and Windows. | PASS |
-| SW2-11-R4 | Skill Workflow self-governance, synchronized Project Truth/sequence evidence, and the complete permanent matrix pass on the exact candidate. | PASS on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded. | PASS |
+| SW2-12-R1 | Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers. | PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications. | PASS |
+| SW2-12-R2 | Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts. | PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery. | PASS |
+| SW2-12-R3 | Historical acceptance and release evidence remains auditable after cleanup. | PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6. | PASS |
+| SW2-12-R4 | Project Truth, current sequence evidence, and the complete permanent acceptance matrix pass on the exact clean cleanup candidate. | PASS on exact candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. | PASS |
 
 ## Test commands
 
 - python -m compileall -q scripts
-- python scripts/selftest_schema_toolchain.py
 - python scripts/selftest_repository_health.py
 - python scripts/validate_repository_health.py --root .
 - python scripts/selftest_project_truth_compiler.py
-- python scripts/selftest_adoption_profiles.py
+- python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/validate_cross_document_consistency.py --root . --base 51963cac28f78e8c9c5052bcbdc5270b5bc93989 --require-base
-- python scripts/governance_engine.py --root . --base 51963cac28f78e8c9c5052bcbdc5270b5bc93989 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/validate_cross_document_consistency.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --require-base
+- python scripts/governance_engine.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -42,7 +41,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-11-GOVERNANCE
+Sequence session contract: SW2-12-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
