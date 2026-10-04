@@ -2196,8 +2196,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::_regression_node",
       "language": "Python",
-      "line_end": 418,
-      "line_start": 413,
+      "line_end": 422,
+      "line_start": 417,
       "locator": "scripts/governance_engine.py::_regression_node"
     },
     {
@@ -2205,8 +2205,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::build_dag",
       "language": "Python",
-      "line_end": 693,
-      "line_start": 619,
+      "line_end": 697,
+      "line_start": 623,
       "locator": "scripts/governance_engine.py::build_dag"
     },
     {
@@ -2214,8 +2214,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::build_mode_dag",
       "language": "Python",
-      "line_end": 616,
-      "line_start": 421,
+      "line_end": 620,
+      "line_start": 425,
       "locator": "scripts/governance_engine.py::build_mode_dag"
     },
     {
@@ -2223,8 +2223,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::classify_changed_paths",
       "language": "Python",
-      "line_end": 276,
-      "line_start": 275,
+      "line_end": 280,
+      "line_start": 279,
       "locator": "scripts/governance_engine.py::classify_changed_paths"
     },
     {
@@ -2232,7 +2232,7 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::classify_path",
       "language": "Python",
-      "line_end": 272,
+      "line_end": 276,
       "line_start": 244,
       "locator": "scripts/governance_engine.py::classify_path"
     },
@@ -2241,8 +2241,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::cli_action",
       "language": "Python",
-      "line_end": 372,
-      "line_start": 367,
+      "line_end": 376,
+      "line_start": 371,
       "locator": "scripts/governance_engine.py::cli_action"
     },
     {
@@ -2259,8 +2259,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::command_action",
       "language": "Python",
-      "line_end": 390,
-      "line_start": 375,
+      "line_end": 394,
+      "line_start": 379,
       "locator": "scripts/governance_engine.py::command_action"
     },
     {
@@ -2268,8 +2268,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::compile_scripts_action",
       "language": "Python",
-      "line_end": 410,
-      "line_start": 393,
+      "line_end": 414,
+      "line_start": 397,
       "locator": "scripts/governance_engine.py::compile_scripts_action"
     },
     {
@@ -2277,8 +2277,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::develop_node_names",
       "language": "Python",
-      "line_end": 335,
-      "line_start": 290,
+      "line_end": 339,
+      "line_start": 294,
       "locator": "scripts/governance_engine.py::develop_node_names"
     },
     {
@@ -2286,8 +2286,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::effective_mode",
       "language": "Python",
-      "line_end": 287,
-      "line_start": 279,
+      "line_end": 291,
+      "line_start": 283,
       "locator": "scripts/governance_engine.py::effective_mode"
     },
     {
@@ -2313,8 +2313,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::governed_status",
       "language": "Python",
-      "line_end": 364,
-      "line_start": 351,
+      "line_end": 368,
+      "line_start": 355,
       "locator": "scripts/governance_engine.py::governed_status"
     },
     {
@@ -2322,8 +2322,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::main",
       "language": "Python",
-      "line_end": 825,
-      "line_start": 696,
+      "line_end": 829,
+      "line_start": 700,
       "locator": "scripts/governance_engine.py::main"
     },
     {
@@ -2331,8 +2331,8 @@
       "kind": "function",
       "label": "scripts/governance_engine.py::planned_node_names",
       "language": "Python",
-      "line_end": 348,
-      "line_start": 338,
+      "line_end": 352,
+      "line_start": 342,
       "locator": "scripts/governance_engine.py::planned_node_names"
     },
     {
@@ -2894,7 +2894,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "a29b5bd015d36feab294e6e4a7ccb6824b084ed1",
+  "observed_head": "7e97f6d2789aa7a07ce4cb7f98e70c5ec472d1ad",
   "schema_version": 1,
-  "source_digest": "e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247"
+  "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872"
 }

@@ -193,6 +193,16 @@ def mode_planning_contract() -> None:
         "unmapped source should escalate develop to verify",
     )
 
+    reference_impacts = classify_changed_paths(("references/governance-and-project-truth.md",))
+    require(
+        reference_impacts == ("documentation",),
+        f"normative reference fragment misclassified: {reference_impacts}",
+    )
+    require(
+        effective_mode("verify", reference_impacts) == "verify",
+        "normative reference fragment should not escalate verify to finalize",
+    )
+
     support_impacts = classify_changed_paths(
         (".gitattributes", "artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json")
     )

@@ -257,7 +257,11 @@ def classify_path(path: str) -> str:
         return "governance"
     if path.startswith("artifacts/sequence/"):
         return "sequence"
-    if path in {"SKILL.md", "README.md"} or path.startswith("docs/"):
+    if (
+        path in {"SKILL.md", "README.md"}
+        or path.startswith("docs/")
+        or path.startswith("references/")
+    ):
         return "documentation"
     if path.startswith("benchmarks/"):
         return "benchmark"

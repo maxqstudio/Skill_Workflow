@@ -7,7 +7,7 @@
 SW2-14 covers Incremental Project Truth Compiler only: deterministic fail-closed impact analysis, selective develop/verify regeneration, preservation of unchanged projections, unknown-impact escalation, and exhaustive finalize parity. It must not weaken accepted Project Truth authority, schema/toolchain identity, sequence evidence, exact-head acceptance, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247
+Current source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

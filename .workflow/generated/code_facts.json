@@ -147,7 +147,7 @@
       "file": "scripts/governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 829
+      "lines": 833
     },
     {
       "directory": "scripts",
@@ -245,7 +245,7 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 401
+      "lines": 411
     },
     {
       "directory": "scripts",
@@ -6741,6 +6741,10 @@
       "target_token": "path.startswith"
     },
     {
+      "caller": "scripts/governance_engine.py::classify_path",
+      "target_token": "path.startswith"
+    },
+    {
       "caller": "scripts/governance_engine.py::cli_action",
       "target_token": "invoke_main"
     },
@@ -10214,11 +10218,19 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "target_token": "develop_node_names"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "target_token": "develop_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "effective_mode"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
@@ -10255,6 +10267,14 @@
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
+      "target_token": "require"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::mode_planning_contract",
@@ -21394,7 +21414,7 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 272,
+      "line_end": 276,
       "line_start": 244,
       "locator": "scripts/governance_engine.py::classify_path",
       "symbol": "classify_path"
@@ -21402,112 +21422,112 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 276,
-      "line_start": 275,
+      "line_end": 280,
+      "line_start": 279,
       "locator": "scripts/governance_engine.py::classify_changed_paths",
       "symbol": "classify_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 287,
-      "line_start": 279,
+      "line_end": 291,
+      "line_start": 283,
       "locator": "scripts/governance_engine.py::effective_mode",
       "symbol": "effective_mode"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 335,
-      "line_start": 290,
+      "line_end": 339,
+      "line_start": 294,
       "locator": "scripts/governance_engine.py::develop_node_names",
       "symbol": "develop_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 348,
-      "line_start": 338,
+      "line_end": 352,
+      "line_start": 342,
       "locator": "scripts/governance_engine.py::planned_node_names",
       "symbol": "planned_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 364,
-      "line_start": 351,
+      "line_end": 368,
+      "line_start": 355,
       "locator": "scripts/governance_engine.py::governed_status",
       "symbol": "governed_status"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 372,
-      "line_start": 367,
+      "line_end": 376,
+      "line_start": 371,
       "locator": "scripts/governance_engine.py::cli_action",
       "symbol": "cli_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 390,
-      "line_start": 375,
+      "line_end": 394,
+      "line_start": 379,
       "locator": "scripts/governance_engine.py::command_action",
       "symbol": "command_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 388,
-      "line_start": 376,
+      "line_end": 392,
+      "line_start": 380,
       "locator": "scripts/governance_engine.py::command_action.run",
       "symbol": "command_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 410,
-      "line_start": 393,
+      "line_end": 414,
+      "line_start": 397,
       "locator": "scripts/governance_engine.py::compile_scripts_action",
       "symbol": "compile_scripts_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 408,
-      "line_start": 395,
+      "line_end": 412,
+      "line_start": 399,
       "locator": "scripts/governance_engine.py::compile_scripts_action.run",
       "symbol": "compile_scripts_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 418,
-      "line_start": 413,
+      "line_end": 422,
+      "line_start": 417,
       "locator": "scripts/governance_engine.py::_regression_node",
       "symbol": "_regression_node"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 616,
-      "line_start": 421,
+      "line_end": 620,
+      "line_start": 425,
       "locator": "scripts/governance_engine.py::build_mode_dag",
       "symbol": "build_mode_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 693,
-      "line_start": 619,
+      "line_end": 697,
+      "line_start": 623,
       "locator": "scripts/governance_engine.py::build_dag",
       "symbol": "build_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 825,
-      "line_start": 696,
+      "line_end": 829,
+      "line_start": 700,
       "locator": "scripts/governance_engine.py::main",
       "symbol": "main"
     },
@@ -22098,7 +22118,7 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 264,
+      "line_end": 274,
       "line_start": 172,
       "locator": "scripts/selftest_governance_engine.py::mode_planning_contract",
       "symbol": "mode_planning_contract"
@@ -22106,24 +22126,24 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 289,
-      "line_start": 267,
+      "line_end": 299,
+      "line_start": 277,
       "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
       "symbol": "changed_path_collection_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 385,
-      "line_start": 292,
+      "line_end": 395,
+      "line_start": 302,
       "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
       "symbol": "mode_cli_integration_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 397,
-      "line_start": 388,
+      "line_end": 407,
+      "line_start": 398,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -23121,13 +23141,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "e695f13b80438c2eaf9b2755e8b27e3432a89ced04ef761cec07b08a85c47247",
+  "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872",
   "source_summary": {
     "files": 50,
     "languages": {
       "Python": 50
     },
-    "lines": 13606,
+    "lines": 13620,
     "test_files": 0
   },
   "tests": []
