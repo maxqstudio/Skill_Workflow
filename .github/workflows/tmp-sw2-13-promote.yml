@@ -1,0 +1,157 @@
+name: SW2-13 Promote Acceptance
+
+on:
+  push:
+    branches:
+      - work/sw2-13-skill-core-reference-split
+    paths:
+      - .github/workflows/tmp-sw2-13-promote.yml
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      BASE_SHA: 1c81c3012d9a5891e8145726c38165e113057676
+      FEATURE_SHA: 5ad450950099679388afeaebca686cb26906be62
+      BRANCH: work/sw2-13-skill-core-reference-split
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-13-skill-core-reference-split
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Promote proven SW2-13 requirements and regenerate Project Truth
+        shell: bash
+        run: |
+          set -euo pipefail
+          helper=.github/workflows/tmp-sw2-13-promote.yml
+          rm "$helper"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          feature_sha = '5ad450950099679388afeaebca686cb26906be62'
+          runs = {
+              'self_governance': 37208469566,
+              'governance_selftest': 37208469609,
+              'sequence': 37208469659,
+              'engine_performance': 37208469572,
+              'consumer_performance': 37208469581,
+          }
+
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          evidence = {
+              'SW2-13-R1': (
+                  'PASS: artifacts/sw2-13-skill-core-reference-split.json maps all normative baseline sections into CORE+ROUTING or one-level REFERENCE buckets; the eager root retains startup order, authority hierarchy, fail-closed safety, exact-head acceptance, documentation/sequence boundaries, and final-gate rules. Exact feature candidate '
+                  + feature_sha + ' passed Self Governance run 37208469566 and Governance Selftest run 37208469609 on Ubuntu and Windows.'
+              ),
+              'SW2-13-R2': (
+                  'PASS: root SKILL.md reduced from 55,350 bytes / 1,801 lines to 10,868 bytes / 235 lines (80.36% byte reduction; 86.95% line reduction). Four bundled one-level references preserve the moved baseline bodies verbatim, with per-reference SHA-256 evidence in artifacts/sw2-13-skill-core-reference-split.json.'
+              ),
+              'SW2-13-R3': (
+                  'PASS: four required root references resolve at routing depth 1; permanent validator plus selftest reject six negative paths: missing reference, broken root link, duplicate/ambiguous route, multi-hop chain, missing core invariant, and root line-budget overflow. Governance Selftest run 37208469609 passed the contract on Ubuntu and Windows.'
+              ),
+              'SW2-13-R4': (
+                  'PASS: exact clean feature candidate ' + feature_sha + ' passed all six permanent check contexts: Self Governance run 37208469566; Governance Selftest run 37208469609 on Ubuntu and Windows; SW2 Sequence Evidence run 37208469659; Governance Engine Performance run 37208469572; Consumer Engine Performance run 37208469581. Cross-document skill-reference claim scope and read-only verify also passed on both operating systems.'
+              ),
+          }
+          seen = set()
+          for item in acceptance.get('requirements', []):
+              req_id = item.get('id')
+              if req_id in evidence:
+                  item['status'] = 'PASS'
+                  item['evidence'] = evidence[req_id]
+                  seen.add(req_id)
+          missing = set(evidence) - seen
+          if missing:
+              raise SystemExit('MISSING_REQUIREMENTS:' + ','.join(sorted(missing)))
+
+          for gate in (
+              'CROSS_DOCUMENT_CONSISTENCY',
+              'DOC_SOURCE_TRACEABILITY',
+              'DOC_TEST_TRACEABILITY',
+              'PROJECT_STATE_SYNC',
+              'PROVENANCE_SYNC',
+              'REFERENCE_SYNC',
+              'SEMANTIC_SYNC',
+              'SOURCE_TESTS',
+              'STRUCTURAL_SYNC',
+          ):
+              acceptance['truth_gates'][gate] = 'PASS'
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          artifact_path = Path('artifacts/sw2-13-skill-core-reference-split.json')
+          artifact = json.loads(artifact_path.read_text(encoding='utf-8'))
+          artifact['feature_candidate_sha'] = feature_sha
+          artifact['permanent_matrix'] = {
+              'result': 'PASS',
+              'exact_head': feature_sha,
+              'runs': runs,
+              'contexts': [
+                  'Self Governance (ubuntu-latest)',
+                  'Governance Selftest (ubuntu-latest)',
+                  'Governance Selftest (windows-latest)',
+                  'SW2 Sequence Evidence (ubuntu-latest)',
+                  'Governance Engine Performance (ubuntu-latest)',
+                  'Consumer Engine Performance (max-grounding)',
+              ],
+          }
+          artifact_path.write_text(json.dumps(artifact, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          state_path = Path('.workflow/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['next_authorized_actions'] = [
+              'Run the complete permanent acceptance matrix on the exact clean post-promotion SW2-13 candidate.',
+              'If the exact post-promotion matrix passes, merge SW2-13 to main and verify post-merge main before opening SW2-14.',
+          ]
+          state['blocked_actions'] = [
+              'Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.',
+              'Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.',
+              'Do not introduce multi-hop reference chains for required operating rules.',
+              'Do not merge SW2-13 unless the complete permanent matrix passes on the exact clean post-promotion candidate.',
+              'Do not begin SW2-14 implementation until SW2-13 is accepted on main.',
+          ]
+          state['not_proven'] = [
+              item for item in state.get('not_proven', [])
+              if not item.startswith('SW2-13 ')
+          ]
+          feature_claims = [
+              'SW2-13 eager-core reduction is proven on exact clean feature candidate ' + feature_sha + ': SKILL.md is 10,868 bytes / 235 lines versus the 55,350-byte / 1,801-line accepted baseline, while four one-level bundled references preserve moved baseline bodies verbatim.',
+              'SW2-13 reference integrity is proven: deterministic routing depth is 1, six negative-path regressions fail closed, and Governance Selftest run 37208469609 passes the contract on Ubuntu and Windows.',
+              'SW2-13 feature acceptance is proven on exact clean candidate ' + feature_sha + ': Self Governance 37208469566, Governance Selftest 37208469609 on Ubuntu and Windows, SW2 Sequence Evidence 37208469659, Governance Engine Performance 37208469572, and Consumer Engine Performance 37208469581 all succeeded.',
+          ]
+          proven = state.setdefault('proven', [])
+          for claim in feature_claims:
+              if claim not in proven:
+                  proven.append(claim)
+          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+
+          python scripts/sync_project_truth.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_cross_document_consistency.py --root . --base "$BASE_SHA" --require-base --allow-dirty
+          python .github/scripts/selftest_skill_reference_split.py
+          python .github/scripts/validate_skill_reference_split.py --root .
+          python scripts/selftest_repository_health.py
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+
+          git restore "$helper"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow/acceptance.json .workflow/state.json .workflow/generated docs artifacts/sw2-13-skill-core-reference-split.json
+          git diff --cached --check
+          test -n "$(git diff --cached --name-only)"
+          git commit -m 'SW2-13: promote proven acceptance'
+          git push origin "HEAD:$BRANCH"
