@@ -1,0 +1,651 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+import subprocess
+from pathlib import Path
+
+ROOT = Path('.').resolve()
+BASE_SHA = '1c81c3012d9a5891e8145726c38165e113057676'
+PHASE_OPEN_SHA = '6992db0cbd30d6a9995cba40b7f006c42dbb6fc9'
+WORKFLOW = ROOT / '.github/workflows/tmp-sw2-13-implement.yml'
+SELF = ROOT / '.github/scripts/tmp_sw2_13_implement_once.py'
+
+
+def run(*args: str) -> None:
+    print('+', ' '.join(args), flush=True)
+    subprocess.run(args, cwd=ROOT, check=True)
+
+
+def write(path: str, text: str) -> None:
+    target = ROOT / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(text, encoding='utf-8', newline='\n')
+
+
+# Both transient files must disappear before product validation and the clean commit.
+if WORKFLOW.exists():
+    WORKFLOW.unlink()
+if SELF.exists():
+    SELF.unlink()
+
+baseline = subprocess.check_output(['git', 'show', f'{BASE_SHA}:SKILL.md'], cwd=ROOT, text=True)
+
+
+def extract(start: str, end: str | None) -> str:
+    a = baseline.index(start)
+    b = baseline.index(end, a) if end else len(baseline)
+    return baseline[a:b].rstrip() + '\n'
+
+
+reference_bodies = {
+    'references/governance-and-project-truth.md': extract('# 2. Adaptive governance profiles', '# 5. New-room startup procedure'),
+    'references/execution-and-acceptance.md': extract('# 5. New-room startup procedure', '# 22. Project Truth Synchronization'),
+    'references/project-truth-synchronization.md': extract('# 22. Project Truth Synchronization', '# 24. Sequence Contract acceptance'),
+    'references/sequence-contracts.md': extract('# 24. Sequence Contract acceptance', None),
+}
+reference_preambles = {
+    'references/governance-and-project-truth.md': '# Governance Profiles, Project Truth Compiler, and Document Contracts\n\nThis is a normative bundled reference for `SKILL.md`. Read it when profile selection, Project Truth compilation, canonical docs layout, document responsibilities, or optional contracts are relevant.\n\n',
+    'references/execution-and-acceptance.md': '# Execution, Acceptance, Handoff, and Documentation Discipline\n\nThis is a normative bundled reference for `SKILL.md`. Read it before implementation, repair, acceptance, handoff, or documentation-impact work.\n\n',
+    'references/project-truth-synchronization.md': '# Project Truth Synchronization and Human Comprehension\n\nThis is a normative bundled reference for `SKILL.md`. Read it when proving project truth, traceability, semantic/behavioral sync, cross-document consistency, or human comprehension.\n\n',
+    'references/sequence-contracts.md': '# Sequence Contract Acceptance\n\nThis is a normative bundled reference for `SKILL.md`. Read it whenever sequence policy is enabled or a governed flow changes.\n\n',
+}
+for path, body in reference_bodies.items():
+    write(path, reference_preambles[path] + body)
+    observed = (ROOT / path).read_text(encoding='utf-8')
+    if observed[len(reference_preambles[path]):] != body:
+        raise SystemExit('reference preservation mismatch: ' + path)
+
+core = '''---
+name: project-handoff-workflow
+description: Help humans understand and agents safely orient, hand off, audit, repair, and continue software projects using human-first overviews, authority maps, architecture, workflows, indexes, and evidence-based acceptance.
+---
+
+# PROJECT HANDOFF & CODEBASE ORIENTATION SKILL
+
+## Purpose
+
+Use this skill to understand, continue, audit, repair, or hand off software projects safely across rooms, agents, and developers.
+
+This skill is project-agnostic. It uses progressive disclosure: this root file is the mandatory eager operating contract; detailed normative rules live in the bundled `references/` files routed below and MUST be read when their routing condition applies.
+
+## 1. Mandatory startup order
+
+Do not begin by reading the entire repository blindly.
+
+Start with the smallest authority map that can orient the task:
+
+```text
+AGENTS.md
+→ PROJECT_PROFILE.yaml
+→ docs/SYSTEM_OVERVIEW.md
+→ docs/CURRENT_STATE.md
+→ docs/ROADMAP.md
+→ docs/PROJECT_MANIFEST.md
+→ only profile-required authority / architecture / workflow / contract docs
+→ docs/SEQUENCE_CONTRACTS.md when sequence policy is enabled
+→ MODULE / FLOW / SYMBOL indexes when needed
+→ docs/TEST_ACCEPTANCE_MATRIX.md
+→ exact relevant source ranges
+→ runtime/E2E evidence when required
+```
+
+`AGENTS.md` is mandatory, source-authored, repository-root operating guidance for LITE, STANDARD, and STRICT. Read it first. Do not generate it or relocate it under `docs/`.
+
+`PROJECT_PROFILE.yaml` is mandatory and selects the governance profile and applicability rules. Governed schema versions are explicit; missing or unsupported versions fail closed rather than being guessed.
+
+Do not recursively scan the repository unless navigation evidence is missing/stale/conflicting, corruption is suspected, or a full audit is explicitly requested.
+
+## 2. Authority hierarchy and Project Truth
+
+Treat these layers differently:
+
+```text
+SOURCE CODE
+= implementation facts
+
+.workflow/*.json
+= semantic / governance intent
+
+tests + runtime evidence
+= behavioral truth
+
+generated Markdown under docs/
+= deterministic human-readable projection
+```
+
+Generated Markdown is not upstream authority. In generated-documentation mode, repair source and/or `.workflow` specs, regenerate, then validate. Manual edits to generated `docs/` contracts do not establish truth.
+
+The canonical generator must be deterministic. Do not use LLM-produced prose as the canonical tracked projection.
+
+The project phase contract is blocking:
+
+```text
+.workflow/state.json::phase
+=
+.workflow/roadmap.json::current_phase
+```
+
+Exactly one roadmap phase is `CURRENT`. Advance state and roadmap in the same project-state transaction, then regenerate Project Truth.
+
+For the complete profile, compiler, docs-layout, and document-responsibility contract, read `references/governance-and-project-truth.md` before acting in that scope.
+
+## 3. Non-negotiable operating invariants
+
+Never invent authority, tests, runtime evidence, legal transitions, Owner intent, or semantic meaning.
+
+Never treat source changed as equivalent to PASS.
+
+Do not redesign architecture, UI, or workflow unless required by a confirmed defect, explicit Owner request, or accepted roadmap change.
+
+Separate:
+
+- ACTIVE STATE from HISTORICAL EVIDENCE and ARCHIVE;
+- CURRENT CONFIGURATION from FROZEN EXECUTION SNAPSHOT;
+- machine-observable facts from semantic claims;
+- static structural evidence from runtime behavior.
+
+Unknown impact, missing authority, parser limitations, unresolved dynamic behavior, classifier failure, or contradictory evidence must broaden verification or remain `NOT_PROVEN`; they must never create a narrower false PASS.
+
+Documentation is part of project state:
+
+```text
+SOURCE PASS + DOC_SYNC FAIL = OVERALL FAIL
+```
+
+A source/spec change that leaves an affected contract, index, acceptance ledger, current state, or generated projection stale is a project defect.
+
+## 4. Build and repair discipline
+
+For every change:
+
+```text
+identify exact accepted/base SHA
+→ reproduce defect or establish baseline
+→ determine root cause / authorized scope
+→ declare documentation and sequence impact
+→ implement minimum valid change
+→ add regression coverage
+→ regenerate machine-derived facts / Project Truth / sequence evidence as applicable
+→ run targeted tests
+→ run cumulative regression
+→ run runtime/E2E when required
+→ finalize on the exact candidate HEAD
+→ verify clean governed worktree
+→ hand off with explicit evidence boundary
+```
+
+Exact-source lineage is mandatory:
+
+```text
+FINAL SOURCE SHA = TESTED SHA
+```
+
+For final acceptance across source and documentation:
+
+```text
+TESTED_HEAD = FINAL_SOURCE_HEAD = FINAL_DOCUMENTATION_HEAD
+```
+
+Do not make a report-only source commit after final testing and still claim the prior SHA as final acceptance.
+
+For the full execution modes, defect handling, handoff fields, documentation transaction, hard gates, and final report contract, read `references/execution-and-acceptance.md` before acting in that scope.
+
+## 5. Fast governance modes
+
+Governance Engine V2 supports:
+
+```text
+develop → verify → finalize
+```
+
+`develop` and `verify` are intermediate evidence only. They cannot accept a requirement, phase, release, or `PROJECT_STATE_SYNC`.
+
+`finalize` is the only fast-workflow mode that may provide final acceptance authority. It requires exact-head provenance, the complete required regression graph, synchronized deterministic Project Truth, applicable human/sequence/handoff/cross-document gates, and a clean governed worktree.
+
+Escalation from `verify` to a full graph does not silently convert the invocation into final acceptance authority.
+
+## 6. Acceptance and evidence boundary
+
+Acceptance reflects only the strongest evidence actually executed.
+
+```text
+unit PASS ≠ runtime PASS
+runtime start ≠ UI E2E PASS
+UI E2E PASS ≠ physical-device PASS
+historical physical proof ≠ current physical execution
+build success ≠ scientific validity
+```
+
+Use explicit states such as `PASS`, `FAIL`, `NOT_RUN`, `NOT_APPLICABLE`, `NOT_PROVEN`, and `BLOCKED`. Never convert missing evidence into PASS.
+
+A validator PASS proves only its declared machine-verifiable boundary. Structural checks do not prove semantic correctness; static analysis does not prove runtime ordering.
+
+Before final PASS, prove all gates required by `PROJECT_PROFILE.yaml` and state the evidence boundary.
+
+## 7. Sequence governance core
+
+When sequence policy is enabled, determine exactly one mode:
+
+- `BEFORE`: a machine-readable plan is genuinely frozen before implementation; lineage must prove the frozen plan precedes implementation.
+- `DURING`: implementation exists or is in progress; retrospective plans are forbidden; regenerate actual evidence as implementation changes.
+- `AFTER`: completed implementation is reconstructed from final actual evidence; retrospective plans are forbidden.
+
+Canonical plan/actual Mermaid is generated, never hand-authored. Human sequence views are separate bounded projections and must not replace full machine evidence or hide analyzer limitations.
+
+`CURRENT` sequence sessions bind to the current source-content digest. Accepted prior sessions become `HISTORICAL` and are not regenerated to match later source.
+
+Critical unresolved dynamic paths require runtime trace or a stronger project-specific extractor; do not guess.
+
+For plan semantics, artifact layout, human projection rules, renderer gate, source-content binding, mismatch classification, commands, and final sequence gate, read `references/sequence-contracts.md` before acting in that scope.
+
+## 8. Project Truth synchronization core
+
+A matching SHA label alone is never sufficient. Project truth requires applicable provenance, reference, structural, semantic, behavioral, cross-document, human-comprehension, sequence, generated-doc, and traceability gates.
+
+Provenance is established by testing an exact Git HEAD, requiring a clean final governed worktree, proving required source/docs are tracked in that same HEAD, and recording acceptance evidence externally or in a way that does not self-mutate the tested snapshot.
+
+Required references must resolve. Broken required references fail closed.
+
+Critical claims should trace bidirectionally:
+
+```text
+CLAIM / CONTRACT
+↔ DOCUMENT(S)
+↔ SOURCE OWNER
+↔ TEST(S)
+↔ RUNTIME/E2E EVIDENCE when required
+```
+
+If required behavioral evidence was not executed, keep behavioral truth `NOT_PROVEN` unless explicitly `NOT_APPLICABLE`.
+
+For the complete truth-gate model, traceability relations, cross-document consistency, profile selection discipline, and Human Comprehension Gate, read `references/project-truth-synchronization.md` before acting in that scope.
+
+## 9. Deterministic bundled reference routing
+
+The following bundled references are normative extensions of this root contract. They are one-level paths relative to the skill root. When a task matches a routing condition, read the linked reference before acting; do not treat it as optional background.
+
+| Task / concern | Required bundled reference |
+|---|---|
+| Profile selection, Project Truth Compiler, canonical docs layout, document responsibilities, optional contracts | [governance-and-project-truth](references/governance-and-project-truth.md) |
+| Implementation/repair loop, develop/verify/finalize detail, acceptance, defects, redesign prevention, handoff, docs transaction, Definition of Done | [execution-and-acceptance](references/execution-and-acceptance.md) |
+| Provenance/reference/structural/semantic/behavioral sync, cross-document consistency, traceability, human comprehension | [project-truth-synchronization](references/project-truth-synchronization.md) |
+| BEFORE/DURING/AFTER sequence behavior, plan/actual evidence, human projection, Mermaid rendering, sequence validation | [sequence-contracts](references/sequence-contracts.md) |
+
+Do not create multi-hop chains for required operating rules. Root `SKILL.md` must link required bundled references directly.
+
+Public handbook pages explain the product to humans; they are not substitutes for these bundled agent-facing normative references.
+
+## 10. Final operating rule
+
+Before claiming completion:
+
+1. verify exact repository / branch / accepted base / candidate HEAD authority;
+2. verify affected `.workflow` authority and generated docs are synchronized;
+3. verify roadmap/current-phase synchronization;
+4. verify sequence policy and current session when applicable;
+5. run targeted and cumulative regression;
+6. run required runtime/E2E evidence;
+7. run final profile-required validators against the accepted/base SHA;
+8. require exact-head provenance and a clean governed worktree;
+9. leave current state, acceptance evidence, and handoff synchronized.
+
+If a required gate is `FAIL`, `NOT_PROVEN`, unresolved, or stale, final status cannot be PASS.
+'''
+write('SKILL.md', core)
+
+validator = r'''#!/usr/bin/env python3
+"""Fail-closed integrity checks for Skill Workflow progressive disclosure."""
+from __future__ import annotations
+
+import argparse
+import re
+from pathlib import Path
+
+MAX_SKILL_LINES = 500
+MAX_SKILL_BYTES = 18000
+REQUIRED_REFERENCES = (
+    "references/governance-and-project-truth.md",
+    "references/execution-and-acceptance.md",
+    "references/project-truth-synchronization.md",
+    "references/sequence-contracts.md",
+)
+CORE_INVARIANTS = (
+    "Do not begin by reading the entire repository blindly.",
+    "AGENTS.md",
+    "PROJECT_PROFILE.yaml",
+    ".workflow/state.json::phase",
+    ".workflow/roadmap.json::current_phase",
+    "Never treat source changed as equivalent to PASS.",
+    "SOURCE PASS + DOC_SYNC FAIL = OVERALL FAIL",
+    "FINAL SOURCE SHA = TESTED SHA",
+    "TESTED_HEAD = FINAL_SOURCE_HEAD = FINAL_DOCUMENTATION_HEAD",
+    "develop → verify → finalize",
+    "retrospective plans are forbidden",
+    "Broken required references fail closed.",
+    "If a required gate is `FAIL`, `NOT_PROVEN`, unresolved, or stale, final status cannot be PASS.",
+)
+LINK_RE = re.compile(r"\[[^\]]+\]\((references/[^)#?]+\.md)(?:#[^)]+)?\)")
+
+
+def validate(root: Path) -> list[str]:
+    root = root.resolve()
+    failures: list[str] = []
+    skill = root / "SKILL.md"
+    if not skill.is_file():
+        return ["SKILL_MISSING:SKILL.md"]
+    raw = skill.read_bytes()
+    text = raw.decode("utf-8")
+    lines = text.splitlines()
+    if len(lines) > MAX_SKILL_LINES:
+        failures.append(f"SKILL_LINE_BUDGET_EXCEEDED:{len(lines)}>{MAX_SKILL_LINES}")
+    if len(raw) > MAX_SKILL_BYTES:
+        failures.append(f"SKILL_BYTE_BUDGET_EXCEEDED:{len(raw)}>{MAX_SKILL_BYTES}")
+    if not text.startswith("---\n") or "\nname: project-handoff-workflow\n" not in text or "\ndescription:" not in text:
+        failures.append("SKILL_FRONTMATTER_INVALID")
+    for invariant in CORE_INVARIANTS:
+        if invariant not in text:
+            failures.append("CORE_INVARIANT_MISSING:" + invariant)
+
+    links = LINK_RE.findall(text)
+    for ref in REQUIRED_REFERENCES:
+        count = links.count(ref)
+        if count != 1:
+            failures.append(f"REQUIRED_REFERENCE_ROUTE_COUNT:{ref}:{count}")
+        if not (root / ref).is_file():
+            failures.append("MISSING_REQUIRED_REFERENCE:" + ref)
+    for ref in links:
+        if ref not in REQUIRED_REFERENCES:
+            failures.append("UNDECLARED_REFERENCE_ROUTE:" + ref)
+        if not (root / ref).is_file():
+            failures.append("BROKEN_REFERENCE_LINK:" + ref)
+    if set(links) != set(REQUIRED_REFERENCES):
+        failures.append("REFERENCE_ROUTE_SET_MISMATCH")
+
+    for ref in REQUIRED_REFERENCES:
+        path = root / ref
+        if not path.is_file():
+            continue
+        body = path.read_text(encoding="utf-8")
+        nested = LINK_RE.findall(body)
+        if nested:
+            failures.append("REFERENCE_CHAIN_FORBIDDEN:" + ref + ":" + ",".join(nested))
+        if len(body.strip()) < 200:
+            failures.append("REFERENCE_TOO_SMALL:" + ref)
+    return failures
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=".")
+    args = ap.parse_args()
+    failures = validate(Path(args.root))
+    if failures:
+        for failure in failures:
+            print("FAIL", failure)
+        return 1
+    root = Path(args.root).resolve()
+    skill = root / "SKILL.md"
+    print(f"SKILL_REFERENCE_SPLIT=PASS lines={len(skill.read_text(encoding='utf-8').splitlines())} bytes={len(skill.read_bytes())} references={len(REQUIRED_REFERENCES)}")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+'''
+write('.github/scripts/validate_skill_reference_split.py', validator)
+
+selftest = r'''#!/usr/bin/env python3
+"""Negative-path regression for Skill Workflow progressive disclosure."""
+from __future__ import annotations
+
+import importlib.util
+import shutil
+import tempfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+MODULE_PATH = ROOT / ".github" / "scripts" / "validate_skill_reference_split.py"
+spec = importlib.util.spec_from_file_location("skill_split_validator", MODULE_PATH)
+assert spec and spec.loader
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+
+def copy_fixture() -> Path:
+    tmp = Path(tempfile.mkdtemp(prefix="sw2-13-skill-split-"))
+    shutil.copy2(ROOT / "SKILL.md", tmp / "SKILL.md")
+    shutil.copytree(ROOT / "references", tmp / "references")
+    return tmp
+
+
+def require_failure(root: Path, prefix: str) -> None:
+    failures = module.validate(root)
+    if not any(item.startswith(prefix) for item in failures):
+        raise AssertionError(f"expected {prefix}, got {failures}")
+
+
+def main() -> int:
+    clean = module.validate(ROOT)
+    if clean:
+        raise AssertionError(f"clean contract failed: {clean}")
+
+    fixtures: list[Path] = []
+    try:
+        missing = copy_fixture(); fixtures.append(missing)
+        (missing / module.REQUIRED_REFERENCES[0]).unlink()
+        require_failure(missing, "MISSING_REQUIRED_REFERENCE:")
+
+        broken = copy_fixture(); fixtures.append(broken)
+        text = (broken / "SKILL.md").read_text(encoding="utf-8")
+        text = text.replace(module.REQUIRED_REFERENCES[0], "references/missing.md")
+        (broken / "SKILL.md").write_text(text, encoding="utf-8")
+        require_failure(broken, "BROKEN_REFERENCE_LINK:")
+
+        duplicate = copy_fixture(); fixtures.append(duplicate)
+        text = (duplicate / "SKILL.md").read_text(encoding="utf-8")
+        text += f"\n[duplicate]({module.REQUIRED_REFERENCES[0]})\n"
+        (duplicate / "SKILL.md").write_text(text, encoding="utf-8")
+        require_failure(duplicate, "REQUIRED_REFERENCE_ROUTE_COUNT:")
+
+        chained = copy_fixture(); fixtures.append(chained)
+        ref = chained / module.REQUIRED_REFERENCES[0]
+        ref.write_text(ref.read_text(encoding="utf-8") + "\n[nested](references/sequence-contracts.md)\n", encoding="utf-8")
+        require_failure(chained, "REFERENCE_CHAIN_FORBIDDEN:")
+
+        invariant = copy_fixture(); fixtures.append(invariant)
+        text = (invariant / "SKILL.md").read_text(encoding="utf-8")
+        text = text.replace("FINAL SOURCE SHA = TESTED SHA", "FINAL SOURCE ID = TESTED ID")
+        (invariant / "SKILL.md").write_text(text, encoding="utf-8")
+        require_failure(invariant, "CORE_INVARIANT_MISSING:")
+
+        oversized = copy_fixture(); fixtures.append(oversized)
+        text = (oversized / "SKILL.md").read_text(encoding="utf-8") + ("padding\n" * 600)
+        (oversized / "SKILL.md").write_text(text, encoding="utf-8")
+        require_failure(oversized, "SKILL_LINE_BUDGET_EXCEEDED:")
+    finally:
+        for path in fixtures:
+            shutil.rmtree(path, ignore_errors=True)
+
+    print("SKILL_REFERENCE_SPLIT_SELFTEST=PASS negative_paths=6")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+'''
+write('.github/scripts/selftest_skill_reference_split.py', selftest)
+
+# Add permanent CI gates.
+sg = ROOT / '.github/workflows/self-governance.yml'
+text = sg.read_text(encoding='utf-8')
+anchor = '      - name: Cross-document regression\n'
+insert = '      - name: Skill core/reference contract\n        run: python .github/scripts/validate_skill_reference_split.py --root .\n\n'
+if insert not in text:
+    if anchor not in text:
+        raise SystemExit('self-governance insertion anchor missing')
+    text = text.replace(anchor, insert + anchor)
+sg.write_text(text, encoding='utf-8', newline='\n')
+
+gs = ROOT / '.github/workflows/governance-selftest.yml'
+text = gs.read_text(encoding='utf-8')
+anchor = '      - name: Schema and toolchain version regression\n'
+insert = '      - name: Skill core/reference split regression\n        run: |\n          python .github/scripts/selftest_skill_reference_split.py\n          python .github/scripts/validate_skill_reference_split.py --root .\n\n'
+if insert not in text:
+    if anchor not in text:
+        raise SystemExit('governance-selftest insertion anchor missing')
+    text = text.replace(anchor, insert + anchor)
+gs.write_text(text, encoding='utf-8', newline='\n')
+
+# Clarify the installed contract without duplicating bundled reference detail into public docs.
+install = ROOT / 'docs/handbook/getting-started/installation.md'
+text = install.read_text(encoding='utf-8')
+old = "`SKILL.md` is the canonical skill contract. Project-local Project Truth tools are vendored into `.workflow/tools/` when the initializer is used, so governed projects do not depend on a particular agent's global installation path."
+new = "`SKILL.md` is the canonical eager skill contract. Detailed normative operating rules are bundled under root `references/` and are loaded through deterministic one-level links from `SKILL.md`; public handbook pages are explanatory and do not replace those bundled references. Project-local Project Truth tools are vendored into `.workflow/tools/` when the initializer is used, so governed projects do not depend on a particular agent's global installation path."
+if old not in text:
+    raise SystemExit('installation canonical paragraph not found')
+install.write_text(text.replace(old, new), encoding='utf-8', newline='\n')
+
+acceptance_path = ROOT / '.workflow/acceptance.json'
+acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+for cmd in (
+    'python .github/scripts/selftest_skill_reference_split.py',
+    'python .github/scripts/validate_skill_reference_split.py --root .',
+):
+    if cmd not in acceptance['test_commands']:
+        acceptance['test_commands'].insert(1, cmd)
+acceptance_path.write_text(json.dumps(acceptance, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+session_path = ROOT / 'docs/sequence/sessions/SW2-13-GOVERNANCE.json'
+session = json.loads(session_path.read_text(encoding='utf-8'))
+entry = '.github/scripts/validate_skill_reference_split.py::main'
+if entry not in session['actual']['entries']:
+    session['actual']['entries'].insert(0, entry)
+test = '.github/scripts/selftest_skill_reference_split.py'
+if test not in session['tests']:
+    session['tests'].insert(0, test)
+session_path.write_text(json.dumps(session, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+before_bytes = len(baseline.encode('utf-8'))
+before_lines = len(baseline.splitlines())
+after = (ROOT / 'SKILL.md').read_text(encoding='utf-8')
+after_bytes = len(after.encode('utf-8'))
+after_lines = len(after.splitlines())
+headings = re.findall(r'^#(?:#)?\s+.+$', baseline, flags=re.MULTILINE)
+artifact = {
+    'schema_version': 1,
+    'phase': 'SW2-13',
+    'baseline_sha': BASE_SHA,
+    'phase_open_sha': PHASE_OPEN_SHA,
+    'baseline_skill_git_blob': 'b66fd76dd945e0fa6432040a0a00e3f626704b00',
+    'baseline': {'bytes': before_bytes, 'lines': before_lines, 'heading_count': len(headings)},
+    'core': {
+        'bytes': after_bytes,
+        'lines': after_lines,
+        'max_bytes': 18000,
+        'max_lines': 500,
+        'byte_reduction_percent': round((1 - after_bytes / before_bytes) * 100, 2),
+        'line_reduction_percent': round((1 - after_lines / before_lines) * 100, 2),
+    },
+    'strategy': 'progressive-disclosure-v1',
+    'required_references': [],
+    'section_mapping': [
+        {'range': '# 2 through # 4', 'classification': 'REFERENCE', 'target': 'references/governance-and-project-truth.md'},
+        {'range': '# 5 through # 21', 'classification': 'REFERENCE', 'target': 'references/execution-and-acceptance.md'},
+        {'range': '# 22 through # 23', 'classification': 'REFERENCE', 'target': 'references/project-truth-synchronization.md'},
+        {'range': '# 24', 'classification': 'REFERENCE', 'target': 'references/sequence-contracts.md'},
+        {'range': 'frontmatter + purpose + startup/authority/safety/task/acceptance/sequence/truth invariants', 'classification': 'CORE+ROUTING', 'target': 'SKILL.md'},
+    ],
+    'negative_paths': [
+        'missing required reference',
+        'broken root reference link',
+        'duplicate/ambiguous required route',
+        'multi-hop required reference chain',
+        'missing core invariant',
+        'root skill line-budget overflow',
+    ],
+    'targeted_validation': 'PENDING',
+}
+for path, body in reference_bodies.items():
+    artifact['required_references'].append({
+        'path': path,
+        'baseline_body_sha256': hashlib.sha256(body.encode('utf-8')).hexdigest(),
+        'baseline_body_lines': len(body.splitlines()),
+        'routing_depth': 1,
+        'body_preserved_verbatim': True,
+    })
+write('artifacts/sw2-13-skill-core-reference-split.json', json.dumps(artifact, indent=2, ensure_ascii=False) + '\n')
+print(f'BASELINE_SKILL bytes={before_bytes} lines={before_lines}')
+print(f'CORE_SKILL bytes={after_bytes} lines={after_lines}')
+
+# Targeted skill split gates.
+run('python', '.github/scripts/selftest_skill_reference_split.py')
+run('python', '.github/scripts/validate_skill_reference_split.py', '--root', '.')
+
+# Regenerate current sequence evidence after all source-like implementation files are final.
+run('python', 'scripts/generate_sequence_actual.py', '--root', '.',
+    '--output-json', 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.json',
+    '--output-mermaid', 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd',
+    '--entry', '.github/scripts/validate_skill_reference_split.py::main',
+    '--entry', 'scripts/validate_project_docs.py::main',
+    '--entry', 'scripts/validate_cross_document_consistency.py::main',
+    '--entry', 'scripts/sync_project_truth.py::main',
+    '--entry', 'scripts/validate_sequence_sessions.py::main',
+    '--entry', 'scripts/governance_engine.py::main')
+actual = json.loads((ROOT / 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.json').read_text(encoding='utf-8'))
+session = json.loads(session_path.read_text(encoding='utf-8'))
+digest = actual['source_digest']
+session['actual']['source_digest'] = digest
+session['human_view']['source_digest'] = digest
+session_path.write_text(json.dumps(session, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+run('python', 'scripts/sequence_human_view.py', '--root', '.',
+    '--actual-json', 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.json',
+    '--actual-mermaid', 'docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd',
+    '--output-json', 'docs/sequence/generated/SW2-13-GOVERNANCE.human.json',
+    '--output-mermaid', 'docs/sequence/generated/SW2-13-GOVERNANCE.human.mmd',
+    '--output-markdown', 'docs/sequence/views/SW2-13-GOVERNANCE.md',
+    '--session-id', 'SW2-13-GOVERNANCE')
+run('python', 'scripts/validate_sequence_contract.py', '--root', '.',
+    '--session', 'docs/sequence/sessions/SW2-13-GOVERNANCE.json',
+    '--report', 'artifacts/sequence/SW2-13-GOVERNANCE.acceptance.json')
+run('python', 'scripts/validate_sequence_human_view.py', '--root', '.',
+    '--session', 'docs/sequence/sessions/SW2-13-GOVERNANCE.json')
+run('python', 'scripts/validate_sequence_sessions.py', '--root', '.')
+
+# Project Truth and targeted governance regression.
+run('python', 'scripts/sync_project_truth.py')
+run('python', 'scripts/validate_project_docs.py', '--root', '.')
+run('python', 'scripts/selftest_project_truth_compiler.py')
+run('python', 'scripts/selftest_cross_document_regressions.py')
+run('python', 'scripts/selftest_repository_health.py')
+run('python', 'scripts/validate_repository_health.py', '--root', '.')
+run('python', 'scripts/validate_public_docs.py', '--root', '.')
+run('python', 'scripts/validate_sequence_sessions.py', '--root', '.')
+run('python', '.github/scripts/validate_skill_reference_split.py', '--root', '.')
+
+artifact_path = ROOT / 'artifacts/sw2-13-skill-core-reference-split.json'
+artifact = json.loads(artifact_path.read_text(encoding='utf-8'))
+artifact['targeted_validation'] = 'PASS'
+artifact['targeted_commands'] = [
+    'python .github/scripts/selftest_skill_reference_split.py',
+    'python .github/scripts/validate_skill_reference_split.py --root .',
+    'python scripts/sync_project_truth.py',
+    'python scripts/validate_project_docs.py --root .',
+    'python scripts/selftest_project_truth_compiler.py',
+    'python scripts/selftest_cross_document_regressions.py',
+    'python scripts/selftest_repository_health.py',
+    'python scripts/validate_repository_health.py --root .',
+    'python scripts/validate_public_docs.py --root .',
+    'python scripts/validate_sequence_sessions.py --root .',
+]
+artifact_path.write_text(json.dumps(artifact, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+# Final pre-commit contract check and clean governed commit.
+run('python', '.github/scripts/validate_skill_reference_split.py', '--root', '.')
+run('git', 'status', '--short')
+run('git', 'add', '-A')
+run('git', 'config', 'user.name', 'github-actions[bot]')
+run('git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com')
+run('git', 'commit', '-m', 'SW2-13: split eager skill core from bundled references')
+run('git', 'push', 'origin', 'HEAD:work/sw2-13-skill-core-reference-split')
