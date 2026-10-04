@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-07 acceptance covers Public Project Hardening only: repository health files with an explicitly Owner-approved license, documented contribution/security paths, an explicit repository merge-governance boundary, and a repeatable evidence-backed release process. The Owner explicitly chose not to require a GitHub ruleset; SW2-07 therefore must document that no automatic merge protection is claimed. Accepted SW2-01 through SW2-06 guarantees remain inherited authority and must not be weakened. A stable V2 release/tag remains SW2-09 scope.",
+  "evidence_boundary": "SW2-08 acceptance covers Regression & Adoption Validation only: representative LITE, STANDARD, and STRICT adoption fixtures; at least one large real consumer with measured performance and governance parity; migration and false-PASS regressions; and cross-platform acceptance. Accepted SW2-01 through SW2-07 guarantees remain inherited authority and must not be weakened. Stable V2 publication remains SW2-09 scope.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,36 +17,36 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "Owner selected the MIT License; SW2-ADR-010 is ACCEPTED and LICENSE contains the MIT text. Exact candidate d0e6aabbfd772630c9362b5005c40e6dabffc115 passed Self Governance run 37130848992, Governance Selftest run 37130848954 on Ubuntu and Windows, SW2 Sequence Evidence run 37130849015, Governance Engine Performance run 37130849009, and Consumer Engine Performance run 37130848995; repository-health regression passed on both operating systems.",
-      "id": "SW2-07-R1",
-      "requirement": "Repository health files are present with Owner-approved license.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN at phase opening. Existing profile logic supports LITE, STANDARD, and STRICT, but one representative adoption matrix has not yet been accepted for SW2-08.",
+      "id": "SW2-08-R1",
+      "requirement": "Representative LITE, STANDARD, and STRICT fixtures pass.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "Exact clean candidate 7d80c427619ccad4bee2fec1545847e1b3ca52ba: Self Governance 37113203365, Governance Selftest 37113203386 on Ubuntu and Windows, SW2 Sequence Evidence 37113203376, Governance Engine Performance 37113203374, and Consumer Engine Performance 37113203358 all succeeded. Governance Selftest included blocking public-documentation, repository-health, cross-document, read-only verify, and STRICT regressions on both operating systems.",
-      "id": "SW2-07-R2",
-      "requirement": "Security and contribution paths are documented.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN at phase opening. Existing consumer benchmarks are inherited evidence only; SW2-08 requires fresh exact-candidate measurement on at least one large real consumer with governance-parity proof.",
+      "id": "SW2-08-R2",
+      "requirement": "At least one large real consumer validates performance improvement and governance parity.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "Owner explicitly decided to continue SW2-07 without a GitHub ruleset and deleted the prior ruleset. Live GitHub repository ruleset audit returned an empty list, including inherited rulesets. This PASS proves alignment with the Owner-approved repository governance boundary; it does not claim automatic merge protection or required-check enforcement.",
-      "id": "SW2-07-R3",
-      "requirement": "Repository merge-governance boundary matches the explicit Owner decision without false enforcement claims.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN at phase opening. Existing migration and fail-closed tests are inherited, but SW2-08 requires explicit adoption-regression coverage for migration failures and false PASS cases.",
+      "id": "SW2-08-R3",
+      "requirement": "Migration regressions and false PASS cases are covered.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "GitHub Actions run 37128869541 proved the repeatable release-process dry run on exact regenerated candidate 324b3073a19917683a626353f5df8f7c6d49115b: governance verify request PASS with fail-closed breadth escalation allowed, evidence-only prerelease preflight PASS, clean exact-head binding PASS, JSON evidence uploaded, and publication_authority=false. Strict publication-ready preflight remains separately fail-closed and stable publication remains SW2-09 scope.",
-      "id": "SW2-07-R4",
-      "requirement": "Release process is repeatable and evidence-backed.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN at phase opening. Permanent Ubuntu and Windows lanes remain inherited baseline evidence; SW2-08 must keep the new adoption/regression coverage green cross-platform before closure.",
+      "id": "SW2-08-R4",
+      "requirement": "Cross-platform acceptance remains green.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-07-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_session": "SW2-08-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/validate_schema_toolchain.py --root .",
@@ -62,7 +62,8 @@
     "python scripts/selftest_release_preflight.py",
     "python scripts/validate_sequence_sessions.py --root .",
     "python scripts/validate_handoff.py --root .",
-    "python scripts/governance_engine.py --root . --base f391fe9dc5d208803118090bbe6a174e8f6c7c63 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/benchmark_governance.py --root . --tool-root . --repeats 1 --expected-head <EXACT_HEAD>",
+    "python scripts/governance_engine.py --root . --base bcc861bf9acc4a02702f5eec8bb45345617cd94a --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
@@ -80,7 +81,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "PASS",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
