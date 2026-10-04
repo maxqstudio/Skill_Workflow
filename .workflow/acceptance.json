@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-12 covers repository hygiene and dead/transient artifact cleanup only: evidence-backed inventory, safe-removal classification, preservation of historical acceptance auditability and compatibility contracts, deterministic synchronization, and exact-candidate regression. It must not alter accepted V2 behavior, the stable v2.0.0 tag target, or root AGENTS.md governance semantics.",
+  "evidence_boundary": "SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,67 +17,65 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications.",
-      "id": "SW2-12-R1",
-      "requirement": "Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until every normative SKILL.md section is mapped and all accepted non-negotiable safety/authority invariants are shown to remain in the eager core.",
+      "id": "SW2-13-R1",
+      "requirement": "Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery.",
-      "id": "SW2-12-R2",
-      "requirement": "Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until detailed guidance is moved into stable bundled references and root SKILL.md context cost is measured before/after without semantic loss.",
+      "id": "SW2-13-R2",
+      "requirement": "Detailed guidance has stable reference locations and the root skill context cost is measurably reduced.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6.",
-      "id": "SW2-12-R3",
-      "requirement": "Historical acceptance and release evidence remains auditable after cleanup.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until required one-level references resolve deterministically and negative-path tests reject missing, broken, duplicate, or ambiguous required references.",
+      "id": "SW2-13-R3",
+      "requirement": "Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded.",
-      "id": "SW2-12-R4",
-      "requirement": "Project Truth, current sequence evidence, and the complete permanent acceptance matrix pass on the exact clean cleanup candidate.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until targeted behavioral parity regression plus all six permanent checks pass on the exact clean SW2-13 candidate on Ubuntu and Windows.",
+      "id": "SW2-13-R4",
+      "requirement": "Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-12-GOVERNANCE",
+  "sequence_session": "SW2-13-GOVERNANCE",
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
-    "python scripts/selftest_repository_health.py",
-    "python scripts/validate_repository_health.py --root .",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_cross_document_regressions.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/validate_cross_document_consistency.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --require-base",
-    "python scripts/governance_engine.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/validate_cross_document_consistency.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --require-base",
+    "python scripts/governance_engine.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

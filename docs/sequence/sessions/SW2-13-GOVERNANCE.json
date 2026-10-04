@@ -1,31 +1,30 @@
 {
-  "acceptance_report": "artifacts/sequence/SW2-12-GOVERNANCE.acceptance.json",
+  "acceptance_report": "artifacts/sequence/SW2-13-GOVERNANCE.acceptance.json",
   "actual": {
-    "diagram": "docs/sequence/generated/SW2-12-GOVERNANCE.actual.mmd",
+    "diagram": "docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd",
     "entries": [
-      "scripts/validate_repository_health.py::main",
       "scripts/validate_project_docs.py::main",
       "scripts/validate_cross_document_consistency.py::main",
       "scripts/sync_project_truth.py::main",
       "scripts/validate_sequence_sessions.py::main",
       "scripts/governance_engine.py::main"
     ],
-    "graph": "docs/sequence/generated/SW2-12-GOVERNANCE.actual.json",
+    "graph": "docs/sequence/generated/SW2-13-GOVERNANCE.actual.json",
     "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
   },
   "critical": true,
-  "evidence_boundary": "SW2-12 sequence evidence covers repository-health/reference validation, Project Truth synchronization, cross-document consistency, sequence validation, and final governance acceptance for repository hygiene. It does not authorize unrelated behavior or release-tag changes.",
+  "evidence_boundary": "SW2-13 sequence evidence covers Project Truth synchronization, cross-document consistency, sequence validation, and final governance acceptance while the skill/reference packaging contract is introduced. It does not authorize unrelated V2 behavior or release-tag changes.",
   "human_view": {
-    "diagram": "docs/sequence/generated/SW2-12-GOVERNANCE.human.mmd",
-    "document": "docs/sequence/views/SW2-12-GOVERNANCE.md",
+    "diagram": "docs/sequence/generated/SW2-13-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-13-GOVERNANCE.md",
     "granularity": "module",
-    "graph": "docs/sequence/generated/SW2-12-GOVERNANCE.human.json",
+    "graph": "docs/sequence/generated/SW2-13-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
     "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
   },
-  "implementation_base_sha": "2fc16cce4c7753ad103bac401d1825a9bd8bd3a1",
+  "implementation_base_sha": "1c81c3012d9a5891e8145726c38165e113057676",
   "mode": "DURING",
-  "phase": "SW2-12",
+  "phase": "SW2-13",
   "plan": {
     "contract": "",
     "diagram": "",
@@ -39,12 +38,11 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "HISTORICAL",
-  "session_id": "SW2-12-GOVERNANCE",
-  "status": "COMPLETE",
+  "scope": "CURRENT",
+  "session_id": "SW2-13-GOVERNANCE",
+  "status": "IN_PROGRESS",
   "test_traceability_required": true,
   "tests": [
-    "scripts/selftest_repository_health.py",
     "scripts/selftest_project_truth_compiler.py",
     "scripts/selftest_cross_document_regressions.py",
     "scripts/selftest_strict_project_workflow.py"

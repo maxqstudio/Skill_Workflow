@@ -4,30 +4,28 @@
 
 ## Evidence boundary
 
-SW2-12 covers repository hygiene and dead/transient artifact cleanup only: evidence-backed inventory, safe-removal classification, preservation of historical acceptance auditability and compatibility contracts, deterministic synchronization, and exact-candidate regression. It must not alter accepted V2 behavior, the stable v2.0.0 tag target, or root AGENTS.md governance semantics.
+SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.
 
 Final tested source: external final acceptance evidence.
 Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-12-R1 | Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers. | PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications. | PASS |
-| SW2-12-R2 | Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts. | PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery. | PASS |
-| SW2-12-R3 | Historical acceptance and release evidence remains auditable after cleanup. | PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6. | PASS |
-| SW2-12-R4 | Project Truth, current sequence evidence, and the complete permanent acceptance matrix pass on the exact clean cleanup candidate. | PASS on exact candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. | PASS |
+| SW2-13-R1 | Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail. | NOT_PROVEN until every normative SKILL.md section is mapped and all accepted non-negotiable safety/authority invariants are shown to remain in the eager core. | NOT_PROVEN |
+| SW2-13-R2 | Detailed guidance has stable reference locations and the root skill context cost is measurably reduced. | NOT_PROVEN until detailed guidance is moved into stable bundled references and root SKILL.md context cost is measured before/after without semantic loss. | NOT_PROVEN |
+| SW2-13-R3 | Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed. | NOT_PROVEN until required one-level references resolve deterministically and negative-path tests reject missing, broken, duplicate, or ambiguous required references. | NOT_PROVEN |
+| SW2-13-R4 | Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate. | NOT_PROVEN until targeted behavioral parity regression plus all six permanent checks pass on the exact clean SW2-13 candidate on Ubuntu and Windows. | NOT_PROVEN |
 
 ## Test commands
 
 - python -m compileall -q scripts
-- python scripts/selftest_repository_health.py
-- python scripts/validate_repository_health.py --root .
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/validate_cross_document_consistency.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --require-base
-- python scripts/governance_engine.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/validate_cross_document_consistency.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --require-base
+- python scripts/governance_engine.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -41,7 +39,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-12-GOVERNANCE
+Sequence session contract: SW2-13-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

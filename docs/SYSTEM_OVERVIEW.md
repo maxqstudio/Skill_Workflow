@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-12
+Current phase: SW2-13
 
-Current status: SW2_12_REPOSITORY_HYGIENE_ACCEPTED
+Current status: SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat tracked .github/workflows/tmp-* files as repository-health failures and remove one-shot helpers before acceptance.
-- Preserve historical acceptance/release evidence and remote branches unless deletion safety is explicitly proven.
-- Open SW2-13 Skill Core / Reference Split as a separate governed phase before changing skill/reference packaging.
+- Inventory every normative SKILL.md section and classify it as CORE invariant, ROUTING instruction, or REFERENCE detail before moving content.
+- Create stable root references/ documents with deterministic one-level links from SKILL.md and add fail-closed validation for missing, broken, or ambiguous required references.
+- Measure root SKILL.md size/line reduction and prove behavioral parity with targeted negative-path regression plus the complete permanent acceptance matrix.
 
 Blocked actions:
-- Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag.
-- Do not weaken accepted V2 governance guarantees or the mandatory root AGENTS.md contract.
-- Do not delete historical evidence or remote branches merely for cosmetic cleanup when deletion safety is NOT_PROVEN.
-- Do not allow tracked .github/workflows/tmp-* files in an accepted repository state.
-- Do not begin SW2-13 implementation without opening its governed acceptance boundary.
+- Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.
+- Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.
+- Do not introduce multi-hop reference chains for required operating rules.
+- Do not mark SW2-13 requirements PASS before reference integrity, context-cost, and behavioral evidence exists.
+- Do not begin SW2-14 implementation until SW2-13 is accepted.
 
 Known blockers:
 - None declared.
@@ -174,10 +174,13 @@ Known blockers:
 - SW2-11 Root AGENTS.md Contract is accepted on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded. AGENTS.md is mandatory and source-authored at repository root for LITE, STANDARD, and STRICT; initialization/migration and fail-closed validation are regression-proven.
 - SW2-11 Root AGENTS.md Contract was squash-merged to main as 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 with tree 355a351b6da106dfa6538add0c13f5a4d2f2d67f equal to the exact tested clean-head tree. Post-merge main passed Self Governance 37202694399, Governance Selftest 37202694460 on Ubuntu and Windows, SW2 Sequence Evidence 37202694406, Governance Engine Performance 37202694405, and Consumer Engine Performance 37202694400.
 - SW2-12 Repository Hygiene & Dead Artifact Cleanup is accepted on exact implementation candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. The obsolete one-shot SW2-09 publication workflow was removed, tracked tmp-* workflows now fail closed, and historical audit evidence/remote branches were preserved unless deletion safety was proven.
+- SW2-12 Repository Hygiene & Dead Artifact Cleanup was squash-merged to main as 1c81c3012d9a5891e8145726c38165e113057676 with tree d2c0c11626196069547021ef1a1f9a8220368464 equal to the exact tested clean closure tree. Post-merge main passed Self Governance 37204813037, Governance Selftest 37204813031 on Ubuntu and Windows, SW2 Sequence Evidence 37204813032, Governance Engine Performance 37204813028, and Consumer Engine Performance 37204813038.
 
 ### Not proven
 
-- Deletion safety for historical remote branches remains intentionally NOT_PROVEN; they are preserved for auditability.
+- SW2-13 root SKILL.md invariant-preservation mapping is not yet proven complete.
+- SW2-13 reference split, context-cost reduction, and deterministic reference-resolution contract are not yet proven.
+- SW2-13 behavioral parity after progressive disclosure is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations
