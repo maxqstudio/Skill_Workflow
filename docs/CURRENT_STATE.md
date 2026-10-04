@@ -3,12 +3,12 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
+Authority verified at SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
 Governance profile: strict
 
 ## Current phase
 Phase: SW2-09
-Status: IN_PROGRESS
+Status: V2_STABLE_RELEASED
 Roadmap phase: SW2-09
 ROADMAP_SYNC: PASS
 
@@ -16,7 +16,7 @@ ROADMAP_SYNC: PASS
 Repository: maxqstudio/Skill_Workflow
 Branch: work/sw2-09-v2-stable-release
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 8d0fbfd7177128774a0f321b8c95e6befdaaf659
+Last accepted SHA: d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6
 Current candidate SHA: external final acceptance evidence
 Current source digest: 1bfcb37f418b36357867879fc9d99b140a38c98d8cf4a3ae896c44b490a4ed13
 
@@ -76,11 +76,11 @@ SEQUENCE_SYNC: PASS
 - SW2-09-R1 all prior SW2 phases accepted is proven by accepted SW2-00 through SW2-08 authority and green post-merge main 8d0fbfd7177128774a0f321b8c95e6befdaaf659.
 - SW2-09-R3 migration/rollback guidance and synchronized Project Truth are accepted on exact tree-equivalent evidence head aef29794d2f94bd6066410408ad948882ccf10ef: all six permanent checks succeeded; Governance Selftest 37184136532 passed Ubuntu/Windows; all canonical claims are PASS with document/source/test traceability; changed release, migration, and repository-governance semantics were explicitly audited against their source owners and regression tests.
 - SW2-09-R2 final release-candidate acceptance is proven on exact tree-equivalent head 91c1c82ceaeae145806c50b6574d76ded637072d: all six permanent checks succeeded, both Ubuntu and Windows Governance Selftest lanes passed, and all final truth gates were PASS or NOT_APPLICABLE. This evidence does not authorize publication by itself.
+- SW2-09 pre-publication main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6 with tree b57951a255bbd5a6cca3a17635c401eb2520565b passed the complete post-merge permanent matrix: Self Governance 37184904751 SUCCESS; Governance Selftest 37184904785 SUCCESS on Ubuntu and Windows; SW2 Sequence Evidence 37184904776 SUCCESS; Governance Engine Performance 37184904813 SUCCESS; Consumer Engine Performance 37184904805 SUCCESS.
+- SW2-09-R4 stable publication is proven: strict publication run 37185074131 granted publication_authority=true for v2.0.0 from exact tested main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6; the tag target and GitHub release target both resolve to that SHA; publication evidence artifact 11296387707 has SHA-256 bdb6d403e616fde05d07bd9b49c20948d28e0555fbea3cb08b3147521760a68d.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because the Owner chose not to configure a repository ruleset; this remains non-blocking.
-- SW2-09 exact stable release candidate acceptance is NOT_PROVEN.
-- SW2-09 versioned GitHub tag/release publication is NOT_PROVEN.
 
 ## Known blockers
 - None declared.
@@ -89,15 +89,14 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run complete permanent CI on the clean post-R2 promotion candidate and require all six checks PASS.
-- If that exact candidate passes, run strict v2.0.0 publication-ready preflight against the exact candidate and require publication_authority=true with only SW2-09-R4 publication-pending.
-- Do not create or move any tag/release until strict publication preflight passes on the exact publication candidate.
+- Treat v2.0.0 at d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6 as the accepted stable V2 release baseline.
+- For defects in the stable release, repair forward under a new governed patch release; never retarget the existing stable tag.
+- Before new feature or compatibility work changes accepted V2 guarantees, declare a new governed roadmap phase and acceptance boundary.
 
 ## Explicitly blocked
-- Do not create or publish the V2 stable tag/release before SW2-09-R2 and SW2-09-R3 are PASS on an exact publication candidate.
-- Do not publish a tag or GitHub release from a HEAD different from the exact tested publication HEAD.
+- Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag as a normal rollback path.
 - Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
 - Do not change the Owner-approved MIT license or SW2-ADR-010 without explicit Owner approval.
-- Do not weaken accepted SW2-01 through SW2-08 governance guarantees.
+- Do not weaken accepted Skill Workflow V2 guarantees without a new governed acceptance boundary.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

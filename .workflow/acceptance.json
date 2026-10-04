@@ -35,10 +35,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN at phase opening. No SW2-09 stable tag or GitHub release may be created until R2 and R3 pass and the publication HEAD is exact-bound.",
+      "evidence": "Stable v2.0.0 publication is accepted from exact tested main d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6 with tree b57951a255bbd5a6cca3a17635c401eb2520565b. Publication run 37185074131 passed strict finalize preflight with publication_authority=true and only SW2-09-R4 publication-pending before publication; tag target identity and GitHub release target identity both passed against the exact tested SHA. Publication evidence artifact 11296387707 has SHA-256 bdb6d403e616fde05d07bd9b49c20948d28e0555fbea3cb08b3147521760a68d. The v2.0.0 tag is immutable release evidence and must not be retargeted.",
       "id": "SW2-09-R4",
       "requirement": "A versioned GitHub release/tag is produced from the tested HEAD.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
