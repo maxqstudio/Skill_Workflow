@@ -61,7 +61,7 @@ jobs:
           python scripts/generate_symbol_index.py --root .
           python scripts/generate_module_map.py --root .
 
-      - name: Validate documentation transaction
+      - name: Validate dirty-worktree-safe documentation gates
         shell: bash
         run: |
           python -m compileall -q scripts
@@ -69,7 +69,6 @@ jobs:
           python scripts/selftest_public_docs.py
           python scripts/validate_public_docs.py --root . --report artifacts/public_docs_report.json
           python scripts/validate_project_docs.py --root .
-          python scripts/validate_cross_document_consistency.py --root .
           python scripts/validate_project_truth.py --root .
           python scripts/selftest_project_truth_compiler.py
           python scripts/selftest_cross_document_regressions.py
