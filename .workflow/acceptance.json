@@ -46,7 +46,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-08-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
     "python scripts/validate_schema_toolchain.py --root .",
@@ -81,7 +81,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
