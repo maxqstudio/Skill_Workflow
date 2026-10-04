@@ -9,15 +9,15 @@
 - Machine graph: [docs/sequence/generated/SW2-13-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-13-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-13-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-13-GOVERNANCE.human.json)
-- Source digest: `87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6`
+- Source digest: `0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 76 | 13 |
-| Interactions / edges | 115 | 19 |
-| Internal machine edges collapsed | 81 | — |
+| Participants / nodes | 77 | 13 |
+| Interactions / edges | 116 | 19 |
+| Internal machine edges collapsed | 82 | — |
 | Cross-component edges aggregated | 15 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.

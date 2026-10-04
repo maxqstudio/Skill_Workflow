@@ -725,6 +725,13 @@
       "to": "scripts/validate_cross_document_consistency.py::git_root"
     },
     {
+      "action": "is_skill_reference_document",
+      "evidence": "STATIC",
+      "from": "scripts/validate_cross_document_consistency.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_cross_document_consistency.py::is_skill_reference_document"
+    },
+    {
       "action": "is_template_document",
       "evidence": "STATIC",
       "from": "scripts/validate_cross_document_consistency.py::main",
@@ -1400,8 +1407,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::all_docs",
       "language": "Python",
-      "line_end": 146,
-      "line_start": 140,
+      "line_end": 155,
+      "line_start": 149,
       "locator": "scripts/validate_cross_document_consistency.py::all_docs"
     },
     {
@@ -1409,8 +1416,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::claim_rows",
       "language": "Python",
-      "line_end": 274,
-      "line_start": 250,
+      "line_end": 283,
+      "line_start": 259,
       "locator": "scripts/validate_cross_document_consistency.py::claim_rows"
     },
     {
@@ -1418,8 +1425,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::diff_changes",
       "language": "Python",
-      "line_end": 302,
-      "line_start": 292,
+      "line_end": 311,
+      "line_start": 301,
       "locator": "scripts/validate_cross_document_consistency.py::diff_changes"
     },
     {
@@ -1441,12 +1448,21 @@
       "locator": "scripts/validate_cross_document_consistency.py::git_root"
     },
     {
+      "id": "scripts/validate_cross_document_consistency.py::is_skill_reference_document",
+      "kind": "function",
+      "label": "scripts/validate_cross_document_consistency.py::is_skill_reference_document",
+      "language": "Python",
+      "line_end": 146,
+      "line_start": 140,
+      "locator": "scripts/validate_cross_document_consistency.py::is_skill_reference_document"
+    },
+    {
       "id": "scripts/validate_cross_document_consistency.py::is_source",
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::is_source",
       "language": "Python",
-      "line_end": 309,
-      "line_start": 305,
+      "line_end": 318,
+      "line_start": 314,
       "locator": "scripts/validate_cross_document_consistency.py::is_source"
     },
     {
@@ -1463,8 +1479,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::likely_path",
       "language": "Python",
-      "line_end": 201,
-      "line_start": 194,
+      "line_end": 210,
+      "line_start": 203,
       "locator": "scripts/validate_cross_document_consistency.py::likely_path"
     },
     {
@@ -1472,8 +1488,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::main",
       "language": "Python",
-      "line_end": 734,
-      "line_start": 385,
+      "line_end": 746,
+      "line_start": 394,
       "locator": "scripts/validate_cross_document_consistency.py::main"
     },
     {
@@ -1481,8 +1497,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::parse_table",
       "language": "Python",
-      "line_end": 162,
-      "line_start": 149,
+      "line_end": 171,
+      "line_start": 158,
       "locator": "scripts/validate_cross_document_consistency.py::parse_table"
     },
     {
@@ -1499,8 +1515,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::required_docs_for_diff",
       "language": "Python",
-      "line_end": 382,
-      "line_start": 312,
+      "line_end": 391,
+      "line_start": 321,
       "locator": "scripts/validate_cross_document_consistency.py::required_docs_for_diff"
     },
     {
@@ -1508,8 +1524,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::resolve_declared_doc_ref",
       "language": "Python",
-      "line_end": 289,
-      "line_start": 281,
+      "line_end": 298,
+      "line_start": 290,
       "locator": "scripts/validate_cross_document_consistency.py::resolve_declared_doc_ref"
     },
     {
@@ -1517,8 +1533,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::resolve_ref",
       "language": "Python",
-      "line_end": 215,
-      "line_start": 204,
+      "line_end": 224,
+      "line_start": 213,
       "locator": "scripts/validate_cross_document_consistency.py::resolve_ref"
     },
     {
@@ -1526,8 +1542,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::scalar_fields",
       "language": "Python",
-      "line_end": 175,
-      "line_start": 165,
+      "line_end": 184,
+      "line_start": 174,
       "locator": "scripts/validate_cross_document_consistency.py::scalar_fields"
     },
     {
@@ -1544,8 +1560,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::split_refs",
       "language": "Python",
-      "line_end": 278,
-      "line_start": 277,
+      "line_end": 287,
+      "line_start": 286,
       "locator": "scripts/validate_cross_document_consistency.py::split_refs"
     },
     {
@@ -1562,8 +1578,8 @@
       "kind": "function",
       "label": "scripts/validate_cross_document_consistency.py::truth_claims",
       "language": "Python",
-      "line_end": 247,
-      "line_start": 218,
+      "line_end": 256,
+      "line_start": 227,
       "locator": "scripts/validate_cross_document_consistency.py::truth_claims"
     },
     {
@@ -1603,7 +1619,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "e73928ddfc0e3894c6f75d1837d90bd0021c44b8",
+  "observed_head": "cd189ea77d534d055efaecb1955bfe0496bc053f",
   "schema_version": 1,
-  "source_digest": "87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6"
+  "source_digest": "0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285"
 }

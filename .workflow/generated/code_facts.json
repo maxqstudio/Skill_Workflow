@@ -217,7 +217,7 @@
       "file": "scripts/selftest_cross_document_regressions.py",
       "is_test": false,
       "language": "Python",
-      "lines": 39
+      "lines": 44
     },
     {
       "directory": "scripts",
@@ -329,7 +329,7 @@
       "file": "scripts/validate_cross_document_consistency.py",
       "is_test": false,
       "language": "Python",
-      "lines": 738
+      "lines": 750
     },
     {
       "directory": "scripts",
@@ -9287,7 +9287,11 @@
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
-      "target_token": "claim_backlink_comment"
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "RuntimeError"
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
@@ -9296,6 +9300,18 @@
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "claim_backlink_comment"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "claim_backlink_comment"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "is_skill_reference_document"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "is_skill_reference_document"
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
@@ -9304,6 +9320,10 @@
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "is_template_document"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
@@ -14210,6 +14230,14 @@
       "target_token": "git"
     },
     {
+      "caller": "scripts/validate_cross_document_consistency.py::is_skill_reference_document",
+      "target_token": "doc.relative_to"
+    },
+    {
+      "caller": "scripts/validate_cross_document_consistency.py::is_skill_reference_document",
+      "target_token": "len"
+    },
+    {
       "caller": "scripts/validate_cross_document_consistency.py::is_source",
       "target_token": "Path"
     },
@@ -14568,6 +14596,10 @@
     {
       "caller": "scripts/validate_cross_document_consistency.py::main",
       "target_token": "git_root"
+    },
+    {
+      "caller": "scripts/validate_cross_document_consistency.py::main",
+      "target_token": "is_skill_reference_document"
     },
     {
       "caller": "scripts/validate_cross_document_consistency.py::main",
@@ -21275,7 +21307,7 @@
     {
       "file": "scripts/selftest_cross_document_regressions.py",
       "kind": "function",
-      "line_end": 35,
+      "line_end": 40,
       "line_start": 7,
       "locator": "scripts/selftest_cross_document_regressions.py::main",
       "symbol": "main"
@@ -21981,126 +22013,134 @@
       "kind": "function",
       "line_end": 146,
       "line_start": 140,
+      "locator": "scripts/validate_cross_document_consistency.py::is_skill_reference_document",
+      "symbol": "is_skill_reference_document"
+    },
+    {
+      "file": "scripts/validate_cross_document_consistency.py",
+      "kind": "function",
+      "line_end": 155,
+      "line_start": 149,
       "locator": "scripts/validate_cross_document_consistency.py::all_docs",
       "symbol": "all_docs"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 162,
-      "line_start": 149,
+      "line_end": 171,
+      "line_start": 158,
       "locator": "scripts/validate_cross_document_consistency.py::parse_table",
       "symbol": "parse_table"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 175,
-      "line_start": 165,
+      "line_end": 184,
+      "line_start": 174,
       "locator": "scripts/validate_cross_document_consistency.py::scalar_fields",
       "symbol": "scalar_fields"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 182,
-      "line_start": 178,
+      "line_end": 191,
+      "line_start": 187,
       "locator": "scripts/validate_cross_document_consistency.py::normalize_repo",
       "symbol": "normalize_repo"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 186,
-      "line_start": 185,
+      "line_end": 195,
+      "line_start": 194,
       "locator": "scripts/validate_cross_document_consistency.py::normalize_branch",
       "symbol": "normalize_branch"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 191,
-      "line_start": 189,
+      "line_end": 200,
+      "line_start": 198,
       "locator": "scripts/validate_cross_document_consistency.py::normalize_sha",
       "symbol": "normalize_sha"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 201,
-      "line_start": 194,
+      "line_end": 210,
+      "line_start": 203,
       "locator": "scripts/validate_cross_document_consistency.py::likely_path",
       "symbol": "likely_path"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 215,
-      "line_start": 204,
+      "line_end": 224,
+      "line_start": 213,
       "locator": "scripts/validate_cross_document_consistency.py::resolve_ref",
       "symbol": "resolve_ref"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 247,
-      "line_start": 218,
+      "line_end": 256,
+      "line_start": 227,
       "locator": "scripts/validate_cross_document_consistency.py::truth_claims",
       "symbol": "truth_claims"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 274,
-      "line_start": 250,
+      "line_end": 283,
+      "line_start": 259,
       "locator": "scripts/validate_cross_document_consistency.py::claim_rows",
       "symbol": "claim_rows"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 278,
-      "line_start": 277,
+      "line_end": 287,
+      "line_start": 286,
       "locator": "scripts/validate_cross_document_consistency.py::split_refs",
       "symbol": "split_refs"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 289,
-      "line_start": 281,
+      "line_end": 298,
+      "line_start": 290,
       "locator": "scripts/validate_cross_document_consistency.py::resolve_declared_doc_ref",
       "symbol": "resolve_declared_doc_ref"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 302,
-      "line_start": 292,
+      "line_end": 311,
+      "line_start": 301,
       "locator": "scripts/validate_cross_document_consistency.py::diff_changes",
       "symbol": "diff_changes"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 309,
-      "line_start": 305,
+      "line_end": 318,
+      "line_start": 314,
       "locator": "scripts/validate_cross_document_consistency.py::is_source",
       "symbol": "is_source"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 382,
-      "line_start": 312,
+      "line_end": 391,
+      "line_start": 321,
       "locator": "scripts/validate_cross_document_consistency.py::required_docs_for_diff",
       "symbol": "required_docs_for_diff"
     },
     {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
-      "line_end": 734,
-      "line_start": 385,
+      "line_end": 746,
+      "line_start": 394,
       "locator": "scripts/validate_cross_document_consistency.py::main",
       "symbol": "main"
     },
@@ -22402,13 +22442,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6",
+  "source_digest": "0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285",
   "source_summary": {
     "files": 49,
     "languages": {
       "Python": 49
     },
-    "lines": 13245,
+    "lines": 13262,
     "test_files": 0
   },
   "tests": []

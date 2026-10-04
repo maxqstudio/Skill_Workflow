@@ -435,13 +435,14 @@
       "id": "module:scripts/validate_cross_document_consistency.py",
       "kind": "module",
       "label": "scripts/validate_cross_document_consistency.py",
-      "machine_node_count": 19,
+      "machine_node_count": 20,
       "machine_nodes": [
         "scripts/validate_cross_document_consistency.py::all_docs",
         "scripts/validate_cross_document_consistency.py::claim_rows",
         "scripts/validate_cross_document_consistency.py::diff_changes",
         "scripts/validate_cross_document_consistency.py::git",
         "scripts/validate_cross_document_consistency.py::git_root",
+        "scripts/validate_cross_document_consistency.py::is_skill_reference_document",
         "scripts/validate_cross_document_consistency.py::is_source",
         "scripts/validate_cross_document_consistency.py::is_template_document",
         "scripts/validate_cross_document_consistency.py::likely_path",
@@ -487,14 +488,14 @@
       ]
     }
   ],
-  "observed_head": "e73928ddfc0e3894c6f75d1837d90bd0021c44b8",
+  "observed_head": "cd189ea77d534d055efaecb1955bfe0496bc053f",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 15,
     "cross_component_machine_edges": 34,
-    "internal_machine_edges_collapsed": 81,
-    "machine_edge_count": 115,
-    "machine_node_count": 76,
+    "internal_machine_edges_collapsed": 82,
+    "machine_edge_count": 116,
+    "machine_node_count": 77,
     "node_map": {
       ".github/scripts/validate_skill_reference_split.py::_normalized_text": "module:.github/scripts/validate_skill_reference_split.py",
       ".github/scripts/validate_skill_reference_split.py::main": "module:.github/scripts/validate_skill_reference_split.py",
@@ -554,6 +555,7 @@
       "scripts/validate_cross_document_consistency.py::diff_changes": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::git": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::git_root": "module:scripts/validate_cross_document_consistency.py",
+      "scripts/validate_cross_document_consistency.py::is_skill_reference_document": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::is_source": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::is_template_document": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::likely_path": "module:scripts/validate_cross_document_consistency.py",
@@ -576,5 +578,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6"
+  "source_digest": "0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285"
 }

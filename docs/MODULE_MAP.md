@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6
+Source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -28,7 +28,7 @@ Generated/refreshed: current compiler run
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
-| scripts/selftest_cross_document_regressions.py | Python | 39 | scripts | NO |
+| scripts/selftest_cross_document_regressions.py | Python | 44 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 395 | scripts | NO |
@@ -44,7 +44,7 @@ Generated/refreshed: current compiler run
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 146 | scripts | NO |
 | scripts/toolchain_identity.py | Python | 184 | scripts | NO |
-| scripts/validate_cross_document_consistency.py | Python | 738 | scripts | NO |
+| scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |

@@ -18,7 +18,7 @@ Branch: work/sw2-13-skill-core-reference-split
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 1c81c3012d9a5891e8145726c38165e113057676
 Current candidate SHA: external final acceptance evidence
-Current source digest: 87aec6b677b52f59df9a51a25865f8f45ac5d218c74a5abec4b2c167a73c87e6
+Current source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
