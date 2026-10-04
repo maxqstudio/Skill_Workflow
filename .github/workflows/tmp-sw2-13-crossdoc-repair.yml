@@ -92,7 +92,17 @@ jobs:
           for entry in entries:
               command.extend(['--entry', entry])
           subprocess.run(command, check=True)
+
+          generated = json.loads(Path(graph).read_text(encoding='utf-8'))
+          source_digest = str(generated.get('source_digest', '')).strip()
+          if not source_digest:
+              raise SystemExit('GENERATED_SEQUENCE_SOURCE_DIGEST_MISSING')
+          session['actual']['source_digest'] = source_digest
           human = session.get('human_view') or {}
+          if human:
+              session['human_view']['source_digest'] = source_digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
           if human:
               subprocess.run([
                   sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
