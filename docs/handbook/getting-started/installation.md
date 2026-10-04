@@ -58,6 +58,6 @@ npx skills update
 
 ## What is canonical
 
-`SKILL.md` is the canonical skill contract. Project-local Project Truth tools are vendored into `.workflow/tools/` when the initializer is used, so governed projects do not depend on a particular agent's global installation path.
+`SKILL.md` is the canonical eager skill contract. Detailed normative operating rules are bundled under root `references/` and are loaded through deterministic one-level links from `SKILL.md`; public handbook pages are explanatory and do not replace those bundled references. Project-local Project Truth tools are vendored into `.workflow/tools/` when the initializer is used, so governed projects do not depend on a particular agent's global installation path.
 
 Continue with [repository adoption](adoption.md).

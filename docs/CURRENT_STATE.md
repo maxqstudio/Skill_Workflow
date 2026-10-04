@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1
+Authority verified at SHA: 1c81c3012d9a5891e8145726c38165e113057676
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-12
-Status: SW2_12_REPOSITORY_HYGIENE_ACCEPTED
-Roadmap phase: SW2-12
+Phase: SW2-13
+Status: SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS
+Roadmap phase: SW2-13
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-13-skill-core-reference-split
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1
+Last accepted SHA: 1c81c3012d9a5891e8145726c38165e113057676
 Current candidate SHA: external final acceptance evidence
-Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+Current source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-12-GOVERNANCE
+Current sequence session: SW2-13-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -85,9 +85,12 @@ SEQUENCE_SYNC: PASS
 - SW2-11 Root AGENTS.md Contract is accepted on exact candidate 415bb41d2f34ae204e7e09d7434be9974e63ef11: Self Governance 37199687919, Governance Selftest 37199687921 on Ubuntu and Windows, SW2 Sequence Evidence 37199687904, Governance Engine Performance 37199687905, and Consumer Engine Performance 37199687906 all succeeded. AGENTS.md is mandatory and source-authored at repository root for LITE, STANDARD, and STRICT; initialization/migration and fail-closed validation are regression-proven.
 - SW2-11 Root AGENTS.md Contract was squash-merged to main as 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 with tree 355a351b6da106dfa6538add0c13f5a4d2f2d67f equal to the exact tested clean-head tree. Post-merge main passed Self Governance 37202694399, Governance Selftest 37202694460 on Ubuntu and Windows, SW2 Sequence Evidence 37202694406, Governance Engine Performance 37202694405, and Consumer Engine Performance 37202694400.
 - SW2-12 Repository Hygiene & Dead Artifact Cleanup is accepted on exact implementation candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. The obsolete one-shot SW2-09 publication workflow was removed, tracked tmp-* workflows now fail closed, and historical audit evidence/remote branches were preserved unless deletion safety was proven.
+- SW2-12 Repository Hygiene & Dead Artifact Cleanup was squash-merged to main as 1c81c3012d9a5891e8145726c38165e113057676 with tree d2c0c11626196069547021ef1a1f9a8220368464 equal to the exact tested clean closure tree. Post-merge main passed Self Governance 37204813037, Governance Selftest 37204813031 on Ubuntu and Windows, SW2 Sequence Evidence 37204813032, Governance Engine Performance 37204813028, and Consumer Engine Performance 37204813038.
+- SW2-13 eager-core reduction is proven on exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62: SKILL.md is 10,868 bytes / 235 lines versus the 55,350-byte / 1,801-line accepted baseline, while four one-level bundled references preserve moved baseline bodies verbatim.
+- SW2-13 reference integrity is proven: deterministic routing depth is 1, six negative-path regressions fail closed, and Governance Selftest run 37208469609 passes the contract on Ubuntu and Windows.
+- SW2-13 feature acceptance is proven on exact clean candidate 5ad450950099679388afeaebca686cb26906be62: Self Governance 37208469566, Governance Selftest 37208469609 on Ubuntu and Windows, SW2 Sequence Evidence 37208469659, Governance Engine Performance 37208469572, and Consumer Engine Performance 37208469581 all succeeded.
 
 ## Not proven
-- Deletion safety for historical remote branches remains intentionally NOT_PROVEN; they are preserved for auditability.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -97,15 +100,14 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Treat tracked .github/workflows/tmp-* files as repository-health failures and remove one-shot helpers before acceptance.
-- Preserve historical acceptance/release evidence and remote branches unless deletion safety is explicitly proven.
-- Open SW2-13 Skill Core / Reference Split as a separate governed phase before changing skill/reference packaging.
+- Run the complete permanent acceptance matrix on the exact clean post-promotion SW2-13 candidate.
+- If the exact post-promotion matrix passes, merge SW2-13 to main and verify post-merge main before opening SW2-14.
 
 ## Explicitly blocked
-- Do not move, retarget, delete-and-recreate, or silently replace the stable v2.0.0 tag.
-- Do not weaken accepted V2 governance guarantees or the mandatory root AGENTS.md contract.
-- Do not delete historical evidence or remote branches merely for cosmetic cleanup when deletion safety is NOT_PROVEN.
-- Do not allow tracked .github/workflows/tmp-* files in an accepted repository state.
-- Do not begin SW2-13 implementation without opening its governed acceptance boundary.
+- Do not remove or weaken any accepted safety, authority, exact-head, fail-closed, Project Truth, sequence, runtime, or acceptance invariant from the root skill contract.
+- Do not use public handbook pages as hidden substitutes for required bundled skill references; agent-facing references must be deterministic skill-root resources.
+- Do not introduce multi-hop reference chains for required operating rules.
+- Do not merge SW2-13 unless the complete permanent matrix passes on the exact clean post-promotion candidate.
+- Do not begin SW2-14 implementation until SW2-13 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

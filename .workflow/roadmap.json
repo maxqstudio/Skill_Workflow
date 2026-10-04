@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-12",
+  "current_phase": "SW2-13",
   "phases": [
     {
       "exit_criteria": [
@@ -156,7 +156,7 @@
       ],
       "id": "SW2-12",
       "objective": "Remove stale temporary workflows and dead/transient artifacts while preserving accepted evidence and compatibility contracts.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Repository Hygiene & Dead Artifact Cleanup"
     },
     {
@@ -168,7 +168,7 @@
       ],
       "id": "SW2-13",
       "objective": "Reduce root SKILL.md context cost by keeping non-negotiable invariants and routing detailed guidance into deterministic reference documents.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Skill Core / Reference Split"
     },
     {

@@ -39,7 +39,7 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "CURRENT",
+  "scope": "HISTORICAL",
   "session_id": "SW2-12-GOVERNANCE",
   "status": "COMPLETE",
   "test_traceability_required": true,

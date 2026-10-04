@@ -4,30 +4,30 @@
 
 ## Evidence boundary
 
-SW2-12 covers repository hygiene and dead/transient artifact cleanup only: evidence-backed inventory, safe-removal classification, preservation of historical acceptance auditability and compatibility contracts, deterministic synchronization, and exact-candidate regression. It must not alter accepted V2 behavior, the stable v2.0.0 tag target, or root AGENTS.md governance semantics.
+SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+Current source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-12-R1 | Temporary/dead workflow and transient-artifact inventory is evidence-backed and distinguishes current authority, historical evidence, and removable leftovers. | PASS: artifacts/sw2-12-repository-hygiene.json records tracked workflows, the removed one-shot publication workflow, preserved historical evidence, and all live remote branches with explicit KEEP/REMOVE/NOT_PROVEN-safe-to-delete classifications. | PASS |
-| SW2-12-R2 | Only stale items proven safe to remove are deleted, without weakening accepted V2 behavior or compatibility contracts. | PASS: only .github/workflows/tmp-sw2-09-publish-v2.yml was removed. scripts/validate_repository_health.py now rejects tracked .github/workflows/tmp-* files and scripts/selftest_repository_health.py proves the negative path plus clean recovery. | PASS |
-| SW2-12-R3 | Historical acceptance and release evidence remains auditable after cleanup. | PASS: historical sequence sessions/acceptance artifacts and benchmark evidence remain tracked, remote historical branches were not deleted without proof, validate_sequence_sessions remains blocking, and the published v2.0.0 release target was reverified as d61d216f1c9b29d6bdd90e1a929cd4199c8e93f6. | PASS |
-| SW2-12-R4 | Project Truth, current sequence evidence, and the complete permanent acceptance matrix pass on the exact clean cleanup candidate. | PASS on exact candidate 9fdf530d46eeee297e8c784044369ac2342f5c60: Self Governance 37203995211, Governance Selftest 37203995235 on Ubuntu and Windows, SW2 Sequence Evidence 37203995267, Governance Engine Performance 37203995219, and Consumer Engine Performance 37203995252 all succeeded. | PASS |
+| SW2-13-R1 | Root skill preserves all accepted safety and authority invariants while separating eager core rules from on-demand detail. | PASS: artifacts/sw2-13-skill-core-reference-split.json maps all normative baseline sections into CORE+ROUTING or one-level REFERENCE buckets; the eager root retains startup order, authority hierarchy, fail-closed safety, exact-head acceptance, documentation/sequence boundaries, and final-gate rules. Exact feature candidate 5ad450950099679388afeaebca686cb26906be62 passed Self Governance run 37208469566 and Governance Selftest run 37208469609 on Ubuntu and Windows. | PASS |
+| SW2-13-R2 | Detailed guidance has stable reference locations and the root skill context cost is measurably reduced. | PASS: root SKILL.md reduced from 55,350 bytes / 1,801 lines to 10,868 bytes / 235 lines (80.36% byte reduction; 86.95% line reduction). Four bundled one-level references preserve the moved baseline bodies verbatim, with per-reference SHA-256 evidence in artifacts/sw2-13-skill-core-reference-split.json. | PASS |
+| SW2-13-R3 | Supported agents can resolve required bundled references deterministically and reference-integrity failures fail closed. | PASS: four required root references resolve at routing depth 1; permanent validator plus selftest reject six negative paths: missing reference, broken root link, duplicate/ambiguous route, multi-hop chain, missing core invariant, and root line-budget overflow. Governance Selftest run 37208469609 passed the contract on Ubuntu and Windows. | PASS |
+| SW2-13-R4 | Behavioral regression proves no governance guarantee was lost and the complete permanent acceptance matrix passes on the exact candidate. | PASS: exact clean feature candidate 5ad450950099679388afeaebca686cb26906be62 passed all six permanent check contexts: Self Governance run 37208469566; Governance Selftest run 37208469609 on Ubuntu and Windows; SW2 Sequence Evidence run 37208469659; Governance Engine Performance run 37208469572; Consumer Engine Performance run 37208469581. Cross-document skill-reference claim scope and read-only verify also passed on both operating systems. | PASS |
 
 ## Test commands
 
 - python -m compileall -q scripts
-- python scripts/selftest_repository_health.py
-- python scripts/validate_repository_health.py --root .
+- python .github/scripts/validate_skill_reference_split.py --root .
+- python .github/scripts/selftest_skill_reference_split.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/validate_cross_document_consistency.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --require-base
-- python scripts/governance_engine.py --root . --base 2fc16cce4c7753ad103bac401d1825a9bd8bd3a1 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/validate_cross_document_consistency.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --require-base
+- python scripts/governance_engine.py --root . --base 1c81c3012d9a5891e8145726c38165e113057676 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -41,7 +41,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-12-GOVERNANCE
+Sequence session contract: SW2-13-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

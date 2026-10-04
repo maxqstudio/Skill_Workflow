@@ -44,6 +44,9 @@ jobs:
         shell: bash
         run: find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
 
+      - name: Skill core/reference contract
+        run: python .github/scripts/validate_skill_reference_split.py --root .
+
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
 

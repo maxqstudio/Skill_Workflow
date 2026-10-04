@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+Source digest: 0200130541bff5757d75dc2a7eae584da04dd199219892541ac5fde5b282a285
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -15,6 +15,8 @@ responsibility, callers, or state ownership.
 
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
+| .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
+| .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -49,7 +51,7 @@ responsibility, callers, or state ownership.
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 3 | 0 | 3 | 0 |
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
-| scripts/validate_cross_document_consistency.py | 22 | 0 | 22 | 0 |
+| scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
 | scripts/validate_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/validate_handoff.py | 5 | 0 | 5 | 0 |
@@ -64,6 +66,28 @@ responsibility, callers, or state ownership.
 | scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
 
 ## Detailed symbols
+
+<details>
+<summary><code>.github/scripts/selftest_skill_reference_split.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| copy_fixture | function | 18-22 |
+| require_failure | function | 25-28 |
+| main | function | 31-74 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/validate_skill_reference_split.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _normalized_text | function | 35-36 |
+| validate | function | 39-83 |
+| main | function | 86-98 |
+
+</details>
 
 <details>
 <summary><code>scripts/analyzer_contract.py</code> — 10 symbols</summary>
@@ -405,7 +429,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 7-35 |
+| main | function | 7-40 |
 
 </details>
 
@@ -611,7 +635,7 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/validate_cross_document_consistency.py</code> — 22 symbols</summary>
+<summary><code>scripts/validate_cross_document_consistency.py</code> — 23 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
@@ -621,22 +645,23 @@ responsibility, callers, or state ownership.
 | source_has_symbol | function | 78-111 |
 | strip_fences | function | 114-130 |
 | is_template_document | function | 133-137 |
-| all_docs | function | 140-146 |
-| parse_table | function | 149-162 |
-| scalar_fields | function | 165-175 |
-| normalize_repo | function | 178-182 |
-| normalize_branch | function | 185-186 |
-| normalize_sha | function | 189-191 |
-| likely_path | function | 194-201 |
-| resolve_ref | function | 204-215 |
-| truth_claims | function | 218-247 |
-| claim_rows | function | 250-274 |
-| split_refs | function | 277-278 |
-| resolve_declared_doc_ref | function | 281-289 |
-| diff_changes | function | 292-302 |
-| is_source | function | 305-309 |
-| required_docs_for_diff | function | 312-382 |
-| main | function | 385-734 |
+| is_skill_reference_document | function | 140-146 |
+| all_docs | function | 149-155 |
+| parse_table | function | 158-171 |
+| scalar_fields | function | 174-184 |
+| normalize_repo | function | 187-191 |
+| normalize_branch | function | 194-195 |
+| normalize_sha | function | 198-200 |
+| likely_path | function | 203-210 |
+| resolve_ref | function | 213-224 |
+| truth_claims | function | 227-256 |
+| claim_rows | function | 259-283 |
+| split_refs | function | 286-287 |
+| resolve_declared_doc_ref | function | 290-298 |
+| diff_changes | function | 301-311 |
+| is_source | function | 314-318 |
+| required_docs_for_diff | function | 321-391 |
+| main | function | 394-746 |
 
 </details>
 
