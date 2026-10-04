@@ -1,0 +1,111 @@
+name: TEMP SW2-14 Repair Incremental Implementation V3
+
+on:
+  push:
+    branches:
+      - work/sw2-14-incremental-project-truth
+    paths:
+      - .github/workflows/tmp-sw2-14-repair-implement-v3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-14-incremental-project-truth
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reapply corrected feature patch
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          helper = Path('.github/workflows/tmp-sw2-14-implement.yml').read_text(encoding='utf-8')
+          start_marker = "          python - <<'PY'\n"
+          end_marker = "          PY\n"
+          start = helper.index(start_marker) + len(start_marker)
+          end = helper.index(end_marker, start)
+          source = '\n'.join(line[10:] if line.startswith('          ') else line for line in helper[start:end].splitlines()) + '\n'
+          replacements = [
+              ('impact = "\\n".join(line[10:] if line.startswith("          ") else line for line in impact.splitlines()) + "\\n"', 'impact = "\\n".join(impact.splitlines()) + "\\n"', 1),
+              ('helper = "\\n" + "\\n".join(line[10:] if line.startswith("          ") else line for line in helper.splitlines()) + "\\n"', 'helper = "\\n" + "\\n".join(helper.splitlines()) + "\\n"', 1),
+              ('new_main = "\\n" + "\\n".join(line[10:] if line.startswith("          ") else line for line in new_main.splitlines())', 'new_main = "\\n" + "\\n".join(new_main.splitlines())', 2),
+              ('sync = "\\n".join(line[10:] if line.startswith("          ") else line for line in sync.splitlines()) + "\\n"', 'sync = "\\n".join(sync.splitlines()) + "\\n"', 1),
+              ("addition = r'''        # SW2-14 incremental Project Truth contract.", "addition = r'''# SW2-14 incremental Project Truth contract.", 1),
+              ('addition = "\\n".join(line[10:] if line.startswith("          ") else line for line in addition.splitlines())', 'addition = __import__("textwrap").indent("\\n".join(addition.splitlines()), "        ")', 1),
+              ('return value.replace("\\\\", "/").lstrip("./")', 'normalized = value.replace("\\\\", "/")\n    while normalized.startswith("./"):\n        normalized = normalized[2:]\n    return normalized', 1),
+              ('        if contracts.get(key) != "not_applicable":\n            wanted.add(filename)\n    return wanted', '        if contracts.get(key) != "not_applicable":\n            wanted.add(filename)\n    wanted.discard("PROJECT_PROFILE.yaml")\n    return wanted', 1),
+          ]
+          for old, new, expected in replacements:
+              count = source.count(old)
+              if count != expected:
+                  raise RuntimeError(f'PATCH_REPAIR_ANCHOR:{count}!={expected}:{old[:72]}')
+              source = source.replace(old, new)
+          exec(compile(source, '<sw2-14-feature-patch-v3>', 'exec'), {'__name__': '__sw2_14_patch__'})
+          print('SW2_14_PATCH_V3=PASS')
+          PY
+      - name: Compile and run focused regressions
+        shell: bash
+        run: |
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_schema_toolchain.py
+          python .github/scripts/validate_skill_reference_split.py --root .
+      - name: Regenerate Project Truth and current sequence
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_cross_document_regressions.py
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-14-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual.get('entries', []): cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          if session.get('human_view'): session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          human = session['human_view']
+          subprocess.run([sys.executable, 'scripts/sequence_human_view.py', '--root', '.', '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'], '--output-json', human['graph'], '--output-mermaid', human['diagram'], '--output-markdown', human['document'], '--session-id', session['session_id']], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', str(session_path.relative_to(root))], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', str(session_path.relative_to(root))], check=True)
+          PY
+          python scripts/validate_sequence_sessions.py --root .
+      - name: Final source-level validation
+        shell: bash
+        run: |
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/selftest_strict_project_workflow.py
+          python scripts/validate_project_docs.py --root .
+      - name: Commit feature and clean helpers
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-sw2-14-implement.yml
+          rm .github/workflows/tmp-sw2-14-repair-implement.yml
+          rm .github/workflows/tmp-sw2-14-repair-implement-v2.yml
+          rm .github/workflows/tmp-sw2-14-repair-implement-v3.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git status --short
+          test -n "$(git status --porcelain)"
+          git commit -m "SW2-14: implement incremental Project Truth compiler"
+          git push origin HEAD:work/sw2-14-incremental-project-truth
