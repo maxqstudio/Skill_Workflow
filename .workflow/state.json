@@ -1,23 +1,28 @@
 {
   "blocked_actions": [
-    "Do not skip or weaken exhaustive finalize validation.",
-    "Do not treat cache state or timestamps as semantic acceptance authority.",
-    "Do not suppress regeneration when impact classification is unknown or ambiguous; unknown impact must broaden work fail-closed.",
-    "Do not rewrite unchanged tracked projections in develop/verify merely to refresh timestamps or formatting.",
-    "Do not begin SW2-15 implementation until SW2-14 is accepted on main."
+    "Do not weaken or bypass exhaustive finalize validation.",
+    "Do not treat develop/verify node selection, cache state, or prior PASS results as final acceptance authority.",
+    "Do not skip mandatory validation dependencies when impact classification is incomplete or ambiguous.",
+    "Do not let smart node selection suppress adversarial false-PASS regressions; uncertain impact must broaden fail-closed.",
+    "Do not begin SW2-16 implementation until SW2-15 is accepted on main."
   ],
   "blockers": [],
   "last_accepted_branch": "main",
-  "last_accepted_sha": "4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef",
+  "last_accepted_sha": "71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4",
   "next_authorized_actions": [
-    "Run the complete permanent acceptance matrix on the post-promotion exact candidate.",
-    "If all six permanent contexts pass, ready and squash-merge PR #22 with exact-head locking.",
-    "After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-14 accepted."
+    "Map the current Governance Engine validation DAG, node dependencies, repeated work, and mode-specific execution before changing selection behavior.",
+    "Define deterministic impact-to-node selection for develop and dependency closure for verify, with unknown impact broadening fail-closed.",
+    "Add adversarial regressions proving smart selection cannot skip a required failing dependency.",
+    "Keep finalize exhaustive and prove complete DAG parity before SW2-15 closure."
   ],
   "not_proven": [
+    "SW2-15 safe impacted-node selection for develop is not yet proven.",
+    "SW2-15 complete dependency closure for verify is not yet proven.",
+    "SW2-15 exhaustive finalize DAG parity is not yet proven.",
+    "SW2-15 adversarial false-PASS resistance across cross-platform and real-consumer acceptance is not yet proven.",
     "Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking."
   ],
-  "phase": "SW2-14",
+  "phase": "SW2-15",
   "proven": [
     "SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.",
     "Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.",
@@ -72,9 +77,10 @@
     "SW2-13 Skill Core / Reference Split is accepted on main 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef with merged tree 8d1ad6cc0c635954f06f66d1bf4a639532073e23 equal to exact tested post-promotion candidate tree; post-merge Self Governance 37208968898, Governance Selftest 37208968830 on Ubuntu and Windows, SW2 Sequence Evidence 37208968839, Governance Engine Performance 37208968906, and Consumer Engine Performance 37208968813 all succeeded.",
     "SW2-14 deterministic incremental Project Truth impact planning is feature-proven on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Ubuntu and Windows with INCREMENTAL_IMPACT_GRAPH, selective-write, fact-selectivity, unknown-broadening, and exhaustive-parity regressions.",
     "SW2-14 preserves verify read-only safety on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Verify mode is read-only on both Ubuntu and Windows after normative references were correctly classified as documentation impact.",
-    "SW2-14 feature-level parity evidence is green on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: SW2 Sequence Evidence 37219195086, Governance Engine Performance 37219195153, and Consumer Engine Performance 37219195072 succeeded; pre-promotion Self Governance 37219195078 reached only the intentionally unpromoted Project Truth gate."
+    "SW2-14 feature-level parity evidence is green on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: SW2 Sequence Evidence 37219195086, Governance Engine Performance 37219195153, and Consumer Engine Performance 37219195072 succeeded; pre-promotion Self Governance 37219195078 reached only the intentionally unpromoted Project Truth gate.",
+    "SW2-14 Incremental Project Truth Compiler is accepted on main 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 with tree fb2878299cf28e6671ed73842996c5a861617554 equal to exact tested candidate efd5ac9b3af4623c385413fc11a7f7999ef1edc0. Post-merge main passed Self Governance 37241577980; Governance Selftest 37241577983 on Ubuntu and Windows; SW2 Sequence Evidence 37241577995; Governance Engine Performance 37241578003; and Consumer Engine Performance 37241577997."
   ],
   "schema_version": 1,
-  "status": "SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS",
-  "working_branch": "work/sw2-13-skill-core-reference-split"
+  "status": "IN_PROGRESS",
+  "working_branch": "work/sw2-15-smart-validation-dag"
 }

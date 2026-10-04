@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-13-skill-core-reference-split
+Active branch: work/sw2-15-smart-validation-dag
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef
+Last accepted SHA: 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4
 Current source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
 
 ## Authorities

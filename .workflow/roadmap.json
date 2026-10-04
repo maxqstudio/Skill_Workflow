@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-14",
+  "current_phase": "SW2-15",
   "phases": [
     {
       "exit_criteria": [
@@ -180,7 +180,7 @@
       ],
       "id": "SW2-14",
       "objective": "Regenerate only impacted facts and projections during development while retaining exhaustive final consistency validation.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Incremental Project Truth Compiler"
     },
     {
@@ -192,7 +192,7 @@
       ],
       "id": "SW2-15",
       "objective": "Minimize repeated validation work across develop and verify while preserving complete finalize authority.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Smart Validation DAG"
     },
     {
