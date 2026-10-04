@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+Source digest: 886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -15,6 +15,8 @@ responsibility, callers, or state ownership.
 
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
+| .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
+| .github/scripts/validate_skill_reference_split.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -64,6 +66,27 @@ responsibility, callers, or state ownership.
 | scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
 
 ## Detailed symbols
+
+<details>
+<summary><code>.github/scripts/selftest_skill_reference_split.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| copy_fixture | function | 18-22 |
+| require_failure | function | 25-28 |
+| main | function | 31-74 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/validate_skill_reference_split.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| validate | function | 35-79 |
+| main | function | 82-94 |
+
+</details>
 
 <details>
 <summary><code>scripts/analyzer_contract.py</code> — 10 symbols</summary>

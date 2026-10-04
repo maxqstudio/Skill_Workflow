@@ -49,6 +49,8 @@
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python -m compileall -q scripts",
+    "python .github/scripts/validate_skill_reference_split.py --root .",
+    "python .github/scripts/selftest_skill_reference_split.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_cross_document_regressions.py",
     "python scripts/selftest_strict_project_workflow.py",

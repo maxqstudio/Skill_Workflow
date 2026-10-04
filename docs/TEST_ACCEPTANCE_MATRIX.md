@@ -7,7 +7,7 @@
 SW2-13 covers Skill Core / Reference Split only: preserve all accepted root-skill safety and authority invariants, move detailed guidance into deterministic bundled references, reduce eager context cost measurably, prove supported-agent reference resolution, and preserve behavioral governance parity. It must not weaken accepted V2 behavior, Project Truth authority, root AGENTS.md semantics, exact-head acceptance, or the stable v2.0.0 release target.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+Current source digest: 886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -19,6 +19,8 @@ Current source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f3351
 ## Test commands
 
 - python -m compileall -q scripts
+- python .github/scripts/validate_skill_reference_split.py --root .
+- python .github/scripts/selftest_skill_reference_split.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_cross_document_regressions.py
 - python scripts/selftest_strict_project_workflow.py

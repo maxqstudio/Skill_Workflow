@@ -73,6 +73,20 @@
   },
   "modules": [
     {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_skill_reference_split.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 77
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/validate_skill_reference_split.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 97
+    },
+    {
       "directory": "scripts",
       "file": "scripts/analyzer_contract.py",
       "is_test": false,
@@ -403,6 +417,314 @@
     }
   ],
   "python_calls": [
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
+      "target_token": "shutil.copy2"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
+      "target_token": "shutil.copytree"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
+      "target_token": "tempfile.mkdtemp"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "copy_fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "copy_fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "copy_fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "copy_fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "copy_fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "copy_fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "fixtures.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "fixtures.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "fixtures.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "fixtures.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "fixtures.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "fixtures.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "module.validate"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "ref.read_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "ref.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "shutil.rmtree"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "text.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::main",
+      "target_token": "text.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
+      "target_token": "item.startswith"
+    },
+    {
+      "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
+      "target_token": "module.validate"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "ap.parse_args"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "skill.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "skill.read_text"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "LINK_RE.findall"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "LINK_RE.findall"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "body.strip"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "links.count"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "raw.decode"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "skill.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "skill.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "text.splitlines"
+    },
+    {
+      "caller": ".github/scripts/validate_skill_reference_split.py::validate",
+      "target_token": "text.startswith"
+    },
     {
       "caller": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
       "target_token": "list"
@@ -19371,6 +19693,46 @@
   "python_routes": [],
   "python_symbols": [
     {
+      "file": ".github/scripts/selftest_skill_reference_split.py",
+      "kind": "function",
+      "line_end": 22,
+      "line_start": 18,
+      "locator": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
+      "symbol": "copy_fixture"
+    },
+    {
+      "file": ".github/scripts/selftest_skill_reference_split.py",
+      "kind": "function",
+      "line_end": 28,
+      "line_start": 25,
+      "locator": ".github/scripts/selftest_skill_reference_split.py::require_failure",
+      "symbol": "require_failure"
+    },
+    {
+      "file": ".github/scripts/selftest_skill_reference_split.py",
+      "kind": "function",
+      "line_end": 74,
+      "line_start": 31,
+      "locator": ".github/scripts/selftest_skill_reference_split.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/validate_skill_reference_split.py",
+      "kind": "function",
+      "line_end": 79,
+      "line_start": 35,
+      "locator": ".github/scripts/validate_skill_reference_split.py::validate",
+      "symbol": "validate"
+    },
+    {
+      "file": ".github/scripts/validate_skill_reference_split.py",
+      "kind": "function",
+      "line_end": 94,
+      "line_start": 82,
+      "locator": ".github/scripts/validate_skill_reference_split.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/analyzer_contract.py",
       "kind": "class",
       "line_end": 33,
@@ -22028,13 +22390,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85",
+  "source_digest": "886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70",
   "source_summary": {
-    "files": 47,
+    "files": 49,
     "languages": {
-      "Python": 47
+      "Python": 49
     },
-    "lines": 13067,
+    "lines": 13241,
     "test_files": 0
   },
   "tests": []

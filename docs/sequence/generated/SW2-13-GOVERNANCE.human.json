@@ -1,17 +1,33 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 18,
-    "interaction_count": 18,
+    "interaction_ceiling": 19,
+    "interaction_count": 19,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 12,
-    "participant_count": 12,
+    "participant_ceiling": 13,
+    "participant_count": 13,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
   },
   "edges": [
+    {
+      "actions": [
+        "path.read_text",
+        "skill.read_bytes",
+        "skill.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/validate_skill_reference_split.py",
+      "machine_edge_count": 4,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
     {
       "actions": [
         "ProjectSnapshot.capture",
@@ -281,6 +297,7 @@
     }
   ],
   "entries": [
+    ".github/scripts/validate_skill_reference_split.py::main",
     "scripts/validate_project_docs.py::main",
     "scripts/validate_cross_document_consistency.py::main",
     "scripts/sync_project_truth.py::main",
@@ -291,6 +308,16 @@
   "generated": true,
   "generated_by": "sequence_human_view.py",
   "nodes": [
+    {
+      "id": "module:.github/scripts/validate_skill_reference_split.py",
+      "kind": "module",
+      "label": ".github/scripts/validate_skill_reference_split.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        ".github/scripts/validate_skill_reference_split.py::main",
+        ".github/scripts/validate_skill_reference_split.py::validate"
+      ]
+    },
     {
       "id": "module:scripts/governance_engine.py",
       "kind": "module",
@@ -461,15 +488,17 @@
       ]
     }
   ],
-  "observed_head": "46aab2a4dd0f29a5364c1dcde168cacd03f4a789",
+  "observed_head": "777c8f75ab53eecd75b79b418f516392208ae808",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 15,
-    "cross_component_machine_edges": 33,
-    "internal_machine_edges_collapsed": 78,
-    "machine_edge_count": 111,
-    "machine_node_count": 73,
+    "aggregated_cross_component_edges": 18,
+    "cross_component_machine_edges": 37,
+    "internal_machine_edges_collapsed": 79,
+    "machine_edge_count": 116,
+    "machine_node_count": 75,
     "node_map": {
+      ".github/scripts/validate_skill_reference_split.py::main": "module:.github/scripts/validate_skill_reference_split.py",
+      ".github/scripts/validate_skill_reference_split.py::validate": "module:.github/scripts/validate_skill_reference_split.py",
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::_regression_node": "module:scripts/governance_engine.py",
@@ -547,5 +576,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
+  "source_digest": "886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70"
 }

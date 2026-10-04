@@ -102,6 +102,41 @@
   },
   "edges": [
     {
+      "action": "validate",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::main",
+      "resolver": "python_ast",
+      "to": ".github/scripts/validate_skill_reference_split.py::validate"
+    },
+    {
+      "action": "skill.read_bytes",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "skill.read_text",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "skill.read_bytes",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": ".github/scripts/validate_skill_reference_split.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
       "action": "ValidationNode",
       "evidence": "STATIC",
       "from": "scripts/governance_engine.py::_regression_node",
@@ -880,6 +915,7 @@
     }
   ],
   "entries": [
+    ".github/scripts/validate_skill_reference_split.py::main",
     "scripts/validate_project_docs.py::main",
     "scripts/validate_cross_document_consistency.py::main",
     "scripts/sync_project_truth.py::main",
@@ -889,6 +925,24 @@
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
   "nodes": [
+    {
+      "id": ".github/scripts/validate_skill_reference_split.py::main",
+      "kind": "function",
+      "label": ".github/scripts/validate_skill_reference_split.py::main",
+      "language": "Python",
+      "line_end": 94,
+      "line_start": 82,
+      "locator": ".github/scripts/validate_skill_reference_split.py::main"
+    },
+    {
+      "id": ".github/scripts/validate_skill_reference_split.py::validate",
+      "kind": "function",
+      "label": ".github/scripts/validate_skill_reference_split.py::validate",
+      "language": "Python",
+      "line_end": 79,
+      "line_start": 35,
+      "locator": ".github/scripts/validate_skill_reference_split.py::validate"
+    },
     {
       "id": "scripts/governance_engine.py::ValidationDAG",
       "kind": "class",
@@ -1547,7 +1601,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "46aab2a4dd0f29a5364c1dcde168cacd03f4a789",
+  "observed_head": "777c8f75ab53eecd75b79b418f516392208ae808",
   "schema_version": 1,
-  "source_digest": "6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85"
+  "source_digest": "886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70"
 }

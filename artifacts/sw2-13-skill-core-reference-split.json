@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-13",
+  "baseline_sha": "1c81c3012d9a5891e8145726c38165e113057676",
+  "phase_open_sha": "6992db0cbd30d6a9995cba40b7f006c42dbb6fc9",
+  "baseline_skill_git_blob": "b66fd76dd945e0fa6432040a0a00e3f626704b00",
+  "baseline": {
+    "bytes": 55350,
+    "lines": 1801,
+    "heading_count": 89
+  },
+  "core": {
+    "bytes": 10868,
+    "lines": 235,
+    "max_bytes": 18000,
+    "max_lines": 500,
+    "byte_reduction_percent": 80.36,
+    "line_reduction_percent": 86.95
+  },
+  "strategy": "progressive-disclosure-v1",
+  "required_references": [
+    {
+      "path": "references/governance-and-project-truth.md",
+      "baseline_body_sha256": "cd741da245db7e04cea7fc043c06f2b68e6dbc2d1f72a283762c36f742ff17de",
+      "baseline_body_lines": 584,
+      "routing_depth": 1,
+      "body_preserved_verbatim": true
+    },
+    {
+      "path": "references/execution-and-acceptance.md",
+      "baseline_body_sha256": "f25c28bf6e5d6a5f829091711708b99c9ff8de60666a22fe7830101110a11e66",
+      "baseline_body_lines": 561,
+      "routing_depth": 1,
+      "body_preserved_verbatim": true
+    },
+    {
+      "path": "references/project-truth-synchronization.md",
+      "baseline_body_sha256": "683fedc1a9be6ca68c47433a59333673fb766f8ac94f60e148e0b37a1cf5a5ee",
+      "baseline_body_lines": 310,
+      "routing_depth": 1,
+      "body_preserved_verbatim": true
+    },
+    {
+      "path": "references/sequence-contracts.md",
+      "baseline_body_sha256": "3e75e5f72d24382a28ba7b461f5c16c8b254a904046de20891b20787e178e77c",
+      "baseline_body_lines": 298,
+      "routing_depth": 1,
+      "body_preserved_verbatim": true
+    }
+  ],
+  "section_mapping": [
+    {
+      "range": "# 2 through # 4",
+      "classification": "REFERENCE",
+      "target": "references/governance-and-project-truth.md"
+    },
+    {
+      "range": "# 5 through # 21",
+      "classification": "REFERENCE",
+      "target": "references/execution-and-acceptance.md"
+    },
+    {
+      "range": "# 22 through # 23",
+      "classification": "REFERENCE",
+      "target": "references/project-truth-synchronization.md"
+    },
+    {
+      "range": "# 24",
+      "classification": "REFERENCE",
+      "target": "references/sequence-contracts.md"
+    },
+    {
+      "range": "frontmatter + purpose + startup/authority/safety/task/acceptance/sequence/truth invariants",
+      "classification": "CORE+ROUTING",
+      "target": "SKILL.md"
+    }
+  ],
+  "negative_paths": [
+    "missing required reference",
+    "broken root reference link",
+    "duplicate/ambiguous required route",
+    "multi-hop required reference chain",
+    "missing core invariant",
+    "root skill line-budget overflow"
+  ],
+  "targeted_validation": "PASS",
+  "targeted_commands": [
+    "python .github/scripts/selftest_skill_reference_split.py",
+    "python .github/scripts/validate_skill_reference_split.py --root .",
+    "python scripts/sync_project_truth.py",
+    "python scripts/validate_project_docs.py --root .",
+    "python scripts/selftest_project_truth_compiler.py",
+    "python scripts/selftest_cross_document_regressions.py",
+    "python scripts/selftest_repository_health.py",
+    "python scripts/validate_repository_health.py --root .",
+    "python scripts/validate_public_docs.py --root .",
+    "python scripts/validate_sequence_sessions.py --root ."
+  ]
+}

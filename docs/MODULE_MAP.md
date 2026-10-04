@@ -3,11 +3,13 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 6d0da5c92f1383c49c6305d5a9f6bc4ef62fb3c3d0181f25cb16f33510deaa85
+Source digest: 886affae61ea8463d97a14e8bce8a53e7abf4b86e759ef348cf069bda0efcf70
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
 |---|---|---:|---|---|
+| .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
+| .github/scripts/validate_skill_reference_split.py | Python | 97 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
