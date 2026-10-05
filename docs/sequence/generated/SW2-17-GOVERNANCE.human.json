@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 29,
-    "interaction_count": 29,
+    "interaction_ceiling": 39,
+    "interaction_count": 39,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 15,
-    "participant_count": 15,
+    "participant_ceiling": 20,
+    "participant_count": 20,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -112,6 +112,98 @@
     },
     {
       "actions": [
+        "render_acceptance",
+        "render_flows",
+        "render_modules",
+        "render_symbols"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 4,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_code.py"
+    },
+    {
+      "actions": [
+        "claim_backlink_comment",
+        "clean",
+        "generated_header",
+        "normalize_markdown",
+        "wanted_doc_names"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 9,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_common.py"
+    },
+    {
+      "actions": [
+        "render_api",
+        "render_data",
+        "render_runbook",
+        "render_ui"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 4,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_contracts.py"
+    },
+    {
+      "actions": [
+        "render_changelog",
+        "render_decisions",
+        "render_defects",
+        "render_doc_sync",
+        "render_glossary",
+        "render_truth"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 6,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_governance.py"
+    },
+    {
+      "actions": [
+        "render_architecture",
+        "render_authority",
+        "render_current_state",
+        "render_project_manifest",
+        "render_roadmap",
+        "render_sequence",
+        "render_system_overview",
+        "render_workflows"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 8,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_state.py"
+    },
+    {
+      "actions": [
         "require_json_schema_version"
       ],
       "evidence": [
@@ -140,14 +232,13 @@
     },
     {
       "actions": [
-        "seen_phase_ids.add",
-        "wanted.add"
+        "seen_phase_ids.add"
       ],
       "evidence": [
         "STATIC"
       ],
       "from": "module:scripts/generate_project_docs.py",
-      "machine_edge_count": 2,
+      "machine_edge_count": 1,
       "resolvers": [
         "python_ast"
       ],
@@ -270,6 +361,84 @@
         "python_ast"
       ],
       "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
+        "bullets",
+        "cell",
+        "clean"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_truth_projection_code.py",
+      "machine_edge_count": 9,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_common.py"
+    },
+    {
+      "actions": [
+        "wanted.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_truth_projection_common.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
+        "cell",
+        "clean"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_truth_projection_contracts.py",
+      "machine_edge_count": 4,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_common.py"
+    },
+    {
+      "actions": [
+        "bullets",
+        "cell",
+        "clean"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_truth_projection_governance.py",
+      "machine_edge_count": 7,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_common.py"
+    },
+    {
+      "actions": [
+        "auth_lookup",
+        "bullets",
+        "cell",
+        "clean"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_truth_projection_state.py",
+      "machine_edge_count": 19,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_truth_projection_common.py"
     },
     {
       "actions": [
@@ -489,47 +658,17 @@
       "id": "module:scripts/generate_project_docs.py",
       "kind": "module",
       "label": "scripts/generate_project_docs.py",
-      "machine_node_count": 39,
+      "machine_node_count": 9,
       "machine_nodes": [
-        "scripts/generate_project_docs.py::auth_lookup",
-        "scripts/generate_project_docs.py::bullets",
         "scripts/generate_project_docs.py::canonical_bytes",
         "scripts/generate_project_docs.py::canonical_generated_bytes",
-        "scripts/generate_project_docs.py::cell",
-        "scripts/generate_project_docs.py::claim_backlink_comment",
-        "scripts/generate_project_docs.py::clean",
-        "scripts/generate_project_docs.py::generated_header",
         "scripts/generate_project_docs.py::git_root",
         "scripts/generate_project_docs.py::input_digest",
         "scripts/generate_project_docs.py::load_json",
         "scripts/generate_project_docs.py::main",
-        "scripts/generate_project_docs.py::normalize_markdown",
         "scripts/generate_project_docs.py::read_specs",
-        "scripts/generate_project_docs.py::render_acceptance",
         "scripts/generate_project_docs.py::render_all",
-        "scripts/generate_project_docs.py::render_api",
-        "scripts/generate_project_docs.py::render_architecture",
-        "scripts/generate_project_docs.py::render_authority",
-        "scripts/generate_project_docs.py::render_changelog",
-        "scripts/generate_project_docs.py::render_current_state",
-        "scripts/generate_project_docs.py::render_data",
-        "scripts/generate_project_docs.py::render_decisions",
-        "scripts/generate_project_docs.py::render_defects",
-        "scripts/generate_project_docs.py::render_doc_sync",
-        "scripts/generate_project_docs.py::render_flows",
-        "scripts/generate_project_docs.py::render_glossary",
-        "scripts/generate_project_docs.py::render_modules",
-        "scripts/generate_project_docs.py::render_project_manifest",
-        "scripts/generate_project_docs.py::render_roadmap",
-        "scripts/generate_project_docs.py::render_runbook",
-        "scripts/generate_project_docs.py::render_sequence",
-        "scripts/generate_project_docs.py::render_symbols",
-        "scripts/generate_project_docs.py::render_system_overview",
-        "scripts/generate_project_docs.py::render_truth",
-        "scripts/generate_project_docs.py::render_ui",
-        "scripts/generate_project_docs.py::render_workflows",
-        "scripts/generate_project_docs.py::validate_inputs",
-        "scripts/generate_project_docs.py::wanted_doc_names"
+        "scripts/generate_project_docs.py::validate_inputs"
       ]
     },
     {
@@ -609,6 +748,76 @@
       "machine_nodes": [
         "scripts/project_truth_impact.py::normalize_path",
         "scripts/project_truth_impact.py::plan_project_truth_impact"
+      ]
+    },
+    {
+      "id": "module:scripts/project_truth_projection_code.py",
+      "kind": "module",
+      "label": "scripts/project_truth_projection_code.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/project_truth_projection_code.py::render_acceptance",
+        "scripts/project_truth_projection_code.py::render_flows",
+        "scripts/project_truth_projection_code.py::render_modules",
+        "scripts/project_truth_projection_code.py::render_symbols"
+      ]
+    },
+    {
+      "id": "module:scripts/project_truth_projection_common.py",
+      "kind": "module",
+      "label": "scripts/project_truth_projection_common.py",
+      "machine_node_count": 8,
+      "machine_nodes": [
+        "scripts/project_truth_projection_common.py::auth_lookup",
+        "scripts/project_truth_projection_common.py::bullets",
+        "scripts/project_truth_projection_common.py::cell",
+        "scripts/project_truth_projection_common.py::claim_backlink_comment",
+        "scripts/project_truth_projection_common.py::clean",
+        "scripts/project_truth_projection_common.py::generated_header",
+        "scripts/project_truth_projection_common.py::normalize_markdown",
+        "scripts/project_truth_projection_common.py::wanted_doc_names"
+      ]
+    },
+    {
+      "id": "module:scripts/project_truth_projection_contracts.py",
+      "kind": "module",
+      "label": "scripts/project_truth_projection_contracts.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/project_truth_projection_contracts.py::render_api",
+        "scripts/project_truth_projection_contracts.py::render_data",
+        "scripts/project_truth_projection_contracts.py::render_runbook",
+        "scripts/project_truth_projection_contracts.py::render_ui"
+      ]
+    },
+    {
+      "id": "module:scripts/project_truth_projection_governance.py",
+      "kind": "module",
+      "label": "scripts/project_truth_projection_governance.py",
+      "machine_node_count": 6,
+      "machine_nodes": [
+        "scripts/project_truth_projection_governance.py::render_changelog",
+        "scripts/project_truth_projection_governance.py::render_decisions",
+        "scripts/project_truth_projection_governance.py::render_defects",
+        "scripts/project_truth_projection_governance.py::render_doc_sync",
+        "scripts/project_truth_projection_governance.py::render_glossary",
+        "scripts/project_truth_projection_governance.py::render_truth"
+      ]
+    },
+    {
+      "id": "module:scripts/project_truth_projection_state.py",
+      "kind": "module",
+      "label": "scripts/project_truth_projection_state.py",
+      "machine_node_count": 8,
+      "machine_nodes": [
+        "scripts/project_truth_projection_state.py::render_architecture",
+        "scripts/project_truth_projection_state.py::render_authority",
+        "scripts/project_truth_projection_state.py::render_current_state",
+        "scripts/project_truth_projection_state.py::render_project_manifest",
+        "scripts/project_truth_projection_state.py::render_roadmap",
+        "scripts/project_truth_projection_state.py::render_sequence",
+        "scripts/project_truth_projection_state.py::render_system_overview",
+        "scripts/project_truth_projection_state.py::render_workflows"
       ]
     },
     {
@@ -705,12 +914,12 @@
       ]
     }
   ],
-  "observed_head": "affd12fa708352b2fdabd5c88ebefff6382e72c5",
+  "observed_head": "cf5eb91d135c65d27b7764d3552610549b625586",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 29,
-    "cross_component_machine_edges": 58,
-    "internal_machine_edges_collapsed": 175,
+    "aggregated_cross_component_edges": 89,
+    "cross_component_machine_edges": 128,
+    "internal_machine_edges_collapsed": 105,
     "machine_edge_count": 233,
     "machine_node_count": 125,
     "node_map": {
@@ -724,45 +933,15 @@
       "scripts/extract_project_facts.py::_extract_from_snapshot": "module:scripts/extract_project_facts.py",
       "scripts/extract_project_facts.py::extract_project_facts": "module:scripts/extract_project_facts.py",
       "scripts/extract_project_facts.py::is_test_file": "module:scripts/extract_project_facts.py",
-      "scripts/generate_project_docs.py::auth_lookup": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::bullets": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::canonical_bytes": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::canonical_generated_bytes": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::cell": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::claim_backlink_comment": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::clean": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::generated_header": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::git_root": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::input_digest": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::load_json": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::main": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::normalize_markdown": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::read_specs": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_acceptance": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::render_all": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_api": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_architecture": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_authority": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_changelog": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_current_state": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_data": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_decisions": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_defects": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_doc_sync": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_flows": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_glossary": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_modules": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_project_manifest": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_roadmap": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_runbook": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_sequence": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_symbols": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_system_overview": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_truth": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_ui": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::render_workflows": "module:scripts/generate_project_docs.py",
       "scripts/generate_project_docs.py::validate_inputs": "module:scripts/generate_project_docs.py",
-      "scripts/generate_project_docs.py::wanted_doc_names": "module:scripts/generate_project_docs.py",
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::_regression_node": "module:scripts/governance_engine.py",
@@ -810,6 +989,36 @@
       "scripts/project_snapshot.py::resolve_snapshot": "module:scripts/project_snapshot.py",
       "scripts/project_truth_impact.py::normalize_path": "module:scripts/project_truth_impact.py",
       "scripts/project_truth_impact.py::plan_project_truth_impact": "module:scripts/project_truth_impact.py",
+      "scripts/project_truth_projection_code.py::render_acceptance": "module:scripts/project_truth_projection_code.py",
+      "scripts/project_truth_projection_code.py::render_flows": "module:scripts/project_truth_projection_code.py",
+      "scripts/project_truth_projection_code.py::render_modules": "module:scripts/project_truth_projection_code.py",
+      "scripts/project_truth_projection_code.py::render_symbols": "module:scripts/project_truth_projection_code.py",
+      "scripts/project_truth_projection_common.py::auth_lookup": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::bullets": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::cell": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::claim_backlink_comment": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::clean": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::generated_header": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::normalize_markdown": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_common.py::wanted_doc_names": "module:scripts/project_truth_projection_common.py",
+      "scripts/project_truth_projection_contracts.py::render_api": "module:scripts/project_truth_projection_contracts.py",
+      "scripts/project_truth_projection_contracts.py::render_data": "module:scripts/project_truth_projection_contracts.py",
+      "scripts/project_truth_projection_contracts.py::render_runbook": "module:scripts/project_truth_projection_contracts.py",
+      "scripts/project_truth_projection_contracts.py::render_ui": "module:scripts/project_truth_projection_contracts.py",
+      "scripts/project_truth_projection_governance.py::render_changelog": "module:scripts/project_truth_projection_governance.py",
+      "scripts/project_truth_projection_governance.py::render_decisions": "module:scripts/project_truth_projection_governance.py",
+      "scripts/project_truth_projection_governance.py::render_defects": "module:scripts/project_truth_projection_governance.py",
+      "scripts/project_truth_projection_governance.py::render_doc_sync": "module:scripts/project_truth_projection_governance.py",
+      "scripts/project_truth_projection_governance.py::render_glossary": "module:scripts/project_truth_projection_governance.py",
+      "scripts/project_truth_projection_governance.py::render_truth": "module:scripts/project_truth_projection_governance.py",
+      "scripts/project_truth_projection_state.py::render_architecture": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_authority": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_current_state": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_project_manifest": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_roadmap": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_sequence": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_system_overview": "module:scripts/project_truth_projection_state.py",
+      "scripts/project_truth_projection_state.py::render_workflows": "module:scripts/project_truth_projection_state.py",
       "scripts/schema_contract.py::_profile_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_json_schema_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
@@ -843,5 +1052,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+  "source_digest": "a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf"
 }

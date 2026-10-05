@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
+Source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -14,16 +14,21 @@ Generated/refreshed: current compiler run
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
-| scripts/generate_project_docs.py | Python | 2062 | scripts | NO |
+| scripts/generate_project_docs.py | Python | 601 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
-| scripts/governance_engine.py | Python | 966 | scripts | NO |
+| scripts/governance_engine.py | Python | 971 | scripts | NO |
 | scripts/initialize_project_truth.py | Python | 156 | scripts | NO |
 | scripts/migrate_governance_v1.py | Python | 149 | scripts | NO |
 | scripts/project_profile.py | Python | 264 | scripts | NO |
 | scripts/project_snapshot.py | Python | 247 | scripts | NO |
-| scripts/project_truth_impact.py | Python | 174 | scripts | NO |
+| scripts/project_truth_impact.py | Python | 179 | scripts | NO |
+| scripts/project_truth_projection_code.py | Python | 291 | scripts | NO |
+| scripts/project_truth_projection_common.py | Python | 112 | scripts | NO |
+| scripts/project_truth_projection_contracts.py | Python | 111 | scripts | NO |
+| scripts/project_truth_projection_governance.py | Python | 279 | scripts | NO |
+| scripts/project_truth_projection_state.py | Python | 793 | scripts | NO |
 | scripts/release_preflight.py | Python | 234 | scripts | NO |
 | scripts/schema_contract.py | Python | 88 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
@@ -34,7 +39,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 539 | scripts | NO |
 | scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
-| scripts/selftest_project_truth_compiler.py | Python | 539 | scripts | NO |
+| scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |

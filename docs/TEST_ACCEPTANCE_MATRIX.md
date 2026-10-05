@@ -7,7 +7,7 @@
 SW2-17 covers Generator Modularization only: narrow deterministic projection modules, byte-equivalent canonical outputs, direct projection regression, and complete permanent acceptance. It must not change canonical output semantics, SW2-14 incremental selection, SW2-16 historical evidence identity, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
+Current source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

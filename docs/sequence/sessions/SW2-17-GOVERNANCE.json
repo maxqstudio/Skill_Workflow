@@ -10,7 +10,7 @@
       "scripts/validate_sequence_sessions.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-17-GOVERNANCE.actual.json",
-    "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+    "source_digest": "a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf"
   },
   "critical": true,
   "evidence_boundary": "SW2-17 sequence evidence covers the current monolithic generator, Project Truth synchronization, project-doc validation, governance orchestration, and historical sequence identity as the baseline for modular extraction. Static structure does not prove byte-equivalent projection output or narrow module responsibilities.",
@@ -20,7 +20,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-17-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+    "source_digest": "a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf"
   },
   "implementation_base_sha": "7e2c5e4669655764e24ec821cefc0c96e2886133",
   "mode": "DURING",
