@@ -151,6 +151,11 @@ COMPILER_DEVELOP_FILES = {
     "scripts/validate_doc_quality.py",
     "scripts/project_profile.py",
     "scripts/project_truth_impact.py",
+    "scripts/project_truth_projection_common.py",
+    "scripts/project_truth_projection_state.py",
+    "scripts/project_truth_projection_code.py",
+    "scripts/project_truth_projection_governance.py",
+    "scripts/project_truth_projection_contracts.py",
 }
 CROSSDOC_DEVELOP_FILES = {
     "scripts/validate_cross_document_consistency.py",

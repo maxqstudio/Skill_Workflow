@@ -62,6 +62,11 @@ BROAD_TOOL_PATHS = {
     "scripts/project_snapshot.py",
     "scripts/project_profile.py",
     "scripts/schema_contract.py",
+    "scripts/project_truth_projection_common.py",
+    "scripts/project_truth_projection_state.py",
+    "scripts/project_truth_projection_code.py",
+    "scripts/project_truth_projection_governance.py",
+    "scripts/project_truth_projection_contracts.py",
 }
 
 NO_PROJECTION_PATHS = {

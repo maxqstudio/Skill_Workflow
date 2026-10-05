@@ -101,10 +101,79 @@ def test_gitignored_source_files_are_excluded() -> None:
             raise RuntimeError("source digest changed with Windows line endings")
 
 
+
+def test_projection_module_contract(skill_root: Path) -> None:
+    import ast
+    import importlib
+    import inspect
+
+    scripts = skill_root / "scripts"
+    inserted = False
+    if str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+        inserted = True
+    try:
+        generator = importlib.import_module("generate_project_docs")
+        expected_modules = {
+            "project_truth_projection_state": {"render_system_overview", "render_project_manifest", "render_current_state", "render_roadmap", "render_authority", "render_architecture", "render_workflows", "render_sequence"},
+            "project_truth_projection_code": {"render_modules", "render_symbols", "render_flows", "render_acceptance"},
+            "project_truth_projection_governance": {"render_doc_sync", "render_truth", "render_decisions", "render_defects", "render_changelog", "render_glossary"},
+            "project_truth_projection_contracts": {"render_api", "render_data", "render_ui", "render_runbook"},
+        }
+        expected_map = {'SYSTEM_OVERVIEW.md': 'render_system_overview', 'PROJECT_MANIFEST.md': 'render_project_manifest', 'CURRENT_STATE.md': 'render_current_state', 'ROADMAP.md': 'render_roadmap', 'SOURCE_AUTHORITY_MAP.md': 'render_authority', 'ARCHITECTURE.md': 'render_architecture', 'WORKFLOW_STATE_MACHINE.md': 'render_workflows', 'SEQUENCE_CONTRACTS.md': 'render_sequence', 'MODULE_MAP.md': 'render_modules', 'SYMBOL_INDEX.md': 'render_symbols', 'FLOW_INDEX.md': 'render_flows', 'TEST_ACCEPTANCE_MATRIX.md': 'render_acceptance', 'DOC_SYNC_MATRIX.md': 'render_doc_sync', 'PROJECT_TRUTH_SYNC.md': 'render_truth', 'API_CONTRACTS.md': 'render_api', 'DATA_CONTRACTS.md': 'render_data', 'UI_INFORMATION_ARCHITECTURE.md': 'render_ui', 'RUNBOOK.md': 'render_runbook', 'DECISIONS.md': 'render_decisions', 'KNOWN_DEFECTS.md': 'render_defects', 'GLOSSARY.md': 'render_glossary', 'CHANGELOG.md': 'render_changelog'}
+        source = (scripts / "generate_project_docs.py").read_text(encoding="utf-8")
+        tree = ast.parse(source)
+        top_renderers = {node.name for node in tree.body if isinstance(node, ast.FunctionDef) and node.name.startswith("render_")}
+        if top_renderers != {"render_all"}:
+            raise RuntimeError("PROJECTION_MONOLITH_RENDERERS_REMAIN:" + ",".join(sorted(top_renderers)))
+        render_all = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "render_all")
+        observed_map = {}
+        for node in ast.walk(render_all):
+            if not isinstance(node, ast.Assign) or not any(isinstance(t, ast.Name) and t.id == "renderers" for t in node.targets):
+                continue
+            if not isinstance(node.value, ast.Dict):
+                continue
+            for key, value in zip(node.value.keys, node.value.values):
+                if isinstance(key, ast.Constant) and isinstance(key.value, str) and isinstance(value, ast.Lambda) and isinstance(value.body, ast.Call) and isinstance(value.body.func, ast.Name):
+                    observed_map[key.value] = value.body.func.id
+        if observed_map != expected_map:
+            raise RuntimeError("PROJECTION_RENDERER_MAP_MISMATCH")
+        profile_data = generator.parse_profile(skill_root / "PROJECT_PROFILE.yaml")
+        profile = generator.normalized_profile(profile_data)
+        documentation = generator.documentation_settings(profile_data)
+        specs, workflows = generator.read_specs(skill_root / str(documentation.get("spec_root", ".workflow")))
+        facts = json.loads((skill_root / ".workflow/generated/code_facts.json").read_text(encoding="utf-8"))
+        sequence = generator.sequence_settings(profile_data)
+        values = {"profile": profile, "specs": specs, "workflows": workflows, "facts": facts, "sequence_required": bool(sequence.get("required", False))}
+        seen = set()
+        for module_name, names in expected_modules.items():
+            module = importlib.import_module(module_name)
+            for name in names:
+                fn = getattr(module, name, None)
+                if not callable(fn):
+                    raise RuntimeError("PROJECTION_RENDERER_MISSING:" + module_name + ":" + name)
+                if getattr(generator, name).__module__ != module_name:
+                    raise RuntimeError("PROJECTION_REEXPORT_MISMATCH:" + name)
+                args = []
+                for parameter in inspect.signature(fn).parameters.values():
+                    if parameter.name not in values:
+                        raise RuntimeError("PROJECTION_PARAMETER_UNMAPPED:" + name + ":" + parameter.name)
+                    args.append(values[parameter.name])
+                if not isinstance(fn(*args), str):
+                    raise RuntimeError("PROJECTION_RENDERER_NON_TEXT:" + name)
+                seen.add(name)
+        if seen != set(expected_map.values()):
+            raise RuntimeError("PROJECTION_DIRECT_COVERAGE_INCOMPLETE")
+    finally:
+        if inserted and sys.path and sys.path[0] == str(scripts):
+            sys.path.pop(0)
+
 def main() -> int:
     skill_root = Path(__file__).resolve().parent.parent
     test_gitignored_source_files_are_excluded()
     print("GITIGNORED_SOURCE_EXCLUSION=PASS")
+    test_projection_module_contract(skill_root)
+    print("PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22")
 
     with tempfile.TemporaryDirectory(prefix="skill-workflow-selftest-") as td:
         root = Path(td)
