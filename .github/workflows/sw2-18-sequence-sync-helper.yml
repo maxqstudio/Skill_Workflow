@@ -23,10 +23,35 @@ jobs:
           fetch-depth: 0
       - name: Require expected target head
         shell: bash
-        run: test "$(git rev-parse HEAD)" = "9544328e069184f2ff337ab5acd26eb21ead1423"
+        run: test "$(git rev-parse HEAD)" = "4fc3950a270b294d29c92f98c6a2b5bdcc679971"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Repair CI impact classification and regression
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          engine = Path('scripts/governance_engine.py')
+          text = engine.read_text(encoding='utf-8')
+          old = '    if path.startswith(".github/workflows/"):\n        return "ci"\n'
+          new = '    if path.startswith(".github/"):\n        return "ci"\n'
+          if text.count(old) != 1:
+              raise RuntimeError('CI_CLASSIFICATION_ANCHOR')
+          engine.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+
+          test = Path('scripts/selftest_governance_engine.py')
+          text = test.read_text(encoding='utf-8')
+          anchor = '''    print("SMART_DEVELOP_IMPACT_SELECTION=PASS")\n\n'''
+          addition = '''    ci_paths = (\n        ".github/actions/governance-bootstrap/action.yml",\n        ".github/scripts/ci_applicability.py",\n        ".github/workflows/governance-ci.yml",\n    )\n    ci_impacts = classify_changed_paths(ci_paths)\n    require(ci_impacts == ("ci",), f"CI primitives misclassified: {ci_impacts}")\n    require(\n        effective_mode("develop", ci_impacts) == "verify",\n        f"CI impact did not broaden develop to verify: {ci_impacts}",\n    )\n    require(\n        effective_mode("verify", ci_impacts) == "verify",\n        f"known CI impact escalated verify to finalize: {ci_impacts}",\n    )\n    ci_verify = planned_node_names("verify", "verify", ci_paths, ci_impacts)\n    require(\n        ci_verify == VERIFY_NODE_NAMES,\n        f"CI verify did not retain full verify safety net: {ci_verify}",\n    )\n    print("CI_IMPACT_CLASSIFICATION=PASS")\n\n'''
+          if text.count(anchor) != 1:
+              raise RuntimeError('CI_CLASSIFICATION_TEST_ANCHOR')
+          test.write_text(text.replace(anchor, anchor + addition, 1), encoding='utf-8', newline='\n')
+          PY
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts
+          python scripts/selftest_governance_engine.py
       - name: Regenerate current sequence from clean target
         shell: bash
         run: |
@@ -73,13 +98,14 @@ jobs:
           python scripts/validate_project_docs.py --root .
           python .github/scripts/selftest_ci_applicability.py
           python .github/scripts/validate_unified_ci.py --root .
+          python scripts/selftest_governance_engine.py
           python scripts/validate_sequence_sessions.py --root .
           python scripts/validate_repository_health.py --root .
-      - name: Commit synchronized evidence to target branch
+      - name: Commit repaired target tree
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .workflow docs artifacts/sequence
-          git commit -m 'SW2-18: synchronize unified CI sequence evidence'
+          git add scripts/governance_engine.py scripts/selftest_governance_engine.py .workflow docs artifacts/sequence
+          git commit -m 'SW2-18: classify unified CI primitives fail-closed'
           git push origin HEAD:work/sw2-18-unified-ci-orchestrator
