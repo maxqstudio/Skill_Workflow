@@ -1,0 +1,90 @@
+name: TEMP SW2-20 Documentation Contract Plan
+
+on:
+  push:
+    branches:
+      - work/sw2-15-smart-validation-dag
+    paths:
+      - .github/workflows/tmp-sw2-20-doc-contract-plan.yml
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-15-smart-validation-dag
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Add SW2-20 documentation coverage contract and audit defect
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, data):
+              Path(path).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap_path = Path('.workflow/roadmap.json')
+          roadmap = load(roadmap_path)
+          if not any(p.get('id') == 'SW2-20' for p in roadmap['phases']):
+              roadmap['phases'].append({
+                  'id': 'SW2-20',
+                  'title': 'Deterministic Documentation Inventory & Freshness Contract',
+                  'objective': 'Make every tracked documentation surface deterministically discoverable, classified, authority-bound, and freshness-validated so root README/community docs, bundled references, handbook pages, generated projections, templates, and evidence cannot silently escape governance.',
+                  'status': 'PLANNED',
+                  'exit_criteria': [
+                      'A deterministic git-tracked documentation inventory discovers every governed documentation surface without relying on a hand-maintained file allowlist; explicit exclusions are machine-readable, justified, and fail closed.',
+                      'Every discovered documentation file is classified exactly once by role and authority (source-authored public/operating/normative, generated projection, sequence/evidence, template, legal/community, or explicitly excluded); unclassified and multiply-classified files fail.',
+                      'Every source-authored document has a declared or deterministic path-derived freshness contract; dynamic claims such as current phase, release/version, license, repository enforcement, schema/toolchain, and support state are bound to canonical authority or explicitly marked historical/static.',
+                      'README.md, AGENTS.md, CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, SKILL.md, references/**/*.md, docs/**/*.md, docs/sequence/views/**/*.md, and tracked documentation templates are represented in machine-readable coverage evidence; adding, deleting, moving, or renaming a documentation file without coverage fails.',
+                      'Regression fixtures reproduce the stale-document classes found by the 2026-10-06 audit (root README release headline, CONTRIBUTING license/protection claims, SECURITY pre-release wording, SW2-09 versioning/release wording, and an omitted handbook architecture page), and the exact final candidate passes the complete permanent matrix.'
+                  ],
+              })
+          write(roadmap_path, roadmap)
+
+          defects_path = Path('.workflow/known_defects.json')
+          defects = load(defects_path)
+          defect_id = 'SW2-DEF-DOC-003'
+          if not any(d.get('id') == defect_id for d in defects['defects']):
+              defects['defects'].append({
+                  'id': defect_id,
+                  'status': 'CONFIRMED',
+                  'summary': 'Documentation governance is not coverage-complete: tracked source-authored documents can contain stale semantic claims while current validators still pass because discovery/freshness coverage is partly hand-maintained and dynamic facts are not uniformly authority-bound.',
+                  'evidence': '2026-10-06 audit: README.md still presents v2.0.0 as the stable-release headline without active-development authority; CONTRIBUTING.md still claims no Owner-approved public license and default-branch deletion/non-fast-forward enforcement; SECURITY.md still says no stable release exists; docs/handbook/reference/versioning.md says stable V2 publication remains blocked under SW2-09; docs/handbook/reference/release-process.md presents SW2-09/SW2-09-R4 as generic future publication semantics; scripts/validate_public_docs.py uses a hand-maintained REQUIRED_PUBLIC_FILES tuple and omits docs/handbook/architecture/analyzer-contract.md plus root community docs.'
+              })
+          write(defects_path, defects)
+          PY
+
+      - name: Remove helper and regenerate deterministic projections
+        shell: bash
+        run: |
+          rm -f .github/workflows/tmp-sw2-20-doc-contract-plan.yml
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_repository_health.py --root .
+          test ! -e .github/workflows/tmp-sw2-20-doc-contract-plan.yml
+
+      - name: Commit future documentation contract
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'SW2-20: define deterministic documentation coverage contract'
+          git push origin HEAD:work/sw2-15-smart-validation-dag
