@@ -935,6 +935,48 @@
       "to": "scripts/validate_cross_document_consistency.py::read"
     },
     {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "validate_contract",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_performance_budget.py::validate_contract"
+    },
+    {
+      "action": "close_enough",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_performance_budget.py::close_enough"
+    },
+    {
+      "action": "derived_budget",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_performance_budget.py::derived_budget"
+    },
+    {
+      "action": "seen_ids.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "seen_samples.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "documentation_settings",
       "evidence": "STATIC",
       "from": "scripts/validate_project_docs.py::main",
@@ -1221,7 +1263,8 @@
     "scripts/validate_project_docs.py::main",
     "scripts/validate_sequence_sessions.py::main",
     "scripts/validate_cross_document_consistency.py::main",
-    "scripts/release_preflight.py::main"
+    "scripts/release_preflight.py::main",
+    "scripts/validate_performance_budget.py::main"
   ],
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
@@ -1938,6 +1981,42 @@
       "locator": "scripts/validate_doc_quality.py::normalized_shape"
     },
     {
+      "id": "scripts/validate_performance_budget.py::close_enough",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::close_enough",
+      "language": "Python",
+      "line_end": 16,
+      "line_start": 15,
+      "locator": "scripts/validate_performance_budget.py::close_enough"
+    },
+    {
+      "id": "scripts/validate_performance_budget.py::derived_budget",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::derived_budget",
+      "language": "Python",
+      "line_end": 20,
+      "line_start": 19,
+      "locator": "scripts/validate_performance_budget.py::derived_budget"
+    },
+    {
+      "id": "scripts/validate_performance_budget.py::main",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::main",
+      "language": "Python",
+      "line_end": 142,
+      "line_start": 111,
+      "locator": "scripts/validate_performance_budget.py::main"
+    },
+    {
+      "id": "scripts/validate_performance_budget.py::validate_contract",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::validate_contract",
+      "language": "Python",
+      "line_end": 108,
+      "line_start": 23,
+      "locator": "scripts/validate_performance_budget.py::validate_contract"
+    },
+    {
       "id": "scripts/validate_project_docs.py::main",
       "kind": "function",
       "label": "scripts/validate_project_docs.py::main",
@@ -2100,7 +2179,7 @@
       "locator": "scripts/validate_sequence_sessions.py::write_json"
     }
   ],
-  "observed_head": "bd6502a06ff2950aaa493df0c33d6c9222340187",
+  "observed_head": "9ab3580c731a83160a29fdb2d79c37858de21e49",
   "schema_version": 1,
-  "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
+  "source_digest": "7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6"
 }

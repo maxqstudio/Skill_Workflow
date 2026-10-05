@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
+Source digest: 7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -42,6 +42,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 561 | scripts | NO |
 | scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
+| scripts/selftest_performance_budget.py | Python | 73 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
@@ -60,6 +61,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
+| scripts/validate_performance_budget.py | Python | 146 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 92 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
 | scripts/validate_public_docs.py | Python | 194 | scripts | NO |

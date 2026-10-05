@@ -7,7 +7,7 @@
 SW2-19 covers performance-budget acceptance and V2.1 publication only. It must preserve all accepted V2 governance, Project Truth, historical-evidence, CI applicability, cross-platform, and real-consumer guarantees.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
+Current source digest: 7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -25,6 +25,8 @@ Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
 - python scripts/governance_engine.py --root . --base 8a16ddb1994d1a6080816c8b9b78f75137d33e72 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/selftest_performance_budget.py
+- python scripts/validate_performance_budget.py --root .
 
 ## Runtime checks
 

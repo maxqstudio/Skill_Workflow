@@ -8,10 +8,11 @@
       "scripts/validate_project_docs.py::main",
       "scripts/validate_sequence_sessions.py::main",
       "scripts/validate_cross_document_consistency.py::main",
-      "scripts/release_preflight.py::main"
+      "scripts/release_preflight.py::main",
+      "scripts/validate_performance_budget.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-19-GOVERNANCE.actual.json",
-    "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
+    "source_digest": "7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6"
   },
   "critical": true,
   "evidence_boundary": "SW2-19 sequence evidence covers governance, Project Truth, historical evidence, CI validation, and release-preflight paths used to measure and publish V2.1. Publication identity and performance budgets require separate runtime/benchmark evidence.",
@@ -21,7 +22,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-19-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
+    "source_digest": "7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6"
   },
   "implementation_base_sha": "8a16ddb1994d1a6080816c8b9b78f75137d33e72",
   "mode": "DURING",
@@ -47,6 +48,7 @@
     "scripts/selftest_governance_engine.py",
     "scripts/selftest_project_truth_compiler.py",
     "scripts/selftest_cross_document_regressions.py",
-    ".github/scripts/selftest_ci_applicability.py"
+    ".github/scripts/selftest_ci_applicability.py",
+    "scripts/selftest_performance_budget.py"
   ]
 }

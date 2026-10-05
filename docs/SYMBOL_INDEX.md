@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
+Source digest: 7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -49,6 +49,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_governance_engine.py | 16 | 0 | 12 | 4 |
 | scripts/selftest_historical_evidence.py | 6 | 0 | 6 | 0 |
+| scripts/selftest_performance_budget.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_project_truth_compiler.py | 5 | 0 | 5 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_release_preflight.py | 5 | 0 | 5 | 0 |
@@ -67,6 +68,7 @@ responsibility, callers, or state ownership.
 | scripts/validate_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/validate_handoff.py | 5 | 0 | 5 | 0 |
 | scripts/validate_human_comprehension.py | 3 | 0 | 3 | 0 |
+| scripts/validate_performance_budget.py | 4 | 0 | 4 | 0 |
 | scripts/validate_project_docs.py | 1 | 0 | 1 | 0 |
 | scripts/validate_project_truth.py | 6 | 0 | 6 | 0 |
 | scripts/validate_public_docs.py | 2 | 0 | 2 | 0 |
@@ -589,6 +591,17 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_performance_budget.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| load_module | function | 16-22 |
+| require | function | 25-27 |
+| main | function | 30-69 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_project_truth_compiler.py</code> — 5 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -834,6 +847,18 @@ responsibility, callers, or state ownership.
 | git_root | function | 60-69 |
 | parse_gate_rows | function | 72-89 |
 | main | function | 92-210 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_performance_budget.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| close_enough | function | 15-16 |
+| derived_budget | function | 19-20 |
+| validate_contract | function | 23-108 |
+| main | function | 111-142 |
 
 </details>
 

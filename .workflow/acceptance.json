@@ -54,7 +54,9 @@
     "python .github/scripts/selftest_ci_applicability.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base 8a16ddb1994d1a6080816c8b9b78f75137d33e72 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 8a16ddb1994d1a6080816c8b9b78f75137d33e72 --mode finalize --expected-head <EXACT_HEAD>",
+    "python scripts/selftest_performance_budget.py",
+    "python scripts/validate_performance_budget.py --root ."
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

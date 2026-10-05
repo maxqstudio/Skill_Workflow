@@ -1,12 +1,12 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 24,
-    "interaction_count": 24,
+    "interaction_ceiling": 26,
+    "interaction_count": 26,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 13,
-    "participant_count": 13,
+    "participant_ceiling": 14,
+    "participant_count": 14,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
@@ -268,6 +268,35 @@
     },
     {
       "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_performance_budget.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "seen_ids.add",
+        "seen_samples.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_performance_budget.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
         "documentation_settings",
         "parse_profile"
       ],
@@ -375,7 +404,8 @@
     "scripts/validate_project_docs.py::main",
     "scripts/validate_sequence_sessions.py::main",
     "scripts/validate_cross_document_consistency.py::main",
-    "scripts/release_preflight.py::main"
+    "scripts/release_preflight.py::main",
+    "scripts/validate_performance_budget.py::main"
   ],
   "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
   "generated": true,
@@ -549,6 +579,18 @@
       ]
     },
     {
+      "id": "module:scripts/validate_performance_budget.py",
+      "kind": "module",
+      "label": "scripts/validate_performance_budget.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/validate_performance_budget.py::close_enough",
+        "scripts/validate_performance_budget.py::derived_budget",
+        "scripts/validate_performance_budget.py::main",
+        "scripts/validate_performance_budget.py::validate_contract"
+      ]
+    },
+    {
       "id": "module:scripts/validate_project_docs.py",
       "kind": "module",
       "label": "scripts/validate_project_docs.py",
@@ -583,14 +625,14 @@
       ]
     }
   ],
-  "observed_head": "bd6502a06ff2950aaa493df0c33d6c9222340187",
+  "observed_head": "9ab3580c731a83160a29fdb2d79c37858de21e49",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 20,
-    "cross_component_machine_edges": 44,
-    "internal_machine_edges_collapsed": 115,
-    "machine_edge_count": 159,
-    "machine_node_count": 97,
+    "aggregated_cross_component_edges": 21,
+    "cross_component_machine_edges": 47,
+    "internal_machine_edges_collapsed": 118,
+    "machine_edge_count": 165,
+    "machine_node_count": 101,
     "node_map": {
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
@@ -671,6 +713,10 @@
       "scripts/validate_cross_document_consistency.py::strip_fences": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::truth_claims": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_doc_quality.py::normalized_shape": "module:scripts/validate_doc_quality.py",
+      "scripts/validate_performance_budget.py::close_enough": "module:scripts/validate_performance_budget.py",
+      "scripts/validate_performance_budget.py::derived_budget": "module:scripts/validate_performance_budget.py",
+      "scripts/validate_performance_budget.py::main": "module:scripts/validate_performance_budget.py",
+      "scripts/validate_performance_budget.py::validate_contract": "module:scripts/validate_performance_budget.py",
       "scripts/validate_project_docs.py::main": "module:scripts/validate_project_docs.py",
       "scripts/validate_sequence_sessions.py::build_historical_manifest": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::evidence_paths": "module:scripts/validate_sequence_sessions.py",
@@ -693,5 +739,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
+  "source_digest": "7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6"
 }

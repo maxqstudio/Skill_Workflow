@@ -18,7 +18,7 @@ Branch: work/sw2-19-performance-budget-v2.1
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 8a16ddb1994d1a6080816c8b9b78f75137d33e72
 Current candidate SHA: external final acceptance evidence
-Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
+Current source digest: 7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
