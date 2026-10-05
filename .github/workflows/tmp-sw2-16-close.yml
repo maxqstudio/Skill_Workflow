@@ -1,0 +1,71 @@
+name: TEMP SW2-16 Closure
+
+on:
+  push:
+    branches: [work/sw2-16-historical-evidence-freeze]
+    paths: [.github/workflows/tmp-sw2-16-close.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-16-historical-evidence-freeze
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Record final SW2-16 closure authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          CANDIDATE='2fae64c955a784588a645625252347994f00f31d'
+          def load(p): return json.loads(Path(p).read_text(encoding='utf-8'))
+          def write(p,d): Path(p).write_text(json.dumps(d,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+          s=load('.workflow/state.json')
+          s['status']='SW2_16_HISTORICAL_EVIDENCE_FREEZE_ACCEPTED'
+          s['working_branch']='main'
+          s['blockers']=[]
+          s['not_proven']=[x for x in s.get('not_proven',[]) if not x.startswith('SW2-16 ')]
+          proof=(f'SW2-16 Historical Evidence Freeze is accepted on exact post-promotion candidate {CANDIDATE}: Self Governance 37262717230, Governance Selftest 37262717167 on Ubuntu and Windows, SW2 Sequence Evidence 37262717163, Governance Engine Performance 37262717196, and Consumer Engine Performance 37262717166 all succeeded. Historical identity is bound to exact Git object bytes, checkout EOL transforms do not alter authority, staged/unstaged tamper remains fail-closed, normal validation is identity-only/no-rewrite, and authorized historical re-freeze remains explicit and provenance-audited.')
+          proven=list(s.get('proven',[]))
+          if proof not in proven: proven.append(proof)
+          s['proven']=proven
+          s['next_authorized_actions']=[
+            'Require the complete permanent matrix to pass on this closure-authority exact head.',
+            'If closure-head acceptance is green, update PR #24 evidence, mark it ready, and squash-merge with expected-head protection.',
+            'After merge, verify main tree equivalence and post-merge 6/6 before opening SW2-17.'
+          ]
+          write('.workflow/state.json',s)
+          PY
+      - name: Regenerate Project Truth
+        run: python scripts/sync_project_truth.py --root .
+      - name: Commit closure authority
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow docs artifacts/sequence
+          test -z "$(git diff --cached --name-only | grep '^.github/workflows/' || true)"
+          git commit -m 'SW2-16: close Historical Evidence Freeze'
+      - name: Prove clean closure authority
+        shell: bash
+        run: |
+          HEAD_SHA="$(git rev-parse HEAD)"
+          python scripts/selftest_historical_evidence.py
+          python scripts/selftest_sequence_squash_provenance.py
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/governance_engine.py --root . --base 9ac09b2acd0bdf25ea05157be7711da852173ab8 --mode finalize --expected-head "$HEAD_SHA" --report /tmp/sw2-16-close.json
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts references templates)"
+      - name: Push closure authority
+        run: git push origin HEAD:work/sw2-16-historical-evidence-freeze
