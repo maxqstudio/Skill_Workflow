@@ -7,6 +7,11 @@
   "critical": true,
   "status": "PLANNED",
   "implementation_base_sha": "",
+  "merge_provenance": {
+    "strategy": "",
+    "accepted_branch_head": "",
+    "product_merge_sha": ""
+  },
   "plan": {
     "required": true,
     "contract": "docs/sequence/plans/replace-me.plan.json",
