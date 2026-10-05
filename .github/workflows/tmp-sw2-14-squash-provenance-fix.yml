@@ -1,0 +1,110 @@
+name: Temporary SW2-14 Squash Provenance Fix
+
+on:
+  push:
+    branches:
+      - work/sw2-14-squash-sequence-provenance
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-sw2-14-squash-provenance-fix
+  cancel-in-progress: true
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: work/sw2-14-squash-sequence-provenance
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply squash provenance contract repair
+        shell: python
+        run: |
+          from pathlib import Path
+
+          root = Path('.')
+
+          seq = root / 'scripts/sequence_contract.py'
+          text = seq.read_text(encoding='utf-8')
+          anchor = '''def is_ancestor(root: Path, ancestor: str, descendant: str) -> bool:\n    proc = subprocess.run(\n        ["git", "-C", str(root), "merge-base", "--is-ancestor", ancestor, descendant],\n        stdout=subprocess.DEVNULL,\n        stderr=subprocess.DEVNULL,\n        check=False,\n    )\n    return proc.returncode == 0\n'''
+          replacement = anchor + '''\n\ndef git_tree(root: Path, commit: str) -> str:\n    return git(root, "rev-parse", f"{commit}^{{tree}}")\n\n\ndef validate_before_implementation_lineage(\n    root: Path,\n    implementation_base: str,\n    head: str,\n    merge_provenance: object,\n) -> dict:\n    """Validate direct ancestry or an explicit content-identical squash bridge."""\n    result = {\n        "mode": "DIRECT",\n        "strategy": "",\n        "accepted_branch_head": "",\n        "product_merge_sha": "",\n        "accepted_branch_tree": "",\n        "product_merge_tree": "",\n        "failures": [],\n    }\n    if is_ancestor(root, implementation_base, head):\n        return result\n\n    result["mode"] = "MERGE_PROVENANCE"\n    if not isinstance(merge_provenance, dict):\n        result["failures"].append("IMPLEMENTATION_BASE_NOT_ANCESTOR_OF_HEAD")\n        return result\n\n    strategy = str(merge_provenance.get("strategy", "")).strip().upper()\n    accepted_branch_head = str(merge_provenance.get("accepted_branch_head", "")).strip()\n    product_merge_sha = str(merge_provenance.get("product_merge_sha", "")).strip()\n    result.update({\n        "strategy": strategy,\n        "accepted_branch_head": accepted_branch_head,\n        "product_merge_sha": product_merge_sha,\n    })\n\n    if strategy != "SQUASH":\n        result["failures"].append("INVALID_MERGE_PROVENANCE_STRATEGY:" + strategy)\n        return result\n    if not accepted_branch_head:\n        result["failures"].append("SQUASH_ACCEPTED_BRANCH_HEAD_MISSING")\n    if not product_merge_sha:\n        result["failures"].append("SQUASH_PRODUCT_MERGE_SHA_MISSING")\n    if result["failures"]:\n        return result\n\n    if not is_ancestor(root, implementation_base, accepted_branch_head):\n        result["failures"].append(\n            "SQUASH_ACCEPTED_BRANCH_NOT_DESCENDANT_OF_IMPLEMENTATION_BASE"\n        )\n    if not is_ancestor(root, product_merge_sha, head):\n        result["failures"].append("SQUASH_PRODUCT_MERGE_NOT_ANCESTOR_OF_HEAD")\n\n    try:\n        accepted_tree = git_tree(root, accepted_branch_head)\n        result["accepted_branch_tree"] = accepted_tree\n    except Exception:\n        result["failures"].append("SQUASH_ACCEPTED_BRANCH_HEAD_UNRESOLVED")\n        accepted_tree = ""\n    try:\n        product_tree = git_tree(root, product_merge_sha)\n        result["product_merge_tree"] = product_tree\n    except Exception:\n        result["failures"].append("SQUASH_PRODUCT_MERGE_SHA_UNRESOLVED")\n        product_tree = ""\n\n    if accepted_tree and product_tree and accepted_tree != product_tree:\n        result["failures"].append("SQUASH_TREE_MISMATCH")\n    return result\n'''
+          if anchor not in text:
+              raise SystemExit('sequence_contract anchor missing')
+          seq.write_text(text.replace(anchor, replacement), encoding='utf-8', newline='\n')
+
+          validator = root / 'scripts/validate_sequence_contract.py'
+          text = validator.read_text(encoding='utf-8')
+          text = text.replace(
+              '    is_ancestor,\n    load_json,',
+              '    is_ancestor,\n    load_json,\n    validate_before_implementation_lineage,'
+          )
+          text = text.replace(
+              '    source_compare = None\n    runtime_compare = None\n    plan = {}',
+              '    source_compare = None\n    runtime_compare = None\n    merge_provenance_verification = None\n    plan = {}'
+          )
+          old = '''        if frozen_commit and implementation_base:\n            if not is_ancestor(root, frozen_commit, implementation_base):\n                failures.append("PLAN_DOES_NOT_PRECEDE_IMPLEMENTATION")\n            if not is_ancestor(root, implementation_base, head):\n                failures.append("IMPLEMENTATION_BASE_NOT_ANCESTOR_OF_HEAD")\n'''
+          new = '''        if frozen_commit and implementation_base:\n            if not is_ancestor(root, frozen_commit, implementation_base):\n                failures.append("PLAN_DOES_NOT_PRECEDE_IMPLEMENTATION")\n            merge_provenance_verification = validate_before_implementation_lineage(\n                root,\n                implementation_base,\n                head,\n                session.get("merge_provenance"),\n            )\n            failures.extend(merge_provenance_verification["failures"])\n'''
+          if old not in text:
+              raise SystemExit('validator ancestry anchor missing')
+          text = text.replace(old, new)
+          report_anchor = '        "plan_runtime_comparison": runtime_compare,\n        "failures": failures,'
+          if report_anchor not in text:
+              raise SystemExit('validator report anchor missing')
+          text = text.replace(
+              report_anchor,
+              '        "plan_runtime_comparison": runtime_compare,\n        "merge_provenance_verification": merge_provenance_verification,\n        "failures": failures,'
+          )
+          validator.write_text(text, encoding='utf-8', newline='\n')
+
+          template = root / 'templates/SEQUENCE_SESSION.json'
+          text = template.read_text(encoding='utf-8')
+          anchor = '  "implementation_base_sha": "",\n'
+          addition = '''  "implementation_base_sha": "",\n  "merge_provenance": {\n    "strategy": "",\n    "accepted_branch_head": "",\n    "product_merge_sha": ""\n  },\n'''
+          if anchor not in text:
+              raise SystemExit('session template anchor missing')
+          template.write_text(text.replace(anchor, addition), encoding='utf-8', newline='\n')
+
+          ref = root / 'references/sequence-contracts.md'
+          text = ref.read_text(encoding='utf-8')
+          anchor = '''Git lineage must prove:\n\n```text\nFROZEN_PLAN_COMMIT\nis ancestor of\nIMPLEMENTATION_BASE\nis ancestor of\nFINAL_HEAD\n```\n\nA plan created after implementation began is invalid as BEFORE evidence.\n'''
+          replacement = '''Git lineage must prove the direct path when commit ancestry is preserved:\n\n```text\nFROZEN_PLAN_COMMIT\nis ancestor of\nIMPLEMENTATION_BASE\nis ancestor of\nFINAL_HEAD\n```\n\nIf repository policy requires squash merge, the branch ancestry is intentionally\nremoved from the product branch. In that case BEFORE evidence remains valid only\nwith explicit `merge_provenance` using `strategy = SQUASH`, and validation must\nprove all of the following:\n\n```text\nFROZEN_PLAN_COMMIT\n  -> IMPLEMENTATION_BASE\n  -> ACCEPTED_BRANCH_HEAD\n\nTREE(ACCEPTED_BRANCH_HEAD)\n  = TREE(PRODUCT_MERGE_SHA)\n\nPRODUCT_MERGE_SHA\n  -> FINAL_HEAD\n```\n\nTree identity is mandatory: a merely similar diff, matching message, or manually\nasserted SHA is not sufficient. This bridge preserves the frozen BEFORE lineage\nwithout pretending the squashed branch commit is a literal ancestor of main.\n\nA plan created after implementation began is invalid as BEFORE evidence.\n'''
+          if anchor not in text:
+              raise SystemExit('sequence reference anchor missing')
+          ref.write_text(text.replace(anchor, replacement), encoding='utf-8', newline='\n')
+
+          test = root / 'scripts/selftest_sequence_squash_provenance.py'
+          test.write_text('''#!/usr/bin/env python3\nfrom __future__ import annotations\n\nimport subprocess\nimport tempfile\nfrom pathlib import Path\n\nfrom sequence_contract import validate_before_implementation_lineage\n\n\ndef git(root: Path, *args: str) -> str:\n    return subprocess.check_output(\n        ["git", "-C", str(root), *args], text=True, stderr=subprocess.STDOUT\n    ).strip()\n\n\ndef commit_file(root: Path, path: str, content: str, message: str) -> str:\n    target = root / path\n    target.parent.mkdir(parents=True, exist_ok=True)\n    target.write_text(content, encoding="utf-8", newline="\\n")\n    git(root, "add", "-A")\n    git(root, "commit", "-m", message)\n    return git(root, "rev-parse", "HEAD")\n\n\ndef main() -> int:\n    with tempfile.TemporaryDirectory() as tmp:\n        root = Path(tmp)\n        git(root, "init", "-b", "main")\n        git(root, "config", "user.name", "Sequence Selftest")\n        git(root, "config", "user.email", "sequence@example.invalid")\n        main_base = commit_file(root, "base.txt", "base\\n", "base")\n\n        git(root, "checkout", "-b", "feature")\n        frozen = commit_file(root, "plan.json", "{\\\"status\\\":\\\"FROZEN\\\"}\\n", "freeze plan")\n        implementation_base = commit_file(root, "implementation.txt", "start\\n", "implementation base")\n        accepted_branch_head = commit_file(root, "implementation.txt", "final\\n", "accepted branch")\n\n        git(root, "checkout", "main")\n        git(root, "checkout", accepted_branch_head, "--", ".")\n        git(root, "add", "-A")\n        git(root, "commit", "-m", "squash product")\n        product_merge_sha = git(root, "rev-parse", "HEAD")\n\n        direct = validate_before_implementation_lineage(\n            root, implementation_base, product_merge_sha, None\n        )\n        assert direct["failures"] == ["IMPLEMENTATION_BASE_NOT_ANCESTOR_OF_HEAD"], direct\n\n        provenance = {\n            "strategy": "SQUASH",\n            "accepted_branch_head": accepted_branch_head,\n            "product_merge_sha": product_merge_sha,\n        }\n        repaired = validate_before_implementation_lineage(\n            root, implementation_base, product_merge_sha, provenance\n        )\n        assert repaired["failures"] == [], repaired\n        assert repaired["accepted_branch_tree"] == repaired["product_merge_tree"], repaired\n\n        closure = commit_file(root, "closure.txt", "governance only\\n", "closure")\n        historical = validate_before_implementation_lineage(\n            root, implementation_base, closure, provenance\n        )\n        assert historical["failures"] == [], historical\n\n        wrong_tree = dict(provenance, product_merge_sha=main_base)\n        mismatch = validate_before_implementation_lineage(\n            root, implementation_base, closure, wrong_tree\n        )\n        assert "SQUASH_TREE_MISMATCH" in mismatch["failures"], mismatch\n\n        wrong_branch = dict(provenance, accepted_branch_head=frozen)\n        wrong_lineage = validate_before_implementation_lineage(\n            root, implementation_base, closure, wrong_branch\n        )\n        assert (\n            "SQUASH_ACCEPTED_BRANCH_NOT_DESCENDANT_OF_IMPLEMENTATION_BASE"\n            in wrong_lineage["failures"]\n        ), wrong_lineage\n\n        not_ancestor = commit_file(root, "after.txt", "after\\n", "after")\n        git(root, "checkout", "--detach", product_merge_sha)\n        detached = validate_before_implementation_lineage(\n            root, implementation_base, product_merge_sha,\n            dict(provenance, product_merge_sha=not_ancestor),\n        )\n        assert "SQUASH_PRODUCT_MERGE_NOT_ANCESTOR_OF_HEAD" in detached["failures"], detached\n\n    print("SEQUENCE_SQUASH_PROVENANCE=PASS")\n    return 0\n\n\nif __name__ == "__main__":\n    raise SystemExit(main())\n''', encoding='utf-8', newline='\n')
+
+          workflow = root / '.github/workflows/governance-selftest.yml'
+          text = workflow.read_text(encoding='utf-8')
+          anchor = '''      - name: Sequence call-resolution regression\n        run: python scripts/selftest_sequence_call_resolution.py\n\n'''
+          addition = anchor + '''      - name: Sequence squash-provenance regression\n        run: python scripts/selftest_sequence_squash_provenance.py\n\n'''
+          if anchor not in text:
+              raise SystemExit('governance selftest anchor missing')
+          workflow.write_text(text.replace(anchor, addition), encoding='utf-8', newline='\n')
+
+          Path('.github/workflows/tmp-sw2-14-squash-provenance-fix.yml').unlink()
+
+      - name: Run focused regression
+        shell: bash
+        run: |
+          python -m compileall -q scripts
+          python scripts/selftest_sequence_squash_provenance.py
+          python scripts/selftest_sequence_call_resolution.py
+
+      - name: Commit repair
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix(sw2-14): preserve BEFORE evidence across squash merge'
+          git push origin HEAD:work/sw2-14-squash-sequence-provenance
