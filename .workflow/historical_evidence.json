@@ -1,6 +1,6 @@
 {
   "authorization_reason": "SW2-19 phase-open freezes accepted SW2-18 evidence",
-  "frozen_commit": "35ba224d2cfc4390d9593d4aada95e3f6b17c715",
+  "frozen_commit": "bd6502a06ff2950aaa493df0c33d6c9222340187",
   "generated_by": "validate_sequence_sessions.py",
   "historical_sessions": [
     {
