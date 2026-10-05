@@ -1,0 +1,52 @@
+name: TEMP SW2-17 Projection Refactor Run
+
+on:
+  push:
+    branches:
+      - work/sw2-17-generator-modularization
+    paths:
+      - .github/workflows/tmp-sw2-17-refactor-run.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refactor:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-17-generator-modularization
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply refactor and prove parity
+        run: python artifacts/tmp/sw2_17_refactor.py
+      - name: Focused regressions
+        shell: bash
+        run: |
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_schema_toolchain.py
+          python scripts/selftest_governance_engine.py
+      - name: Commit source refactor only
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            scripts/generate_project_docs.py \
+            scripts/project_truth_projection_common.py \
+            scripts/project_truth_projection_state.py \
+            scripts/project_truth_projection_code.py \
+            scripts/project_truth_projection_governance.py \
+            scripts/project_truth_projection_contracts.py \
+            scripts/project_truth_impact.py \
+            scripts/governance_engine.py \
+            scripts/selftest_project_truth_compiler.py
+          git commit -m 'SW2-17: modularize Project Truth projection renderers'
+          git push origin HEAD:work/sw2-17-generator-modularization
