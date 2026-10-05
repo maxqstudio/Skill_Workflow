@@ -6,27 +6,140 @@ on:
       - ops/sw2-19-phase-open
     paths:
       - .github/workflows/governance-ci.yml
-      - ops/sw2_19_phase_open.py
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  phase-open:
+  mode-budget-probe:
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      CANDIDATE: de8e5715f39df9376a2ef6c07b236d68787a3bab
+      BASE: 8a16ddb1994d1a6080816c8b9b78f75137d33e72
     steps:
-      - name: Checkout target branch
+      - name: Checkout exact SW2-19 phase-open candidate
         uses: actions/checkout@v4
         with:
-          ref: work/sw2-19-performance-budget-v2.1
+          ref: de8e5715f39df9376a2ef6c07b236d68787a3bab
           fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v5
+
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Load ops transaction script
+
+      - name: Measure develop verify finalize modes
         shell: bash
-        run: git show origin/ops/sw2-19-phase-open:ops/sw2_19_phase_open.py > "$RUNNER_TEMP/sw2_19_phase_open.py"
-      - name: Execute governed SW2-19 phase-open transaction
-        shell: bash
-        run: python "$RUNNER_TEMP/sw2_19_phase_open.py"
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import platform
+          import statistics
+          import subprocess
+          import sys
+          import time
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          candidate = os.environ['CANDIDATE']
+          base = os.environ['BASE']
+          observed = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          if observed != candidate:
+              raise SystemExit(f'HEAD_MISMATCH:{observed}!={candidate}')
+
+          def status():
+              return subprocess.check_output(
+                  ['git', 'status', '--porcelain', '--untracked-files=all'],
+                  text=True,
+              ).strip()
+
+          initial = status()
+          if initial:
+              raise SystemExit('INITIAL_WORKTREE_NOT_CLEAN\n' + initial)
+
+          results = {}
+          for mode in ('develop', 'verify', 'finalize'):
+              samples = []
+              reports = []
+              for index in range(5):
+                  before = status()
+                  started = time.perf_counter()
+                  proc = subprocess.run(
+                      [
+                          sys.executable,
+                          'scripts/governance_engine.py',
+                          '--root', '.',
+                          '--base', base,
+                          '--mode', mode,
+                          '--expected-head', candidate,
+                      ],
+                      text=True,
+                      stdout=subprocess.PIPE,
+                      stderr=subprocess.STDOUT,
+                      check=False,
+                      env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'},
+                  )
+                  elapsed = time.perf_counter() - started
+                  after = status()
+                  if proc.returncode != 0:
+                      raise SystemExit(
+                          f'MODE_FAILED:{mode}:run={index + 1}:rc={proc.returncode}\n' +
+                          '\n'.join(proc.stdout.splitlines()[-80:])
+                      )
+                  if before != after or after:
+                      raise SystemExit(
+                          f'MODE_MUTATED_WORKTREE:{mode}:run={index + 1}:before={before!r}:after={after!r}'
+                      )
+                  try:
+                      report = json.loads(proc.stdout)
+                  except json.JSONDecodeError as exc:
+                      raise SystemExit(f'MODE_REPORT_INVALID:{mode}:run={index + 1}:{exc}')
+                  if report.get('result') != 'PASS':
+                      raise SystemExit(f'MODE_REPORT_NOT_PASS:{mode}:run={index + 1}')
+                  if report.get('requested_mode') != mode:
+                      raise SystemExit(f'MODE_REQUEST_MISMATCH:{mode}:run={index + 1}')
+                  if report.get('expected_head') != candidate:
+                      raise SystemExit(f'MODE_HEAD_MISMATCH:{mode}:run={index + 1}')
+                  samples.append(elapsed)
+                  reports.append({
+                      'effective_mode': report.get('effective_mode'),
+                      'executed_nodes': report.get('executed_nodes'),
+                      'final_acceptance_authority': report.get('final_acceptance_authority'),
+                  })
+              results[mode] = {
+                  'samples_seconds': samples,
+                  'min_seconds': min(samples),
+                  'median_seconds': statistics.median(samples),
+                  'mean_seconds': statistics.fmean(samples),
+                  'max_seconds': max(samples),
+                  'runs': reports,
+              }
+
+          payload = {
+              'schema_version': 1,
+              'benchmark': 'SW2-19 governance mode budget probe',
+              'candidate': candidate,
+              'base': base,
+              'exact_head_match': observed == candidate,
+              'repeats_per_mode': 5,
+              'platform': platform.platform(),
+              'python': sys.version.split()[0],
+              'modes': results,
+              'worktree_read_only': status() == '',
+              'result': 'PASS',
+              'evidence_boundary': 'Hosted-runner wall-clock timings are comparative regression evidence, not hardware-absolute performance claims.',
+          }
+          out = Path('artifacts/performance/sw2-19-mode-budget-probe.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          print(json.dumps(payload, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload mode budget probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-19-mode-budget-probe
+          path: artifacts/performance/sw2-19-mode-budget-probe.json
+          if-no-files-found: error
+          retention-days: 14
