@@ -41,7 +41,14 @@ jobs:
             --authorize-migration "SW2-16 initial historical evidence freeze" \
             --frozen-commit 9b2920c57cb435cb5931a99a2399c774e498d958
 
-      - name: Regenerate current SW2-16 sequence evidence
+      - name: Remove temporary helpers before final projections
+        run: |
+          git rm .github/workflows/tmp-sw2-16-freeze.yml
+          git rm artifacts/tmp/sw2_16_absent_fix.py
+          test ! -e artifacts/tmp/sw2_16_absent_fix.py
+          test ! -e .github/workflows/tmp-sw2-16-freeze.yml
+
+      - name: Regenerate current SW2-16 sequence evidence on final source tree
         shell: bash
         run: |
           python - <<'PY'
@@ -73,7 +80,7 @@ jobs:
           ], check=True)
           PY
 
-      - name: Regenerate Project Truth
+      - name: Regenerate Project Truth on final source tree
         run: python scripts/sync_project_truth.py --root .
 
       - name: Prove normal identity-only validation
@@ -86,11 +93,9 @@ jobs:
             --replay-historical \
             --authorize-replay
 
-      - name: Remove helper and validate final implementation tree
+      - name: Validate final implementation tree
         shell: bash
         run: |
-          git rm .github/workflows/tmp-sw2-16-freeze.yml
-          git rm artifacts/tmp/sw2_16_absent_fix.py
           export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
           python -m compileall -q scripts .github/scripts
           python scripts/selftest_historical_evidence.py
