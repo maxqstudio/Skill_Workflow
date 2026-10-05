@@ -11,10 +11,10 @@ Current source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-19-R1 | Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance. | NOT_PROVEN until reproducible benchmark evidence establishes budgets and regression policy. | NOT_PROVEN |
-| SW2-19-R2 | Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate. | NOT_PROVEN until deterministic drift checks and false-PASS regressions pass on the exact candidate. | NOT_PROVEN |
-| SW2-19-R3 | Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate. | NOT_PROVEN until the complete named acceptance matrix passes on the exact candidate. | NOT_PROVEN |
-| SW2-19-R4 | A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority. | NOT_PROVEN until strict publication preflight authorizes the exact tested main SHA and live tag/release identity is verified. | NOT_PROVEN |
+| SW2-19-R1 | Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7. Benchmark authority run 37336599123 recorded 3 independent Ubuntu runners x 5 repeats per mode (15 observations/mode); accepted budgets are develop <=2.5s, verify <=3.5s, finalize <=10.0s. Governance CI run 37380692462 passed the permanent unified-CI budget contract on Ubuntu and Windows, including baseline, over-limit, sample-count, tamper, and validator checks. | PASS |
+| SW2-19-R2 | Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance finalized successfully with synchronized tracked governance and read-only revalidation; Project Truth Compiler, cross-document, release-preflight, and STRICT adversarial false-PASS regressions passed. | PASS |
+| SW2-19-R3 | Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance (max-grounding) all succeeded. | PASS |
+| SW2-19-R4 | A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority. | NOT_PROVEN until strict V2.1 publication preflight authorizes the exact tested main SHA and live v2.1.0 tag/release identity is verified. | NOT_PROVEN |
 
 ## Test commands
 

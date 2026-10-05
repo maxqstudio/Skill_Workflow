@@ -108,11 +108,9 @@ SEQUENCE_SYNC: PASS
 - SW2-18 Unified CI Orchestrator pre-promotion is proven on exact candidate c05ee66df88bbab8e54049a1f2c8e527e228867f: Governance Selftest run 37324753236 passed Ubuntu and Windows including unified-CI contract regression and read-only verify; Sequence Evidence, Engine Performance, and Consumer Performance also succeeded. Self Governance stopped only at the intentionally unpromoted Project Truth boundary.
 - SW2-18 centralizes exact-head provenance, Python setup, and CI applicability through .github/actions/governance-bootstrap/action.yml while preserving six independently visible permanent contexts. Docs-only applicability is deterministic and all unknown/governance/CI/source impact remains fail-closed to heavy validation.
 - SW2-18 Unified CI Orchestrator is accepted on main 8a16ddb1994d1a6080816c8b9b78f75137d33e72 with tree d99d4798da694cd65ae490b2b871a11c4e6294e6 equal to exact tested candidate 719a7491cd5773b0dee260fd4e713e5caad93374. Post-merge Governance CI run 37330706174 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance.
+- SW2-19 R1-R3 pre-publication acceptance is proven on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 with Governance CI run 37380692462: all six permanent contexts succeeded on Ubuntu/Windows and the pinned max-grounding consumer; the permanent performance-budget contract enforces develop <=2.5s, verify <=3.5s, and finalize <=10.0s from benchmark authority run 37336599123; V2.1 release-preflight regression also passed while SW2-19-R4 remains publication-pending.
 
 ## Not proven
-- SW2-19 measured develop/verify/finalize performance budgets are not yet proven.
-- SW2-19 zero generated-doc drift and zero false-PASS regression are not yet proven.
-- SW2-19 exact V2.1 cross-platform and real-consumer release-candidate parity are not yet proven.
 - SW2-19 versioned V2.1 publication from the exact tested SHA is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
@@ -123,10 +121,10 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Measure develop, verify, and finalize wall-clock budgets with reproducible machine-readable evidence.
-- Prove generated-document drift and adversarial false-PASS regression remain zero.
-- Require Ubuntu/Windows governance and real-consumer parity on the exact V2.1 release candidate.
-- Run strict V2.1 publication preflight and publish only from the exact tested main SHA after all prior SW2-19 gates pass.
+- Merge the exact tested SW2-19 pre-publication candidate only after post-promotion permanent CI passes.
+- Run strict V2.1 publication preflight on the exact tested main SHA with only SW2-19-R4 publication-pending.
+- Publish v2.1.0 only if strict preflight returns publication_authority=true.
+- Verify live v2.1.0 tag/release identity before promoting SW2-19-R4 and closing the phase.
 
 ## Explicitly blocked
 - Do not publish or move a V2.1 tag/release before exact release-candidate acceptance and strict publication authority are proven.

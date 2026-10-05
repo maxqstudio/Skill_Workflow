@@ -17,25 +17,25 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until reproducible benchmark evidence establishes budgets and regression policy.",
+      "evidence": "PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7. Benchmark authority run 37336599123 recorded 3 independent Ubuntu runners x 5 repeats per mode (15 observations/mode); accepted budgets are develop <=2.5s, verify <=3.5s, finalize <=10.0s. Governance CI run 37380692462 passed the permanent unified-CI budget contract on Ubuntu and Windows, including baseline, over-limit, sample-count, tamper, and validator checks.",
       "id": "SW2-19-R1",
       "requirement": "Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until deterministic drift checks and false-PASS regressions pass on the exact candidate.",
+      "evidence": "PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance finalized successfully with synchronized tracked governance and read-only revalidation; Project Truth Compiler, cross-document, release-preflight, and STRICT adversarial false-PASS regressions passed.",
       "id": "SW2-19-R2",
       "requirement": "Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until the complete named acceptance matrix passes on the exact candidate.",
+      "evidence": "PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance (max-grounding) all succeeded.",
       "id": "SW2-19-R3",
       "requirement": "Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until strict publication preflight authorizes the exact tested main SHA and live tag/release identity is verified.",
+      "evidence": "NOT_PROVEN until strict V2.1 publication preflight authorizes the exact tested main SHA and live v2.1.0 tag/release identity is verified.",
       "id": "SW2-19-R4",
       "requirement": "A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority.",
       "status": "NOT_PROVEN"
@@ -60,23 +60,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
