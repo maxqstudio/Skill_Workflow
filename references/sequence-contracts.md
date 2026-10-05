@@ -30,7 +30,7 @@ define intended flow
 → validate again
 ```
 
-Git lineage must prove:
+Git lineage must prove the direct path when commit ancestry is preserved:
 
 ```text
 FROZEN_PLAN_COMMIT
@@ -39,6 +39,27 @@ IMPLEMENTATION_BASE
 is ancestor of
 FINAL_HEAD
 ```
+
+If repository policy requires squash merge, the branch ancestry is intentionally
+removed from the product branch. In that case BEFORE evidence remains valid only
+with explicit `merge_provenance` using `strategy = SQUASH`, and validation must
+prove all of the following:
+
+```text
+FROZEN_PLAN_COMMIT
+  -> IMPLEMENTATION_BASE
+  -> ACCEPTED_BRANCH_HEAD
+
+TREE(ACCEPTED_BRANCH_HEAD)
+  = TREE(PRODUCT_MERGE_SHA)
+
+PRODUCT_MERGE_SHA
+  -> FINAL_HEAD
+```
+
+Tree identity is mandatory: a merely similar diff, matching message, or manually
+asserted SHA is not sufficient. This bridge preserves the frozen BEFORE lineage
+without pretending the squashed branch commit is a literal ancestor of main.
 
 A plan created after implementation began is invalid as BEFORE evidence.
 
