@@ -64,7 +64,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-15
+Current phase: SW2-16
 
 Current status: IN_PROGRESS
 
@@ -110,16 +110,17 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run the complete permanent acceptance matrix on the post-promotion exact candidate.
-- If all six permanent contexts pass, ready and squash-merge PR #23 with exact-head locking.
-- After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-15 accepted.
+- Inventory accepted historical evidence producers, identity fields, and validators before changing replay behavior.
+- Define deterministic content-addressed freeze identity for closed evidence using schema and digest authority.
+- Make normal validation verify frozen identity without rewriting historical evidence, failing closed on tamper or incompatible identity.
+- Add explicit migration replay and audit/reproduction paths, then prove complete permanent acceptance before closure.
 
 Blocked actions:
-- Do not weaken or bypass exhaustive finalize validation.
-- Do not treat develop/verify node selection, cache state, or prior PASS results as final acceptance authority.
-- Do not skip mandatory validation dependencies when impact classification is incomplete or ambiguous.
-- Do not let smart node selection suppress adversarial false-PASS regressions; uncertain impact must broaden fail-closed.
-- Do not begin SW2-16 implementation until SW2-15 is accepted on main.
+- Do not regenerate or rewrite closed historical evidence during normal validation merely to refresh timestamps, formatting, or current-head metadata.
+- Do not treat mutable cache state, file mtime, or branch names as historical evidence identity.
+- Do not replay closed evidence for a schema/toolchain migration unless replay is explicitly requested and provenance is recorded.
+- Do not claim reproducibility from digest verification alone; audit/replay behavior requires separate evidence.
+- Do not begin SW2-17 implementation until SW2-16 is accepted on main.
 
 Known blockers:
 - None declared.
@@ -185,9 +186,14 @@ Known blockers:
 - SW2-14 Incremental Project Truth Compiler is accepted on main 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 with tree fb2878299cf28e6671ed73842996c5a861617554 equal to exact tested candidate efd5ac9b3af4623c385413fc11a7f7999ef1edc0. Post-merge main passed Self Governance 37241577980; Governance Selftest 37241577983 on Ubuntu and Windows; SW2 Sequence Evidence 37241577995; Governance Engine Performance 37241578003; and Consumer Engine Performance 37241577997.
 - SW2-15 Smart Validation DAG develop/verify planning is feature-proven on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: Governance Selftest 37246954719 passed Ubuntu and Windows with SMART_DEVELOP_IMPACT_SELECTION, SMART_VERIFY_DEPENDENCY_CLOSURE, SMART_PLANNER_FAIL_CLOSED, and SMART_FINALIZE_EXHAUSTIVE regressions.
 - SW2-15 feature-level integration evidence is green on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: SW2 Sequence Evidence 37246954759, Governance Engine Performance 37246954726, and Consumer Engine Performance 37246954744 succeeded; pre-promotion Self Governance 37246954738 reached only the intentionally unpromoted Project Truth gate after exhaustive finalize prerequisites passed.
+- SW2-15 Smart Validation DAG is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 with tree 7f9d3d5447f602de73a00649cf69b69f32529041 equal to exact tested candidate 95f2a40d0029ac26ae57097af2810f0d8436c48b. Post-merge main passed Self Governance 37247432937; Governance Selftest 37247432938 on Ubuntu and Windows; SW2 Sequence Evidence 37247432919; Governance Engine Performance 37247432956; and Consumer Engine Performance 37247432928.
 
 ### Not proven
 
+- SW2-16 immutable content-addressed identity for closed historical evidence is not yet proven.
+- SW2-16 normal validation without historical regeneration or rewrite is not yet proven.
+- SW2-16 explicit schema/toolchain migration replay contract is not yet proven.
+- SW2-16 audit/replay reproducibility and false-PASS resistance are not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

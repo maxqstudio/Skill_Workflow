@@ -2,8 +2,8 @@
 
 # ROADMAP
 
-Current project phase: SW2-15
-Current roadmap phase: SW2-15
+Current project phase: SW2-16
+Current roadmap phase: SW2-16
 ROADMAP_SYNC: PASS
 
 ## Phase plan
@@ -25,8 +25,8 @@ ROADMAP_SYNC: PASS
 | 13 | SW2-12 | Repository Hygiene & Dead Artifact Cleanup | COMPLETE | Remove stale temporary workflows and dead/transient artifacts while preserving accepted evidence and compatibility contracts. | Temporary/dead workflow and artifact inventory is evidence-backed.<br>Only safe stale items are removed.<br>Historical acceptance evidence remains auditable.<br>Complete regression remains green. |
 | 14 | SW2-13 | Skill Core / Reference Split | COMPLETE | Reduce root SKILL.md context cost by keeping non-negotiable invariants and routing detailed guidance into deterministic reference documents. | Root skill preserves all safety/authority invariants.<br>Detailed guidance has stable reference locations.<br>Supported agents can resolve required references deterministically.<br>Behavioral regression proves no governance guarantee was lost. |
 | 15 | SW2-14 | Incremental Project Truth Compiler | COMPLETE | Regenerate only impacted facts and projections during development while retaining exhaustive final consistency validation. | Impact graph is deterministic and fail-closed.<br>Unchanged projections are not rewritten in develop/verify.<br>Unknown impact broadens validation.<br>Finalize remains exhaustive and parity-proven. |
-| 16 | SW2-15 | Smart Validation DAG | CURRENT | Minimize repeated validation work across develop and verify while preserving complete finalize authority. | Develop runs safe impacted checks only.<br>Verify runs dependency closure.<br>Finalize executes the complete authoritative DAG.<br>False-PASS adversarial regression remains green. |
-| 17 | SW2-16 | Historical Evidence Freeze | PLANNED | Freeze accepted historical evidence by digest/schema identity so normal development does not replay immutable closed phases. | Closed evidence is immutable and content-addressed.<br>Normal validation verifies historical identity without regeneration.<br>Schema migrations explicitly opt into replay.<br>Audit mode can still reproduce historical evidence when required. |
+| 16 | SW2-15 | Smart Validation DAG | COMPLETE | Minimize repeated validation work across develop and verify while preserving complete finalize authority. | Develop runs safe impacted checks only.<br>Verify runs dependency closure.<br>Finalize executes the complete authoritative DAG.<br>False-PASS adversarial regression remains green. |
+| 17 | SW2-16 | Historical Evidence Freeze | CURRENT | Freeze accepted historical evidence by digest/schema identity so normal development does not replay immutable closed phases. | Closed evidence is immutable and content-addressed.<br>Normal validation verifies historical identity without regeneration.<br>Schema migrations explicitly opt into replay.<br>Audit mode can still reproduce historical evidence when required. |
 | 18 | SW2-17 | Generator Modularization | PLANNED | Split oversized deterministic document generation into small projection modules without changing canonical outputs. | Projection modules have narrow responsibilities.<br>Output is byte-equivalent unless an accepted format migration says otherwise.<br>Unit regression covers each projection.<br>No unnecessary framework or plugin abstraction is introduced. |
 | 19 | SW2-18 | Unified CI Orchestrator | PLANNED | Consolidate repeated CI setup and applicability decisions into one explicit validation DAG while retaining named evidence gates. | Repeated checkout/setup/provenance logic is centralized.<br>Docs-only changes do not run irrelevant heavy benchmarks.<br>Required checks remain independently visible and fail-closed.<br>Cross-platform and consumer acceptance remain green. |
 | 20 | SW2-19 | Performance Budget & V2.1 Release | PLANNED | Lock measured performance budgets and publish V2.1 only after the efficiency/maintainability program preserves or strengthens governance parity. | Measured develop/verify/finalize budgets are evidence-backed.<br>Generated-doc drift and false PASS remain zero in regression.<br>Ubuntu/Windows and real-consumer parity pass.<br>Versioned V2.1 release is produced from the exact tested head. |

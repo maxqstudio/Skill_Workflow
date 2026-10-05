@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-15",
+  "current_phase": "SW2-16",
   "phases": [
     {
       "exit_criteria": [
@@ -192,7 +192,7 @@
       ],
       "id": "SW2-15",
       "objective": "Minimize repeated validation work across develop and verify while preserving complete finalize authority.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Smart Validation DAG"
     },
     {
@@ -204,7 +204,7 @@
       ],
       "id": "SW2-16",
       "objective": "Freeze accepted historical evidence by digest/schema identity so normal development does not replay immutable closed phases.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Historical Evidence Freeze"
     },
     {

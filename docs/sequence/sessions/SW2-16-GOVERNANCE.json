@@ -1,7 +1,7 @@
 {
-  "acceptance_report": "artifacts/sequence/SW2-15-GOVERNANCE.acceptance.json",
+  "acceptance_report": "artifacts/sequence/SW2-16-GOVERNANCE.acceptance.json",
   "actual": {
-    "diagram": "docs/sequence/generated/SW2-15-GOVERNANCE.actual.mmd",
+    "diagram": "docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd",
     "entries": [
       "scripts/governance_engine.py::main",
       "scripts/sync_project_truth.py::main",
@@ -10,22 +10,22 @@
       "scripts/validate_cross_document_consistency.py::main",
       "scripts/validate_sequence_sessions.py::main"
     ],
-    "graph": "docs/sequence/generated/SW2-15-GOVERNANCE.actual.json",
+    "graph": "docs/sequence/generated/SW2-16-GOVERNANCE.actual.json",
     "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
   },
   "critical": true,
-  "evidence_boundary": "SW2-15 sequence evidence covers Governance Engine mode planning, Project Truth synchronization, deterministic document generation/validation, cross-document consistency, and sequence validation as the baseline for Smart Validation DAG work. Static structure alone does not prove safe node selection, dependency-closure completeness, or absence of false skips.",
+  "evidence_boundary": "SW2-16 sequence evidence establishes the current governance/Project Truth/sequence validation baseline for Historical Evidence Freeze. Static structure alone does not prove immutable historical identity, no-rewrite validation, migration replay authorization, or audit reproduction.",
   "human_view": {
-    "diagram": "docs/sequence/generated/SW2-15-GOVERNANCE.human.mmd",
-    "document": "docs/sequence/views/SW2-15-GOVERNANCE.md",
+    "diagram": "docs/sequence/generated/SW2-16-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-16-GOVERNANCE.md",
     "granularity": "module",
-    "graph": "docs/sequence/generated/SW2-15-GOVERNANCE.human.json",
+    "graph": "docs/sequence/generated/SW2-16-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
     "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
   },
-  "implementation_base_sha": "71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4",
+  "implementation_base_sha": "118e0e4e5e9a6803aeb7a99e90659ee55dca2779",
   "mode": "DURING",
-  "phase": "SW2-15",
+  "phase": "SW2-16",
   "plan": {
     "contract": "",
     "diagram": "",
@@ -39,9 +39,9 @@
     "required": false
   },
   "schema_version": 1,
-  "scope": "HISTORICAL",
-  "session_id": "SW2-15-GOVERNANCE",
-  "status": "COMPLETE",
+  "scope": "CURRENT",
+  "session_id": "SW2-16-GOVERNANCE",
+  "status": "IN_PROGRESS",
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_governance_engine.py",

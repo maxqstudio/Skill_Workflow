@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-15 covers Smart Validation DAG only: safe impacted-node selection in develop, complete affected dependency closure in verify, exhaustive finalize authority, and adversarial false-PASS regression. It must not weaken SW2-14 incremental Project Truth semantics, accepted exact-head authority, sequence evidence, cross-platform/consumer acceptance, or any prior V2 guarantee.",
+  "evidence_boundary": "SW2-16 covers Historical Evidence Freeze only: immutable content-addressed identity for closed evidence, no-rewrite normal validation, explicit migration replay, and auditable reproduction. It must not weaken accepted exact-head authority, Smart Validation DAG behavior, sequence evidence, Project Truth semantics, cross-platform/consumer acceptance, or any prior V2 guarantee.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,36 +17,36 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows. The permanent Governance Engine regression proved SMART_DEVELOP_IMPACT_SELECTION=PASS together with deterministic changed-path classification and fail-closed escalation for unknown, broad-source, template, and CI impact.",
-      "id": "SW2-15-R1",
-      "requirement": "Develop mode executes only safely impacted validation nodes and their mandatory prerequisites.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until historical evidence inventory and identity rules are explicit, deterministic, tamper-detecting, and regression-tested.",
+      "id": "SW2-16-R1",
+      "requirement": "Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows with SMART_VERIFY_DEPENDENCY_CLOSURE=PASS and SMART_PLANNER_FAIL_CLOSED=PASS. Known documentation impact selects the required Project Truth/document/handoff/cross-document closure without unrelated source regressions; unknown planner nodes, missing dependencies, cycles, and unmapped verify impact fail closed.",
-      "id": "SW2-15-R2",
-      "requirement": "Verify mode executes the complete dependency closure for affected governance semantics without redundant unrelated validation.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until read-only/no-rewrite behavior is implemented and byte-level regression proves closed evidence remains unchanged during normal develop/verify/finalize validation.",
+      "id": "SW2-16-R2",
+      "requirement": "Normal validation verifies historical identity without regenerating or rewriting closed evidence.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed SMART_FINALIZE_EXHAUSTIVE=PASS in Governance Selftest run 37246954719 on Ubuntu and Windows. Pre-promotion Self Governance run 37246954738 bound exact HEAD and executed the complete 13-node finalize authority with source regressions, strict workflow, exhaustive Project Truth sync, human/sequence/handoff/cross-document validation, and final_acceptance_authority=true; it stopped only at the intentionally unpromoted Project Truth status gate.",
-      "id": "SW2-15-R3",
-      "requirement": "Finalize executes the complete authoritative validation DAG and remains the only final acceptance authority.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until migration replay requires explicit authorization, rejects ambiguous/incompatible identity fail-closed, and records reproducible provenance.",
+      "id": "SW2-16-R3",
+      "requirement": "Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS for feature promotion: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows, SW2 Sequence Evidence run 37246954759, Governance Engine Performance run 37246954726, and Consumer Engine Performance run 37246954744. The permanent adversarial planner regressions passed, and pre-promotion Self Governance run 37246954738 reached only the intentionally unpromoted Project Truth gate after all preceding authoritative finalize nodes passed. Full post-promotion 6/6 permanent acceptance remains required before merge/closure.",
-      "id": "SW2-15-R4",
-      "requirement": "Adversarial false-PASS regression and the complete permanent matrix prove smart validation cannot skip required failures across platforms and the real consumer.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until audit/replay reproduction, tamper/identity negative paths, Ubuntu/Windows governance, sequence render, engine performance, and real-consumer acceptance all pass on the final candidate.",
+      "id": "SW2-16-R4",
+      "requirement": "Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-15-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_session": "SW2-16-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
@@ -54,27 +54,27 @@
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
-    "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

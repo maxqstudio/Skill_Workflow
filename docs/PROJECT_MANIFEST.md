@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-15-smart-validation-dag
+Active branch: work/sw2-16-historical-evidence-freeze
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4
+Last accepted SHA: 118e0e4e5e9a6803aeb7a99e90659ee55dca2779
 Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
 
 ## Authorities

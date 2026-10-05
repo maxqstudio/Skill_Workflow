@@ -4,17 +4,17 @@
 
 ## Evidence boundary
 
-SW2-15 covers Smart Validation DAG only: safe impacted-node selection in develop, complete affected dependency closure in verify, exhaustive finalize authority, and adversarial false-PASS regression. It must not weaken SW2-14 incremental Project Truth semantics, accepted exact-head authority, sequence evidence, cross-platform/consumer acceptance, or any prior V2 guarantee.
+SW2-16 covers Historical Evidence Freeze only: immutable content-addressed identity for closed evidence, no-rewrite normal validation, explicit migration replay, and auditable reproduction. It must not weaken accepted exact-head authority, Smart Validation DAG behavior, sequence evidence, Project Truth semantics, cross-platform/consumer acceptance, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
 Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-15-R1 | Develop mode executes only safely impacted validation nodes and their mandatory prerequisites. | PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows. The permanent Governance Engine regression proved SMART_DEVELOP_IMPACT_SELECTION=PASS together with deterministic changed-path classification and fail-closed escalation for unknown, broad-source, template, and CI impact. | PASS |
-| SW2-15-R2 | Verify mode executes the complete dependency closure for affected governance semantics without redundant unrelated validation. | PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows with SMART_VERIFY_DEPENDENCY_CLOSURE=PASS and SMART_PLANNER_FAIL_CLOSED=PASS. Known documentation impact selects the required Project Truth/document/handoff/cross-document closure without unrelated source regressions; unknown planner nodes, missing dependencies, cycles, and unmapped verify impact fail closed. | PASS |
-| SW2-15-R3 | Finalize executes the complete authoritative validation DAG and remains the only final acceptance authority. | PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed SMART_FINALIZE_EXHAUSTIVE=PASS in Governance Selftest run 37246954719 on Ubuntu and Windows. Pre-promotion Self Governance run 37246954738 bound exact HEAD and executed the complete 13-node finalize authority with source regressions, strict workflow, exhaustive Project Truth sync, human/sequence/handoff/cross-document validation, and final_acceptance_authority=true; it stopped only at the intentionally unpromoted Project Truth status gate. | PASS |
-| SW2-15-R4 | Adversarial false-PASS regression and the complete permanent matrix prove smart validation cannot skip required failures across platforms and the real consumer. | PASS for feature promotion: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows, SW2 Sequence Evidence run 37246954759, Governance Engine Performance run 37246954726, and Consumer Engine Performance run 37246954744. The permanent adversarial planner regressions passed, and pre-promotion Self Governance run 37246954738 reached only the intentionally unpromoted Project Truth gate after all preceding authoritative finalize nodes passed. Full post-promotion 6/6 permanent acceptance remains required before merge/closure. | PASS |
+| SW2-16-R1 | Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority. | NOT_PROVEN until historical evidence inventory and identity rules are explicit, deterministic, tamper-detecting, and regression-tested. | NOT_PROVEN |
+| SW2-16-R2 | Normal validation verifies historical identity without regenerating or rewriting closed evidence. | NOT_PROVEN until read-only/no-rewrite behavior is implemented and byte-level regression proves closed evidence remains unchanged during normal develop/verify/finalize validation. | NOT_PROVEN |
+| SW2-16-R3 | Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited. | NOT_PROVEN until migration replay requires explicit authorization, rejects ambiguous/incompatible identity fail-closed, and records reproducible provenance. | NOT_PROVEN |
+| SW2-16-R4 | Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green. | NOT_PROVEN until audit/replay reproduction, tamper/identity negative paths, Ubuntu/Windows governance, sequence render, engine performance, and real-consumer acceptance all pass on the final candidate. | NOT_PROVEN |
 
 ## Test commands
 
@@ -24,7 +24,7 @@ Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefb
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -38,8 +38,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-15-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-16-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
