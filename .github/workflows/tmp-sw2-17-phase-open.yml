@@ -1,0 +1,280 @@
+name: TEMP SW2-17 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-17-generator-modularization
+    paths:
+      - .github/workflows/tmp-sw2-17-phase-open.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-17-generator-modularization
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Transition authority to SW2-17
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ACCEPTED = '7e2c5e4669655764e24ec821cefc0c96e2886133'
+          BRANCH = 'work/sw2-17-generator-modularization'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, data):
+              Path(path).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap = load('.workflow/roadmap.json')
+          roadmap['current_phase'] = 'SW2-17'
+          seen16 = seen17 = False
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-16':
+                  phase['status'] = 'COMPLETE'
+                  seen16 = True
+              elif phase['id'] == 'SW2-17':
+                  phase['status'] = 'CURRENT'
+                  seen17 = True
+          if not (seen16 and seen17):
+              raise RuntimeError('ROADMAP_SW2_16_17_MISSING')
+          if sum(1 for p in roadmap['phases'] if p['status'] == 'CURRENT') != 1:
+              raise RuntimeError('ROADMAP_CURRENT_PHASE_CARDINALITY')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          state['phase'] = 'SW2-17'
+          state['status'] = 'IN_PROGRESS'
+          state['working_branch'] = BRANCH
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = ACCEPTED
+          state['blockers'] = []
+          state['blocked_actions'] = [
+              'Do not change canonical generated-document bytes unless an explicit accepted format migration authorizes it.',
+              'Do not introduce a plugin framework, registry abstraction, or configuration layer merely to split renderers.',
+              'Do not break SW2-14 incremental projection selection or SW2-16 historical evidence identity.',
+              'Do not treat modularization unit tests as a substitute for exhaustive finalize and permanent cross-platform acceptance.',
+              'Do not begin SW2-18 implementation until SW2-17 is accepted on main.',
+          ]
+          state['next_authorized_actions'] = [
+              'Inventory generate_project_docs.py renderers and shared helpers before moving code.',
+              'Define the smallest projection-module boundaries with narrow responsibilities and no new framework abstraction.',
+              'Prove byte-equivalent output for every canonical generated document before and after extraction.',
+              'Add direct regression coverage for every projection module and rerun the complete permanent matrix.',
+          ]
+          state['not_proven'] = [
+              'SW2-17 narrow projection-module boundaries are not yet proven.',
+              'SW2-17 byte-equivalent canonical generated output is not yet proven.',
+              'SW2-17 direct regression coverage for every projection module is not yet proven.',
+              'SW2-17 complete cross-platform and real-consumer acceptance after modularization is not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.',
+          ]
+          proven = list(state.get('proven', []))
+          closure = (
+              'SW2-16 Historical Evidence Freeze is accepted on main '
+              '7e2c5e4669655764e24ec821cefc0c96e2886133 with tested closure candidate '
+              'f8c43769c07b6d9b672b1807560fad3b42024a52. Post-merge main permanent workflows completed successfully, '
+              'including Governance Selftest 37263150206 on Ubuntu and Windows, SW2 Sequence Evidence 37263150254, '
+              'Governance Engine Performance 37263150294, and Consumer Engine Performance 37263150102.'
+          )
+          if closure not in proven:
+              proven.append(closure)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
+
+          previous = load('docs/sequence/sessions/SW2-16-GOVERNANCE.json')
+          previous['scope'] = 'HISTORICAL'
+          previous['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-16-GOVERNANCE.json', previous)
+
+          questions = {
+              'How does failure/recovery behave?': 'PASS',
+              'How does important data flow through the system?': 'PASS',
+              'What are the important lifecycle states and transitions?': 'PASS',
+              'What are the main user/domain workflows?': 'PASS',
+              'What are the major components and how do they relate?': 'PASS',
+              'What is mutable and what is immutable?': 'PASS',
+              'What is proven and what is not proven?': 'PASS',
+              'What is the current project state?': 'PASS',
+              'What is the project and what problem does it solve?': 'PASS',
+              'What may happen next and what is blocked?': 'PASS',
+              'Who uses it and what are the primary outcomes?': 'PASS',
+              'Who/what is authoritative for important decisions?': 'PASS',
+          }
+          gates = {
+              'BEHAVIORAL_SYNC': 'NOT_APPLICABLE',
+              'CROSS_DOCUMENT_CONSISTENCY': 'NOT_PROVEN',
+              'DOC_LAYOUT': 'PASS',
+              'DOC_READABILITY': 'PASS',
+              'DOC_SOURCE_TRACEABILITY': 'NOT_PROVEN',
+              'DOC_TEST_TRACEABILITY': 'NOT_PROVEN',
+              'HUMAN_COMPREHENSION': 'PASS',
+              'PROJECT_DOCS_NORMALIZED': 'PASS',
+              'PROJECT_DOCS_SYNC': 'PASS',
+              'PROJECT_STATE_SYNC': 'NOT_PROVEN',
+              'PROVENANCE_SYNC': 'NOT_PROVEN',
+              'REFERENCE_SYNC': 'NOT_PROVEN',
+              'ROADMAP_SYNC': 'PASS',
+              'RUNTIME_E2E': 'NOT_APPLICABLE',
+              'SEMANTIC_SYNC': 'NOT_PROVEN',
+              'SEQUENCE_SYNC': 'NOT_PROVEN',
+              'SOURCE_TESTS': 'NOT_PROVEN',
+              'STRUCTURAL_SYNC': 'NOT_PROVEN',
+              'TEST_RUNTIME_TRACEABILITY': 'NOT_APPLICABLE',
+          }
+          acceptance = {
+              'evidence_boundary': 'SW2-17 covers Generator Modularization only: narrow deterministic projection modules, byte-equivalent canonical outputs, direct projection regression, and complete permanent acceptance. It must not change canonical output semantics, SW2-14 incremental selection, SW2-16 historical evidence identity, or any prior V2 guarantee.',
+              'human_comprehension_questions': questions,
+              'human_comprehension_status': 'PASS',
+              'requirements': [
+                  {'id': 'SW2-17-R1', 'requirement': 'Projection modules have narrow responsibilities without unnecessary framework or plugin abstraction.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until renderer inventory and extracted module boundaries are implemented and reviewed by regression.'},
+                  {'id': 'SW2-17-R2', 'requirement': 'Every canonical generated document remains byte-equivalent unless an explicitly accepted format migration says otherwise.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until deterministic before/after output parity covers all canonical generated documents.'},
+                  {'id': 'SW2-17-R3', 'requirement': 'Direct unit/regression coverage exercises every projection module and preserves the complete renderer registry.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until each projection module has direct regression and missing/duplicate projection mappings fail closed.'},
+                  {'id': 'SW2-17-R4', 'requirement': 'The exact modularized candidate passes exhaustive finalize, Ubuntu/Windows governance, sequence, engine performance, and real-consumer acceptance.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until the complete permanent matrix passes on the final exact candidate.'},
+              ],
+              'runtime_checks': [],
+              'runtime_status': 'NOT_APPLICABLE',
+              'schema_version': 1,
+              'sequence_mode': 'DURING',
+              'sequence_session': 'SW2-17-GOVERNANCE',
+              'sequence_sync_status': 'NOT_PROVEN',
+              'test_commands': [
+                  'python scripts/selftest_project_truth_compiler.py',
+                  'python scripts/selftest_governance_engine.py',
+                  'python scripts/validate_project_docs.py --root .',
+                  'python scripts/validate_sequence_sessions.py --root .',
+                  'python scripts/governance_engine.py --root . --base 7e2c5e4669655764e24ec821cefc0c96e2886133 --mode finalize --expected-head <EXACT_HEAD>',
+              ],
+              'truth_gates': gates,
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          session = {
+              'acceptance_report': 'artifacts/sequence/SW2-17-GOVERNANCE.acceptance.json',
+              'actual': {
+                  'diagram': 'docs/sequence/generated/SW2-17-GOVERNANCE.actual.mmd',
+                  'entries': [
+                      'scripts/generate_project_docs.py::main',
+                      'scripts/sync_project_truth.py::main',
+                      'scripts/validate_project_docs.py::main',
+                      'scripts/governance_engine.py::main',
+                      'scripts/validate_sequence_sessions.py::main',
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-17-GOVERNANCE.actual.json',
+                  'source_digest': '',
+              },
+              'critical': True,
+              'evidence_boundary': 'SW2-17 sequence evidence covers the current monolithic generator, Project Truth synchronization, project-doc validation, governance orchestration, and historical sequence identity as the baseline for modular extraction. Static structure does not prove byte-equivalent projection output or narrow module responsibilities.',
+              'human_view': {
+                  'diagram': 'docs/sequence/generated/SW2-17-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-17-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'graph': 'docs/sequence/generated/SW2-17-GOVERNANCE.human.json',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': '',
+              },
+              'implementation_base_sha': ACCEPTED,
+              'mode': 'DURING',
+              'phase': 'SW2-17',
+              'plan': {'contract': '', 'diagram': '', 'frozen': False, 'frozen_commit': '', 'required': False, 'sha256': ''},
+              'runtime_trace': {'graph': '', 'required': False},
+              'schema_version': 1,
+              'scope': 'CURRENT',
+              'session_id': 'SW2-17-GOVERNANCE',
+              'status': 'IN_PROGRESS',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_project_truth_compiler.py',
+                  'scripts/selftest_governance_engine.py',
+                  'scripts/selftest_historical_evidence.py',
+              ],
+          }
+          write('docs/sequence/sessions/SW2-17-GOVERNANCE.json', session)
+          PY
+
+      - name: Generate SW2-17 sequence and Project Truth without helper in source view
+        shell: bash
+        run: |
+          cp .github/workflows/tmp-sw2-17-phase-open.yml "$RUNNER_TEMP/tmp-sw2-17-phase-open.yml"
+          rm -f .github/workflows/tmp-sw2-17-phase-open.yml
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-17-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([sys.executable, 'scripts/sequence_human_view.py', '--root', '.', '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'], '--output-json', human['graph'], '--output-mermaid', human['diagram'], '--output-markdown', human['document'], '--session-id', session['session_id']], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', str(session_path.relative_to(root))], check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+          cp "$RUNNER_TEMP/tmp-sw2-17-phase-open.yml" .github/workflows/tmp-sw2-17-phase-open.yml
+
+      - name: Commit phase-open authority before historical freeze
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow/acceptance.json .workflow/roadmap.json .workflow/state.json docs artifacts/sequence/SW2-17-GOVERNANCE.acceptance.json
+          git commit -m 'SW2-17: open Generator Modularization phase'
+          echo "PHASE_OPEN_COMMIT=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Freeze newly historical SW2-16 evidence and resync Project Truth
+        shell: bash
+        run: |
+          python scripts/validate_sequence_sessions.py --root . --freeze-historical --frozen-commit "$PHASE_OPEN_COMMIT" --authorize-migration "SW2-17 phase-open freezes accepted SW2-16 evidence"
+          cp .github/workflows/tmp-sw2-17-phase-open.yml "$RUNNER_TEMP/tmp-sw2-17-phase-open.yml"
+          rm -f .github/workflows/tmp-sw2-17-phase-open.yml
+          python scripts/sync_project_truth.py --root .
+          cp "$RUNNER_TEMP/tmp-sw2-17-phase-open.yml" .github/workflows/tmp-sw2-17-phase-open.yml
+          git add .workflow/historical_evidence.json docs .workflow/generated
+          if ! git diff --cached --quiet; then
+            git commit -m 'SW2-17: freeze SW2-16 historical evidence identity'
+          fi
+
+      - name: Validate final helper-free phase-open tree
+        shell: bash
+        run: |
+          rm -f .github/workflows/tmp-sw2-17-phase-open.yml
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_historical_evidence.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_governance_engine.py
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_project_docs.py --root .
+          python .github/scripts/validate_skill_reference_split.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          test ! -e .github/workflows/tmp-sw2-17-phase-open.yml
+          cp "$RUNNER_TEMP/tmp-sw2-17-phase-open.yml" .github/workflows/tmp-sw2-17-phase-open.yml
+
+      - name: Push normal authority commits
+        shell: bash
+        run: |
+          git push origin HEAD:work/sw2-17-generator-modularization
