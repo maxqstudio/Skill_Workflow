@@ -10,7 +10,7 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-18-unified-ci-orchestrator
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: ae24b4d96a95c8f658e5a3955c4739773b80532b
 Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986

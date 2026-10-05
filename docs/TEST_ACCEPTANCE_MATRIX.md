@@ -11,10 +11,10 @@ Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-18-R1 | Repeated checkout, runtime setup, and exact-candidate provenance logic is centralized into reusable CI primitives without weakening provenance. | NOT_PROVEN until permanent workflows consume the same reusable primitives and regression proves exact-head provenance remains fail-closed. | NOT_PROVEN |
-| SW2-18-R2 | Docs-only changes do not run irrelevant heavy performance or real-consumer work while source/governance changes still trigger every required heavy lane. | NOT_PROVEN until deterministic applicability regression covers docs-only, workflow/toolchain, source, governance, unknown, and release-critical changes. | NOT_PROVEN |
-| SW2-18-R3 | Required evidence gates remain independently visible and fail closed even though setup/applicability logic is consolidated. | NOT_PROVEN until the final CI topology preserves named Self Governance, Ubuntu/Windows Selftest, Sequence, Engine Performance, and Consumer Performance evidence contexts. | NOT_PROVEN |
-| SW2-18-R4 | Cross-platform governance and real-consumer acceptance remain green after CI consolidation. | NOT_PROVEN until the exact final candidate passes Ubuntu/Windows Governance Selftest, sequence evidence, engine performance, consumer parity, and exhaustive Self Governance. | NOT_PROVEN |
+| SW2-18-R1 | Repeated checkout, runtime setup, and exact-candidate provenance logic is centralized into reusable CI primitives without weakening provenance. | PASS: unified governance-ci.yml uses the reusable .github/actions/governance-bootstrap primitive for exact-head provenance, Python setup, and applicability across all five routine jobs; validate_unified_ci.py and cross-platform run 37324753236 prove the contract. | PASS |
+| SW2-18-R2 | Docs-only changes do not run irrelevant heavy performance or real-consumer work while source/governance changes still trigger every required heavy lane. | PASS: selftest_ci_applicability.py deterministically proves pure docs PRs suppress heavy work while .github, .workflow, scripts, SKILL.md, AGENTS.md, unknown and push events broaden fail-closed. Exact run 37324753236 classified this governance/CI change heavy and executed Engine plus real Consumer lanes. | PASS |
+| SW2-18-R3 | Required evidence gates remain independently visible and fail closed even though setup/applicability logic is consolidated. | PASS: unified Governance CI exposes the six existing permanent contexts independently: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, Sequence Evidence, Engine Performance, and Consumer Performance. validate_unified_ci.py passed on Ubuntu and Windows in run 37324753236. | PASS |
+| SW2-18-R4 | Cross-platform governance and real-consumer acceptance remain green after CI consolidation. | PASS: exact pre-promotion candidate c05ee66df88bbab8e54049a1f2c8e527e228867f passed Governance Selftest on Ubuntu and Windows, Sequence Evidence, Engine Performance, and max-grounding Consumer parity in run 37324753236. This closure transaction is pushed only if exhaustive clean exact-head finalize also passes after promotion. | PASS |
 
 ## Test commands
 
@@ -38,7 +38,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-18-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 

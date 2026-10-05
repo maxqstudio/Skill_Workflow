@@ -8,13 +8,13 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-18
-Status: IN_PROGRESS
+Status: SW2_18_UNIFIED_CI_ORCHESTRATOR_ACCEPTED
 Roadmap phase: SW2-18
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-18-unified-ci-orchestrator
+Branch: main
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: ae24b4d96a95c8f658e5a3955c4739773b80532b
 Current candidate SHA: external final acceptance evidence
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-18-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -105,12 +105,10 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-17 pre-promotion Self Governance 37294490948 traversed exhaustive finalize prerequisites on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d with clean governed state and stopped only at the intentionally unpromoted Project Truth gate; post-promotion 6/6 remains mandatory before merge.
 - SW2-17 Generator Modularization is accepted on exact clean post-promotion candidate 7404d52d38eedbbe87d489843136869901200f10: Self Governance 37310155298, Governance Selftest 37310155333 on Ubuntu and Windows, SW2 Sequence Evidence 37310155297, Governance Engine Performance 37310155394, and Consumer Engine Performance 37310155307 all succeeded.
 - SW2-17 Generator Modularization is accepted on main ae24b4d96a95c8f658e5a3955c4739773b80532b with tree 2ebae28dd772bd0c7e5f50e4f1e5a057af436312 equal to exact tested closure candidate cafdc432898e089f05258b881656655b4bd119d1. Post-merge main passed Self Governance 37310890039; Governance Selftest 37310890120 on Ubuntu and Windows; SW2 Sequence Evidence 37310890134; Governance Engine Performance 37310890101; and Consumer Engine Performance 37310890143.
+- SW2-18 Unified CI Orchestrator pre-promotion is proven on exact candidate c05ee66df88bbab8e54049a1f2c8e527e228867f: Governance Selftest run 37324753236 passed Ubuntu and Windows including unified-CI contract regression and read-only verify; Sequence Evidence, Engine Performance, and Consumer Performance also succeeded. Self Governance stopped only at the intentionally unpromoted Project Truth boundary.
+- SW2-18 centralizes exact-head provenance, Python setup, and CI applicability through .github/actions/governance-bootstrap/action.yml while preserving six independently visible permanent contexts. Docs-only applicability is deterministic and all unknown/governance/CI/source impact remains fail-closed to heavy validation.
 
 ## Not proven
-- SW2-18 centralized checkout/setup/provenance reuse is not yet proven.
-- SW2-18 docs-only heavy-lane suppression is not yet proven.
-- SW2-18 independent named evidence-gate visibility and fail-closed applicability are not yet proven.
-- SW2-18 cross-platform and real-consumer parity after CI consolidation are not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -120,10 +118,9 @@ SEQUENCE_SYNC: NOT_PROVEN
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Inventory repeated checkout/setup/provenance and applicability logic across permanent workflows.
-- Define reusable CI primitives and an explicit applicability classifier while preserving independently visible named evidence gates.
-- Add docs-only and source-change regressions proving irrelevant heavy lanes can be skipped without suppressing required failures.
-- Keep cross-platform and real-consumer acceptance green on the final candidate before SW2-18 closure.
+- Update PR #28 with exact SW2-18 closure evidence and squash-merge only from the final clean closure head.
+- Verify the squash-merged main tree equals the tested closure tree and require post-merge six permanent contexts to pass.
+- Only after SW2-18 is accepted on main may SW2-19 Performance Budget & V2.1 Release begin.
 
 ## Explicitly blocked
 - Do not collapse independent permanent evidence gates into one opaque status context.
