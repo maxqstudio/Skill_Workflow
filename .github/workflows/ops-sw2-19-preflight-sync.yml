@@ -1,0 +1,115 @@
+name: OPS SW2-19 V2.1 Preflight Sync
+
+on:
+  push:
+    branches:
+      - ops/sw2-19-preflight-sync
+    paths:
+      - .github/workflows/ops-sw2-19-preflight-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout SW2-19 target branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-19-performance-budget-v2.1
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prove V2.1 release preflight regression
+        run: |
+          python scripts/selftest_release_preflight.py
+          python scripts/selftest_performance_budget.py
+          python scripts/validate_performance_budget.py --root .
+          python .github/scripts/validate_unified_ci.py --root .
+
+      - name: Synchronize Project Truth and current sequence
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.')
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          session_id = str(acceptance.get('sequence_session', '')).strip()
+          if not session_id:
+              raise SystemExit('CURRENT_SEQUENCE_SESSION_MISSING')
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd.extend(['--entry', entry])
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          human = session.get('human_view') or {}
+          if human:
+              session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+                  '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+                  '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+                  '--output-markdown', human['document'], '--session-id', session_id,
+              ], check=True)
+          report = str(session.get('acceptance_report', '')).strip()
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', session_path.as_posix(), '--report', report,
+          ], check=True)
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.',
+                  '--session', session_path.as_posix(),
+              ], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+
+      - name: Commit synchronized candidate locally
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'SW2_19_PREFLIGHT_SYNC_NO_CHANGES=PASS'
+          else
+            git commit -m 'SW2-19: synchronize V2.1 publication preflight'
+          fi
+
+      - name: Validate clean synchronized candidate
+        shell: bash
+        run: |
+          python scripts/selftest_release_preflight.py
+          python scripts/selftest_performance_budget.py
+          python scripts/validate_performance_budget.py --root .
+          python .github/scripts/validate_unified_ci.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python .github/scripts/validate_skill_reference_split.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/selftest_governance_engine.py
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Push synchronized candidate
+        shell: bash
+        run: git push origin HEAD:work/sw2-19-performance-budget-v2.1
