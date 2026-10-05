@@ -242,6 +242,19 @@
       "objective": "Lock measured performance budgets and publish V2.1 only after the efficiency/maintainability program preserves or strengthens governance parity.",
       "status": "PLANNED",
       "title": "Performance Budget & V2.1 Release"
+    },
+    {
+      "exit_criteria": [
+        "A deterministic git-tracked documentation inventory discovers every governed documentation surface without relying on a hand-maintained file allowlist; explicit exclusions are machine-readable, justified, and fail closed.",
+        "Every discovered documentation file is classified exactly once by role and authority (source-authored public/operating/normative, generated projection, sequence/evidence, template, legal/community, or explicitly excluded); unclassified and multiply-classified files fail.",
+        "Every source-authored document has a declared or deterministic path-derived freshness contract; dynamic claims such as current phase, release/version, license, repository enforcement, schema/toolchain, and support state are bound to canonical authority or explicitly marked historical/static.",
+        "README.md, AGENTS.md, CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, SKILL.md, references/**/*.md, docs/**/*.md, docs/sequence/views/**/*.md, and tracked documentation templates are represented in machine-readable coverage evidence; adding, deleting, moving, or renaming a documentation file without coverage fails.",
+        "Regression fixtures reproduce the stale-document classes found by the 2026-10-06 audit (root README release headline, CONTRIBUTING license/protection claims, SECURITY pre-release wording, SW2-09 versioning/release wording, and an omitted handbook architecture page), and the exact final candidate passes the complete permanent matrix."
+      ],
+      "id": "SW2-20",
+      "objective": "Make every tracked documentation surface deterministically discoverable, classified, authority-bound, and freshness-validated so root README/community docs, bundled references, handbook pages, generated projections, templates, and evidence cannot silently escape governance.",
+      "status": "PLANNED",
+      "title": "Deterministic Documentation Inventory & Freshness Contract"
     }
   ],
   "schema_version": 1
