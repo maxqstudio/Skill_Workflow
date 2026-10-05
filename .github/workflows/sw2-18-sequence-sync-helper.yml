@@ -1,0 +1,85 @@
+name: SW2-18 Sequence Sync Helper
+
+on:
+  push:
+    branches:
+      - work/sw2-18-sequence-sync-helper
+    paths:
+      - .github/workflows/sw2-18-sequence-sync-helper.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout exact SW2-18 target
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-18-unified-ci-orchestrator
+          fetch-depth: 0
+      - name: Require expected target head
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "9544328e069184f2ff337ab5acd26eb21ead1423"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate current sequence from clean target
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          acceptance = json.loads((root / '.workflow/acceptance.json').read_text(encoding='utf-8'))
+          session_id = acceptance['sequence_session']
+          session_path = root / 'docs/sequence/sessions' / f'{session_id}.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session_id,
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', session_path.as_posix(), '--report', session['acceptance_report'],
+          ], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', session_path.as_posix()], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          print('SW2_18_SEQUENCE_SYNC=PASS')
+          PY
+      - name: Regenerate and validate Project Truth
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python .github/scripts/selftest_ci_applicability.py
+          python .github/scripts/validate_unified_ci.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_repository_health.py --root .
+      - name: Commit synchronized evidence to target branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow docs artifacts/sequence
+          git commit -m 'SW2-18: synchronize unified CI sequence evidence'
+          git push origin HEAD:work/sw2-18-unified-ci-orchestrator
