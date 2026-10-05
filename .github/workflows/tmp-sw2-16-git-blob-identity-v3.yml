@@ -1,0 +1,82 @@
+name: TEMP SW2-16 Git Blob Identity Repair V3
+
+on:
+  push:
+    branches: [work/sw2-16-historical-evidence-freeze]
+    paths: [.github/workflows/tmp-sw2-16-git-blob-identity-v3.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-16-historical-evidence-freeze
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Bind historical identity to Git object bytes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/validate_sequence_sessions.py')
+          text = p.read_text(encoding='utf-8')
+          anchor = '''def git_show_bytes(root: Path, commit: str, relpath: str) -> bytes:\n    return subprocess.check_output(\n        ["git", "-C", str(root), "show", f"{commit}:{relpath}"],\n        stderr=subprocess.STDOUT,\n    )\n\n\n'''
+          addition = '''def git_path_clean(root: Path, relpath: str) -> bool:\n    for args in (("diff", "--quiet", "--", relpath), ("diff", "--cached", "--quiet", "--", relpath)):\n        proc = subprocess.run(["git", "-C", str(root), *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)\n        if proc.returncode != 0:\n            return False\n    return True\n\n\n'''
+          if text.count(anchor) != 1: raise RuntimeError('GIT_SHOW_ANCHOR')
+          text = text.replace(anchor, anchor + addition, 1)
+          old_build = '''            current = path.read_bytes()\n            try:\n                frozen = git_show_bytes(root, frozen_commit, rel)\n            except subprocess.CalledProcessError as exc:\n                raise ValueError(f"HISTORICAL_EVIDENCE_NOT_IN_FROZEN_COMMIT:{rel}") from exc\n            current_sha = sha256_bytes(current)\n'''
+          new_build = '''            if not git_path_clean(root, rel):\n                raise ValueError(f"HISTORICAL_EVIDENCE_WORKTREE_DIRTY:{rel}")\n            try:\n                current = git_show_bytes(root, "HEAD", rel)\n            except subprocess.CalledProcessError as exc:\n                raise ValueError(f"HISTORICAL_EVIDENCE_NOT_IN_HEAD:{rel}") from exc\n            try:\n                frozen = git_show_bytes(root, frozen_commit, rel)\n            except subprocess.CalledProcessError as exc:\n                raise ValueError(f"HISTORICAL_EVIDENCE_NOT_IN_FROZEN_COMMIT:{rel}") from exc\n            current_sha = sha256_bytes(current)\n'''
+          if text.count(old_build) != 1: raise RuntimeError('BUILD_IDENTITY_ANCHOR')
+          text = text.replace(old_build, new_build, 1)
+          old_verify = '''            payload = path.read_bytes()\n            expected_sha = str(record.get("sha256", ""))\n            if sha256_bytes(payload) != expected_sha:\n                failures.append(f"HISTORICAL_CURRENT_HASH_MISMATCH:{rel}")\n            if len(payload) != record.get("bytes"):\n                failures.append(f"HISTORICAL_CURRENT_SIZE_MISMATCH:{rel}")\n'''
+          new_verify = '''            if not git_path_clean(root, rel):\n                failures.append(f"HISTORICAL_WORKTREE_DIRTY:{rel}")\n                continue\n            try:\n                payload = git_show_bytes(root, "HEAD", rel)\n            except subprocess.CalledProcessError:\n                failures.append(f"HISTORICAL_HEAD_FILE_MISSING:{rel}")\n                continue\n            expected_sha = str(record.get("sha256", ""))\n            if sha256_bytes(payload) != expected_sha:\n                failures.append(f"HISTORICAL_CURRENT_HASH_MISMATCH:{rel}")\n            if len(payload) != record.get("bytes"):\n                failures.append(f"HISTORICAL_CURRENT_SIZE_MISMATCH:{rel}")\n'''
+          if text.count(old_verify) != 1: raise RuntimeError('VERIFY_IDENTITY_ANCHOR')
+          p.write_text(text.replace(old_verify, new_verify, 1), encoding='utf-8', newline='\n')
+
+          t = Path('scripts/selftest_historical_evidence.py')
+          tests = t.read_text(encoding='utf-8')
+          old = 'any(item.startswith("HISTORICAL_CURRENT_HASH_MISMATCH:") for item in failures)'
+          new = 'any(item.startswith(("HISTORICAL_WORKTREE_DIRTY:", "HISTORICAL_CURRENT_HASH_MISMATCH:")) for item in failures)'
+          if tests.count(old) != 1: raise RuntimeError('TAMPER_EXPECTATION_ANCHOR')
+          tests = tests.replace(old, new, 1)
+          old_reset = '''        different_commit = git(root, "rev-parse", "HEAD")\n        actual_json.write_bytes(original_actual)\n        altered = json.loads(manifest_bytes.decode("utf-8"))\n'''
+          new_reset = '''        different_commit = git(root, "rev-parse", "HEAD")\n        git_run(root, "reset", "--hard", frozen_commit)\n        altered = json.loads(manifest_bytes.decode("utf-8"))\n'''
+          if tests.count(old_reset) != 1: raise RuntimeError('FROZEN_PROVENANCE_RESET_ANCHOR')
+          t.write_text(tests.replace(old_reset, new_reset, 1), encoding='utf-8', newline='\n')
+          PY
+          python scripts/selftest_historical_evidence.py
+          python scripts/selftest_sequence_squash_provenance.py
+      - name: Regenerate SW2-16 sequence and Project Truth
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root=Path('.').resolve(); sp=root/'docs/sequence/sessions/SW2-16-GOVERNANCE.json'; s=json.loads(sp.read_text(encoding='utf-8'))
+          a=s['actual']; cmd=[sys.executable,'scripts/generate_sequence_actual.py','--root','.','--output-json',a['graph'],'--output-mermaid',a['diagram']]
+          for e in a['entries']: cmd += ['--entry',e]
+          subprocess.run(cmd,check=True)
+          g=json.loads((root/a['graph']).read_text(encoding='utf-8')); d=g['source_digest']; s['actual']['source_digest']=d; s['human_view']['source_digest']=d
+          sp.write_text(json.dumps(s,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+          h=s['human_view']
+          subprocess.run([sys.executable,'scripts/sequence_human_view.py','--root','.','--actual-json',a['graph'],'--actual-mermaid',a['diagram'],'--output-json',h['graph'],'--output-mermaid',h['diagram'],'--output-markdown',h['document'],'--session-id',s['session_id']],check=True)
+          subprocess.run([sys.executable,'scripts/validate_sequence_contract.py','--root','.','--session',str(sp.relative_to(root))],check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+      - name: Commit non-workflow repair
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/validate_sequence_sessions.py scripts/selftest_historical_evidence.py .workflow docs artifacts/sequence
+          test -z "$(git diff --cached --name-only | grep '^.github/workflows/' || true)"
+          git commit -m 'SW2-16: verify historical identity from Git blobs'
+          git push origin HEAD:work/sw2-16-historical-evidence-freeze
