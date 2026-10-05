@@ -1,0 +1,51 @@
+name: Governance Bootstrap
+description: Centralize exact-head provenance, Python setup, and conservative CI applicability.
+
+inputs:
+  candidate-sha:
+    description: Exact candidate SHA checked out by the caller.
+    required: true
+  base-sha:
+    description: Pull request base SHA or push before SHA.
+    required: false
+    default: ""
+  event-name:
+    description: GitHub event name.
+    required: true
+
+outputs:
+  heavy:
+    description: Whether heavy performance/consumer lanes must run.
+    value: ${{ steps.applicability.outputs.heavy }}
+  reason:
+    description: Applicability decision reason.
+    value: ${{ steps.applicability.outputs.reason }}
+
+runs:
+  using: composite
+  steps:
+    - name: Verify exact candidate provenance
+      shell: bash
+      run: |
+        expected="${{ inputs.candidate-sha }}"
+        actual="$(git rev-parse HEAD)"
+        echo "EXPECTED_HEAD=$expected"
+        echo "ACTUAL_HEAD=$actual"
+        test -n "$expected"
+        test "$actual" = "$expected"
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Classify CI applicability
+      id: applicability
+      shell: bash
+      run: |
+        python .github/scripts/ci_applicability.py \
+          --root . \
+          --event "${{ inputs.event-name }}" \
+          --base "${{ inputs.base-sha }}" \
+          --head "${{ inputs.candidate-sha }}" \
+          --github-output "$GITHUB_OUTPUT"

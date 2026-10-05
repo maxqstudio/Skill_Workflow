@@ -1,0 +1,443 @@
+name: Governance CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  self-governance:
+    name: Self Governance (ubuntu-latest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Bootstrap governance CI
+        id: bootstrap
+        uses: ./.github/actions/governance-bootstrap
+        with:
+          candidate-sha: ${{ github.event.pull_request.head.sha || github.sha }}
+          base-sha: ${{ github.event.pull_request.base.sha || github.event.before }}
+          event-name: ${{ github.event_name }}
+      - name: Compile governance scripts
+        run: python -m compileall -q scripts
+      - name: Remove compile artifacts
+        shell: bash
+        run: find scripts -type d -name __pycache__ -prune -exec rm -rf {} +
+      - name: Unified CI contract regression
+        run: |
+          python .github/scripts/selftest_ci_applicability.py
+          python .github/scripts/validate_unified_ci.py --root .
+      - name: Skill core/reference contract
+        run: python .github/scripts/validate_skill_reference_split.py --root .
+      - name: Cross-document regression
+        run: python scripts/selftest_cross_document_regressions.py
+      - name: Governance Engine V2 regression
+        run: python scripts/selftest_governance_engine.py
+      - name: Run final Governance Engine V2 acceptance
+        shell: bash
+        run: |
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          test -n "$base"
+          python scripts/governance_engine.py \
+            --root . \
+            --base "$base" \
+            --mode finalize \
+            --expected-head "$expected"
+      - name: Upload generated governance preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: self-governance-generated
+          path: |
+            PROJECT_PROFILE.yaml
+            .workflow/acceptance.json
+            .workflow/generated/
+            docs/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Require tracked governance to be synchronized
+        shell: bash
+        run: |
+          status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs)"
+          if [ -n "$status" ]; then
+            echo "Generated governance differs from the tracked candidate:"
+            printf '%s\n' "$status"
+            exit 1
+          fi
+      - name: Require finalize path to remain read-only after synchronization
+        shell: bash
+        run: |
+          status="$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs)"
+          if [ -n "$status" ]; then
+            echo "Finalize mutated governed state unexpectedly:"
+            printf '%s\n' "$status"
+            exit 1
+          fi
+
+  governance-selftest:
+    name: Governance Selftest (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Bootstrap governance CI
+        id: bootstrap
+        uses: ./.github/actions/governance-bootstrap
+        with:
+          candidate-sha: ${{ github.event.pull_request.head.sha || github.sha }}
+          base-sha: ${{ github.event.pull_request.base.sha || github.event.before }}
+          event-name: ${{ github.event_name }}
+      - name: Compile governance scripts
+        env:
+          PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
+        run: python -m compileall -q scripts
+      - name: Unified CI contract regression
+        run: |
+          python .github/scripts/selftest_ci_applicability.py
+          python .github/scripts/validate_unified_ci.py --root .
+      - name: Skill core/reference split regression
+        run: |
+          python .github/scripts/selftest_skill_reference_split.py
+          python .github/scripts/validate_skill_reference_split.py --root .
+      - name: Schema and toolchain version regression
+        run: |
+          python scripts/selftest_schema_toolchain.py
+          python scripts/validate_schema_toolchain.py --root .
+      - name: Governance Engine V2 regression
+        run: python scripts/selftest_governance_engine.py
+      - name: Cross-language analyzer contract regression
+        run: python scripts/selftest_analyzer_contract.py
+      - name: Sequence call-resolution regression
+        run: python scripts/selftest_sequence_call_resolution.py
+      - name: Sequence squash-provenance regression
+        run: python scripts/selftest_sequence_squash_provenance.py
+      - name: Sequence human-view regression
+        run: python scripts/selftest_sequence_human_view.py
+      - name: Historical evidence freeze regression
+        run: python scripts/selftest_historical_evidence.py
+      - name: Public documentation regression
+        run: |
+          python scripts/selftest_public_docs.py
+          python scripts/selftest_generated_doc_presentation.py
+          python scripts/validate_public_docs.py --root .
+      - name: Repository health regression
+        run: |
+          python scripts/selftest_repository_health.py
+          python scripts/validate_repository_health.py --root .
+      - name: Ruleset policy regression
+        run: python scripts/selftest_github_ruleset.py
+      - name: Release preflight regression
+        run: python scripts/selftest_release_preflight.py
+      - name: Cross-document regression
+        run: python scripts/selftest_cross_document_regressions.py
+      - name: Project Truth Compiler self-test
+        run: python scripts/selftest_project_truth_compiler.py
+      - name: Verify mode is read-only
+        shell: bash
+        run: |
+          expected="$(git rev-parse HEAD)"
+          base="$(python -c 'import json; print(json.load(open(".workflow/state.json", encoding="utf-8"))["last_accepted_sha"])')"
+          python scripts/governance_engine.py --root . --base "$base" --mode verify --expected-head "$expected"
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts)"
+      - name: LITE and STANDARD adoption fixtures
+        run: python scripts/selftest_adoption_profiles.py
+      - name: STRICT workflow self-test
+        run: python scripts/selftest_strict_project_workflow.py
+
+  sequence-evidence:
+    name: SW2 Sequence Evidence (ubuntu-latest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Bootstrap governance CI
+        id: bootstrap
+        uses: ./.github/actions/governance-bootstrap
+        with:
+          candidate-sha: ${{ github.event.pull_request.head.sha || github.sha }}
+          base-sha: ${{ github.event.pull_request.base.sha || github.event.before }}
+          event-name: ${{ github.event_name }}
+      - name: Set up Node for Mermaid renderer
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.14.0"
+      - name: Generate and validate current governed sequence session
+        id: current_sequence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.')
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          session_id = str(acceptance.get('sequence_session', '')).strip()
+          if not session_id:
+              raise SystemExit('CURRENT_SEQUENCE_SESSION_MISSING')
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
+          if not session_path.is_file():
+              raise SystemExit(f'CURRENT_SEQUENCE_SESSION_NOT_FOUND:{session_path.as_posix()}')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          if session.get('scope') != 'CURRENT':
+              raise SystemExit(f'CURRENT_SEQUENCE_SCOPE_INVALID:{session.get("scope")}')
+          if session.get('session_id') != session_id:
+              raise SystemExit('CURRENT_SEQUENCE_ID_MISMATCH')
+          actual = session.get('actual') or {}
+          graph = str(actual.get('graph', '')).strip()
+          diagram = str(actual.get('diagram', '')).strip()
+          entries = [str(item).strip() for item in actual.get('entries', []) if str(item).strip()]
+          if not graph or not diagram or not entries:
+              raise SystemExit('CURRENT_SEQUENCE_ACTUAL_CONTRACT_INCOMPLETE')
+          generate = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', graph, '--output-mermaid', diagram]
+          for entry in entries:
+              generate.extend(['--entry', entry])
+          subprocess.run(generate, check=True)
+          human = session.get('human_view') or {}
+          human_declared = bool(human)
+          human_mmd = ''
+          if human_declared:
+              human_graph = str(human.get('graph', '')).strip()
+              human_mmd = str(human.get('diagram', '')).strip()
+              human_doc = str(human.get('document', '')).strip()
+              if not human_graph or not human_mmd or not human_doc:
+                  raise SystemExit('CURRENT_SEQUENCE_HUMAN_CONTRACT_INCOMPLETE')
+              subprocess.run([sys.executable, 'scripts/sequence_human_view.py', '--root', '.', '--actual-json', graph, '--actual-mermaid', diagram, '--output-json', human_graph, '--output-mermaid', human_mmd, '--output-markdown', human_doc, '--session-id', session_id], check=True)
+          report = str(session.get('acceptance_report', '')).strip()
+          if not report:
+              raise SystemExit('CURRENT_SEQUENCE_ACCEPTANCE_REPORT_MISSING')
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', session_path.as_posix(), '--report', report], check=True)
+          if human_declared:
+              subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', session_path.as_posix()], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          output_path = Path(os.environ['GITHUB_OUTPUT'])
+          with output_path.open('a', encoding='utf-8', newline='\n') as fh:
+              fh.write(f'session_id={session_id}\n')
+              fh.write(f'has_human={str(human_declared).lower()}\n')
+              fh.write(f'human_mmd={human_mmd}\n')
+              fh.write(f'actual_graph={graph}\n')
+              fh.write(f'actual_mmd={diagram}\n')
+              fh.write(f'acceptance_report={report}\n')
+          print(f'CURRENT_SEQUENCE_SESSION={session_id}')
+          print('CURRENT_SEQUENCE_GENERATION=PASS')
+          PY
+      - name: Render current human Mermaid diagram
+        if: steps.current_sequence.outputs.has_human == 'true'
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/puppeteer-config.json" <<'JSON'
+          {"args":["--no-sandbox"]}
+          JSON
+          npx -y -p @mermaid-js/mermaid-cli@12.0.0 mmdc \
+            -p "$RUNNER_TEMP/puppeteer-config.json" \
+            -i "${{ steps.current_sequence.outputs.human_mmd }}" \
+            -o "$RUNNER_TEMP/${{ steps.current_sequence.outputs.session_id }}.svg"
+          test -s "$RUNNER_TEMP/${{ steps.current_sequence.outputs.session_id }}.svg"
+      - name: Upload generated sequence evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-sequence-evidence
+          path: |
+            ${{ steps.current_sequence.outputs.actual_graph }}
+            ${{ steps.current_sequence.outputs.actual_mmd }}
+            ${{ steps.current_sequence.outputs.acceptance_report }}
+            docs/sequence/generated/${{ steps.current_sequence.outputs.session_id }}.human.json
+            docs/sequence/generated/${{ steps.current_sequence.outputs.session_id }}.human.mmd
+            docs/sequence/views/${{ steps.current_sequence.outputs.session_id }}.md
+            ${{ runner.temp }}/${{ steps.current_sequence.outputs.session_id }}.svg
+          if-no-files-found: error
+          retention-days: 14
+
+  governance-performance:
+    name: Governance Engine Performance (ubuntu-latest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Bootstrap governance CI
+        id: bootstrap
+        uses: ./.github/actions/governance-bootstrap
+        with:
+          candidate-sha: ${{ github.event.pull_request.head.sha || github.sha }}
+          base-sha: ${{ github.event.pull_request.base.sha || github.event.before }}
+          event-name: ${{ github.event_name }}
+      - name: Docs-only applicability
+        if: steps.bootstrap.outputs.heavy != 'true'
+        run: echo "GOVERNANCE_ENGINE_PERFORMANCE=NOT_APPLICABLE docs-only PR"
+      - name: Measure Governance Engine V2 against accepted baseline
+        if: steps.bootstrap.outputs.heavy == 'true'
+        run: >-
+          python scripts/benchmark_governance.py
+          --root .
+          --tool-root .
+          --repeats 3
+          --include-selftests
+          --expected-head "${{ github.event.pull_request.head.sha || github.sha }}"
+          --baseline benchmarks/baselines/sw2-00-self-linux.json
+          --label "SW2-01 Skill Workflow Engine V2"
+          --output artifacts/performance/sw2-01-self-engine.json
+      - name: Upload performance evidence
+        if: always() && steps.bootstrap.outputs.heavy == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-01-self-engine-performance
+          path: artifacts/performance/sw2-01-self-engine.json
+          if-no-files-found: error
+          retention-days: 14
+
+  max-grounding-performance:
+    name: Consumer Engine Performance (max-grounding)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact Skill Workflow candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Bootstrap governance CI
+        id: bootstrap
+        uses: ./.github/actions/governance-bootstrap
+        with:
+          candidate-sha: ${{ github.event.pull_request.head.sha || github.sha }}
+          base-sha: ${{ github.event.pull_request.base.sha || github.event.before }}
+          event-name: ${{ github.event_name }}
+      - name: Docs-only applicability
+        if: steps.bootstrap.outputs.heavy != 'true'
+        run: echo "CONSUMER_ENGINE_PERFORMANCE=NOT_APPLICABLE docs-only PR"
+      - name: Checkout pinned max-grounding consumer
+        if: steps.bootstrap.outputs.heavy == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: maxqstudio/max-grounding
+          ref: 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f
+          path: consumer
+          fetch-depth: 0
+      - name: Verify consumer provenance
+        if: steps.bootstrap.outputs.heavy == 'true'
+        shell: bash
+        run: |
+          expected="4c45a23c48b7954bbfb0ab86bcc92c975f345a1f"
+          actual="$(git -C consumer rev-parse HEAD)"
+          echo "EXPECTED_CONSUMER_HEAD=$expected"
+          echo "ACTUAL_CONSUMER_HEAD=$actual"
+          test "$actual" = "$expected"
+      - name: Install pinned consumer test dependencies
+        if: steps.bootstrap.outputs.heavy == 'true'
+        working-directory: consumer
+        run: python -m pip install '.[service,test]'
+      - name: Explicitly migrate pinned legacy consumer to schema v1
+        if: steps.bootstrap.outputs.heavy == 'true'
+        run: |
+          python scripts/migrate_governance_v1.py --root consumer
+          python scripts/migrate_governance_v1.py --root consumer
+          python scripts/validate_schema_toolchain.py --root consumer
+          test "$(git -C consumer rev-parse HEAD)" = "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f"
+      - name: Run consumer source acceptance under candidate toolchain
+        if: steps.bootstrap.outputs.heavy == 'true'
+        working-directory: consumer
+        run: |
+          python -m unittest discover -s tests -v
+          python -m compileall -q src tests integration .workflow/tools
+      - name: Measure candidate engine on pinned consumer
+        if: steps.bootstrap.outputs.heavy == 'true'
+        run: >-
+          python scripts/benchmark_governance.py
+          --root consumer
+          --tool-root .
+          --repeats 3
+          --expected-head 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f
+          --baseline benchmarks/baselines/sw2-00-max-grounding-linux.json
+          --label "SW2-08 migrated max-grounding consumer with candidate Engine V2"
+          --output ../artifacts/performance/sw2-01-max-grounding-engine.json
+      - name: Synchronize migrated consumer governance
+        if: steps.bootstrap.outputs.heavy == 'true'
+        working-directory: consumer
+        run: python .workflow/tools/sync_project_truth.py --root .
+      - name: Commit migrated consumer snapshot locally
+        if: steps.bootstrap.outputs.heavy == 'true'
+        shell: bash
+        run: |
+          git -C consumer config user.name "Skill Workflow SW2-08"
+          git -C consumer config user.email "skill-workflow-sw2-08@example.invalid"
+          git -C consumer add -A
+          git -C consumer commit -m "test: SW2-08 candidate toolchain migration"
+          echo "MIGRATED_CONSUMER_HEAD=$(git -C consumer rev-parse HEAD)" >> "$GITHUB_ENV"
+          test -z "$(git -C consumer status --porcelain)"
+      - name: Validate migrated consumer governance parity
+        if: steps.bootstrap.outputs.heavy == 'true'
+        working-directory: consumer
+        shell: bash
+        run: |
+          python .workflow/tools/validate_project_docs.py --root .
+          python .workflow/tools/validate_doc_quality.py --root .
+          python .workflow/tools/validate_handoff.py --root .
+          python .workflow/tools/validate_human_comprehension.py --root . --require-pass
+          python .workflow/tools/validate_sequence_sessions.py --root .
+          BASE=$(python -c "import json; print(json.load(open('.workflow/state.json', encoding='utf-8'))['last_accepted_sha'])")
+          python .workflow/tools/validate_cross_document_consistency.py --root . --base "$BASE" --require-base
+          python .workflow/tools/validate_project_truth.py --root . --project-docs-already-validated
+          test -z "$(git status --porcelain)"
+      - name: Record machine-readable consumer parity evidence
+        if: steps.bootstrap.outputs.heavy == 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          out = Path('artifacts/performance/sw2-08-max-grounding-parity.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps({
+              'schema_version': 1,
+              'result': 'PASS',
+              'consumer': 'maxqstudio/max-grounding',
+              'consumer_upstream_sha': '4c45a23c48b7954bbfb0ab86bcc92c975f345a1f',
+              'consumer_migrated_local_sha': os.environ['MIGRATED_CONSUMER_HEAD'],
+              'skill_workflow_candidate_sha': os.environ.get('GITHUB_HEAD_SHA') or os.environ.get('GITHUB_SHA'),
+              'source_acceptance': 'PASS',
+              'schema_migration': 'PASS',
+              'project_truth_sync': 'PASS',
+              'governance_parity': 'PASS',
+              'publication_authority': False,
+          }, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+      - name: Upload consumer performance and parity evidence
+        if: always() && steps.bootstrap.outputs.heavy == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-08-max-grounding-performance-parity
+          path: |
+            artifacts/performance/sw2-01-max-grounding-engine.json
+            artifacts/performance/sw2-08-max-grounding-parity.json
+          if-no-files-found: error
+          retention-days: 14
