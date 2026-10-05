@@ -288,6 +288,28 @@ def smart_validation_dag_contract() -> None:
     )
     print("SMART_DEVELOP_IMPACT_SELECTION=PASS")
 
+    ci_paths = (
+        ".github/actions/governance-bootstrap/action.yml",
+        ".github/scripts/ci_applicability.py",
+        ".github/workflows/governance-ci.yml",
+    )
+    ci_impacts = classify_changed_paths(ci_paths)
+    require(ci_impacts == ("ci",), f"CI primitives misclassified: {ci_impacts}")
+    require(
+        effective_mode("develop", ci_impacts) == "verify",
+        f"CI impact did not broaden develop to verify: {ci_impacts}",
+    )
+    require(
+        effective_mode("verify", ci_impacts) == "verify",
+        f"known CI impact escalated verify to finalize: {ci_impacts}",
+    )
+    ci_verify = planned_node_names("verify", "verify", ci_paths, ci_impacts)
+    require(
+        ci_verify == VERIFY_NODE_NAMES,
+        f"CI verify did not retain full verify safety net: {ci_verify}",
+    )
+    print("CI_IMPACT_CLASSIFICATION=PASS")
+
     doc_paths = ("references/governance-and-project-truth.md",)
     doc_impacts = classify_changed_paths(doc_paths)
     doc_verify = planned_node_names("verify", "verify", doc_paths, doc_impacts)

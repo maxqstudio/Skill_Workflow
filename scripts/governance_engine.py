@@ -412,7 +412,7 @@ def classify_path(path: str) -> str:
         return "benchmark"
     if path.startswith("templates/"):
         return "template"
-    if path.startswith(".github/workflows/"):
+    if path.startswith(".github/"):
         return "ci"
     if path.startswith("scripts/"):
         return "broad_source"

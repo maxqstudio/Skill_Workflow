@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d
+Source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -567,10 +567,10 @@ responsibility, callers, or state ownership.
 | dag_fail_closed.fail | method | 136-137 |
 | dag_fail_closed.downstream | method | 139-142 |
 | mode_planning_contract | function | 173-275 |
-| smart_validation_dag_contract | function | 279-401 |
-| changed_path_collection_contract | function | 404-426 |
-| mode_cli_integration_contract | function | 429-522 |
-| main | function | 525-535 |
+| smart_validation_dag_contract | function | 279-423 |
+| changed_path_collection_contract | function | 426-448 |
+| mode_cli_integration_contract | function | 451-544 |
+| main | function | 547-557 |
 
 </details>
 

@@ -10,7 +10,7 @@
       "scripts/validate_cross_document_consistency.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-18-GOVERNANCE.actual.json",
-    "source_digest": "751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d"
+    "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
   },
   "critical": true,
   "evidence_boundary": "SW2-18 sequence evidence covers the governance/Project Truth/sequence validation path used by permanent CI as a baseline for CI consolidation. Static structure does not prove workflow applicability decisions, named GitHub check visibility, or reusable setup/provenance behavior.",
@@ -20,7 +20,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-18-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d"
+    "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
   },
   "implementation_base_sha": "ae24b4d96a95c8f658e5a3955c4739773b80532b",
   "mode": "DURING",

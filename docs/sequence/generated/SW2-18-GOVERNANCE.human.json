@@ -542,7 +542,7 @@
       ]
     }
   ],
-  "observed_head": "9544328e069184f2ff337ab5acd26eb21ead1423",
+  "observed_head": "4fc3950a270b294d29c92f98c6a2b5bdcc679971",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 20,
@@ -648,5 +648,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d"
+  "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986"
 }

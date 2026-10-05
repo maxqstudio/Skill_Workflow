@@ -301,7 +301,7 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 539
+      "lines": 561
     },
     {
       "directory": "scripts",
@@ -10924,11 +10924,19 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "dependency_closure"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
-      "target_token": "len"
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "effective_mode"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -10936,6 +10944,14 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "planned_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "planned_node_names"
     },
     {
@@ -10973,6 +10989,26 @@
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -24372,7 +24408,7 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 401,
+      "line_end": 423,
       "line_start": 279,
       "locator": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "symbol": "smart_validation_dag_contract"
@@ -24380,24 +24416,24 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 426,
-      "line_start": 404,
+      "line_end": 448,
+      "line_start": 426,
       "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
       "symbol": "changed_path_collection_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 522,
-      "line_start": 429,
+      "line_end": 544,
+      "line_start": 451,
       "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
       "symbol": "mode_cli_integration_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 535,
-      "line_start": 525,
+      "line_end": 557,
+      "line_start": 547,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -25611,13 +25647,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d",
+  "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986",
   "source_summary": {
     "files": 60,
     "languages": {
       "Python": 60
     },
-    "lines": 15045,
+    "lines": 15067,
     "test_files": 0
   },
   "tests": []
