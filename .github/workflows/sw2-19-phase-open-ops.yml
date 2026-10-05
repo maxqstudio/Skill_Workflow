@@ -1,0 +1,274 @@
+name: OPS SW2-19 Phase Open
+
+on:
+  push:
+    branches:
+      - ops/sw2-19-phase-open
+    paths:
+      - .github/workflows/sw2-19-phase-open-ops.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      TARGET_BRANCH: work/sw2-19-performance-budget-v2.1
+      ACCEPTED_MAIN: 8a16ddb1994d1a6080816c8b9b78f75137d33e72
+    steps:
+      - name: Checkout target branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-19-performance-budget-v2.1
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Stage accepted SW2-18 as historical
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('docs/sequence/sessions/SW2-18-GOVERNANCE.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          d['scope'] = 'HISTORICAL'
+          d['status'] = 'COMPLETE'
+          p.write_text(json.dumps(d, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          git add docs/sequence/sessions/SW2-18-GOVERNANCE.json
+          git commit -m 'SW2-19: stage accepted SW2-18 historical boundary'
+
+      - name: Freeze historical evidence including SW2-18
+        shell: bash
+        run: |
+          frozen="$(git rev-parse HEAD)"
+          python scripts/validate_sequence_sessions.py \
+            --root . \
+            --freeze-historical \
+            --frozen-commit "$frozen" \
+            --authorize-migration 'SW2-19 phase-open freezes accepted SW2-18 evidence'
+
+      - name: Open SW2-19 governed authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ACCEPTED = '8a16ddb1994d1a6080816c8b9b78f75137d33e72'
+          BRANCH = 'work/sw2-19-performance-budget-v2.1'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def write(path, data):
+              Path(path).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap = load('.workflow/roadmap.json')
+          roadmap['current_phase'] = 'SW2-19'
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-18':
+                  phase['status'] = 'COMPLETE'
+              elif phase['id'] == 'SW2-19':
+                  phase['status'] = 'CURRENT'
+          if sum(1 for p in roadmap['phases'] if p['status'] == 'CURRENT') != 1:
+              raise RuntimeError('ROADMAP_CURRENT_PHASE_CARDINALITY')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          state['phase'] = 'SW2-19'
+          state['status'] = 'IN_PROGRESS'
+          state['working_branch'] = BRANCH
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = ACCEPTED
+          state['blockers'] = []
+          state['blocked_actions'] = [
+              'Do not publish or move a V2.1 tag/release before exact release-candidate acceptance and strict publication authority are proven.',
+              'Do not weaken generated-doc drift, false-PASS, cross-platform, consumer, or exhaustive finalize guarantees to meet a performance budget.',
+              'Do not treat benchmark cache, one hosted-runner sample, or docs-only skipped heavy lanes as final performance authority.',
+              'Do not retarget or mutate the accepted v2.0.0 tag/release.',
+          ]
+          state['next_authorized_actions'] = [
+              'Measure develop, verify, and finalize wall-clock budgets with reproducible machine-readable evidence.',
+              'Prove generated-document drift and adversarial false-PASS regression remain zero.',
+              'Require Ubuntu/Windows governance and real-consumer parity on the exact V2.1 release candidate.',
+              'Run strict V2.1 publication preflight and publish only from the exact tested main SHA after all prior SW2-19 gates pass.',
+          ]
+          state['not_proven'] = [
+              'SW2-19 measured develop/verify/finalize performance budgets are not yet proven.',
+              'SW2-19 zero generated-doc drift and zero false-PASS regression are not yet proven.',
+              'SW2-19 exact V2.1 cross-platform and real-consumer release-candidate parity are not yet proven.',
+              'SW2-19 versioned V2.1 publication from the exact tested SHA is not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.',
+          ]
+          proven = list(state.get('proven', []))
+          closure = (
+              'SW2-18 Unified CI Orchestrator is accepted on main ' + ACCEPTED +
+              ' with tree d99d4798da694cd65ae490b2b871a11c4e6294e6 equal to exact tested candidate 719a7491cd5773b0dee260fd4e713e5caad93374. '
+              'Post-merge Governance CI run 37330706174 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance.'
+          )
+          if closure not in proven:
+              proven.append(closure)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
+
+          questions = {
+              'How does failure/recovery behave?': 'PASS',
+              'How does important data flow through the system?': 'PASS',
+              'What are the important lifecycle states and transitions?': 'PASS',
+              'What are the main user/domain workflows?': 'PASS',
+              'What are the major components and how do they relate?': 'PASS',
+              'What is mutable and what is immutable?': 'PASS',
+              'What is proven and what is not proven?': 'PASS',
+              'What is the current project state?': 'PASS',
+              'What is the project and what problem does it solve?': 'PASS',
+              'What may happen next and what is blocked?': 'PASS',
+              'Who uses it and what are the primary outcomes?': 'PASS',
+              'Who/what is authoritative for important decisions?': 'PASS',
+          }
+          gates = {
+              'BEHAVIORAL_SYNC': 'NOT_APPLICABLE',
+              'CROSS_DOCUMENT_CONSISTENCY': 'NOT_PROVEN',
+              'DOC_LAYOUT': 'PASS',
+              'DOC_READABILITY': 'PASS',
+              'DOC_SOURCE_TRACEABILITY': 'NOT_PROVEN',
+              'DOC_TEST_TRACEABILITY': 'NOT_PROVEN',
+              'HUMAN_COMPREHENSION': 'PASS',
+              'PROJECT_DOCS_NORMALIZED': 'PASS',
+              'PROJECT_DOCS_SYNC': 'PASS',
+              'PROJECT_STATE_SYNC': 'NOT_PROVEN',
+              'PROVENANCE_SYNC': 'NOT_PROVEN',
+              'REFERENCE_SYNC': 'NOT_PROVEN',
+              'ROADMAP_SYNC': 'PASS',
+              'RUNTIME_E2E': 'NOT_APPLICABLE',
+              'SEMANTIC_SYNC': 'NOT_PROVEN',
+              'SEQUENCE_SYNC': 'NOT_PROVEN',
+              'SOURCE_TESTS': 'NOT_PROVEN',
+              'STRUCTURAL_SYNC': 'NOT_PROVEN',
+              'TEST_RUNTIME_TRACEABILITY': 'NOT_APPLICABLE',
+          }
+          acceptance = {
+              'evidence_boundary': 'SW2-19 covers performance-budget acceptance and V2.1 publication only. It must preserve all accepted V2 governance, Project Truth, historical-evidence, CI applicability, cross-platform, and real-consumer guarantees.',
+              'human_comprehension_questions': questions,
+              'human_comprehension_status': 'PASS',
+              'requirements': [
+                  {'id':'SW2-19-R1','requirement':'Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until reproducible benchmark evidence establishes budgets and regression policy.'},
+                  {'id':'SW2-19-R2','requirement':'Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until deterministic drift checks and false-PASS regressions pass on the exact candidate.'},
+                  {'id':'SW2-19-R3','requirement':'Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until the complete named acceptance matrix passes on the exact candidate.'},
+                  {'id':'SW2-19-R4','requirement':'A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until strict publication preflight authorizes the exact tested main SHA and live tag/release identity is verified.'},
+              ],
+              'runtime_checks': [],
+              'runtime_status': 'NOT_APPLICABLE',
+              'schema_version': 1,
+              'sequence_mode': 'DURING',
+              'sequence_session': 'SW2-19-GOVERNANCE',
+              'sequence_sync_status': 'NOT_PROVEN',
+              'test_commands': [
+                  'python scripts/selftest_governance_engine.py',
+                  'python scripts/selftest_project_truth_compiler.py',
+                  'python scripts/selftest_cross_document_regressions.py',
+                  'python .github/scripts/selftest_ci_applicability.py',
+                  'python scripts/validate_project_docs.py --root .',
+                  'python scripts/validate_sequence_sessions.py --root .',
+                  'python scripts/governance_engine.py --root . --base ' + ACCEPTED + ' --mode finalize --expected-head <EXACT_HEAD>',
+              ],
+              'truth_gates': gates,
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          session = {
+              'acceptance_report':'artifacts/sequence/SW2-19-GOVERNANCE.acceptance.json',
+              'actual':{
+                  'diagram':'docs/sequence/generated/SW2-19-GOVERNANCE.actual.mmd',
+                  'entries':[
+                      'scripts/governance_engine.py::main',
+                      'scripts/sync_project_truth.py::main',
+                      'scripts/validate_project_docs.py::main',
+                      'scripts/validate_sequence_sessions.py::main',
+                      'scripts/validate_cross_document_consistency.py::main',
+                      'scripts/release_preflight.py::main',
+                  ],
+                  'graph':'docs/sequence/generated/SW2-19-GOVERNANCE.actual.json',
+                  'source_digest':'',
+              },
+              'critical':True,
+              'evidence_boundary':'SW2-19 sequence evidence covers governance, Project Truth, historical evidence, CI validation, and release-preflight paths used to measure and publish V2.1. Publication identity and performance budgets require separate runtime/benchmark evidence.',
+              'human_view':{
+                  'diagram':'docs/sequence/generated/SW2-19-GOVERNANCE.human.mmd',
+                  'document':'docs/sequence/views/SW2-19-GOVERNANCE.md',
+                  'granularity':'module',
+                  'graph':'docs/sequence/generated/SW2-19-GOVERNANCE.human.json',
+                  'policy_id':'module-collapse-v1',
+                  'source_digest':'',
+              },
+              'implementation_base_sha':ACCEPTED,
+              'mode':'DURING',
+              'phase':'SW2-19',
+              'plan':{'contract':'','diagram':'','frozen':False,'frozen_commit':'','required':False,'sha256':''},
+              'runtime_trace':{'graph':'','required':False},
+              'schema_version':1,
+              'scope':'CURRENT',
+              'session_id':'SW2-19-GOVERNANCE',
+              'status':'IN_PROGRESS',
+              'test_traceability_required':True,
+              'tests':['scripts/selftest_governance_engine.py','scripts/selftest_project_truth_compiler.py','scripts/selftest_cross_document_regressions.py','.github/scripts/selftest_ci_applicability.py'],
+          }
+          write('docs/sequence/sessions/SW2-19-GOVERNANCE.json', session)
+          PY
+
+      - name: Generate and validate SW2-19 sequence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.').resolve()
+          sp = root / 'docs/sequence/sessions/SW2-19-GOVERNANCE.json'
+          s = json.loads(sp.read_text(encoding='utf-8'))
+          a = s['actual']
+          cmd=[sys.executable,'scripts/generate_sequence_actual.py','--root','.','--output-json',a['graph'],'--output-mermaid',a['diagram']]
+          for entry in a['entries']:
+              cmd += ['--entry',entry]
+          subprocess.run(cmd,check=True)
+          graph=json.loads((root/a['graph']).read_text(encoding='utf-8'))
+          digest=graph['source_digest']
+          s['actual']['source_digest']=digest
+          s['human_view']['source_digest']=digest
+          sp.write_text(json.dumps(s,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+          h=s['human_view']
+          subprocess.run([sys.executable,'scripts/sequence_human_view.py','--root','.','--actual-json',a['graph'],'--actual-mermaid',a['diagram'],'--output-json',h['graph'],'--output-mermaid',h['diagram'],'--output-markdown',h['document'],'--session-id',s['session_id']],check=True)
+          subprocess.run([sys.executable,'scripts/validate_sequence_contract.py','--root','.','--session','docs/sequence/sessions/SW2-19-GOVERNANCE.json'],check=True)
+          acc=Path('.workflow/acceptance.json')
+          d=json.loads(acc.read_text(encoding='utf-8'))
+          d['sequence_sync_status']='PASS'
+          d['truth_gates']['SEQUENCE_SYNC']='PASS'
+          acc.write_text(json.dumps(d,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+          PY
+
+      - name: Regenerate Project Truth and validate phase-open tree
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python .github/scripts/selftest_ci_applicability.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+
+      - name: Commit and push clean phase-open authority
+        shell: bash
+        run: |
+          git add -A
+          git commit -m 'SW2-19: open Performance Budget and V2.1 Release phase'
+          git push origin HEAD:"$TARGET_BRANCH"
