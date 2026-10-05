@@ -1,0 +1,73 @@
+name: TEMP SW2-16 Windows LF Repair
+
+on:
+  push:
+    branches: [work/sw2-16-historical-evidence-freeze]
+    paths: [.github/workflows/tmp-sw2-16-windows-lf-fix.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-16-historical-evidence-freeze
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Make historical fixture line endings deterministic
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/selftest_historical_evidence.py')
+          text = path.read_text(encoding='utf-8')
+          originals = [
+              "actual_json.write_text('{\"source_digest\":\"abc\",\"generated\":true}\\n', encoding=\"utf-8\")",
+              "actual_mmd.write_text(\"sequenceDiagram\\n\", encoding=\"utf-8\")",
+              "human_json.write_text('{\"source_digest\":\"abc\"}\\n', encoding=\"utf-8\")",
+              "human_mmd.write_text(\"sequenceDiagram\\n\", encoding=\"utf-8\")",
+              "human_md.write_text(\"# Historical view\\n\", encoding=\"utf-8\")",
+              "acceptance.write_text('{\"result\":\"PASS\"}\\n', encoding=\"utf-8\")",
+          ]
+          replacements = [item[:-1] + ', newline="\\n")' for item in originals]
+          for old, new in zip(originals, replacements):
+              if text.count(old) != 1:
+                  raise RuntimeError('LF_FIX_ANCHOR:' + old[:40])
+              text = text.replace(old, new, 1)
+          path.write_text(text, encoding='utf-8', newline='\n')
+          PY
+          python scripts/selftest_historical_evidence.py
+          python scripts/selftest_sequence_squash_provenance.py
+      - name: Regenerate current SW2-16 sequence and Project Truth
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root=Path('.').resolve(); sp=root/'docs/sequence/sessions/SW2-16-GOVERNANCE.json'; s=json.loads(sp.read_text(encoding='utf-8'))
+          a=s['actual']; cmd=[sys.executable,'scripts/generate_sequence_actual.py','--root','.','--output-json',a['graph'],'--output-mermaid',a['diagram']]
+          for e in a['entries']: cmd += ['--entry',e]
+          subprocess.run(cmd,check=True)
+          g=json.loads((root/a['graph']).read_text(encoding='utf-8')); d=g['source_digest']; s['actual']['source_digest']=d; s['human_view']['source_digest']=d
+          sp.write_text(json.dumps(s,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+          h=s['human_view']
+          subprocess.run([sys.executable,'scripts/sequence_human_view.py','--root','.','--actual-json',a['graph'],'--actual-mermaid',a['diagram'],'--output-json',h['graph'],'--output-mermaid',h['diagram'],'--output-markdown',h['document'],'--session-id',s['session_id']],check=True)
+          subprocess.run([sys.executable,'scripts/validate_sequence_contract.py','--root','.','--session',str(sp.relative_to(root))],check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+      - name: Commit non-workflow repair
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/selftest_historical_evidence.py .workflow docs artifacts/sequence
+          test -z "$(git diff --cached --name-only | grep '^.github/workflows/' || true)"
+          git commit -m 'SW2-16: make historical fixture LF deterministic'
+          git push origin HEAD:work/sw2-16-historical-evidence-freeze
