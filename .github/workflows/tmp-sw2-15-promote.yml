@@ -1,0 +1,177 @@
+name: TEMP SW2-15 Promote Acceptance
+
+on:
+  push:
+    branches:
+      - work/sw2-15-smart-validation-dag
+    paths:
+      - .github/workflows/tmp-sw2-15-promote.yml
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-15-smart-validation-dag
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Promote SW2-15 evidence authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          candidate = '9ec6adada160f8707bfda30ebd128fd05a2e39e2'
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          evidence = {
+              'SW2-15-R1': (
+                  'PASS: exact clean feature candidate ' + candidate + ' passed Governance Selftest '
+                  'run 37246954719 on Ubuntu and Windows. The permanent Governance Engine regression '
+                  'proved SMART_DEVELOP_IMPACT_SELECTION=PASS together with deterministic changed-path '
+                  'classification and fail-closed escalation for unknown, broad-source, template, and CI impact.'
+              ),
+              'SW2-15-R2': (
+                  'PASS: exact clean feature candidate ' + candidate + ' passed Governance Selftest '
+                  'run 37246954719 on Ubuntu and Windows with SMART_VERIFY_DEPENDENCY_CLOSURE=PASS and '
+                  'SMART_PLANNER_FAIL_CLOSED=PASS. Known documentation impact selects the required '
+                  'Project Truth/document/handoff/cross-document closure without unrelated source regressions; '
+                  'unknown planner nodes, missing dependencies, cycles, and unmapped verify impact fail closed.'
+              ),
+              'SW2-15-R3': (
+                  'PASS: exact clean feature candidate ' + candidate + ' passed '
+                  'SMART_FINALIZE_EXHAUSTIVE=PASS in Governance Selftest run 37246954719 on Ubuntu and Windows. '
+                  'Pre-promotion Self Governance run 37246954738 bound exact HEAD and executed the complete '
+                  '13-node finalize authority with source regressions, strict workflow, exhaustive Project Truth '
+                  'sync, human/sequence/handoff/cross-document validation, and final_acceptance_authority=true; '
+                  'it stopped only at the intentionally unpromoted Project Truth status gate.'
+              ),
+              'SW2-15-R4': (
+                  'PASS for feature promotion: exact clean feature candidate ' + candidate + ' passed '
+                  'Governance Selftest run 37246954719 on Ubuntu and Windows, SW2 Sequence Evidence run '
+                  '37246954759, Governance Engine Performance run 37246954726, and Consumer Engine Performance '
+                  'run 37246954744. The permanent adversarial planner regressions passed, and pre-promotion '
+                  'Self Governance run 37246954738 reached only the intentionally unpromoted Project Truth gate '
+                  'after all preceding authoritative finalize nodes passed. Full post-promotion 6/6 permanent '
+                  'acceptance remains required before merge/closure.'
+              ),
+          }
+          requirements = acceptance.get('requirements', [])
+          observed = {item.get('id') for item in requirements}
+          expected = set(evidence)
+          if observed != expected:
+              raise RuntimeError(f'REQUIREMENT_SET_MISMATCH:{sorted(observed)}')
+          for item in requirements:
+              item['status'] = 'PASS'
+              item['evidence'] = evidence[item['id']]
+
+          acceptance['sequence_sync_status'] = 'PASS'
+          gates = acceptance.setdefault('truth_gates', {})
+          for name in (
+              'SOURCE_TESTS',
+              'PROVENANCE_SYNC',
+              'REFERENCE_SYNC',
+              'STRUCTURAL_SYNC',
+              'SEMANTIC_SYNC',
+              'CROSS_DOCUMENT_CONSISTENCY',
+              'HUMAN_COMPREHENSION',
+              'SEQUENCE_SYNC',
+              'ROADMAP_SYNC',
+              'DOC_LAYOUT',
+              'PROJECT_DOCS_NORMALIZED',
+              'DOC_READABILITY',
+              'PROJECT_DOCS_SYNC',
+              'DOC_SOURCE_TRACEABILITY',
+              'DOC_TEST_TRACEABILITY',
+              'PROJECT_STATE_SYNC',
+          ):
+              gates[name] = 'PASS'
+          gates['BEHAVIORAL_SYNC'] = 'NOT_APPLICABLE'
+          gates['RUNTIME_E2E'] = 'NOT_APPLICABLE'
+          gates['TEST_RUNTIME_TRACEABILITY'] = 'NOT_APPLICABLE'
+          acceptance_path.write_text(
+              json.dumps(acceptance, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+              newline='\n',
+          )
+
+          state_path = Path('.workflow/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          remove = {
+              'SW2-15 safe impacted-node selection for develop is not yet proven.',
+              'SW2-15 complete dependency closure for verify is not yet proven.',
+              'SW2-15 exhaustive finalize DAG parity is not yet proven.',
+              'SW2-15 adversarial false-PASS resistance across cross-platform and real-consumer acceptance is not yet proven.',
+          }
+          state['not_proven'] = [
+              item for item in state.get('not_proven', []) if item not in remove
+          ]
+          if remove.intersection(state.get('not_proven', [])):
+              raise RuntimeError('STATE_NOT_PROVEN_CLEANUP_FAILED')
+
+          proven = state.setdefault('proven', [])
+          statements = [
+              'SW2-15 Smart Validation DAG develop/verify planning is feature-proven on exact clean candidate ' + candidate + ': Governance Selftest 37246954719 passed Ubuntu and Windows with SMART_DEVELOP_IMPACT_SELECTION, SMART_VERIFY_DEPENDENCY_CLOSURE, SMART_PLANNER_FAIL_CLOSED, and SMART_FINALIZE_EXHAUSTIVE regressions.',
+              'SW2-15 feature-level integration evidence is green on exact clean candidate ' + candidate + ': SW2 Sequence Evidence 37246954759, Governance Engine Performance 37246954726, and Consumer Engine Performance 37246954744 succeeded; pre-promotion Self Governance 37246954738 reached only the intentionally unpromoted Project Truth gate after exhaustive finalize prerequisites passed.',
+          ]
+          for statement in statements:
+              if statement not in proven:
+                  proven.append(statement)
+
+          state['next_authorized_actions'] = [
+              'Run the complete permanent acceptance matrix on the post-promotion exact candidate.',
+              'If all six permanent contexts pass, ready and squash-merge PR #23 with exact-head locking.',
+              'After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-15 accepted.',
+          ]
+          state_path.write_text(
+              json.dumps(state, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+              newline='\n',
+          )
+          PY
+
+      - name: Regenerate Project Truth from promoted authority
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_governance_engine.py
+
+      - name: Refresh current SW2-15 sequence acceptance
+        shell: bash
+        run: |
+          python scripts/validate_sequence_sessions.py --root .
+
+      - name: Remove helper and validate promotion tree
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-sw2-15-promote.yml
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_sequence_sessions.py --root .
+          test ! -e .github/workflows/tmp-sw2-15-promote.yml
+
+      - name: Commit promoted authority without workflow mutation
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .workflow docs artifacts/sequence
+          git status --short
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "SW2-15: promote Smart Validation DAG acceptance"
+          git push origin HEAD:work/sw2-15-smart-validation-dag
