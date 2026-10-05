@@ -1,0 +1,314 @@
+name: TEMP SW2-16 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-16-historical-evidence-freeze
+    paths:
+      - .github/workflows/tmp-sw2-16-phase-open.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-16-historical-evidence-freeze
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Transition governed authority to SW2-16
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ACCEPTED = '118e0e4e5e9a6803aeb7a99e90659ee55dca2779'
+          BRANCH = 'work/sw2-16-historical-evidence-freeze'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, data):
+              Path(path).write_text(
+                  json.dumps(data, indent=2, sort_keys=True) + '\n',
+                  encoding='utf-8',
+                  newline='\n',
+              )
+
+          roadmap = load('.workflow/roadmap.json')
+          roadmap['current_phase'] = 'SW2-16'
+          seen15 = seen16 = False
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-15':
+                  phase['status'] = 'COMPLETE'
+                  seen15 = True
+              elif phase['id'] == 'SW2-16':
+                  phase['status'] = 'CURRENT'
+                  seen16 = True
+          if not (seen15 and seen16):
+              raise RuntimeError('ROADMAP_SW2_15_16_MISSING')
+          if sum(1 for p in roadmap['phases'] if p['status'] == 'CURRENT') != 1:
+              raise RuntimeError('ROADMAP_CURRENT_PHASE_CARDINALITY')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          state['phase'] = 'SW2-16'
+          state['status'] = 'IN_PROGRESS'
+          state['working_branch'] = BRANCH
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = ACCEPTED
+          state['blockers'] = []
+          state['blocked_actions'] = [
+              'Do not regenerate or rewrite closed historical evidence during normal validation merely to refresh timestamps, formatting, or current-head metadata.',
+              'Do not treat mutable cache state, file mtime, or branch names as historical evidence identity.',
+              'Do not replay closed evidence for a schema/toolchain migration unless replay is explicitly requested and provenance is recorded.',
+              'Do not claim reproducibility from digest verification alone; audit/replay behavior requires separate evidence.',
+              'Do not begin SW2-17 implementation until SW2-16 is accepted on main.',
+          ]
+          state['next_authorized_actions'] = [
+              'Inventory accepted historical evidence producers, identity fields, and validators before changing replay behavior.',
+              'Define deterministic content-addressed freeze identity for closed evidence using schema and digest authority.',
+              'Make normal validation verify frozen identity without rewriting historical evidence, failing closed on tamper or incompatible identity.',
+              'Add explicit migration replay and audit/reproduction paths, then prove complete permanent acceptance before closure.',
+          ]
+          state['not_proven'] = [
+              'SW2-16 immutable content-addressed identity for closed historical evidence is not yet proven.',
+              'SW2-16 normal validation without historical regeneration or rewrite is not yet proven.',
+              'SW2-16 explicit schema/toolchain migration replay contract is not yet proven.',
+              'SW2-16 audit/replay reproducibility and false-PASS resistance are not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.',
+          ]
+          proven = list(state.get('proven', []))
+          closure = (
+              'SW2-15 Smart Validation DAG is accepted on main '
+              '118e0e4e5e9a6803aeb7a99e90659ee55dca2779 with tree '
+              '7f9d3d5447f602de73a00649cf69b69f32529041 equal to exact tested candidate '
+              '95f2a40d0029ac26ae57097af2810f0d8436c48b. Post-merge main passed '
+              'Self Governance 37247432937; Governance Selftest 37247432938 on Ubuntu and Windows; '
+              'SW2 Sequence Evidence 37247432919; Governance Engine Performance 37247432956; '
+              'and Consumer Engine Performance 37247432928.'
+          )
+          if closure not in proven:
+              proven.append(closure)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
+
+          previous = load('docs/sequence/sessions/SW2-15-GOVERNANCE.json')
+          previous['scope'] = 'HISTORICAL'
+          previous['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-15-GOVERNANCE.json', previous)
+
+          questions = {
+              'How does failure/recovery behave?': 'PASS',
+              'How does important data flow through the system?': 'PASS',
+              'What are the important lifecycle states and transitions?': 'PASS',
+              'What are the main user/domain workflows?': 'PASS',
+              'What are the major components and how do they relate?': 'PASS',
+              'What is mutable and what is immutable?': 'PASS',
+              'What is proven and what is not proven?': 'PASS',
+              'What is the current project state?': 'PASS',
+              'What is the project and what problem does it solve?': 'PASS',
+              'What may happen next and what is blocked?': 'PASS',
+              'Who uses it and what are the primary outcomes?': 'PASS',
+              'Who/what is authoritative for important decisions?': 'PASS',
+          }
+          acceptance = {
+              'evidence_boundary': 'SW2-16 covers Historical Evidence Freeze only: immutable content-addressed identity for closed evidence, no-rewrite normal validation, explicit migration replay, and auditable reproduction. It must not weaken accepted exact-head authority, Smart Validation DAG behavior, sequence evidence, Project Truth semantics, cross-platform/consumer acceptance, or any prior V2 guarantee.',
+              'human_comprehension_questions': questions,
+              'human_comprehension_status': 'PASS',
+              'requirements': [
+                  {
+                      'id': 'SW2-16-R1',
+                      'requirement': 'Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until historical evidence inventory and identity rules are explicit, deterministic, tamper-detecting, and regression-tested.',
+                  },
+                  {
+                      'id': 'SW2-16-R2',
+                      'requirement': 'Normal validation verifies historical identity without regenerating or rewriting closed evidence.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until read-only/no-rewrite behavior is implemented and byte-level regression proves closed evidence remains unchanged during normal develop/verify/finalize validation.',
+                  },
+                  {
+                      'id': 'SW2-16-R3',
+                      'requirement': 'Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until migration replay requires explicit authorization, rejects ambiguous/incompatible identity fail-closed, and records reproducible provenance.',
+                  },
+                  {
+                      'id': 'SW2-16-R4',
+                      'requirement': 'Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green.',
+                      'status': 'NOT_PROVEN',
+                      'evidence': 'NOT_PROVEN until audit/replay reproduction, tamper/identity negative paths, Ubuntu/Windows governance, sequence render, engine performance, and real-consumer acceptance all pass on the final candidate.',
+                  },
+              ],
+              'runtime_checks': [],
+              'runtime_status': 'NOT_APPLICABLE',
+              'schema_version': 1,
+              'sequence_mode': 'DURING',
+              'sequence_session': 'SW2-16-GOVERNANCE',
+              'sequence_sync_status': 'NOT_PROVEN',
+              'test_commands': [
+                  'python scripts/selftest_governance_engine.py',
+                  'python scripts/selftest_project_truth_compiler.py',
+                  'python scripts/selftest_cross_document_regressions.py',
+                  'python scripts/selftest_strict_project_workflow.py',
+                  'python scripts/validate_project_docs.py --root .',
+                  'python scripts/validate_sequence_sessions.py --root .',
+                  'python scripts/governance_engine.py --root . --base 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 --mode finalize --expected-head <EXACT_HEAD>',
+              ],
+              'truth_gates': {
+                  'BEHAVIORAL_SYNC': 'NOT_APPLICABLE',
+                  'CROSS_DOCUMENT_CONSISTENCY': 'NOT_PROVEN',
+                  'DOC_LAYOUT': 'PASS',
+                  'DOC_READABILITY': 'PASS',
+                  'DOC_SOURCE_TRACEABILITY': 'NOT_PROVEN',
+                  'DOC_TEST_TRACEABILITY': 'NOT_PROVEN',
+                  'HUMAN_COMPREHENSION': 'PASS',
+                  'PROJECT_DOCS_NORMALIZED': 'PASS',
+                  'PROJECT_DOCS_SYNC': 'PASS',
+                  'PROJECT_STATE_SYNC': 'NOT_PROVEN',
+                  'PROVENANCE_SYNC': 'NOT_PROVEN',
+                  'REFERENCE_SYNC': 'NOT_PROVEN',
+                  'ROADMAP_SYNC': 'PASS',
+                  'RUNTIME_E2E': 'NOT_APPLICABLE',
+                  'SEMANTIC_SYNC': 'NOT_PROVEN',
+                  'SEQUENCE_SYNC': 'NOT_PROVEN',
+                  'SOURCE_TESTS': 'NOT_PROVEN',
+                  'STRUCTURAL_SYNC': 'NOT_PROVEN',
+                  'TEST_RUNTIME_TRACEABILITY': 'NOT_APPLICABLE',
+              },
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          session = {
+              'acceptance_report': 'artifacts/sequence/SW2-16-GOVERNANCE.acceptance.json',
+              'actual': {
+                  'diagram': 'docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd',
+                  'entries': [
+                      'scripts/governance_engine.py::main',
+                      'scripts/sync_project_truth.py::main',
+                      'scripts/generate_project_docs.py::main',
+                      'scripts/validate_project_docs.py::main',
+                      'scripts/validate_cross_document_consistency.py::main',
+                      'scripts/validate_sequence_sessions.py::main',
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-16-GOVERNANCE.actual.json',
+                  'source_digest': '',
+              },
+              'critical': True,
+              'evidence_boundary': 'SW2-16 sequence evidence establishes the current governance/Project Truth/sequence validation baseline for Historical Evidence Freeze. Static structure alone does not prove immutable historical identity, no-rewrite validation, migration replay authorization, or audit reproduction.',
+              'human_view': {
+                  'diagram': 'docs/sequence/generated/SW2-16-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-16-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'graph': 'docs/sequence/generated/SW2-16-GOVERNANCE.human.json',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': '',
+              },
+              'implementation_base_sha': ACCEPTED,
+              'mode': 'DURING',
+              'phase': 'SW2-16',
+              'plan': {
+                  'contract': '', 'diagram': '', 'frozen': False,
+                  'frozen_commit': '', 'required': False, 'sha256': '',
+              },
+              'runtime_trace': {'graph': '', 'required': False},
+              'schema_version': 1,
+              'scope': 'CURRENT',
+              'session_id': 'SW2-16-GOVERNANCE',
+              'status': 'IN_PROGRESS',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_governance_engine.py',
+                  'scripts/selftest_project_truth_compiler.py',
+                  'scripts/selftest_cross_document_regressions.py',
+                  'scripts/selftest_strict_project_workflow.py',
+              ],
+          }
+          write('docs/sequence/sessions/SW2-16-GOVERNANCE.json', session)
+          PY
+
+      - name: Generate current SW2-16 machine and human sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-16-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          command = [
+              sys.executable, 'scripts/generate_sequence_actual.py',
+              '--root', '.', '--output-json', actual['graph'],
+              '--output-mermaid', actual['diagram'],
+          ]
+          for entry in actual['entries']:
+              command.extend(['--entry', entry])
+          subprocess.run(command, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(
+              json.dumps(session, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8', newline='\n',
+          )
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id'],
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', 'docs/sequence/sessions/SW2-16-GOVERNANCE.json',
+          ], check=True)
+          PY
+
+      - name: Regenerate Project Truth for SW2-16 phase open
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+
+      - name: Remove helper and validate phase-open tree
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-sw2-16-phase-open.yml
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python .github/scripts/validate_skill_reference_split.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          test ! -e .github/workflows/tmp-sw2-16-phase-open.yml
+
+      - name: Commit phase-open authority without workflow mutation
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow docs artifacts/sequence
+          git status --short
+          test -n "$(git diff --cached --name-only)"
+          git commit -m 'SW2-16: open Historical Evidence Freeze phase'
+          git push origin HEAD:work/sw2-16-historical-evidence-freeze
