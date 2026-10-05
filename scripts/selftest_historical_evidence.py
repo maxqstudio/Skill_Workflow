@@ -61,12 +61,12 @@ def fixture() -> None:
         human_mmd = generated / "OLD.human.mmd"
         human_md = views / "OLD.md"
         acceptance = artifacts / "OLD.acceptance.json"
-        actual_json.write_text('{"source_digest":"abc","generated":true}\n', encoding="utf-8")
-        actual_mmd.write_text("sequenceDiagram\n", encoding="utf-8")
-        human_json.write_text('{"source_digest":"abc"}\n', encoding="utf-8")
-        human_mmd.write_text("sequenceDiagram\n", encoding="utf-8")
-        human_md.write_text("# Historical view\n", encoding="utf-8")
-        acceptance.write_text('{"result":"PASS"}\n', encoding="utf-8")
+        actual_json.write_text('{"source_digest":"abc","generated":true}\n', encoding="utf-8", newline="\n")
+        actual_mmd.write_text("sequenceDiagram\n", encoding="utf-8", newline="\n")
+        human_json.write_text('{"source_digest":"abc"}\n', encoding="utf-8", newline="\n")
+        human_mmd.write_text("sequenceDiagram\n", encoding="utf-8", newline="\n")
+        human_md.write_text("# Historical view\n", encoding="utf-8", newline="\n")
+        acceptance.write_text('{"result":"PASS"}\n', encoding="utf-8", newline="\n")
 
         session_path = session_dir / "OLD.json"
         session = {

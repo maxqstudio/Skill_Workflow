@@ -2,7 +2,7 @@
 
 # ARCHITECTURE
 
-Current source digest: 29f6b1034b89f23f71e3275caae8bcd50787a48668d9483efc699386dcea30d0
+Current source digest: 5a30c0844dbfe667ee0eac23002ce0b6ee86d8887511c9c53f7a837323d406a6
 
 ## Components
 
