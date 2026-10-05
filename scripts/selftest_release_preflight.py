@@ -182,7 +182,7 @@ def main() -> int:
             governance_report=report_path,
         )
         assert stable_too_early["result"] == "FAIL"
-        assert "STABLE_RELEASE_OUTSIDE_SW2_09" in stable_too_early["failures"]
+        assert "STABLE_RELEASE_OUTSIDE_AUTHORIZED_PHASE:SW2-07" in stable_too_early["failures"]
         assert stable_too_early["publication_authority"] is False
 
         acceptance["requirements"][3]["status"] = "NOT_PROVEN"
@@ -268,6 +268,73 @@ def main() -> int:
         assert "FINALIZE_REPORT_NOT_PASS" in failed_finalize["failures"]
         assert failed_finalize["publication_authority"] is False
 
+        acceptance = {
+            "schema_version": 1,
+            "requirements": [
+                {"id": "SW2-19-R1", "status": "PASS"},
+                {"id": "SW2-19-R2", "status": "PASS"},
+                {"id": "SW2-19-R3", "status": "PASS"},
+                {"id": "SW2-19-R4", "status": "NOT_PROVEN"},
+            ],
+            "truth_gates": {
+                "SOURCE_TESTS": "PASS",
+                "PROJECT_STATE_SYNC": "PASS",
+                "RUNTIME_E2E": "NOT_APPLICABLE",
+            },
+        }
+        write_json(acceptance_path, acceptance)
+        write_json(
+            roadmap_path,
+            {
+                "schema_version": 1,
+                "current_phase": "SW2-19",
+                "phases": [
+                    {"id": "SW2-18", "status": "COMPLETE"},
+                    {"id": "SW2-19", "status": "CURRENT"},
+                ],
+            },
+        )
+        v21_head = commit_all(root, "fixture V2.1 stable publication pending")
+        governance_report(report_path, v21_head, requested_mode="finalize")
+        v21 = validate(
+            root,
+            expected_head=v21_head,
+            version="v2.1.0",
+            governance_report=report_path,
+        )
+        assert v21["result"] == "PASS"
+        assert v21["publication_authority"] is True
+        assert v21["pending_publication_requirements"] == ["SW2-19-R4"]
+
+        acceptance["requirements"][2]["status"] = "NOT_PROVEN"
+        write_json(acceptance_path, acceptance)
+        v21_gap_head = commit_all(root, "fixture V2.1 non-publication gap")
+        governance_report(report_path, v21_gap_head, requested_mode="finalize")
+        v21_gap = validate(
+            root,
+            expected_head=v21_gap_head,
+            version="v2.1.0",
+            governance_report=report_path,
+        )
+        assert v21_gap["result"] == "FAIL"
+        assert "RELEASE_REQUIREMENT_NOT_PASS:SW2-19-R3" in v21_gap["failures"]
+        assert v21_gap["publication_authority"] is False
+
+        acceptance["requirements"][2]["status"] = "PASS"
+        acceptance["requirements"] = acceptance["requirements"][:3]
+        write_json(acceptance_path, acceptance)
+        v21_missing_r4_head = commit_all(root, "fixture V2.1 missing publication requirement")
+        governance_report(report_path, v21_missing_r4_head, requested_mode="finalize")
+        v21_missing_r4 = validate(
+            root,
+            expected_head=v21_missing_r4_head,
+            version="v2.1.0",
+            governance_report=report_path,
+        )
+        assert v21_missing_r4["result"] == "FAIL"
+        assert "STABLE_RELEASE_REQUIREMENT_MISSING:SW2-19-R4" in v21_missing_r4["failures"]
+        assert v21_missing_r4["publication_authority"] is False
+
     print("EVIDENCE_ONLY_PRERELEASE=PASS")
     print("EVIDENCE_VERIFY_ESCALATION_NONAUTH=PASS")
     print("EVIDENCE_ONLY_NO_PUBLICATION_AUTHORITY=PASS")
@@ -280,6 +347,9 @@ def main() -> int:
     print("STABLE_PUBLICATION_PENDING_PREFLIGHT=PASS")
     print("NON_PUBLICATION_REQUIREMENT_REJECTION=PASS")
     print("MISSING_PUBLICATION_REQUIREMENT_REJECTION=PASS")
+    print("V21_STABLE_PUBLICATION_PENDING_PREFLIGHT=PASS")
+    print("V21_NON_PUBLICATION_REQUIREMENT_REJECTION=PASS")
+    print("V21_MISSING_PUBLICATION_REQUIREMENT_REJECTION=PASS")
     print("DIRTY_WORKTREE_REJECTION=PASS")
     print("FAILED_FINALIZE_REJECTION=PASS")
     print("RESULT=PASS")

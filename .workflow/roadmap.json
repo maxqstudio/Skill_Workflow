@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-18",
+  "current_phase": "SW2-19",
   "phases": [
     {
       "exit_criteria": [
@@ -228,7 +228,7 @@
       ],
       "id": "SW2-18",
       "objective": "Consolidate repeated CI setup and applicability decisions into one explicit validation DAG while retaining named evidence gates.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Unified CI Orchestrator"
     },
     {
@@ -240,7 +240,7 @@
       ],
       "id": "SW2-19",
       "objective": "Lock measured performance budgets and publish V2.1 only after the efficiency/maintainability program preserves or strengthens governance parity.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Performance Budget & V2.1 Release"
     }
   ],

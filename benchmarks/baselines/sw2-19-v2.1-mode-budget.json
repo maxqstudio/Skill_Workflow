@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-19",
+  "candidate_sha": "de8e5715f39df9376a2ef6c07b236d68787a3bab",
+  "base_sha": "8a16ddb1994d1a6080816c8b9b78f75137d33e72",
+  "benchmark_run_id": 37336599123,
+  "platform": "ubuntu-24.04",
+  "python": "3.12.14",
+  "independent_runners": 3,
+  "repeats_per_runner": 5,
+  "measurement_method": "fresh detached git worktree per mode per repeat; develop, verify, and finalize interleaved by round",
+  "derivation": {
+    "safety_multiplier": 1.25,
+    "round_up_seconds": 0.5,
+    "enforcement_statistic": "median_seconds",
+    "formula": "ceil((observed_max_seconds * safety_multiplier) / round_up_seconds) * round_up_seconds"
+  },
+  "artifacts": [
+    {
+      "sample": 1,
+      "artifact_id": 11356910796,
+      "sha256": "ca2c01f67a4971997d4ff201181d313adcae1c7a53897adb2675c8ca9c63d95c"
+    },
+    {
+      "sample": 2,
+      "artifact_id": 11356124287,
+      "sha256": "8576e93577415bd976ac50a109870189b2fdc4f3ecfbe9ddee35788a15420295"
+    },
+    {
+      "sample": 3,
+      "artifact_id": 11356393061,
+      "sha256": "b74c14e5684a01d39c2ad81d485da3edf31c907a807a65d09b11cf31df64ccfc"
+    }
+  ],
+  "modes": {
+    "develop": {
+      "observed_seconds": [
+        1.676793326000002,
+        0.6555030720000019,
+        0.962747714999999,
+        0.7781871809999998,
+        0.6632304360000063,
+        1.4196401829999559,
+        1.1279768090000175,
+        1.1695379390000085,
+        1.164135779999981,
+        1.145991921000018,
+        1.341627820999996,
+        1.1459117630000009,
+        1.1429572589999992,
+        1.1426558040000003,
+        1.147960150000003
+      ],
+      "observed_median_seconds": 1.1459117630000009,
+      "observed_max_seconds": 1.676793326000002,
+      "budget_seconds": 2.5
+    },
+    "verify": {
+      "observed_seconds": [
+        1.5038375439999996,
+        1.530746968999999,
+        1.5103407770000032,
+        1.8456157009999998,
+        1.4992123139999975,
+        2.3456287810000163,
+        2.3720772230000193,
+        2.404404430999989,
+        2.38980296699998,
+        2.3418309680000107,
+        2.3488392499999975,
+        2.3469532789999974,
+        2.3380160829999994,
+        2.331559661,
+        2.3305988090000085
+      ],
+      "observed_median_seconds": 2.3380160829999994,
+      "observed_max_seconds": 2.404404430999989,
+      "budget_seconds": 3.5
+    },
+    "finalize": {
+      "observed_seconds": [
+        4.527677981999997,
+        4.590754051999994,
+        4.507304128999998,
+        5.89527571,
+        4.531737102000001,
+        7.526172689999953,
+        7.514354046999983,
+        7.530420657999969,
+        7.451820886000007,
+        7.3617996429999835,
+        7.296528322,
+        7.615640743999997,
+        7.3588278640000055,
+        7.281777622999996,
+        7.301976178000004
+      ],
+      "observed_median_seconds": 7.301976178000004,
+      "observed_max_seconds": 7.615640743999997,
+      "budget_seconds": 10.0
+    }
+  },
+  "result": "PASS",
+  "evidence_boundary": "Hosted-runner wall-clock budgets are derived from three independent Ubuntu runners and fifteen clean fresh-worktree observations per mode. They are performance evidence only; exact-head governance acceptance, adversarial false-PASS regression, cross-platform checks, and real-consumer parity remain separate blocking gates."
+}

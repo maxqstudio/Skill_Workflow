@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
+Source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -12,7 +12,7 @@ Generated/refreshed: current compiler run
 | .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
-| .github/scripts/validate_unified_ci.py | Python | 83 | .github/scripts | NO |
+| .github/scripts/validate_unified_ci.py | Python | 119 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
@@ -32,7 +32,7 @@ Generated/refreshed: current compiler run
 | scripts/project_truth_projection_contracts.py | Python | 111 | scripts | NO |
 | scripts/project_truth_projection_governance.py | Python | 279 | scripts | NO |
 | scripts/project_truth_projection_state.py | Python | 793 | scripts | NO |
-| scripts/release_preflight.py | Python | 234 | scripts | NO |
+| scripts/release_preflight.py | Python | 256 | scripts | NO |
 | scripts/schema_contract.py | Python | 88 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
@@ -42,9 +42,10 @@ Generated/refreshed: current compiler run
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 561 | scripts | NO |
 | scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
+| scripts/selftest_performance_budget.py | Python | 73 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
-| scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
+| scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
 | scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
@@ -60,6 +61,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
+| scripts/validate_performance_budget.py | Python | 146 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 92 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
 | scripts/validate_public_docs.py | Python | 194 | scripts | NO |

@@ -4,26 +4,29 @@
 
 ## Evidence boundary
 
-SW2-18 covers CI orchestration only: reusable checkout/setup/provenance primitives, deterministic applicability decisions, independently visible named evidence gates, and preservation of cross-platform/real-consumer acceptance. It must not weaken SW2-17 generator parity or any earlier V2 guarantee.
+SW2-19 covers performance-budget acceptance and V2.1 publication only. It must preserve all accepted V2 governance, Project Truth, historical-evidence, CI applicability, cross-platform, and real-consumer guarantees.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
+Current source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-18-R1 | Repeated checkout, runtime setup, and exact-candidate provenance logic is centralized into reusable CI primitives without weakening provenance. | PASS: unified governance-ci.yml uses the reusable .github/actions/governance-bootstrap primitive for exact-head provenance, Python setup, and applicability across all five routine jobs; validate_unified_ci.py and cross-platform run 37324753236 prove the contract. | PASS |
-| SW2-18-R2 | Docs-only changes do not run irrelevant heavy performance or real-consumer work while source/governance changes still trigger every required heavy lane. | PASS: selftest_ci_applicability.py deterministically proves pure docs PRs suppress heavy work while .github, .workflow, scripts, SKILL.md, AGENTS.md, unknown and push events broaden fail-closed. Exact run 37324753236 classified this governance/CI change heavy and executed Engine plus real Consumer lanes. | PASS |
-| SW2-18-R3 | Required evidence gates remain independently visible and fail closed even though setup/applicability logic is consolidated. | PASS: unified Governance CI exposes the six existing permanent contexts independently: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, Sequence Evidence, Engine Performance, and Consumer Performance. validate_unified_ci.py passed on Ubuntu and Windows in run 37324753236. | PASS |
-| SW2-18-R4 | Cross-platform governance and real-consumer acceptance remain green after CI consolidation. | PASS: exact pre-promotion candidate c05ee66df88bbab8e54049a1f2c8e527e228867f passed Governance Selftest on Ubuntu and Windows, Sequence Evidence, Engine Performance, and max-grounding Consumer parity in run 37324753236. This closure transaction is pushed only if exhaustive clean exact-head finalize also passes after promotion. | PASS |
+| SW2-19-R1 | Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7. Benchmark authority run 37336599123 recorded 3 independent Ubuntu runners x 5 repeats per mode (15 observations/mode); accepted budgets are develop <=2.5s, verify <=3.5s, finalize <=10.0s. Governance CI run 37380692462 passed the permanent unified-CI budget contract on Ubuntu and Windows, including baseline, over-limit, sample-count, tamper, and validator checks. | PASS |
+| SW2-19-R2 | Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance finalized successfully with synchronized tracked governance and read-only revalidation; Project Truth Compiler, cross-document, release-preflight, and STRICT adversarial false-PASS regressions passed. | PASS |
+| SW2-19-R3 | Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance (max-grounding) all succeeded. | PASS |
+| SW2-19-R4 | A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority. | NOT_PROVEN until strict V2.1 publication preflight authorizes the exact tested main SHA and live v2.1.0 tag/release identity is verified. | NOT_PROVEN |
 
 ## Test commands
 
 - python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_cross_document_regressions.py
+- python .github/scripts/selftest_ci_applicability.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base ae24b4d96a95c8f658e5a3955c4739773b80532b --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 8a16ddb1994d1a6080816c8b9b78f75137d33e72 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/selftest_performance_budget.py
+- python scripts/validate_performance_budget.py --root .
 
 ## Runtime checks
 
@@ -37,7 +40,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-18-GOVERNANCE
+Sequence session contract: SW2-19-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

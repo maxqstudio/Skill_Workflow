@@ -105,7 +105,7 @@
       "file": ".github/scripts/validate_unified_ci.py",
       "is_test": false,
       "language": "Python",
-      "lines": 83
+      "lines": 119
     },
     {
       "directory": "scripts",
@@ -245,7 +245,7 @@
       "file": "scripts/release_preflight.py",
       "is_test": false,
       "language": "Python",
-      "lines": 234
+      "lines": 256
     },
     {
       "directory": "scripts",
@@ -312,6 +312,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_performance_budget.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 73
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
@@ -329,7 +336,7 @@
       "file": "scripts/selftest_release_preflight.py",
       "is_test": false,
       "language": "Python",
-      "lines": 290
+      "lines": 360
     },
     {
       "directory": "scripts",
@@ -435,6 +442,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 214
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/validate_performance_budget.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 146
     },
     {
       "directory": "scripts",
@@ -1036,6 +1050,10 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "parser.add_argument"
     },
     {
@@ -1068,6 +1086,14 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "run_performance_budget_contract"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "text.count"
     },
     {
@@ -1093,6 +1119,26 @@
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "workflow.read_text"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "budget.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "completed.stdout.endswith"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "subprocess.run"
     },
     {
       "caller": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
@@ -9032,6 +9078,10 @@
     },
     {
       "caller": "scripts/release_preflight.py::validate",
+      "target_token": "STABLE_RELEASE_CONTRACTS.get"
+    },
+    {
+      "caller": "scripts/release_preflight.py::validate",
       "target_token": "VERSION_RE.fullmatch"
     },
     {
@@ -9272,6 +9322,10 @@
     },
     {
       "caller": "scripts/release_preflight.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/release_preflight.py::validate",
       "target_token": "item.get"
     },
     {
@@ -9317,6 +9371,10 @@
     {
       "caller": "scripts/release_preflight.py::validate",
       "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/release_preflight.py::validate",
+      "target_token": "str"
     },
     {
       "caller": "scripts/release_preflight.py::validate",
@@ -11551,6 +11609,138 @@
       "target_token": "AssertionError"
     },
     {
+      "caller": "scripts/selftest_performance_budget.py::load_module",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::load_module",
+      "target_token": "importlib.util.module_from_spec"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::load_module",
+      "target_token": "importlib.util.spec_from_file_location"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::load_module",
+      "target_token": "spec.loader.exec_module"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "BUDGET.read_text"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "load_module"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "module.validate_contract"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "module.validate_contract"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "module.validate_contract"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "module.validate_contract"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "module.validate_contract"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "module.validate_contract"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_performance_budget.py::require",
+      "target_token": "AssertionError"
+    },
+    {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "Path"
     },
@@ -12760,7 +12950,15 @@
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
-      "target_token": "governance_report"
+      "target_token": "commit_all"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "commit_all"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "commit_all"
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
@@ -12793,6 +12991,34 @@
     {
       "caller": "scripts/selftest_release_preflight.py::main",
       "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
@@ -12921,6 +13147,34 @@
     {
       "caller": "scripts/selftest_release_preflight.py::main",
       "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
@@ -18967,6 +19221,426 @@
       "target_token": "text.find"
     },
     {
+      "caller": "scripts/validate_performance_budget.py::close_enough",
+      "target_token": "abs"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::close_enough",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::close_enough",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::derived_budget",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::derived_budget",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::derived_budget",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::derived_budget",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::derived_budget",
+      "target_token": "math.ceil"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::main",
+      "target_token": "validate_contract"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "artifact.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "artifact.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "artifact.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "close_enough"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "close_enough"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "close_enough"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "contract.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "contract.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "contract.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "contract.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "derivation.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "derivation.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "derivation.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "derived_budget"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "field.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "float"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "max"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "mode.upper"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "modes.get"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "seen_ids.add"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "seen_samples.add"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "statistics.median"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_performance_budget.py::validate_contract",
+      "target_token": "str"
+    },
+    {
       "caller": "scripts/validate_project_docs.py::main",
       "target_token": "Path"
     },
@@ -22688,8 +23362,16 @@
     {
       "file": ".github/scripts/validate_unified_ci.py",
       "kind": "function",
-      "line_end": 79,
-      "line_start": 25,
+      "line_end": 54,
+      "line_start": 28,
+      "locator": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "symbol": "run_performance_budget_contract"
+    },
+    {
+      "file": ".github/scripts/validate_unified_ci.py",
+      "kind": "function",
+      "line_end": 115,
+      "line_start": 57,
       "locator": ".github/scripts/validate_unified_ci.py::main",
       "symbol": "main"
     },
@@ -24112,32 +24794,32 @@
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 23,
-      "line_start": 22,
+      "line_end": 36,
+      "line_start": 35,
       "locator": "scripts/release_preflight.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 27,
-      "line_start": 26,
+      "line_end": 40,
+      "line_start": 39,
       "locator": "scripts/release_preflight.py::_load",
       "symbol": "_load"
     },
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 199,
-      "line_start": 30,
+      "line_end": 221,
+      "line_start": 43,
       "locator": "scripts/release_preflight.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 230,
-      "line_start": 202,
+      "line_end": 252,
+      "line_start": 224,
       "locator": "scripts/release_preflight.py::main",
       "symbol": "main"
     },
@@ -24486,6 +25168,30 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_performance_budget.py",
+      "kind": "function",
+      "line_end": 22,
+      "line_start": 16,
+      "locator": "scripts/selftest_performance_budget.py::load_module",
+      "symbol": "load_module"
+    },
+    {
+      "file": "scripts/selftest_performance_budget.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 25,
+      "locator": "scripts/selftest_performance_budget.py::require",
+      "symbol": "require"
+    },
+    {
+      "file": "scripts/selftest_performance_budget.py",
+      "kind": "function",
+      "line_end": 69,
+      "line_start": 30,
+      "locator": "scripts/selftest_performance_budget.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
       "line_end": 36,
@@ -24568,7 +25274,7 @@
     {
       "file": "scripts/selftest_release_preflight.py",
       "kind": "function",
-      "line_end": 286,
+      "line_end": 356,
       "line_start": 53,
       "locator": "scripts/selftest_release_preflight.py::main",
       "symbol": "main"
@@ -25326,6 +26032,38 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/validate_performance_budget.py",
+      "kind": "function",
+      "line_end": 16,
+      "line_start": 15,
+      "locator": "scripts/validate_performance_budget.py::close_enough",
+      "symbol": "close_enough"
+    },
+    {
+      "file": "scripts/validate_performance_budget.py",
+      "kind": "function",
+      "line_end": 20,
+      "line_start": 19,
+      "locator": "scripts/validate_performance_budget.py::derived_budget",
+      "symbol": "derived_budget"
+    },
+    {
+      "file": "scripts/validate_performance_budget.py",
+      "kind": "function",
+      "line_end": 108,
+      "line_start": 23,
+      "locator": "scripts/validate_performance_budget.py::validate_contract",
+      "symbol": "validate_contract"
+    },
+    {
+      "file": "scripts/validate_performance_budget.py",
+      "kind": "function",
+      "line_end": 142,
+      "line_start": 111,
+      "locator": "scripts/validate_performance_budget.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/validate_project_docs.py",
       "kind": "function",
       "line_end": 89,
@@ -25647,13 +26385,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986",
+  "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9",
   "source_summary": {
-    "files": 60,
+    "files": 62,
     "languages": {
-      "Python": 60
+      "Python": 62
     },
-    "lines": 15067,
+    "lines": 15414,
     "test_files": 0
   },
   "tests": []
