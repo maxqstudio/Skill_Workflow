@@ -1,0 +1,161 @@
+name: OPS SW2-19 Mode Benchmark
+
+on:
+  push:
+    branches:
+      - ops/sw2-19-phase-open
+    paths:
+      - .github/workflows/sw2-19-mode-benchmark.yml
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    name: Mode benchmark sample ${{ matrix.sample }}
+    strategy:
+      fail-fast: false
+      matrix:
+        sample: [1, 2, 3]
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      CANDIDATE_SHA: de8e5715f39df9376a2ef6c07b236d68787a3bab
+      BASE_SHA: 8a16ddb1994d1a6080816c8b9b78f75137d33e72
+    steps:
+      - name: Checkout exact SW2-19 phase-open candidate
+        uses: actions/checkout@v4
+        with:
+          ref: de8e5715f39df9376a2ef6c07b236d68787a3bab
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Measure fresh-worktree develop verify finalize timings
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import shutil
+          import statistics
+          import subprocess
+          import sys
+          import tempfile
+          import time
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          candidate = os.environ['CANDIDATE_SHA']
+          base = os.environ['BASE_SHA']
+          sample = int(os.environ.get('MATRIX_SAMPLE', '${{ matrix.sample }}'))
+          modes = ('develop', 'verify', 'finalize')
+          timings = {mode: [] for mode in modes}
+          results = {mode: [] for mode in modes}
+
+          observed = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          if observed != candidate:
+              raise SystemExit(f'PROVENANCE_MISMATCH:{observed}!={candidate}')
+
+          # Interleave modes by round so host-level drift affects each mode similarly.
+          for round_index in range(1, 6):
+              for mode in modes:
+                  td = Path(tempfile.mkdtemp(prefix=f'sw2-19-{mode}-{round_index}-'))
+                  worktree = td / 'repo'
+                  try:
+                      subprocess.run(
+                          ['git', 'worktree', 'add', '--detach', str(worktree), candidate],
+                          cwd=root,
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.STDOUT,
+                          text=True,
+                          check=True,
+                      )
+                      cmd = [
+                          sys.executable,
+                          'scripts/governance_engine.py',
+                          '--root', '.',
+                          '--base', base,
+                          '--mode', mode,
+                      ]
+                      if mode == 'finalize':
+                          cmd += ['--expected-head', candidate]
+                      started = time.perf_counter()
+                      proc = subprocess.run(
+                          cmd,
+                          cwd=worktree,
+                          env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'},
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.STDOUT,
+                          text=True,
+                          check=False,
+                      )
+                      seconds = time.perf_counter() - started
+                      status = subprocess.check_output(
+                          ['git', 'status', '--porcelain', '--untracked-files=all'],
+                          cwd=worktree,
+                          text=True,
+                      ).strip()
+                      record = {
+                          'round': round_index,
+                          'seconds': seconds,
+                          'returncode': proc.returncode,
+                          'worktree_clean': not bool(status),
+                          'output_tail': proc.stdout.splitlines()[-12:],
+                      }
+                      results[mode].append(record)
+                      timings[mode].append(seconds)
+                      if proc.returncode != 0:
+                          raise SystemExit(f'{mode.upper()}_FAILED_ROUND_{round_index}:rc={proc.returncode}')
+                      if status:
+                          raise SystemExit(f'{mode.upper()}_DIRTY_ROUND_{round_index}:{status}')
+                  finally:
+                      subprocess.run(
+                          ['git', 'worktree', 'remove', '--force', str(worktree)],
+                          cwd=root,
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          check=False,
+                      )
+                      shutil.rmtree(td, ignore_errors=True)
+
+          stats = {}
+          for mode, values in timings.items():
+              stats[mode] = {
+                  'repeats': len(values),
+                  'min_seconds': min(values),
+                  'median_seconds': statistics.median(values),
+                  'mean_seconds': statistics.fmean(values),
+                  'max_seconds': max(values),
+                  'stdev_seconds': statistics.stdev(values) if len(values) > 1 else 0.0,
+              }
+
+          payload = {
+              'schema_version': 1,
+              'sample': sample,
+              'candidate_sha': candidate,
+              'base_sha': base,
+              'platform': sys.platform,
+              'python': sys.version.split()[0],
+              'cpu_count': os.cpu_count(),
+              'measurement': 'fresh detached git worktree per mode per repeat; modes interleaved by round',
+              'stats': stats,
+              'runs': results,
+              'result': 'PASS',
+              'boundary': 'Hosted-runner wall-clock timing is comparative performance evidence; governance acceptance still requires exact-head permanent CI and false-PASS regressions.',
+          }
+          out = Path(f'artifacts/performance/sw2-19-mode-sample-{sample}.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          print(json.dumps(payload, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload mode benchmark evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-19-mode-benchmark-${{ matrix.sample }}
+          path: artifacts/performance/sw2-19-mode-sample-${{ matrix.sample }}.json
+          if-no-files-found: error
+          retention-days: 14
