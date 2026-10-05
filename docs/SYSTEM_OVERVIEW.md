@@ -110,10 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Map the current Governance Engine validation DAG, node dependencies, repeated work, and mode-specific execution before changing selection behavior.
-- Define deterministic impact-to-node selection for develop and dependency closure for verify, with unknown impact broadening fail-closed.
-- Add adversarial regressions proving smart selection cannot skip a required failing dependency.
-- Keep finalize exhaustive and prove complete DAG parity before SW2-15 closure.
+- Run the complete permanent acceptance matrix on the post-promotion exact candidate.
+- If all six permanent contexts pass, ready and squash-merge PR #23 with exact-head locking.
+- After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-15 accepted.
 
 Blocked actions:
 - Do not weaken or bypass exhaustive finalize validation.
@@ -184,13 +183,11 @@ Known blockers:
 - SW2-14 preserves verify read-only safety on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Verify mode is read-only on both Ubuntu and Windows after normative references were correctly classified as documentation impact.
 - SW2-14 feature-level parity evidence is green on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: SW2 Sequence Evidence 37219195086, Governance Engine Performance 37219195153, and Consumer Engine Performance 37219195072 succeeded; pre-promotion Self Governance 37219195078 reached only the intentionally unpromoted Project Truth gate.
 - SW2-14 Incremental Project Truth Compiler is accepted on main 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 with tree fb2878299cf28e6671ed73842996c5a861617554 equal to exact tested candidate efd5ac9b3af4623c385413fc11a7f7999ef1edc0. Post-merge main passed Self Governance 37241577980; Governance Selftest 37241577983 on Ubuntu and Windows; SW2 Sequence Evidence 37241577995; Governance Engine Performance 37241578003; and Consumer Engine Performance 37241577997.
+- SW2-15 Smart Validation DAG develop/verify planning is feature-proven on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: Governance Selftest 37246954719 passed Ubuntu and Windows with SMART_DEVELOP_IMPACT_SELECTION, SMART_VERIFY_DEPENDENCY_CLOSURE, SMART_PLANNER_FAIL_CLOSED, and SMART_FINALIZE_EXHAUSTIVE regressions.
+- SW2-15 feature-level integration evidence is green on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: SW2 Sequence Evidence 37246954759, Governance Engine Performance 37246954726, and Consumer Engine Performance 37246954744 succeeded; pre-promotion Self Governance 37246954738 reached only the intentionally unpromoted Project Truth gate after exhaustive finalize prerequisites passed.
 
 ### Not proven
 
-- SW2-15 safe impacted-node selection for develop is not yet proven.
-- SW2-15 complete dependency closure for verify is not yet proven.
-- SW2-15 exhaustive finalize DAG parity is not yet proven.
-- SW2-15 adversarial false-PASS resistance across cross-platform and real-consumer acceptance is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

@@ -11,10 +11,10 @@ Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefb
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-15-R1 | Develop mode executes only safely impacted validation nodes and their mandatory prerequisites. | NOT_PROVEN until the current validation DAG and impact classes are mapped and negative-path tests prove unsafe or unknown impact cannot silently narrow develop execution. | NOT_PROVEN |
-| SW2-15-R2 | Verify mode executes the complete dependency closure for affected governance semantics without redundant unrelated validation. | NOT_PROVEN until dependency-closure planning is deterministic and regression evidence proves every affected required prerequisite and dependent gate executes exactly as declared. | NOT_PROVEN |
-| SW2-15-R3 | Finalize executes the complete authoritative validation DAG and remains the only final acceptance authority. | NOT_PROVEN until exhaustive finalize parity proves every required final node executes with exact-head provenance and clean governed state after smart selection changes. | NOT_PROVEN |
-| SW2-15-R4 | Adversarial false-PASS regression and the complete permanent matrix prove smart validation cannot skip required failures across platforms and the real consumer. | NOT_PROVEN until adversarial skip/dependency failures, Ubuntu/Windows governance, sequence evidence, engine performance, and real-consumer acceptance all pass on the final candidate. | NOT_PROVEN |
+| SW2-15-R1 | Develop mode executes only safely impacted validation nodes and their mandatory prerequisites. | PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows. The permanent Governance Engine regression proved SMART_DEVELOP_IMPACT_SELECTION=PASS together with deterministic changed-path classification and fail-closed escalation for unknown, broad-source, template, and CI impact. | PASS |
+| SW2-15-R2 | Verify mode executes the complete dependency closure for affected governance semantics without redundant unrelated validation. | PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows with SMART_VERIFY_DEPENDENCY_CLOSURE=PASS and SMART_PLANNER_FAIL_CLOSED=PASS. Known documentation impact selects the required Project Truth/document/handoff/cross-document closure without unrelated source regressions; unknown planner nodes, missing dependencies, cycles, and unmapped verify impact fail closed. | PASS |
+| SW2-15-R3 | Finalize executes the complete authoritative validation DAG and remains the only final acceptance authority. | PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed SMART_FINALIZE_EXHAUSTIVE=PASS in Governance Selftest run 37246954719 on Ubuntu and Windows. Pre-promotion Self Governance run 37246954738 bound exact HEAD and executed the complete 13-node finalize authority with source regressions, strict workflow, exhaustive Project Truth sync, human/sequence/handoff/cross-document validation, and final_acceptance_authority=true; it stopped only at the intentionally unpromoted Project Truth status gate. | PASS |
+| SW2-15-R4 | Adversarial false-PASS regression and the complete permanent matrix prove smart validation cannot skip required failures across platforms and the real consumer. | PASS for feature promotion: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows, SW2 Sequence Evidence run 37246954759, Governance Engine Performance run 37246954726, and Consumer Engine Performance run 37246954744. The permanent adversarial planner regressions passed, and pre-promotion Self Governance run 37246954738 reached only the intentionally unpromoted Project Truth gate after all preceding authoritative finalize nodes passed. Full post-promotion 6/6 permanent acceptance remains required before merge/closure. | PASS |
 
 ## Test commands
 
@@ -39,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-15-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
