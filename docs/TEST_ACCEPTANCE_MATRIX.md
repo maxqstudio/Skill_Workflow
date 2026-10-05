@@ -7,7 +7,7 @@
 SW2-16 covers Historical Evidence Freeze only: immutable content-addressed identity for closed evidence, no-rewrite normal validation, explicit migration replay, and auditable reproduction. It must not weaken accepted exact-head authority, Smart Validation DAG behavior, sequence evidence, Project Truth semantics, cross-platform/consumer acceptance, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
+Current source digest: 81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

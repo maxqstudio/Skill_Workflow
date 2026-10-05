@@ -1,8 +1,8 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 26,
-    "interaction_count": 26,
+    "interaction_ceiling": 32,
+    "interaction_count": 32,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
     "participant_ceiling": 16,
@@ -140,6 +140,21 @@
     },
     {
       "actions": [
+        "seen_phase_ids.add",
+        "wanted.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/generate_project_docs.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
         "ProjectSnapshot.capture",
         "active_project_snapshot",
         "path.read_text",
@@ -171,6 +186,21 @@
     },
     {
       "actions": [
+        "names.add",
+        "seeds.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/governance_engine.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
         "path.read_text"
       ],
       "evidence": [
@@ -199,6 +229,20 @@
     },
     {
       "actions": [
+        "required.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_profile.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
         "hashlib.sha256"
       ],
       "evidence": [
@@ -210,6 +254,22 @@
         "python_ast"
       ],
       "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
+        "affected.add",
+        "direct_docs.add",
+        "tokens.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/project_truth_impact.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
     },
     {
       "actions": [
@@ -321,6 +381,22 @@
     },
     {
       "actions": [
+        "required.add",
+        "statuses.add",
+        "texts.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_cross_document_consistency.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
         "documentation_settings",
         "parse_profile"
       ],
@@ -393,7 +469,23 @@
     },
     {
       "actions": [
-        "session.read_text"
+        "manifest_path.read_text",
+        "path.read_bytes",
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_sequence_sessions.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "hashlib.sha256"
       ],
       "evidence": [
         "STATIC"
@@ -403,7 +495,7 @@
       "resolvers": [
         "python_ast"
       ],
-      "to": "module:scripts/project_snapshot.py"
+      "to": "module:scripts/selftest_sequence_human_view.py"
     }
   ],
   "entries": [
@@ -672,21 +764,35 @@
       "id": "module:scripts/validate_sequence_sessions.py",
       "kind": "module",
       "label": "scripts/validate_sequence_sessions.py",
-      "machine_node_count": 2,
+      "machine_node_count": 16,
       "machine_nodes": [
+        "scripts/validate_sequence_sessions.py::build_historical_manifest",
+        "scripts/validate_sequence_sessions.py::evidence_paths",
+        "scripts/validate_sequence_sessions.py::evidence_paths.add",
+        "scripts/validate_sequence_sessions.py::fail_payload",
+        "scripts/validate_sequence_sessions.py::git_commit_exists",
+        "scripts/validate_sequence_sessions.py::git_show_bytes",
+        "scripts/validate_sequence_sessions.py::historical_sessions",
+        "scripts/validate_sequence_sessions.py::load_session",
         "scripts/validate_sequence_sessions.py::main",
-        "scripts/validate_sequence_sessions.py::run_validator"
+        "scripts/validate_sequence_sessions.py::repo_relative_path",
+        "scripts/validate_sequence_sessions.py::run_validator",
+        "scripts/validate_sequence_sessions.py::session_scope",
+        "scripts/validate_sequence_sessions.py::sha256_bytes",
+        "scripts/validate_sequence_sessions.py::sha256_file",
+        "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+        "scripts/validate_sequence_sessions.py::write_json"
       ]
     }
   ],
-  "observed_head": "6dd868a5ea6c1fcc1a6c96dfc578c3864c7b2595",
+  "observed_head": "b31db9ba741b0981a55cd62f4219463e72828eea",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 29,
-    "cross_component_machine_edges": 55,
-    "internal_machine_edges_collapsed": 178,
-    "machine_edge_count": 233,
-    "machine_node_count": 132,
+    "aggregated_cross_component_edges": 39,
+    "cross_component_machine_edges": 71,
+    "internal_machine_edges_collapsed": 204,
+    "machine_edge_count": 275,
+    "machine_node_count": 146,
     "node_map": {
       "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
       "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
@@ -818,11 +924,25 @@
       "scripts/validate_cross_document_consistency.py::truth_claims": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_doc_quality.py::normalized_shape": "module:scripts/validate_doc_quality.py",
       "scripts/validate_project_docs.py::main": "module:scripts/validate_project_docs.py",
+      "scripts/validate_sequence_sessions.py::build_historical_manifest": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::evidence_paths": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::evidence_paths.add": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::fail_payload": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::git_commit_exists": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::git_show_bytes": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::historical_sessions": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::load_session": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::main": "module:scripts/validate_sequence_sessions.py",
-      "scripts/validate_sequence_sessions.py::run_validator": "module:scripts/validate_sequence_sessions.py"
+      "scripts/validate_sequence_sessions.py::repo_relative_path": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::run_validator": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::session_scope": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::sha256_bytes": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::sha256_file": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::verify_historical_manifest": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::write_json": "module:scripts/validate_sequence_sessions.py"
     },
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
+  "source_digest": "81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb"
 }

@@ -140,7 +140,12 @@ def build_historical_manifest(
         for rel in evidence_paths(root, session_path, data):
             path = root / rel
             if not path.is_file():
-                raise ValueError(f"HISTORICAL_EVIDENCE_MISSING:{rel}")
+                try:
+                    git_show_bytes(root, frozen_commit, rel)
+                except subprocess.CalledProcessError:
+                    files.append({"path": rel, "present": False})
+                    continue
+                raise ValueError(f"HISTORICAL_EVIDENCE_CURRENTLY_MISSING:{rel}")
             current = path.read_bytes()
             try:
                 frozen = git_show_bytes(root, frozen_commit, rel)
@@ -158,6 +163,7 @@ def build_historical_manifest(
             seen_files[rel] = current_sha
             files.append({
                 "path": rel,
+                "present": True,
                 "sha256": current_sha,
                 "bytes": len(current),
             })
@@ -259,6 +265,18 @@ def verify_historical_manifest(
             if not isinstance(record, dict):
                 continue
             path = root / rel
+            expected_present = bool(record.get("present", True))
+            if not expected_present:
+                if path.exists():
+                    failures.append(f"HISTORICAL_ABSENT_EVIDENCE_APPEARED:{rel}")
+                if frozen_commit:
+                    try:
+                        git_show_bytes(root, frozen_commit, rel)
+                    except subprocess.CalledProcessError:
+                        pass
+                    else:
+                        failures.append(f"HISTORICAL_FROZEN_ABSENCE_MISMATCH:{rel}")
+                continue
             if not path.is_file():
                 failures.append(f"HISTORICAL_EVIDENCE_MISSING:{rel}")
                 continue

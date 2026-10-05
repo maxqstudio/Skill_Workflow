@@ -11,7 +11,7 @@
       "scripts/validate_sequence_sessions.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-16-GOVERNANCE.actual.json",
-    "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
+    "source_digest": "81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb"
   },
   "critical": true,
   "evidence_boundary": "SW2-16 sequence evidence establishes the current governance/Project Truth/sequence validation baseline for Historical Evidence Freeze. Static structure alone does not prove immutable historical identity, no-rewrite validation, migration replay authorization, or audit reproduction.",
@@ -21,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-16-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
+    "source_digest": "81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb"
   },
   "implementation_base_sha": "118e0e4e5e9a6803aeb7a99e90659ee55dca2779",
   "mode": "DURING",

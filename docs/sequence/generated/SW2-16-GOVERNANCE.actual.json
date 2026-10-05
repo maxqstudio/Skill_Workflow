@@ -886,6 +886,20 @@
       "to": "scripts/generate_project_docs.py::clean"
     },
     {
+      "action": "seen_phase_ids.add",
+      "evidence": "STATIC",
+      "from": "scripts/generate_project_docs.py::validate_inputs",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "wanted.add",
+      "evidence": "STATIC",
+      "from": "scripts/generate_project_docs.py::wanted_doc_names",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "ValidationNode",
       "evidence": "STATIC",
       "from": "scripts/governance_engine.py::_regression_node",
@@ -1005,6 +1019,13 @@
       "to": "scripts/governance_engine.py::dependency_closure"
     },
     {
+      "action": "names.add",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::develop_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "git",
       "evidence": "STATIC",
       "from": "scripts/governance_engine.py::governed_status",
@@ -1117,6 +1138,13 @@
       "to": "scripts/governance_engine.py::verify_seed_node_names"
     },
     {
+      "action": "seeds.add",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::verify_seed_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "_bool_value",
       "evidence": "STATIC",
       "from": "scripts/project_profile.py::documentation_settings",
@@ -1171,6 +1199,13 @@
       "from": "scripts/project_profile.py::required_docs",
       "resolver": "python_ast",
       "to": "scripts/project_profile.py::sequence_settings"
+    },
+    {
+      "action": "required.add",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::required_docs",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
     },
     {
       "action": "_bool_value",
@@ -1346,6 +1381,27 @@
       "from": "scripts/project_truth_impact.py::plan_project_truth_impact",
       "resolver": "python_ast",
       "to": "scripts/project_truth_impact.py::normalize_path"
+    },
+    {
+      "action": "affected.add",
+      "evidence": "STATIC",
+      "from": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "direct_docs.add",
+      "evidence": "STATIC",
+      "from": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "tokens.add",
+      "evidence": "STATIC",
+      "from": "scripts/project_truth_impact.py::plan_project_truth_impact",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
     },
     {
       "action": "_profile_version",
@@ -1635,6 +1691,20 @@
       "to": "scripts/validate_cross_document_consistency.py::truth_claims"
     },
     {
+      "action": "statuses.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_cross_document_consistency.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "texts.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_cross_document_consistency.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "path.read_text",
       "evidence": "STATIC",
       "from": "scripts/validate_cross_document_consistency.py::read",
@@ -1647,6 +1717,13 @@
       "from": "scripts/validate_cross_document_consistency.py::required_docs_for_diff",
       "resolver": "python_ast",
       "to": "scripts/validate_cross_document_consistency.py::is_source"
+    },
+    {
+      "action": "required.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_cross_document_consistency.py::required_docs_for_diff",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
     },
     {
       "action": "read",
@@ -1705,6 +1782,97 @@
       "to": "scripts/validate_doc_quality.py::normalized_shape"
     },
     {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "evidence_paths",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths"
+    },
+    {
+      "action": "git_commit_exists",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::git_commit_exists"
+    },
+    {
+      "action": "git_show_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::git_show_bytes"
+    },
+    {
+      "action": "historical_sessions",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::historical_sessions"
+    },
+    {
+      "action": "load_session",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::load_session"
+    },
+    {
+      "action": "sha256_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::sha256_bytes"
+    },
+    {
+      "action": "sha256_file",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::sha256_file"
+    },
+    {
+      "action": "add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "repo_relative_path",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::repo_relative_path"
+    },
+    {
+      "action": "load_session",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::load_session"
+    },
+    {
+      "action": "session_scope",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::session_scope"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::load_session",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
       "action": "parse_profile",
       "evidence": "STATIC",
       "from": "scripts/validate_sequence_sessions.py::main",
@@ -1719,11 +1887,32 @@
       "to": "scripts/project_profile.py::sequence_settings"
     },
     {
-      "action": "session.read_text",
+      "action": "build_historical_manifest",
       "evidence": "STATIC",
       "from": "scripts/validate_sequence_sessions.py::main",
       "resolver": "python_ast",
-      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+      "to": "scripts/validate_sequence_sessions.py::build_historical_manifest"
+    },
+    {
+      "action": "fail_payload",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::fail_payload"
+    },
+    {
+      "action": "historical_sessions",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::historical_sessions"
+    },
+    {
+      "action": "load_session",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::load_session"
     },
     {
       "action": "run_validator",
@@ -1731,6 +1920,111 @@
       "from": "scripts/validate_sequence_sessions.py::main",
       "resolver": "python_ast",
       "to": "scripts/validate_sequence_sessions.py::run_validator"
+    },
+    {
+      "action": "session_scope",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::session_scope"
+    },
+    {
+      "action": "sha256_file",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::sha256_file"
+    },
+    {
+      "action": "verify_historical_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::verify_historical_manifest"
+    },
+    {
+      "action": "write_json",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::write_json"
+    },
+    {
+      "action": "hashlib.sha256",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::sha256_bytes",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_sequence_human_view.py::sha256"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::sha256_file",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "sha256_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::sha256_file",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::sha256_bytes"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "manifest_path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "evidence_paths",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths"
+    },
+    {
+      "action": "git_commit_exists",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::git_commit_exists"
+    },
+    {
+      "action": "git_show_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::git_show_bytes"
+    },
+    {
+      "action": "historical_sessions",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::historical_sessions"
+    },
+    {
+      "action": "load_session",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::load_session"
+    },
+    {
+      "action": "sha256_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::sha256_bytes"
     }
   ],
   "entries": [
@@ -2915,25 +3209,151 @@
       "locator": "scripts/validate_project_docs.py::main"
     },
     {
+      "id": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "language": "Python",
+      "line_end": 187,
+      "line_start": 119,
+      "locator": "scripts/validate_sequence_sessions.py::build_historical_manifest"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "language": "Python",
+      "line_end": 116,
+      "line_start": 98,
+      "locator": "scripts/validate_sequence_sessions.py::evidence_paths"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "kind": "method",
+      "label": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "language": "Python",
+      "line_end": 104,
+      "line_start": 101,
+      "locator": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::fail_payload",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::fail_payload",
+      "language": "Python",
+      "line_end": 332,
+      "line_start": 330,
+      "locator": "scripts/validate_sequence_sessions.py::fail_payload"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::git_commit_exists",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::git_commit_exists",
+      "language": "Python",
+      "line_end": 53,
+      "line_start": 44,
+      "locator": "scripts/validate_sequence_sessions.py::git_commit_exists"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::git_show_bytes",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::git_show_bytes",
+      "language": "Python",
+      "line_end": 60,
+      "line_start": 56,
+      "locator": "scripts/validate_sequence_sessions.py::git_show_bytes"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "language": "Python",
+      "line_end": 95,
+      "line_start": 86,
+      "locator": "scripts/validate_sequence_sessions.py::historical_sessions"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::load_session",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::load_session",
+      "language": "Python",
+      "line_end": 79,
+      "line_start": 78,
+      "locator": "scripts/validate_sequence_sessions.py::load_session"
+    },
+    {
       "id": "scripts/validate_sequence_sessions.py::main",
       "kind": "function",
       "label": "scripts/validate_sequence_sessions.py::main",
       "language": "Python",
-      "line_end": 147,
-      "line_start": 39,
+      "line_end": 531,
+      "line_start": 335,
       "locator": "scripts/validate_sequence_sessions.py::main"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "language": "Python",
+      "line_end": 75,
+      "line_start": 63,
+      "locator": "scripts/validate_sequence_sessions.py::repo_relative_path"
     },
     {
       "id": "scripts/validate_sequence_sessions.py::run_validator",
       "kind": "function",
       "label": "scripts/validate_sequence_sessions.py::run_validator",
       "language": "Python",
-      "line_end": 36,
-      "line_start": 16,
+      "line_end": 327,
+      "line_start": 302,
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::session_scope",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::session_scope",
+      "language": "Python",
+      "line_end": 83,
+      "line_start": 82,
+      "locator": "scripts/validate_sequence_sessions.py::session_scope"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::sha256_bytes",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::sha256_bytes",
+      "language": "Python",
+      "line_end": 28,
+      "line_start": 27,
+      "locator": "scripts/validate_sequence_sessions.py::sha256_bytes"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::sha256_file",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::sha256_file",
+      "language": "Python",
+      "line_end": 32,
+      "line_start": 31,
+      "locator": "scripts/validate_sequence_sessions.py::sha256_file"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "language": "Python",
+      "line_end": 299,
+      "line_start": 190,
+      "locator": "scripts/validate_sequence_sessions.py::verify_historical_manifest"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::write_json",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::write_json",
+      "language": "Python",
+      "line_end": 41,
+      "line_start": 35,
+      "locator": "scripts/validate_sequence_sessions.py::write_json"
     }
   ],
-  "observed_head": "6dd868a5ea6c1fcc1a6c96dfc578c3864c7b2595",
+  "observed_head": "b31db9ba741b0981a55cd62f4219463e72828eea",
   "schema_version": 1,
-  "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
+  "source_digest": "81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb"
 }

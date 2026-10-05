@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-16-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-16-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-16-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-16-GOVERNANCE.human.json)
-- Source digest: `7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f`
+- Source digest: `81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 132 | 16 |
-| Interactions / edges | 233 | 26 |
-| Internal machine edges collapsed | 178 | — |
-| Cross-component edges aggregated | 29 | — |
+| Participants / nodes | 146 | 16 |
+| Interactions / edges | 275 | 32 |
+| Internal machine edges collapsed | 204 | — |
+| Cross-component edges aggregated | 39 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -50,11 +50,15 @@ sequenceDiagram
     module_scripts_generate_project_docs_py_2->>module_scripts_project_truth_impact_py_6: 1 static interaction
     module_scripts_generate_project_docs_py_2->>module_scripts_schema_contract_py_7: 1 static interaction
     module_scripts_generate_project_docs_py_2->>module_scripts_selftest_sequence_human_view_py_10: 1 static interaction
+    module_scripts_generate_project_docs_py_2->>module_scripts_validate_sequence_sessions_py_15: 2 static interactions
     module_scripts_governance_engine_py_3->>module_scripts_project_snapshot_py_5: 4 static interactions
     module_scripts_governance_engine_py_3->>module_scripts_script_runner_py_8: 1 static interaction
+    module_scripts_governance_engine_py_3->>module_scripts_validate_sequence_sessions_py_15: 2 static interactions
     module_scripts_project_profile_py_4->>module_scripts_project_snapshot_py_5: 1 static interaction
     module_scripts_project_profile_py_4->>module_scripts_schema_contract_py_7: 1 static interaction
+    module_scripts_project_profile_py_4->>module_scripts_validate_sequence_sessions_py_15: 1 static interaction
     module_scripts_project_snapshot_py_5->>module_scripts_selftest_sequence_human_view_py_10: 1 static interaction
+    module_scripts_project_truth_impact_py_6->>module_scripts_validate_sequence_sessions_py_15: 3 static interactions
     module_scripts_script_runner_py_8->>module_scripts_selftest_adoption_profiles_py_9: 1 static interaction
     module_scripts_selftest_sequence_human_view_py_10->>module_scripts_project_snapshot_py_5: 1 static interaction
     module_scripts_sync_project_truth_py_11->>module_scripts_project_profile_py_4: 2 static interactions
@@ -62,10 +66,12 @@ sequenceDiagram
     module_scripts_sync_project_truth_py_11->>module_scripts_script_runner_py_8: 1 static interaction
     module_scripts_validate_cross_document_consistency_py_12->>module_scripts_project_profile_py_4: 7 static interactions
     module_scripts_validate_cross_document_consistency_py_12->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_validate_cross_document_consistency_py_12->>module_scripts_validate_sequence_sessions_py_15: 3 static interactions
     module_scripts_validate_project_docs_py_14->>module_scripts_project_profile_py_4: 2 static interactions
     module_scripts_validate_project_docs_py_14->>module_scripts_project_snapshot_py_5: 1 static interaction
     module_scripts_validate_project_docs_py_14->>module_scripts_script_runner_py_8: 1 static interaction
     module_scripts_validate_project_docs_py_14->>module_scripts_validate_doc_quality_py_13: 1 static interaction
     module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_profile_py_4: 2 static interactions
-    module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_snapshot_py_5: 1 static interaction
+    module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_snapshot_py_5: 5 static interactions
+    module_scripts_validate_sequence_sessions_py_15->>module_scripts_selftest_sequence_human_view_py_10: 1 static interaction
 ```
