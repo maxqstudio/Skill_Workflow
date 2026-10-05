@@ -1,0 +1,193 @@
+name: TEMP SW2-18 Phase Open V2
+
+on:
+  push:
+    branches:
+      - work/sw2-18-unified-ci-orchestrator
+    paths:
+      - .github/workflows/tmp-sw2-18-phase-open-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-18-unified-ci-orchestrator
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build SW2-18 phase-open authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          ROOT = Path('.').resolve()
+          ACCEPTED = 'ae24b4d96a95c8f658e5a3955c4739773b80532b'
+          BRANCH = 'work/sw2-18-unified-ci-orchestrator'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def write(path, data):
+              Path(path).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap = load('.workflow/roadmap.json')
+          roadmap['current_phase'] = 'SW2-18'
+          seen17 = seen18 = False
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-17':
+                  phase['status'] = 'COMPLETE'; seen17 = True
+              elif phase['id'] == 'SW2-18':
+                  phase['status'] = 'CURRENT'; seen18 = True
+          if not (seen17 and seen18) or sum(1 for p in roadmap['phases'] if p['status'] == 'CURRENT') != 1:
+              raise RuntimeError('ROADMAP_SW2_17_18_INVALID')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          state.update({
+              'phase': 'SW2-18',
+              'status': 'IN_PROGRESS',
+              'working_branch': BRANCH,
+              'last_accepted_branch': 'main',
+              'last_accepted_sha': ACCEPTED,
+              'blockers': [],
+          })
+          state['blocked_actions'] = [
+              'Do not collapse independent permanent evidence gates into one opaque status context.',
+              'Do not skip Ubuntu/Windows governance or the real-consumer acceptance lane merely because applicability logic says a change is narrow.',
+              'Do not run heavy performance/consumer work for docs-only changes unless dependency/applicability policy requires it.',
+              'Do not duplicate checkout/setup/provenance boilerplate after a reusable CI primitive becomes authoritative.',
+              'Do not begin SW2-19 implementation until SW2-18 is accepted on main.',
+          ]
+          state['next_authorized_actions'] = [
+              'Inventory repeated checkout/setup/provenance and applicability logic across permanent workflows.',
+              'Define reusable CI primitives and an explicit applicability classifier while preserving independently visible named evidence gates.',
+              'Add docs-only and source-change regressions proving irrelevant heavy lanes can be skipped without suppressing required failures.',
+              'Keep cross-platform and real-consumer acceptance green on the final candidate before SW2-18 closure.',
+          ]
+          state['not_proven'] = [
+              'SW2-18 centralized checkout/setup/provenance reuse is not yet proven.',
+              'SW2-18 docs-only heavy-lane suppression is not yet proven.',
+              'SW2-18 independent named evidence-gate visibility and fail-closed applicability are not yet proven.',
+              'SW2-18 cross-platform and real-consumer parity after CI consolidation are not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.',
+          ]
+          closure = (
+              'SW2-17 Generator Modularization is accepted on main ae24b4d96a95c8f658e5a3955c4739773b80532b '
+              'with tree 2ebae28dd772bd0c7e5f50e4f1e5a057af436312 equal to exact tested closure candidate '
+              'cafdc432898e089f05258b881656655b4bd119d1. Post-merge main passed Self Governance 37310890039; '
+              'Governance Selftest 37310890120 on Ubuntu and Windows; SW2 Sequence Evidence 37310890134; '
+              'Governance Engine Performance 37310890101; and Consumer Engine Performance 37310890143.'
+          )
+          proven = list(state.get('proven', []))
+          if closure not in proven: proven.append(closure)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
+
+          previous = load('docs/sequence/sessions/SW2-17-GOVERNANCE.json')
+          previous['scope'] = 'HISTORICAL'; previous['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-17-GOVERNANCE.json', previous)
+
+          questions = {q: 'PASS' for q in [
+              'How does failure/recovery behave?', 'How does important data flow through the system?',
+              'What are the important lifecycle states and transitions?', 'What are the main user/domain workflows?',
+              'What are the major components and how do they relate?', 'What is mutable and what is immutable?',
+              'What is proven and what is not proven?', 'What is the current project state?',
+              'What is the project and what problem does it solve?', 'What may happen next and what is blocked?',
+              'Who uses it and what are the primary outcomes?', 'Who/what is authoritative for important decisions?'
+          ]}
+          gates = {
+              'BEHAVIORAL_SYNC':'NOT_APPLICABLE','CROSS_DOCUMENT_CONSISTENCY':'NOT_PROVEN','DOC_LAYOUT':'PASS',
+              'DOC_READABILITY':'PASS','DOC_SOURCE_TRACEABILITY':'NOT_PROVEN','DOC_TEST_TRACEABILITY':'NOT_PROVEN',
+              'HUMAN_COMPREHENSION':'PASS','PROJECT_DOCS_NORMALIZED':'PASS','PROJECT_DOCS_SYNC':'PASS',
+              'PROJECT_STATE_SYNC':'NOT_PROVEN','PROVENANCE_SYNC':'NOT_PROVEN','REFERENCE_SYNC':'NOT_PROVEN',
+              'ROADMAP_SYNC':'PASS','RUNTIME_E2E':'NOT_APPLICABLE','SEMANTIC_SYNC':'NOT_PROVEN','SEQUENCE_SYNC':'NOT_PROVEN',
+              'SOURCE_TESTS':'NOT_PROVEN','STRUCTURAL_SYNC':'NOT_PROVEN','TEST_RUNTIME_TRACEABILITY':'NOT_APPLICABLE'
+          }
+          acceptance = {
+              'evidence_boundary':'SW2-18 covers CI orchestration only: reusable checkout/setup/provenance primitives, deterministic applicability decisions, independently visible named evidence gates, and preservation of cross-platform/real-consumer acceptance. It must not weaken SW2-17 generator parity or any earlier V2 guarantee.',
+              'human_comprehension_questions':questions,'human_comprehension_status':'PASS',
+              'requirements':[
+                  {'id':'SW2-18-R1','requirement':'Repeated checkout, runtime setup, and exact-candidate provenance logic is centralized into reusable CI primitives without weakening provenance.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until permanent workflows consume the same reusable primitives and regression proves exact-head provenance remains fail-closed.'},
+                  {'id':'SW2-18-R2','requirement':'Docs-only changes do not run irrelevant heavy performance or real-consumer work while source/governance changes still trigger every required heavy lane.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until deterministic applicability regression covers docs-only, workflow/toolchain, source, governance, unknown, and release-critical changes.'},
+                  {'id':'SW2-18-R3','requirement':'Required evidence gates remain independently visible and fail closed even though setup/applicability logic is consolidated.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until the final CI topology preserves named Self Governance, Ubuntu/Windows Selftest, Sequence, Engine Performance, and Consumer Performance evidence contexts.'},
+                  {'id':'SW2-18-R4','requirement':'Cross-platform governance and real-consumer acceptance remain green after CI consolidation.','status':'NOT_PROVEN','evidence':'NOT_PROVEN until the exact final candidate passes Ubuntu/Windows Governance Selftest, sequence evidence, engine performance, consumer parity, and exhaustive Self Governance.'}
+              ],
+              'runtime_checks':[],'runtime_status':'NOT_APPLICABLE','schema_version':1,'sequence_mode':'DURING',
+              'sequence_session':'SW2-18-GOVERNANCE','sequence_sync_status':'NOT_PROVEN',
+              'test_commands':['python scripts/selftest_governance_engine.py','python scripts/selftest_project_truth_compiler.py','python scripts/selftest_cross_document_regressions.py','python scripts/validate_project_docs.py --root .','python scripts/validate_sequence_sessions.py --root .','python scripts/governance_engine.py --root . --base ae24b4d96a95c8f658e5a3955c4739773b80532b --mode finalize --expected-head <EXACT_HEAD>'],
+              'truth_gates':gates
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          session = {
+              'acceptance_report':'artifacts/sequence/SW2-18-GOVERNANCE.acceptance.json',
+              'actual':{'diagram':'docs/sequence/generated/SW2-18-GOVERNANCE.actual.mmd','entries':['scripts/governance_engine.py::main','scripts/sync_project_truth.py::main','scripts/validate_project_docs.py::main','scripts/validate_sequence_sessions.py::main','scripts/validate_cross_document_consistency.py::main'],'graph':'docs/sequence/generated/SW2-18-GOVERNANCE.actual.json','source_digest':''},
+              'critical':True,'evidence_boundary':'SW2-18 sequence evidence covers the governance/Project Truth/sequence validation path used by permanent CI as a baseline for CI consolidation. Static structure does not prove workflow applicability decisions, named GitHub check visibility, or reusable setup/provenance behavior.',
+              'human_view':{'diagram':'docs/sequence/generated/SW2-18-GOVERNANCE.human.mmd','document':'docs/sequence/views/SW2-18-GOVERNANCE.md','granularity':'module','graph':'docs/sequence/generated/SW2-18-GOVERNANCE.human.json','policy_id':'module-collapse-v1','source_digest':''},
+              'implementation_base_sha':ACCEPTED,'mode':'DURING','phase':'SW2-18','plan':{'contract':'','diagram':'','frozen':False,'frozen_commit':'','required':False,'sha256':''},
+              'runtime_trace':{'graph':'','required':False},'schema_version':1,'scope':'CURRENT','session_id':'SW2-18-GOVERNANCE','status':'IN_PROGRESS','test_traceability_required':True,
+              'tests':['scripts/selftest_governance_engine.py','scripts/selftest_project_truth_compiler.py','scripts/selftest_cross_document_regressions.py']
+          }
+          write('docs/sequence/sessions/SW2-18-GOVERNANCE.json', session)
+
+          actual = session['actual']
+          cmd=[sys.executable,'scripts/generate_sequence_actual.py','--root','.','--output-json',actual['graph'],'--output-mermaid',actual['diagram']]
+          for entry in actual['entries']: cmd += ['--entry',entry]
+          subprocess.run(cmd,check=True)
+          graph=load(actual['graph']); digest=graph['source_digest']
+          session['actual']['source_digest']=digest; session['human_view']['source_digest']=digest
+          write('docs/sequence/sessions/SW2-18-GOVERNANCE.json',session)
+          human=session['human_view']
+          subprocess.run([sys.executable,'scripts/sequence_human_view.py','--root','.','--actual-json',actual['graph'],'--actual-mermaid',actual['diagram'],'--output-json',human['graph'],'--output-mermaid',human['diagram'],'--output-markdown',human['document'],'--session-id',session['session_id']],check=True)
+          subprocess.run([sys.executable,'scripts/validate_sequence_contract.py','--root','.','--session','docs/sequence/sessions/SW2-18-GOVERNANCE.json'],check=True)
+          subprocess.run([sys.executable,'scripts/sync_project_truth.py','--root','.'],check=True)
+          PY
+
+      - name: Remove helpers and commit phase-open tree
+        shell: bash
+        run: |
+          rm -f .github/workflows/tmp-sw2-18-phase-open.yml .github/workflows/tmp-sw2-18-phase-open-v2.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'SW2-18: open Unified CI Orchestrator phase'
+
+      - name: Freeze newly historical SW2-17 evidence canonically
+        shell: bash
+        run: |
+          FROZEN="$(git rev-parse HEAD)"
+          python scripts/validate_sequence_sessions.py --root . --freeze-historical --frozen-commit "$FROZEN" --authorize-migration "SW2-18 phase-open freezes accepted SW2-17 evidence"
+          git add .workflow/historical_evidence.json
+          git commit -m 'SW2-18: freeze accepted SW2-17 historical evidence'
+
+      - name: Validate clean helper-free phase-open commit
+        shell: bash
+        run: |
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/selftest_historical_evidence.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_cross_document_consistency.py --root . --base ae24b4d96a95c8f658e5a3955c4739773b80532b --require-base
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Push phase-open authority
+        shell: bash
+        run: git push origin HEAD:work/sw2-18-unified-ci-orchestrator
