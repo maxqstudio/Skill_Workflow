@@ -1,0 +1,123 @@
+name: OPS SW2-19 Budget Sync
+
+on:
+  push:
+    branches:
+      - ops/sw2-19-phase-open
+    paths:
+      - .github/workflows/sw2-19-budget-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      TARGET_BRANCH: work/sw2-19-performance-budget-v2.1
+    steps:
+      - name: Checkout official SW2-19 branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-19-performance-budget-v2.1
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bind budget validation into SW2-19 traceability
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          commands = list(acceptance.get('test_commands', []))
+          for command in (
+              'python scripts/selftest_performance_budget.py',
+              'python scripts/validate_performance_budget.py --root .',
+          ):
+              if command not in commands:
+                  commands.append(command)
+          acceptance['test_commands'] = commands
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          session_path = Path('docs/sequence/sessions/SW2-19-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          tests = list(session.get('tests', []))
+          if 'scripts/selftest_performance_budget.py' not in tests:
+              tests.append('scripts/selftest_performance_budget.py')
+          session['tests'] = tests
+          entries = list((session.get('actual') or {}).get('entries', []))
+          if 'scripts/validate_performance_budget.py::main' not in entries:
+              entries.append('scripts/validate_performance_budget.py::main')
+          session['actual']['entries'] = entries
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+
+      - name: Prove performance budget contract and negative paths
+        run: |
+          python scripts/selftest_performance_budget.py
+          python scripts/validate_performance_budget.py --root .
+
+      - name: Regenerate current sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-19-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id'],
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', session_path.as_posix(), '--report', session['acceptance_report'],
+          ], check=True)
+          PY
+
+      - name: Regenerate Project Truth and validate focused contracts
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/validate_public_docs.py --root .
+
+      - name: Commit synchronized R1 evidence contract
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow benchmarks scripts docs artifacts/sequence
+          if git diff --cached --quiet; then
+            echo 'NO_CHANGES_TO_COMMIT'
+            exit 1
+          fi
+          git commit -m 'SW2-19: validate evidence-backed performance budget'
+          git push origin HEAD:${TARGET_BRANCH}
