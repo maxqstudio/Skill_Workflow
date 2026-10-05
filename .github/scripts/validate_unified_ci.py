@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import subprocess
+import sys
 from pathlib import Path
 
 FIXED_CONTEXTS = (
@@ -20,6 +22,36 @@ OLD_ROUTINE_WORKFLOWS = (
     "sw2-consumer-baseline.yml",
     "sw2-sequence.yml",
 )
+PERFORMANCE_BUDGET = "benchmarks/baselines/sw2-19-v2.1-mode-budget.json"
+
+
+def run_performance_budget_contract(root: Path) -> list[str]:
+    budget = root / PERFORMANCE_BUDGET
+    if not budget.is_file():
+        return []
+
+    failures: list[str] = []
+    commands = (
+        ("PERFORMANCE_BUDGET_SELFTEST", [sys.executable, "scripts/selftest_performance_budget.py"]),
+        (
+            "PERFORMANCE_BUDGET_VALIDATION",
+            [sys.executable, "scripts/validate_performance_budget.py", "--root", "."],
+        ),
+    )
+    for label, command in commands:
+        completed = subprocess.run(
+            command,
+            cwd=root,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        if completed.stdout:
+            print(completed.stdout, end="" if completed.stdout.endswith("\n") else "\n")
+        if completed.returncode != 0:
+            failures.append(f"{label}_FAILED")
+    return failures
 
 
 def main() -> int:
@@ -67,6 +99,8 @@ def main() -> int:
     if not classifier.is_file():
         failures.append("APPLICABILITY_CLASSIFIER_MISSING")
 
+    failures.extend(run_performance_budget_contract(root))
+
     if failures:
         for failure in failures:
             print("FAIL", failure)
@@ -76,6 +110,8 @@ def main() -> int:
     print("UNIFIED_CI_BOOTSTRAP=PASS")
     print("UNIFIED_CI_LEGACY_ROUTINES_REMOVED=PASS")
     print("UNIFIED_CI_SPECIAL_WORKFLOWS_PRESERVED=PASS")
+    if (root / PERFORMANCE_BUDGET).is_file():
+        print("UNIFIED_CI_PERFORMANCE_BUDGET=PASS")
     return 0
 
 
