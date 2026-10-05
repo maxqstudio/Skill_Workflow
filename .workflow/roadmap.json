@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-16",
+  "current_phase": "SW2-17",
   "phases": [
     {
       "exit_criteria": [
@@ -204,7 +204,7 @@
       ],
       "id": "SW2-16",
       "objective": "Freeze accepted historical evidence by digest/schema identity so normal development does not replay immutable closed phases.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Historical Evidence Freeze"
     },
     {
@@ -216,7 +216,7 @@
       ],
       "id": "SW2-17",
       "objective": "Split oversized deterministic document generation into small projection modules without changing canonical outputs.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Generator Modularization"
     },
     {

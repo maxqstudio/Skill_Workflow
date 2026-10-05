@@ -3,20 +3,20 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 9ac09b2acd0bdf25ea05157be7711da852173ab8
+Authority verified at SHA: 7e2c5e4669655764e24ec821cefc0c96e2886133
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-16
-Status: SW2_16_HISTORICAL_EVIDENCE_FREEZE_ACCEPTED
-Roadmap phase: SW2-16
+Phase: SW2-17
+Status: IN_PROGRESS
+Roadmap phase: SW2-17
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-17-generator-modularization
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 9ac09b2acd0bdf25ea05157be7711da852173ab8
+Last accepted SHA: 7e2c5e4669655764e24ec821cefc0c96e2886133
 Current candidate SHA: external final acceptance evidence
 Current source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
 
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-16-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-17-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -100,8 +100,13 @@ SEQUENCE_SYNC: PASS
 - SW2-15 is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779; post-merge squash-provenance compatibility repair 9ac09b2acd0bdf25ea05157be7711da852173ab8 passed Self Governance 37254526096, Governance Selftest 37254526110 on Ubuntu and Windows, SW2 Sequence Evidence 37254526121, Governance Engine Performance 37254526090, and Consumer Engine Performance 37254526100.
 - SW2-16 Historical Evidence Freeze pre-promotion is proven on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: Governance Selftest 37262481595 passed Ubuntu and Windows including squash provenance, historical freeze, read-only verify and STRICT; Sequence 37262481699, Engine 37262481631, and Consumer 37262481608 succeeded. Git-object identity preserves exact repository bytes across platform checkout transforms while staged/unstaged tamper remains fail-closed. Self Governance 37262481610 failed only at the expected Project Truth promotion boundary.
 - SW2-16 Historical Evidence Freeze is accepted on exact post-promotion candidate 2fae64c955a784588a645625252347994f00f31d: Self Governance 37262717230, Governance Selftest 37262717167 on Ubuntu and Windows, SW2 Sequence Evidence 37262717163, Governance Engine Performance 37262717196, and Consumer Engine Performance 37262717166 all succeeded. Historical identity is bound to exact Git object bytes, checkout EOL transforms do not alter authority, staged/unstaged tamper remains fail-closed, normal validation is identity-only/no-rewrite, and authorized historical re-freeze remains explicit and provenance-audited.
+- SW2-16 Historical Evidence Freeze is accepted on main 7e2c5e4669655764e24ec821cefc0c96e2886133 with tested closure candidate f8c43769c07b6d9b672b1807560fad3b42024a52. Post-merge main permanent workflows completed successfully, including Governance Selftest 37263150206 on Ubuntu and Windows, SW2 Sequence Evidence 37263150254, Governance Engine Performance 37263150294, and Consumer Engine Performance 37263150102.
 
 ## Not proven
+- SW2-17 narrow projection-module boundaries are not yet proven.
+- SW2-17 byte-equivalent canonical generated output is not yet proven.
+- SW2-17 direct regression coverage for every projection module is not yet proven.
+- SW2-17 complete cross-platform and real-consumer acceptance after modularization is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -111,15 +116,16 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Require the complete permanent matrix to pass on this closure-authority exact head.
-- If closure-head acceptance is green, update PR #24 evidence, mark it ready, and squash-merge with expected-head protection.
-- After merge, verify main tree equivalence and post-merge 6/6 before opening SW2-17.
+- Inventory generate_project_docs.py renderers and shared helpers before moving code.
+- Define the smallest projection-module boundaries with narrow responsibilities and no new framework abstraction.
+- Prove byte-equivalent output for every canonical generated document before and after extraction.
+- Add direct regression coverage for every projection module and rerun the complete permanent matrix.
 
 ## Explicitly blocked
-- Do not regenerate or rewrite closed historical evidence during normal validation merely to refresh timestamps, formatting, or current-head metadata.
-- Do not treat mutable cache state, file mtime, or branch names as historical evidence identity.
-- Do not replay closed evidence for a schema/toolchain migration unless replay is explicitly requested and provenance is recorded.
-- Do not claim reproducibility from digest verification alone; audit/replay behavior requires separate evidence.
-- Do not begin SW2-17 implementation until SW2-16 is accepted on main.
+- Do not change canonical generated-document bytes unless an explicit accepted format migration authorizes it.
+- Do not introduce a plugin framework, registry abstraction, or configuration layer merely to split renderers.
+- Do not break SW2-14 incremental projection selection or SW2-16 historical evidence identity.
+- Do not treat modularization unit tests as a substitute for exhaustive finalize and permanent cross-platform acceptance.
+- Do not begin SW2-18 implementation until SW2-17 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

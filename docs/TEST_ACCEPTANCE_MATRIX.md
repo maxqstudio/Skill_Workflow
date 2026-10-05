@@ -4,27 +4,25 @@
 
 ## Evidence boundary
 
-SW2-16 covers Historical Evidence Freeze only: immutable content-addressed identity for closed evidence, no-rewrite normal validation, explicit migration replay, and auditable reproduction. It must not weaken accepted exact-head authority, Smart Validation DAG behavior, sequence evidence, Project Truth semantics, cross-platform/consumer acceptance, or any prior V2 guarantee.
+SW2-17 covers Generator Modularization only: narrow deterministic projection modules, byte-equivalent canonical outputs, direct projection regression, and complete permanent acceptance. It must not change canonical output semantics, SW2-14 incremental selection, SW2-16 historical evidence identity, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
 Current source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-16-R1 | Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority. | PASS on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: historical identity is content-addressed from Git object bytes; tamper, dirty-worktree, frozen-commit mismatch, manifest determinism, and squash provenance regressions passed in Governance Selftest 37262481595 on Ubuntu and Windows. | PASS |
-| SW2-16-R2 | Normal validation verifies historical identity without regenerating or rewriting closed evidence. | PASS on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: normal historical validation is identity-only and no-rewrite; Governance Selftest 37262481595 passed Historical Evidence Freeze and Verify mode is read-only on Ubuntu and Windows. | PASS |
-| SW2-16-R3 | Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited. | PASS: explicit authorized reconciliation/re-freeze transaction 37261538934 succeeded, while selftest_historical_evidence proves migration requires authorization, rejects ambiguous/incompatible identity fail-closed, and records deterministic frozen provenance. | PASS |
-| SW2-16-R4 | Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green. | PASS pending final post-promotion confirmation: exact candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e passed Governance Selftest 37262481595 on Ubuntu/Windows, Sequence 37262481699, Engine 37262481631, and Consumer 37262481608; Self Governance 37262481610 reached only the expected Project Truth promotion boundary after all other finalize nodes passed. Final post-promotion 6/6 is required before merge. | PASS |
+| SW2-17-R1 | Projection modules have narrow responsibilities without unnecessary framework or plugin abstraction. | NOT_PROVEN until renderer inventory and extracted module boundaries are implemented and reviewed by regression. | NOT_PROVEN |
+| SW2-17-R2 | Every canonical generated document remains byte-equivalent unless an explicitly accepted format migration says otherwise. | NOT_PROVEN until deterministic before/after output parity covers all canonical generated documents. | NOT_PROVEN |
+| SW2-17-R3 | Direct unit/regression coverage exercises every projection module and preserves the complete renderer registry. | NOT_PROVEN until each projection module has direct regression and missing/duplicate projection mappings fail closed. | NOT_PROVEN |
+| SW2-17-R4 | The exact modularized candidate passes exhaustive finalize, Ubuntu/Windows governance, sequence, engine performance, and real-consumer acceptance. | NOT_PROVEN until the complete permanent matrix passes on the final exact candidate. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_governance_engine.py
 - python scripts/selftest_project_truth_compiler.py
-- python scripts/selftest_cross_document_regressions.py
-- python scripts/selftest_strict_project_workflow.py
+- python scripts/selftest_governance_engine.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 9ac09b2acd0bdf25ea05157be7711da852173ab8 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 7e2c5e4669655764e24ec821cefc0c96e2886133 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -38,8 +36,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-16-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-17-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 

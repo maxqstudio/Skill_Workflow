@@ -1,0 +1,50 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-17-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-17-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/generate_project_docs.py::main",
+      "scripts/sync_project_truth.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/governance_engine.py::main",
+      "scripts/validate_sequence_sessions.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-17-GOVERNANCE.actual.json",
+    "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-17 sequence evidence covers the current monolithic generator, Project Truth synchronization, project-doc validation, governance orchestration, and historical sequence identity as the baseline for modular extraction. Static structure does not prove byte-equivalent projection output or narrow module responsibilities.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-17-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-17-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-17-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+  },
+  "implementation_base_sha": "7e2c5e4669655764e24ec821cefc0c96e2886133",
+  "mode": "DURING",
+  "phase": "SW2-17",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-17-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_historical_evidence.py"
+  ]
+}
