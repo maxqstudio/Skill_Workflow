@@ -25,49 +25,27 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Implement smart validation planning and dependency closure
+      - name: Implement smart planning and dependency closure
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
 
+          def replace_between(text: str, start: str, end: str, replacement: str) -> str:
+              left = text.index(start)
+              right = text.index(end, left)
+              return text[:left] + replacement + text[right:]
+
           engine_path = Path('scripts/governance_engine.py')
           text = engine_path.read_text(encoding='utf-8')
 
-          old = '''FINALIZE_NODE_NAMES = (
-              "compile_scripts",
-              "engine_regression",
-              "sequence_regression",
-              "cross_document_regression",
-              "compiler_selftest",
-              "strict_workflow_selftest",
-              "sync_project_truth",
-              "validate_human_comprehension",
-              "validate_sequence_sessions",
-              "validate_handoff",
-              "validate_cross_document_consistency",
-              "validate_project_truth",
-              "governed_state_clean",
-          )
+          if 'FAST_MODE_NODE_ORDER = (' in text:
+              raise RuntimeError('SMART_DAG_ALREADY_PRESENT')
 
-
-          def git(root: Path, *args: str) -> str:
-          '''
-          new = '''FINALIZE_NODE_NAMES = (
-              "compile_scripts",
-              "engine_regression",
-              "sequence_regression",
-              "cross_document_regression",
-              "compiler_selftest",
-              "strict_workflow_selftest",
-              "sync_project_truth",
-              "validate_human_comprehension",
-              "validate_sequence_sessions",
-              "validate_handoff",
-              "validate_cross_document_consistency",
-              "validate_project_truth",
-              "governed_state_clean",
-          )
+          marker = '\n\ndef git(root: Path, *args: str) -> str:\n'
+          if text.count(marker) != 1:
+              raise RuntimeError('ENGINE_CONSTANT_BOUNDARY')
+          constants = '''
           FAST_MODE_NODE_ORDER = (
               "compile_scripts",
               "engine_regression",
@@ -110,27 +88,10 @@ jobs:
               "validate_cross_document_consistency": ("validate_project_docs",),
               "impact_only": (),
           }
-
-
-          def git(root: Path, *args: str) -> str:
           '''
-          if text.count(old) != 1:
-              raise RuntimeError('ENGINE_CONSTANT_INSERT_ANCHOR')
-          text = text.replace(old, new, 1)
+          text = text.replace(marker, '\n' + constants + marker, 1)
 
-          old = '''def planned_node_names(
-              requested: str,
-              effective: str,
-              paths: tuple[str, ...],
-              impacts: tuple[str, ...],
-          ) -> tuple[str, ...]:
-              if effective == "finalize":
-                  return FINALIZE_NODE_NAMES
-              if effective == "verify":
-                  return VERIFY_NODE_NAMES
-              return develop_node_names(paths, impacts)
-          '''
-          new = '''def mode_node_dependencies(mode: str, name: str) -> tuple[str, ...]:
+          planner = '''def mode_node_dependencies(mode: str, name: str) -> tuple[str, ...]:
               if mode == "develop":
                   mapping = DEVELOP_NODE_DEPENDENCIES
               elif mode == "verify":
@@ -142,7 +103,10 @@ jobs:
               return mapping[name]
 
 
-          def dependency_closure(mode: str, seeds: tuple[str, ...] | list[str]) -> tuple[str, ...]:
+          def dependency_closure(
+              mode: str,
+              seeds: tuple[str, ...] | list[str],
+          ) -> tuple[str, ...]:
               selected: set[str] = set()
               visiting: set[str] = set()
 
@@ -200,7 +164,7 @@ jobs:
                       "validate_cross_document_consistency",
                   ))
               if "source" in impact_set:
-                  names.update(("validate_project_docs", "validate_cross_document_consistency"))
+                  names.add("validate_cross_document_consistency")
               if impact_set.intersection({"broad_source", "template", "ci"}):
                   names.update(VERIFY_NODE_NAMES)
               if "benchmark" in impact_set and not names:
@@ -224,222 +188,58 @@ jobs:
                   return verify_node_names(paths, impacts)
               return dependency_closure("develop", develop_node_names(paths, impacts))
           '''
-          if text.count(old) != 1:
-              raise RuntimeError('PLANNED_NODE_FUNCTION_ANCHOR')
-          text = text.replace(old, new, 1)
+          text = replace_between(
+              text,
+              'def planned_node_names(\n',
+              '\n\ndef governed_status(',
+              planner,
+          )
 
-          old = '''def _regression_node(name: str, root: Path, script: str) -> ValidationNode:
-              return ValidationNode(
-                  name=name,
-                  dependencies=("compile_scripts",),
-                  action=command_action(root, [sys.executable, script]),
-              )
-          '''
-          new = '''def _regression_node(
-              name: str,
-              root: Path,
-              script: str,
-              *,
-              dependencies: tuple[str, ...] = ("compile_scripts",),
-          ) -> ValidationNode:
-              return ValidationNode(
-                  name=name,
-                  dependencies=dependencies,
-                  action=command_action(root, [sys.executable, script]),
-              )
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('REGRESSION_NODE_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    wanted = set(node_names)
+          prologue = '''    wanted = set(node_names)
               nodes: list[ValidationNode] = []
-
-              if "impact_only" in wanted:
-          '''
-          new = '''    wanted = set(node_names)
-              nodes: list[ValidationNode] = []
-              fast_mode = mode in {"develop", "verify"}
-
-              def dependencies_for(name: str) -> tuple[str, ...]:
-                  if not fast_mode:
-                      raise ValueError(f"SMART_DAG_FAST_MODE_REQUIRED:{mode}:{name}")
-                  dependencies = mode_node_dependencies(mode, name)
-                  missing = tuple(dep for dep in dependencies if dep not in wanted)
+              if mode in {"develop", "verify"}:
+                  undeclared = tuple(
+                      sorted(name for name in wanted if name not in FAST_MODE_NODE_ORDER)
+                  )
+                  if undeclared:
+                      raise ValueError(
+                          f"SMART_DAG_NODE_UNDECLARED:{mode}:{','.join(undeclared)}"
+                      )
+                  ordered_wanted = tuple(
+                      name for name in FAST_MODE_NODE_ORDER if name in wanted
+                  )
+                  closed = dependency_closure(mode, ordered_wanted)
+                  missing = tuple(name for name in closed if name not in wanted)
                   if missing:
                       raise ValueError(
-                          f"SMART_DAG_DEPENDENCY_MISSING:{mode}:{name}:{','.join(missing)}"
-                      )
-                  return dependencies
-
-              if "impact_only" in wanted:
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('BUILD_DAG_PROLOGUE_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    for name, script in regression_specs:
-                  if name in wanted:
-                      nodes.append(_regression_node(name, root, script))
-          '''
-          new = '''    for name, script in regression_specs:
-                  if name in wanted:
-                      dependencies = dependencies_for(name) if fast_mode else ("compile_scripts",)
-                      nodes.append(
-                          _regression_node(
-                              name,
-                              root,
-                              script,
-                              dependencies=dependencies,
-                          )
+                          f"SMART_DAG_DEPENDENCY_MISSING:{mode}:{','.join(missing)}"
                       )
           '''
-          if text.count(old) != 1:
-              raise RuntimeError('REGRESSION_BUILD_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    if "sync_project_truth" in wanted:
-                  dependencies = (
-                      ("strict_workflow_selftest",)
-                      if "strict_workflow_selftest" in wanted
-                      else regressions
-                  )
+          old_prologue = '''    wanted = set(node_names)
+              nodes: list[ValidationNode] = []
           '''
-          new = '''    if "sync_project_truth" in wanted:
-                  dependencies = (
-                      dependencies_for("sync_project_truth")
-                      if fast_mode
-                      else (
-                          ("strict_workflow_selftest",)
-                          if "strict_workflow_selftest" in wanted
-                          else regressions
-                      )
-                  )
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('SYNC_DEPENDENCY_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    elif "validate_project_docs" in wanted:
-                  dependencies = regressions
-          '''
-          new = '''    elif "validate_project_docs" in wanted:
-                  dependencies = dependencies_for("validate_project_docs") if fast_mode else regressions
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('DOCS_DEPENDENCY_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    if "validate_human_comprehension" in wanted:
-                  nodes.append(
-                      ValidationNode(
-                          name="validate_human_comprehension",
-                          dependencies=((docs_dependency,) if docs_dependency else regressions),
-          '''
-          new = '''    if "validate_human_comprehension" in wanted:
-                  dependencies = (
-                      dependencies_for("validate_human_comprehension")
-                      if fast_mode
-                      else ((docs_dependency,) if docs_dependency else regressions)
-                  )
-                  nodes.append(
-                      ValidationNode(
-                          name="validate_human_comprehension",
-                          dependencies=dependencies,
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('HUMAN_DEPENDENCY_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    if "validate_sequence_sessions" in wanted:
-                  nodes.append(
-                      ValidationNode(
-                          name="validate_sequence_sessions",
-                          dependencies=((docs_dependency,) if docs_dependency else regressions),
-          '''
-          new = '''    if "validate_sequence_sessions" in wanted:
-                  dependencies = (
-                      dependencies_for("validate_sequence_sessions")
-                      if fast_mode
-                      else ((docs_dependency,) if docs_dependency else regressions)
-                  )
-                  nodes.append(
-                      ValidationNode(
-                          name="validate_sequence_sessions",
-                          dependencies=dependencies,
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('SEQUENCE_DEPENDENCY_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    if "validate_handoff" in wanted:
-                  nodes.append(
-                      ValidationNode(
-                          name="validate_handoff",
-                          dependencies=((docs_dependency,) if docs_dependency else regressions),
-          '''
-          new = '''    if "validate_handoff" in wanted:
-                  dependencies = (
-                      dependencies_for("validate_handoff")
-                      if fast_mode
-                      else ((docs_dependency,) if docs_dependency else regressions)
-                  )
-                  nodes.append(
-                      ValidationNode(
-                          name="validate_handoff",
-                          dependencies=dependencies,
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('HANDOFF_DEPENDENCY_ANCHOR')
-          text = text.replace(old, new, 1)
-
-          old = '''    if "validate_cross_document_consistency" in wanted:
-                  dependencies: list[str] = []
-                  if "validate_human_comprehension" in wanted:
-                      dependencies.append("validate_human_comprehension")
-                  elif docs_dependency:
-                      dependencies.append(docs_dependency)
-                  elif regressions:
-                      dependencies.extend(regressions)
-          '''
-          new = '''    if "validate_cross_document_consistency" in wanted:
-                  if fast_mode:
-                      dependencies = list(dependencies_for("validate_cross_document_consistency"))
-                  else:
-                      dependencies = []
-                      if "validate_human_comprehension" in wanted:
-                          dependencies.append("validate_human_comprehension")
-                      elif docs_dependency:
-                          dependencies.append(docs_dependency)
-                      elif regressions:
-                          dependencies.extend(regressions)
-          '''
-          if text.count(old) != 1:
-              raise RuntimeError('CROSSDOC_DEPENDENCY_ANCHOR')
-          text = text.replace(old, new, 1)
-
+          if text.count(old_prologue) != 1:
+              raise RuntimeError('BUILD_MODE_DAG_PROLOGUE')
+          text = text.replace(old_prologue, prologue, 1)
           engine_path.write_text(text, encoding='utf-8', newline='\n')
 
           test_path = Path('scripts/selftest_governance_engine.py')
           tests = test_path.read_text(encoding='utf-8')
-          old = '''    collect_changed_paths,
-              develop_node_names,
-              effective_mode,
-              planned_node_names,
+          tests = tests.replace(
+              '    collect_changed_paths,\n',
+              '    build_mode_dag,\n    collect_changed_paths,\n    dependency_closure,\n',
+              1,
           )
-          '''
-          new = '''    collect_changed_paths,
-              dependency_closure,
-              develop_node_names,
-              effective_mode,
-              mode_node_dependencies,
-              planned_node_names,
-              verify_node_names,
+          tests = tests.replace(
+              '    effective_mode,\n',
+              '    effective_mode,\n    mode_node_dependencies,\n',
+              1,
           )
-          '''
-          if tests.count(old) != 1:
-              raise RuntimeError('SELFTEST_IMPORT_ANCHOR')
-          tests = tests.replace(old, new, 1)
+          tests = tests.replace(
+              '    planned_node_names,\n',
+              '    planned_node_names,\n    verify_node_names,\n',
+              1,
+          )
 
           old = '''    require(
                   set(VERIFY_NODE_NAMES) == verify_nodes,
@@ -458,6 +258,7 @@ jobs:
                   engine_verify_nodes == {"compile_scripts", "engine_regression"},
                   f"known engine verify selected unrelated work: {sorted(engine_verify_nodes)}",
               )
+
               docs_paths = ("docs/handbook/README.md",)
               docs_impacts = classify_changed_paths(docs_paths)
               docs_verify_nodes = set(verify_node_names(docs_paths, docs_impacts))
@@ -468,14 +269,17 @@ jobs:
                       "validate_handoff",
                       "validate_cross_document_consistency",
                   },
-                  f"documentation verify dependency closure drifted: {sorted(docs_verify_nodes)}",
+                  f"documentation verify closure drifted: {sorted(docs_verify_nodes)}",
               )
+
               governance_paths = (".workflow/state.json",)
               governance_impacts = classify_changed_paths(governance_paths)
-              governance_verify_nodes = set(verify_node_names(governance_paths, governance_impacts))
+              governance_verify_nodes = set(
+                  verify_node_names(governance_paths, governance_impacts)
+              )
               require(
                   "validate_sequence_sessions" in governance_verify_nodes,
-                  "governance verify missed sequence contract validation",
+                  "governance verify missed sequence validation",
               )
               require(
                   not governance_verify_nodes.intersection({
@@ -484,24 +288,16 @@ jobs:
                       "cross_document_regression",
                       "compiler_selftest",
                   }),
-                  f"known governance verify selected unrelated source regressions: {sorted(governance_verify_nodes)}",
+                  f"governance verify selected unrelated source regressions: {sorted(governance_verify_nodes)}",
               )
 
               finalize_nodes = set(
           '''
           if tests.count(old) != 1:
-              raise RuntimeError('SELFTEST_VERIFY_SELECTION_ANCHOR')
+              raise RuntimeError('SELFTEST_VERIFY_SELECTION_BOUNDARY')
           tests = tests.replace(old, new, 1)
 
-          old = '''    print("MODE_PLANNING_CONTRACT=PASS")
-
-
-          def changed_path_collection_contract() -> None:
-          '''
-          new = '''    print("MODE_PLANNING_CONTRACT=PASS")
-
-
-          def smart_validation_dependency_contract() -> None:
+          smart_test = '''def smart_validation_dependency_contract() -> None:
               verify_closure = dependency_closure(
                   "verify",
                   ("validate_cross_document_consistency",),
@@ -511,7 +307,7 @@ jobs:
                       "validate_project_docs",
                       "validate_cross_document_consistency",
                   ),
-                  f"verify prerequisite closure drifted: {verify_closure}",
+                  f"verify dependency closure drifted: {verify_closure}",
               )
               develop_closure = dependency_closure(
                   "develop",
@@ -522,8 +318,9 @@ jobs:
                       "sync_project_truth",
                       "validate_cross_document_consistency",
                   ),
-                  f"develop prerequisite closure drifted: {develop_closure}",
+                  f"develop dependency closure drifted: {develop_closure}",
               )
+
               try:
                   dependency_closure("verify", ("future_validator",))
               except ValueError as exc:
@@ -533,6 +330,21 @@ jobs:
                   )
               else:
                   raise AssertionError("undeclared smart-DAG node did not fail closed")
+
+              try:
+                  build_mode_dag(
+                      Path('.'),
+                      base='fixture-base',
+                      mode='verify',
+                      node_names=("validate_cross_document_consistency",),
+                  )
+              except ValueError as exc:
+                  require(
+                      "SMART_DAG_DEPENDENCY_MISSING" in str(exc),
+                      f"incomplete smart-DAG plan failed with wrong error: {exc}",
+                  )
+              else:
+                  raise AssertionError("incomplete smart-DAG plan did not fail closed")
 
               downstream_calls = 0
 
@@ -552,7 +364,10 @@ jobs:
                   ),
                   ValidationNode(
                       "validate_cross_document_consistency",
-                      mode_node_dependencies("verify", "validate_cross_document_consistency"),
+                      mode_node_dependencies(
+                          "verify",
+                          "validate_cross_document_consistency",
+                      ),
                       dependent_action,
                   ),
               ]).run()
@@ -562,17 +377,17 @@ jobs:
               )
               require(
                   results["validate_cross_document_consistency"].status == "BLOCKED",
-                  "smart-DAG dependent was not blocked by failed prerequisite",
+                  "smart-DAG dependent was not blocked",
               )
-              require(downstream_calls == 0, "smart-DAG skipped a required failure boundary")
+              require(downstream_calls == 0, "blocked smart-DAG node executed")
               print("SMART_VALIDATION_DAG=PASS")
 
 
-          def changed_path_collection_contract() -> None:
           '''
-          if tests.count(old) != 1:
-              raise RuntimeError('SMART_DEPENDENCY_TEST_INSERT_ANCHOR')
-          tests = tests.replace(old, new, 1)
+          marker = 'def changed_path_collection_contract() -> None:\n'
+          if tests.count(marker) != 1:
+              raise RuntimeError('SELFTEST_SMART_TEST_BOUNDARY')
+          tests = tests.replace(marker, smart_test + marker, 1)
 
           old = '''        require(
                   not any(path.name == "__pycache__" for path in scripts.rglob("__pycache__")),
@@ -585,6 +400,7 @@ jobs:
                   not any(path.name == "__pycache__" for path in scripts.rglob("__pycache__")),
                   "develop compile dirtied fixture worktree with __pycache__",
               )
+              develop_report.unlink()
 
               targeted_verify_report = root / "targeted-verify-report.json"
               targeted_verify = subprocess.run(
@@ -624,25 +440,18 @@ jobs:
               unknown = root / "future" / "new-surface.bin"
           '''
           if tests.count(old) != 1:
-              raise RuntimeError('CLI_TARGETED_VERIFY_ANCHOR')
+              raise RuntimeError('SELFTEST_TARGETED_VERIFY_BOUNDARY')
           tests = tests.replace(old, new, 1)
 
-          old = '''    dag_fail_closed()
-              mode_planning_contract()
-              changed_path_collection_contract()
-          '''
-          new = '''    dag_fail_closed()
-              mode_planning_contract()
-              smart_validation_dependency_contract()
-              changed_path_collection_contract()
-          '''
-          if tests.count(old) != 1:
-              raise RuntimeError('SELFTEST_MAIN_ANCHOR')
-          tests = tests.replace(old, new, 1)
+          tests = tests.replace(
+              '    mode_planning_contract()\n    changed_path_collection_contract()\n',
+              '    mode_planning_contract()\n    smart_validation_dependency_contract()\n    changed_path_collection_contract()\n',
+              1,
+          )
           test_path.write_text(tests, encoding='utf-8', newline='\n')
           PY
 
-      - name: Test source implementation
+      - name: Test implementation
         shell: bash
         run: |
           export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
@@ -651,7 +460,7 @@ jobs:
           python scripts/selftest_project_truth_compiler.py
           python scripts/selftest_cross_document_regressions.py
 
-      - name: Regenerate current sequence and Project Truth
+      - name: Regenerate SW2-15 sequence and Project Truth
         shell: bash
         run: |
           python - <<'PY'
@@ -664,7 +473,7 @@ jobs:
           session_path = root / 'docs/sequence/sessions/SW2-15-GOVERNANCE.json'
           session = json.loads(session_path.read_text(encoding='utf-8'))
           actual = session['actual']
-          cmd = [
+          command = [
               sys.executable,
               'scripts/generate_sequence_actual.py',
               '--root', '.',
@@ -672,8 +481,8 @@ jobs:
               '--output-mermaid', actual['diagram'],
           ]
           for entry in actual['entries']:
-              cmd += ['--entry', entry]
-          subprocess.run(cmd, check=True)
+              command.extend(['--entry', entry])
+          subprocess.run(command, check=True)
           graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
           digest = graph['source_digest']
           session['actual']['source_digest'] = digest
@@ -720,9 +529,8 @@ jobs:
           python scripts/validate_repository_health.py --root .
           python scripts/validate_public_docs.py --root .
           test ! -e .github/workflows/tmp-sw2-15-smart-dag-implementation.yml
-          git checkout HEAD -- .github/workflows/tmp-sw2-15-smart-dag-implementation.yml
 
-      - name: Commit implementation and generated evidence
+      - name: Commit source and generated evidence
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
