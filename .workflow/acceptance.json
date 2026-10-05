@@ -17,28 +17,28 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until renderer inventory and extracted module boundaries are implemented and reviewed by regression.",
+      "evidence": "PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows; Project Truth Compiler self-test reported PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22, proving narrow extracted projection modules and complete renderer mapping without a plugin/config framework.",
       "id": "SW2-17-R1",
       "requirement": "Projection modules have narrow responsibilities without unnecessary framework or plugin abstraction.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until deterministic before/after output parity covers all canonical generated documents.",
+      "evidence": "PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows with INCREMENTAL_FULL_PARITY=PASS; synchronized Project Truth preserved canonical generated-document parity after modularization.",
       "id": "SW2-17-R2",
       "requirement": "Every canonical generated document remains byte-equivalent unless an explicitly accepted format migration says otherwise.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until each projection module has direct regression and missing/duplicate projection mappings fail closed.",
+      "evidence": "PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows; selftest_project_truth_compiler.py directly exercises the projection-module contract across all 4 projection modules and all 22 renderer mappings with fail-closed mapping checks.",
       "id": "SW2-17-R3",
       "requirement": "Direct unit/regression coverage exercises every projection module and preserves the complete renderer registry.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until the complete permanent matrix passes on the final exact candidate.",
+      "evidence": "PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows, Sequence 37294491094, Engine Performance 37294491102, and Consumer Performance 37294491100 succeeded. Self Governance 37294490948 executed exhaustive finalize prerequisites and stopped only at the intentionally unpromoted Project Truth gate on a clean worktree.",
       "id": "SW2-17-R4",
       "requirement": "The exact modularized candidate passes exhaustive finalize, Ubuntu/Windows governance, sequence, engine performance, and real-consumer acceptance.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -46,7 +46,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-17-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_governance_engine.py",
@@ -56,23 +56,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
+    "SEQUENCE_SYNC": "PASS",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

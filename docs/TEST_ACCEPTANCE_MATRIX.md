@@ -11,10 +11,10 @@ Current source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-17-R1 | Projection modules have narrow responsibilities without unnecessary framework or plugin abstraction. | NOT_PROVEN until renderer inventory and extracted module boundaries are implemented and reviewed by regression. | NOT_PROVEN |
-| SW2-17-R2 | Every canonical generated document remains byte-equivalent unless an explicitly accepted format migration says otherwise. | NOT_PROVEN until deterministic before/after output parity covers all canonical generated documents. | NOT_PROVEN |
-| SW2-17-R3 | Direct unit/regression coverage exercises every projection module and preserves the complete renderer registry. | NOT_PROVEN until each projection module has direct regression and missing/duplicate projection mappings fail closed. | NOT_PROVEN |
-| SW2-17-R4 | The exact modularized candidate passes exhaustive finalize, Ubuntu/Windows governance, sequence, engine performance, and real-consumer acceptance. | NOT_PROVEN until the complete permanent matrix passes on the final exact candidate. | NOT_PROVEN |
+| SW2-17-R1 | Projection modules have narrow responsibilities without unnecessary framework or plugin abstraction. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows; Project Truth Compiler self-test reported PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22, proving narrow extracted projection modules and complete renderer mapping without a plugin/config framework. | PASS |
+| SW2-17-R2 | Every canonical generated document remains byte-equivalent unless an explicitly accepted format migration says otherwise. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows with INCREMENTAL_FULL_PARITY=PASS; synchronized Project Truth preserved canonical generated-document parity after modularization. | PASS |
+| SW2-17-R3 | Direct unit/regression coverage exercises every projection module and preserves the complete renderer registry. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows; selftest_project_truth_compiler.py directly exercises the projection-module contract across all 4 projection modules and all 22 renderer mappings with fail-closed mapping checks. | PASS |
+| SW2-17-R4 | The exact modularized candidate passes exhaustive finalize, Ubuntu/Windows governance, sequence, engine performance, and real-consumer acceptance. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows, Sequence 37294491094, Engine Performance 37294491102, and Consumer Performance 37294491100 succeeded. Self Governance 37294490948 executed exhaustive finalize prerequisites and stopped only at the intentionally unpromoted Project Truth gate on a clean worktree. | PASS |
 
 ## Test commands
 
@@ -37,7 +37,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-17-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
