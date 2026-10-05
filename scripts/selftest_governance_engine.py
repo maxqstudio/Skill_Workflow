@@ -324,6 +324,7 @@ def smart_validation_dag_contract() -> None:
             "engine_regression",
             "validate_project_docs",
             "validate_human_comprehension",
+            "validate_sequence_sessions",
             "validate_handoff",
             "validate_cross_document_consistency",
         }.issubset(engine_verify),
@@ -345,6 +346,24 @@ def smart_validation_dag_contract() -> None:
         }.issubset(source_verify),
         f"source verify closure incomplete: {source_verify}",
     )
+
+    for semantic_path, expected_regression in (
+        ("scripts/generate_project_docs.py", "compiler_selftest"),
+        ("scripts/validate_cross_document_consistency.py", "cross_document_regression"),
+    ):
+        semantic_paths = (semantic_path,)
+        semantic_impacts = classify_changed_paths(semantic_paths)
+        semantic_verify = set(
+            planned_node_names("verify", "verify", semantic_paths, semantic_impacts)
+        )
+        require(
+            expected_regression in semantic_verify,
+            f"verify missed regression for {semantic_path}: {semantic_verify}",
+        )
+        require(
+            "validate_sequence_sessions" in semantic_verify,
+            f"verify false-skip risk: sequence evidence omitted for {semantic_path}",
+        )
     require(
         len(doc_verify) < len(VERIFY_NODE_NAMES),
         "smart verify did not reduce known documentation work",
@@ -386,6 +405,37 @@ def smart_validation_dag_contract() -> None:
             require(marker_text in str(exc), f"wrong planner failure: {exc}")
         else:
             raise AssertionError(marker_text + " did not fail closed")
+    selected = dependency_closure(
+        ("target",),
+        {"prerequisite": (), "target": ("prerequisite",), "unrelated": ()},
+        ("prerequisite", "target", "unrelated"),
+    )
+    require(
+        selected == ("prerequisite", "target"),
+        f"planner skipped prerequisite or retained unrelated work: {selected}",
+    )
+    calls = {"target": 0, "unrelated": 0}
+
+    def required_failure() -> tuple[int, str]:
+        return 1, "REQUIRED_FAILURE\n"
+
+    def target_action() -> tuple[int, str]:
+        calls["target"] += 1
+        return 0, "FALSE_PASS\n"
+
+    planned_nodes = {
+        "prerequisite": ValidationNode("prerequisite", (), required_failure),
+        "target": ValidationNode("target", ("prerequisite",), target_action),
+        "unrelated": ValidationNode(
+            "unrelated", (), lambda: (calls.__setitem__("unrelated", calls["unrelated"] + 1) or 0, "UNRELATED\n")
+        ),
+    }
+    runtime = ValidationDAG([planned_nodes[name] for name in selected]).run()
+    require(runtime["prerequisite"].status == "FAIL", "required failure was lost")
+    require(runtime["target"].status == "BLOCKED", "dependent target was not blocked")
+    require(calls == {"target": 0, "unrelated": 0}, f"false-skip runtime calls: {calls}")
+    print("SMART_FALSE_PASS_RESISTANCE=PASS")
+
     print("SMART_PLANNER_FAIL_CLOSED=PASS")
 
     finalize_nodes = planned_node_names(

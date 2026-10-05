@@ -234,15 +234,24 @@ VERIFY_DEPENDENCIES: dict[str, tuple[str, ...]] = {
 }
 VERIFY_BROAD_IMPACTS = frozenset({"broad_source", "template", "ci"})
 VERIFY_IMPACT_NODE_SEEDS: dict[str, tuple[str, ...]] = {
-    "engine": ("engine_regression", "validate_cross_document_consistency"),
+    "engine": (
+        "engine_regression",
+        "validate_sequence_sessions",
+        "validate_cross_document_consistency",
+    ),
     "sequence": (
         "sequence_regression",
         "validate_sequence_sessions",
         "validate_cross_document_consistency",
     ),
-    "compiler": ("compiler_selftest", "validate_cross_document_consistency"),
+    "compiler": (
+        "compiler_selftest",
+        "validate_sequence_sessions",
+        "validate_cross_document_consistency",
+    ),
     "cross_document": (
         "cross_document_regression",
+        "validate_sequence_sessions",
         "validate_cross_document_consistency",
     ),
     "governance": (
@@ -701,6 +710,8 @@ def build_mode_dag(
             dependencies.append(docs_dependency)
         elif regressions:
             dependencies.extend(regressions)
+        if "validate_handoff" in wanted:
+            dependencies.append("validate_handoff")
         nodes.append(
             ValidationNode(
                 name="validate_cross_document_consistency",

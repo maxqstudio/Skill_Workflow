@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
+Source digest: a554fef059f3a1fbb1a1960ca8d37d8dd2fe063d0c8fb198e8e036886bb0e5a6
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -39,7 +39,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
-| scripts/selftest_governance_engine.py | 16 | 0 | 12 | 4 |
+| scripts/selftest_governance_engine.py | 18 | 0 | 12 | 6 |
 | scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_release_preflight.py | 5 | 0 | 5 | 0 |
@@ -276,29 +276,29 @@ responsibility, callers, or state ownership.
 | ValidationDAG._assert_acyclic.visit | method | 73-82 |
 | ValidationDAG.run | method | 87-131 |
 | ValidationDAG.run.execute | method | 90-127 |
-| dependency_closure | function | 261-290 |
-| dependency_closure.visit | method | 269-282 |
-| verify_seed_node_names | function | 293-325 |
-| verify_node_names | function | 328-333 |
-| git | function | 336-341 |
-| git_z | function | 344-353 |
-| state_base | function | 356-364 |
-| collect_changed_paths | function | 367-381 |
-| classify_path | function | 384-416 |
-| classify_changed_paths | function | 419-420 |
-| effective_mode | function | 423-431 |
-| develop_node_names | function | 434-469 |
-| planned_node_names | function | 472-482 |
-| governed_status | function | 485-498 |
-| cli_action | function | 501-506 |
-| command_action | function | 509-524 |
-| command_action.run | method | 510-522 |
-| compile_scripts_action | function | 527-544 |
-| compile_scripts_action.run | method | 529-542 |
-| _regression_node | function | 547-552 |
-| build_mode_dag | function | 555-750 |
-| build_dag | function | 753-827 |
-| main | function | 830-962 |
+| dependency_closure | function | 270-299 |
+| dependency_closure.visit | method | 278-291 |
+| verify_seed_node_names | function | 302-334 |
+| verify_node_names | function | 337-342 |
+| git | function | 345-350 |
+| git_z | function | 353-362 |
+| state_base | function | 365-373 |
+| collect_changed_paths | function | 376-390 |
+| classify_path | function | 393-425 |
+| classify_changed_paths | function | 428-429 |
+| effective_mode | function | 432-440 |
+| develop_node_names | function | 443-478 |
+| planned_node_names | function | 481-491 |
+| governed_status | function | 494-507 |
+| cli_action | function | 510-515 |
+| command_action | function | 518-533 |
+| command_action.run | method | 519-531 |
+| compile_scripts_action | function | 536-553 |
+| compile_scripts_action.run | method | 538-551 |
+| _regression_node | function | 556-561 |
+| build_mode_dag | function | 564-761 |
+| build_dag | function | 764-838 |
+| main | function | 841-973 |
 
 </details>
 
@@ -469,7 +469,7 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/selftest_governance_engine.py</code> — 16 symbols</summary>
+<summary><code>scripts/selftest_governance_engine.py</code> — 18 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
@@ -485,10 +485,12 @@ responsibility, callers, or state ownership.
 | dag_fail_closed.fail | method | 136-137 |
 | dag_fail_closed.downstream | method | 139-142 |
 | mode_planning_contract | function | 173-275 |
-| smart_validation_dag_contract | function | 279-401 |
-| changed_path_collection_contract | function | 404-426 |
-| mode_cli_integration_contract | function | 429-522 |
-| main | function | 525-535 |
+| smart_validation_dag_contract | function | 279-451 |
+| smart_validation_dag_contract.required_failure | method | 419-420 |
+| smart_validation_dag_contract.target_action | method | 422-424 |
+| changed_path_collection_contract | function | 454-476 |
+| mode_cli_integration_contract | function | 479-572 |
+| main | function | 575-585 |
 
 </details>
 

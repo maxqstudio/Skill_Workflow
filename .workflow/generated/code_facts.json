@@ -147,7 +147,7 @@
       "file": "scripts/governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 966
+      "lines": 977
     },
     {
       "directory": "scripts",
@@ -245,7 +245,7 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 539
+      "lines": 589
     },
     {
       "directory": "scripts",
@@ -6574,6 +6574,10 @@
     },
     {
       "caller": "scripts/governance_engine.py::build_mode_dag",
+      "target_token": "dependencies.append"
+    },
+    {
+      "caller": "scripts/governance_engine.py::build_mode_dag",
       "target_token": "dependencies.extend"
     },
     {
@@ -10546,7 +10550,23 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
-      "target_token": "classify_changed_paths"
+      "target_token": "ValidationDAG"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "ValidationNode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "calls.__setitem__"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -10563,6 +10583,18 @@
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "dependency_closure"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -10602,7 +10634,7 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
-      "target_token": "print"
+      "target_token": "planned_node_names"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -10618,7 +10650,11 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
-      "target_token": "require"
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -10651,6 +10687,38 @@
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "set"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -21670,184 +21738,184 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 290,
-      "line_start": 261,
+      "line_end": 299,
+      "line_start": 270,
       "locator": "scripts/governance_engine.py::dependency_closure",
       "symbol": "dependency_closure"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 282,
-      "line_start": 269,
+      "line_end": 291,
+      "line_start": 278,
       "locator": "scripts/governance_engine.py::dependency_closure.visit",
       "symbol": "dependency_closure.visit"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 325,
-      "line_start": 293,
+      "line_end": 334,
+      "line_start": 302,
       "locator": "scripts/governance_engine.py::verify_seed_node_names",
       "symbol": "verify_seed_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 333,
-      "line_start": 328,
+      "line_end": 342,
+      "line_start": 337,
       "locator": "scripts/governance_engine.py::verify_node_names",
       "symbol": "verify_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 341,
-      "line_start": 336,
+      "line_end": 350,
+      "line_start": 345,
       "locator": "scripts/governance_engine.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 353,
-      "line_start": 344,
+      "line_end": 362,
+      "line_start": 353,
       "locator": "scripts/governance_engine.py::git_z",
       "symbol": "git_z"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 364,
-      "line_start": 356,
+      "line_end": 373,
+      "line_start": 365,
       "locator": "scripts/governance_engine.py::state_base",
       "symbol": "state_base"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 381,
-      "line_start": 367,
+      "line_end": 390,
+      "line_start": 376,
       "locator": "scripts/governance_engine.py::collect_changed_paths",
       "symbol": "collect_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 416,
-      "line_start": 384,
+      "line_end": 425,
+      "line_start": 393,
       "locator": "scripts/governance_engine.py::classify_path",
       "symbol": "classify_path"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 420,
-      "line_start": 419,
+      "line_end": 429,
+      "line_start": 428,
       "locator": "scripts/governance_engine.py::classify_changed_paths",
       "symbol": "classify_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 431,
-      "line_start": 423,
+      "line_end": 440,
+      "line_start": 432,
       "locator": "scripts/governance_engine.py::effective_mode",
       "symbol": "effective_mode"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 469,
-      "line_start": 434,
+      "line_end": 478,
+      "line_start": 443,
       "locator": "scripts/governance_engine.py::develop_node_names",
       "symbol": "develop_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 482,
-      "line_start": 472,
+      "line_end": 491,
+      "line_start": 481,
       "locator": "scripts/governance_engine.py::planned_node_names",
       "symbol": "planned_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 498,
-      "line_start": 485,
+      "line_end": 507,
+      "line_start": 494,
       "locator": "scripts/governance_engine.py::governed_status",
       "symbol": "governed_status"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 506,
-      "line_start": 501,
+      "line_end": 515,
+      "line_start": 510,
       "locator": "scripts/governance_engine.py::cli_action",
       "symbol": "cli_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 524,
-      "line_start": 509,
+      "line_end": 533,
+      "line_start": 518,
       "locator": "scripts/governance_engine.py::command_action",
       "symbol": "command_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 522,
-      "line_start": 510,
+      "line_end": 531,
+      "line_start": 519,
       "locator": "scripts/governance_engine.py::command_action.run",
       "symbol": "command_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 544,
-      "line_start": 527,
+      "line_end": 553,
+      "line_start": 536,
       "locator": "scripts/governance_engine.py::compile_scripts_action",
       "symbol": "compile_scripts_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 542,
-      "line_start": 529,
+      "line_end": 551,
+      "line_start": 538,
       "locator": "scripts/governance_engine.py::compile_scripts_action.run",
       "symbol": "compile_scripts_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 552,
-      "line_start": 547,
+      "line_end": 561,
+      "line_start": 556,
       "locator": "scripts/governance_engine.py::_regression_node",
       "symbol": "_regression_node"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 750,
-      "line_start": 555,
+      "line_end": 761,
+      "line_start": 564,
       "locator": "scripts/governance_engine.py::build_mode_dag",
       "symbol": "build_mode_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 827,
-      "line_start": 753,
+      "line_end": 838,
+      "line_start": 764,
       "locator": "scripts/governance_engine.py::build_dag",
       "symbol": "build_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 962,
-      "line_start": 830,
+      "line_end": 973,
+      "line_start": 841,
       "locator": "scripts/governance_engine.py::main",
       "symbol": "main"
     },
@@ -22446,32 +22514,48 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 401,
+      "line_end": 451,
       "line_start": 279,
       "locator": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "symbol": "smart_validation_dag_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
+      "kind": "method",
+      "line_end": 420,
+      "line_start": 419,
+      "locator": "scripts/selftest_governance_engine.py::smart_validation_dag_contract.required_failure",
+      "symbol": "smart_validation_dag_contract.required_failure"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
+      "kind": "method",
+      "line_end": 424,
+      "line_start": 422,
+      "locator": "scripts/selftest_governance_engine.py::smart_validation_dag_contract.target_action",
+      "symbol": "smart_validation_dag_contract.target_action"
+    },
+    {
+      "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 426,
-      "line_start": 404,
+      "line_end": 476,
+      "line_start": 454,
       "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
       "symbol": "changed_path_collection_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 522,
-      "line_start": 429,
+      "line_end": 572,
+      "line_start": 479,
       "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
       "symbol": "mode_cli_integration_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 535,
-      "line_start": 525,
+      "line_end": 585,
+      "line_start": 575,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -23469,13 +23553,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f",
+  "source_digest": "a554fef059f3a1fbb1a1960ca8d37d8dd2fe063d0c8fb198e8e036886bb0e5a6",
   "source_summary": {
     "files": 50,
     "languages": {
       "Python": 50
     },
-    "lines": 13881,
+    "lines": 13942,
     "test_files": 0
   },
   "tests": []

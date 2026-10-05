@@ -11,7 +11,7 @@
       "scripts/validate_sequence_sessions.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-15-GOVERNANCE.actual.json",
-    "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
+    "source_digest": "a554fef059f3a1fbb1a1960ca8d37d8dd2fe063d0c8fb198e8e036886bb0e5a6"
   },
   "critical": true,
   "evidence_boundary": "SW2-15 sequence evidence covers Governance Engine mode planning, Project Truth synchronization, deterministic document generation/validation, cross-document consistency, and sequence validation as the baseline for Smart Validation DAG work. Static structure alone does not prove safe node selection, dependency-closure completeness, or absence of false skips.",
@@ -21,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-15-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f"
+    "source_digest": "a554fef059f3a1fbb1a1960ca8d37d8dd2fe063d0c8fb198e8e036886bb0e5a6"
   },
   "implementation_base_sha": "71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4",
   "mode": "DURING",
