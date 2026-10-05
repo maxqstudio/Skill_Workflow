@@ -3,13 +3,16 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
+Source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
 |---|---|---:|---|---|
+| .github/scripts/ci_applicability.py | Python | 91 | .github/scripts | NO |
+| .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
+| .github/scripts/validate_unified_ci.py | Python | 83 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
@@ -37,7 +40,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_cross_document_regressions.py | Python | 44 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
-| scripts/selftest_governance_engine.py | Python | 539 | scripts | NO |
+| scripts/selftest_governance_engine.py | Python | 561 | scripts | NO |
 | scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |

@@ -74,6 +74,20 @@
   "modules": [
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/ci_applicability.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 91
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_ci_applicability.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 40
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/selftest_skill_reference_split.py",
       "is_test": false,
       "language": "Python",
@@ -85,6 +99,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 101
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/validate_unified_ci.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 83
     },
     {
       "directory": "scripts",
@@ -280,7 +301,7 @@
       "file": "scripts/selftest_governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 539
+      "lines": 561
     },
     {
       "directory": "scripts",
@@ -473,6 +494,178 @@
     }
   ],
   "python_calls": [
+    {
+      "caller": ".github/scripts/ci_applicability.py::classify",
+      "target_token": "is_docs_only_path"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::classify",
+      "target_token": "normalize"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::classify",
+      "target_token": "normalize"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::classify",
+      "target_token": "sorted"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::git_changed_paths",
+      "target_token": "item.decode"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::git_changed_paths",
+      "target_token": "payload.split"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::git_changed_paths",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::git_changed_paths",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::is_docs_only_path",
+      "target_token": "normalize"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::is_docs_only_path",
+      "target_token": "value.startswith"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "args.base.strip"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "args.event.strip"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "args.head.strip"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "classify"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "fh.write"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "fh.write"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "git_changed_paths"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "output.open"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::normalize",
+      "target_token": "path.replace"
+    },
+    {
+      "caller": ".github/scripts/ci_applicability.py::normalize",
+      "target_token": "value.startswith"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "classify"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "classify"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "classify"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "classify"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::main",
+      "target_token": "require"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_applicability.py::require",
+      "target_token": "AssertionError"
+    },
     {
       "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
       "target_token": "Path"
@@ -784,6 +977,122 @@
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::validate",
       "target_token": "text.startswith"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "bootstrap.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "classifier.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "text.count"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "text.count"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "text.count"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "text.count"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "text.count"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "workflow.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "workflow.read_text"
     },
     {
       "caller": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
@@ -10615,11 +10924,19 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "classify_changed_paths"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "dependency_closure"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
-      "target_token": "len"
+      "target_token": "effective_mode"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "effective_mode"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -10627,6 +10944,14 @@
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "planned_node_names"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "planned_node_names"
     },
     {
@@ -10664,6 +10989,26 @@
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
+      "target_token": "require"
     },
     {
       "caller": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
@@ -22237,6 +22582,62 @@
   "python_routes": [],
   "python_symbols": [
     {
+      "file": ".github/scripts/ci_applicability.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 25,
+      "locator": ".github/scripts/ci_applicability.py::normalize",
+      "symbol": "normalize"
+    },
+    {
+      "file": ".github/scripts/ci_applicability.py",
+      "kind": "function",
+      "line_end": 32,
+      "line_start": 30,
+      "locator": ".github/scripts/ci_applicability.py::is_docs_only_path",
+      "symbol": "is_docs_only_path"
+    },
+    {
+      "file": ".github/scripts/ci_applicability.py",
+      "kind": "function",
+      "line_end": 49,
+      "line_start": 35,
+      "locator": ".github/scripts/ci_applicability.py::classify",
+      "symbol": "classify"
+    },
+    {
+      "file": ".github/scripts/ci_applicability.py",
+      "kind": "function",
+      "line_end": 66,
+      "line_start": 52,
+      "locator": ".github/scripts/ci_applicability.py::git_changed_paths",
+      "symbol": "git_changed_paths"
+    },
+    {
+      "file": ".github/scripts/ci_applicability.py",
+      "kind": "function",
+      "line_end": 87,
+      "line_start": 69,
+      "locator": ".github/scripts/ci_applicability.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_applicability.py",
+      "kind": "function",
+      "line_end": 9,
+      "line_start": 7,
+      "locator": ".github/scripts/selftest_ci_applicability.py::require",
+      "symbol": "require"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_applicability.py",
+      "kind": "function",
+      "line_end": 36,
+      "line_start": 12,
+      "locator": ".github/scripts/selftest_ci_applicability.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/selftest_skill_reference_split.py",
       "kind": "function",
       "line_end": 22,
@@ -22282,6 +22683,14 @@
       "line_end": 98,
       "line_start": 86,
       "locator": ".github/scripts/validate_skill_reference_split.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/validate_unified_ci.py",
+      "kind": "function",
+      "line_end": 79,
+      "line_start": 25,
+      "locator": ".github/scripts/validate_unified_ci.py::main",
       "symbol": "main"
     },
     {
@@ -23999,7 +24408,7 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 401,
+      "line_end": 423,
       "line_start": 279,
       "locator": "scripts/selftest_governance_engine.py::smart_validation_dag_contract",
       "symbol": "smart_validation_dag_contract"
@@ -24007,24 +24416,24 @@
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 426,
-      "line_start": 404,
+      "line_end": 448,
+      "line_start": 426,
       "locator": "scripts/selftest_governance_engine.py::changed_path_collection_contract",
       "symbol": "changed_path_collection_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 522,
-      "line_start": 429,
+      "line_end": 544,
+      "line_start": 451,
       "locator": "scripts/selftest_governance_engine.py::mode_cli_integration_contract",
       "symbol": "mode_cli_integration_contract"
     },
     {
       "file": "scripts/selftest_governance_engine.py",
       "kind": "function",
-      "line_end": 535,
-      "line_start": 525,
+      "line_end": 557,
+      "line_start": 547,
       "locator": "scripts/selftest_governance_engine.py::main",
       "symbol": "main"
     },
@@ -25238,13 +25647,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf",
+  "source_digest": "7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986",
   "source_summary": {
-    "files": 57,
+    "files": 60,
     "languages": {
-      "Python": 57
+      "Python": 60
     },
-    "lines": 14831,
+    "lines": 15067,
     "test_files": 0
   },
   "tests": []

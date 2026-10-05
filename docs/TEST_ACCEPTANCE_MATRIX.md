@@ -4,25 +4,26 @@
 
 ## Evidence boundary
 
-SW2-17 covers Generator Modularization only: narrow deterministic projection modules, byte-equivalent canonical outputs, direct projection regression, and complete permanent acceptance. It must not change canonical output semantics, SW2-14 incremental selection, SW2-16 historical evidence identity, or any prior V2 guarantee.
+SW2-18 covers CI orchestration only: reusable checkout/setup/provenance primitives, deterministic applicability decisions, independently visible named evidence gates, and preservation of cross-platform/real-consumer acceptance. It must not weaken SW2-17 generator parity or any earlier V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
+Current source digest: 7123cbf57af40314316e1b63cd5233a306f10fd03b305918fdd098f42345f986
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-17-R1 | Projection modules have narrow responsibilities without unnecessary framework or plugin abstraction. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows; Project Truth Compiler self-test reported PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22, proving narrow extracted projection modules and complete renderer mapping without a plugin/config framework. | PASS |
-| SW2-17-R2 | Every canonical generated document remains byte-equivalent unless an explicitly accepted format migration says otherwise. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows with INCREMENTAL_FULL_PARITY=PASS; synchronized Project Truth preserved canonical generated-document parity after modularization. | PASS |
-| SW2-17-R3 | Direct unit/regression coverage exercises every projection module and preserves the complete renderer registry. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows; selftest_project_truth_compiler.py directly exercises the projection-module contract across all 4 projection modules and all 22 renderer mappings with fail-closed mapping checks. | PASS |
-| SW2-17-R4 | The exact modularized candidate passes exhaustive finalize, Ubuntu/Windows governance, sequence, engine performance, and real-consumer acceptance. | PASS on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows, Sequence 37294491094, Engine Performance 37294491102, and Consumer Performance 37294491100 succeeded. Self Governance 37294490948 executed exhaustive finalize prerequisites and stopped only at the intentionally unpromoted Project Truth gate on a clean worktree. | PASS |
+| SW2-18-R1 | Repeated checkout, runtime setup, and exact-candidate provenance logic is centralized into reusable CI primitives without weakening provenance. | PASS: unified governance-ci.yml uses the reusable .github/actions/governance-bootstrap primitive for exact-head provenance, Python setup, and applicability across all five routine jobs; validate_unified_ci.py and cross-platform run 37324753236 prove the contract. | PASS |
+| SW2-18-R2 | Docs-only changes do not run irrelevant heavy performance or real-consumer work while source/governance changes still trigger every required heavy lane. | PASS: selftest_ci_applicability.py deterministically proves pure docs PRs suppress heavy work while .github, .workflow, scripts, SKILL.md, AGENTS.md, unknown and push events broaden fail-closed. Exact run 37324753236 classified this governance/CI change heavy and executed Engine plus real Consumer lanes. | PASS |
+| SW2-18-R3 | Required evidence gates remain independently visible and fail closed even though setup/applicability logic is consolidated. | PASS: unified Governance CI exposes the six existing permanent contexts independently: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, Sequence Evidence, Engine Performance, and Consumer Performance. validate_unified_ci.py passed on Ubuntu and Windows in run 37324753236. | PASS |
+| SW2-18-R4 | Cross-platform governance and real-consumer acceptance remain green after CI consolidation. | PASS: exact pre-promotion candidate c05ee66df88bbab8e54049a1f2c8e527e228867f passed Governance Selftest on Ubuntu and Windows, Sequence Evidence, Engine Performance, and max-grounding Consumer parity in run 37324753236. This closure transaction is pushed only if exhaustive clean exact-head finalize also passes after promotion. | PASS |
 
 ## Test commands
 
-- python scripts/selftest_project_truth_compiler.py
 - python scripts/selftest_governance_engine.py
+- python scripts/selftest_project_truth_compiler.py
+- python scripts/selftest_cross_document_regressions.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 7e2c5e4669655764e24ec821cefc0c96e2886133 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base ae24b4d96a95c8f658e5a3955c4739773b80532b --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -36,7 +37,7 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-17-GOVERNANCE
+Sequence session contract: SW2-18-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence

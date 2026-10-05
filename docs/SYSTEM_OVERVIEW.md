@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 57 files, 1 language categories.
+Observed source inventory: 60 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-17
+Current phase: SW2-18
 
-Current status: SW2_17_GENERATOR_MODULARIZATION_ACCEPTED
+Current status: SW2_18_UNIFIED_CI_ORCHESTRATOR_ACCEPTED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Update PR #27 with exact closure evidence and squash-merge only from the final clean closure head.
-- Verify the squash-merged main tree equals the tested closure tree and require post-merge 6/6 permanent checks.
-- Only after SW2-17 is accepted on main may SW2-18 Unified CI Orchestrator be opened.
+- Update PR #28 with exact SW2-18 closure evidence and squash-merge only from the final clean closure head.
+- Verify the squash-merged main tree equals the tested closure tree and require post-merge six permanent contexts to pass.
+- Only after SW2-18 is accepted on main may SW2-19 Performance Budget & V2.1 Release begin.
 
 Blocked actions:
-- Do not change canonical generated-document bytes unless an explicit accepted format migration authorizes it.
-- Do not introduce a plugin framework, registry abstraction, or configuration layer merely to split renderers.
-- Do not break SW2-14 incremental projection selection or SW2-16 historical evidence identity.
-- Do not treat modularization unit tests as a substitute for exhaustive finalize and permanent cross-platform acceptance.
-- Do not begin SW2-18 implementation until SW2-17 is accepted on main.
+- Do not collapse independent permanent evidence gates into one opaque status context.
+- Do not skip Ubuntu/Windows governance or the real-consumer acceptance lane merely because applicability logic says a change is narrow.
+- Do not run heavy performance/consumer work for docs-only changes unless dependency/applicability policy requires it.
+- Do not duplicate checkout/setup/provenance boilerplate after a reusable CI primitive becomes authoritative.
+- Do not begin SW2-19 implementation until SW2-18 is accepted on main.
 
 Known blockers:
 - None declared.
@@ -193,6 +193,9 @@ Known blockers:
 - SW2-17 Generator Modularization feature evidence is proven on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows with PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22 and INCREMENTAL_FULL_PARITY=PASS; Sequence 37294491094, Engine Performance 37294491102, and Consumer Performance 37294491100 succeeded.
 - SW2-17 pre-promotion Self Governance 37294490948 traversed exhaustive finalize prerequisites on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d with clean governed state and stopped only at the intentionally unpromoted Project Truth gate; post-promotion 6/6 remains mandatory before merge.
 - SW2-17 Generator Modularization is accepted on exact clean post-promotion candidate 7404d52d38eedbbe87d489843136869901200f10: Self Governance 37310155298, Governance Selftest 37310155333 on Ubuntu and Windows, SW2 Sequence Evidence 37310155297, Governance Engine Performance 37310155394, and Consumer Engine Performance 37310155307 all succeeded.
+- SW2-17 Generator Modularization is accepted on main ae24b4d96a95c8f658e5a3955c4739773b80532b with tree 2ebae28dd772bd0c7e5f50e4f1e5a057af436312 equal to exact tested closure candidate cafdc432898e089f05258b881656655b4bd119d1. Post-merge main passed Self Governance 37310890039; Governance Selftest 37310890120 on Ubuntu and Windows; SW2 Sequence Evidence 37310890134; Governance Engine Performance 37310890101; and Consumer Engine Performance 37310890143.
+- SW2-18 Unified CI Orchestrator pre-promotion is proven on exact candidate c05ee66df88bbab8e54049a1f2c8e527e228867f: Governance Selftest run 37324753236 passed Ubuntu and Windows including unified-CI contract regression and read-only verify; Sequence Evidence, Engine Performance, and Consumer Performance also succeeded. Self Governance stopped only at the intentionally unpromoted Project Truth boundary.
+- SW2-18 centralizes exact-head provenance, Python setup, and CI applicability through .github/actions/governance-bootstrap/action.yml while preserving six independently visible permanent contexts. Docs-only applicability is deterministic and all unknown/governance/CI/source impact remains fail-closed to heavy validation.
 
 ### Not proven
 
