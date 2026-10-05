@@ -38,7 +38,6 @@ jobs:
 
           engine_path = Path('scripts/governance_engine.py')
           text = engine_path.read_text(encoding='utf-8')
-
           if 'FAST_MODE_NODE_ORDER = (' in text:
               raise RuntimeError('SMART_DAG_ALREADY_PRESENT')
 
@@ -132,7 +131,6 @@ jobs:
           ) -> tuple[str, ...]:
               names: set[str] = set()
               path_set = set(paths)
-
               if path_set.intersection(ENGINE_DEVELOP_FILES):
                   names.add("engine_regression")
               if path_set.intersection(SEQUENCE_DEVELOP_FILES) or any(
@@ -195,6 +193,9 @@ jobs:
               planner,
           )
 
+          old_prologue = '''    wanted = set(node_names)
+              nodes: list[ValidationNode] = []
+          '''
           prologue = '''    wanted = set(node_names)
               nodes: list[ValidationNode] = []
               if mode in {"develop", "verify"}:
@@ -215,9 +216,6 @@ jobs:
                           f"SMART_DAG_DEPENDENCY_MISSING:{mode}:{','.join(missing)}"
                       )
           '''
-          old_prologue = '''    wanted = set(node_names)
-              nodes: list[ValidationNode] = []
-          '''
           if text.count(old_prologue) != 1:
               raise RuntimeError('BUILD_MODE_DAG_PROLOGUE')
           text = text.replace(old_prologue, prologue, 1)
@@ -225,16 +223,22 @@ jobs:
 
           test_path = Path('scripts/selftest_governance_engine.py')
           tests = test_path.read_text(encoding='utf-8')
+          if tests.count('    collect_changed_paths,\n') != 1:
+              raise RuntimeError('SELFTEST_IMPORT_COLLECT')
           tests = tests.replace(
               '    collect_changed_paths,\n',
               '    build_mode_dag,\n    collect_changed_paths,\n    dependency_closure,\n',
               1,
           )
+          if tests.count('    effective_mode,\n') != 1:
+              raise RuntimeError('SELFTEST_IMPORT_EFFECTIVE')
           tests = tests.replace(
               '    effective_mode,\n',
               '    effective_mode,\n    mode_node_dependencies,\n',
               1,
           )
+          if tests.count('    planned_node_names,\n') != 1:
+              raise RuntimeError('SELFTEST_IMPORT_PLANNED')
           tests = tests.replace(
               '    planned_node_names,\n',
               '    planned_node_names,\n    verify_node_names,\n',
@@ -346,11 +350,28 @@ jobs:
               else:
                   raise AssertionError("incomplete smart-DAG plan did not fail closed")
 
-              downstream_calls = 0
+              selected = verify_node_names(
+                  ("scripts/governance_engine.py",),
+                  classify_changed_paths(("scripts/governance_engine.py",)),
+              )
+              require(
+                  selected == ("compile_scripts", "engine_regression"),
+                  f"engine smart verify plan drifted: {selected}",
+              )
+              built = build_mode_dag(
+                  Path('.'),
+                  base='fixture-base',
+                  mode='verify',
+                  node_names=selected,
+              )
+              require(
+                  set(built.nodes) == {"compile_scripts", "engine_regression"},
+                  f"engine smart verify DAG drifted: {sorted(built.nodes)}",
+              )
 
+              downstream_calls = 0
               def prerequisite_fail() -> tuple[int, str]:
                   return 1, "EXPECTED_SMART_DEPENDENCY_FAILURE\\n"
-
               def dependent_action() -> tuple[int, str]:
                   nonlocal downstream_calls
                   downstream_calls += 1
@@ -384,67 +405,16 @@ jobs:
 
 
           '''
-          marker = 'def changed_path_collection_contract() -> None:\n'
-          if tests.count(marker) != 1:
+          changed_marker = 'def changed_path_collection_contract() -> None:\n'
+          if tests.count(changed_marker) != 1:
               raise RuntimeError('SELFTEST_SMART_TEST_BOUNDARY')
-          tests = tests.replace(marker, smart_test + marker, 1)
+          tests = tests.replace(changed_marker, smart_test + changed_marker, 1)
 
-          old = '''        require(
-                  not any(path.name == "__pycache__" for path in scripts.rglob("__pycache__")),
-                  "develop compile dirtied fixture worktree with __pycache__",
-              )
-
-              unknown = root / "future" / "new-surface.bin"
-          '''
-          new = '''        require(
-                  not any(path.name == "__pycache__" for path in scripts.rglob("__pycache__")),
-                  "develop compile dirtied fixture worktree with __pycache__",
-              )
-              develop_report.unlink()
-
-              targeted_verify_report = root / "targeted-verify-report.json"
-              targeted_verify = subprocess.run(
-                  [
-                      sys.executable,
-                      str(tool),
-                      "--root",
-                      str(root),
-                      "--base",
-                      base,
-                      "--mode",
-                      "verify",
-                      "--expected-head",
-                      base,
-                      "--report",
-                      str(targeted_verify_report),
-                  ],
-                  text=True,
-                  stdout=subprocess.PIPE,
-                  stderr=subprocess.STDOUT,
-                  check=False,
-              )
-              require(targeted_verify.returncode == 0, "known engine verify fixture did not pass")
-              targeted_verify_payload = json.loads(
-                  targeted_verify_report.read_text(encoding="utf-8")
-              )
-              require(
-                  set(targeted_verify_payload["selected_nodes"])
-                  == {"compile_scripts", "engine_regression"},
-                  "known engine verify selected unrelated validation nodes",
-              )
-              require(
-                  targeted_verify_payload["final_acceptance_authority"] is False,
-                  "targeted verify gained final acceptance authority",
-              )
-
-              unknown = root / "future" / "new-surface.bin"
-          '''
-          if tests.count(old) != 1:
-              raise RuntimeError('SELFTEST_TARGETED_VERIFY_BOUNDARY')
-          tests = tests.replace(old, new, 1)
-
+          main_marker = '    mode_planning_contract()\n    changed_path_collection_contract()\n'
+          if tests.count(main_marker) != 1:
+              raise RuntimeError('SELFTEST_MAIN_BOUNDARY')
           tests = tests.replace(
-              '    mode_planning_contract()\n    changed_path_collection_contract()\n',
+              main_marker,
               '    mode_planning_contract()\n    smart_validation_dependency_contract()\n    changed_path_collection_contract()\n',
               1,
           )
