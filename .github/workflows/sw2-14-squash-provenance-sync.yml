@@ -1,0 +1,103 @@
+name: SW2-14 Squash Provenance Sync
+
+on:
+  push:
+    branches:
+      - work/sw2-14-squash-sequence-provenance
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sw2-14-squash-provenance-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-14-squash-sequence-provenance
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Remove one-shot workflow from final tree
+        run: rm .github/workflows/sw2-14-squash-provenance-sync.yml
+      - name: Synchronize Project Truth
+        run: python scripts/sync_project_truth.py --root .
+      - name: Regenerate current sequence evidence and bind digest
+        shell: python
+        run: |
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.')
+          session_path = root / 'docs/sequence/sessions/SW2-14-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [
+              sys.executable, 'scripts/generate_sequence_actual.py',
+              '--root', '.',
+              '--output-json', actual['graph'],
+              '--output-mermaid', actual['diagram'],
+          ]
+          for entry in actual['entries']:
+              cmd.extend(['--entry', entry])
+          subprocess.run(cmd, check=True)
+
+          actual_graph = json.loads(Path(actual['graph']).read_text(encoding='utf-8'))
+          digest = actual_graph['source_digest']
+          actual['source_digest'] = digest
+
+          human = session.get('human_view') or {}
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/sequence_human_view.py',
+                  '--root', '.',
+                  '--actual-json', actual['graph'],
+                  '--actual-mermaid', actual['diagram'],
+                  '--output-json', human['graph'],
+                  '--output-mermaid', human['diagram'],
+                  '--output-markdown', human['document'],
+                  '--session-id', session['session_id'],
+              ], check=True)
+              human_graph = json.loads(Path(human['graph']).read_text(encoding='utf-8'))
+              human['source_digest'] = human_graph['source_digest']
+
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py',
+              '--root', '.', '--session', session_path.as_posix(),
+              '--report', session['acceptance_report'],
+          ], check=True)
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/validate_sequence_human_view.py',
+                  '--root', '.', '--session', session_path.as_posix(),
+              ], check=True)
+      - name: Resynchronize Project Truth after sequence binding
+        run: python scripts/sync_project_truth.py --root .
+      - name: Commit synchronized governed tree locally
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'chore(sw2-14): synchronize squash provenance evidence'
+      - name: Validate clean committed tree
+        shell: bash
+        run: |
+          test -z "$(git status --porcelain)"
+          python scripts/selftest_sequence_squash_provenance.py
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-14-GOVERNANCE.json --no-write-report
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-14-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_cross_document_consistency.py --root . --base 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef --require-base
+          python scripts/validate_project_truth.py --root .
+      - name: Push validated synchronized tree
+        run: git push origin HEAD:work/sw2-14-squash-sequence-provenance
