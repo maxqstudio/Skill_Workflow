@@ -16,7 +16,7 @@ Status: CURRENT
 
 | Flow | Mode | Critical | Sequence session | Status |
 |---|---|---|---|---|
-| FLOW-GOVERNANCE-CHANGE | DURING | YES | SW2-00-GOVERNANCE | NOT_PROVEN |
+| FLOW-GOVERNANCE-CHANGE | DURING | YES | SW2-00-GOVERNANCE | PASS |
 
 ## Mismatch handling
 

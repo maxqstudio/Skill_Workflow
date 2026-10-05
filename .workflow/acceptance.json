@@ -17,28 +17,28 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until historical evidence inventory and identity rules are explicit, deterministic, tamper-detecting, and regression-tested.",
+      "evidence": "PASS on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: historical identity is content-addressed from Git object bytes; tamper, dirty-worktree, frozen-commit mismatch, manifest determinism, and squash provenance regressions passed in Governance Selftest 37262481595 on Ubuntu and Windows.",
       "id": "SW2-16-R1",
       "requirement": "Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until read-only/no-rewrite behavior is implemented and byte-level regression proves closed evidence remains unchanged during normal develop/verify/finalize validation.",
+      "evidence": "PASS on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: normal historical validation is identity-only and no-rewrite; Governance Selftest 37262481595 passed Historical Evidence Freeze and Verify mode is read-only on Ubuntu and Windows.",
       "id": "SW2-16-R2",
       "requirement": "Normal validation verifies historical identity without regenerating or rewriting closed evidence.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until migration replay requires explicit authorization, rejects ambiguous/incompatible identity fail-closed, and records reproducible provenance.",
+      "evidence": "PASS: explicit authorized reconciliation/re-freeze transaction 37261538934 succeeded, while selftest_historical_evidence proves migration requires authorization, rejects ambiguous/incompatible identity fail-closed, and records deterministic frozen provenance.",
       "id": "SW2-16-R3",
       "requirement": "Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until audit/replay reproduction, tamper/identity negative paths, Ubuntu/Windows governance, sequence render, engine performance, and real-consumer acceptance all pass on the final candidate.",
+      "evidence": "PASS pending final post-promotion confirmation: exact candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e passed Governance Selftest 37262481595 on Ubuntu/Windows, Sequence 37262481699, Engine 37262481631, and Consumer 37262481608; Self Governance 37262481610 reached only the expected Project Truth promotion boundary after all other finalize nodes passed. Final post-promotion 6/6 is required before merge.",
       "id": "SW2-16-R4",
       "requirement": "Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -46,7 +46,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-16-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
@@ -58,23 +58,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
+    "SEQUENCE_SYNC": "PASS",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

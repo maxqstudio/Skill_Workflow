@@ -11,10 +11,10 @@ Current source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe581434
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-16-R1 | Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority. | NOT_PROVEN until historical evidence inventory and identity rules are explicit, deterministic, tamper-detecting, and regression-tested. | NOT_PROVEN |
-| SW2-16-R2 | Normal validation verifies historical identity without regenerating or rewriting closed evidence. | NOT_PROVEN until read-only/no-rewrite behavior is implemented and byte-level regression proves closed evidence remains unchanged during normal develop/verify/finalize validation. | NOT_PROVEN |
-| SW2-16-R3 | Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited. | NOT_PROVEN until migration replay requires explicit authorization, rejects ambiguous/incompatible identity fail-closed, and records reproducible provenance. | NOT_PROVEN |
-| SW2-16-R4 | Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green. | NOT_PROVEN until audit/replay reproduction, tamper/identity negative paths, Ubuntu/Windows governance, sequence render, engine performance, and real-consumer acceptance all pass on the final candidate. | NOT_PROVEN |
+| SW2-16-R1 | Closed accepted governance and sequence evidence has immutable content-addressed identity bound to explicit schema/digest authority. | PASS on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: historical identity is content-addressed from Git object bytes; tamper, dirty-worktree, frozen-commit mismatch, manifest determinism, and squash provenance regressions passed in Governance Selftest 37262481595 on Ubuntu and Windows. | PASS |
+| SW2-16-R2 | Normal validation verifies historical identity without regenerating or rewriting closed evidence. | PASS on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: normal historical validation is identity-only and no-rewrite; Governance Selftest 37262481595 passed Historical Evidence Freeze and Verify mode is read-only on Ubuntu and Windows. | PASS |
+| SW2-16-R3 | Schema or toolchain migrations that require historical replay are explicit, opt-in, deterministic, and provenance-audited. | PASS: explicit authorized reconciliation/re-freeze transaction 37261538934 succeeded, while selftest_historical_evidence proves migration requires authorization, rejects ambiguous/incompatible identity fail-closed, and records deterministic frozen provenance. | PASS |
+| SW2-16-R4 | Audit/replay mode can reproduce historical evidence when requested without weakening normal validation, and adversarial plus permanent acceptance remains green. | PASS pending final post-promotion confirmation: exact candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e passed Governance Selftest 37262481595 on Ubuntu/Windows, Sequence 37262481699, Engine 37262481631, and Consumer 37262481608; Self Governance 37262481610 reached only the expected Project Truth promotion boundary after all other finalize nodes passed. Final post-promotion 6/6 is required before merge. | PASS |
 
 ## Test commands
 
@@ -39,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-16-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
