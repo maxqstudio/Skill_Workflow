@@ -7,7 +7,7 @@
 SW2-19 covers performance-budget acceptance and V2.1 publication only. It must preserve all accepted V2 governance, Project Truth, historical-evidence, CI applicability, cross-platform, and real-consumer guarantees.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a
+Current source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

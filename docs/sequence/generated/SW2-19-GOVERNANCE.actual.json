@@ -1679,8 +1679,8 @@
       "kind": "function",
       "label": "scripts/release_preflight.py::_load",
       "language": "Python",
-      "line_end": 27,
-      "line_start": 26,
+      "line_end": 40,
+      "line_start": 39,
       "locator": "scripts/release_preflight.py::_load"
     },
     {
@@ -1688,8 +1688,8 @@
       "kind": "function",
       "label": "scripts/release_preflight.py::git",
       "language": "Python",
-      "line_end": 23,
-      "line_start": 22,
+      "line_end": 36,
+      "line_start": 35,
       "locator": "scripts/release_preflight.py::git"
     },
     {
@@ -1697,8 +1697,8 @@
       "kind": "function",
       "label": "scripts/release_preflight.py::main",
       "language": "Python",
-      "line_end": 230,
-      "line_start": 202,
+      "line_end": 252,
+      "line_start": 224,
       "locator": "scripts/release_preflight.py::main"
     },
     {
@@ -1706,8 +1706,8 @@
       "kind": "function",
       "label": "scripts/release_preflight.py::validate",
       "language": "Python",
-      "line_end": 199,
-      "line_start": 30,
+      "line_end": 221,
+      "line_start": 43,
       "locator": "scripts/release_preflight.py::validate"
     },
     {
@@ -2179,7 +2179,7 @@
       "locator": "scripts/validate_sequence_sessions.py::write_json"
     }
   ],
-  "observed_head": "4f2ecb0c2e5d97398bae9c55aa078c6c49c36274",
+  "observed_head": "cc64a6854923693fa07c11d5875f11bf4888fbad",
   "schema_version": 1,
-  "source_digest": "4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a"
+  "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
 }

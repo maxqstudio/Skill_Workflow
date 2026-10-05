@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a
+Source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -32,7 +32,7 @@ Generated/refreshed: current compiler run
 | scripts/project_truth_projection_contracts.py | Python | 111 | scripts | NO |
 | scripts/project_truth_projection_governance.py | Python | 279 | scripts | NO |
 | scripts/project_truth_projection_state.py | Python | 793 | scripts | NO |
-| scripts/release_preflight.py | Python | 234 | scripts | NO |
+| scripts/release_preflight.py | Python | 256 | scripts | NO |
 | scripts/schema_contract.py | Python | 88 | scripts | NO |
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
@@ -45,7 +45,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_performance_budget.py | Python | 73 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
-| scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
+| scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
 | scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |

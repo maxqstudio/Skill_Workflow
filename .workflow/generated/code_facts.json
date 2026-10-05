@@ -245,7 +245,7 @@
       "file": "scripts/release_preflight.py",
       "is_test": false,
       "language": "Python",
-      "lines": 234
+      "lines": 256
     },
     {
       "directory": "scripts",
@@ -336,7 +336,7 @@
       "file": "scripts/selftest_release_preflight.py",
       "is_test": false,
       "language": "Python",
-      "lines": 290
+      "lines": 360
     },
     {
       "directory": "scripts",
@@ -9078,6 +9078,10 @@
     },
     {
       "caller": "scripts/release_preflight.py::validate",
+      "target_token": "STABLE_RELEASE_CONTRACTS.get"
+    },
+    {
+      "caller": "scripts/release_preflight.py::validate",
       "target_token": "VERSION_RE.fullmatch"
     },
     {
@@ -9318,6 +9322,10 @@
     },
     {
       "caller": "scripts/release_preflight.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/release_preflight.py::validate",
       "target_token": "item.get"
     },
     {
@@ -9363,6 +9371,10 @@
     {
       "caller": "scripts/release_preflight.py::validate",
       "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/release_preflight.py::validate",
+      "target_token": "str"
     },
     {
       "caller": "scripts/release_preflight.py::validate",
@@ -12938,7 +12950,15 @@
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
-      "target_token": "governance_report"
+      "target_token": "commit_all"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "commit_all"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "commit_all"
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
@@ -12971,6 +12991,34 @@
     {
       "caller": "scripts/selftest_release_preflight.py::main",
       "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "governance_report"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
@@ -13099,6 +13147,34 @@
     {
       "caller": "scripts/selftest_release_preflight.py::main",
       "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_release_preflight.py::main",
+      "target_token": "write_json"
     },
     {
       "caller": "scripts/selftest_release_preflight.py::main",
@@ -24718,32 +24794,32 @@
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 23,
-      "line_start": 22,
+      "line_end": 36,
+      "line_start": 35,
       "locator": "scripts/release_preflight.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 27,
-      "line_start": 26,
+      "line_end": 40,
+      "line_start": 39,
       "locator": "scripts/release_preflight.py::_load",
       "symbol": "_load"
     },
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 199,
-      "line_start": 30,
+      "line_end": 221,
+      "line_start": 43,
       "locator": "scripts/release_preflight.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/release_preflight.py",
       "kind": "function",
-      "line_end": 230,
-      "line_start": 202,
+      "line_end": 252,
+      "line_start": 224,
       "locator": "scripts/release_preflight.py::main",
       "symbol": "main"
     },
@@ -25198,7 +25274,7 @@
     {
       "file": "scripts/selftest_release_preflight.py",
       "kind": "function",
-      "line_end": 286,
+      "line_end": 356,
       "line_start": 53,
       "locator": "scripts/selftest_release_preflight.py::main",
       "symbol": "main"
@@ -26309,13 +26385,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a",
+  "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9",
   "source_summary": {
     "files": 62,
     "languages": {
       "Python": 62
     },
-    "lines": 15322,
+    "lines": 15414,
     "test_files": 0
   },
   "tests": []

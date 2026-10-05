@@ -12,7 +12,7 @@
       "scripts/validate_performance_budget.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-19-GOVERNANCE.actual.json",
-    "source_digest": "4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a"
+    "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
   },
   "critical": true,
   "evidence_boundary": "SW2-19 sequence evidence covers governance, Project Truth, historical evidence, CI validation, and release-preflight paths used to measure and publish V2.1. Publication identity and performance budgets require separate runtime/benchmark evidence.",
@@ -22,7 +22,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-19-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a"
+    "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
   },
   "implementation_base_sha": "8a16ddb1994d1a6080816c8b9b78f75137d33e72",
   "mode": "DURING",
