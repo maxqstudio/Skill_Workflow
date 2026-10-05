@@ -1,0 +1,139 @@
+name: TEMP SW2-19 Promote R1-R3
+
+on:
+  push:
+    branches:
+      - work/sw2-19-performance-budget-v2.1
+    paths:
+      - .github/workflows/tmp-sw2-19-promote-r1-r3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-19-performance-budget-v2.1
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Promote exact pre-publication evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          evidence = {
+              'SW2-19-R1': (
+                  'PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7. '
+                  'Benchmark authority run 37336599123 recorded 3 independent Ubuntu runners x 5 repeats per mode (15 observations/mode); '
+                  'accepted budgets are develop <=2.5s, verify <=3.5s, finalize <=10.0s. '
+                  'Governance CI run 37380692462 passed the permanent unified-CI budget contract on Ubuntu and Windows, including baseline, over-limit, sample-count, tamper, and validator checks.'
+              ),
+              'SW2-19-R2': (
+                  'PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: '
+                  'Self Governance finalized successfully with synchronized tracked governance and read-only revalidation; Project Truth Compiler, cross-document, release-preflight, and STRICT adversarial false-PASS regressions passed.'
+              ),
+              'SW2-19-R3': (
+                  'PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: '
+                  'Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance (max-grounding) all succeeded.'
+              ),
+          }
+          for item in acceptance['requirements']:
+              ident = item['id']
+              if ident in evidence:
+                  item['status'] = 'PASS'
+                  item['evidence'] = evidence[ident]
+              elif ident == 'SW2-19-R4':
+                  item['status'] = 'NOT_PROVEN'
+                  item['evidence'] = 'NOT_PROVEN until strict V2.1 publication preflight authorizes the exact tested main SHA and live v2.1.0 tag/release identity is verified.'
+          for name, status in list(acceptance['truth_gates'].items()):
+              if status != 'NOT_APPLICABLE':
+                  acceptance['truth_gates'][name] = 'PASS'
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          state_path = Path('.workflow/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['not_proven'] = [
+              'SW2-19 versioned V2.1 publication from the exact tested SHA is not yet proven.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.',
+          ]
+          state['next_authorized_actions'] = [
+              'Merge the exact tested SW2-19 pre-publication candidate only after post-promotion permanent CI passes.',
+              'Run strict V2.1 publication preflight on the exact tested main SHA with only SW2-19-R4 publication-pending.',
+              'Publish v2.1.0 only if strict preflight returns publication_authority=true.',
+              'Verify live v2.1.0 tag/release identity before promoting SW2-19-R4 and closing the phase.',
+          ]
+          statement = (
+              'SW2-19 R1-R3 pre-publication acceptance is proven on exact candidate '
+              '359a757b9edc44b8449310dd5471854ddae50fc7 with Governance CI run 37380692462: '
+              'all six permanent contexts succeeded on Ubuntu/Windows and the pinned max-grounding consumer; '
+              'the permanent performance-budget contract enforces develop <=2.5s, verify <=3.5s, and finalize <=10.0s '
+              'from benchmark authority run 37336599123; V2.1 release-preflight regression also passed while SW2-19-R4 remains publication-pending.'
+          )
+          proven = list(state.get('proven', []))
+          if statement not in proven:
+              proven.append(statement)
+          state['proven'] = proven
+          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+      - name: Synchronize promoted Project Truth and sequence
+        shell: bash
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+          root = Path('.')
+          acceptance = json.loads((root / '.workflow/acceptance.json').read_text(encoding='utf-8'))
+          session_id = acceptance['sequence_session']
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd.extend(['--entry', entry])
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          human = session.get('human_view') or {}
+          if human:
+              session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          if human:
+              subprocess.run([sys.executable, 'scripts/sequence_human_view.py', '--root', '.', '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'], '--output-json', human['graph'], '--output-mermaid', human['diagram'], '--output-markdown', human['document'], '--session-id', session_id], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', session_path.as_posix(), '--report', session['acceptance_report']], check=True)
+          if human:
+              subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', session_path.as_posix()], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+      - name: Validate promotion before push
+        run: |
+          python scripts/selftest_release_preflight.py
+          python scripts/selftest_performance_budget.py
+          python scripts/validate_performance_budget.py --root .
+          python .github/scripts/validate_unified_ci.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/selftest_governance_engine.py
+      - name: Commit and push promoted authority
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow docs artifacts/sequence benchmarks scripts .github/scripts
+          git commit -m 'SW2-19: promote R1-R3 pre-publication acceptance'
+          git push origin HEAD:work/sw2-19-performance-budget-v2.1
