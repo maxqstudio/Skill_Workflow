@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-16
 
-Current status: IN_PROGRESS
+Current status: SW2_16_HISTORICAL_EVIDENCE_FREEZE_ACCEPTED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Run the complete permanent matrix on the post-promotion exact candidate and require 6/6 SUCCESS.
-- If post-promotion acceptance is green, record closure evidence, mark SW2-16 accepted, and squash-merge PR #24 with expected-head protection.
-- Do not begin SW2-17 until SW2-16 is accepted on main and post-merge main is green.
+- Require the complete permanent matrix to pass on this closure-authority exact head.
+- If closure-head acceptance is green, update PR #24 evidence, mark it ready, and squash-merge with expected-head protection.
+- After merge, verify main tree equivalence and post-merge 6/6 before opening SW2-17.
 
 Blocked actions:
 - Do not regenerate or rewrite closed historical evidence during normal validation merely to refresh timestamps, formatting, or current-head metadata.
@@ -188,6 +188,7 @@ Known blockers:
 - SW2-15 Smart Validation DAG is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 with tree 7f9d3d5447f602de73a00649cf69b69f32529041 equal to exact tested candidate 95f2a40d0029ac26ae57097af2810f0d8436c48b. Post-merge main passed Self Governance 37247432937; Governance Selftest 37247432938 on Ubuntu and Windows; SW2 Sequence Evidence 37247432919; Governance Engine Performance 37247432956; and Consumer Engine Performance 37247432928.
 - SW2-15 is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779; post-merge squash-provenance compatibility repair 9ac09b2acd0bdf25ea05157be7711da852173ab8 passed Self Governance 37254526096, Governance Selftest 37254526110 on Ubuntu and Windows, SW2 Sequence Evidence 37254526121, Governance Engine Performance 37254526090, and Consumer Engine Performance 37254526100.
 - SW2-16 Historical Evidence Freeze pre-promotion is proven on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: Governance Selftest 37262481595 passed Ubuntu and Windows including squash provenance, historical freeze, read-only verify and STRICT; Sequence 37262481699, Engine 37262481631, and Consumer 37262481608 succeeded. Git-object identity preserves exact repository bytes across platform checkout transforms while staged/unstaged tamper remains fail-closed. Self Governance 37262481610 failed only at the expected Project Truth promotion boundary.
+- SW2-16 Historical Evidence Freeze is accepted on exact post-promotion candidate 2fae64c955a784588a645625252347994f00f31d: Self Governance 37262717230, Governance Selftest 37262717167 on Ubuntu and Windows, SW2 Sequence Evidence 37262717163, Governance Engine Performance 37262717196, and Consumer Engine Performance 37262717166 all succeeded. Historical identity is bound to exact Git object bytes, checkout EOL transforms do not alter authority, staged/unstaged tamper remains fail-closed, normal validation is identity-only/no-rewrite, and authorized historical re-freeze remains explicit and provenance-audited.
 
 ### Not proven
 

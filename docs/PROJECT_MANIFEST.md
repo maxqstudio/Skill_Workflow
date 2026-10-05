@@ -10,7 +10,7 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-16-historical-evidence-freeze
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 9ac09b2acd0bdf25ea05157be7711da852173ab8
 Current source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
