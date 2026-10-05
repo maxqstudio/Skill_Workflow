@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
+Source digest: 84f7262e1a3d665f1d48f683cafee86d1fa42841d97e412c51e3e5af67774231
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -40,8 +40,9 @@ Generated/refreshed: current compiler run
 | scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
+| scripts/selftest_sequence_squash_provenance.py | Python | 64 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 869 | scripts | NO |
-| scripts/sequence_contract.py | Python | 203 | scripts | NO |
+| scripts/sequence_contract.py | Python | 269 | scripts | NO |
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 154 | scripts | NO |
 | scripts/toolchain_identity.py | Python | 184 | scripts | NO |
@@ -55,7 +56,7 @@ Generated/refreshed: current compiler run
 | scripts/validate_public_docs.py | Python | 194 | scripts | NO |
 | scripts/validate_repository_health.py | Python | 146 | scripts | NO |
 | scripts/validate_schema_toolchain.py | Python | 76 | scripts | NO |
-| scripts/validate_sequence_contract.py | Python | 328 | scripts | NO |
+| scripts/validate_sequence_contract.py | Python | 336 | scripts | NO |
 | scripts/validate_sequence_human_view.py | Python | 256 | scripts | NO |
 | scripts/validate_sequence_sessions.py | Python | 151 | scripts | NO |
 
