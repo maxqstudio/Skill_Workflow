@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 51 files, 1 language categories.
+Observed source inventory: 52 files, 1 language categories.
 
 ## Major components
 
@@ -187,6 +187,7 @@ Known blockers:
 - SW2-15 Smart Validation DAG develop/verify planning is feature-proven on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: Governance Selftest 37246954719 passed Ubuntu and Windows with SMART_DEVELOP_IMPACT_SELECTION, SMART_VERIFY_DEPENDENCY_CLOSURE, SMART_PLANNER_FAIL_CLOSED, and SMART_FINALIZE_EXHAUSTIVE regressions.
 - SW2-15 feature-level integration evidence is green on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: SW2 Sequence Evidence 37246954759, Governance Engine Performance 37246954726, and Consumer Engine Performance 37246954744 succeeded; pre-promotion Self Governance 37246954738 reached only the intentionally unpromoted Project Truth gate after exhaustive finalize prerequisites passed.
 - SW2-15 Smart Validation DAG is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 with tree 7f9d3d5447f602de73a00649cf69b69f32529041 equal to exact tested candidate 95f2a40d0029ac26ae57097af2810f0d8436c48b. Post-merge main passed Self Governance 37247432937; Governance Selftest 37247432938 on Ubuntu and Windows; SW2 Sequence Evidence 37247432919; Governance Engine Performance 37247432956; and Consumer Engine Performance 37247432928.
+- SW2-15 is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779; post-merge squash-provenance compatibility repair 9ac09b2acd0bdf25ea05157be7711da852173ab8 passed Self Governance 37254526096, Governance Selftest 37254526110 on Ubuntu and Windows, SW2 Sequence Evidence 37254526121, Governance Engine Performance 37254526090, and Consumer Engine Performance 37254526100.
 
 ### Not proven
 

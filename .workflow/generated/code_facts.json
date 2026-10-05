@@ -305,6 +305,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_sequence_squash_provenance.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 64
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_strict_project_workflow.py",
       "is_test": false,
       "language": "Python",
@@ -315,7 +322,7 @@
       "file": "scripts/sequence_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 203
+      "lines": 269
     },
     {
       "directory": "scripts",
@@ -413,7 +420,7 @@
       "file": "scripts/validate_sequence_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 328
+      "lines": 336
     },
     {
       "directory": "scripts",
@@ -13220,6 +13227,146 @@
       "target_token": "path.read_bytes"
     },
     {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::commit_file",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::commit_file",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::commit_file",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::commit_file",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::commit_file",
+      "target_token": "target.write_text"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "commit_file"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "commit_file"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "commit_file"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "commit_file"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "commit_file"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "commit_file"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "dict"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "dict"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "dict"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "validate_before_implementation_lineage"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "validate_before_implementation_lineage"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "validate_before_implementation_lineage"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "validate_before_implementation_lineage"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "validate_before_implementation_lineage"
+    },
+    {
+      "caller": "scripts/selftest_sequence_squash_provenance.py::main",
+      "target_token": "validate_before_implementation_lineage"
+    },
+    {
       "caller": "scripts/selftest_strict_project_workflow.py::assert_cross_failure",
       "target_token": "RuntimeError"
     },
@@ -14044,6 +14191,10 @@
       "target_token": "git"
     },
     {
+      "caller": "scripts/sequence_contract.py::git_tree",
+      "target_token": "git"
+    },
+    {
       "caller": "scripts/sequence_contract.py::graph_edge_set",
       "target_token": "e.get"
     },
@@ -14230,6 +14381,58 @@
     {
       "caller": "scripts/sequence_contract.py::source_files",
       "target_token": "selected.source_files"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "git_tree"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "git_tree"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "is_ancestor"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "is_ancestor"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "is_ancestor"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "merge_provenance.get"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "merge_provenance.get"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "merge_provenance.get"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "result.update"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "target_token": "str"
     },
     {
       "caller": "scripts/sequence_contract.py::write_json",
@@ -19721,7 +19924,7 @@
     },
     {
       "caller": "scripts/validate_sequence_contract.py::main",
-      "target_token": "failures.append"
+      "target_token": "failures.extend"
     },
     {
       "caller": "scripts/validate_sequence_contract.py::main",
@@ -19734,10 +19937,6 @@
     {
       "caller": "scripts/validate_sequence_contract.py::main",
       "target_token": "hashlib.sha256"
-    },
-    {
-      "caller": "scripts/validate_sequence_contract.py::main",
-      "target_token": "is_ancestor"
     },
     {
       "caller": "scripts/validate_sequence_contract.py::main",
@@ -19957,6 +20156,10 @@
     },
     {
       "caller": "scripts/validate_sequence_contract.py::main",
+      "target_token": "session.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_contract.py::main",
       "target_token": "session_path.is_file"
     },
     {
@@ -20094,6 +20297,10 @@
     {
       "caller": "scripts/validate_sequence_contract.py::main",
       "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/validate_sequence_contract.py::main",
+      "target_token": "validate_before_implementation_lineage"
     },
     {
       "caller": "scripts/validate_sequence_contract.py::main",
@@ -23743,6 +23950,30 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_sequence_squash_provenance.py",
+      "kind": "function",
+      "line_end": 12,
+      "line_start": 11,
+      "locator": "scripts/selftest_sequence_squash_provenance.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/selftest_sequence_squash_provenance.py",
+      "kind": "function",
+      "line_end": 21,
+      "line_start": 15,
+      "locator": "scripts/selftest_sequence_squash_provenance.py::commit_file",
+      "symbol": "commit_file"
+    },
+    {
+      "file": "scripts/selftest_sequence_squash_provenance.py",
+      "kind": "function",
+      "line_end": 60,
+      "line_start": 24,
+      "locator": "scripts/selftest_sequence_squash_provenance.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_strict_project_workflow.py",
       "kind": "function",
       "line_end": 68,
@@ -23881,40 +24112,56 @@
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 103,
+      "line_end": 100,
       "line_start": 99,
+      "locator": "scripts/sequence_contract.py::git_tree",
+      "symbol": "git_tree"
+    },
+    {
+      "file": "scripts/sequence_contract.py",
+      "kind": "function",
+      "line_end": 162,
+      "line_start": 103,
+      "locator": "scripts/sequence_contract.py::validate_before_implementation_lineage",
+      "symbol": "validate_before_implementation_lineage"
+    },
+    {
+      "file": "scripts/sequence_contract.py",
+      "kind": "function",
+      "line_end": 169,
+      "line_start": 165,
       "locator": "scripts/sequence_contract.py::sanitize_alias",
       "symbol": "sanitize_alias"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 138,
-      "line_start": 106,
+      "line_end": 204,
+      "line_start": 172,
       "locator": "scripts/sequence_contract.py::render_graph_mermaid",
       "symbol": "render_graph_mermaid"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 148,
-      "line_start": 141,
+      "line_end": 214,
+      "line_start": 207,
       "locator": "scripts/sequence_contract.py::plan_locator_map",
       "symbol": "plan_locator_map"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 156,
-      "line_start": 151,
+      "line_end": 222,
+      "line_start": 217,
       "locator": "scripts/sequence_contract.py::graph_edge_set",
       "symbol": "graph_edge_set"
     },
     {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
-      "line_end": 203,
-      "line_start": 159,
+      "line_end": 269,
+      "line_start": 225,
       "locator": "scripts/sequence_contract.py::compare_plan_actual",
       "symbol": "compare_plan_actual"
     },
@@ -24497,40 +24744,40 @@
     {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
-      "line_end": 28,
-      "line_start": 26,
+      "line_end": 29,
+      "line_start": 27,
       "locator": "scripts/validate_sequence_contract.py::resolve",
       "symbol": "resolve"
     },
     {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
-      "line_end": 35,
-      "line_start": 31,
+      "line_end": 36,
+      "line_start": 32,
       "locator": "scripts/validate_sequence_contract.py::git_show_bytes",
       "symbol": "git_show_bytes"
     },
     {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
-      "line_end": 44,
-      "line_start": 38,
+      "line_end": 45,
+      "line_start": 39,
       "locator": "scripts/validate_sequence_contract.py::expected_plan_mermaid",
       "symbol": "expected_plan_mermaid"
     },
     {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
-      "line_end": 54,
-      "line_start": 47,
+      "line_end": 55,
+      "line_start": 48,
       "locator": "scripts/validate_sequence_contract.py::expected_actual_mermaid",
       "symbol": "expected_actual_mermaid"
     },
     {
       "file": "scripts/validate_sequence_contract.py",
       "kind": "function",
-      "line_end": 324,
-      "line_start": 57,
+      "line_end": 332,
+      "line_start": 58,
       "locator": "scripts/validate_sequence_contract.py::main",
       "symbol": "main"
     },
@@ -24688,13 +24935,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb",
+  "source_digest": "29f6b1034b89f23f71e3275caae8bcd50787a48668d9483efc699386dcea30d0",
   "source_summary": {
-    "files": 51,
+    "files": 52,
     "languages": {
-      "Python": 51
+      "Python": 52
     },
-    "lines": 14469,
+    "lines": 14607,
     "test_files": 0
   },
   "tests": []

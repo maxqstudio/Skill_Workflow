@@ -54,7 +54,7 @@
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 9ac09b2acd0bdf25ea05157be7711da852173ab8 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",

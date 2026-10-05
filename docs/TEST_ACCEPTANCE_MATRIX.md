@@ -7,7 +7,7 @@
 SW2-16 covers Historical Evidence Freeze only: immutable content-addressed identity for closed evidence, no-rewrite normal validation, explicit migration replay, and auditable reproduction. It must not weaken accepted exact-head authority, Smart Validation DAG behavior, sequence evidence, Project Truth semantics, cross-platform/consumer acceptance, or any prior V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb
+Current source digest: 29f6b1034b89f23f71e3275caae8bcd50787a48668d9483efc699386dcea30d0
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -24,7 +24,7 @@ Current source digest: 81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef
 - python scripts/selftest_strict_project_workflow.py
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 118e0e4e5e9a6803aeb7a99e90659ee55dca2779 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 9ac09b2acd0bdf25ea05157be7711da852173ab8 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 

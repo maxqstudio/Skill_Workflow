@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 81e1b2050e9082835410708320e77a129b52d147f85c36fe5d09bd0ef1e79bcb
+Source digest: 29f6b1034b89f23f71e3275caae8bcd50787a48668d9483efc699386dcea30d0
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -48,8 +48,9 @@ responsibility, callers, or state ownership.
 | scripts/selftest_schema_toolchain.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_sequence_call_resolution.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_sequence_human_view.py | 3 | 0 | 3 | 0 |
+| scripts/selftest_sequence_squash_provenance.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_strict_project_workflow.py | 8 | 0 | 8 | 0 |
-| scripts/sequence_contract.py | 14 | 0 | 14 | 0 |
+| scripts/sequence_contract.py | 16 | 0 | 16 | 0 |
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 4 | 0 | 4 | 0 |
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
@@ -584,6 +585,17 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_sequence_squash_provenance.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 11-12 |
+| commit_file | function | 15-21 |
+| main | function | 24-60 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_strict_project_workflow.py</code> — 8 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -600,7 +612,7 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/sequence_contract.py</code> — 14 symbols</summary>
+<summary><code>scripts/sequence_contract.py</code> — 16 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
@@ -613,11 +625,13 @@ responsibility, callers, or state ownership.
 | source_files | function | 59-67 |
 | compute_source_digest | function | 70-86 |
 | is_ancestor | function | 89-96 |
-| sanitize_alias | function | 99-103 |
-| render_graph_mermaid | function | 106-138 |
-| plan_locator_map | function | 141-148 |
-| graph_edge_set | function | 151-156 |
-| compare_plan_actual | function | 159-203 |
+| git_tree | function | 99-100 |
+| validate_before_implementation_lineage | function | 103-162 |
+| sanitize_alias | function | 165-169 |
+| render_graph_mermaid | function | 172-204 |
+| plan_locator_map | function | 207-214 |
+| graph_edge_set | function | 217-222 |
+| compare_plan_actual | function | 225-269 |
 
 </details>
 
@@ -802,11 +816,11 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| resolve | function | 26-28 |
-| git_show_bytes | function | 31-35 |
-| expected_plan_mermaid | function | 38-44 |
-| expected_actual_mermaid | function | 47-54 |
-| main | function | 57-324 |
+| resolve | function | 27-29 |
+| git_show_bytes | function | 32-36 |
+| expected_plan_mermaid | function | 39-45 |
+| expected_actual_mermaid | function | 48-55 |
+| main | function | 58-332 |
 
 </details>
 
