@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-18 covers CI orchestration only: reusable checkout/setup/provenance primitives, deterministic applicability decisions, independently visible named evidence gates, and preservation of cross-platform/real-consumer acceptance. It must not weaken SW2-17 generator parity or any earlier V2 guarantee.",
+  "evidence_boundary": "SW2-19 covers performance-budget acceptance and V2.1 publication only. It must preserve all accepted V2 governance, Project Truth, historical-evidence, CI applicability, cross-platform, and real-consumer guarantees.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,63 +17,64 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: unified governance-ci.yml uses the reusable .github/actions/governance-bootstrap primitive for exact-head provenance, Python setup, and applicability across all five routine jobs; validate_unified_ci.py and cross-platform run 37324753236 prove the contract.",
-      "id": "SW2-18-R1",
-      "requirement": "Repeated checkout, runtime setup, and exact-candidate provenance logic is centralized into reusable CI primitives without weakening provenance.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until reproducible benchmark evidence establishes budgets and regression policy.",
+      "id": "SW2-19-R1",
+      "requirement": "Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: selftest_ci_applicability.py deterministically proves pure docs PRs suppress heavy work while .github, .workflow, scripts, SKILL.md, AGENTS.md, unknown and push events broaden fail-closed. Exact run 37324753236 classified this governance/CI change heavy and executed Engine plus real Consumer lanes.",
-      "id": "SW2-18-R2",
-      "requirement": "Docs-only changes do not run irrelevant heavy performance or real-consumer work while source/governance changes still trigger every required heavy lane.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until deterministic drift checks and false-PASS regressions pass on the exact candidate.",
+      "id": "SW2-19-R2",
+      "requirement": "Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: unified Governance CI exposes the six existing permanent contexts independently: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, Sequence Evidence, Engine Performance, and Consumer Performance. validate_unified_ci.py passed on Ubuntu and Windows in run 37324753236.",
-      "id": "SW2-18-R3",
-      "requirement": "Required evidence gates remain independently visible and fail closed even though setup/applicability logic is consolidated.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until the complete named acceptance matrix passes on the exact candidate.",
+      "id": "SW2-19-R3",
+      "requirement": "Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: exact pre-promotion candidate c05ee66df88bbab8e54049a1f2c8e527e228867f passed Governance Selftest on Ubuntu and Windows, Sequence Evidence, Engine Performance, and max-grounding Consumer parity in run 37324753236. This closure transaction is pushed only if exhaustive clean exact-head finalize also passes after promotion.",
-      "id": "SW2-18-R4",
-      "requirement": "Cross-platform governance and real-consumer acceptance remain green after CI consolidation.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until strict publication preflight authorizes the exact tested main SHA and live tag/release identity is verified.",
+      "id": "SW2-19-R4",
+      "requirement": "A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-18-GOVERNANCE",
+  "sequence_session": "SW2-19-GOVERNANCE",
   "sequence_sync_status": "PASS",
   "test_commands": [
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_cross_document_regressions.py",
+    "python .github/scripts/selftest_ci_applicability.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base ae24b4d96a95c8f658e5a3955c4739773b80532b --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 8a16ddb1994d1a6080816c8b9b78f75137d33e72 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

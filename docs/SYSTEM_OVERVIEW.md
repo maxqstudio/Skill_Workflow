@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-18
+Current phase: SW2-19
 
-Current status: SW2_18_UNIFIED_CI_ORCHESTRATOR_ACCEPTED
+Current status: IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Update PR #28 with exact SW2-18 closure evidence and squash-merge only from the final clean closure head.
-- Verify the squash-merged main tree equals the tested closure tree and require post-merge six permanent contexts to pass.
-- Only after SW2-18 is accepted on main may SW2-19 Performance Budget & V2.1 Release begin.
+- Measure develop, verify, and finalize wall-clock budgets with reproducible machine-readable evidence.
+- Prove generated-document drift and adversarial false-PASS regression remain zero.
+- Require Ubuntu/Windows governance and real-consumer parity on the exact V2.1 release candidate.
+- Run strict V2.1 publication preflight and publish only from the exact tested main SHA after all prior SW2-19 gates pass.
 
 Blocked actions:
-- Do not collapse independent permanent evidence gates into one opaque status context.
-- Do not skip Ubuntu/Windows governance or the real-consumer acceptance lane merely because applicability logic says a change is narrow.
-- Do not run heavy performance/consumer work for docs-only changes unless dependency/applicability policy requires it.
-- Do not duplicate checkout/setup/provenance boilerplate after a reusable CI primitive becomes authoritative.
-- Do not begin SW2-19 implementation until SW2-18 is accepted on main.
+- Do not publish or move a V2.1 tag/release before exact release-candidate acceptance and strict publication authority are proven.
+- Do not weaken generated-doc drift, false-PASS, cross-platform, consumer, or exhaustive finalize guarantees to meet a performance budget.
+- Do not treat benchmark cache, one hosted-runner sample, or docs-only skipped heavy lanes as final performance authority.
+- Do not retarget or mutate the accepted v2.0.0 tag/release.
 
 Known blockers:
 - None declared.
@@ -196,9 +196,14 @@ Known blockers:
 - SW2-17 Generator Modularization is accepted on main ae24b4d96a95c8f658e5a3955c4739773b80532b with tree 2ebae28dd772bd0c7e5f50e4f1e5a057af436312 equal to exact tested closure candidate cafdc432898e089f05258b881656655b4bd119d1. Post-merge main passed Self Governance 37310890039; Governance Selftest 37310890120 on Ubuntu and Windows; SW2 Sequence Evidence 37310890134; Governance Engine Performance 37310890101; and Consumer Engine Performance 37310890143.
 - SW2-18 Unified CI Orchestrator pre-promotion is proven on exact candidate c05ee66df88bbab8e54049a1f2c8e527e228867f: Governance Selftest run 37324753236 passed Ubuntu and Windows including unified-CI contract regression and read-only verify; Sequence Evidence, Engine Performance, and Consumer Performance also succeeded. Self Governance stopped only at the intentionally unpromoted Project Truth boundary.
 - SW2-18 centralizes exact-head provenance, Python setup, and CI applicability through .github/actions/governance-bootstrap/action.yml while preserving six independently visible permanent contexts. Docs-only applicability is deterministic and all unknown/governance/CI/source impact remains fail-closed to heavy validation.
+- SW2-18 Unified CI Orchestrator is accepted on main 8a16ddb1994d1a6080816c8b9b78f75137d33e72 with tree d99d4798da694cd65ae490b2b871a11c4e6294e6 equal to exact tested candidate 719a7491cd5773b0dee260fd4e713e5caad93374. Post-merge Governance CI run 37330706174 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance.
 
 ### Not proven
 
+- SW2-19 measured develop/verify/finalize performance budgets are not yet proven.
+- SW2-19 zero generated-doc drift and zero false-PASS regression are not yet proven.
+- SW2-19 exact V2.1 cross-platform and real-consumer release-candidate parity are not yet proven.
+- SW2-19 versioned V2.1 publication from the exact tested SHA is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations
