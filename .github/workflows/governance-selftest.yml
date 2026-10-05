@@ -70,6 +70,9 @@ jobs:
       - name: Sequence human-view regression
         run: python scripts/selftest_sequence_human_view.py
 
+      - name: Historical evidence freeze regression
+        run: python scripts/selftest_historical_evidence.py
+
       - name: Public documentation regression
         run: |
           python scripts/selftest_public_docs.py
