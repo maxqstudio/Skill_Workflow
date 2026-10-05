@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-16-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-16-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-16-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-16-GOVERNANCE.human.json)
-- Source digest: `5a30c0844dbfe667ee0eac23002ce0b6ee86d8887511c9c53f7a837323d406a6`
+- Source digest: `ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 146 | 16 |
+| Participants / nodes | 147 | 16 |
 | Interactions / edges | 275 | 32 |
-| Internal machine edges collapsed | 204 | — |
-| Cross-component edges aggregated | 39 | — |
+| Internal machine edges collapsed | 206 | — |
+| Cross-component edges aggregated | 37 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -72,6 +72,6 @@ sequenceDiagram
     module_scripts_validate_project_docs_py_14->>module_scripts_script_runner_py_8: 1 static interaction
     module_scripts_validate_project_docs_py_14->>module_scripts_validate_doc_quality_py_13: 1 static interaction
     module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_profile_py_4: 2 static interactions
-    module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_snapshot_py_5: 5 static interactions
+    module_scripts_validate_sequence_sessions_py_15->>module_scripts_project_snapshot_py_5: 3 static interactions
     module_scripts_validate_sequence_sessions_py_15->>module_scripts_selftest_sequence_human_view_py_10: 1 static interaction
 ```

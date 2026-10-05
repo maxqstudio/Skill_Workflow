@@ -60,6 +60,14 @@ def git_show_bytes(root: Path, commit: str, relpath: str) -> bytes:
     )
 
 
+def git_path_clean(root: Path, relpath: str) -> bool:
+    for args in (("diff", "--quiet", "--", relpath), ("diff", "--cached", "--quiet", "--", relpath)):
+        proc = subprocess.run(["git", "-C", str(root), *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+        if proc.returncode != 0:
+            return False
+    return True
+
+
 def repo_relative_path(root: Path, value: str) -> str:
     raw = value.replace("\\", "/").strip()
     if not raw:
@@ -146,7 +154,12 @@ def build_historical_manifest(
                     files.append({"path": rel, "present": False})
                     continue
                 raise ValueError(f"HISTORICAL_EVIDENCE_CURRENTLY_MISSING:{rel}")
-            current = path.read_bytes()
+            if not git_path_clean(root, rel):
+                raise ValueError(f"HISTORICAL_EVIDENCE_WORKTREE_DIRTY:{rel}")
+            try:
+                current = git_show_bytes(root, "HEAD", rel)
+            except subprocess.CalledProcessError as exc:
+                raise ValueError(f"HISTORICAL_EVIDENCE_NOT_IN_HEAD:{rel}") from exc
             try:
                 frozen = git_show_bytes(root, frozen_commit, rel)
             except subprocess.CalledProcessError as exc:
@@ -280,7 +293,14 @@ def verify_historical_manifest(
             if not path.is_file():
                 failures.append(f"HISTORICAL_EVIDENCE_MISSING:{rel}")
                 continue
-            payload = path.read_bytes()
+            if not git_path_clean(root, rel):
+                failures.append(f"HISTORICAL_WORKTREE_DIRTY:{rel}")
+                continue
+            try:
+                payload = git_show_bytes(root, "HEAD", rel)
+            except subprocess.CalledProcessError:
+                failures.append(f"HISTORICAL_HEAD_FILE_MISSING:{rel}")
+                continue
             expected_sha = str(record.get("sha256", ""))
             if sha256_bytes(payload) != expected_sha:
                 failures.append(f"HISTORICAL_CURRENT_HASH_MISMATCH:{rel}")

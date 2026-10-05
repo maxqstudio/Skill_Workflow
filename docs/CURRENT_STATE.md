@@ -18,7 +18,7 @@ Branch: work/sw2-16-historical-evidence-freeze
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 9ac09b2acd0bdf25ea05157be7711da852173ab8
 Current candidate SHA: external final acceptance evidence
-Current source digest: 5a30c0844dbfe667ee0eac23002ce0b6ee86d8887511c9c53f7a837323d406a6
+Current source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

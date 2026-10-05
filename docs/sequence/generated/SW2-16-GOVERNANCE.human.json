@@ -477,7 +477,7 @@
         "STATIC"
       ],
       "from": "module:scripts/validate_sequence_sessions.py",
-      "machine_edge_count": 5,
+      "machine_edge_count": 3,
       "resolvers": [
         "python_ast"
       ],
@@ -764,13 +764,14 @@
       "id": "module:scripts/validate_sequence_sessions.py",
       "kind": "module",
       "label": "scripts/validate_sequence_sessions.py",
-      "machine_node_count": 16,
+      "machine_node_count": 17,
       "machine_nodes": [
         "scripts/validate_sequence_sessions.py::build_historical_manifest",
         "scripts/validate_sequence_sessions.py::evidence_paths",
         "scripts/validate_sequence_sessions.py::evidence_paths.add",
         "scripts/validate_sequence_sessions.py::fail_payload",
         "scripts/validate_sequence_sessions.py::git_commit_exists",
+        "scripts/validate_sequence_sessions.py::git_path_clean",
         "scripts/validate_sequence_sessions.py::git_show_bytes",
         "scripts/validate_sequence_sessions.py::historical_sessions",
         "scripts/validate_sequence_sessions.py::load_session",
@@ -785,14 +786,14 @@
       ]
     }
   ],
-  "observed_head": "d5935212ac02113c9397d305d8fa950c410cc706",
+  "observed_head": "b65f3dbd9d2e96e9d14fd786183f3715a610c3c1",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 39,
-    "cross_component_machine_edges": 71,
-    "internal_machine_edges_collapsed": 204,
+    "aggregated_cross_component_edges": 37,
+    "cross_component_machine_edges": 69,
+    "internal_machine_edges_collapsed": 206,
     "machine_edge_count": 275,
-    "machine_node_count": 146,
+    "machine_node_count": 147,
     "node_map": {
       "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
       "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
@@ -929,6 +930,7 @@
       "scripts/validate_sequence_sessions.py::evidence_paths.add": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::fail_payload": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::git_commit_exists": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::git_path_clean": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::git_show_bytes": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::historical_sessions": "module:scripts/validate_sequence_sessions.py",
       "scripts/validate_sequence_sessions.py::load_session": "module:scripts/validate_sequence_sessions.py",
@@ -944,5 +946,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "5a30c0844dbfe667ee0eac23002ce0b6ee86d8887511c9c53f7a837323d406a6"
+  "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
 }

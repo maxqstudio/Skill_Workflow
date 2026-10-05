@@ -152,7 +152,7 @@ def fixture() -> None:
         actual_json.write_text('{"source_digest":"tampered"}\n', encoding="utf-8")
         failures, _ = verify_historical_manifest(root, sessions, manifest_path)
         require(
-            any(item.startswith("HISTORICAL_CURRENT_HASH_MISMATCH:") for item in failures),
+            any(item.startswith(("HISTORICAL_WORKTREE_DIRTY:", "HISTORICAL_CURRENT_HASH_MISMATCH:")) for item in failures),
             f"tampered evidence was not rejected: {failures}",
         )
         actual_json.write_bytes(original_actual)
@@ -162,7 +162,7 @@ def fixture() -> None:
         git_run(root, "add", str(actual_json.relative_to(root)))
         git_run(root, "commit", "-m", "different historical bytes")
         different_commit = git(root, "rev-parse", "HEAD")
-        actual_json.write_bytes(original_actual)
+        git_run(root, "reset", "--hard", frozen_commit)
         altered = json.loads(manifest_bytes.decode("utf-8"))
         altered["frozen_commit"] = different_commit
         write_json(manifest_path, altered)

@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 5a30c0844dbfe667ee0eac23002ce0b6ee86d8887511c9c53f7a837323d406a6
+Source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -66,7 +66,7 @@ responsibility, callers, or state ownership.
 | scripts/validate_schema_toolchain.py | 2 | 0 | 2 | 0 |
 | scripts/validate_sequence_contract.py | 5 | 0 | 5 | 0 |
 | scripts/validate_sequence_human_view.py | 3 | 0 | 3 | 0 |
-| scripts/validate_sequence_sessions.py | 16 | 0 | 15 | 1 |
+| scripts/validate_sequence_sessions.py | 17 | 0 | 16 | 1 |
 
 ## Detailed symbols
 
@@ -836,7 +836,7 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/validate_sequence_sessions.py</code> — 16 symbols</summary>
+<summary><code>scripts/validate_sequence_sessions.py</code> — 17 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
@@ -845,17 +845,18 @@ responsibility, callers, or state ownership.
 | write_json | function | 35-41 |
 | git_commit_exists | function | 44-53 |
 | git_show_bytes | function | 56-60 |
-| repo_relative_path | function | 63-75 |
-| load_session | function | 78-79 |
-| session_scope | function | 82-83 |
-| historical_sessions | function | 86-95 |
-| evidence_paths | function | 98-116 |
-| evidence_paths.add | method | 101-104 |
-| build_historical_manifest | function | 119-187 |
-| verify_historical_manifest | function | 190-299 |
-| run_validator | function | 302-327 |
-| fail_payload | function | 330-332 |
-| main | function | 335-531 |
+| git_path_clean | function | 63-68 |
+| repo_relative_path | function | 71-83 |
+| load_session | function | 86-87 |
+| session_scope | function | 90-91 |
+| historical_sessions | function | 94-103 |
+| evidence_paths | function | 106-124 |
+| evidence_paths.add | method | 109-112 |
+| build_historical_manifest | function | 127-200 |
+| verify_historical_manifest | function | 203-319 |
+| run_validator | function | 322-347 |
+| fail_payload | function | 350-352 |
+| main | function | 355-551 |
 
 </details>
 
