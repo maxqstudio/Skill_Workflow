@@ -35,10 +35,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until strict V2.1 publication preflight authorizes the exact tested main SHA and live v2.1.0 tag/release identity is verified.",
+      "evidence": "Stable v2.1.0 publication is accepted from exact tested main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict exact-head governance finalize and V2.1 preflight with publication_authority=true while only SW2-19-R4 was publication-pending before publication; live tag identity and GitHub release target identity both passed against the exact tested SHA. Publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e; GitHub release id is 404150971. The v2.1.0 tag is immutable release evidence and must not be moved or retargeted.",
       "id": "SW2-19-R4",
       "requirement": "A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
