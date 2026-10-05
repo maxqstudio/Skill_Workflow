@@ -10,7 +10,7 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-17-generator-modularization
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 7e2c5e4669655764e24ec821cefc0c96e2886133
 Current source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
