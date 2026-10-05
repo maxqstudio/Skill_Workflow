@@ -3,13 +3,16 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
+Source digest: 751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
 |---|---|---:|---|---|
+| .github/scripts/ci_applicability.py | Python | 91 | .github/scripts | NO |
+| .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
+| .github/scripts/validate_unified_ci.py | Python | 83 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |

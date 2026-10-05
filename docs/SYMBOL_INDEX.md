@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
+Source digest: 751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -15,8 +15,11 @@ responsibility, callers, or state ownership.
 
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
+| .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
+| .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
+| .github/scripts/validate_unified_ci.py | 1 | 0 | 1 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -76,6 +79,29 @@ responsibility, callers, or state ownership.
 ## Detailed symbols
 
 <details>
+<summary><code>.github/scripts/ci_applicability.py</code> — 5 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| normalize | function | 25-27 |
+| is_docs_only_path | function | 30-32 |
+| classify | function | 35-49 |
+| git_changed_paths | function | 52-66 |
+| main | function | 69-87 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_ci_applicability.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| require | function | 7-9 |
+| main | function | 12-36 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_skill_reference_split.py</code> — 3 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -94,6 +120,15 @@ responsibility, callers, or state ownership.
 | _normalized_text | function | 35-36 |
 | validate | function | 39-83 |
 | main | function | 86-98 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/validate_unified_ci.py</code> — 1 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 25-79 |
 
 </details>
 

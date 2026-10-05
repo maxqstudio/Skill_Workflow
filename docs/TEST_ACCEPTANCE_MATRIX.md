@@ -7,7 +7,7 @@
 SW2-18 covers CI orchestration only: reusable checkout/setup/provenance primitives, deterministic applicability decisions, independently visible named evidence gates, and preservation of cross-platform/real-consumer acceptance. It must not weaken SW2-17 generator parity or any earlier V2 guarantee.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
+Current source digest: 751472323a2ac103b24a68eda3ca1bfc83859c9333e90f953de1bdaf243f1f2d
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
