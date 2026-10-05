@@ -10,13 +10,26 @@ import subprocess
 from pathlib import Path
 
 VERSION_RE = re.compile(r"^v(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$")
-SW2_09_RELEASE_REQUIREMENTS = {
-    "SW2-09-R1",
-    "SW2-09-R2",
-    "SW2-09-R3",
-    "SW2-09-R4",
+STABLE_RELEASE_CONTRACTS = {
+    "SW2-09": {
+        "requirements": {
+            "SW2-09-R1",
+            "SW2-09-R2",
+            "SW2-09-R3",
+            "SW2-09-R4",
+        },
+        "publication_requirement": "SW2-09-R4",
+    },
+    "SW2-19": {
+        "requirements": {
+            "SW2-19-R1",
+            "SW2-19-R2",
+            "SW2-19-R3",
+            "SW2-19-R4",
+        },
+        "publication_requirement": "SW2-19-R4",
+    },
 }
-SW2_09_PUBLICATION_REQUIREMENT = "SW2-09-R4"
 
 
 def git(root: Path, *args: str) -> str:
@@ -119,6 +132,13 @@ def validate(
         if isinstance(raw_phases, list):
             phases = raw_phases
 
+    stable_contract = STABLE_RELEASE_CONTRACTS.get(current_phase) if stable else None
+    publication_requirement = (
+        str(stable_contract["publication_requirement"])
+        if stable_contract is not None
+        else ""
+    )
+
     requirements = acceptance.get("requirements", []) if isinstance(acceptance, dict) else []
     if not isinstance(requirements, list):
         failures.append("ACCEPTANCE_REQUIREMENTS_INVALID")
@@ -140,8 +160,8 @@ def validate(
         elif status != "PASS":
             publication_pending = bool(
                 stable
-                and current_phase == "SW2-09"
-                and ident == SW2_09_PUBLICATION_REQUIREMENT
+                and stable_contract is not None
+                and ident == publication_requirement
                 and status == "NOT_PROVEN"
             )
             if publication_pending:
@@ -163,16 +183,18 @@ def validate(
             failures.append(f"RELEASE_TRUTH_GATE_NOT_PROVEN:{name}:{status}")
 
     if stable:
-        if current_phase != "SW2-09":
-            failures.append("STABLE_RELEASE_OUTSIDE_SW2_09")
+        if stable_contract is None:
+            failures.append("STABLE_RELEASE_OUTSIDE_AUTHORIZED_PHASE:" + current_phase)
         else:
-            for ident in sorted(SW2_09_RELEASE_REQUIREMENTS - requirement_ids):
+            required_ids = stable_contract["requirements"]
+            assert isinstance(required_ids, set)
+            for ident in sorted(required_ids - requirement_ids):
                 failures.append("STABLE_RELEASE_REQUIREMENT_MISSING:" + ident)
         for phase in phases:
             if not isinstance(phase, dict):
                 continue
             ident = str(phase.get("id", ""))
-            if ident.startswith("SW2-") and ident != "SW2-09" and phase.get("status") != "COMPLETE":
+            if ident.startswith("SW2-") and ident != current_phase and phase.get("status") != "COMPLETE":
                 failures.append("PRIOR_PHASE_NOT_COMPLETE:" + ident)
 
     passed = not failures
@@ -194,7 +216,7 @@ def validate(
         "failures": failures,
         "evidence_boundary": (
             "Evidence-only mode is a non-authoritative dry run: it requires a verify request, allows governance breadth to escalate fail-closed, proves exact-head, clean-state, version/tag, report, and status semantics while allowing explicit NOT_PROVEN items, can never authorize publication, and rejects stable versions. "
-            "Strict mode requires a finalize request, effective finalize execution, complete PASS governance, and stable-release phase boundaries. During a stable SW2-09 preflight only SW2-09-R4 may remain NOT_PROVEN because the tag/release publication is the action being authorized; every other release requirement and truth gate must already be PASS or NOT_APPLICABLE. Neither mode creates a Git tag or GitHub release."
+            "Strict mode requires a finalize request, effective finalize execution, complete PASS governance, and an explicitly authorized stable-release phase contract. During a stable preflight only the active phase publication requirement may remain NOT_PROVEN because tag/release publication is the action being authorized; every other release requirement and truth gate must already be PASS or NOT_APPLICABLE. Neither mode creates a Git tag or GitHub release."
         ),
     }
 
