@@ -3,20 +3,20 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 7e2c5e4669655764e24ec821cefc0c96e2886133
+Authority verified at SHA: ae24b4d96a95c8f658e5a3955c4739773b80532b
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-17
-Status: SW2_17_GENERATOR_MODULARIZATION_ACCEPTED
-Roadmap phase: SW2-17
+Phase: SW2-18
+Status: IN_PROGRESS
+Roadmap phase: SW2-18
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-18-unified-ci-orchestrator
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 7e2c5e4669655764e24ec821cefc0c96e2886133
+Last accepted SHA: ae24b4d96a95c8f658e5a3955c4739773b80532b
 Current candidate SHA: external final acceptance evidence
 Current source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
 
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-17-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-18-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -104,8 +104,13 @@ SEQUENCE_SYNC: PASS
 - SW2-17 Generator Modularization feature evidence is proven on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows with PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22 and INCREMENTAL_FULL_PARITY=PASS; Sequence 37294491094, Engine Performance 37294491102, and Consumer Performance 37294491100 succeeded.
 - SW2-17 pre-promotion Self Governance 37294490948 traversed exhaustive finalize prerequisites on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d with clean governed state and stopped only at the intentionally unpromoted Project Truth gate; post-promotion 6/6 remains mandatory before merge.
 - SW2-17 Generator Modularization is accepted on exact clean post-promotion candidate 7404d52d38eedbbe87d489843136869901200f10: Self Governance 37310155298, Governance Selftest 37310155333 on Ubuntu and Windows, SW2 Sequence Evidence 37310155297, Governance Engine Performance 37310155394, and Consumer Engine Performance 37310155307 all succeeded.
+- SW2-17 Generator Modularization is accepted on main ae24b4d96a95c8f658e5a3955c4739773b80532b with tree 2ebae28dd772bd0c7e5f50e4f1e5a057af436312 equal to exact tested closure candidate cafdc432898e089f05258b881656655b4bd119d1. Post-merge main passed Self Governance 37310890039; Governance Selftest 37310890120 on Ubuntu and Windows; SW2 Sequence Evidence 37310890134; Governance Engine Performance 37310890101; and Consumer Engine Performance 37310890143.
 
 ## Not proven
+- SW2-18 centralized checkout/setup/provenance reuse is not yet proven.
+- SW2-18 docs-only heavy-lane suppression is not yet proven.
+- SW2-18 independent named evidence-gate visibility and fail-closed applicability are not yet proven.
+- SW2-18 cross-platform and real-consumer parity after CI consolidation are not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -115,15 +120,16 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Update PR #27 with exact closure evidence and squash-merge only from the final clean closure head.
-- Verify the squash-merged main tree equals the tested closure tree and require post-merge 6/6 permanent checks.
-- Only after SW2-17 is accepted on main may SW2-18 Unified CI Orchestrator be opened.
+- Inventory repeated checkout/setup/provenance and applicability logic across permanent workflows.
+- Define reusable CI primitives and an explicit applicability classifier while preserving independently visible named evidence gates.
+- Add docs-only and source-change regressions proving irrelevant heavy lanes can be skipped without suppressing required failures.
+- Keep cross-platform and real-consumer acceptance green on the final candidate before SW2-18 closure.
 
 ## Explicitly blocked
-- Do not change canonical generated-document bytes unless an explicit accepted format migration authorizes it.
-- Do not introduce a plugin framework, registry abstraction, or configuration layer merely to split renderers.
-- Do not break SW2-14 incremental projection selection or SW2-16 historical evidence identity.
-- Do not treat modularization unit tests as a substitute for exhaustive finalize and permanent cross-platform acceptance.
-- Do not begin SW2-18 implementation until SW2-17 is accepted on main.
+- Do not collapse independent permanent evidence gates into one opaque status context.
+- Do not skip Ubuntu/Windows governance or the real-consumer acceptance lane merely because applicability logic says a change is narrow.
+- Do not run heavy performance/consumer work for docs-only changes unless dependency/applicability policy requires it.
+- Do not duplicate checkout/setup/provenance boilerplate after a reusable CI primitive becomes authoritative.
+- Do not begin SW2-19 implementation until SW2-18 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

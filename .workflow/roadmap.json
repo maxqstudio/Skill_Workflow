@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-17",
+  "current_phase": "SW2-18",
   "phases": [
     {
       "exit_criteria": [
@@ -216,7 +216,7 @@
       ],
       "id": "SW2-17",
       "objective": "Split oversized deterministic document generation into small projection modules without changing canonical outputs.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Generator Modularization"
     },
     {
@@ -228,7 +228,7 @@
       ],
       "id": "SW2-18",
       "objective": "Consolidate repeated CI setup and applicability decisions into one explicit validation DAG while retaining named evidence gates.",
-      "status": "PLANNED",
+      "status": "CURRENT",
       "title": "Unified CI Orchestrator"
     },
     {
