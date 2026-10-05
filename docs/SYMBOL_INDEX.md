@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 84f7262e1a3d665f1d48f683cafee86d1fa42841d97e412c51e3e5af67774231
+Source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -40,6 +40,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_governance_engine.py | 16 | 0 | 12 | 4 |
+| scripts/selftest_historical_evidence.py | 6 | 0 | 6 | 0 |
 | scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_release_preflight.py | 5 | 0 | 5 | 0 |
@@ -65,7 +66,7 @@ responsibility, callers, or state ownership.
 | scripts/validate_schema_toolchain.py | 2 | 0 | 2 | 0 |
 | scripts/validate_sequence_contract.py | 5 | 0 | 5 | 0 |
 | scripts/validate_sequence_human_view.py | 3 | 0 | 3 | 0 |
-| scripts/validate_sequence_sessions.py | 2 | 0 | 2 | 0 |
+| scripts/validate_sequence_sessions.py | 17 | 0 | 16 | 1 |
 
 ## Detailed symbols
 
@@ -494,6 +495,20 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_historical_evidence.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| require | function | 21-23 |
+| git | function | 26-31 |
+| git_run | function | 34-40 |
+| fixture | function | 43-175 |
+| replay_authorization_contract | function | 178-193 |
+| main | function | 196-200 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_project_truth_compiler.py</code> — 4 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -821,12 +836,27 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/validate_sequence_sessions.py</code> — 2 symbols</summary>
+<summary><code>scripts/validate_sequence_sessions.py</code> — 17 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| run_validator | function | 16-36 |
-| main | function | 39-147 |
+| sha256_bytes | function | 27-28 |
+| sha256_file | function | 31-32 |
+| write_json | function | 35-41 |
+| git_commit_exists | function | 44-53 |
+| git_show_bytes | function | 56-60 |
+| git_path_clean | function | 63-68 |
+| repo_relative_path | function | 71-83 |
+| load_session | function | 86-87 |
+| session_scope | function | 90-91 |
+| historical_sessions | function | 94-103 |
+| evidence_paths | function | 106-124 |
+| evidence_paths.add | method | 109-112 |
+| build_historical_manifest | function | 127-200 |
+| verify_historical_manifest | function | 203-319 |
+| run_validator | function | 322-347 |
+| fail_payload | function | 350-352 |
+| main | function | 355-551 |
 
 </details>
 

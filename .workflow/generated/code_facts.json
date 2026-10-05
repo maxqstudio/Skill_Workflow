@@ -249,6 +249,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_historical_evidence.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 204
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
@@ -427,7 +434,7 @@
       "file": "scripts/validate_sequence_sessions.py",
       "is_test": false,
       "language": "Python",
-      "lines": 151
+      "lines": 555
     }
   ],
   "python_calls": [
@@ -10848,6 +10855,322 @@
       "target_token": "tempfile.TemporaryDirectory"
     },
     {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "acceptance.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_json.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_json.relative_to"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_json.write_bytes"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_json.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_json.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_json.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "actual_mmd.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "build_historical_manifest"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "build_historical_manifest"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "build_historical_manifest"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "evidence_paths"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "git_run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "historical_sessions"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "human_json.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "human_md.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "human_mmd.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "item.startswith"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "item.startswith"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "manifest_bytes.decode"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "manifest_path.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "manifest_path.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "manifest_path.write_bytes"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "path.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "session_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "verify_historical_manifest"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "verify_historical_manifest"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "verify_historical_manifest"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::fixture",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::git_run",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::git_run",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::main",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::main",
+      "target_token": "replay_authorization_contract"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_historical_evidence.py::require",
+      "target_token": "AssertionError"
+    },
+    {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "Path"
     },
@@ -20700,6 +21023,282 @@
       "target_token": "path.is_absolute"
     },
     {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "actual.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "authorization_reason.strip"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "entries.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "evidence_paths"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "files.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "files.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "git_commit_exists"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "git_path_clean"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "git_show_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "git_show_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "git_show_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "historical_sessions"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "load_session"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "seen_files.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "session_path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "sha256_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "sha256_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "sha256_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "target_token": "tool.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "add"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "add"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "section.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "session_path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "target_token": "repo_relative_path"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "target_token": "values.add"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::fail_payload",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::fail_payload",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::git_commit_exists",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::git_commit_exists",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::git_path_clean",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::git_path_clean",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::git_show_bytes",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::git_show_bytes",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "target_token": "load_session"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "target_token": "result.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "target_token": "session_scope"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::load_session",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::load_session",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "Path"
+    },
+    {
       "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "Path"
     },
@@ -20709,7 +21308,27 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
-      "target_token": "Path"
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "ap.add_argument"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
@@ -20729,15 +21348,51 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "args.frozen_commit.strip"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "bool"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "build_historical_manifest"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "contract_validator.is_file"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "contract_validator.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "fail_payload"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "fail_payload"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "fail_payload"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "fail_payload"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "fail_payload"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "historical_sessions"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
@@ -20769,15 +21424,47 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
-      "target_token": "json.dumps"
-    },
-    {
-      "caller": "scripts/validate_sequence_sessions.py::main",
-      "target_token": "json.loads"
+      "target_token": "len"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "load_session"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest_path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest_path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "manifest_path.relative_to"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
@@ -20817,7 +21504,7 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
-      "target_token": "print"
+      "target_token": "results.append"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
@@ -20837,10 +21524,6 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
-      "target_token": "session.read_text"
-    },
-    {
-      "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "session.relative_to"
     },
     {
@@ -20853,11 +21536,23 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "session_scope"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "sessions_root.is_dir"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "sessions_root.rglob"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "sha256_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "sha256_file"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
@@ -20869,7 +21564,59 @@
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
       "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "verified.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "verified.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "verify_historical_manifest"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "verify_historical_manifest"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::main",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "candidate.is_absolute"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "resolved.relative_to"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "target_token": "value.replace"
     },
     {
       "caller": "scripts/validate_sequence_sessions.py::run_validator",
@@ -20886,6 +21633,350 @@
     {
       "caller": "scripts/validate_sequence_sessions.py::run_validator",
       "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::session_scope",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::session_scope",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::sha256_bytes",
+      "target_token": "hashlib.sha256"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::sha256_file",
+      "target_token": "path.read_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::sha256_file",
+      "target_token": "sha256_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "actual.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "entries.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "entry.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "entry.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "evidence_paths"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "git_commit_exists"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "git_path_clean"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "git_show_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "git_show_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "git_show_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "historical_sessions"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "load_session"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "manifest_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "manifest_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "metadata.items"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "path.exists"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "record.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "record.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "record.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "record.get"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "sha256_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "sha256_bytes"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::write_json",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::write_json",
+      "target_token": "path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/validate_sequence_sessions.py::write_json",
+      "target_token": "path.write_text"
     }
   ],
   "python_routes": [],
@@ -22683,6 +23774,54 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_historical_evidence.py",
+      "kind": "function",
+      "line_end": 23,
+      "line_start": 21,
+      "locator": "scripts/selftest_historical_evidence.py::require",
+      "symbol": "require"
+    },
+    {
+      "file": "scripts/selftest_historical_evidence.py",
+      "kind": "function",
+      "line_end": 31,
+      "line_start": 26,
+      "locator": "scripts/selftest_historical_evidence.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/selftest_historical_evidence.py",
+      "kind": "function",
+      "line_end": 40,
+      "line_start": 34,
+      "locator": "scripts/selftest_historical_evidence.py::git_run",
+      "symbol": "git_run"
+    },
+    {
+      "file": "scripts/selftest_historical_evidence.py",
+      "kind": "function",
+      "line_end": 175,
+      "line_start": 43,
+      "locator": "scripts/selftest_historical_evidence.py::fixture",
+      "symbol": "fixture"
+    },
+    {
+      "file": "scripts/selftest_historical_evidence.py",
+      "kind": "function",
+      "line_end": 193,
+      "line_start": 178,
+      "locator": "scripts/selftest_historical_evidence.py::replay_authorization_contract",
+      "symbol": "replay_authorization_contract"
+    },
+    {
+      "file": "scripts/selftest_historical_evidence.py",
+      "kind": "function",
+      "line_end": 200,
+      "line_start": 196,
+      "locator": "scripts/selftest_historical_evidence.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
       "line_end": 36,
@@ -23701,28 +24840,148 @@
     {
       "file": "scripts/validate_sequence_sessions.py",
       "kind": "function",
-      "line_end": 36,
-      "line_start": 16,
+      "line_end": 28,
+      "line_start": 27,
+      "locator": "scripts/validate_sequence_sessions.py::sha256_bytes",
+      "symbol": "sha256_bytes"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 32,
+      "line_start": 31,
+      "locator": "scripts/validate_sequence_sessions.py::sha256_file",
+      "symbol": "sha256_file"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 41,
+      "line_start": 35,
+      "locator": "scripts/validate_sequence_sessions.py::write_json",
+      "symbol": "write_json"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 53,
+      "line_start": 44,
+      "locator": "scripts/validate_sequence_sessions.py::git_commit_exists",
+      "symbol": "git_commit_exists"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 60,
+      "line_start": 56,
+      "locator": "scripts/validate_sequence_sessions.py::git_show_bytes",
+      "symbol": "git_show_bytes"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 68,
+      "line_start": 63,
+      "locator": "scripts/validate_sequence_sessions.py::git_path_clean",
+      "symbol": "git_path_clean"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 83,
+      "line_start": 71,
+      "locator": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "symbol": "repo_relative_path"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 87,
+      "line_start": 86,
+      "locator": "scripts/validate_sequence_sessions.py::load_session",
+      "symbol": "load_session"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 91,
+      "line_start": 90,
+      "locator": "scripts/validate_sequence_sessions.py::session_scope",
+      "symbol": "session_scope"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 103,
+      "line_start": 94,
+      "locator": "scripts/validate_sequence_sessions.py::historical_sessions",
+      "symbol": "historical_sessions"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 124,
+      "line_start": 106,
+      "locator": "scripts/validate_sequence_sessions.py::evidence_paths",
+      "symbol": "evidence_paths"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "method",
+      "line_end": 112,
+      "line_start": 109,
+      "locator": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "symbol": "evidence_paths.add"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 200,
+      "line_start": 127,
+      "locator": "scripts/validate_sequence_sessions.py::build_historical_manifest",
+      "symbol": "build_historical_manifest"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 319,
+      "line_start": 203,
+      "locator": "scripts/validate_sequence_sessions.py::verify_historical_manifest",
+      "symbol": "verify_historical_manifest"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 347,
+      "line_start": 322,
       "locator": "scripts/validate_sequence_sessions.py::run_validator",
       "symbol": "run_validator"
     },
     {
       "file": "scripts/validate_sequence_sessions.py",
       "kind": "function",
-      "line_end": 147,
-      "line_start": 39,
+      "line_end": 352,
+      "line_start": 350,
+      "locator": "scripts/validate_sequence_sessions.py::fail_payload",
+      "symbol": "fail_payload"
+    },
+    {
+      "file": "scripts/validate_sequence_sessions.py",
+      "kind": "function",
+      "line_end": 551,
+      "line_start": 355,
       "locator": "scripts/validate_sequence_sessions.py::main",
       "symbol": "main"
     }
   ],
   "schema_version": 1,
-  "source_digest": "84f7262e1a3d665f1d48f683cafee86d1fa42841d97e412c51e3e5af67774231",
+  "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542",
   "source_summary": {
-    "files": 51,
+    "files": 52,
     "languages": {
-      "Python": 51
+      "Python": 52
     },
-    "lines": 14019,
+    "lines": 14627,
     "test_files": 0
   },
   "tests": []

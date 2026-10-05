@@ -1,0 +1,52 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-16-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/governance_engine.py::main",
+      "scripts/sync_project_truth.py::main",
+      "scripts/generate_project_docs.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/validate_cross_document_consistency.py::main",
+      "scripts/validate_sequence_sessions.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-16-GOVERNANCE.actual.json",
+    "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-16 sequence evidence establishes the current governance/Project Truth/sequence validation baseline for Historical Evidence Freeze. Static structure alone does not prove immutable historical identity, no-rewrite validation, migration replay authorization, or audit reproduction.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-16-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-16-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-16-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542"
+  },
+  "implementation_base_sha": "9ac09b2acd0bdf25ea05157be7711da852173ab8",
+  "mode": "DURING",
+  "phase": "SW2-16",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-16-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_project_truth_compiler.py",
+    "scripts/selftest_cross_document_regressions.py",
+    "scripts/selftest_strict_project_workflow.py"
+  ]
+}

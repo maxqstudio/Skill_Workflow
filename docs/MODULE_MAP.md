@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 84f7262e1a3d665f1d48f683cafee86d1fa42841d97e412c51e3e5af67774231
+Source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -33,6 +33,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 539 | scripts | NO |
+| scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 539 | scripts | NO |
 | scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 290 | scripts | NO |
@@ -58,6 +59,6 @@ Generated/refreshed: current compiler run
 | scripts/validate_schema_toolchain.py | Python | 76 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 336 | scripts | NO |
 | scripts/validate_sequence_human_view.py | Python | 256 | scripts | NO |
-| scripts/validate_sequence_sessions.py | Python | 151 | scripts | NO |
+| scripts/validate_sequence_sessions.py | Python | 555 | scripts | NO |
 
 Machine-derived facts do not invent semantic ownership.
