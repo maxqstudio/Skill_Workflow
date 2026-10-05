@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542
+Source digest: a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -21,7 +21,7 @@ responsibility, callers, or state ownership.
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
 | scripts/generate_module_map.py | 3 | 0 | 3 | 0 |
-| scripts/generate_project_docs.py | 39 | 0 | 39 | 0 |
+| scripts/generate_project_docs.py | 9 | 0 | 9 | 0 |
 | scripts/generate_sequence_actual.py | 21 | 3 | 9 | 9 |
 | scripts/generate_sequence_plan.py | 1 | 0 | 1 | 0 |
 | scripts/generate_symbol_index.py | 13 | 1 | 7 | 5 |
@@ -31,6 +31,11 @@ responsibility, callers, or state ownership.
 | scripts/project_profile.py | 10 | 0 | 10 | 0 |
 | scripts/project_snapshot.py | 18 | 3 | 7 | 8 |
 | scripts/project_truth_impact.py | 2 | 0 | 2 | 0 |
+| scripts/project_truth_projection_code.py | 4 | 0 | 4 | 0 |
+| scripts/project_truth_projection_common.py | 8 | 0 | 8 | 0 |
+| scripts/project_truth_projection_contracts.py | 4 | 0 | 4 | 0 |
+| scripts/project_truth_projection_governance.py | 6 | 0 | 6 | 0 |
+| scripts/project_truth_projection_state.py | 8 | 0 | 8 | 0 |
 | scripts/release_preflight.py | 4 | 0 | 4 | 0 |
 | scripts/schema_contract.py | 5 | 0 | 5 | 0 |
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
@@ -41,7 +46,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_governance_engine.py | 16 | 0 | 12 | 4 |
 | scripts/selftest_historical_evidence.py | 6 | 0 | 6 | 0 |
-| scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
+| scripts/selftest_project_truth_compiler.py | 5 | 0 | 5 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_release_preflight.py | 5 | 0 | 5 | 0 |
 | scripts/selftest_repository_health.py | 2 | 0 | 2 | 0 |
@@ -160,49 +165,19 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/generate_project_docs.py</code> — 39 symbols</summary>
+<summary><code>scripts/generate_project_docs.py</code> — 9 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| git_root | function | 55-64 |
-| load_json | function | 67-71 |
-| canonical_bytes | function | 74-80 |
-| canonical_generated_bytes | function | 83-85 |
-| clean | function | 88-89 |
-| cell | function | 92-93 |
-| bullets | function | 96-98 |
-| normalize_markdown | function | 101-134 |
+| git_root | function | 96-105 |
+| load_json | function | 108-112 |
+| canonical_bytes | function | 115-121 |
+| canonical_generated_bytes | function | 124-126 |
 | read_specs | function | 137-160 |
 | validate_inputs | function | 163-275 |
 | input_digest | function | 278-297 |
-| generated_header | function | 300-304 |
-| claim_backlink_comment | function | 307-316 |
-| auth_lookup | function | 319-323 |
-| render_system_overview | function | 326-596 |
-| render_project_manifest | function | 599-701 |
-| render_current_state | function | 704-805 |
-| render_roadmap | function | 808-868 |
-| render_authority | function | 871-906 |
-| render_architecture | function | 909-988 |
-| render_workflows | function | 991-1057 |
-| render_sequence | function | 1060-1111 |
-| render_modules | function | 1114-1143 |
-| render_symbols | function | 1146-1233 |
-| render_flows | function | 1236-1299 |
-| render_acceptance | function | 1302-1394 |
-| render_doc_sync | function | 1397-1441 |
-| render_truth | function | 1444-1590 |
-| render_api | function | 1593-1620 |
-| render_data | function | 1623-1648 |
-| render_ui | function | 1651-1676 |
-| render_runbook | function | 1679-1694 |
-| render_decisions | function | 1697-1715 |
-| render_defects | function | 1718-1741 |
-| render_changelog | function | 1744-1760 |
-| render_glossary | function | 1763-1771 |
-| wanted_doc_names | function | 1775-1811 |
-| render_all | function | 1813-1868 |
-| main | function | 1872-2059 |
+| render_all | function | 352-407 |
+| main | function | 411-598 |
 
 </details>
 
@@ -278,29 +253,29 @@ responsibility, callers, or state ownership.
 | ValidationDAG._assert_acyclic.visit | method | 73-82 |
 | ValidationDAG.run | method | 87-131 |
 | ValidationDAG.run.execute | method | 90-127 |
-| dependency_closure | function | 261-290 |
-| dependency_closure.visit | method | 269-282 |
-| verify_seed_node_names | function | 293-325 |
-| verify_node_names | function | 328-333 |
-| git | function | 336-341 |
-| git_z | function | 344-353 |
-| state_base | function | 356-364 |
-| collect_changed_paths | function | 367-381 |
-| classify_path | function | 384-416 |
-| classify_changed_paths | function | 419-420 |
-| effective_mode | function | 423-431 |
-| develop_node_names | function | 434-469 |
-| planned_node_names | function | 472-482 |
-| governed_status | function | 485-498 |
-| cli_action | function | 501-506 |
-| command_action | function | 509-524 |
-| command_action.run | method | 510-522 |
-| compile_scripts_action | function | 527-544 |
-| compile_scripts_action.run | method | 529-542 |
-| _regression_node | function | 547-552 |
-| build_mode_dag | function | 555-750 |
-| build_dag | function | 753-827 |
-| main | function | 830-962 |
+| dependency_closure | function | 266-295 |
+| dependency_closure.visit | method | 274-287 |
+| verify_seed_node_names | function | 298-330 |
+| verify_node_names | function | 333-338 |
+| git | function | 341-346 |
+| git_z | function | 349-358 |
+| state_base | function | 361-369 |
+| collect_changed_paths | function | 372-386 |
+| classify_path | function | 389-421 |
+| classify_changed_paths | function | 424-425 |
+| effective_mode | function | 428-436 |
+| develop_node_names | function | 439-474 |
+| planned_node_names | function | 477-487 |
+| governed_status | function | 490-503 |
+| cli_action | function | 506-511 |
+| command_action | function | 514-529 |
+| command_action.run | method | 515-527 |
+| compile_scripts_action | function | 532-549 |
+| compile_scripts_action.run | method | 534-547 |
+| _regression_node | function | 552-557 |
+| build_mode_dag | function | 560-755 |
+| build_dag | function | 758-832 |
+| main | function | 835-967 |
 
 </details>
 
@@ -376,8 +351,78 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| normalize_path | function | 86-90 |
-| plan_project_truth_impact | function | 93-174 |
+| normalize_path | function | 91-95 |
+| plan_project_truth_impact | function | 98-179 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_truth_projection_code.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| render_modules | function | 14-43 |
+| render_symbols | function | 45-132 |
+| render_flows | function | 134-197 |
+| render_acceptance | function | 199-291 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_truth_projection_common.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| clean | function | 8-9 |
+| cell | function | 11-12 |
+| bullets | function | 14-16 |
+| normalize_markdown | function | 18-51 |
+| generated_header | function | 53-57 |
+| claim_backlink_comment | function | 59-68 |
+| auth_lookup | function | 70-74 |
+| wanted_doc_names | function | 76-112 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_truth_projection_contracts.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| render_api | function | 13-40 |
+| render_data | function | 42-67 |
+| render_ui | function | 69-94 |
+| render_runbook | function | 96-111 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_truth_projection_governance.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| render_doc_sync | function | 14-58 |
+| render_truth | function | 60-206 |
+| render_decisions | function | 208-226 |
+| render_defects | function | 228-251 |
+| render_changelog | function | 253-269 |
+| render_glossary | function | 271-279 |
+
+</details>
+
+<details>
+<summary><code>scripts/project_truth_projection_state.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| render_system_overview | function | 15-285 |
+| render_project_manifest | function | 287-389 |
+| render_current_state | function | 391-492 |
+| render_roadmap | function | 494-554 |
+| render_authority | function | 556-591 |
+| render_architecture | function | 593-672 |
+| render_workflows | function | 674-740 |
+| render_sequence | function | 742-793 |
 
 </details>
 
@@ -509,14 +554,15 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/selftest_project_truth_compiler.py</code> — 4 symbols</summary>
+<summary><code>scripts/selftest_project_truth_compiler.py</code> — 5 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | run | function | 16-36 |
 | write_json | function | 39-40 |
 | test_gitignored_source_files_are_excluded | function | 43-101 |
-| main | function | 104-535 |
+| test_projection_module_contract | function | 105-169 |
+| main | function | 171-604 |
 
 </details>
 

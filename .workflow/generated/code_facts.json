@@ -119,7 +119,7 @@
       "file": "scripts/generate_project_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 2062
+      "lines": 601
     },
     {
       "directory": "scripts",
@@ -147,7 +147,7 @@
       "file": "scripts/governance_engine.py",
       "is_test": false,
       "language": "Python",
-      "lines": 966
+      "lines": 971
     },
     {
       "directory": "scripts",
@@ -182,7 +182,42 @@
       "file": "scripts/project_truth_impact.py",
       "is_test": false,
       "language": "Python",
-      "lines": 174
+      "lines": 179
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/project_truth_projection_code.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 291
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/project_truth_projection_common.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 112
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/project_truth_projection_contracts.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 111
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/project_truth_projection_governance.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 279
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/project_truth_projection_state.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 793
     },
     {
       "directory": "scripts",
@@ -259,7 +294,7 @@
       "file": "scripts/selftest_project_truth_compiler.py",
       "is_test": false,
       "language": "Python",
-      "lines": 539
+      "lines": 608
     },
     {
       "directory": "scripts",
@@ -1967,72 +2002,12 @@
       "target_token": "sorted"
     },
     {
-      "caller": "scripts/generate_project_docs.py::auth_lookup",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::auth_lookup",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::bullets",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::bullets",
-      "target_token": "clean"
-    },
-    {
       "caller": "scripts/generate_project_docs.py::canonical_bytes",
       "target_token": "json.dumps"
     },
     {
       "caller": "scripts/generate_project_docs.py::canonical_generated_bytes",
       "target_token": "value.replace"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::cell",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "Path"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "claim_ids.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "set"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "target_token": "sorted"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::clean",
-      "target_token": "str"
     },
     {
       "caller": "scripts/generate_project_docs.py::git_root",
@@ -2571,50 +2546,6 @@
       "target_token": "written_docs.append"
     },
     {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "chr"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "line.lstrip"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "out.pop"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "raw.rstrip"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "stripped.startswith"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "stripped.startswith"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "text.replace"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::normalize_markdown",
-      "target_token": "text.split"
-    },
-    {
       "caller": "scripts/generate_project_docs.py::read_specs",
       "target_token": "ValueError"
     },
@@ -2673,146 +2604,6 @@
     {
       "caller": "scripts/generate_project_docs.py::read_specs",
       "target_token": "workflows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_acceptance",
-      "target_token": "rows.append"
     },
     {
       "caller": "scripts/generate_project_docs.py::render_all",
@@ -2945,2010 +2736,6 @@
     {
       "caller": "scripts/generate_project_docs.py::render_all",
       "target_token": "wanted_doc_names"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_api",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "architecture.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "architecture.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "architecture.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "boundary_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "flow_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_architecture",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_authority",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_changelog",
-      "target_token": "out.extend"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "roadmap.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_current_state",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_data",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_decisions",
-      "target_token": "out.extend"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_defects",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_doc_sync",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "facts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "route_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "route_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "x.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_flows",
-      "target_token": "x.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_glossary",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_glossary",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_glossary",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_glossary",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_glossary",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_glossary",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "facts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_modules",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "auth_lookup"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "auth_lookup"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "auth_lookup"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "entry_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "entry_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project_spec.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project_spec.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "project_spec.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "runtime.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "runtime.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "source.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "source.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "tech.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "tech.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "tech.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_project_manifest",
-      "target_token": "tech.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "enumerate"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "roadmap.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "roadmap.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_roadmap",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "enumerate"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_runbook",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_sequence",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "detail_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "detail_sections.extend"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "facts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "facts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "file_name.replace"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "grouped.setdefault"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "int"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "len"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "len"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "list"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "sorted"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "sorted"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "sum"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "sum"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "sum"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "summary_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_symbols",
-      "target_token": "summary_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "architecture.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "architecture.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "authority_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "authority_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "component_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "component_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "data_flow_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "declared.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "facts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "failure_text.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow_text.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow_text.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "flow_text.extend"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "gate_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "immutable.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "len"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "mutable.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "project.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "state.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "transition.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "transition.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "transition.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_system_overview",
-      "target_token": "transition.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "acceptance.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "claim_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "claim_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "dict"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "gates.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "gates.setdefault"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "gates.setdefault"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "relation_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_truth",
-      "target_token": "relation_rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_ui",
-      "target_token": "rows.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "bool"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "bullets"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "cell"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "clean"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "flow.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "item.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "out.append"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "out.extend"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "out.extend"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::render_workflows",
-      "target_token": "str"
     },
     {
       "caller": "scripts/generate_project_docs.py::validate_inputs",
@@ -5177,38 +2964,6 @@
     {
       "caller": "scripts/generate_project_docs.py::validate_inputs",
       "target_token": "str"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "contracts.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "optional_map.items"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "sequence.get"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "set"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "wanted.add"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "wanted.add"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "wanted.discard"
-    },
-    {
-      "caller": "scripts/generate_project_docs.py::wanted_doc_names",
-      "target_token": "wanted.update"
     },
     {
       "caller": "scripts/generate_sequence_actual.py::JsTsHttpSequenceAnalyzer.analyze",
@@ -8599,6 +6354,2286 @@
       "target_token": "unknown_paths.append"
     },
     {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_acceptance",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "route_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "route_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "x.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_flows",
+      "target_token": "x.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_modules",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "detail_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "detail_sections.extend"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "file_name.replace"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "grouped.setdefault"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "sum"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "summary_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_code.py::render_symbols",
+      "target_token": "summary_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::auth_lookup",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::auth_lookup",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::bullets",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::bullets",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::cell",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "claim_ids.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::clean",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "chr"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "line.lstrip"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "out.pop"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "raw.rstrip"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "stripped.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "stripped.startswith"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "text.replace"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "target_token": "text.split"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "contracts.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "optional_map.items"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "sequence.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "wanted.add"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "wanted.add"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "wanted.discard"
+    },
+    {
+      "caller": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "target_token": "wanted.update"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_api",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_data",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "enumerate"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_contracts.py::render_ui",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_changelog",
+      "target_token": "out.extend"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_decisions",
+      "target_token": "out.extend"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_defects",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_doc_sync",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_glossary",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_glossary",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_glossary",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_glossary",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_glossary",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_glossary",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "claim_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "claim_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "dict"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "gates.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "gates.setdefault"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "gates.setdefault"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "relation_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_governance.py::render_truth",
+      "target_token": "relation_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "architecture.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "architecture.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "architecture.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "boundary_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "flow_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_architecture",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_authority",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_current_state",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "auth_lookup"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "auth_lookup"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "auth_lookup"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "entry_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "entry_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project_spec.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project_spec.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "project_spec.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "runtime.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "runtime.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "source.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "source.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "tech.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "tech.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "tech.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "target_token": "tech.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "enumerate"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_roadmap",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_sequence",
+      "target_token": "rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "architecture.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "architecture.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "authority_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "authority_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "component_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "component_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "data_flow_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "declared.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "facts.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "failure_text.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow_text.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow_text.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "flow_text.extend"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "gate_rows.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "immutable.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "mutable.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "project.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "transition.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "transition.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "transition.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_system_overview",
+      "target_token": "transition.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "bullets"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "cell"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "clean"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "flow.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "out.append"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "out.extend"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "out.extend"
+    },
+    {
+      "caller": "scripts/project_truth_projection_state.py::render_workflows",
+      "target_token": "str"
+    },
+    {
       "caller": "scripts/release_preflight.py::_load",
       "target_token": "json.loads"
     },
@@ -11476,6 +11511,10 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "profile.read_text"
     },
     {
@@ -11804,6 +11843,10 @@
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::main",
+      "target_token": "test_projection_module_contract"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::main",
       "target_token": "unknown_report.read_text"
     },
     {
@@ -11973,6 +12016,218 @@
     {
       "caller": "scripts/selftest_project_truth_compiler.py::test_gitignored_source_files_are_excluded",
       "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "args.append"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "ast.parse"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "ast.walk"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "callable"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "documentation.get"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "expected_map.values"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "expected_modules.items"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "fn"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "generator.documentation_settings"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "generator.normalized_profile"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "generator.parse_profile"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "generator.read_specs"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "generator.sequence_settings"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "getattr"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "getattr"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "importlib.import_module"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "importlib.import_module"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "inspect.signature"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "next"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "node.name.startswith"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "seen.add"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "sequence.get"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "sys.path.insert"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "sys.path.pop"
+    },
+    {
+      "caller": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "target_token": "zip"
     },
     {
       "caller": "scripts/selftest_project_truth_compiler.py::write_json",
@@ -22312,66 +22567,34 @@
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 64,
-      "line_start": 55,
+      "line_end": 105,
+      "line_start": 96,
       "locator": "scripts/generate_project_docs.py::git_root",
       "symbol": "git_root"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 71,
-      "line_start": 67,
+      "line_end": 112,
+      "line_start": 108,
       "locator": "scripts/generate_project_docs.py::load_json",
       "symbol": "load_json"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 80,
-      "line_start": 74,
+      "line_end": 121,
+      "line_start": 115,
       "locator": "scripts/generate_project_docs.py::canonical_bytes",
       "symbol": "canonical_bytes"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 85,
-      "line_start": 83,
+      "line_end": 126,
+      "line_start": 124,
       "locator": "scripts/generate_project_docs.py::canonical_generated_bytes",
       "symbol": "canonical_generated_bytes"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 89,
-      "line_start": 88,
-      "locator": "scripts/generate_project_docs.py::clean",
-      "symbol": "clean"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 93,
-      "line_start": 92,
-      "locator": "scripts/generate_project_docs.py::cell",
-      "symbol": "cell"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 98,
-      "line_start": 96,
-      "locator": "scripts/generate_project_docs.py::bullets",
-      "symbol": "bullets"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 134,
-      "line_start": 101,
-      "locator": "scripts/generate_project_docs.py::normalize_markdown",
-      "symbol": "normalize_markdown"
     },
     {
       "file": "scripts/generate_project_docs.py",
@@ -22400,224 +22623,16 @@
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 304,
-      "line_start": 300,
-      "locator": "scripts/generate_project_docs.py::generated_header",
-      "symbol": "generated_header"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 316,
-      "line_start": 307,
-      "locator": "scripts/generate_project_docs.py::claim_backlink_comment",
-      "symbol": "claim_backlink_comment"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 323,
-      "line_start": 319,
-      "locator": "scripts/generate_project_docs.py::auth_lookup",
-      "symbol": "auth_lookup"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 596,
-      "line_start": 326,
-      "locator": "scripts/generate_project_docs.py::render_system_overview",
-      "symbol": "render_system_overview"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 701,
-      "line_start": 599,
-      "locator": "scripts/generate_project_docs.py::render_project_manifest",
-      "symbol": "render_project_manifest"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 805,
-      "line_start": 704,
-      "locator": "scripts/generate_project_docs.py::render_current_state",
-      "symbol": "render_current_state"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 868,
-      "line_start": 808,
-      "locator": "scripts/generate_project_docs.py::render_roadmap",
-      "symbol": "render_roadmap"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 906,
-      "line_start": 871,
-      "locator": "scripts/generate_project_docs.py::render_authority",
-      "symbol": "render_authority"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 988,
-      "line_start": 909,
-      "locator": "scripts/generate_project_docs.py::render_architecture",
-      "symbol": "render_architecture"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1057,
-      "line_start": 991,
-      "locator": "scripts/generate_project_docs.py::render_workflows",
-      "symbol": "render_workflows"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1111,
-      "line_start": 1060,
-      "locator": "scripts/generate_project_docs.py::render_sequence",
-      "symbol": "render_sequence"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1143,
-      "line_start": 1114,
-      "locator": "scripts/generate_project_docs.py::render_modules",
-      "symbol": "render_modules"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1233,
-      "line_start": 1146,
-      "locator": "scripts/generate_project_docs.py::render_symbols",
-      "symbol": "render_symbols"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1299,
-      "line_start": 1236,
-      "locator": "scripts/generate_project_docs.py::render_flows",
-      "symbol": "render_flows"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1394,
-      "line_start": 1302,
-      "locator": "scripts/generate_project_docs.py::render_acceptance",
-      "symbol": "render_acceptance"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1441,
-      "line_start": 1397,
-      "locator": "scripts/generate_project_docs.py::render_doc_sync",
-      "symbol": "render_doc_sync"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1590,
-      "line_start": 1444,
-      "locator": "scripts/generate_project_docs.py::render_truth",
-      "symbol": "render_truth"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1620,
-      "line_start": 1593,
-      "locator": "scripts/generate_project_docs.py::render_api",
-      "symbol": "render_api"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1648,
-      "line_start": 1623,
-      "locator": "scripts/generate_project_docs.py::render_data",
-      "symbol": "render_data"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1676,
-      "line_start": 1651,
-      "locator": "scripts/generate_project_docs.py::render_ui",
-      "symbol": "render_ui"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1694,
-      "line_start": 1679,
-      "locator": "scripts/generate_project_docs.py::render_runbook",
-      "symbol": "render_runbook"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1715,
-      "line_start": 1697,
-      "locator": "scripts/generate_project_docs.py::render_decisions",
-      "symbol": "render_decisions"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1741,
-      "line_start": 1718,
-      "locator": "scripts/generate_project_docs.py::render_defects",
-      "symbol": "render_defects"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1760,
-      "line_start": 1744,
-      "locator": "scripts/generate_project_docs.py::render_changelog",
-      "symbol": "render_changelog"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1771,
-      "line_start": 1763,
-      "locator": "scripts/generate_project_docs.py::render_glossary",
-      "symbol": "render_glossary"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1811,
-      "line_start": 1775,
-      "locator": "scripts/generate_project_docs.py::wanted_doc_names",
-      "symbol": "wanted_doc_names"
-    },
-    {
-      "file": "scripts/generate_project_docs.py",
-      "kind": "function",
-      "line_end": 1868,
-      "line_start": 1813,
+      "line_end": 407,
+      "line_start": 352,
       "locator": "scripts/generate_project_docs.py::render_all",
       "symbol": "render_all"
     },
     {
       "file": "scripts/generate_project_docs.py",
       "kind": "function",
-      "line_end": 2059,
-      "line_start": 1872,
+      "line_end": 598,
+      "line_start": 411,
       "locator": "scripts/generate_project_docs.py::main",
       "symbol": "main"
     },
@@ -22968,184 +22983,184 @@
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 290,
-      "line_start": 261,
+      "line_end": 295,
+      "line_start": 266,
       "locator": "scripts/governance_engine.py::dependency_closure",
       "symbol": "dependency_closure"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 282,
-      "line_start": 269,
+      "line_end": 287,
+      "line_start": 274,
       "locator": "scripts/governance_engine.py::dependency_closure.visit",
       "symbol": "dependency_closure.visit"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 325,
-      "line_start": 293,
+      "line_end": 330,
+      "line_start": 298,
       "locator": "scripts/governance_engine.py::verify_seed_node_names",
       "symbol": "verify_seed_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 333,
-      "line_start": 328,
+      "line_end": 338,
+      "line_start": 333,
       "locator": "scripts/governance_engine.py::verify_node_names",
       "symbol": "verify_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 341,
-      "line_start": 336,
+      "line_end": 346,
+      "line_start": 341,
       "locator": "scripts/governance_engine.py::git",
       "symbol": "git"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 353,
-      "line_start": 344,
+      "line_end": 358,
+      "line_start": 349,
       "locator": "scripts/governance_engine.py::git_z",
       "symbol": "git_z"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 364,
-      "line_start": 356,
+      "line_end": 369,
+      "line_start": 361,
       "locator": "scripts/governance_engine.py::state_base",
       "symbol": "state_base"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 381,
-      "line_start": 367,
+      "line_end": 386,
+      "line_start": 372,
       "locator": "scripts/governance_engine.py::collect_changed_paths",
       "symbol": "collect_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 416,
-      "line_start": 384,
+      "line_end": 421,
+      "line_start": 389,
       "locator": "scripts/governance_engine.py::classify_path",
       "symbol": "classify_path"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 420,
-      "line_start": 419,
+      "line_end": 425,
+      "line_start": 424,
       "locator": "scripts/governance_engine.py::classify_changed_paths",
       "symbol": "classify_changed_paths"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 431,
-      "line_start": 423,
+      "line_end": 436,
+      "line_start": 428,
       "locator": "scripts/governance_engine.py::effective_mode",
       "symbol": "effective_mode"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 469,
-      "line_start": 434,
+      "line_end": 474,
+      "line_start": 439,
       "locator": "scripts/governance_engine.py::develop_node_names",
       "symbol": "develop_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 482,
-      "line_start": 472,
+      "line_end": 487,
+      "line_start": 477,
       "locator": "scripts/governance_engine.py::planned_node_names",
       "symbol": "planned_node_names"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 498,
-      "line_start": 485,
+      "line_end": 503,
+      "line_start": 490,
       "locator": "scripts/governance_engine.py::governed_status",
       "symbol": "governed_status"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 506,
-      "line_start": 501,
+      "line_end": 511,
+      "line_start": 506,
       "locator": "scripts/governance_engine.py::cli_action",
       "symbol": "cli_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 524,
-      "line_start": 509,
+      "line_end": 529,
+      "line_start": 514,
       "locator": "scripts/governance_engine.py::command_action",
       "symbol": "command_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 522,
-      "line_start": 510,
+      "line_end": 527,
+      "line_start": 515,
       "locator": "scripts/governance_engine.py::command_action.run",
       "symbol": "command_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 544,
-      "line_start": 527,
+      "line_end": 549,
+      "line_start": 532,
       "locator": "scripts/governance_engine.py::compile_scripts_action",
       "symbol": "compile_scripts_action"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "method",
-      "line_end": 542,
-      "line_start": 529,
+      "line_end": 547,
+      "line_start": 534,
       "locator": "scripts/governance_engine.py::compile_scripts_action.run",
       "symbol": "compile_scripts_action.run"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 552,
-      "line_start": 547,
+      "line_end": 557,
+      "line_start": 552,
       "locator": "scripts/governance_engine.py::_regression_node",
       "symbol": "_regression_node"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 750,
-      "line_start": 555,
+      "line_end": 755,
+      "line_start": 560,
       "locator": "scripts/governance_engine.py::build_mode_dag",
       "symbol": "build_mode_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 827,
-      "line_start": 753,
+      "line_end": 832,
+      "line_start": 758,
       "locator": "scripts/governance_engine.py::build_dag",
       "symbol": "build_dag"
     },
     {
       "file": "scripts/governance_engine.py",
       "kind": "function",
-      "line_end": 962,
-      "line_start": 830,
+      "line_end": 967,
+      "line_start": 835,
       "locator": "scripts/governance_engine.py::main",
       "symbol": "main"
     },
@@ -23432,18 +23447,258 @@
     {
       "file": "scripts/project_truth_impact.py",
       "kind": "function",
-      "line_end": 90,
-      "line_start": 86,
+      "line_end": 95,
+      "line_start": 91,
       "locator": "scripts/project_truth_impact.py::normalize_path",
       "symbol": "normalize_path"
     },
     {
       "file": "scripts/project_truth_impact.py",
       "kind": "function",
-      "line_end": 174,
-      "line_start": 93,
+      "line_end": 179,
+      "line_start": 98,
       "locator": "scripts/project_truth_impact.py::plan_project_truth_impact",
       "symbol": "plan_project_truth_impact"
+    },
+    {
+      "file": "scripts/project_truth_projection_code.py",
+      "kind": "function",
+      "line_end": 43,
+      "line_start": 14,
+      "locator": "scripts/project_truth_projection_code.py::render_modules",
+      "symbol": "render_modules"
+    },
+    {
+      "file": "scripts/project_truth_projection_code.py",
+      "kind": "function",
+      "line_end": 132,
+      "line_start": 45,
+      "locator": "scripts/project_truth_projection_code.py::render_symbols",
+      "symbol": "render_symbols"
+    },
+    {
+      "file": "scripts/project_truth_projection_code.py",
+      "kind": "function",
+      "line_end": 197,
+      "line_start": 134,
+      "locator": "scripts/project_truth_projection_code.py::render_flows",
+      "symbol": "render_flows"
+    },
+    {
+      "file": "scripts/project_truth_projection_code.py",
+      "kind": "function",
+      "line_end": 291,
+      "line_start": 199,
+      "locator": "scripts/project_truth_projection_code.py::render_acceptance",
+      "symbol": "render_acceptance"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 9,
+      "line_start": 8,
+      "locator": "scripts/project_truth_projection_common.py::clean",
+      "symbol": "clean"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 12,
+      "line_start": 11,
+      "locator": "scripts/project_truth_projection_common.py::cell",
+      "symbol": "cell"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 16,
+      "line_start": 14,
+      "locator": "scripts/project_truth_projection_common.py::bullets",
+      "symbol": "bullets"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 51,
+      "line_start": 18,
+      "locator": "scripts/project_truth_projection_common.py::normalize_markdown",
+      "symbol": "normalize_markdown"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 57,
+      "line_start": 53,
+      "locator": "scripts/project_truth_projection_common.py::generated_header",
+      "symbol": "generated_header"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 68,
+      "line_start": 59,
+      "locator": "scripts/project_truth_projection_common.py::claim_backlink_comment",
+      "symbol": "claim_backlink_comment"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 74,
+      "line_start": 70,
+      "locator": "scripts/project_truth_projection_common.py::auth_lookup",
+      "symbol": "auth_lookup"
+    },
+    {
+      "file": "scripts/project_truth_projection_common.py",
+      "kind": "function",
+      "line_end": 112,
+      "line_start": 76,
+      "locator": "scripts/project_truth_projection_common.py::wanted_doc_names",
+      "symbol": "wanted_doc_names"
+    },
+    {
+      "file": "scripts/project_truth_projection_contracts.py",
+      "kind": "function",
+      "line_end": 40,
+      "line_start": 13,
+      "locator": "scripts/project_truth_projection_contracts.py::render_api",
+      "symbol": "render_api"
+    },
+    {
+      "file": "scripts/project_truth_projection_contracts.py",
+      "kind": "function",
+      "line_end": 67,
+      "line_start": 42,
+      "locator": "scripts/project_truth_projection_contracts.py::render_data",
+      "symbol": "render_data"
+    },
+    {
+      "file": "scripts/project_truth_projection_contracts.py",
+      "kind": "function",
+      "line_end": 94,
+      "line_start": 69,
+      "locator": "scripts/project_truth_projection_contracts.py::render_ui",
+      "symbol": "render_ui"
+    },
+    {
+      "file": "scripts/project_truth_projection_contracts.py",
+      "kind": "function",
+      "line_end": 111,
+      "line_start": 96,
+      "locator": "scripts/project_truth_projection_contracts.py::render_runbook",
+      "symbol": "render_runbook"
+    },
+    {
+      "file": "scripts/project_truth_projection_governance.py",
+      "kind": "function",
+      "line_end": 58,
+      "line_start": 14,
+      "locator": "scripts/project_truth_projection_governance.py::render_doc_sync",
+      "symbol": "render_doc_sync"
+    },
+    {
+      "file": "scripts/project_truth_projection_governance.py",
+      "kind": "function",
+      "line_end": 206,
+      "line_start": 60,
+      "locator": "scripts/project_truth_projection_governance.py::render_truth",
+      "symbol": "render_truth"
+    },
+    {
+      "file": "scripts/project_truth_projection_governance.py",
+      "kind": "function",
+      "line_end": 226,
+      "line_start": 208,
+      "locator": "scripts/project_truth_projection_governance.py::render_decisions",
+      "symbol": "render_decisions"
+    },
+    {
+      "file": "scripts/project_truth_projection_governance.py",
+      "kind": "function",
+      "line_end": 251,
+      "line_start": 228,
+      "locator": "scripts/project_truth_projection_governance.py::render_defects",
+      "symbol": "render_defects"
+    },
+    {
+      "file": "scripts/project_truth_projection_governance.py",
+      "kind": "function",
+      "line_end": 269,
+      "line_start": 253,
+      "locator": "scripts/project_truth_projection_governance.py::render_changelog",
+      "symbol": "render_changelog"
+    },
+    {
+      "file": "scripts/project_truth_projection_governance.py",
+      "kind": "function",
+      "line_end": 279,
+      "line_start": 271,
+      "locator": "scripts/project_truth_projection_governance.py::render_glossary",
+      "symbol": "render_glossary"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 285,
+      "line_start": 15,
+      "locator": "scripts/project_truth_projection_state.py::render_system_overview",
+      "symbol": "render_system_overview"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 389,
+      "line_start": 287,
+      "locator": "scripts/project_truth_projection_state.py::render_project_manifest",
+      "symbol": "render_project_manifest"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 492,
+      "line_start": 391,
+      "locator": "scripts/project_truth_projection_state.py::render_current_state",
+      "symbol": "render_current_state"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 554,
+      "line_start": 494,
+      "locator": "scripts/project_truth_projection_state.py::render_roadmap",
+      "symbol": "render_roadmap"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 591,
+      "line_start": 556,
+      "locator": "scripts/project_truth_projection_state.py::render_authority",
+      "symbol": "render_authority"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 672,
+      "line_start": 593,
+      "locator": "scripts/project_truth_projection_state.py::render_architecture",
+      "symbol": "render_architecture"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 740,
+      "line_start": 674,
+      "locator": "scripts/project_truth_projection_state.py::render_workflows",
+      "symbol": "render_workflows"
+    },
+    {
+      "file": "scripts/project_truth_projection_state.py",
+      "kind": "function",
+      "line_end": 793,
+      "line_start": 742,
+      "locator": "scripts/project_truth_projection_state.py::render_sequence",
+      "symbol": "render_sequence"
     },
     {
       "file": "scripts/release_preflight.py",
@@ -23848,8 +24103,16 @@
     {
       "file": "scripts/selftest_project_truth_compiler.py",
       "kind": "function",
-      "line_end": 535,
-      "line_start": 104,
+      "line_end": 169,
+      "line_start": 105,
+      "locator": "scripts/selftest_project_truth_compiler.py::test_projection_module_contract",
+      "symbol": "test_projection_module_contract"
+    },
+    {
+      "file": "scripts/selftest_project_truth_compiler.py",
+      "kind": "function",
+      "line_end": 604,
+      "line_start": 171,
       "locator": "scripts/selftest_project_truth_compiler.py::main",
       "symbol": "main"
     },
@@ -24975,13 +25238,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "ec97d124e7b4595f063761dc86e3582ced265fcf46ef50131fe5814346988542",
+  "source_digest": "a3469d1a853d24b1b8e17f9d01ac8ab8cc7c0e5376c27456d2ddfe850756dfaf",
   "source_summary": {
-    "files": 52,
+    "files": 57,
     "languages": {
-      "Python": 52
+      "Python": 57
     },
-    "lines": 14627,
+    "lines": 14831,
     "test_files": 0
   },
   "tests": []

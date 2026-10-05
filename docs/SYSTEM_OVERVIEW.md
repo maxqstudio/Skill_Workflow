@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 52 files, 1 language categories.
+Observed source inventory: 57 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-16
+Current phase: SW2-17
 
-Current status: SW2_16_HISTORICAL_EVIDENCE_FREEZE_ACCEPTED
+Current status: SW2_17_GENERATOR_MODULARIZATION_ACCEPTED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Require the complete permanent matrix to pass on this closure-authority exact head.
-- If closure-head acceptance is green, update PR #24 evidence, mark it ready, and squash-merge with expected-head protection.
-- After merge, verify main tree equivalence and post-merge 6/6 before opening SW2-17.
+- Update PR #27 with exact closure evidence and squash-merge only from the final clean closure head.
+- Verify the squash-merged main tree equals the tested closure tree and require post-merge 6/6 permanent checks.
+- Only after SW2-17 is accepted on main may SW2-18 Unified CI Orchestrator be opened.
 
 Blocked actions:
-- Do not regenerate or rewrite closed historical evidence during normal validation merely to refresh timestamps, formatting, or current-head metadata.
-- Do not treat mutable cache state, file mtime, or branch names as historical evidence identity.
-- Do not replay closed evidence for a schema/toolchain migration unless replay is explicitly requested and provenance is recorded.
-- Do not claim reproducibility from digest verification alone; audit/replay behavior requires separate evidence.
-- Do not begin SW2-17 implementation until SW2-16 is accepted on main.
+- Do not change canonical generated-document bytes unless an explicit accepted format migration authorizes it.
+- Do not introduce a plugin framework, registry abstraction, or configuration layer merely to split renderers.
+- Do not break SW2-14 incremental projection selection or SW2-16 historical evidence identity.
+- Do not treat modularization unit tests as a substitute for exhaustive finalize and permanent cross-platform acceptance.
+- Do not begin SW2-18 implementation until SW2-17 is accepted on main.
 
 Known blockers:
 - None declared.
@@ -189,6 +189,10 @@ Known blockers:
 - SW2-15 is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779; post-merge squash-provenance compatibility repair 9ac09b2acd0bdf25ea05157be7711da852173ab8 passed Self Governance 37254526096, Governance Selftest 37254526110 on Ubuntu and Windows, SW2 Sequence Evidence 37254526121, Governance Engine Performance 37254526090, and Consumer Engine Performance 37254526100.
 - SW2-16 Historical Evidence Freeze pre-promotion is proven on exact clean candidate fb440f2ac505f8e813c56a70dda6b10e7a42058e: Governance Selftest 37262481595 passed Ubuntu and Windows including squash provenance, historical freeze, read-only verify and STRICT; Sequence 37262481699, Engine 37262481631, and Consumer 37262481608 succeeded. Git-object identity preserves exact repository bytes across platform checkout transforms while staged/unstaged tamper remains fail-closed. Self Governance 37262481610 failed only at the expected Project Truth promotion boundary.
 - SW2-16 Historical Evidence Freeze is accepted on exact post-promotion candidate 2fae64c955a784588a645625252347994f00f31d: Self Governance 37262717230, Governance Selftest 37262717167 on Ubuntu and Windows, SW2 Sequence Evidence 37262717163, Governance Engine Performance 37262717196, and Consumer Engine Performance 37262717166 all succeeded. Historical identity is bound to exact Git object bytes, checkout EOL transforms do not alter authority, staged/unstaged tamper remains fail-closed, normal validation is identity-only/no-rewrite, and authorized historical re-freeze remains explicit and provenance-audited.
+- SW2-16 Historical Evidence Freeze is accepted on main 7e2c5e4669655764e24ec821cefc0c96e2886133 with tested closure candidate f8c43769c07b6d9b672b1807560fad3b42024a52. Post-merge main permanent workflows completed successfully, including Governance Selftest 37263150206 on Ubuntu and Windows, SW2 Sequence Evidence 37263150254, Governance Engine Performance 37263150294, and Consumer Engine Performance 37263150102.
+- SW2-17 Generator Modularization feature evidence is proven on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d: Governance Selftest 37294490997 passed Ubuntu and Windows with PROJECTION_MODULE_CONTRACT=PASS modules=4 renderers=22 and INCREMENTAL_FULL_PARITY=PASS; Sequence 37294491094, Engine Performance 37294491102, and Consumer Performance 37294491100 succeeded.
+- SW2-17 pre-promotion Self Governance 37294490948 traversed exhaustive finalize prerequisites on exact candidate d1e6f62b490a83874a0cd1f686c09289818ad70d with clean governed state and stopped only at the intentionally unpromoted Project Truth gate; post-promotion 6/6 remains mandatory before merge.
+- SW2-17 Generator Modularization is accepted on exact clean post-promotion candidate 7404d52d38eedbbe87d489843136869901200f10: Self Governance 37310155298, Governance Selftest 37310155333 on Ubuntu and Windows, SW2 Sequence Evidence 37310155297, Governance Engine Performance 37310155394, and Consumer Engine Performance 37310155307 all succeeded.
 
 ### Not proven
 
