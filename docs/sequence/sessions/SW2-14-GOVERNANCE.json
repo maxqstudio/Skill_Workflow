@@ -11,7 +11,7 @@
       "scripts/validate_sequence_sessions.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-14-GOVERNANCE.actual.json",
-    "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872"
+    "source_digest": "f7be82d86f7e0ec3b28f042ce883acb4e0a2599978ddc91f916567ea83c8effb"
   },
   "critical": true,
   "evidence_boundary": "SW2-14 sequence evidence covers current full Project Truth synchronization, deterministic document generation/validation, governance orchestration, cross-document consistency, and sequence validation as the baseline for incremental regeneration. Static structure does not by itself prove selective-regeneration correctness or runtime ordering.",
@@ -21,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-14-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872"
+    "source_digest": "f7be82d86f7e0ec3b28f042ce883acb4e0a2599978ddc91f916567ea83c8effb"
   },
   "implementation_base_sha": "4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef",
   "mode": "DURING",

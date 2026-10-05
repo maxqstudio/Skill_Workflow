@@ -2894,7 +2894,7 @@
       "locator": "scripts/validate_sequence_sessions.py::run_validator"
     }
   ],
-  "observed_head": "7e97f6d2789aa7a07ce4cb7f98e70c5ec472d1ad",
+  "observed_head": "7c3de1926caa8a67535c24ff840af297e5f88942",
   "schema_version": 1,
-  "source_digest": "f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872"
+  "source_digest": "f7be82d86f7e0ec3b28f042ce883acb4e0a2599978ddc91f916567ea83c8effb"
 }
