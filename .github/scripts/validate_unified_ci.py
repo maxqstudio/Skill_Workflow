@@ -6,14 +6,13 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-REQUIRED_CONTEXTS = (
+FIXED_CONTEXTS = (
     "Self Governance (ubuntu-latest)",
-    "Governance Selftest (ubuntu-latest)",
-    "Governance Selftest (windows-latest)",
     "SW2 Sequence Evidence (ubuntu-latest)",
     "Governance Engine Performance (ubuntu-latest)",
     "Consumer Engine Performance (max-grounding)",
 )
+MATRIX_CONTEXT_TEMPLATE = "Governance Selftest (${{ matrix.os }})"
 OLD_ROUTINE_WORKFLOWS = (
     "governance-selftest.yml",
     "self-governance.yml",
@@ -37,13 +36,18 @@ def main() -> int:
     else:
         text = workflow.read_text(encoding="utf-8")
 
-    for context in REQUIRED_CONTEXTS:
+    for context in FIXED_CONTEXTS:
         if text.count(f"name: {context}") != 1:
             failures.append(f"CHECK_CONTEXT_MISSING_OR_DUPLICATE:{context}")
 
+    if text.count(f"name: {MATRIX_CONTEXT_TEMPLATE}") != 1:
+        failures.append("GOVERNANCE_SELFTEST_MATRIX_CONTEXT_MISSING_OR_DUPLICATE")
+    if text.count("- ubuntu-latest") < 1 or text.count("- windows-latest") < 1:
+        failures.append("GOVERNANCE_SELFTEST_OS_MATRIX_INCOMPLETE")
+
     if text.count("./.github/actions/governance-bootstrap") < 5:
         failures.append("BOOTSTRAP_NOT_CENTRALIZED")
-    if "ci_applicability" not in text and "steps.bootstrap.outputs.heavy" not in text:
+    if "steps.bootstrap.outputs.heavy" not in text:
         failures.append("APPLICABILITY_NOT_DECLARED")
 
     workflows = root / ".github" / "workflows"
@@ -68,6 +72,7 @@ def main() -> int:
             print("FAIL", failure)
         return 1
     print("UNIFIED_CI_REQUIRED_CONTEXTS=PASS")
+    print("UNIFIED_CI_GOVERNANCE_MATRIX=PASS")
     print("UNIFIED_CI_BOOTSTRAP=PASS")
     print("UNIFIED_CI_LEGACY_ROUTINES_REMOVED=PASS")
     print("UNIFIED_CI_SPECIAL_WORKFLOWS_PRESERVED=PASS")
