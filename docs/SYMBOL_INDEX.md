@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6
+Source digest: 4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -19,7 +19,7 @@ responsibility, callers, or state ownership.
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
-| .github/scripts/validate_unified_ci.py | 1 | 0 | 1 | 0 |
+| .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -126,11 +126,12 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>.github/scripts/validate_unified_ci.py</code> — 1 symbols</summary>
+<summary><code>.github/scripts/validate_unified_ci.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 25-79 |
+| run_performance_budget_contract | function | 28-54 |
+| main | function | 57-115 |
 
 </details>
 

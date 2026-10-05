@@ -105,7 +105,7 @@
       "file": ".github/scripts/validate_unified_ci.py",
       "is_test": false,
       "language": "Python",
-      "lines": 83
+      "lines": 119
     },
     {
       "directory": "scripts",
@@ -1050,6 +1050,10 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "parser.add_argument"
     },
     {
@@ -1082,6 +1086,14 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "run_performance_budget_contract"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "text.count"
     },
     {
@@ -1107,6 +1119,26 @@
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "workflow.read_text"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "budget.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "completed.stdout.endswith"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "target_token": "subprocess.run"
     },
     {
       "caller": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
@@ -23254,8 +23286,16 @@
     {
       "file": ".github/scripts/validate_unified_ci.py",
       "kind": "function",
-      "line_end": 79,
-      "line_start": 25,
+      "line_end": 54,
+      "line_start": 28,
+      "locator": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
+      "symbol": "run_performance_budget_contract"
+    },
+    {
+      "file": ".github/scripts/validate_unified_ci.py",
+      "kind": "function",
+      "line_end": 115,
+      "line_start": 57,
       "locator": ".github/scripts/validate_unified_ci.py::main",
       "symbol": "main"
     },
@@ -26269,13 +26309,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "7f43063ba64f06887edd68fd366b7a63402e0e840d668b3794f5aae868cdb0f6",
+  "source_digest": "4486c52e861c731304bc5c816f4664c567308f78fe98f545fbf433d55ac17c1a",
   "source_summary": {
     "files": 62,
     "languages": {
       "Python": 62
     },
-    "lines": 15286,
+    "lines": 15322,
     "test_files": 0
   },
   "tests": []
