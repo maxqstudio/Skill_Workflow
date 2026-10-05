@@ -2179,7 +2179,7 @@
       "locator": "scripts/validate_sequence_sessions.py::write_json"
     }
   ],
-  "observed_head": "cc64a6854923693fa07c11d5875f11bf4888fbad",
+  "observed_head": "b2b2bc49f8e6815ec1049cee4b499eabeb08d4ef",
   "schema_version": 1,
   "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
 }
