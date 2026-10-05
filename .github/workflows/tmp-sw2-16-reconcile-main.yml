@@ -1,0 +1,126 @@
+name: TEMP SW2-16 Reconcile Current Main
+
+on:
+  push:
+    branches: [work/sw2-16-historical-evidence-freeze]
+    paths: [.github/workflows/tmp-sw2-16-reconcile-main.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-16-historical-evidence-freeze
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore accepted main provenance and bind SW2-16 baseline
+        shell: bash
+        run: |
+          git fetch origin main
+          for f in \
+            scripts/sequence_contract.py \
+            scripts/validate_sequence_contract.py \
+            scripts/selftest_sequence_squash_provenance.py \
+            templates/SEQUENCE_SESSION.json \
+            references/sequence-contracts.md \
+            artifacts/sequence/SW2-15-GOVERNANCE.acceptance.json \
+            docs/sequence/generated/SW2-15-GOVERNANCE.actual.json \
+            docs/sequence/generated/SW2-15-GOVERNANCE.actual.mmd \
+            docs/sequence/generated/SW2-15-GOVERNANCE.human.json \
+            docs/sequence/generated/SW2-15-GOVERNANCE.human.mmd \
+            docs/sequence/views/SW2-15-GOVERNANCE.md \
+            docs/sequence/sessions/SW2-15-GOVERNANCE.json; do
+            git show origin/main:"$f" > "$f"
+          done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          MAIN = '9ac09b2acd0bdf25ea05157be7711da852173ab8'
+          def load(p): return json.loads(Path(p).read_text(encoding='utf-8'))
+          def write(p,d): Path(p).write_text(json.dumps(d,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+
+          state=load('.workflow/state.json')
+          state['last_accepted_branch']='main'
+          state['last_accepted_sha']=MAIN
+          proof=('SW2-15 is accepted on main 118e0e4e5e9a6803aeb7a99e90659ee55dca2779; '
+                 'post-merge squash-provenance compatibility repair 9ac09b2acd0bdf25ea05157be7711da852173ab8 '
+                 'passed Self Governance 37254526096, Governance Selftest 37254526110 on Ubuntu and Windows, '
+                 'SW2 Sequence Evidence 37254526121, Governance Engine Performance 37254526090, '
+                 'and Consumer Engine Performance 37254526100.')
+          proven=list(state.get('proven',[]))
+          if proof not in proven: proven.append(proof)
+          state['proven']=proven
+          write('.workflow/state.json',state)
+
+          acceptance=load('.workflow/acceptance.json')
+          acceptance['test_commands']=[str(x).replace('118e0e4e5e9a6803aeb7a99e90659ee55dca2779',MAIN) for x in acceptance.get('test_commands',[])]
+          write('.workflow/acceptance.json',acceptance)
+
+          current=load('docs/sequence/sessions/SW2-16-GOVERNANCE.json')
+          current['implementation_base_sha']=MAIN
+          write('docs/sequence/sessions/SW2-16-GOVERNANCE.json',current)
+
+          previous=load('docs/sequence/sessions/SW2-15-GOVERNANCE.json')
+          previous['scope']='HISTORICAL'
+          previous['status']='COMPLETE'
+          write('docs/sequence/sessions/SW2-15-GOVERNANCE.json',previous)
+          PY
+      - name: Regenerate current SW2-16 evidence and Project Truth
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root=Path('.').resolve(); sp=root/'docs/sequence/sessions/SW2-16-GOVERNANCE.json'; s=json.loads(sp.read_text(encoding='utf-8'))
+          a=s['actual']; cmd=[sys.executable,'scripts/generate_sequence_actual.py','--root','.','--output-json',a['graph'],'--output-mermaid',a['diagram']]
+          for e in a['entries']: cmd += ['--entry',e]
+          subprocess.run(cmd,check=True)
+          g=json.loads((root/a['graph']).read_text(encoding='utf-8')); d=g['source_digest']; s['actual']['source_digest']=d; s['human_view']['source_digest']=d
+          sp.write_text(json.dumps(s,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
+          h=s['human_view']
+          subprocess.run([sys.executable,'scripts/sequence_human_view.py','--root','.','--actual-json',a['graph'],'--actual-mermaid',a['diagram'],'--output-json',h['graph'],'--output-mermaid',h['diagram'],'--output-markdown',h['document'],'--session-id',s['session_id']],check=True)
+          subprocess.run([sys.executable,'scripts/validate_sequence_contract.py','--root','.','--session',str(sp.relative_to(root))],check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+      - name: Commit reconciled evidence before authorized re-freeze
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .workflow docs artifacts/sequence references scripts templates
+          test -z "$(git diff --cached --name-only | grep '^.github/workflows/' || true)"
+          git commit -m 'SW2-16: reconcile accepted main provenance baseline'
+      - name: Explicitly re-freeze historical identity
+        shell: bash
+        run: |
+          FROZEN="$(git rev-parse HEAD)"
+          python scripts/validate_sequence_sessions.py --root . --freeze-historical --frozen-commit "$FROZEN" --authorize-migration "SW2-16 reconcile accepted SW2-15 squash provenance repair 9ac09b2"
+          python scripts/sync_project_truth.py --root .
+          git add .workflow docs artifacts/sequence
+          git commit -m 'SW2-16: re-freeze reconciled historical evidence'
+      - name: Prove reconciled clean candidate
+        shell: bash
+        run: |
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_sequence_squash_provenance.py
+          python scripts/selftest_historical_evidence.py
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          HEAD_SHA="$(git rev-parse HEAD)"
+          python scripts/governance_engine.py --root . --base 9ac09b2acd0bdf25ea05157be7711da852173ab8 --mode verify --expected-head "$HEAD_SHA" --report /tmp/sw2-16-verify.json
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence references scripts templates)"
+      - name: Push reconciled implementation
+        shell: bash
+        run: git push origin HEAD:work/sw2-16-historical-evidence-freeze
