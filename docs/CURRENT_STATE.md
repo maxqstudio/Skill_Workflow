@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef
+Authority verified at SHA: 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-14
-Status: SW2_13_SKILL_CORE_REFERENCE_SPLIT_IN_PROGRESS
-Roadmap phase: SW2-14
+Phase: SW2-15
+Status: IN_PROGRESS
+Roadmap phase: SW2-15
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-13-skill-core-reference-split
+Branch: work/sw2-15-smart-validation-dag
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef
+Last accepted SHA: 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4
 Current candidate SHA: external final acceptance evidence
-Current source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
+Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-14-GOVERNANCE
+Current sequence session: SW2-15-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -93,6 +93,9 @@ SEQUENCE_SYNC: PASS
 - SW2-14 deterministic incremental Project Truth impact planning is feature-proven on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Ubuntu and Windows with INCREMENTAL_IMPACT_GRAPH, selective-write, fact-selectivity, unknown-broadening, and exhaustive-parity regressions.
 - SW2-14 preserves verify read-only safety on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: Governance Selftest 37219195065 passed Verify mode is read-only on both Ubuntu and Windows after normative references were correctly classified as documentation impact.
 - SW2-14 feature-level parity evidence is green on exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7: SW2 Sequence Evidence 37219195086, Governance Engine Performance 37219195153, and Consumer Engine Performance 37219195072 succeeded; pre-promotion Self Governance 37219195078 reached only the intentionally unpromoted Project Truth gate.
+- SW2-14 Incremental Project Truth Compiler is accepted on main 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 with tree fb2878299cf28e6671ed73842996c5a861617554 equal to exact tested candidate efd5ac9b3af4623c385413fc11a7f7999ef1edc0. Post-merge main passed Self Governance 37241577980; Governance Selftest 37241577983 on Ubuntu and Windows; SW2 Sequence Evidence 37241577995; Governance Engine Performance 37241578003; and Consumer Engine Performance 37241577997.
+- SW2-15 Smart Validation DAG develop/verify planning is feature-proven on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: Governance Selftest 37246954719 passed Ubuntu and Windows with SMART_DEVELOP_IMPACT_SELECTION, SMART_VERIFY_DEPENDENCY_CLOSURE, SMART_PLANNER_FAIL_CLOSED, and SMART_FINALIZE_EXHAUSTIVE regressions.
+- SW2-15 feature-level integration evidence is green on exact clean candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2: SW2 Sequence Evidence 37246954759, Governance Engine Performance 37246954726, and Consumer Engine Performance 37246954744 succeeded; pre-promotion Self Governance 37246954738 reached only the intentionally unpromoted Project Truth gate after exhaustive finalize prerequisites passed.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
@@ -105,14 +108,14 @@ See KNOWN_DEFECTS.md.
 
 ## Next authorized action
 - Run the complete permanent acceptance matrix on the post-promotion exact candidate.
-- If all six permanent contexts pass, ready and squash-merge PR #22 with exact-head locking.
-- After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-14 accepted.
+- If all six permanent contexts pass, ready and squash-merge PR #23 with exact-head locking.
+- After merge, verify merged-tree identity and the complete post-merge main matrix before declaring SW2-15 accepted.
 
 ## Explicitly blocked
-- Do not skip or weaken exhaustive finalize validation.
-- Do not treat cache state or timestamps as semantic acceptance authority.
-- Do not suppress regeneration when impact classification is unknown or ambiguous; unknown impact must broaden work fail-closed.
-- Do not rewrite unchanged tracked projections in develop/verify merely to refresh timestamps or formatting.
-- Do not begin SW2-15 implementation until SW2-14 is accepted on main.
+- Do not weaken or bypass exhaustive finalize validation.
+- Do not treat develop/verify node selection, cache state, or prior PASS results as final acceptance authority.
+- Do not skip mandatory validation dependencies when impact classification is incomplete or ambiguous.
+- Do not let smart node selection suppress adversarial false-PASS regressions; uncertain impact must broaden fail-closed.
+- Do not begin SW2-16 implementation until SW2-15 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

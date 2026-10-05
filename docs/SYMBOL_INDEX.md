@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: f1c1ec1aedc021f60c9212fdbaa9d19d177b9f77439f048bd7cf4e05ecb7b872
+Source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -25,7 +25,7 @@ responsibility, callers, or state ownership.
 | scripts/generate_sequence_actual.py | 21 | 3 | 9 | 9 |
 | scripts/generate_sequence_plan.py | 1 | 0 | 1 | 0 |
 | scripts/generate_symbol_index.py | 13 | 1 | 7 | 5 |
-| scripts/governance_engine.py | 27 | 3 | 17 | 7 |
+| scripts/governance_engine.py | 31 | 3 | 20 | 8 |
 | scripts/initialize_project_truth.py | 3 | 0 | 3 | 0 |
 | scripts/migrate_governance_v1.py | 4 | 0 | 4 | 0 |
 | scripts/project_profile.py | 10 | 0 | 10 | 0 |
@@ -39,7 +39,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
-| scripts/selftest_governance_engine.py | 15 | 0 | 11 | 4 |
+| scripts/selftest_governance_engine.py | 16 | 0 | 12 | 4 |
 | scripts/selftest_project_truth_compiler.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_public_docs.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_release_preflight.py | 5 | 0 | 5 | 0 |
@@ -264,7 +264,7 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/governance_engine.py</code> — 27 symbols</summary>
+<summary><code>scripts/governance_engine.py</code> — 31 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
@@ -276,25 +276,29 @@ responsibility, callers, or state ownership.
 | ValidationDAG._assert_acyclic.visit | method | 73-82 |
 | ValidationDAG.run | method | 87-131 |
 | ValidationDAG.run.execute | method | 90-127 |
-| git | function | 196-201 |
-| git_z | function | 204-213 |
-| state_base | function | 216-224 |
-| collect_changed_paths | function | 227-241 |
-| classify_path | function | 244-276 |
-| classify_changed_paths | function | 279-280 |
-| effective_mode | function | 283-291 |
-| develop_node_names | function | 294-339 |
-| planned_node_names | function | 342-352 |
-| governed_status | function | 355-368 |
-| cli_action | function | 371-376 |
-| command_action | function | 379-394 |
-| command_action.run | method | 380-392 |
-| compile_scripts_action | function | 397-414 |
-| compile_scripts_action.run | method | 399-412 |
-| _regression_node | function | 417-422 |
-| build_mode_dag | function | 425-620 |
-| build_dag | function | 623-697 |
-| main | function | 700-829 |
+| dependency_closure | function | 261-290 |
+| dependency_closure.visit | method | 269-282 |
+| verify_seed_node_names | function | 293-325 |
+| verify_node_names | function | 328-333 |
+| git | function | 336-341 |
+| git_z | function | 344-353 |
+| state_base | function | 356-364 |
+| collect_changed_paths | function | 367-381 |
+| classify_path | function | 384-416 |
+| classify_changed_paths | function | 419-420 |
+| effective_mode | function | 423-431 |
+| develop_node_names | function | 434-469 |
+| planned_node_names | function | 472-482 |
+| governed_status | function | 485-498 |
+| cli_action | function | 501-506 |
+| command_action | function | 509-524 |
+| command_action.run | method | 510-522 |
+| compile_scripts_action | function | 527-544 |
+| compile_scripts_action.run | method | 529-542 |
+| _regression_node | function | 547-552 |
+| build_mode_dag | function | 555-750 |
+| build_dag | function | 753-827 |
+| main | function | 830-962 |
 
 </details>
 
@@ -465,25 +469,26 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/selftest_governance_engine.py</code> — 15 symbols</summary>
+<summary><code>scripts/selftest_governance_engine.py</code> — 16 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| require | function | 28-30 |
-| git | function | 33-39 |
-| git_text | function | 42-47 |
-| snapshot_parity_and_immutability | function | 50-85 |
-| snapshot_fact_reuse | function | 88-107 |
-| dag_executes_once | function | 110-129 |
-| dag_executes_once.action | method | 113-118 |
-| dag_executes_once.action.run | method | 114-116 |
-| dag_fail_closed | function | 132-169 |
-| dag_fail_closed.fail | method | 135-136 |
-| dag_fail_closed.downstream | method | 138-141 |
-| mode_planning_contract | function | 172-274 |
-| changed_path_collection_contract | function | 277-299 |
-| mode_cli_integration_contract | function | 302-395 |
-| main | function | 398-407 |
+| require | function | 29-31 |
+| git | function | 34-40 |
+| git_text | function | 43-48 |
+| snapshot_parity_and_immutability | function | 51-86 |
+| snapshot_fact_reuse | function | 89-108 |
+| dag_executes_once | function | 111-130 |
+| dag_executes_once.action | method | 114-119 |
+| dag_executes_once.action.run | method | 115-117 |
+| dag_fail_closed | function | 133-170 |
+| dag_fail_closed.fail | method | 136-137 |
+| dag_fail_closed.downstream | method | 139-142 |
+| mode_planning_contract | function | 173-275 |
+| smart_validation_dag_contract | function | 279-401 |
+| changed_path_collection_contract | function | 404-426 |
+| mode_cli_integration_contract | function | 429-522 |
+| main | function | 525-535 |
 
 </details>
 

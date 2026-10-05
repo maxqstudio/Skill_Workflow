@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-14 covers Incremental Project Truth Compiler only: deterministic fail-closed impact analysis, selective develop/verify regeneration, preservation of unchanged projections, unknown-impact escalation, and exhaustive finalize parity. It must not weaken accepted Project Truth authority, schema/toolchain identity, sequence evidence, exact-head acceptance, or any prior V2 guarantee.",
+  "evidence_boundary": "SW2-15 covers Smart Validation DAG only: safe impacted-node selection in develop, complete affected dependency closure in verify, exhaustive finalize authority, and adversarial false-PASS regression. It must not weaken SW2-14 incremental Project Truth semantics, accepted exact-head authority, sequence evidence, cross-platform/consumer acceptance, or any prior V2 guarantee.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,27 +17,27 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: exact repaired feature candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7 passed Governance Selftest run 37219195065 on Ubuntu and Windows. The permanent Project Truth Compiler self-test proved INCREMENTAL_IMPACT_GRAPH=PASS, and the Governance Engine regression proved deterministic changed-path classification with normative references mapped to documentation rather than unknown impact.",
-      "id": "SW2-14-R1",
-      "requirement": "Project Truth impact graph is deterministic, dependency-aware, and fail-closed.",
+      "evidence": "PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows. The permanent Governance Engine regression proved SMART_DEVELOP_IMPACT_SELECTION=PASS together with deterministic changed-path classification and fail-closed escalation for unknown, broad-source, template, and CI impact.",
+      "id": "SW2-15-R1",
+      "requirement": "Develop mode executes only safely impacted validation nodes and their mandatory prerequisites.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS: Governance Selftest run 37219195065 passed Project Truth Compiler self-test and Verify mode is read-only on both Ubuntu and Windows for exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7. Regression evidence includes INCREMENTAL_SELECTIVE_WRITE=PASS and INCREMENTAL_FACT_SELECTIVITY=PASS: governance-only changes reuse facts, source changes refresh facts, and byte-identical unaffected tracked projections are not rewritten.",
-      "id": "SW2-14-R2",
-      "requirement": "Develop/verify regenerate only affected facts and projections and do not rewrite unchanged tracked projections.",
+      "evidence": "PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows with SMART_VERIFY_DEPENDENCY_CLOSURE=PASS and SMART_PLANNER_FAIL_CLOSED=PASS. Known documentation impact selects the required Project Truth/document/handoff/cross-document closure without unrelated source regressions; unknown planner nodes, missing dependencies, cycles, and unmapped verify impact fail closed.",
+      "id": "SW2-15-R2",
+      "requirement": "Verify mode executes the complete dependency closure for affected governance semantics without redundant unrelated validation.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS: exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7 passed INCREMENTAL_UNKNOWN_BROADENING=PASS and Governance Engine mode-planning regression on Ubuntu and Windows in run 37219195065. Unknown/ambiguous impact broadens to the complete projection set and unknown verify impact escalates fail-closed rather than silently narrowing acceptance.",
-      "id": "SW2-14-R3",
-      "requirement": "Unknown or ambiguous impact broadens regeneration and validation rather than permitting a false PASS.",
+      "evidence": "PASS: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed SMART_FINALIZE_EXHAUSTIVE=PASS in Governance Selftest run 37246954719 on Ubuntu and Windows. Pre-promotion Self Governance run 37246954738 bound exact HEAD and executed the complete 13-node finalize authority with source regressions, strict workflow, exhaustive Project Truth sync, human/sequence/handoff/cross-document validation, and final_acceptance_authority=true; it stopped only at the intentionally unpromoted Project Truth status gate.",
+      "id": "SW2-15-R3",
+      "requirement": "Finalize executes the complete authoritative validation DAG and remains the only final acceptance authority.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS for feature promotion: exact candidate 7e1bc15b9868224b42fd095e70ba5eadf7c12ef7 passed INCREMENTAL_FULL_PARITY=PASS in Governance Selftest run 37219195065 on Ubuntu and Windows, SW2 Sequence Evidence run 37219195086, Governance Engine Performance run 37219195153, and Consumer Engine Performance run 37219195072. Pre-promotion Self Governance run 37219195078 executed the exhaustive finalize path with compiler, strict workflow, Project Truth sync, cross-document consistency, sequence, handoff, and clean-worktree nodes PASS; it stopped only at the intentionally unpromoted Project Truth status gate. Full post-promotion 6/6 permanent acceptance remains required before merge/closure.",
-      "id": "SW2-14-R4",
-      "requirement": "Finalize remains exhaustive and produces governance-equivalent canonical outputs to the accepted full regeneration path across platforms and the permanent matrix.",
+      "evidence": "PASS for feature promotion: exact clean feature candidate 9ec6adada160f8707bfda30ebd128fd05a2e39e2 passed Governance Selftest run 37246954719 on Ubuntu and Windows, SW2 Sequence Evidence run 37246954759, Governance Engine Performance run 37246954726, and Consumer Engine Performance run 37246954744. The permanent adversarial planner regressions passed, and pre-promotion Self Governance run 37246954738 reached only the intentionally unpromoted Project Truth gate after all preceding authoritative finalize nodes passed. Full post-promotion 6/6 permanent acceptance remains required before merge/closure.",
+      "id": "SW2-15-R4",
+      "requirement": "Adversarial false-PASS regression and the complete permanent matrix prove smart validation cannot skip required failures across platforms and the real consumer.",
       "status": "PASS"
     }
   ],
@@ -45,16 +45,16 @@
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-14-GOVERNANCE",
+  "sequence_session": "SW2-15-GOVERNANCE",
   "sequence_sync_status": "PASS",
   "test_commands": [
-    "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_governance_engine.py",
+    "python scripts/selftest_project_truth_compiler.py",
     "python scripts/selftest_cross_document_regressions.py",
     "python scripts/selftest_strict_project_workflow.py",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base 4d0c3efb7bfcb8d22bf80c336e86a2a4054e49ef --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
