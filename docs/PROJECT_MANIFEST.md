@@ -13,7 +13,7 @@ Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-15-smart-validation-dag
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 71c0269a5f2cf7fc98cf05e79c5c9494a32dfae4
-Current source digest: 7656cb9a670345b1e0e2b3c96ed49f1e32269aa80ae1b34d613ffdefbecff97f
+Current source digest: 84f7262e1a3d665f1d48f683cafee86d1fa42841d97e412c51e3e5af67774231
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.
