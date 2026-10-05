@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-19-performance-budget-v2.1
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 8a16ddb1994d1a6080816c8b9b78f75137d33e72
+Last accepted SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
 Current source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
 
 ## Authorities

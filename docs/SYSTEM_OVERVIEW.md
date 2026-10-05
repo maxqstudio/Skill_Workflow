@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-19
 
-Current status: IN_PROGRESS
+Current status: V2_1_STABLE_RELEASED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,15 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Merge the exact tested SW2-19 pre-publication candidate only after post-promotion permanent CI passes.
-- Run strict V2.1 publication preflight on the exact tested main SHA with only SW2-19-R4 publication-pending.
-- Publish v2.1.0 only if strict preflight returns publication_authority=true.
-- Verify live v2.1.0 tag/release identity before promoting SW2-19-R4 and closing the phase.
+- Treat v2.1.0 at 81b76ccad6785538d898a0fd5767e1b426a2eb56 as the accepted stable V2.1 release baseline.
+- For defects in the stable release, repair forward under a new governed patch release; never retarget an existing stable tag.
+- Before new feature or compatibility work changes accepted V2.1 guarantees, declare a new governed roadmap phase and acceptance boundary.
 
 Blocked actions:
-- Do not publish or move a V2.1 tag/release before exact release-candidate acceptance and strict publication authority are proven.
-- Do not weaken generated-doc drift, false-PASS, cross-platform, consumer, or exhaustive finalize guarantees to meet a performance budget.
-- Do not treat benchmark cache, one hosted-runner sample, or docs-only skipped heavy lanes as final performance authority.
-- Do not retarget or mutate the accepted v2.0.0 tag/release.
+- Do not move, retarget, delete-and-recreate, or silently replace the stable v2.1.0 tag as a normal rollback path.
+- Do not move, retarget, delete-and-recreate, or silently replace the historical v2.0.0 tag.
+- Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
+- Do not weaken accepted Skill Workflow V2.1 guarantees without a new governed acceptance boundary.
 
 Known blockers:
 - None declared.
@@ -198,10 +197,10 @@ Known blockers:
 - SW2-18 centralizes exact-head provenance, Python setup, and CI applicability through .github/actions/governance-bootstrap/action.yml while preserving six independently visible permanent contexts. Docs-only applicability is deterministic and all unknown/governance/CI/source impact remains fail-closed to heavy validation.
 - SW2-18 Unified CI Orchestrator is accepted on main 8a16ddb1994d1a6080816c8b9b78f75137d33e72 with tree d99d4798da694cd65ae490b2b871a11c4e6294e6 equal to exact tested candidate 719a7491cd5773b0dee260fd4e713e5caad93374. Post-merge Governance CI run 37330706174 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance.
 - SW2-19 R1-R3 pre-publication acceptance is proven on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 with Governance CI run 37380692462: all six permanent contexts succeeded on Ubuntu/Windows and the pinned max-grounding consumer; the permanent performance-budget contract enforces develop <=2.5s, verify <=3.5s, and finalize <=10.0s from benchmark authority run 37336599123; V2.1 release-preflight regression also passed while SW2-19-R4 remains publication-pending.
+- SW2-19 V2.1 stable publication is accepted on exact release main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict finalize/preflight with publication_authority=true; v2.1.0 tag and GitHub release id 404150971 both target the exact SHA; publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e.
 
 ### Not proven
 
-- SW2-19 versioned V2.1 publication from the exact tested SHA is not yet proven.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations
