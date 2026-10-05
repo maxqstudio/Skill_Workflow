@@ -1,0 +1,138 @@
+name: TEMP SW2-15 Smart DAG
+
+on:
+  push:
+    branches:
+      - work/sw2-15-smart-validation-dag
+    paths:
+      - .github/workflows/tmp-sw2-15-smart-dag.yml
+
+permissions:
+  contents: write
+
+jobs:
+  implement:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-15-smart-validation-dag
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Patch Smart Validation DAG false-skip gaps
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          engine = Path('scripts/governance_engine.py')
+          text = engine.read_text(encoding='utf-8')
+          replacements = [
+              (
+                  '    "engine": ("engine_regression", "validate_cross_document_consistency"),\n',
+                  '    "engine": (\n        "engine_regression",\n        "validate_sequence_sessions",\n        "validate_cross_document_consistency",\n    ),\n',
+              ),
+              (
+                  '    "compiler": ("compiler_selftest", "validate_cross_document_consistency"),\n',
+                  '    "compiler": (\n        "compiler_selftest",\n        "validate_sequence_sessions",\n        "validate_cross_document_consistency",\n    ),\n',
+              ),
+              (
+                  '    "cross_document": (\n        "cross_document_regression",\n        "validate_cross_document_consistency",\n    ),\n',
+                  '    "cross_document": (\n        "cross_document_regression",\n        "validate_sequence_sessions",\n        "validate_cross_document_consistency",\n    ),\n',
+              ),
+              (
+                  '        elif regressions:\n            dependencies.extend(regressions)\n        nodes.append(\n            ValidationNode(\n                name="validate_cross_document_consistency",\n',
+                  '        elif regressions:\n            dependencies.extend(regressions)\n        if "validate_handoff" in wanted:\n            dependencies.append("validate_handoff")\n        nodes.append(\n            ValidationNode(\n                name="validate_cross_document_consistency",\n',
+              ),
+          ]
+          for old, new in replacements:
+              if text.count(old) != 1:
+                  raise RuntimeError('ENGINE_PATCH_ANCHOR:' + old.splitlines()[0])
+              text = text.replace(old, new, 1)
+          engine.write_text(text, encoding='utf-8', newline='\n')
+
+          test = Path('scripts/selftest_governance_engine.py')
+          text = test.read_text(encoding='utf-8')
+          old = '''            "engine_regression",\n            "validate_project_docs",\n            "validate_human_comprehension",\n            "validate_handoff",\n            "validate_cross_document_consistency",\n'''
+          new = '''            "engine_regression",\n            "validate_project_docs",\n            "validate_human_comprehension",\n            "validate_sequence_sessions",\n            "validate_handoff",\n            "validate_cross_document_consistency",\n'''
+          if text.count(old) != 1:
+              raise RuntimeError('ENGINE_VERIFY_ASSERTION_ANCHOR')
+          text = text.replace(old, new, 1)
+
+          anchor = '''    require(\n        {\n            "validate_project_docs",\n            "validate_human_comprehension",\n            "validate_sequence_sessions",\n            "validate_handoff",\n            "validate_cross_document_consistency",\n        }.issubset(source_verify),\n        f"source verify closure incomplete: {source_verify}",\n    )\n'''
+          addition = anchor + '''\n    for semantic_path, expected_regression in (\n        ("scripts/generate_project_docs.py", "compiler_selftest"),\n        ("scripts/validate_cross_document_consistency.py", "cross_document_regression"),\n    ):\n        semantic_paths = (semantic_path,)\n        semantic_impacts = classify_changed_paths(semantic_paths)\n        semantic_verify = set(\n            planned_node_names("verify", "verify", semantic_paths, semantic_impacts)\n        )\n        require(\n            expected_regression in semantic_verify,\n            f"verify missed regression for {semantic_path}: {semantic_verify}",\n        )\n        require(\n            "validate_sequence_sessions" in semantic_verify,\n            f"verify false-skip risk: sequence evidence omitted for {semantic_path}",\n        )\n'''
+          if text.count(anchor) != 1:
+              raise RuntimeError('SEMANTIC_VERIFY_ASSERTION_ANCHOR')
+          text = text.replace(anchor, addition, 1)
+
+          marker = '''    print("SMART_PLANNER_FAIL_CLOSED=PASS")\n'''
+          adversarial = '''    selected = dependency_closure(\n        ("target",),\n        {"prerequisite": (), "target": ("prerequisite",), "unrelated": ()},\n        ("prerequisite", "target", "unrelated"),\n    )\n    require(\n        selected == ("prerequisite", "target"),\n        f"planner skipped prerequisite or retained unrelated work: {selected}",\n    )\n    calls = {"target": 0, "unrelated": 0}\n\n    def required_failure() -> tuple[int, str]:\n        return 1, "REQUIRED_FAILURE\\n"\n\n    def target_action() -> tuple[int, str]:\n        calls["target"] += 1\n        return 0, "FALSE_PASS\\n"\n\n    planned_nodes = {\n        "prerequisite": ValidationNode("prerequisite", (), required_failure),\n        "target": ValidationNode("target", ("prerequisite",), target_action),\n        "unrelated": ValidationNode(\n            "unrelated", (), lambda: (calls.__setitem__("unrelated", calls["unrelated"] + 1) or 0, "UNRELATED\\n")\n        ),\n    }\n    runtime = ValidationDAG([planned_nodes[name] for name in selected]).run()\n    require(runtime["prerequisite"].status == "FAIL", "required failure was lost")\n    require(runtime["target"].status == "BLOCKED", "dependent target was not blocked")\n    require(calls == {"target": 0, "unrelated": 0}, f"false-skip runtime calls: {calls}")\n    print("SMART_FALSE_PASS_RESISTANCE=PASS")\n\n''' + marker
+          if text.count(marker) != 1:
+              raise RuntimeError('FALSE_PASS_ASSERTION_ANCHOR')
+          text = text.replace(marker, adversarial, 1)
+          test.write_text(text, encoding='utf-8', newline='\n')
+          PY
+
+      - name: Run focused Smart DAG regressions
+        shell: bash
+        run: |
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts
+          python scripts/selftest_governance_engine.py
+          python scripts/selftest_project_truth_compiler.py
+          python scripts/selftest_cross_document_regressions.py
+
+      - name: Regenerate SW2-15 sequence and Project Truth
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-15-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id'],
+          ], check=True)
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', str(session_path)
+          ], check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_public_docs.py --root .
+          python .github/scripts/validate_skill_reference_split.py --root .
+
+      - name: Commit Smart DAG implementation
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/governance_engine.py scripts/selftest_governance_engine.py .workflow docs artifacts/sequence
+          git commit -m 'SW2-15: harden Smart Validation DAG closure'
+          git push origin HEAD:work/sw2-15-smart-validation-dag
