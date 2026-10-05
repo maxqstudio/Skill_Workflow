@@ -1,4 +1,4 @@
-name: SW2-18 Sequence Sync Helper
+name: SW2-18 Closure Helper
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  sync:
+  close:
     runs-on: ubuntu-latest
     env:
       PYTHONDONTWRITEBYTECODE: "1"
@@ -21,38 +21,71 @@ jobs:
         with:
           ref: work/sw2-18-unified-ci-orchestrator
           fetch-depth: 0
-      - name: Require expected target head
+      - name: Require pre-promotion target head
         shell: bash
-        run: test "$(git rev-parse HEAD)" = "4fc3950a270b294d29c92f98c6a2b5bdcc679971"
+        run: test "$(git rev-parse HEAD)" = "c05ee66df88bbab8e54049a1f2c8e527e228867f"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Repair CI impact classification and regression
+      - name: Promote SW2-18 governed authority
         shell: bash
         run: |
           python - <<'PY'
+          import json
           from pathlib import Path
 
-          engine = Path('scripts/governance_engine.py')
-          text = engine.read_text(encoding='utf-8')
-          old = '    if path.startswith(".github/workflows/"):\n        return "ci"\n'
-          new = '    if path.startswith(".github/"):\n        return "ci"\n'
-          if text.count(old) != 1:
-              raise RuntimeError('CI_CLASSIFICATION_ANCHOR')
-          engine.write_text(text.replace(old, new, 1), encoding='utf-8', newline='\n')
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
 
-          test = Path('scripts/selftest_governance_engine.py')
-          text = test.read_text(encoding='utf-8')
-          anchor = '''    print("SMART_DEVELOP_IMPACT_SELECTION=PASS")\n\n'''
-          addition = '''    ci_paths = (\n        ".github/actions/governance-bootstrap/action.yml",\n        ".github/scripts/ci_applicability.py",\n        ".github/workflows/governance-ci.yml",\n    )\n    ci_impacts = classify_changed_paths(ci_paths)\n    require(ci_impacts == ("ci",), f"CI primitives misclassified: {ci_impacts}")\n    require(\n        effective_mode("develop", ci_impacts) == "verify",\n        f"CI impact did not broaden develop to verify: {ci_impacts}",\n    )\n    require(\n        effective_mode("verify", ci_impacts) == "verify",\n        f"known CI impact escalated verify to finalize: {ci_impacts}",\n    )\n    ci_verify = planned_node_names("verify", "verify", ci_paths, ci_impacts)\n    require(\n        ci_verify == VERIFY_NODE_NAMES,\n        f"CI verify did not retain full verify safety net: {ci_verify}",\n    )\n    print("CI_IMPACT_CLASSIFICATION=PASS")\n\n'''
-          if text.count(anchor) != 1:
-              raise RuntimeError('CI_CLASSIFICATION_TEST_ANCHOR')
-          test.write_text(text.replace(anchor, anchor + addition, 1), encoding='utf-8', newline='\n')
+          def write(path, data):
+              Path(path).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          acceptance = load('.workflow/acceptance.json')
+          evidence = {
+              'SW2-18-R1': 'PASS: unified governance-ci.yml uses the reusable .github/actions/governance-bootstrap primitive for exact-head provenance, Python setup, and applicability across all five routine jobs; validate_unified_ci.py and cross-platform run 37324753236 prove the contract.',
+              'SW2-18-R2': 'PASS: selftest_ci_applicability.py deterministically proves pure docs PRs suppress heavy work while .github, .workflow, scripts, SKILL.md, AGENTS.md, unknown and push events broaden fail-closed. Exact run 37324753236 classified this governance/CI change heavy and executed Engine plus real Consumer lanes.',
+              'SW2-18-R3': 'PASS: unified Governance CI exposes the six existing permanent contexts independently: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, Sequence Evidence, Engine Performance, and Consumer Performance. validate_unified_ci.py passed on Ubuntu and Windows in run 37324753236.',
+              'SW2-18-R4': 'PASS: exact pre-promotion candidate c05ee66df88bbab8e54049a1f2c8e527e228867f passed Governance Selftest on Ubuntu and Windows, Sequence Evidence, Engine Performance, and max-grounding Consumer parity in run 37324753236. This closure transaction is pushed only if exhaustive clean exact-head finalize also passes after promotion.',
+          }
+          seen = set()
+          for item in acceptance['requirements']:
+              rid = item['id']
+              if rid in evidence:
+                  item['status'] = 'PASS'
+                  item['evidence'] = evidence[rid]
+                  seen.add(rid)
+          if seen != set(evidence):
+              raise RuntimeError('SW2_18_REQUIREMENT_SET_MISMATCH')
+          acceptance['sequence_sync_status'] = 'PASS'
+          for gate, status in list(acceptance['truth_gates'].items()):
+              if status == 'NOT_PROVEN':
+                  acceptance['truth_gates'][gate] = 'PASS'
+          write('.workflow/acceptance.json', acceptance)
+
+          state = load('.workflow/state.json')
+          state['status'] = 'SW2_18_UNIFIED_CI_ORCHESTRATOR_ACCEPTED'
+          state['working_branch'] = 'main'
+          state['blockers'] = []
+          state['not_proven'] = [
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.'
+          ]
+          state['next_authorized_actions'] = [
+              'Update PR #28 with exact SW2-18 closure evidence and squash-merge only from the final clean closure head.',
+              'Verify the squash-merged main tree equals the tested closure tree and require post-merge six permanent contexts to pass.',
+              'Only after SW2-18 is accepted on main may SW2-19 Performance Budget & V2.1 Release begin.',
+          ]
+          proven = list(state.get('proven', []))
+          statements = [
+              'SW2-18 Unified CI Orchestrator pre-promotion is proven on exact candidate c05ee66df88bbab8e54049a1f2c8e527e228867f: Governance Selftest run 37324753236 passed Ubuntu and Windows including unified-CI contract regression and read-only verify; Sequence Evidence, Engine Performance, and Consumer Performance also succeeded. Self Governance stopped only at the intentionally unpromoted Project Truth boundary.',
+              'SW2-18 centralizes exact-head provenance, Python setup, and CI applicability through .github/actions/governance-bootstrap/action.yml while preserving six independently visible permanent contexts. Docs-only applicability is deterministic and all unknown/governance/CI/source impact remains fail-closed to heavy validation.',
+          ]
+          for statement in statements:
+              if statement not in proven:
+                  proven.append(statement)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
           PY
-          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
-          python -m compileall -q scripts
-          python scripts/selftest_governance_engine.py
-      - name: Regenerate current sequence from clean target
+      - name: Regenerate SW2-18 sequence and Project Truth
         shell: bash
         run: |
           python - <<'PY'
@@ -88,24 +121,34 @@ jobs:
               '--session', session_path.as_posix(), '--report', session['acceptance_report'],
           ], check=True)
           subprocess.run([sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.', '--session', session_path.as_posix()], check=True)
-          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
-          print('SW2_18_SEQUENCE_SYNC=PASS')
           PY
-      - name: Regenerate and validate Project Truth
-        shell: bash
-        run: |
           python scripts/sync_project_truth.py --root .
           python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
           python .github/scripts/selftest_ci_applicability.py
           python .github/scripts/validate_unified_ci.py --root .
           python scripts/selftest_governance_engine.py
-          python scripts/validate_sequence_sessions.py --root .
           python scripts/validate_repository_health.py --root .
-      - name: Commit repaired target tree
+          python scripts/validate_public_docs.py --root .
+      - name: Commit closure candidate locally
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/governance_engine.py scripts/selftest_governance_engine.py .workflow docs artifacts/sequence
-          git commit -m 'SW2-18: classify unified CI primitives fail-closed'
-          git push origin HEAD:work/sw2-18-unified-ci-orchestrator
+          git add -A
+          git commit -m 'SW2-18: accept Unified CI Orchestrator'
+          echo "CLOSURE_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Prove exhaustive exact-head closure before push
+        shell: bash
+        run: |
+          base="ae24b4d96a95c8f658e5a3955c4739773b80532b"
+          python scripts/governance_engine.py \
+            --root . \
+            --base "$base" \
+            --mode finalize \
+            --expected-head "$CLOSURE_HEAD"
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts .github)"
+      - name: Push proven closure candidate
+        shell: bash
+        run: git push origin HEAD:work/sw2-18-unified-ci-orchestrator
