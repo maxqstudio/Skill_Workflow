@@ -101,9 +101,6 @@ def validate(root: Path, *, expected_base: str = "") -> dict:
         failures.append("LAST_ACCEPTED_BRANCH_NOT_MAIN:" + last_accepted_branch)
     if not last_accepted_sha:
         failures.append("LAST_ACCEPTED_SHA_MISSING")
-    if expected_base and last_accepted_sha != expected_base:
-        failures.append(f"LAST_ACCEPTED_SHA_MISMATCH:{last_accepted_sha}!={expected_base}")
-
     sequence_session = text(acceptance.get("sequence_session"))
     implementation_base = ""
     if not sequence_session:
@@ -121,10 +118,19 @@ def validate(root: Path, *, expected_base: str = "") -> dict:
                 implementation_base = text(session.get("implementation_base_sha"))
                 if not implementation_base:
                     failures.append("IMPLEMENTATION_BASE_SHA_MISSING:" + sequence_session)
-                elif last_accepted_sha and implementation_base != last_accepted_sha:
+                elif (
+                    not accepted_state(text(state.get("status")))
+                    and last_accepted_sha
+                    and implementation_base != last_accepted_sha
+                ):
                     failures.append(
                         f"IMPLEMENTATION_BASE_MISMATCH:{implementation_base}!={last_accepted_sha}"
                     )
+
+    if expected_base and implementation_base != expected_base:
+        failures.append(
+            f"IMPLEMENTATION_BASE_EXPECTED_MISMATCH:{implementation_base}!={expected_base}"
+        )
 
     state_status = text(state.get("status"))
     next_actions = state.get("next_authorized_actions", [])

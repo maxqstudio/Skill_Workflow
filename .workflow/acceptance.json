@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-21 covers accepted-phase closure semantics, accepted-main baseline rebinding, and known-defect lifecycle reconciliation only. It must preserve V2.1/SW2-20 governance, documentation freshness, exact-head, no-ruleset, cross-platform, consumer, performance, and release guarantees.",
+  "evidence_boundary": "SW2-21 terminal acceptance covers durable accepted-closure semantics, immutable phase-open implementation-base provenance, accepted-main rebinding, and known-defect lifecycle reconciliation. It preserves V2.1/SW2-20 exact-head, no-ruleset, cross-platform, sequence, performance, release, documentation-freshness, and real-consumer guarantees.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,25 +17,25 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: lifecycle regression in Governance CI run 37408981020 rejected stale PR/branch-specific accepted-state actions and accepted branch-agnostic closure semantics. Ubuntu and Windows Governance Selftest both passed the permanent regression.",
+      "evidence": "PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112: Governance CI run 37409327637 passed lifecycle and branch-agnostic closure regression in the complete six-context matrix. Candidate was squash-merged to main as 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320, and post-merge Governance CI run 37409673401 passed all six permanent contexts.",
       "id": "SW2-21-R1",
       "requirement": "Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: state.last_accepted_sha and SW2-21 implementation_base_sha are both bound to terminal accepted main 8723bf0315a1e6cee005198affbc9ec1576e8ba7; base-mismatch negative regression passed in Governance CI run 37408981020.",
+      "evidence": "PASS: SW2-21 opened from exact accepted terminal main 8723bf0315a1e6cee005198affbc9ec1576e8ba7; the final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112 passed base-binding regression in Governance CI run 37409327637. Terminal closure advances last_accepted_sha to accepted feature main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 without rewriting the immutable SW2-21 implementation_base_sha 8723bf0315a1e6cee005198affbc9ec1576e8ba7.",
       "id": "SW2-21-R2",
       "requirement": "The next governed phase deterministically rebinds its implementation base to the exact accepted main commit.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: stale CONFIRMED ledger entries were reconciled to OPEN/FIXED-ACCEPTED/HISTORICAL/NOT_PROVEN lifecycle semantics with completed-phase resolution evidence; invalid status, missing evidence, unknown phase, and duplicate-ID regressions passed in Governance CI run 37408981020.",
+      "evidence": "PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112: known-defect lifecycle reconciliation and invalid-status/missing-evidence/unknown-phase/duplicate-ID negative regressions passed in Governance CI run 37409327637; post-merge main run 37409673401 revalidated the same merged tree.",
       "id": "SW2-21-R3",
       "requirement": "Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS promotion boundary on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance Selftest passed on Ubuntu and Windows, SW2 Sequence Evidence passed, Governance Engine Performance passed, and Consumer Engine Performance passed in Governance CI run 37408981020. Self Governance traversed all implementation/regression nodes and stopped only at the intentionally unpromoted Project Truth gate. A fresh promoted 6/6 permanent matrix remains mandatory before merge.",
+      "evidence": "PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320: Governance CI run 37409327637 passed all six permanent contexts. Candidate was squash-merged to main as 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with identical tree bca3b301be91ba07443b51eb7dc5d539e2a98320. Post-merge Governance CI run 37409673401 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the feature acceptance boundary.",
       "id": "SW2-21-R4",
       "requirement": "Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance.",
       "status": "PASS"

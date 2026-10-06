@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
+Source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -538,8 +538,8 @@ responsibility, callers, or state ownership.
 | fixture | function | 22-84 |
 | materialize | function | 87-92 |
 | require_failure | function | 95-102 |
-| fixture_regressions | function | 105-169 |
-| main | function | 172-179 |
+| fixture_regressions | function | 105-186 |
+| main | function | 189-196 |
 
 </details>
 
@@ -824,8 +824,8 @@ responsibility, callers, or state ownership.
 | git_root | function | 30-39 |
 | text | function | 42-43 |
 | accepted_state | function | 46-48 |
-| validate | function | 51-207 |
-| main | function | 210-218 |
+| validate | function | 51-213 |
+| main | function | 216-224 |
 
 </details>
 

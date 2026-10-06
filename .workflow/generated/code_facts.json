@@ -280,7 +280,7 @@
       "file": "scripts/selftest_closure_defect_lifecycle.py",
       "is_test": false,
       "language": "Python",
-      "lines": 183
+      "lines": 200
     },
     {
       "directory": "scripts",
@@ -427,7 +427,7 @@
       "file": "scripts/validate_closure_defect_lifecycle.py",
       "is_test": false,
       "language": "Python",
-      "lines": 222
+      "lines": 228
     },
     {
       "directory": "scripts",
@@ -10194,6 +10194,14 @@
     },
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
       "target_token": "RuntimeError"
     },
     {
@@ -10242,6 +10250,14 @@
     },
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "lifecycle.validate"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
       "target_token": "lifecycle.validate"
     },
     {
@@ -10255,6 +10271,14 @@
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
       "target_token": "materialize"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "materialize"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
@@ -10282,7 +10306,7 @@
     },
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
-      "target_token": "require_failure"
+      "target_token": "repr"
     },
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
@@ -10307,6 +10331,14 @@
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
       "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "tempfile.TemporaryDirectory"
     },
     {
       "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
@@ -17170,6 +17202,10 @@
     },
     {
       "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "accepted_state"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
       "target_token": "enumerate"
     },
     {
@@ -17419,6 +17455,14 @@
     {
       "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
       "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
     },
     {
       "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
@@ -26806,7 +26850,7 @@
     {
       "file": "scripts/selftest_closure_defect_lifecycle.py",
       "kind": "function",
-      "line_end": 169,
+      "line_end": 186,
       "line_start": 105,
       "locator": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
       "symbol": "fixture_regressions"
@@ -26814,8 +26858,8 @@
     {
       "file": "scripts/selftest_closure_defect_lifecycle.py",
       "kind": "function",
-      "line_end": 179,
-      "line_start": 172,
+      "line_end": 196,
+      "line_start": 189,
       "locator": "scripts/selftest_closure_defect_lifecycle.py::main",
       "symbol": "main"
     },
@@ -27750,7 +27794,7 @@
     {
       "file": "scripts/validate_closure_defect_lifecycle.py",
       "kind": "function",
-      "line_end": 207,
+      "line_end": 213,
       "line_start": 51,
       "locator": "scripts/validate_closure_defect_lifecycle.py::validate",
       "symbol": "validate"
@@ -27758,8 +27802,8 @@
     {
       "file": "scripts/validate_closure_defect_lifecycle.py",
       "kind": "function",
-      "line_end": 218,
-      "line_start": 210,
+      "line_end": 224,
+      "line_start": 216,
       "locator": "scripts/validate_closure_defect_lifecycle.py::main",
       "symbol": "main"
     },
@@ -28525,13 +28569,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb",
+  "source_digest": "53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346",
   "source_summary": {
     "files": 66,
     "languages": {
       "Python": 66
     },
-    "lines": 16412,
+    "lines": 16435,
     "test_files": 0
   },
   "tests": []

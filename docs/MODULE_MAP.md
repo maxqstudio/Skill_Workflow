@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
+Source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -37,7 +37,7 @@ Generated/refreshed: current compiler run
 | scripts/script_runner.py | Python | 35 | scripts | NO |
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
-| scripts/selftest_closure_defect_lifecycle.py | Python | 183 | scripts | NO |
+| scripts/selftest_closure_defect_lifecycle.py | Python | 200 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 49 | scripts | NO |
 | scripts/selftest_documentation_contract.py | Python | 187 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
@@ -58,7 +58,7 @@ Generated/refreshed: current compiler run
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 154 | scripts | NO |
 | scripts/toolchain_identity.py | Python | 184 | scripts | NO |
-| scripts/validate_closure_defect_lifecycle.py | Python | 222 | scripts | NO |
+| scripts/validate_closure_defect_lifecycle.py | Python | 228 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
 | scripts/validate_documentation_contract.py | Python | 340 | scripts | NO |

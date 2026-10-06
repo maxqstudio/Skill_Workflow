@@ -10,10 +10,10 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-21-authorized-closure-defect-lifecycle
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 8723bf0315a1e6cee005198affbc9ec1576e8ba7
-Current source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
+Last accepted SHA: 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556
+Current source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.
