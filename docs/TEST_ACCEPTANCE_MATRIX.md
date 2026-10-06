@@ -7,7 +7,7 @@
 SW2-20 covers deterministic discovery, classification, authority binding, freshness validation, and complete machine-readable coverage of tracked documentation surfaces. It must preserve accepted V2.1 Project Truth, sequence, cross-platform, real-consumer, performance, and release guarantees.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36
+Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

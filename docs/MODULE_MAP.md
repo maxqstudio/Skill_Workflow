@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36
+Source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -21,7 +21,7 @@ Generated/refreshed: current compiler run
 | scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
-| scripts/governance_engine.py | Python | 971 | scripts | NO |
+| scripts/governance_engine.py | Python | 979 | scripts | NO |
 | scripts/initialize_project_truth.py | Python | 156 | scripts | NO |
 | scripts/migrate_governance_v1.py | Python | 149 | scripts | NO |
 | scripts/project_profile.py | Python | 264 | scripts | NO |
@@ -41,7 +41,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_documentation_contract.py | Python | 187 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
-| scripts/selftest_governance_engine.py | Python | 561 | scripts | NO |
+| scripts/selftest_governance_engine.py | Python | 581 | scripts | NO |
 | scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
 | scripts/selftest_performance_budget.py | Python | 73 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |

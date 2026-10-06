@@ -204,6 +204,26 @@ def mode_planning_contract() -> None:
         "normative reference fragment should not escalate verify to finalize",
     )
 
+    root_doc_impacts = classify_changed_paths(
+        (
+            "AGENTS.md",
+            "CODE_OF_CONDUCT.md",
+            "CONTRIBUTING.md",
+            "LICENSE",
+            "README.md",
+            "SECURITY.md",
+            "SKILL.md",
+        )
+    )
+    require(
+        root_doc_impacts == ("documentation",),
+        f"root documentation misclassified: {root_doc_impacts}",
+    )
+    require(
+        effective_mode("verify", root_doc_impacts) == "verify",
+        "known root documentation should not escalate verify to finalize",
+    )
+
     support_impacts = classify_changed_paths(
         (".gitattributes", "artifacts/sequence/SW2-02-GOVERNANCE.acceptance.json")
     )

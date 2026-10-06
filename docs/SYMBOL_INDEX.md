@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36
+Source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -301,21 +301,21 @@ responsibility, callers, or state ownership.
 | git_z | function | 349-358 |
 | state_base | function | 361-369 |
 | collect_changed_paths | function | 372-386 |
-| classify_path | function | 389-421 |
-| classify_changed_paths | function | 424-425 |
-| effective_mode | function | 428-436 |
-| develop_node_names | function | 439-474 |
-| planned_node_names | function | 477-487 |
-| governed_status | function | 490-503 |
-| cli_action | function | 506-511 |
-| command_action | function | 514-529 |
-| command_action.run | method | 515-527 |
-| compile_scripts_action | function | 532-549 |
-| compile_scripts_action.run | method | 534-547 |
-| _regression_node | function | 552-557 |
-| build_mode_dag | function | 560-755 |
-| build_dag | function | 758-832 |
-| main | function | 835-967 |
+| classify_path | function | 389-429 |
+| classify_changed_paths | function | 432-433 |
+| effective_mode | function | 436-444 |
+| develop_node_names | function | 447-482 |
+| planned_node_names | function | 485-495 |
+| governed_status | function | 498-511 |
+| cli_action | function | 514-519 |
+| command_action | function | 522-537 |
+| command_action.run | method | 523-535 |
+| compile_scripts_action | function | 540-557 |
+| compile_scripts_action.run | method | 542-555 |
+| _regression_node | function | 560-565 |
+| build_mode_dag | function | 568-763 |
+| build_dag | function | 766-840 |
+| main | function | 843-975 |
 
 </details>
 
@@ -592,11 +592,11 @@ responsibility, callers, or state ownership.
 | dag_fail_closed | function | 133-170 |
 | dag_fail_closed.fail | method | 136-137 |
 | dag_fail_closed.downstream | method | 139-142 |
-| mode_planning_contract | function | 173-275 |
-| smart_validation_dag_contract | function | 279-423 |
-| changed_path_collection_contract | function | 426-448 |
-| mode_cli_integration_contract | function | 451-544 |
-| main | function | 547-557 |
+| mode_planning_contract | function | 173-295 |
+| smart_validation_dag_contract | function | 299-443 |
+| changed_path_collection_contract | function | 446-468 |
+| mode_cli_integration_contract | function | 471-564 |
+| main | function | 567-577 |
 
 </details>
 

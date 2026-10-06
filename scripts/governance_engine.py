@@ -403,7 +403,15 @@ def classify_path(path: str) -> str:
     if path.startswith("artifacts/sequence/"):
         return "sequence"
     if (
-        path in {"SKILL.md", "README.md"}
+        path in {
+            "AGENTS.md",
+            "CODE_OF_CONDUCT.md",
+            "CONTRIBUTING.md",
+            "LICENSE",
+            "README.md",
+            "SECURITY.md",
+            "SKILL.md",
+        }
         or path.startswith("docs/")
         or path.startswith("references/")
     ):

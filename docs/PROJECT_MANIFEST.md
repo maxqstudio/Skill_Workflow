@@ -13,7 +13,7 @@ Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-20-documentation-inventory-freshness
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
-Current source digest: 1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36
+Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.
