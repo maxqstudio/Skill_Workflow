@@ -1,0 +1,118 @@
+name: TEMP SW2-20 Phase Open V2
+
+on:
+  push:
+    branches:
+      - work/sw2-20-documentation-inventory-freshness
+    paths:
+      - .github/workflows/tmp-sw2-20-phase-open-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-20-documentation-inventory-freshness
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply SW2-20 phase-open authority
+        run: python artifacts/tmp_sw2_20_phase_open.py
+
+      - name: Generate SW2-20 current sequence and Project Truth
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.').resolve()
+          session_path = root / 'docs/sequence/sessions/SW2-20-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([sys.executable, 'scripts/sequence_human_view.py', '--root', '.', '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'], '--output-json', human['graph'], '--output-mermaid', human['diagram'], '--output-markdown', human['document'], '--session-id', session['session_id']], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', 'docs/sequence/sessions/SW2-20-GOVERNANCE.json'], check=True)
+          PY
+          python scripts/sync_project_truth.py --root .
+
+      - name: Remove temporary bootstrap files and run pre-freeze regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/tmp-sw2-20-phase-open-v2.yml artifacts/tmp_sw2_20_phase_open.py
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          python -m compileall -q scripts .github/scripts
+          python scripts/selftest_public_docs.py
+          python scripts/selftest_repository_health.py
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_repository_health.py --root .
+          test ! -e .github/workflows/tmp-sw2-20-phase-open-v2.yml
+          test ! -e artifacts/tmp_sw2_20_phase_open.py
+          test -z "$(find .github/workflows -maxdepth 1 -type f -name 'tmp-*' -print -quit)"
+
+      - name: Commit helper-free phase-open staging tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'SW2-20: stage documentation contract phase open'
+          echo "STAGING_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Freeze accepted SW2-19 historical evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/validate_sequence_sessions.py \
+            --root . \
+            --freeze-historical \
+            --frozen-commit "$STAGING_SHA" \
+            --authorize-migration 'SW2-20 phase-open freezes accepted SW2-19 evidence after V2.1 publication'
+          git add .workflow/historical_evidence.json
+          git commit -m 'SW2-20: freeze SW2-19 historical evidence'
+          echo "FINAL_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Validate exact clean phase-open candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPYCACHEPREFIX="$RUNNER_TEMP/pycache"
+          test -z "$(git status --porcelain --untracked-files=all)"
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_repository_health.py --root .
+          python scripts/selftest_public_docs.py
+          python scripts/selftest_repository_health.py
+          python scripts/selftest_cross_document_regressions.py
+          test -z "$(find .github/workflows -maxdepth 1 -type f -name 'tmp-*' -print -quit)"
+          test -z "$(git status --porcelain --untracked-files=all)"
+          echo "SW2_20_PHASE_OPEN=PASS"
+          echo "FINAL_SHA=$FINAL_SHA"
+
+      - name: Push exact clean phase-open candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git push origin HEAD:work/sw2-20-documentation-inventory-freshness
