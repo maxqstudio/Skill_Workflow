@@ -1,0 +1,130 @@
+name: tmp-sw2-22-terminal-closure
+
+on:
+  push:
+    branches:
+      - work/sw2-22-post-merge-closure
+
+permissions:
+  contents: write
+
+jobs:
+  close:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact closure branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-22-post-merge-closure
+          fetch-depth: 0
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Record terminal SW2-22 authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          FEATURE_MAIN = '44e3e45b9a231744c7962e0b4153d720d80653bc'
+          FEATURE_TREE = 'ee4377857a42f85151fdd2e546fb4aaa0797f92a'
+          CANDIDATE = 'a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf'
+          CANDIDATE_RUN = '37429305042'
+          POST_RUN = '37429617130'
+
+          acceptance_path = Path('.workflow/acceptance.json')
+          acceptance = json.loads(acceptance_path.read_text(encoding='utf-8'))
+          found = False
+          for req in acceptance['requirements']:
+              if req.get('id') == 'SW2-22-R5':
+                  req['status'] = 'PASS'
+                  req['evidence'] = (
+                      f'PASS: exact helper-free final candidate {CANDIDATE} with tree {FEATURE_TREE} passed all six permanent contexts in Governance CI run {CANDIDATE_RUN}; it was squash-merged to main as {FEATURE_MAIN} with identical tree {FEATURE_TREE}; post-merge Governance CI run {POST_RUN} passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence with Mermaid render, Governance Engine Performance, and Consumer Engine Performance. This closes the SW2-22 feature acceptance boundary.'
+                  )
+                  found = True
+          if not found:
+              raise SystemExit('SW2_22_R5_MISSING')
+          acceptance_path.write_text(json.dumps(acceptance, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          state_path = Path('.workflow/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = FEATURE_MAIN
+          state['working_branch'] = 'main'
+          state['status'] = 'SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_ACCEPTED'
+          state['blockers'] = []
+          state['not_proven'] = [
+              x for x in state.get('not_proven', [])
+              if not x.startswith('SW2-22 ')
+          ]
+          if not any('Automatic GitHub merge protection' in x for x in state['not_proven']):
+              state['not_proven'].append('Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.')
+          proof = (
+              f'SW2-22 Consumer Toolchain Provenance & Upgrade Contract is accepted: exact final candidate {CANDIDATE} passed Governance CI {CANDIDATE_RUN} 6/6, squash-merged to main {FEATURE_MAIN} with identical tree {FEATURE_TREE}, and post-merge Governance CI {POST_RUN} passed all six permanent contexts.'
+          )
+          if proof not in state.setdefault('proven', []):
+              state['proven'].append(proof)
+          state['next_authorized_actions'] = [
+              f'Treat SW2-22 on main {FEATURE_MAIN} as the accepted terminal roadmap authority for the current roadmap.',
+              'Preserve the accepted V2.1 release identity and SW2-22 consumer toolchain provenance/upgrade contract.',
+              'Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.'
+          ]
+          state['blocked_actions'] = [
+              'Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.',
+              'Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.',
+              'Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.',
+              'Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.',
+              'Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.'
+          ]
+          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          session_path = Path('docs/sequence/sessions/SW2-22-GOVERNANCE.json')
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          session['status'] = 'COMPLETE'
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+
+          git add .workflow/acceptance.json .workflow/state.json docs/sequence/sessions/SW2-22-GOVERNANCE.json
+          git commit -m 'SW2-22: establish terminal closure authority'
+
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.')
+          session_path = root / 'docs/sequence/sessions/SW2-22-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd.extend(['--entry', entry])
+          subprocess.run(cmd, check=True)
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id']
+          ], check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          session['actual']['source_digest'] = graph['source_digest']
+          session['human_view']['source_digest'] = graph['source_digest']
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json --report artifacts/sequence/SW2-22-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 65c28fcdfebec68a20adc02ae95406f9261d5a51
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_human_comprehension.py --root . --require-pass
+          python scripts/validate_handoff.py --root .
+          python scripts/validate_project_truth.py --root .
+          python scripts/validate_project_docs.py --root .
+
+          git add .workflow docs artifacts/sequence
+          git diff --cached --quiet || git commit -m 'SW2-22: synchronize terminal closure evidence'
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts references)"
+          git push origin HEAD:work/sw2-22-post-merge-closure
