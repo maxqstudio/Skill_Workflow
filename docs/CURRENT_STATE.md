@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-22
-Status: SW2_22_IMPLEMENTED_PENDING_ACCEPTANCE
+Status: SW2_22_R1_R4_ACCEPTED_PENDING_FINAL_CANDIDATE
 Roadmap phase: SW2-22
 ROADMAP_SYNC: PASS
 
@@ -115,13 +115,11 @@ SEQUENCE_SYNC: PASS
 - SW2-21 pre-promotion evidence is proven on exact candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance CI run 37408981020 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; Self Governance stopped only at the intentionally unpromoted Project Truth boundary after implementation/regression nodes passed.
 - SW2-21 Acceptance Closure & Defect Lifecycle Reconciliation is accepted on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320 equal to exact tested candidate 93686660d079a6e31f099eb07afbc6ecff1d2112. Final candidate Governance CI run 37409327637 and post-merge main Governance CI run 37409673401 both passed all six permanent contexts. SW2-21 remains the terminal CURRENT roadmap node; no later governed phase is authorized until the Owner explicitly extends the roadmap.
 - SW2-22 Consumer Toolchain Provenance & Upgrade Contract is Owner-authorized from exact terminal main 65c28fcdfebec68a20adc02ae95406f9261d5a51; implementation remains RED/NOT_PROVEN until dedicated regression and permanent CI evidence pass.
+- SW2-22 R1-R4 are proven on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5 by Governance CI run 37428635525, which passed all six permanent contexts including Ubuntu/Windows toolchain regression, sequence rendering, performance, and pinned max-grounding consumer parity.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
-- SW2-22 exact content-addressed producer identity, package-copy fallback, and strongest-available Git provenance are NOT_PROVEN.
-- SW2-22 deterministic read-only upgrade planning and apply idempotence are NOT_PROVEN.
-- SW2-22 semantic-authority preservation across consumer upgrades is NOT_PROVEN.
-- SW2-22 legacy v2.1 and real-consumer compatibility are NOT_PROVEN.
+- SW2-22 R5 final candidate plus post-merge main six-context revalidation remains NOT_PROVEN until merge and exact post-merge evidence exist.
 
 ## Known blockers
 - None declared.
@@ -130,8 +128,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run the permanent exact-head matrix on the helper-free SW2-22 implementation candidate.
-- Promote R1-R4 only from exact candidate evidence; R5 remains pending merge and post-merge revalidation.
+- Run the complete permanent Governance CI matrix on the helper-free SW2-22 promotion head.
+- Only if that exact promotion head passes all six permanent contexts may PR #38 advance from DRAFT toward merge.
+- Keep SW2-22 R5 NOT_PROVEN until squash merge and exact post-merge main revalidation pass.
 - Do not begin SW2-23 or publish a new release without separate Owner authorization.
 
 ## Explicitly blocked
