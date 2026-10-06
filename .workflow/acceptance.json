@@ -35,7 +35,7 @@
       "status": "PASS"
     },
     {
-      "evidence": "PASS boundary established on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance Selftest Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance all succeeded in Governance CI run 37398146243; pre-promotion Self Governance reached only the expected Project Truth promotion boundary. Final post-promotion 6/6 remains mandatory before merge.",
+      "evidence": "PASS on exact final candidate 173074055f841defd549cc896cfe26a5f60214b4: Governance CI run 37398686766 passed all six permanent contexts. Candidate was squash-merged to main as 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5. Post-merge Governance CI run 37398984162 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the exact-head and post-merge acceptance boundary.",
       "id": "SW2-20-R4",
       "requirement": "All confirmed stale documentation is repaired through the new contract and the exact final candidate passes the permanent Ubuntu/Windows/sequence/engine/consumer acceptance matrix.",
       "status": "PASS"
