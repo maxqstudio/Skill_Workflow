@@ -53,6 +53,10 @@ def toolchain_digest(manifest: dict[str, str]) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def source_toolchain_manifest(skill_root: Path) -> dict[str, str]:
+    return {path.name: _sha256(path) for path in source_tool_paths(skill_root)}
+
+
 def _git_value(root: Path, *args: str) -> str:
     try:
         return subprocess.check_output(
@@ -65,16 +69,24 @@ def _git_value(root: Path, *args: str) -> str:
 
 
 def producer_metadata(skill_root: Path) -> dict[str, str]:
+    source_digest = toolchain_digest(source_toolchain_manifest(skill_root))
     repository = _git_value(skill_root, "config", "--get", "remote.origin.url")
     source_sha = _git_value(skill_root, "rev-parse", "HEAD").lower()
     release = _git_value(skill_root, "describe", "--tags", "--exact-match", "HEAD")
-    if not repository or not re.fullmatch(r"[0-9a-f]{40}", source_sha):
-        raise ValueError("TOOLCHAIN_PRODUCER_GIT_IDENTITY_UNAVAILABLE")
+    if repository and re.fullmatch(r"[0-9a-f]{40}", source_sha):
+        return {
+            "identity_source": "GIT+CONTENT",
+            "repository": repository,
+            "source_sha": source_sha,
+            "release": release or "UNRELEASED",
+            "source_digest": source_digest,
+        }
     return {
-        "identity_source": "GIT",
-        "repository": repository,
-        "source_sha": source_sha,
-        "release": release or "UNRELEASED",
+        "identity_source": "CONTENT",
+        "repository": "NOT_PROVEN",
+        "source_sha": "NOT_PROVEN",
+        "release": "NOT_PROVEN",
+        "source_digest": source_digest,
     }
 
 
@@ -191,15 +203,32 @@ def validate_toolchain_lock(project_root: Path, spec_root: Path) -> list[str]:
     if not isinstance(producer, dict):
         failures.append("TOOLCHAIN_PRODUCER_METADATA_INVALID")
         return failures
-    if str(producer.get("identity_source", "")).strip() != "GIT":
+    identity_source = str(producer.get("identity_source", "")).strip()
+    if identity_source not in {"GIT+CONTENT", "CONTENT"}:
         failures.append("TOOLCHAIN_PRODUCER_IDENTITY_SOURCE_INVALID")
-    if not str(producer.get("repository", "")).strip():
-        failures.append("TOOLCHAIN_PRODUCER_REPOSITORY_MISSING")
+    source_digest = str(producer.get("source_digest", "")).strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{64}", source_digest):
+        failures.append("TOOLCHAIN_PRODUCER_SOURCE_DIGEST_INVALID")
+    elif source_digest != expected_digest:
+        failures.append("TOOLCHAIN_PRODUCER_SOURCE_DIGEST_MISMATCH")
+
+    repository = str(producer.get("repository", "")).strip()
     source_sha = str(producer.get("source_sha", "")).strip().lower()
-    if not re.fullmatch(r"[0-9a-f]{40}", source_sha):
-        failures.append("TOOLCHAIN_PRODUCER_SOURCE_SHA_INVALID")
-    if not str(producer.get("release", "")).strip():
-        failures.append("TOOLCHAIN_PRODUCER_RELEASE_MISSING")
+    release = str(producer.get("release", "")).strip()
+    if identity_source == "GIT+CONTENT":
+        if not repository or repository == "NOT_PROVEN":
+            failures.append("TOOLCHAIN_PRODUCER_REPOSITORY_MISSING")
+        if not re.fullmatch(r"[0-9a-f]{40}", source_sha):
+            failures.append("TOOLCHAIN_PRODUCER_SOURCE_SHA_INVALID")
+        if not release or release == "NOT_PROVEN":
+            failures.append("TOOLCHAIN_PRODUCER_RELEASE_MISSING")
+    elif identity_source == "CONTENT":
+        if repository != "NOT_PROVEN":
+            failures.append("TOOLCHAIN_PRODUCER_CONTENT_REPOSITORY_MUST_BE_NOT_PROVEN")
+        if source_sha != "not_proven":
+            failures.append("TOOLCHAIN_PRODUCER_CONTENT_SOURCE_SHA_MUST_BE_NOT_PROVEN")
+        if release != "NOT_PROVEN":
+            failures.append("TOOLCHAIN_PRODUCER_CONTENT_RELEASE_MUST_BE_NOT_PROVEN")
     if "commit_hint" in producer:
         failures.append("TOOLCHAIN_PRODUCER_LEGACY_COMMIT_HINT")
     return failures
