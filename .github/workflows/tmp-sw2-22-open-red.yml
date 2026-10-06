@@ -1,4 +1,4 @@
-name: tmp-sw2-22-open-red
+name: tmp-sw2-22-implementation
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  open-red:
+  implement:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout working branch
@@ -21,11 +21,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Open phase and prove RED
-        run: python scripts/tmp_sw2_22_open_red_v2.py
-      - name: Commit phase-open RED state
+      - name: Implement and run targeted SW2-22 gates
+        run: python scripts/tmp_sw2_22_implement.py
+      - name: Commit synchronized implementation state
         run: |
-          git add .workflow docs artifacts/sequence scripts
+          git add .workflow docs artifacts/sequence scripts references
           git diff --cached --quiet && { echo "NO_CHANGES"; exit 1; }
-          git commit -m "SW2-22: open consumer toolchain provenance RED"
+          git commit -m "SW2-22: synchronize implementation evidence"
           git push origin HEAD:work/sw2-22-consumer-toolchain-provenance-upgrade
