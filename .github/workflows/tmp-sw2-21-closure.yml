@@ -1,0 +1,150 @@
+name: tmp-sw2-21-closure
+
+on:
+  push:
+    branches:
+      - work/sw2-21-post-merge-closure
+
+permissions:
+  contents: write
+
+jobs:
+  close:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout closure branch
+        uses: actions/checkout@v4
+        with:
+          ref: work/sw2-21-post-merge-closure
+          fetch-depth: 0
+
+      - name: Record terminal SW2-21 closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          FEATURE_MAIN='28dc261abf3bd80f6fbfd495f38c50c0f2bf1556'
+          OPENING_BASE='8723bf0315a1e6cee005198affbc9ec1576e8ba7'
+          FINAL_CANDIDATE='93686660d079a6e31f099eb07afbc6ecff1d2112'
+          FINAL_TREE='bca3b301be91ba07443b51eb7dc5d539e2a98320'
+          FINAL_RUN='37409327637'
+          POST_RUN='37409673401'
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          FEATURE_MAIN = '28dc261abf3bd80f6fbfd495f38c50c0f2bf1556'
+          OPENING_BASE = '8723bf0315a1e6cee005198affbc9ec1576e8ba7'
+          FINAL_CANDIDATE = '93686660d079a6e31f099eb07afbc6ecff1d2112'
+          FINAL_TREE = 'bca3b301be91ba07443b51eb7dc5d539e2a98320'
+          FINAL_RUN = '37409327637'
+          POST_RUN = '37409673401'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          # Repair the lifecycle validator semantics: while a phase is active,
+          # last_accepted_sha is its implementation base; after acceptance it
+          # advances to the accepted feature main while implementation_base_sha
+          # remains immutable historical phase-open provenance.
+          validator_path = Path('scripts/validate_closure_defect_lifecycle.py')
+          validator = validator_path.read_text(encoding='utf-8')
+          old_expected = '''    if expected_base and last_accepted_sha != expected_base:\n        failures.append(f"LAST_ACCEPTED_SHA_MISMATCH:{last_accepted_sha}!={expected_base}")\n\n'''
+          if old_expected not in validator:
+              raise SystemExit('expected old expected_base block not found')
+          validator = validator.replace(old_expected, '')
+          old_impl = '''                elif last_accepted_sha and implementation_base != last_accepted_sha:\n                    failures.append(\n                        f"IMPLEMENTATION_BASE_MISMATCH:{implementation_base}!={last_accepted_sha}"\n                    )\n\n    state_status = text(state.get("status"))\n'''
+          new_impl = '''                elif (\n                    not accepted_state(text(state.get("status")))\n                    and last_accepted_sha\n                    and implementation_base != last_accepted_sha\n                ):\n                    failures.append(\n                        f"IMPLEMENTATION_BASE_MISMATCH:{implementation_base}!={last_accepted_sha}"\n                    )\n\n    if expected_base and implementation_base != expected_base:\n        failures.append(\n            f"IMPLEMENTATION_BASE_EXPECTED_MISMATCH:{implementation_base}!={expected_base}"\n        )\n\n    state_status = text(state.get("status"))\n'''
+          if old_impl not in validator:
+              raise SystemExit('expected implementation-base block not found')
+          validator_path.write_text(validator.replace(old_impl, new_impl), encoding='utf-8', newline='\n')
+
+          selftest_path = Path('scripts/selftest_closure_defect_lifecycle.py')
+          selftest = selftest_path.read_text(encoding='utf-8')
+          anchor = '''    data = fixture()\n    data["state"].update({\n        "status": "SW2_21_ACCEPTED",\n        "working_branch": "main",\n        "next_authorized_actions": [\n            "After accepted main and post-merge evidence are settled, open the next governed boundary."\n        ],\n    })\n    with tempfile.TemporaryDirectory(prefix="sw2-closure-defect-") as td:\n        root = Path(td)\n        materialize(root, data)\n        report = lifecycle.validate(root)\n        if report["result"] != "PASS":\n            raise RuntimeError("BRANCH_AGNOSTIC_ACCEPTED_STATE_REJECTED:" + repr(report["failures"]))\n\n'''
+          replacement = anchor + '''    data = fixture()\n    data["state"].update({\n        "status": "SW2_21_ACCEPTED",\n        "working_branch": "main",\n        "last_accepted_sha": "b" * 40,\n        "next_authorized_actions": [\n            "Treat the accepted phase as terminal until the roadmap is explicitly extended."\n        ],\n    })\n    with tempfile.TemporaryDirectory(prefix="sw2-closure-defect-") as td:\n        root = Path(td)\n        materialize(root, data)\n        report = lifecycle.validate(root, expected_base=BASE)\n        if report["result"] != "PASS":\n            raise RuntimeError("ACCEPTED_BASE_LIFECYCLE_REJECTED:" + repr(report["failures"]))\n\n'''
+          if anchor not in selftest:
+              raise SystemExit('accepted closure selftest anchor not found')
+          selftest = selftest.replace(anchor, replacement)
+          selftest = selftest.replace(
+              '    print("BRANCH_AGNOSTIC_ACCEPTED_CLOSURE=PASS")\n',
+              '    print("BRANCH_AGNOSTIC_ACCEPTED_CLOSURE=PASS")\n    print("ACCEPTED_BASE_LIFECYCLE=PASS")\n',
+          )
+          selftest_path.write_text(selftest, encoding='utf-8', newline='\n')
+
+          acceptance = load('.workflow/acceptance.json')
+          evidence = {
+              'SW2-21-R1': f'PASS on exact final candidate {FINAL_CANDIDATE}: Governance CI run {FINAL_RUN} passed lifecycle and branch-agnostic closure regression in the complete six-context matrix. Candidate was squash-merged to main as {FEATURE_MAIN} with tree {FINAL_TREE}, and post-merge Governance CI run {POST_RUN} passed all six permanent contexts.',
+              'SW2-21-R2': f'PASS: SW2-21 opened from exact accepted terminal main {OPENING_BASE}; the final candidate {FINAL_CANDIDATE} passed base-binding regression in Governance CI run {FINAL_RUN}. Terminal closure advances last_accepted_sha to accepted feature main {FEATURE_MAIN} without rewriting the immutable SW2-21 implementation_base_sha {OPENING_BASE}.',
+              'SW2-21-R3': f'PASS on exact final candidate {FINAL_CANDIDATE}: known-defect lifecycle reconciliation and invalid-status/missing-evidence/unknown-phase/duplicate-ID negative regressions passed in Governance CI run {FINAL_RUN}; post-merge main run {POST_RUN} revalidated the same merged tree.',
+              'SW2-21-R4': f'PASS on exact final candidate {FINAL_CANDIDATE} with tree {FINAL_TREE}: Governance CI run {FINAL_RUN} passed all six permanent contexts. Candidate was squash-merged to main as {FEATURE_MAIN} with identical tree {FINAL_TREE}. Post-merge Governance CI run {POST_RUN} passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the feature acceptance boundary.'
+          }
+          for req in acceptance['requirements']:
+              if req['id'] in evidence:
+                  req['status'] = 'PASS'
+                  req['evidence'] = evidence[req['id']]
+          acceptance['evidence_boundary'] = (
+              'SW2-21 terminal acceptance covers durable accepted-closure semantics, immutable phase-open '
+              'implementation-base provenance, accepted-main rebinding, and known-defect lifecycle reconciliation. '
+              'It preserves V2.1/SW2-20 exact-head, no-ruleset, cross-platform, sequence, performance, release, '
+              'documentation-freshness, and real-consumer guarantees.'
+          )
+          write('.workflow/acceptance.json', acceptance)
+
+          state = load('.workflow/state.json')
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = FEATURE_MAIN
+          state['working_branch'] = 'main'
+          state['status'] = 'SW2_21_ACCEPTANCE_CLOSURE_DEFECT_LIFECYCLE_RECONCILIATION_ACCEPTED'
+          state['next_authorized_actions'] = [
+              f'Treat SW2-21 on main {FEATURE_MAIN} as the accepted terminal roadmap authority for the current roadmap.',
+              'Preserve the accepted V2.1 release identity and SW2-21 closure/defect-lifecycle contract.',
+              'Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.'
+          ]
+          state['blocked_actions'] = [
+              'Do not rewrite historical acceptance evidence merely to make defect status look cleaner.',
+              'Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.',
+              'Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.',
+              'Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.',
+              'Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.'
+          ]
+          state['not_proven'] = [
+              item for item in state.get('not_proven', [])
+              if not item.startswith('SW2-21 ')
+          ]
+          final_statement = (
+              f'SW2-21 Acceptance Closure & Defect Lifecycle Reconciliation is accepted on main {FEATURE_MAIN} '
+              f'with tree {FINAL_TREE} equal to exact tested candidate {FINAL_CANDIDATE}. Final candidate Governance '
+              f'CI run {FINAL_RUN} and post-merge main Governance CI run {POST_RUN} both passed all six permanent '
+              'contexts. SW2-21 remains the terminal CURRENT roadmap node; no later governed phase is authorized '
+              'until the Owner explicitly extends the roadmap.'
+          )
+          if final_statement not in state.get('proven', []):
+              state.setdefault('proven', []).append(final_statement)
+          write('.workflow/state.json', state)
+
+          session_path = Path('docs/sequence/sessions/SW2-21-GOVERNANCE.json')
+          session = load(session_path)
+          session['status'] = 'COMPLETE'
+          write(session_path, session)
+          PY
+
+          python scripts/selftest_closure_defect_lifecycle.py
+          python scripts/validate_closure_defect_lifecycle.py --root . --expected-base "${OPENING_BASE}"
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_documentation_contract.py --root . --write-report
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/selftest_cross_document_regressions.py
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add . ':!.github/workflows/tmp-sw2-21-closure.yml'
+          git diff --cached --check
+          git commit -m 'SW2-21: record terminal acceptance closure'
+          git push origin HEAD:work/sw2-21-post-merge-closure
