@@ -2,7 +2,7 @@
 
 # Schema and toolchain versioning
 
-Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`. The current stable product release is `v2.1.0`, and the current governance phase is SW2-20. Stable product publication is authorized only by an explicit stable-release phase contract and exact release evidence; schema versioning does not grant publication authority.
+Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`, and the current stable product release is `v2.1.0`. The active governance phase is authoritative in `.workflow/roadmap.json` and is projected for readers in generated `docs/CURRENT_STATE.md`; this source-authored reference intentionally does not hard-code the mutable phase identifier. Stable product publication is authorized only by an explicit stable-release phase contract and exact release evidence; schema versioning does not grant publication authority.
 
 ## Supported schema
 
@@ -38,33 +38,19 @@ Skill Workflow does not provide or infer a reverse schema migration. Rollback me
 2. Identify the last accepted project commit or release that predates the migration.
 3. Revert the migration commit with normal version-control history (for example, `git revert <migration-commit>`) or restore the governed files from that known-good commit on a recovery branch. Do not force-reset shared history.
 4. Restore the matching vendored `.workflow/tools/` files and `.workflow/toolchain.lock.json` from the same known-good state. Do not mix a previous schema/spec state with a newer toolchain lock.
-5. Re-run the source tests required by that project, then validate the restored toolchain and regenerate deterministic Project Truth:
+5. Run the full governance acceptance path on the restored state, including `validate_schema_toolchain.py`, Project Truth synchronization, sequence validation when required, and the project acceptance suite.
+6. Record the rollback/revert evidence through normal repair-forward project history. Never move an existing stable tag backward to make the rollback appear to be the original release.
 
-```bash
-python .workflow/tools/validate_schema_toolchain.py --root .
-python .workflow/tools/sync_project_truth.py --root .
-```
+After migration or rollback, regenerate Project Truth with `sync_project_truth.py` and validate the resulting repository state before claiming acceptance.
 
-6. Run the project’s complete final acceptance boundary before treating the rollback as accepted.
+## Toolchain identity
 
-If the previous accepted state predates schema v1 entirely, use the Skill Workflow tooling that was accepted with that state. Do not run the v1 migration again merely to make the rollback validate under newer tooling. A failed migration is repaired forward only after its root cause is understood and a fresh candidate is tested.
+`migrate_governance_v1.py` records a deterministic toolchain lock for governed `.workflow/tools/*.py` files. Exact file hashes and an aggregate manifest digest are the enforceable identity. Producer repository/commit fields are provenance hints only; they are not acceptance authority.
 
-## Toolchain lock
+Cache state, Python bytecode, mutable upstream `main`, or package-manager cache contents must not be treated as toolchain identity.
 
-Projects with vendored governance tools store `.workflow/toolchain.lock.json`. The lock records the exact `.workflow/tools/*.py` file hashes and a deterministic manifest digest. Final validation recomputes those hashes; a changed, missing, or unexpected vendored Python tool invalidates the lock.
+## Compatibility and release naming
 
-Producer repository and commit fields are provenance hints. The file manifest and digest bind the actual vendored tool bytes; cache state, mutable upstream state, and an unlocked tool directory are not acceptance authority.
+Schema v1 is the current compatibility contract. Product release tags such as `v2.0.0` and `v2.1.0` identify accepted product snapshots; they do not change the meaning of `schema_version: 1` unless an explicit migration says otherwise.
 
-Validate directly with:
-
-```bash
-python .workflow/tools/validate_schema_toolchain.py --root .
-```
-
-## Compatibility policy
-
-- Schema v1 is the only supported profile/governance-spec schema in this phase.
-- Backward compatibility for legacy unversioned projects is provided through the explicit v1 migration command, not silent parser fallback.
-- Unknown future versions fail closed. Existing tools never downgrade them.
-- An incompatible schema change requires a new schema version, an explicit deterministic migration path, negative tests for unsupported versions, and an update to this compatibility policy.
-- Stable product release/version labels are separate from schema versions and require their own exact release evidence.
+Unknown future schema versions remain fail-closed until a deliberate migration path is added and accepted.
