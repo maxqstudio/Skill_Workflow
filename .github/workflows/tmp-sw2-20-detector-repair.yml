@@ -1,0 +1,80 @@
+name: TEMP SW2-20 Detector Repair
+
+on:
+  push:
+    branches:
+      - ops/sw2-20-phase-open
+    paths:
+      - .github/workflows/tmp-sw2-20-detector-repair.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-20-documentation-inventory-freshness
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Repair detector precision
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          path=Path('scripts/validate_documentation_contract.py')
+          text=path.read_text(encoding='utf-8')
+          text=text.replace(
+              'CURRENT_PHASE_RE = re.compile(r"(?i)\\bcurrent(?:ly)?\\b[^\\n]{0,120}\\b(SW2-\\d+)\\b")\n',
+              'CURRENT_PHASE_RE = re.compile(r"(?i)\\bcurrent(?:ly)?\\b[^\\n]{0,120}\\b(SW2-\\d+)\\b")\n'
+              'CURRENT_PHASE_RE_REVERSE = re.compile(r"(?i)\\b(SW2-\\d+)\\b[^\\n]{0,120}\\b(?:is|be|remain|remains)\\s+current\\b")\n'
+          )
+          text=text.replace(
+              'r"(?i)(?:no\\s+(?:owner-approved\\s+)?(?:public\\s+)?license|"\n',
+              'r"(?i)(?:no\\s+(?:owner-approved\\s+)?(?:public\\s+)?license|"\n'
+              '    r"does\\s+not\\s+(?:currently\\s+)?declare\\s+(?:an?\\s+)?(?:owner-approved\\s+)?(?:public\\s+)?license|"\n'
+          )
+          text=re.sub(
+              r'PRE_RELEASE_RE = re\.compile\(.*?\n\)\nENFORCEMENT_POSITIVE_RE',
+              '''PRE_RELEASE_RE = re.compile(\n    r"(?i)(?:until\\s+(?:a\\s+)?(?:versioned\\s+)?stable\\s+release\\s+exists|"\n    r"no\\s+(?:versioned\\s+)?stable\\s+release\\s+exists|"\n    r"stable[^\\n]{0,80}publication[^\\n]{0,100}remains\\s+blocked)"\n)\nENFORCEMENT_POSITIVE_RE''',
+              text,
+              count=1,
+              flags=re.S,
+          )
+          old='''        for match in PRE_RELEASE_RE.finditer(text):\n            line = text[text.rfind("\\n", 0, match.start()) + 1 : text.find("\\n", match.end()) if text.find("\\n", match.end()) >= 0 else len(text)]\n            if not _historical_context(line):\n                findings.append(_finding(path, text, match, "STALE_PRE_RELEASE_STATE", match.group(0), "stable release exists: " + stable))\n'''
+          new='''        for match in PRE_RELEASE_RE.finditer(text):\n            findings.append(_finding(path, text, match, "STALE_PRE_RELEASE_STATE", match.group(0), "stable release exists: " + stable))\n'''
+          if old not in text:
+              raise RuntimeError('PRE_RELEASE_SCAN_ANCHOR')
+          text=text.replace(old,new,1)
+          anchor='''    if phase:\n        for match in CURRENT_PHASE_RE.finditer(text):\n            observed = match.group(1)\n            line = text[text.rfind("\\n", 0, match.start()) + 1 : text.find("\\n", match.end()) if text.find("\\n", match.end()) >= 0 else len(text)]\n            if observed != phase and not _historical_context(line):\n                findings.append(_finding(path, text, match, "STALE_CURRENT_PHASE", observed, phase))\n'''
+          replacement=anchor+'''        for match in CURRENT_PHASE_RE_REVERSE.finditer(text):\n            observed = match.group(1)\n            line = text[text.rfind("\\n", 0, match.start()) + 1 : text.find("\\n", match.end()) if text.find("\\n", match.end()) >= 0 else len(text)]\n            if observed != phase and not _historical_context(line):\n                findings.append(_finding(path, text, match, "STALE_CURRENT_PHASE", observed, phase))\n'''
+          if anchor not in text:
+              raise RuntimeError('CURRENT_PHASE_SCAN_ANCHOR')
+          text=text.replace(anchor,replacement,1)
+          path.write_text(text,encoding='utf-8',newline='\n')
+          PY
+          python -m py_compile scripts/validate_documentation_contract.py
+          set +e
+          python scripts/validate_documentation_contract.py --root . --report /tmp/sw2-doc-red.json --write-report | tee /tmp/sw2-doc-red.log
+          rc=${PIPESTATUS[0]}
+          set -e
+          test "$rc" -ne 0
+          grep -q 'STALE_STABLE_RELEASE:README.md' /tmp/sw2-doc-red.log
+          grep -q 'STALE_LICENSE_STATE:CONTRIBUTING.md' /tmp/sw2-doc-red.log
+          grep -q 'STALE_PRE_RELEASE_STATE:SECURITY.md' /tmp/sw2-doc-red.log
+          grep -q 'STALE_CURRENT_PHASE:docs/handbook/reference/versioning.md' /tmp/sw2-doc-red.log
+          if grep -q 'STALE_PRE_RELEASE_STATE:docs/handbook/reference/release-process.md:56' /tmp/sw2-doc-red.log; then
+            echo 'FALSE_POSITIVE_RELEASE_ARTIFACT_LINE'
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/validate_documentation_contract.py
+          git commit -m 'SW2-20: tighten documentation freshness detection'
+          git push origin HEAD:work/sw2-20-documentation-inventory-freshness
