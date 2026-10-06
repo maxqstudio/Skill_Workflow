@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 66 files, 1 language categories.
+Observed source inventory: 68 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-21
+Current phase: SW2-22
 
-Current status: SW2_21_ACCEPTANCE_CLOSURE_DEFECT_LIFECYCLE_RECONCILIATION_ACCEPTED
+Current status: SW2_22_R1_R4_PROVEN_PENDING_FINAL_CANDIDATE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,18 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-21 on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 as the accepted terminal roadmap authority for the current roadmap.
-- Preserve the accepted V2.1 release identity and SW2-21 closure/defect-lifecycle contract.
-- Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.
+- Run the complete permanent Governance CI matrix on the helper-free SW2-22 promotion head.
+- Only if that exact promotion head passes all six permanent contexts may PR #38 advance from DRAFT toward merge.
+- Keep SW2-22 R5 NOT_PROVEN until squash merge and exact post-merge main revalidation pass.
+- Do not begin SW2-23 or publish a new release without separate Owner authorization.
 
 Blocked actions:
-- Do not rewrite historical acceptance evidence merely to make defect status look cleaner.
-- Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.
-- Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.
+- Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.
+- Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.
+- Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.
+- Do not claim an upgrade is current when producer content identity is missing, malformed, or mismatched.
 - Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Do not begin SW2-23 or publish a new release unless the Owner explicitly authorizes that separate boundary.
 
 Known blockers:
 - None declared.
@@ -203,10 +205,13 @@ Known blockers:
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.
 - SW2-21 pre-promotion evidence is proven on exact candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance CI run 37408981020 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; Self Governance stopped only at the intentionally unpromoted Project Truth boundary after implementation/regression nodes passed.
 - SW2-21 Acceptance Closure & Defect Lifecycle Reconciliation is accepted on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320 equal to exact tested candidate 93686660d079a6e31f099eb07afbc6ecff1d2112. Final candidate Governance CI run 37409327637 and post-merge main Governance CI run 37409673401 both passed all six permanent contexts. SW2-21 remains the terminal CURRENT roadmap node; no later governed phase is authorized until the Owner explicitly extends the roadmap.
+- SW2-22 Consumer Toolchain Provenance & Upgrade Contract is Owner-authorized from exact terminal main 65c28fcdfebec68a20adc02ae95406f9261d5a51; implementation remains RED/NOT_PROVEN until dedicated regression and permanent CI evidence pass.
+- SW2-22 R1-R4 are proven on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5 by Governance CI run 37428635525, which passed all six permanent contexts including Ubuntu/Windows toolchain regression, sequence rendering, performance, and pinned max-grounding consumer parity.
 
 ### Not proven
 
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
+- SW2-22 R5 final candidate plus post-merge main six-context revalidation remains NOT_PROVEN until merge and exact post-merge evidence exist.
 
 ## Important limitations
 

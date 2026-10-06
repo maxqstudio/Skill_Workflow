@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-21",
+  "current_phase": "SW2-22",
   "phases": [
     {
       "exit_criteria": [
@@ -266,8 +266,22 @@
       ],
       "id": "SW2-21",
       "objective": "Make accepted-phase closure state remain semantically valid across squash merge and keep defect lifecycle authority synchronized with accepted remediation evidence.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Acceptance Closure & Defect Lifecycle Reconciliation"
+    },
+    {
+      "exit_criteria": [
+        "Every newly written consumer toolchain lock records an exact source-content digest; verifiable Git checkouts additionally record producer repository, exact source SHA, and exact release tag when HEAD is tagged, while copied/package sources without Git metadata explicitly use CONTENT identity and mark Git-only fields NOT_PROVEN.",
+        "Missing, malformed, mismatched, or legacy hint-only producer identity fails closed; content-only package identity is accepted only when its exact digest matches the vendored bytes and unavailable Git fields are explicitly NOT_PROVEN.",
+        "A source-side upgrade command provides a read-only check/plan before mutation, reports added/removed/changed/unchanged tool-owned surfaces plus source/target identity, and returns non-success when upgrade is required.",
+        "Apply mutates only vendored toolchain-owned files and the toolchain lock, preserves AGENTS.md and semantic .workflow authority, and repeated apply against the same source is idempotent.",
+        "STANDARD, STRICT, legacy-v2.1, tamper, Ubuntu, Windows, and pinned max-grounding consumer regressions prove fail-closed behavior and compatibility.",
+        "The exact final candidate and post-merge main both pass the complete permanent Governance CI matrix without weakening exact-head, no-ruleset, sequence, performance, documentation, or consumer guarantees."
+      ],
+      "id": "SW2-22",
+      "objective": "Bind every vendored consumer toolchain to exact content-addressed upstream identity, enrich provenance with exact Git source identity when verifiable Git metadata exists, and provide deterministic, fail-closed, idempotent upgrade planning and execution without modifying Owner semantic authority.",
+      "status": "CURRENT",
+      "title": "Consumer Toolchain Provenance & Upgrade Contract"
     }
   ],
   "schema_version": 1

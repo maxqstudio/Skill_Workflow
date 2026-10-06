@@ -1,0 +1,923 @@
+{
+  "coverage": {
+    "analyzers": [
+      {
+        "analyzer_id": "python_sequence",
+        "claimed_extensions": [
+          ".py"
+        ],
+        "dynamic_behavior": "NOT_PROVEN",
+        "languages": [
+          "Python"
+        ],
+        "limitations": [
+          "dynamic dispatch",
+          "dependency injection",
+          "reflection",
+          "callbacks/events",
+          "framework magic not visible statically"
+        ],
+        "parse_failures": [],
+        "proof_status": "PROVEN_STATIC_WITH_LIMITATIONS",
+        "semantic_level": "python_ast_static",
+        "unsupported_files": []
+      },
+      {
+        "analyzer_id": "js_ts_http_sequence",
+        "claimed_extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ],
+        "dynamic_behavior": "NOT_PROVEN",
+        "languages": [
+          "JavaScript",
+          "TypeScript"
+        ],
+        "limitations": [
+          "dynamic dispatch",
+          "dependency injection",
+          "reflection",
+          "callbacks/events",
+          "framework magic not visible statically",
+          "JS/TS function-level call ownership is not fully resolved"
+        ],
+        "parse_failures": [],
+        "proof_status": "PROVEN_STATIC_WITH_LIMITATIONS",
+        "semantic_level": "http_module_static",
+        "unsupported_files": []
+      },
+      {
+        "analyzer_id": "generic_inventory",
+        "claimed_extensions": [],
+        "dynamic_behavior": "NOT_PROVEN",
+        "languages": [],
+        "limitations": [
+          "semantic symbols, routes, calls, and runtime ordering are NOT_PROVEN for unsupported languages",
+          "dynamic dispatch",
+          "dependency injection",
+          "reflection",
+          "callbacks/events",
+          "framework magic not visible statically"
+        ],
+        "parse_failures": [],
+        "proof_status": "NOT_APPLICABLE",
+        "semantic_level": "inventory_only",
+        "unsupported_files": []
+      }
+    ],
+    "dynamic_behavior": "NOT_PROVEN",
+    "generic_fallback": {
+      "analyzer_id": "generic_inventory",
+      "claimed_extensions": [],
+      "dynamic_behavior": "NOT_PROVEN",
+      "languages": [],
+      "limitations": [
+        "semantic symbols, routes, calls, and runtime ordering are NOT_PROVEN for unsupported languages",
+        "dynamic dispatch",
+        "dependency injection",
+        "reflection",
+        "callbacks/events",
+        "framework magic not visible statically"
+      ],
+      "parse_failures": [],
+      "proof_status": "NOT_APPLICABLE",
+      "semantic_level": "inventory_only",
+      "unsupported_files": []
+    },
+    "js_ts_http_module_scan": true,
+    "limitations": [
+      "dynamic dispatch",
+      "dependency injection",
+      "reflection",
+      "callbacks/events",
+      "framework magic not visible statically",
+      "JS/TS function-level call ownership is not fully resolved"
+    ],
+    "python_ast": true,
+    "python_parse_failures": [],
+    "python_route_decorators": true,
+    "runtime_trace": false
+  },
+  "edges": [
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "copy_file",
+      "evidence": "STATIC",
+      "from": "scripts/initialize_project_truth.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/initialize_project_truth.py::copy_file"
+    },
+    {
+      "action": "ensure_gitattributes",
+      "evidence": "STATIC",
+      "from": "scripts/initialize_project_truth.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/initialize_project_truth.py::ensure_gitattributes"
+    },
+    {
+      "action": "write_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/initialize_project_truth.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::write_toolchain_lock"
+    },
+    {
+      "action": "parse_profile",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::add_profile_version",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::add_profile_version",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "require_profile_schema_version",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::add_profile_version",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::require_profile_schema_version"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::add_spec_version",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::inspect_specs",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "governed_spec_paths",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::inspect_specs",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::governed_spec_paths"
+    },
+    {
+      "action": "require_json_schema_version",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::inspect_specs",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::require_json_schema_version"
+    },
+    {
+      "action": "add_profile_version",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/migrate_governance_v1.py::add_profile_version"
+    },
+    {
+      "action": "add_spec_version",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/migrate_governance_v1.py::add_spec_version"
+    },
+    {
+      "action": "inspect_specs",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/migrate_governance_v1.py::inspect_specs"
+    },
+    {
+      "action": "parse_profile",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "action": "agents_template.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "require_profile_schema_version",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::require_profile_schema_version"
+    },
+    {
+      "action": "validate_spec_tree_versions",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::validate_spec_tree_versions"
+    },
+    {
+      "action": "sync_vendored_tools",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::sync_vendored_tools"
+    },
+    {
+      "action": "validate_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    },
+    {
+      "action": "write_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/migrate_governance_v1.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::write_toolchain_lock"
+    },
+    {
+      "action": "_clean",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::parse_profile",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::_clean"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::parse_profile",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "require_profile_schema_version",
+      "evidence": "STATIC",
+      "from": "scripts/project_profile.py::parse_profile",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::require_profile_schema_version"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "self.entry",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "action": "self.entry",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "action": "_profile_version",
+      "evidence": "STATIC",
+      "from": "scripts/schema_contract.py::require_profile_schema_version",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::_profile_version"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/schema_contract.py::validate_spec_tree_versions",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "governed_spec_paths",
+      "evidence": "STATIC",
+      "from": "scripts/schema_contract.py::validate_spec_tree_versions",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::governed_spec_paths"
+    },
+    {
+      "action": "require_json_schema_version",
+      "evidence": "STATIC",
+      "from": "scripts/schema_contract.py::validate_spec_tree_versions",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::require_json_schema_version"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::_sha256",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "_git_value",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::producer_metadata",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::_git_value"
+    },
+    {
+      "action": "source_toolchain_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::producer_metadata",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_toolchain_manifest"
+    },
+    {
+      "action": "toolchain_digest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::producer_metadata",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::toolchain_digest"
+    },
+    {
+      "action": "_sha256",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::_sha256"
+    },
+    {
+      "action": "source_tool_paths",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_tool_paths"
+    },
+    {
+      "action": "dst.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::sync_vendored_tools",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "src.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::sync_vendored_tools",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "source_tool_paths",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::sync_vendored_tools",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_tool_paths"
+    },
+    {
+      "action": "_sha256",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::tool_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::_sha256"
+    },
+    {
+      "action": "lock_path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "tool_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::tool_manifest"
+    },
+    {
+      "action": "toolchain_digest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::toolchain_digest"
+    },
+    {
+      "action": "target.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::write_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "producer_metadata",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::write_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::producer_metadata"
+    },
+    {
+      "action": "tool_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::write_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::tool_manifest"
+    },
+    {
+      "action": "toolchain_digest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::write_toolchain_lock",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::toolchain_digest"
+    },
+    {
+      "action": "producer_metadata",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::producer_metadata"
+    },
+    {
+      "action": "tool_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::tool_manifest"
+    },
+    {
+      "action": "validate_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    },
+    {
+      "action": "load_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::load_lock"
+    },
+    {
+      "action": "producer_upgrade_required",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required"
+    },
+    {
+      "action": "source_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::source_manifest"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "sync_vendored_tools",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::sync_vendored_tools"
+    },
+    {
+      "action": "validate_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    },
+    {
+      "action": "write_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::write_toolchain_lock"
+    },
+    {
+      "action": "build_plan",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::build_plan"
+    },
+    {
+      "action": "emit",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::emit"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::sha256",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "source_tool_paths",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_tool_paths"
+    },
+    {
+      "action": "sha256",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::sha256"
+    },
+    {
+      "action": "validate",
+      "evidence": "STATIC",
+      "from": "scripts/validate_schema_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_schema_toolchain.py::validate"
+    },
+    {
+      "action": "parse_profile",
+      "evidence": "STATIC",
+      "from": "scripts/validate_schema_toolchain.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "action": "validate_spec_tree_versions",
+      "evidence": "STATIC",
+      "from": "scripts/validate_schema_toolchain.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/schema_contract.py::validate_spec_tree_versions"
+    },
+    {
+      "action": "validate_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/validate_schema_toolchain.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    }
+  ],
+  "entries": [
+    "scripts/toolchain_identity.py::producer_metadata",
+    "scripts/toolchain_identity.py::write_toolchain_lock",
+    "scripts/toolchain_identity.py::validate_toolchain_lock",
+    "scripts/initialize_project_truth.py::main",
+    "scripts/migrate_governance_v1.py::main",
+    "scripts/validate_schema_toolchain.py::main",
+    "scripts/upgrade_governance_toolchain.py::main"
+  ],
+  "generated": true,
+  "generated_by": "generate_sequence_actual.py",
+  "nodes": [
+    {
+      "id": "scripts/initialize_project_truth.py::copy_file",
+      "kind": "function",
+      "label": "scripts/initialize_project_truth.py::copy_file",
+      "language": "Python",
+      "line_end": 49,
+      "line_start": 44,
+      "locator": "scripts/initialize_project_truth.py::copy_file"
+    },
+    {
+      "id": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "kind": "function",
+      "label": "scripts/initialize_project_truth.py::ensure_gitattributes",
+      "language": "Python",
+      "line_end": 41,
+      "line_start": 23,
+      "locator": "scripts/initialize_project_truth.py::ensure_gitattributes"
+    },
+    {
+      "id": "scripts/initialize_project_truth.py::main",
+      "kind": "function",
+      "label": "scripts/initialize_project_truth.py::main",
+      "language": "Python",
+      "line_end": 152,
+      "line_start": 52,
+      "locator": "scripts/initialize_project_truth.py::main"
+    },
+    {
+      "id": "scripts/migrate_governance_v1.py::add_profile_version",
+      "kind": "function",
+      "label": "scripts/migrate_governance_v1.py::add_profile_version",
+      "language": "Python",
+      "line_end": 40,
+      "line_start": 26,
+      "locator": "scripts/migrate_governance_v1.py::add_profile_version"
+    },
+    {
+      "id": "scripts/migrate_governance_v1.py::add_spec_version",
+      "kind": "function",
+      "label": "scripts/migrate_governance_v1.py::add_spec_version",
+      "language": "Python",
+      "line_end": 64,
+      "line_start": 56,
+      "locator": "scripts/migrate_governance_v1.py::add_spec_version"
+    },
+    {
+      "id": "scripts/migrate_governance_v1.py::inspect_specs",
+      "kind": "function",
+      "label": "scripts/migrate_governance_v1.py::inspect_specs",
+      "language": "Python",
+      "line_end": 53,
+      "line_start": 43,
+      "locator": "scripts/migrate_governance_v1.py::inspect_specs"
+    },
+    {
+      "id": "scripts/migrate_governance_v1.py::main",
+      "kind": "function",
+      "label": "scripts/migrate_governance_v1.py::main",
+      "language": "Python",
+      "line_end": 145,
+      "line_start": 67,
+      "locator": "scripts/migrate_governance_v1.py::main"
+    },
+    {
+      "id": "scripts/project_profile.py::_clean",
+      "kind": "function",
+      "label": "scripts/project_profile.py::_clean",
+      "language": "Python",
+      "line_end": 87,
+      "line_start": 83,
+      "locator": "scripts/project_profile.py::_clean"
+    },
+    {
+      "id": "scripts/project_profile.py::parse_profile",
+      "kind": "function",
+      "label": "scripts/project_profile.py::parse_profile",
+      "language": "Python",
+      "line_end": 132,
+      "line_start": 90,
+      "locator": "scripts/project_profile.py::parse_profile"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "language": "Python",
+      "line_end": 185,
+      "line_start": 173,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "language": "Python",
+      "line_end": 188,
+      "line_start": 187,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "language": "Python",
+      "line_end": 191,
+      "line_start": 190,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "id": "scripts/project_snapshot.py::SnapshotError",
+      "kind": "class",
+      "label": "scripts/project_snapshot.py::SnapshotError",
+      "language": "Python",
+      "line_end": 37,
+      "line_start": 36,
+      "locator": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "id": "scripts/schema_contract.py::_profile_version",
+      "kind": "function",
+      "label": "scripts/schema_contract.py::_profile_version",
+      "language": "Python",
+      "line_end": 23,
+      "line_start": 15,
+      "locator": "scripts/schema_contract.py::_profile_version"
+    },
+    {
+      "id": "scripts/schema_contract.py::governed_spec_paths",
+      "kind": "function",
+      "label": "scripts/schema_contract.py::governed_spec_paths",
+      "language": "Python",
+      "line_end": 75,
+      "line_start": 66,
+      "locator": "scripts/schema_contract.py::governed_spec_paths"
+    },
+    {
+      "id": "scripts/schema_contract.py::require_json_schema_version",
+      "kind": "function",
+      "label": "scripts/schema_contract.py::require_json_schema_version",
+      "language": "Python",
+      "line_end": 63,
+      "line_start": 44,
+      "locator": "scripts/schema_contract.py::require_json_schema_version"
+    },
+    {
+      "id": "scripts/schema_contract.py::require_profile_schema_version",
+      "kind": "function",
+      "label": "scripts/schema_contract.py::require_profile_schema_version",
+      "language": "Python",
+      "line_end": 41,
+      "line_start": 26,
+      "locator": "scripts/schema_contract.py::require_profile_schema_version"
+    },
+    {
+      "id": "scripts/schema_contract.py::validate_spec_tree_versions",
+      "kind": "function",
+      "label": "scripts/schema_contract.py::validate_spec_tree_versions",
+      "language": "Python",
+      "line_end": 88,
+      "line_start": 78,
+      "locator": "scripts/schema_contract.py::validate_spec_tree_versions"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::_git_value",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::_git_value",
+      "language": "Python",
+      "line_end": 68,
+      "line_start": 60,
+      "locator": "scripts/toolchain_identity.py::_git_value"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::_sha256",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::_sha256",
+      "language": "Python",
+      "line_end": 24,
+      "line_start": 23,
+      "locator": "scripts/toolchain_identity.py::_sha256"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::producer_metadata",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::producer_metadata",
+      "language": "Python",
+      "line_end": 90,
+      "line_start": 71,
+      "locator": "scripts/toolchain_identity.py::producer_metadata"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::source_tool_paths",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::source_tool_paths",
+      "language": "Python",
+      "line_end": 33,
+      "line_start": 27,
+      "locator": "scripts/toolchain_identity.py::source_tool_paths"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "language": "Python",
+      "line_end": 57,
+      "line_start": 56,
+      "locator": "scripts/toolchain_identity.py::source_toolchain_manifest"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::sync_vendored_tools",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::sync_vendored_tools",
+      "language": "Python",
+      "line_end": 107,
+      "line_start": 93,
+      "locator": "scripts/toolchain_identity.py::sync_vendored_tools"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::tool_manifest",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::tool_manifest",
+      "language": "Python",
+      "line_end": 43,
+      "line_start": 36,
+      "locator": "scripts/toolchain_identity.py::tool_manifest"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::toolchain_digest",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::toolchain_digest",
+      "language": "Python",
+      "line_end": 53,
+      "line_start": 46,
+      "locator": "scripts/toolchain_identity.py::toolchain_digest"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "language": "Python",
+      "line_end": 234,
+      "line_start": 138,
+      "locator": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    },
+    {
+      "id": "scripts/toolchain_identity.py::write_toolchain_lock",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::write_toolchain_lock",
+      "language": "Python",
+      "line_end": 135,
+      "line_start": 110,
+      "locator": "scripts/toolchain_identity.py::write_toolchain_lock"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "language": "Python",
+      "line_end": 108,
+      "line_start": 57,
+      "locator": "scripts/upgrade_governance_toolchain.py::build_plan"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::emit",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::emit",
+      "language": "Python",
+      "line_end": 126,
+      "line_start": 111,
+      "locator": "scripts/upgrade_governance_toolchain.py::emit"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "language": "Python",
+      "line_end": 37,
+      "line_start": 30,
+      "locator": "scripts/upgrade_governance_toolchain.py::load_lock"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::main",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::main",
+      "language": "Python",
+      "line_end": 179,
+      "line_start": 129,
+      "locator": "scripts/upgrade_governance_toolchain.py::main"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "language": "Python",
+      "line_end": 54,
+      "line_start": 40,
+      "locator": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::sha256",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::sha256",
+      "language": "Python",
+      "line_end": 23,
+      "line_start": 22,
+      "locator": "scripts/upgrade_governance_toolchain.py::sha256"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "language": "Python",
+      "line_end": 27,
+      "line_start": 26,
+      "locator": "scripts/upgrade_governance_toolchain.py::source_manifest"
+    },
+    {
+      "id": "scripts/validate_schema_toolchain.py::main",
+      "kind": "function",
+      "label": "scripts/validate_schema_toolchain.py::main",
+      "language": "Python",
+      "line_end": 72,
+      "line_start": 57,
+      "locator": "scripts/validate_schema_toolchain.py::main"
+    },
+    {
+      "id": "scripts/validate_schema_toolchain.py::validate",
+      "kind": "function",
+      "label": "scripts/validate_schema_toolchain.py::validate",
+      "language": "Python",
+      "line_end": 54,
+      "line_start": 15,
+      "locator": "scripts/validate_schema_toolchain.py::validate"
+    }
+  ],
+  "observed_head": "6388a0ecc1a3bc21192bc72206f69e03e2a2b4fb",
+  "schema_version": 1,
+  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
+}

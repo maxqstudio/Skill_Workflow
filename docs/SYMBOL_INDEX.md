@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
+Source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -61,10 +61,12 @@ responsibility, callers, or state ownership.
 | scripts/selftest_sequence_human_view.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_sequence_squash_provenance.py | 3 | 0 | 3 | 0 |
 | scripts/selftest_strict_project_workflow.py | 8 | 0 | 8 | 0 |
+| scripts/selftest_toolchain_provenance_upgrade.py | 4 | 0 | 4 | 0 |
 | scripts/sequence_contract.py | 16 | 0 | 16 | 0 |
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 4 | 0 | 4 | 0 |
-| scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
+| scripts/toolchain_identity.py | 10 | 0 | 10 | 0 |
+| scripts/upgrade_governance_toolchain.py | 7 | 0 | 7 | 0 |
 | scripts/validate_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
@@ -693,7 +695,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 13-31 |
 | write_json | function | 34-35 |
-| main | function | 38-167 |
+| main | function | 38-182 |
 
 </details>
 
@@ -742,6 +744,18 @@ responsibility, callers, or state ownership.
 | assert_cross_failure | function | 105-125 |
 | run_relation_and_truth_regressions | function | 128-209 |
 | main | function | 212-865 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_toolchain_provenance_upgrade.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 13-17 |
+| fail | function | 20-22 |
+| producer | function | 25-27 |
+| main | function | 30-163 |
 
 </details>
 
@@ -799,19 +813,35 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>scripts/toolchain_identity.py</code> — 9 symbols</summary>
+<summary><code>scripts/toolchain_identity.py</code> — 10 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _sha256 | function | 21-22 |
-| source_tool_paths | function | 25-31 |
-| tool_manifest | function | 34-41 |
-| toolchain_digest | function | 44-51 |
-| _git_value | function | 54-62 |
-| producer_metadata | function | 65-69 |
-| sync_vendored_tools | function | 72-86 |
-| write_toolchain_lock | function | 89-114 |
-| validate_toolchain_lock | function | 117-184 |
+| _sha256 | function | 23-24 |
+| source_tool_paths | function | 27-33 |
+| tool_manifest | function | 36-43 |
+| toolchain_digest | function | 46-53 |
+| source_toolchain_manifest | function | 56-57 |
+| _git_value | function | 60-68 |
+| producer_metadata | function | 71-90 |
+| sync_vendored_tools | function | 93-107 |
+| write_toolchain_lock | function | 110-135 |
+| validate_toolchain_lock | function | 138-234 |
+
+</details>
+
+<details>
+<summary><code>scripts/upgrade_governance_toolchain.py</code> — 7 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| sha256 | function | 22-23 |
+| source_manifest | function | 26-27 |
+| load_lock | function | 30-37 |
+| producer_upgrade_required | function | 40-54 |
+| build_plan | function | 57-108 |
+| emit | function | 111-126 |
+| main | function | 129-179 |
 
 </details>
 

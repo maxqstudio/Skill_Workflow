@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
+Source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -49,15 +49,17 @@ Generated/refreshed: current compiler run
 | scripts/selftest_public_docs.py | Python | 85 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
-| scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
+| scripts/selftest_schema_toolchain.py | Python | 186 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_sequence_squash_provenance.py | Python | 64 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 869 | scripts | NO |
+| scripts/selftest_toolchain_provenance_upgrade.py | Python | 167 | scripts | NO |
 | scripts/sequence_contract.py | Python | 269 | scripts | NO |
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 154 | scripts | NO |
-| scripts/toolchain_identity.py | Python | 184 | scripts | NO |
+| scripts/toolchain_identity.py | Python | 234 | scripts | NO |
+| scripts/upgrade_governance_toolchain.py | Python | 183 | scripts | NO |
 | scripts/validate_closure_defect_lifecycle.py | Python | 228 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |

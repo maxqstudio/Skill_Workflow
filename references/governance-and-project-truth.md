@@ -599,3 +599,10 @@ UI_INFORMATION_ARCHITECTURE documents each workspace/page, backend authority, vi
 RUNBOOK contains exact setup, build, start, stop, test, diagnose, recover, reset, and deploy commands plus environment details.
 
 DECISIONS records durable decisions with date, context, reason, alternatives, impact, and authority.
+
+
+## Consumer Toolchain Provenance
+
+Vendored `.workflow/tools/` bytes and `.workflow/toolchain.lock.json` form one governed toolchain identity. The lock MUST always record an exact source-content digest. When the Skill Workflow source has verifiable Git metadata, the lock MUST also record producer repository, exact Git source SHA, release identity (`UNRELEASED` when HEAD is not exactly tagged), and `identity_source=GIT+CONTENT`. A copied/package distribution without `.git` MUST use `identity_source=CONTENT` and mark repository, source SHA, and release as `NOT_PROVEN` rather than guessing them. A legacy `commit_hint` is migration input only and MUST NOT be treated as acceptance authority.
+
+Toolchain upgrades MUST be inspected read-only before mutation. Apply may write only toolchain-owned vendored files and the toolchain lock; it MUST NOT rewrite `AGENTS.md`, project source, or semantic `.workflow` authority. Unknown or unmanaged tool files fail closed rather than being deleted automatically.

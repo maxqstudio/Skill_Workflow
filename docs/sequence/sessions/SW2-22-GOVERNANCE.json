@@ -1,0 +1,51 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-22-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-22-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/toolchain_identity.py::producer_metadata",
+      "scripts/toolchain_identity.py::write_toolchain_lock",
+      "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "scripts/initialize_project_truth.py::main",
+      "scripts/migrate_governance_v1.py::main",
+      "scripts/validate_schema_toolchain.py::main",
+      "scripts/upgrade_governance_toolchain.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-22-GOVERNANCE.actual.json",
+    "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-22 sequence evidence covers exact producer identity generation/validation plus deterministic source-side toolchain upgrade planning/apply. It does not authorize writes outside vendored toolchain-owned files and the toolchain lock.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-22-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-22-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-22-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
+  },
+  "implementation_base_sha": "65c28fcdfebec68a20adc02ae95406f9261d5a51",
+  "mode": "DURING",
+  "phase": "SW2-22",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-22-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_schema_toolchain.py",
+    "scripts/selftest_toolchain_provenance_upgrade.py"
+  ]
+}

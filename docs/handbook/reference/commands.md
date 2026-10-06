@@ -12,6 +12,22 @@ From the Skill Workflow package/checkout:
 python scripts/initialize_project_truth.py --root /path/to/project
 ```
 
+## Toolchain provenance and upgrade
+
+Run upgrade inspection from the Skill Workflow checkout/package that should become the consumer's toolchain source:
+
+```bash
+python scripts/upgrade_governance_toolchain.py --root /path/to/project --check
+```
+
+`--check` is read-only and exits non-zero when an upgrade or provenance migration is required. `PLAN_JSON` always includes exact content identity; Git repository/SHA/release are present only when verifiable Git metadata exists, otherwise those fields remain `NOT_PROVEN`. Review the emitted `PLAN_JSON`, then apply only the vendored toolchain surfaces:
+
+```bash
+python scripts/upgrade_governance_toolchain.py --root /path/to/project --apply
+```
+
+Apply may change only `.workflow/tools/*.py` owned by the prior/current toolchain and `.workflow/toolchain.lock.json`. It does not rewrite `AGENTS.md`, project semantic `.workflow/*.json`, source code, or project-specific configuration.
+
 ## Synchronize Project Truth
 
 ```bash

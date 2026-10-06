@@ -155,6 +155,20 @@ def main() -> int:
         assert "SPEC_SCHEMA_VERSION_UNSUPPORTED" in unsupported_spec
         assert state_path.read_bytes() == bad_state
 
+    provenance_upgrade = run(
+        skill_root,
+        sys.executable,
+        str(skill_root / "scripts" / "selftest_toolchain_provenance_upgrade.py"),
+    )
+    assert "EXACT_PRODUCER_IDENTITY=PASS" in provenance_upgrade
+    assert "READ_ONLY_UPGRADE_PLAN=PASS" in provenance_upgrade
+    assert "SEMANTIC_AUTHORITY_PRESERVATION=PASS" in provenance_upgrade
+    assert "UPGRADE_IDEMPOTENCE=PASS" in provenance_upgrade
+    assert "LEGACY_PROVENANCE_MIGRATION=PASS" in provenance_upgrade
+    assert "CONTENT_PACKAGE_IDENTITY=PASS" in provenance_upgrade
+    assert "STRONG_PROVENANCE_NO_DOWNGRADE=PASS" in provenance_upgrade
+    assert "RESULT=PASS" in provenance_upgrade
+
     print("SCHEMA_V1_BASELINE=PASS")
     print("ROOT_AGENTS_MIGRATION=PASS")
     print("LEGACY_EXPLICIT_MIGRATION=PASS")
@@ -163,6 +177,7 @@ def main() -> int:
     print("FUTURE_SPEC_VERSION_REJECTION=PASS")
     print("TOOLCHAIN_TAMPER_REJECTION=PASS")
     print("CACHE_NOT_AUTHORITY=PASS")
+    print("TOOLCHAIN_PROVENANCE_UPGRADE=PASS")
     print("RESULT=PASS")
     return 0
 

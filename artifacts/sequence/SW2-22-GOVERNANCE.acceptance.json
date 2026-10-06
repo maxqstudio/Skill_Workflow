@@ -1,0 +1,24 @@
+{
+  "allowed_mismatch_classifications": [
+    "CODE_DEFECT",
+    "PLAN_CHANGE",
+    "GENERATOR_DEFECT"
+  ],
+  "critical": true,
+  "evidence_boundary": "Static generated actual graph proves only extracted structural edges. Dynamic behavior requires runtime trace or semantic evidence when applicable.",
+  "failures": [],
+  "final_head": "6388a0ecc1a3bc21192bc72206f69e03e2a2b4fb",
+  "merge_provenance_verification": null,
+  "mismatch_resolution_required": false,
+  "mode": "DURING",
+  "phase": "SW2-22",
+  "plan_actual_source_comparison": null,
+  "plan_runtime_comparison": null,
+  "result": "PASS",
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session": "docs/sequence/sessions/SW2-22-GOVERNANCE.json",
+  "session_id": "SW2-22-GOVERNANCE",
+  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4",
+  "warnings": []
+}
