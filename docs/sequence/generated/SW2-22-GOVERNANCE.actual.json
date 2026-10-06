@@ -864,7 +864,7 @@
       "locator": "scripts/validate_schema_toolchain.py::validate"
     }
   ],
-  "observed_head": "c5b6af4e7b1365b03bfcbf316a34104c226f5313",
+  "observed_head": "f567c9ce71e7df23891cc89e57d2b896730a236a",
   "schema_version": 1,
   "source_digest": "5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b"
 }
