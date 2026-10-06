@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 64 files, 1 language categories.
+Observed source inventory: 66 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-20
+Current phase: SW2-21
 
-Current status: SW2_20_DOCUMENTATION_INVENTORY_FRESHNESS_ACCEPTED
+Current status: SW2_21_ACCEPTANCE_CANDIDATE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,15 +110,17 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-20 on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 as the accepted terminal roadmap authority for the current roadmap.
-- Preserve the accepted V2.1 release identity and SW2-20 deterministic documentation freshness contract.
-- Before any new feature or compatibility work, explicitly extend the governed roadmap and open a new acceptance boundary.
+- Require all six permanent Governance CI contexts to pass on the exact promoted SW2-21 candidate.
+- Do not merge while any permanent context is not SUCCESS.
+- After squash merge with expected-head guard, verify merged tree identity and rerun post-merge Governance CI.
+- Do not open any later phase without explicit Owner roadmap approval.
 
 Blocked actions:
-- Do not weaken or bypass deterministic documentation discovery/classification or freshness validation.
-- Do not replace tracked-document discovery with a hand-maintained complete-file allowlist.
+- Do not rewrite historical acceptance evidence merely to make defect status look cleaner.
+- Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.
+- Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.
 - Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Do not begin any broader V2.2 feature work until SW2-21 is accepted on main.
 
 Known blockers:
 - None declared.
@@ -199,10 +201,15 @@ Known blockers:
 - SW2-19 R1-R3 pre-publication acceptance is proven on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 with Governance CI run 37380692462: all six permanent contexts succeeded on Ubuntu/Windows and the pinned max-grounding consumer; the permanent performance-budget contract enforces develop <=2.5s, verify <=3.5s, and finalize <=10.0s from benchmark authority run 37336599123; V2.1 release-preflight regression also passed while SW2-19-R4 remains publication-pending.
 - SW2-19 V2.1 stable publication is accepted on exact release main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict finalize/preflight with publication_authority=true; v2.1.0 tag and GitHub release id 404150971 both target the exact SHA; publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e.
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is promoted from exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance CI run 37398146243 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; deterministic coverage reported 124/124 classified tracked documentation surfaces with zero freshness failures, and Self Governance stopped only at the expected pre-promotion Project Truth boundary.
-- SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to the exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 passed all six permanent contexts; post-merge main Governance CI run 37398984162 also passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. The current roadmap ends at SW2-20; no later governed phase is authorized until the Owner explicitly extends the roadmap.
+- SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.
+- SW2-21 pre-promotion evidence is proven on exact candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance CI run 37408981020 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; Self Governance stopped only at the intentionally unpromoted Project Truth boundary after implementation/regression nodes passed.
 
 ### Not proven
 
+- SW2-21 branch-agnostic accepted-closure semantics are NOT_PROVEN.
+- SW2-21 deterministic accepted-main baseline rebinding is NOT_PROVEN.
+- SW2-21 known-defect lifecycle reconciliation and stale-ledger rejection are NOT_PROVEN.
+- SW2-21 complete cross-platform and real-consumer acceptance is NOT_PROVEN.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

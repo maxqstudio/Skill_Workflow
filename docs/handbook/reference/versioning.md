@@ -2,7 +2,7 @@
 
 # Schema and toolchain versioning
 
-Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`. The current stable product release is `v2.1.0`, and the current governance phase is SW2-20. Stable product publication is authorized only by an explicit stable-release phase contract and exact release evidence; schema versioning does not grant publication authority.
+Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`, and the current stable product release is `v2.1.0`. The active governance phase is authoritative in `.workflow/roadmap.json` and is projected for readers in generated `docs/CURRENT_STATE.md`; this source-authored reference intentionally does not hard-code the mutable phase identifier. Stable product publication is authorized only by an explicit stable-release phase contract and exact release evidence; schema versioning does not grant publication authority.
 
 ## Supported schema
 

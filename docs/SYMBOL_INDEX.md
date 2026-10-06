@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
+Source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -44,6 +44,7 @@ responsibility, callers, or state ownership.
 | scripts/script_runner.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_adoption_profiles.py | 7 | 0 | 7 | 0 |
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
+| scripts/selftest_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_documentation_contract.py | 13 | 0 | 12 | 1 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
@@ -64,6 +65,7 @@ responsibility, callers, or state ownership.
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 4 | 0 | 4 | 0 |
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
+| scripts/validate_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
 | scripts/validate_documentation_contract.py | 16 | 0 | 16 | 0 |
@@ -528,11 +530,25 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_closure_defect_lifecycle.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| write_json | function | 16-19 |
+| fixture | function | 22-84 |
+| materialize | function | 87-92 |
+| require_failure | function | 95-102 |
+| fixture_regressions | function | 105-169 |
+| main | function | 172-179 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_cross_document_regressions.py</code> — 1 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 7-40 |
+| main | function | 9-45 |
 
 </details>
 
@@ -796,6 +812,20 @@ responsibility, callers, or state ownership.
 | sync_vendored_tools | function | 72-86 |
 | write_toolchain_lock | function | 89-114 |
 | validate_toolchain_lock | function | 117-184 |
+
+</details>
+
+<details>
+<summary><code>scripts/validate_closure_defect_lifecycle.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| load_json | function | 23-27 |
+| git_root | function | 30-39 |
+| text | function | 42-43 |
+| accepted_state | function | 46-48 |
+| validate | function | 51-207 |
+| main | function | 210-218 |
 
 </details>
 

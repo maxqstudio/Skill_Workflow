@@ -156,7 +156,7 @@ root cause
 → regression test
 → runtime retest when required.
 
-Use CONFIRMED, STRONG_INFERENCE, UNVERIFIED.
+Use CONFIRMED, STRONG_INFERENCE, and UNVERIFIED for diagnostic certainty while investigating. These are not lifecycle states in `.workflow/known_defects.json`. The governed defect ledger uses `OPEN`, `FIXED/ACCEPTED`, `HISTORICAL`, or `NOT_PROVEN`; resolved entries require accepted resolution evidence.
 
 # 10. Redesign prevention
 
