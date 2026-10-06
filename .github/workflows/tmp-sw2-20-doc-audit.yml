@@ -1,0 +1,84 @@
+name: TEMP SW2-20 Documentation Audit
+
+on:
+  push:
+    branches:
+      - ops/sw2-20-phase-open
+    paths:
+      - .github/workflows/tmp-sw2-20-doc-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-20-documentation-inventory-freshness
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build deterministic tracked-document inventory
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+
+          raw = subprocess.check_output(['git','ls-files','-z'])
+          paths = sorted(p.decode('utf-8') for p in raw.split(b'\0') if p)
+          candidates = []
+          for path in paths:
+              low = path.lower()
+              name = Path(path).name.lower()
+              if low.endswith(('.md','.mdx','.rst','.adoc','.mmd')) or path in {'LICENSE'}:
+                  candidates.append(path)
+
+          def roles(path):
+              out=[]
+              name=Path(path).name
+              if path == 'README.md': out.append('root_public_entry')
+              if path == 'AGENTS.md': out.append('root_agent_contract')
+              if path == 'SKILL.md': out.append('root_skill_contract')
+              if path in {'CONTRIBUTING.md','SECURITY.md','CODE_OF_CONDUCT.md'}: out.append('root_community_policy')
+              if path == 'LICENSE': out.append('root_legal')
+              if path.startswith('references/') and path.endswith('.md'): out.append('skill_reference')
+              if path.startswith('templates/') and path.endswith(('.md','.mdx','.rst','.adoc')): out.append('template_documentation')
+              if path == 'docs/README.md': out.append('docs_entry')
+              if path.startswith('docs/handbook/') and path.endswith('.md'): out.append('handbook_source')
+              if path.startswith('docs/sequence/views/') and path.endswith('.md'): out.append('sequence_human_view')
+              if path.startswith('docs/sequence/generated/') and path.endswith('.mmd'): out.append('sequence_generated_diagram')
+              if path.startswith('docs/') and path.count('/') == 1 and path.endswith('.md') and path != 'docs/README.md': out.append('project_truth_projection')
+              return out
+
+          items=[]; unclassified=[]; multiple=[]
+          counts={}
+          for path in candidates:
+              rs=roles(path)
+              for r in rs: counts[r]=counts.get(r,0)+1
+              if not rs: unclassified.append(path)
+              if len(rs)>1: multiple.append({'path':path,'roles':rs})
+              items.append({'path':path,'roles':rs})
+          report={
+              'schema_version':1,
+              'tracked_files':len(paths),
+              'documentation_candidates':len(candidates),
+              'role_counts':dict(sorted(counts.items())),
+              'unclassified':unclassified,
+              'multiply_classified':multiple,
+              'items':items,
+          }
+          Path('artifacts/sw2_20_documentation_inventory_audit.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print(json.dumps({k:report[k] for k in ('tracked_files','documentation_candidates','role_counts','unclassified','multiply_classified')},indent=2,sort_keys=True))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sw2-20-documentation-inventory-audit
+          path: artifacts/sw2_20_documentation_inventory_audit.json
+          if-no-files-found: error
