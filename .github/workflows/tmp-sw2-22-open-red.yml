@@ -22,7 +22,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Open phase and prove RED
-        run: python scripts/tmp_sw2_22_open_red.py
+        run: python scripts/tmp_sw2_22_open_red_v2.py
       - name: Commit phase-open RED state
         run: |
           git add .workflow docs artifacts/sequence scripts
