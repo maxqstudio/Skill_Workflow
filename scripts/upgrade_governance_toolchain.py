@@ -37,6 +37,23 @@ def load_lock(path: Path) -> dict:
     return value if isinstance(value, dict) else {}
 
 
+def producer_upgrade_required(target: dict, source: dict) -> bool:
+    if target == source:
+        return False
+    same_digest = (
+        str(target.get("source_digest", "")).strip().lower()
+        and str(target.get("source_digest", "")).strip().lower()
+        == str(source.get("source_digest", "")).strip().lower()
+    )
+    if (
+        same_digest
+        and str(target.get("identity_source", "")) == "GIT+CONTENT"
+        and str(source.get("identity_source", "")) == "CONTENT"
+    ):
+        return False
+    return True
+
+
 def build_plan(skill_root: Path, project_root: Path) -> dict[str, object]:
     spec_root = project_root / ".workflow"
     tool_root = spec_root / "tools"
@@ -61,7 +78,7 @@ def build_plan(skill_root: Path, project_root: Path) -> dict[str, object]:
         lock.get("schema_version") != TOOLCHAIN_LOCK_SCHEMA_VERSION
         or lock.get("toolchain_contract_version") != TOOLCHAIN_CONTRACT_VERSION
     )
-    producer_mismatch = target_identity != source_identity
+    producer_mismatch = producer_upgrade_required(target_identity, source_identity)
     manifest_mismatch = declared != source
     upgrade_required = bool(
         added
@@ -100,6 +117,8 @@ def emit(plan: dict[str, object]) -> None:
     assert isinstance(target_identity, dict)
     print("PLAN_JSON=" + json.dumps(plan, sort_keys=True, separators=(",", ":")))
     print("UPGRADE_REQUIRED=" + ("YES" if plan["upgrade_required"] else "NO"))
+    print("SOURCE_IDENTITY=" + str(source_identity.get("identity_source", "")))
+    print("SOURCE_DIGEST=" + str(source_identity.get("source_digest", "")))
     print("SOURCE_SHA=" + str(source_identity.get("source_sha", "")))
     print("TARGET_SOURCE_SHA=" + str(target_identity.get("source_sha", "")))
     for key in ("added", "removed", "changed", "unchanged", "unmanaged"):
