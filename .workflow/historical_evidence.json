@@ -1,6 +1,6 @@
 {
-  "authorization_reason": "SW2-20 phase-open freezes accepted SW2-19 evidence after V2.1 publication",
-  "frozen_commit": "495426c65d9d7cc6ebebf815266bf1964cf123f3",
+  "authorization_reason": "SW2-21 phase-open freezes accepted SW2-20 evidence after exact main acceptance",
+  "frozen_commit": "906f095f134fd63b97256ec5d39e35e8fb057742",
   "generated_by": "validate_sequence_sessions.py",
   "historical_sessions": [
     {
@@ -966,6 +966,57 @@
       "session_id": "SW2-19-GOVERNANCE",
       "session_schema_version": 1,
       "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
+    },
+    {
+      "files": [
+        {
+          "bytes": 849,
+          "path": "artifacts/sequence/SW2-20-GOVERNANCE.acceptance.json",
+          "present": true,
+          "sha256": "af8ffa29d4cff31d56b7bc6702cc0027459cc4a6085905d7fdf763b7fe69c85e"
+        },
+        {
+          "bytes": 84926,
+          "path": "docs/sequence/generated/SW2-20-GOVERNANCE.actual.json",
+          "present": true,
+          "sha256": "81d3a1370e54aa918d25c0ddbcbd79711839ebfa38acf053b6e9498e96479639"
+        },
+        {
+          "bytes": 40483,
+          "path": "docs/sequence/generated/SW2-20-GOVERNANCE.actual.mmd",
+          "present": true,
+          "sha256": "17fcf7e8129a22e521454d3caea71a0d5e6b292cc7f6e8aebda626b08a8ec57f"
+        },
+        {
+          "bytes": 33121,
+          "path": "docs/sequence/generated/SW2-20-GOVERNANCE.human.json",
+          "present": true,
+          "sha256": "d128fa150792ab41059e1fe85f6338f4000b595d7931d87781c6ec29406c5cad"
+        },
+        {
+          "bytes": 4688,
+          "path": "docs/sequence/generated/SW2-20-GOVERNANCE.human.mmd",
+          "present": true,
+          "sha256": "5ccffdedfc93e1958969d89f04fa83bcb9c4607e2a7d154860f7595b397f9719"
+        },
+        {
+          "bytes": 2029,
+          "path": "docs/sequence/sessions/SW2-20-GOVERNANCE.json",
+          "present": true,
+          "sha256": "79a62b1103500b5096151df72e567ee6aa73c0c80d7df5cad87338dcb54085e1"
+        },
+        {
+          "bytes": 5860,
+          "path": "docs/sequence/views/SW2-20-GOVERNANCE.md",
+          "present": true,
+          "sha256": "8507c6fddac7fd1d55e9cbde284f9aacda2bb2437790a2dd21a5efde7034fdd4"
+        }
+      ],
+      "phase": "SW2-20",
+      "session": "docs/sequence/sessions/SW2-20-GOVERNANCE.json",
+      "session_id": "SW2-20-GOVERNANCE",
+      "session_schema_version": 1,
+      "source_digest": "d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc"
     }
   ],
   "schema_version": 1,

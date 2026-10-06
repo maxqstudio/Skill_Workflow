@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-20",
+  "current_phase": "SW2-21",
   "phases": [
     {
       "exit_criteria": [
@@ -253,8 +253,21 @@
       ],
       "id": "SW2-20",
       "objective": "Make every tracked documentation surface deterministically discoverable, classified, authority-bound, and freshness-validated so root README/community docs, bundled references, handbook pages, generated projections, templates, and evidence cannot silently escape governance.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Deterministic Documentation Inventory & Freshness Contract"
+    },
+    {
+      "exit_criteria": [
+        "Accepted closure state uses branch-agnostic semantics that remain true before and after squash merge instead of embedding stale PR-specific next actions.",
+        "Opening a new phase deterministically rebinds last_accepted_sha to the exact accepted main commit used as the implementation base.",
+        "Known-defect statuses and remediation evidence are reconciled with accepted phase history using explicit OPEN, FIXED/ACCEPTED, HISTORICAL, or NOT_PROVEN lifecycle semantics.",
+        "Regression rejects stale accepted-state closure instructions and stale defect lifecycle records without weakening no-ruleset, exact-head, cross-platform, or real-consumer guarantees.",
+        "The exact final candidate and post-merge main both pass the complete permanent Governance CI matrix."
+      ],
+      "id": "SW2-21",
+      "objective": "Make accepted-phase closure state remain semantically valid across squash merge and keep defect lifecycle authority synchronized with accepted remediation evidence.",
+      "status": "CURRENT",
+      "title": "Acceptance Closure & Defect Lifecycle Reconciliation"
     }
   ],
   "schema_version": 1

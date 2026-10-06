@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-20 covers deterministic discovery, classification, authority binding, freshness validation, and complete machine-readable coverage of tracked documentation surfaces. It must preserve accepted V2.1 Project Truth, sequence, cross-platform, real-consumer, performance, and release guarantees.",
+  "evidence_boundary": "SW2-21 covers accepted-phase closure semantics, accepted-main baseline rebinding, and known-defect lifecycle reconciliation only. It must preserve V2.1/SW2-20 governance, documentation freshness, exact-head, no-ruleset, cross-platform, consumer, performance, and release guarantees.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,64 +17,64 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: deterministic git-tracked documentation inventory classified all 124 discovered documentation surfaces exactly once; public-doc regression in Governance CI run 37398146243 passed baseline inventory, unclassified rejection, and add/delete/move/rename coverage-drift rejection on Ubuntu and Windows.",
-      "id": "SW2-20-R1",
-      "requirement": "Every tracked documentation surface is deterministically discovered and classified exactly once without a hand-maintained complete-file allowlist.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until closure-state validation and negative regression reject stale merge instructions while allowing branch-agnostic accepted semantics.",
+      "id": "SW2-21-R1",
+      "requirement": "Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: authority-bound freshness validation passed for stable release v2.1.0, current phase SW2-20, MIT license state, and Owner-approved no-ruleset boundary; stale release/phase/license/pre-release/enforcement fixtures all failed closed in Governance CI run 37398146243.",
-      "id": "SW2-20-R2",
-      "requirement": "Dynamic claims in source-authored documentation are deterministically bound to canonical authority or explicitly classified historical/static.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until phase-open and engine/base regressions prove last_accepted_sha is exact accepted main and cannot silently remain on an older release baseline.",
+      "id": "SW2-21-R2",
+      "requirement": "The next governed phase deterministically rebinds its implementation base to the exact accepted main commit.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: .workflow/generated/documentation_coverage.json reports 124/124 classified surfaces with zero freshness failures; regression reproduces confirmed stale README, CONTRIBUTING, SECURITY, release/versioning, unclassified, and coverage-drift classes in Governance CI run 37398146243.",
-      "id": "SW2-20-R3",
-      "requirement": "Machine-readable documentation coverage evidence proves no tracked document is silently omitted and reproduces all confirmed stale-document classes from SW2-DEF-DOC-003.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until current stale CONFIRMED records are reconciled from accepted evidence and regression rejects invalid lifecycle/status combinations.",
+      "id": "SW2-21-R3",
+      "requirement": "Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact final candidate 173074055f841defd549cc896cfe26a5f60214b4: Governance CI run 37398686766 passed all six permanent contexts. Candidate was squash-merged to main as 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5. Post-merge Governance CI run 37398984162 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the exact-head and post-merge acceptance boundary.",
-      "id": "SW2-20-R4",
-      "requirement": "All confirmed stale documentation is repaired through the new contract and the exact final candidate passes the permanent Ubuntu/Windows/sequence/engine/consumer acceptance matrix.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN until the final promoted candidate passes all six permanent contexts and merged main revalidates successfully.",
+      "id": "SW2-21-R4",
+      "requirement": "Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-20-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_session": "SW2-21-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
-    "python scripts/selftest_public_docs.py",
-    "python scripts/selftest_repository_health.py",
+    "python scripts/selftest_governance_engine.py",
+    "python scripts/selftest_closure_defect_lifecycle.py",
     "python scripts/selftest_cross_document_regressions.py",
-    "python scripts/validate_public_docs.py --root .",
+    "python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 8723bf0315a1e6cee005198affbc9ec1576e8ba7",
     "python scripts/validate_project_docs.py --root .",
     "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base 81b76ccad6785538d898a0fd5767e1b426a2eb56 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/governance_engine.py --root . --base 8723bf0315a1e6cee005198affbc9ec1576e8ba7 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
-    "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
