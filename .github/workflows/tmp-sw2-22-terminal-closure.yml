@@ -56,10 +56,7 @@ jobs:
           state['working_branch'] = 'main'
           state['status'] = 'SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_ACCEPTED'
           state['blockers'] = []
-          state['not_proven'] = [
-              x for x in state.get('not_proven', [])
-              if not x.startswith('SW2-22 ')
-          ]
+          state['not_proven'] = [x for x in state.get('not_proven', []) if not x.startswith('SW2-22 ')]
           if not any('Automatic GitHub merge protection' in x for x in state['not_proven']):
               state['not_proven'].append('Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.')
           proof = (
@@ -117,14 +114,18 @@ jobs:
           python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json
           python scripts/validate_sequence_sessions.py --root .
           python scripts/sync_project_truth.py --root .
+
+          git add .workflow docs artifacts/sequence
+          git diff --cached --quiet || git commit -m 'SW2-22: synchronize terminal closure evidence'
+
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json --report artifacts/sequence/SW2-22-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
           python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 65c28fcdfebec68a20adc02ae95406f9261d5a51
           python scripts/selftest_cross_document_regressions.py
           python scripts/validate_human_comprehension.py --root . --require-pass
           python scripts/validate_handoff.py --root .
           python scripts/validate_project_truth.py --root .
           python scripts/validate_project_docs.py --root .
-
-          git add .workflow docs artifacts/sequence
-          git diff --cached --quiet || git commit -m 'SW2-22: synchronize terminal closure evidence'
           test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts references)"
           git push origin HEAD:work/sw2-22-post-merge-closure
