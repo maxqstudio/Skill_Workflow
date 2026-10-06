@@ -2,7 +2,7 @@
 
 # Schema and toolchain versioning
 
-Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`; stable Skill Workflow V2 publication is governed by SW2-09 and remains blocked until exact release acceptance passes.
+Skill Workflow separates **schema compatibility** from **release naming**. The current governance contract uses schema version `1`. The current stable product release is `v2.1.0`, and the current governance phase is SW2-20. Stable product publication is authorized only by an explicit stable-release phase contract and exact release evidence; schema versioning does not grant publication authority.
 
 ## Supported schema
 
