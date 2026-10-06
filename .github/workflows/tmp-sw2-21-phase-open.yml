@@ -1,0 +1,268 @@
+name: TEMP SW2-21 Phase Open
+
+on:
+  push:
+    branches:
+      - work/sw2-21-closure-defect-lifecycle
+    paths:
+      - .github/workflows/tmp-sw2-21-phase-open.yml
+
+permissions:
+  contents: write
+
+jobs:
+  phase-open:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-21-closure-defect-lifecycle
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Open SW2-21 governed authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          ACCEPTED = '8c72be9de2157ba743a1d593e1ed17adabc613a2'
+          BRANCH = 'work/sw2-21-closure-defect-lifecycle'
+
+          def load(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+
+          def write(path, value):
+              Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+
+          roadmap = load('.workflow/roadmap.json')
+          if roadmap.get('current_phase') != 'SW2-20':
+              raise RuntimeError('EXPECTED_SW2_20_CURRENT')
+          for phase in roadmap['phases']:
+              if phase['id'] == 'SW2-20':
+                  phase['status'] = 'COMPLETE'
+          if any(phase.get('id') == 'SW2-21' for phase in roadmap['phases']):
+              raise RuntimeError('SW2_21_ALREADY_EXISTS')
+          roadmap['phases'].append({
+              'id': 'SW2-21',
+              'title': 'Acceptance Closure & Defect Lifecycle Reconciliation',
+              'objective': 'Make accepted-phase closure state remain semantically valid across squash merge and keep defect lifecycle authority synchronized with accepted remediation evidence.',
+              'status': 'CURRENT',
+              'exit_criteria': [
+                  'Accepted closure state uses branch-agnostic semantics that remain true before and after squash merge instead of embedding stale PR-specific next actions.',
+                  'Opening a new phase deterministically rebinds last_accepted_sha to the exact accepted main commit used as the implementation base.',
+                  'Known-defect statuses and remediation evidence are reconciled with accepted phase history using explicit OPEN, FIXED/ACCEPTED, HISTORICAL, or NOT_PROVEN lifecycle semantics.',
+                  'Regression rejects stale accepted-state closure instructions and stale defect lifecycle records without weakening no-ruleset, exact-head, cross-platform, or real-consumer guarantees.',
+                  'The exact final candidate and post-merge main both pass the complete permanent Governance CI matrix.'
+              ],
+          })
+          roadmap['current_phase'] = 'SW2-21'
+          if sum(1 for phase in roadmap['phases'] if phase.get('status') == 'CURRENT') != 1:
+              raise RuntimeError('ROADMAP_CURRENT_PHASE_CARDINALITY')
+          write('.workflow/roadmap.json', roadmap)
+
+          state = load('.workflow/state.json')
+          state['phase'] = 'SW2-21'
+          state['status'] = 'IN_PROGRESS'
+          state['working_branch'] = BRANCH
+          state['last_accepted_branch'] = 'main'
+          state['last_accepted_sha'] = ACCEPTED
+          state['blockers'] = []
+          state['blocked_actions'] = [
+              'Do not rewrite historical acceptance evidence merely to make defect status look cleaner.',
+              'Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.',
+              'Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.',
+              'Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.',
+              'Do not begin any broader V2.2 feature work until SW2-21 is accepted on main.'
+          ]
+          state['next_authorized_actions'] = [
+              'Map stale closure-state fields and known-defect lifecycle drift against accepted main and historical acceptance evidence.',
+              'Define deterministic closure-state and defect-lifecycle validation with negative regressions.',
+              'Reconcile only defects whose remediation or historical disposition is already proven by accepted evidence.',
+              'Run the complete exact-head permanent matrix before SW2-21 merge.'
+          ]
+          state['not_proven'] = [
+              'SW2-21 branch-agnostic accepted-closure semantics are NOT_PROVEN.',
+              'SW2-21 deterministic accepted-main baseline rebinding is NOT_PROVEN.',
+              'SW2-21 known-defect lifecycle reconciliation and stale-ledger rejection are NOT_PROVEN.',
+              'SW2-21 complete cross-platform and real-consumer acceptance is NOT_PROVEN.',
+              'Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.'
+          ]
+          proven = list(state.get('proven', []))
+          closure = (
+              'SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main '
+              '8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree '
+              'abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate '
+              '173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run '
+              '37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.'
+          )
+          if closure not in proven:
+              proven.append(closure)
+          state['proven'] = proven
+          write('.workflow/state.json', state)
+
+          acceptance = {
+              'schema_version': 1,
+              'evidence_boundary': 'SW2-21 covers accepted-phase closure semantics, accepted-main baseline rebinding, and known-defect lifecycle reconciliation only. It must preserve V2.1/SW2-20 governance, documentation freshness, exact-head, no-ruleset, cross-platform, consumer, performance, and release guarantees.',
+              'human_comprehension_status': 'PASS',
+              'human_comprehension_questions': {key: 'PASS' for key in [
+                  'How does failure/recovery behave?',
+                  'How does important data flow through the system?',
+                  'What are the important lifecycle states and transitions?',
+                  'What are the main user/domain workflows?',
+                  'What are the major components and how do they relate?',
+                  'What is mutable and what is immutable?',
+                  'What is proven and what is not proven?',
+                  'What is the current project state?',
+                  'What is the project and what problem does it solve?',
+                  'What may happen next and what is blocked?',
+                  'Who uses it and what are the primary outcomes?',
+                  'Who/what is authoritative for important decisions?'
+              ]},
+              'requirements': [
+                  {'id': 'SW2-21-R1', 'requirement': 'Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until closure-state validation and negative regression reject stale merge instructions while allowing branch-agnostic accepted semantics.'},
+                  {'id': 'SW2-21-R2', 'requirement': 'The next governed phase deterministically rebinds its implementation base to the exact accepted main commit.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until phase-open and engine/base regressions prove last_accepted_sha is exact accepted main and cannot silently remain on an older release baseline.'},
+                  {'id': 'SW2-21-R3', 'requirement': 'Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until current stale CONFIRMED records are reconciled from accepted evidence and regression rejects invalid lifecycle/status combinations.'},
+                  {'id': 'SW2-21-R4', 'requirement': 'Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance.', 'status': 'NOT_PROVEN', 'evidence': 'NOT_PROVEN until the final promoted candidate passes all six permanent contexts and merged main revalidates successfully.'}
+              ],
+              'runtime_checks': [],
+              'runtime_status': 'NOT_APPLICABLE',
+              'sequence_mode': 'DURING',
+              'sequence_session': 'SW2-21-GOVERNANCE',
+              'sequence_sync_status': 'NOT_PROVEN',
+              'test_commands': [
+                  'python scripts/selftest_governance_engine.py',
+                  'python scripts/selftest_cross_document_regressions.py',
+                  'python scripts/validate_project_docs.py --root .',
+                  'python scripts/validate_sequence_sessions.py --root .',
+                  'python scripts/governance_engine.py --root . --base 8c72be9de2157ba743a1d593e1ed17adabc613a2 --mode finalize --expected-head <EXACT_HEAD>'
+              ],
+              'truth_gates': {
+                  'BEHAVIORAL_SYNC': 'NOT_APPLICABLE',
+                  'CROSS_DOCUMENT_CONSISTENCY': 'NOT_PROVEN',
+                  'DOC_LAYOUT': 'PASS',
+                  'DOC_READABILITY': 'PASS',
+                  'DOC_SOURCE_TRACEABILITY': 'NOT_PROVEN',
+                  'DOC_TEST_TRACEABILITY': 'NOT_PROVEN',
+                  'HUMAN_COMPREHENSION': 'PASS',
+                  'PROJECT_DOCS_NORMALIZED': 'PASS',
+                  'PROJECT_DOCS_SYNC': 'PASS',
+                  'PROJECT_STATE_SYNC': 'NOT_PROVEN',
+                  'PROVENANCE_SYNC': 'NOT_PROVEN',
+                  'REFERENCE_SYNC': 'NOT_PROVEN',
+                  'ROADMAP_SYNC': 'PASS',
+                  'RUNTIME_E2E': 'NOT_APPLICABLE',
+                  'SEMANTIC_SYNC': 'NOT_PROVEN',
+                  'SEQUENCE_SYNC': 'NOT_PROVEN',
+                  'SOURCE_TESTS': 'NOT_PROVEN',
+                  'STRUCTURAL_SYNC': 'NOT_PROVEN',
+                  'TEST_RUNTIME_TRACEABILITY': 'NOT_APPLICABLE'
+              }
+          }
+          write('.workflow/acceptance.json', acceptance)
+
+          previous = load('docs/sequence/sessions/SW2-20-GOVERNANCE.json')
+          previous['scope'] = 'HISTORICAL'
+          previous['status'] = 'COMPLETE'
+          write('docs/sequence/sessions/SW2-20-GOVERNANCE.json', previous)
+
+          session = {
+              'schema_version': 1,
+              'session_id': 'SW2-21-GOVERNANCE',
+              'phase': 'SW2-21',
+              'scope': 'CURRENT',
+              'status': 'IN_PROGRESS',
+              'mode': 'DURING',
+              'critical': True,
+              'implementation_base_sha': ACCEPTED,
+              'evidence_boundary': 'SW2-21 sequence evidence covers closure-state reconciliation, accepted-main baseline authority, defect-lifecycle validation, Project Truth synchronization, and final acceptance plumbing. Static structure alone does not prove lifecycle correctness or post-merge semantic freshness.',
+              'actual': {
+                  'entries': [
+                      'scripts/governance_engine.py::main',
+                      'scripts/sync_project_truth.py::main',
+                      'scripts/generate_project_docs.py::main',
+                      'scripts/validate_project_docs.py::main',
+                      'scripts/validate_cross_document_consistency.py::main',
+                      'scripts/validate_sequence_sessions.py::main'
+                  ],
+                  'graph': 'docs/sequence/generated/SW2-21-GOVERNANCE.actual.json',
+                  'diagram': 'docs/sequence/generated/SW2-21-GOVERNANCE.actual.mmd',
+                  'source_digest': ''
+              },
+              'human_view': {
+                  'graph': 'docs/sequence/generated/SW2-21-GOVERNANCE.human.json',
+                  'diagram': 'docs/sequence/generated/SW2-21-GOVERNANCE.human.mmd',
+                  'document': 'docs/sequence/views/SW2-21-GOVERNANCE.md',
+                  'granularity': 'module',
+                  'policy_id': 'module-collapse-v1',
+                  'source_digest': ''
+              },
+              'plan': {'required': False, 'frozen': False, 'contract': '', 'diagram': '', 'sha256': '', 'frozen_commit': ''},
+              'runtime_trace': {'required': False, 'graph': ''},
+              'acceptance_report': 'artifacts/sequence/SW2-21-GOVERNANCE.acceptance.json',
+              'test_traceability_required': True,
+              'tests': [
+                  'scripts/selftest_governance_engine.py',
+                  'scripts/selftest_cross_document_regressions.py'
+              ]
+          }
+          write('docs/sequence/sessions/SW2-21-GOVERNANCE.json', session)
+          PY
+
+      - name: Remove helper from local acceptance tree
+        run: git rm .github/workflows/tmp-sw2-21-phase-open.yml
+
+      - name: Generate current SW2-21 sequence evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          root = Path('.')
+          session_path = root / 'docs/sequence/sessions/SW2-21-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd += ['--entry', entry]
+          subprocess.run(cmd, check=True)
+          graph = json.loads((root / actual['graph']).read_text(encoding='utf-8'))
+          digest = graph['source_digest']
+          session['actual']['source_digest'] = digest
+          session['human_view']['source_digest'] = digest
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          human = session['human_view']
+          subprocess.run([sys.executable, 'scripts/sequence_human_view.py', '--root', '.', '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'], '--output-json', human['graph'], '--output-mermaid', human['diagram'], '--output-markdown', human['document'], '--session-id', session['session_id']], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.', '--session', session_path.as_posix(), '--report', session['acceptance_report']], check=True)
+          PY
+
+      - name: Regenerate Project Truth and validate helper-free phase-open tree
+        run: |
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_documentation_contract.py --root . --write-report
+          python scripts/validate_documentation_contract.py --root .
+          python scripts/validate_public_docs.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/selftest_cross_document_regressions.py
+          python scripts/validate_repository_health.py --root .
+
+      - name: Commit phase-open authority without helper mutation
+        shell: bash
+        run: |
+          git restore --staged .github/workflows/tmp-sw2-21-phase-open.yml
+          git add .workflow docs artifacts/sequence
+          if git diff --cached --name-only | grep -q '^.github/workflows/'; then
+            echo 'Temporary workflow unexpectedly staged'
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'SW2-21: open closure and defect lifecycle phase'
+          git push origin HEAD:work/sw2-21-closure-defect-lifecycle
