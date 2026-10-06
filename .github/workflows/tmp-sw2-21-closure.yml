@@ -47,10 +47,6 @@ jobs:
           def write(path, value):
               Path(path).write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
 
-          # Repair the lifecycle validator semantics: while a phase is active,
-          # last_accepted_sha is its implementation base; after acceptance it
-          # advances to the accepted feature main while implementation_base_sha
-          # remains immutable historical phase-open provenance.
           validator_path = Path('scripts/validate_closure_defect_lifecycle.py')
           validator = validator_path.read_text(encoding='utf-8')
           old_expected = '''    if expected_base and last_accepted_sha != expected_base:\n        failures.append(f"LAST_ACCEPTED_SHA_MISMATCH:{last_accepted_sha}!={expected_base}")\n\n'''
@@ -136,6 +132,56 @@ jobs:
           python scripts/selftest_closure_defect_lifecycle.py
           python scripts/validate_closure_defect_lifecycle.py --root . --expected-base "${OPENING_BASE}"
           python scripts/sync_project_truth.py --root .
+
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path('.')
+          acceptance = json.loads((root / '.workflow' / 'acceptance.json').read_text(encoding='utf-8'))
+          session_id = str(acceptance.get('sequence_session', '')).strip()
+          if not session_id:
+              raise SystemExit('CURRENT_SEQUENCE_SESSION_MISSING')
+          session_path = root / 'docs' / 'sequence' / 'sessions' / f'{session_id}.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          if session.get('scope') != 'CURRENT':
+              raise SystemExit(f'CURRENT_SEQUENCE_SCOPE_INVALID:{session.get("scope")}')
+          actual = session.get('actual') or {}
+          graph = str(actual.get('graph', '')).strip()
+          diagram = str(actual.get('diagram', '')).strip()
+          entries = [str(item).strip() for item in actual.get('entries', []) if str(item).strip()]
+          generate = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', graph, '--output-mermaid', diagram]
+          for entry in entries:
+              generate.extend(['--entry', entry])
+          subprocess.run(generate, check=True)
+          human = session.get('human_view') or {}
+          human_graph = str(human.get('graph', '')).strip()
+          human_mmd = str(human.get('diagram', '')).strip()
+          human_doc = str(human.get('document', '')).strip()
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+                  '--actual-json', graph, '--actual-mermaid', diagram,
+                  '--output-json', human_graph, '--output-mermaid', human_mmd,
+                  '--output-markdown', human_doc, '--session-id', session_id,
+              ], check=True)
+          report = str(session.get('acceptance_report', '')).strip()
+          subprocess.run([
+              sys.executable, 'scripts/validate_sequence_contract.py', '--root', '.',
+              '--session', session_path.as_posix(), '--report', report,
+          ], check=True)
+          if human:
+              subprocess.run([
+                  sys.executable, 'scripts/validate_sequence_human_view.py', '--root', '.',
+                  '--session', session_path.as_posix(),
+              ], check=True)
+          subprocess.run([sys.executable, 'scripts/validate_sequence_sessions.py', '--root', '.'], check=True)
+          print(f'CURRENT_SEQUENCE_SESSION={session_id}')
+          print('CURRENT_SEQUENCE_GENERATION=PASS')
+          PY
+
           python scripts/validate_documentation_contract.py --root . --write-report
           python scripts/validate_public_docs.py --root .
           python scripts/validate_project_docs.py --root .
