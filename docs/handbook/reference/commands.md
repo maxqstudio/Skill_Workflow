@@ -20,7 +20,7 @@ Run upgrade inspection from the Skill Workflow checkout/package that should beco
 python scripts/upgrade_governance_toolchain.py --root /path/to/project --check
 ```
 
-`--check` is read-only and exits non-zero when an upgrade or provenance migration is required. Review the emitted `PLAN_JSON`, then apply only the vendored toolchain surfaces:
+`--check` is read-only and exits non-zero when an upgrade or provenance migration is required. `PLAN_JSON` always includes exact content identity; Git repository/SHA/release are present only when verifiable Git metadata exists, otherwise those fields remain `NOT_PROVEN`. Review the emitted `PLAN_JSON`, then apply only the vendored toolchain surfaces:
 
 ```bash
 python scripts/upgrade_governance_toolchain.py --root /path/to/project --apply

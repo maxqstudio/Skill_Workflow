@@ -4,14 +4,14 @@
 
 ## Evidence boundary
 
-SW2-22 covers exact producer identity for vendored consumer toolchains and deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.
+SW2-22 covers content-addressed producer identity for vendored consumer toolchains, enriches it with exact Git provenance when verifiable Git metadata is available, and provides deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b
+Current source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-22-R1 | Consumer toolchain locks bind vendored bytes to explicit producer repository, exact source SHA, and exact release identity when tagged; missing/malformed/hint-only producer identity fails closed. | RED baseline pending. | NOT_PROVEN |
+| SW2-22-R1 | Consumer toolchain locks bind vendored bytes to an exact source-content digest. Verifiable Git checkouts additionally record repository, exact source SHA, release identity, and identity_source=GIT+CONTENT; copied/package sources without Git metadata use identity_source=CONTENT and explicitly mark Git-only fields NOT_PROVEN. Missing, malformed, mismatched, or legacy hint-only identity fails closed. | RED baseline pending. | NOT_PROVEN |
 | SW2-22-R2 | A source-side read-only upgrade check produces a deterministic machine-readable plan and reports whether upgrade is required without mutating the consumer. | RED baseline pending. | NOT_PROVEN |
 | SW2-22-R3 | Upgrade apply mutates only toolchain-owned surfaces, preserves Owner semantic authority, and is idempotent for an already-current consumer. | RED baseline pending. | NOT_PROVEN |
 | SW2-22-R4 | Legacy v2.1, STANDARD, STRICT, tamper, Ubuntu/Windows, and pinned max-grounding consumer paths retain governance parity under the new provenance/upgrade contract. | RED baseline pending. | NOT_PROVEN |

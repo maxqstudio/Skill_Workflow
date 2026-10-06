@@ -314,12 +314,13 @@
       "id": "module:scripts/toolchain_identity.py",
       "kind": "module",
       "label": "scripts/toolchain_identity.py",
-      "machine_node_count": 9,
+      "machine_node_count": 10,
       "machine_nodes": [
         "scripts/toolchain_identity.py::_git_value",
         "scripts/toolchain_identity.py::_sha256",
         "scripts/toolchain_identity.py::producer_metadata",
         "scripts/toolchain_identity.py::source_tool_paths",
+        "scripts/toolchain_identity.py::source_toolchain_manifest",
         "scripts/toolchain_identity.py::sync_vendored_tools",
         "scripts/toolchain_identity.py::tool_manifest",
         "scripts/toolchain_identity.py::toolchain_digest",
@@ -331,12 +332,13 @@
       "id": "module:scripts/upgrade_governance_toolchain.py",
       "kind": "module",
       "label": "scripts/upgrade_governance_toolchain.py",
-      "machine_node_count": 6,
+      "machine_node_count": 7,
       "machine_nodes": [
         "scripts/upgrade_governance_toolchain.py::build_plan",
         "scripts/upgrade_governance_toolchain.py::emit",
         "scripts/upgrade_governance_toolchain.py::load_lock",
         "scripts/upgrade_governance_toolchain.py::main",
+        "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
         "scripts/upgrade_governance_toolchain.py::sha256",
         "scripts/upgrade_governance_toolchain.py::source_manifest"
       ]
@@ -352,14 +354,14 @@
       ]
     }
   ],
-  "observed_head": "f567c9ce71e7df23891cc89e57d2b896730a236a",
+  "observed_head": "6388a0ecc1a3bc21192bc72206f69e03e2a2b4fb",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 21,
     "cross_component_machine_edges": 36,
-    "internal_machine_edges_collapsed": 26,
-    "machine_edge_count": 62,
-    "machine_node_count": 35,
+    "internal_machine_edges_collapsed": 31,
+    "machine_edge_count": 67,
+    "machine_node_count": 37,
     "node_map": {
       "scripts/initialize_project_truth.py::copy_file": "module:scripts/initialize_project_truth.py",
       "scripts/initialize_project_truth.py::ensure_gitattributes": "module:scripts/initialize_project_truth.py",
@@ -383,6 +385,7 @@
       "scripts/toolchain_identity.py::_sha256": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::producer_metadata": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::source_tool_paths": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_toolchain_manifest": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::sync_vendored_tools": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::tool_manifest": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::toolchain_digest": "module:scripts/toolchain_identity.py",
@@ -392,6 +395,7 @@
       "scripts/upgrade_governance_toolchain.py::emit": "module:scripts/upgrade_governance_toolchain.py",
       "scripts/upgrade_governance_toolchain.py::load_lock": "module:scripts/upgrade_governance_toolchain.py",
       "scripts/upgrade_governance_toolchain.py::main": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::producer_upgrade_required": "module:scripts/upgrade_governance_toolchain.py",
       "scripts/upgrade_governance_toolchain.py::sha256": "module:scripts/upgrade_governance_toolchain.py",
       "scripts/upgrade_governance_toolchain.py::source_manifest": "module:scripts/upgrade_governance_toolchain.py",
       "scripts/validate_schema_toolchain.py::main": "module:scripts/validate_schema_toolchain.py",
@@ -400,5 +404,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b"
+  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
 }

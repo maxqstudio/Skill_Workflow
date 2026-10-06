@@ -364,7 +364,7 @@
       "file": "scripts/selftest_schema_toolchain.py",
       "is_test": false,
       "language": "Python",
-      "lines": 184
+      "lines": 186
     },
     {
       "directory": "scripts",
@@ -399,7 +399,7 @@
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "is_test": false,
       "language": "Python",
-      "lines": 112
+      "lines": 167
     },
     {
       "directory": "scripts",
@@ -427,14 +427,14 @@
       "file": "scripts/toolchain_identity.py",
       "is_test": false,
       "language": "Python",
-      "lines": 205
+      "lines": 234
     },
     {
       "directory": "scripts",
       "file": "scripts/upgrade_governance_toolchain.py",
       "is_test": false,
       "language": "Python",
-      "lines": 164
+      "lines": 183
     },
     {
       "directory": "scripts",
@@ -15712,11 +15712,87 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "json.dumps"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15748,7 +15824,7 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "lock.get"
+      "target_token": "lock_path.read_text"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15768,11 +15844,35 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "migrated.get"
+      "target_token": "next"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "next"
+      "target_token": "package_consumer.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "package_identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "package_identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "package_identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "package_identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "package_identity.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "package_lock_path.read_text"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15812,19 +15912,35 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "producer.get"
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "producer.get"
+      "target_token": "print"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "producer.get"
+      "target_token": "producer"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "producer.get"
+      "target_token": "producer"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15832,7 +15948,15 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
-      "target_token": "run"
+      "target_token": "re.fullmatch"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "re.fullmatch"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "root.mkdir"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15865,6 +15989,30 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "shutil.copytree"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "shutil.copytree"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15881,6 +16029,50 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "state_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15989,6 +16181,14 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "upgrader.is_file"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::producer",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::producer",
+      "target_token": "lock.get"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::run",
@@ -17236,10 +17436,6 @@
     },
     {
       "caller": "scripts/toolchain_identity.py::producer_metadata",
-      "target_token": "ValueError"
-    },
-    {
-      "caller": "scripts/toolchain_identity.py::producer_metadata",
       "target_token": "_git_value"
     },
     {
@@ -17255,12 +17451,28 @@
       "target_token": "re.fullmatch"
     },
     {
+      "caller": "scripts/toolchain_identity.py::producer_metadata",
+      "target_token": "source_toolchain_manifest"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::producer_metadata",
+      "target_token": "toolchain_digest"
+    },
+    {
       "caller": "scripts/toolchain_identity.py::source_tool_paths",
       "target_token": "sorted"
     },
     {
       "caller": "scripts/toolchain_identity.py::source_tool_paths",
       "target_token": "source_tools.glob"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "target_token": "_sha256"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "target_token": "source_tool_paths"
     },
     {
       "caller": "scripts/toolchain_identity.py::sync_vendored_tools",
@@ -17321,6 +17533,26 @@
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "target_token": "Path"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
@@ -17448,6 +17680,14 @@
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "re.fullmatch"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "target_token": "re.fullmatch"
     },
     {
@@ -17489,6 +17729,10 @@
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "str"
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
@@ -17640,6 +17884,10 @@
     },
     {
       "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "producer_upgrade_required"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
       "target_token": "set"
     },
     {
@@ -17736,7 +17984,31 @@
     },
     {
       "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
       "target_token": "source_identity.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "source_identity.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "source_identity.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "str"
     },
     {
       "caller": "scripts/upgrade_governance_toolchain.py::emit",
@@ -17917,6 +18189,46 @@
     {
       "caller": "scripts/upgrade_governance_toolchain.py::main",
       "target_token": "write_toolchain_lock"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "source.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "source.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "target.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "target.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "target_token": "target.get"
     },
     {
       "caller": "scripts/upgrade_governance_toolchain.py::sha256",
@@ -28148,7 +28460,7 @@
     {
       "file": "scripts/selftest_schema_toolchain.py",
       "kind": "function",
-      "line_end": 180,
+      "line_end": 182,
       "line_start": 38,
       "locator": "scripts/selftest_schema_toolchain.py::main",
       "symbol": "main"
@@ -28284,24 +28596,32 @@
     {
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "kind": "function",
-      "line_end": 16,
-      "line_start": 12,
+      "line_end": 17,
+      "line_start": 13,
       "locator": "scripts/selftest_toolchain_provenance_upgrade.py::run",
       "symbol": "run"
     },
     {
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "kind": "function",
-      "line_end": 21,
-      "line_start": 19,
+      "line_end": 22,
+      "line_start": 20,
       "locator": "scripts/selftest_toolchain_provenance_upgrade.py::fail",
       "symbol": "fail"
     },
     {
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "kind": "function",
-      "line_end": 108,
-      "line_start": 24,
+      "line_end": 27,
+      "line_start": 25,
+      "locator": "scripts/selftest_toolchain_provenance_upgrade.py::producer",
+      "symbol": "producer"
+    },
+    {
+      "file": "scripts/selftest_toolchain_provenance_upgrade.py",
+      "kind": "function",
+      "line_end": 163,
+      "line_start": 30,
       "locator": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "symbol": "main"
     },
@@ -28572,40 +28892,48 @@
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 64,
+      "line_end": 57,
       "line_start": 56,
+      "locator": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "symbol": "source_toolchain_manifest"
+    },
+    {
+      "file": "scripts/toolchain_identity.py",
+      "kind": "function",
+      "line_end": 68,
+      "line_start": 60,
       "locator": "scripts/toolchain_identity.py::_git_value",
       "symbol": "_git_value"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 78,
-      "line_start": 67,
+      "line_end": 90,
+      "line_start": 71,
       "locator": "scripts/toolchain_identity.py::producer_metadata",
       "symbol": "producer_metadata"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 95,
-      "line_start": 81,
+      "line_end": 107,
+      "line_start": 93,
       "locator": "scripts/toolchain_identity.py::sync_vendored_tools",
       "symbol": "sync_vendored_tools"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 123,
-      "line_start": 98,
+      "line_end": 135,
+      "line_start": 110,
       "locator": "scripts/toolchain_identity.py::write_toolchain_lock",
       "symbol": "write_toolchain_lock"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 205,
-      "line_start": 126,
+      "line_end": 234,
+      "line_start": 138,
       "locator": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "symbol": "validate_toolchain_lock"
     },
@@ -28636,24 +28964,32 @@
     {
       "file": "scripts/upgrade_governance_toolchain.py",
       "kind": "function",
-      "line_end": 91,
+      "line_end": 54,
       "line_start": 40,
+      "locator": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "symbol": "producer_upgrade_required"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 108,
+      "line_start": 57,
       "locator": "scripts/upgrade_governance_toolchain.py::build_plan",
       "symbol": "build_plan"
     },
     {
       "file": "scripts/upgrade_governance_toolchain.py",
       "kind": "function",
-      "line_end": 107,
-      "line_start": 94,
+      "line_end": 126,
+      "line_start": 111,
       "locator": "scripts/upgrade_governance_toolchain.py::emit",
       "symbol": "emit"
     },
     {
       "file": "scripts/upgrade_governance_toolchain.py",
       "kind": "function",
-      "line_end": 160,
-      "line_start": 110,
+      "line_end": 179,
+      "line_start": 129,
       "locator": "scripts/upgrade_governance_toolchain.py::main",
       "symbol": "main"
     },
@@ -29467,13 +29803,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b",
+  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4",
   "source_summary": {
     "files": 68,
     "languages": {
       "Python": 68
     },
-    "lines": 16745,
+    "lines": 16850,
     "test_files": 0
   },
   "tests": []

@@ -1,6 +1,6 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: 5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b
-%% OBSERVED_HEAD: f567c9ce71e7df23891cc89e57d2b896730a236a
+%% SOURCE_DIGEST: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
+%% OBSERVED_HEAD: 6388a0ecc1a3bc21192bc72206f69e03e2a2b4fb
 %% GENERATED_BY: generate_sequence_actual.py
 sequenceDiagram
     participant scripts_initialize_project_truth_py__copy_file_0 as scripts/initialize_project_truth.py::copy_file
@@ -25,23 +25,25 @@ sequenceDiagram
     participant scripts_toolchain_identity_py___sha256_19 as scripts/toolchain_identity.py::_sha256
     participant scripts_toolchain_identity_py__producer_metadata_20 as scripts/toolchain_identity.py::producer_metadata
     participant scripts_toolchain_identity_py__source_tool_paths_21 as scripts/toolchain_identity.py::source_tool_paths
-    participant scripts_toolchain_identity_py__sync_vendored_tools_22 as scripts/toolchain_identity.py::sync_vendored_tools
-    participant scripts_toolchain_identity_py__tool_manifest_23 as scripts/toolchain_identity.py::tool_manifest
-    participant scripts_toolchain_identity_py__toolchain_digest_24 as scripts/toolchain_identity.py::toolchain_digest
-    participant scripts_toolchain_identity_py__validate_toolchain_lock_25 as scripts/toolchain_identity.py::validate_toolchain_lock
-    participant scripts_toolchain_identity_py__write_toolchain_lock_26 as scripts/toolchain_identity.py::write_toolchain_lock
-    participant scripts_upgrade_governance_toolchain_py__build_plan_27 as scripts/upgrade_governance_toolchain.py::build_plan
-    participant scripts_upgrade_governance_toolchain_py__emit_28 as scripts/upgrade_governance_toolchain.py::emit
-    participant scripts_upgrade_governance_toolchain_py__load_lock_29 as scripts/upgrade_governance_toolchain.py::load_lock
-    participant scripts_upgrade_governance_toolchain_py__main_30 as scripts/upgrade_governance_toolchain.py::main
-    participant scripts_upgrade_governance_toolchain_py__sha256_31 as scripts/upgrade_governance_toolchain.py::sha256
-    participant scripts_upgrade_governance_toolchain_py__source_manifest_32 as scripts/upgrade_governance_toolchain.py::source_manifest
-    participant scripts_validate_schema_toolchain_py__main_33 as scripts/validate_schema_toolchain.py::main
-    participant scripts_validate_schema_toolchain_py__validate_34 as scripts/validate_schema_toolchain.py::validate
+    participant scripts_toolchain_identity_py__source_toolchain_manifest_22 as scripts/toolchain_identity.py::source_toolchain_manifest
+    participant scripts_toolchain_identity_py__sync_vendored_tools_23 as scripts/toolchain_identity.py::sync_vendored_tools
+    participant scripts_toolchain_identity_py__tool_manifest_24 as scripts/toolchain_identity.py::tool_manifest
+    participant scripts_toolchain_identity_py__toolchain_digest_25 as scripts/toolchain_identity.py::toolchain_digest
+    participant scripts_toolchain_identity_py__validate_toolchain_lock_26 as scripts/toolchain_identity.py::validate_toolchain_lock
+    participant scripts_toolchain_identity_py__write_toolchain_lock_27 as scripts/toolchain_identity.py::write_toolchain_lock
+    participant scripts_upgrade_governance_toolchain_py__build_plan_28 as scripts/upgrade_governance_toolchain.py::build_plan
+    participant scripts_upgrade_governance_toolchain_py__emit_29 as scripts/upgrade_governance_toolchain.py::emit
+    participant scripts_upgrade_governance_toolchain_py__load_lock_30 as scripts/upgrade_governance_toolchain.py::load_lock
+    participant scripts_upgrade_governance_toolchain_py__main_31 as scripts/upgrade_governance_toolchain.py::main
+    participant scripts_upgrade_governance_toolchain_py__producer_upgrade_required_32 as scripts/upgrade_governance_toolchain.py::producer_upgrade_required
+    participant scripts_upgrade_governance_toolchain_py__sha256_33 as scripts/upgrade_governance_toolchain.py::sha256
+    participant scripts_upgrade_governance_toolchain_py__source_manifest_34 as scripts/upgrade_governance_toolchain.py::source_manifest
+    participant scripts_validate_schema_toolchain_py__main_35 as scripts/validate_schema_toolchain.py::main
+    participant scripts_validate_schema_toolchain_py__validate_36 as scripts/validate_schema_toolchain.py::validate
     scripts_initialize_project_truth_py__ensure_gitattributes_1->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
     scripts_initialize_project_truth_py__main_2->>scripts_initialize_project_truth_py__copy_file_0: copy_file [STATIC]
     scripts_initialize_project_truth_py__main_2->>scripts_initialize_project_truth_py__ensure_gitattributes_1: ensure_gitattributes [STATIC]
-    scripts_initialize_project_truth_py__main_2->>scripts_toolchain_identity_py__write_toolchain_lock_26: write_toolchain_lock [STATIC]
+    scripts_initialize_project_truth_py__main_2->>scripts_toolchain_identity_py__write_toolchain_lock_27: write_toolchain_lock [STATIC]
     scripts_migrate_governance_v1_py__add_profile_version_3->>scripts_project_profile_py__parse_profile_8: parse_profile [STATIC]
     scripts_migrate_governance_v1_py__add_profile_version_3->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
     scripts_migrate_governance_v1_py__add_profile_version_3->>scripts_schema_contract_py__require_profile_schema_version_16: require_profile_schema_version [STATIC]
@@ -56,9 +58,9 @@ sequenceDiagram
     scripts_migrate_governance_v1_py__main_6->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: agents_template.read_bytes [STATIC]
     scripts_migrate_governance_v1_py__main_6->>scripts_schema_contract_py__require_profile_schema_version_16: require_profile_schema_version [STATIC]
     scripts_migrate_governance_v1_py__main_6->>scripts_schema_contract_py__validate_spec_tree_versions_17: validate_spec_tree_versions [STATIC]
-    scripts_migrate_governance_v1_py__main_6->>scripts_toolchain_identity_py__sync_vendored_tools_22: sync_vendored_tools [STATIC]
-    scripts_migrate_governance_v1_py__main_6->>scripts_toolchain_identity_py__validate_toolchain_lock_25: validate_toolchain_lock [STATIC]
-    scripts_migrate_governance_v1_py__main_6->>scripts_toolchain_identity_py__write_toolchain_lock_26: write_toolchain_lock [STATIC]
+    scripts_migrate_governance_v1_py__main_6->>scripts_toolchain_identity_py__sync_vendored_tools_23: sync_vendored_tools [STATIC]
+    scripts_migrate_governance_v1_py__main_6->>scripts_toolchain_identity_py__validate_toolchain_lock_26: validate_toolchain_lock [STATIC]
+    scripts_migrate_governance_v1_py__main_6->>scripts_toolchain_identity_py__write_toolchain_lock_27: write_toolchain_lock [STATIC]
     scripts_project_profile_py__parse_profile_8->>scripts_project_profile_py___clean_7: _clean [STATIC]
     scripts_project_profile_py__parse_profile_8->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
     scripts_project_profile_py__parse_profile_8->>scripts_schema_contract_py__require_profile_schema_version_16: require_profile_schema_version [STATIC]
@@ -71,32 +73,37 @@ sequenceDiagram
     scripts_schema_contract_py__validate_spec_tree_versions_17->>scripts_schema_contract_py__require_json_schema_version_15: require_json_schema_version [STATIC]
     scripts_toolchain_identity_py___sha256_19->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: path.read_bytes [STATIC]
     scripts_toolchain_identity_py__producer_metadata_20->>scripts_toolchain_identity_py___git_value_18: _git_value [STATIC]
-    scripts_toolchain_identity_py__sync_vendored_tools_22->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: dst.read_bytes [STATIC]
-    scripts_toolchain_identity_py__sync_vendored_tools_22->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: src.read_bytes [STATIC]
-    scripts_toolchain_identity_py__sync_vendored_tools_22->>scripts_toolchain_identity_py__source_tool_paths_21: source_tool_paths [STATIC]
-    scripts_toolchain_identity_py__tool_manifest_23->>scripts_toolchain_identity_py___sha256_19: _sha256 [STATIC]
-    scripts_toolchain_identity_py__validate_toolchain_lock_25->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: lock_path.read_text [STATIC]
-    scripts_toolchain_identity_py__validate_toolchain_lock_25->>scripts_toolchain_identity_py__tool_manifest_23: tool_manifest [STATIC]
-    scripts_toolchain_identity_py__validate_toolchain_lock_25->>scripts_toolchain_identity_py__toolchain_digest_24: toolchain_digest [STATIC]
-    scripts_toolchain_identity_py__write_toolchain_lock_26->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: target.read_text [STATIC]
-    scripts_toolchain_identity_py__write_toolchain_lock_26->>scripts_toolchain_identity_py__producer_metadata_20: producer_metadata [STATIC]
-    scripts_toolchain_identity_py__write_toolchain_lock_26->>scripts_toolchain_identity_py__tool_manifest_23: tool_manifest [STATIC]
-    scripts_toolchain_identity_py__write_toolchain_lock_26->>scripts_toolchain_identity_py__toolchain_digest_24: toolchain_digest [STATIC]
-    scripts_upgrade_governance_toolchain_py__build_plan_27->>scripts_toolchain_identity_py__producer_metadata_20: producer_metadata [STATIC]
-    scripts_upgrade_governance_toolchain_py__build_plan_27->>scripts_toolchain_identity_py__tool_manifest_23: tool_manifest [STATIC]
-    scripts_upgrade_governance_toolchain_py__build_plan_27->>scripts_toolchain_identity_py__validate_toolchain_lock_25: validate_toolchain_lock [STATIC]
-    scripts_upgrade_governance_toolchain_py__build_plan_27->>scripts_upgrade_governance_toolchain_py__load_lock_29: load_lock [STATIC]
-    scripts_upgrade_governance_toolchain_py__build_plan_27->>scripts_upgrade_governance_toolchain_py__source_manifest_32: source_manifest [STATIC]
-    scripts_upgrade_governance_toolchain_py__load_lock_29->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
-    scripts_upgrade_governance_toolchain_py__main_30->>scripts_toolchain_identity_py__sync_vendored_tools_22: sync_vendored_tools [STATIC]
-    scripts_upgrade_governance_toolchain_py__main_30->>scripts_toolchain_identity_py__validate_toolchain_lock_25: validate_toolchain_lock [STATIC]
-    scripts_upgrade_governance_toolchain_py__main_30->>scripts_toolchain_identity_py__write_toolchain_lock_26: write_toolchain_lock [STATIC]
-    scripts_upgrade_governance_toolchain_py__main_30->>scripts_upgrade_governance_toolchain_py__build_plan_27: build_plan [STATIC]
-    scripts_upgrade_governance_toolchain_py__main_30->>scripts_upgrade_governance_toolchain_py__emit_28: emit [STATIC]
-    scripts_upgrade_governance_toolchain_py__sha256_31->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: path.read_bytes [STATIC]
-    scripts_upgrade_governance_toolchain_py__source_manifest_32->>scripts_toolchain_identity_py__source_tool_paths_21: source_tool_paths [STATIC]
-    scripts_upgrade_governance_toolchain_py__source_manifest_32->>scripts_upgrade_governance_toolchain_py__sha256_31: sha256 [STATIC]
-    scripts_validate_schema_toolchain_py__main_33->>scripts_validate_schema_toolchain_py__validate_34: validate [STATIC]
-    scripts_validate_schema_toolchain_py__validate_34->>scripts_project_profile_py__parse_profile_8: parse_profile [STATIC]
-    scripts_validate_schema_toolchain_py__validate_34->>scripts_schema_contract_py__validate_spec_tree_versions_17: validate_spec_tree_versions [STATIC]
-    scripts_validate_schema_toolchain_py__validate_34->>scripts_toolchain_identity_py__validate_toolchain_lock_25: validate_toolchain_lock [STATIC]
+    scripts_toolchain_identity_py__producer_metadata_20->>scripts_toolchain_identity_py__source_toolchain_manifest_22: source_toolchain_manifest [STATIC]
+    scripts_toolchain_identity_py__producer_metadata_20->>scripts_toolchain_identity_py__toolchain_digest_25: toolchain_digest [STATIC]
+    scripts_toolchain_identity_py__source_toolchain_manifest_22->>scripts_toolchain_identity_py___sha256_19: _sha256 [STATIC]
+    scripts_toolchain_identity_py__source_toolchain_manifest_22->>scripts_toolchain_identity_py__source_tool_paths_21: source_tool_paths [STATIC]
+    scripts_toolchain_identity_py__sync_vendored_tools_23->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: dst.read_bytes [STATIC]
+    scripts_toolchain_identity_py__sync_vendored_tools_23->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: src.read_bytes [STATIC]
+    scripts_toolchain_identity_py__sync_vendored_tools_23->>scripts_toolchain_identity_py__source_tool_paths_21: source_tool_paths [STATIC]
+    scripts_toolchain_identity_py__tool_manifest_24->>scripts_toolchain_identity_py___sha256_19: _sha256 [STATIC]
+    scripts_toolchain_identity_py__validate_toolchain_lock_26->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: lock_path.read_text [STATIC]
+    scripts_toolchain_identity_py__validate_toolchain_lock_26->>scripts_toolchain_identity_py__tool_manifest_24: tool_manifest [STATIC]
+    scripts_toolchain_identity_py__validate_toolchain_lock_26->>scripts_toolchain_identity_py__toolchain_digest_25: toolchain_digest [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_27->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: target.read_text [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_27->>scripts_toolchain_identity_py__producer_metadata_20: producer_metadata [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_27->>scripts_toolchain_identity_py__tool_manifest_24: tool_manifest [STATIC]
+    scripts_toolchain_identity_py__write_toolchain_lock_27->>scripts_toolchain_identity_py__toolchain_digest_25: toolchain_digest [STATIC]
+    scripts_upgrade_governance_toolchain_py__build_plan_28->>scripts_toolchain_identity_py__producer_metadata_20: producer_metadata [STATIC]
+    scripts_upgrade_governance_toolchain_py__build_plan_28->>scripts_toolchain_identity_py__tool_manifest_24: tool_manifest [STATIC]
+    scripts_upgrade_governance_toolchain_py__build_plan_28->>scripts_toolchain_identity_py__validate_toolchain_lock_26: validate_toolchain_lock [STATIC]
+    scripts_upgrade_governance_toolchain_py__build_plan_28->>scripts_upgrade_governance_toolchain_py__load_lock_30: load_lock [STATIC]
+    scripts_upgrade_governance_toolchain_py__build_plan_28->>scripts_upgrade_governance_toolchain_py__producer_upgrade_required_32: producer_upgrade_required [STATIC]
+    scripts_upgrade_governance_toolchain_py__build_plan_28->>scripts_upgrade_governance_toolchain_py__source_manifest_34: source_manifest [STATIC]
+    scripts_upgrade_governance_toolchain_py__load_lock_30->>scripts_project_snapshot_py__ProjectSnapshot_read_text_11: path.read_text [STATIC]
+    scripts_upgrade_governance_toolchain_py__main_31->>scripts_toolchain_identity_py__sync_vendored_tools_23: sync_vendored_tools [STATIC]
+    scripts_upgrade_governance_toolchain_py__main_31->>scripts_toolchain_identity_py__validate_toolchain_lock_26: validate_toolchain_lock [STATIC]
+    scripts_upgrade_governance_toolchain_py__main_31->>scripts_toolchain_identity_py__write_toolchain_lock_27: write_toolchain_lock [STATIC]
+    scripts_upgrade_governance_toolchain_py__main_31->>scripts_upgrade_governance_toolchain_py__build_plan_28: build_plan [STATIC]
+    scripts_upgrade_governance_toolchain_py__main_31->>scripts_upgrade_governance_toolchain_py__emit_29: emit [STATIC]
+    scripts_upgrade_governance_toolchain_py__sha256_33->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_10: path.read_bytes [STATIC]
+    scripts_upgrade_governance_toolchain_py__source_manifest_34->>scripts_toolchain_identity_py__source_tool_paths_21: source_tool_paths [STATIC]
+    scripts_upgrade_governance_toolchain_py__source_manifest_34->>scripts_upgrade_governance_toolchain_py__sha256_33: sha256 [STATIC]
+    scripts_validate_schema_toolchain_py__main_35->>scripts_validate_schema_toolchain_py__validate_36: validate [STATIC]
+    scripts_validate_schema_toolchain_py__validate_36->>scripts_project_profile_py__parse_profile_8: parse_profile [STATIC]
+    scripts_validate_schema_toolchain_py__validate_36->>scripts_schema_contract_py__validate_spec_tree_versions_17: validate_spec_tree_versions [STATIC]
+    scripts_validate_schema_toolchain_py__validate_36->>scripts_toolchain_identity_py__validate_toolchain_lock_26: validate_toolchain_lock [STATIC]

@@ -1,12 +1,12 @@
 {
-  "evidence_boundary": "SW2-22 covers exact producer identity for vendored consumer toolchains and deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.",
+  "evidence_boundary": "SW2-22 covers content-addressed producer identity for vendored consumer toolchains, enriches it with exact Git provenance when verifiable Git metadata is available, and provides deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.",
   "human_comprehension_questions": {},
   "human_comprehension_status": "NOT_PROVEN",
   "requirements": [
     {
       "evidence": "RED baseline pending.",
       "id": "SW2-22-R1",
-      "requirement": "Consumer toolchain locks bind vendored bytes to explicit producer repository, exact source SHA, and exact release identity when tagged; missing/malformed/hint-only producer identity fails closed.",
+      "requirement": "Consumer toolchain locks bind vendored bytes to an exact source-content digest. Verifiable Git checkouts additionally record repository, exact source SHA, release identity, and identity_source=GIT+CONTENT; copied/package sources without Git metadata use identity_source=CONTENT and explicitly mark Git-only fields NOT_PROVEN. Missing, malformed, mismatched, or legacy hint-only identity fails closed.",
       "status": "NOT_PROVEN"
     },
     {

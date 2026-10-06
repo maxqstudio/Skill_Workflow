@@ -333,6 +333,34 @@
       "to": "scripts/toolchain_identity.py::_git_value"
     },
     {
+      "action": "source_toolchain_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::producer_metadata",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_toolchain_manifest"
+    },
+    {
+      "action": "toolchain_digest",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::producer_metadata",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::toolchain_digest"
+    },
+    {
+      "action": "_sha256",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::_sha256"
+    },
+    {
+      "action": "source_tool_paths",
+      "evidence": "STATIC",
+      "from": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_tool_paths"
+    },
+    {
       "action": "dst.read_bytes",
       "evidence": "STATIC",
       "from": "scripts/toolchain_identity.py::sync_vendored_tools",
@@ -436,6 +464,13 @@
       "from": "scripts/upgrade_governance_toolchain.py::build_plan",
       "resolver": "python_ast",
       "to": "scripts/upgrade_governance_toolchain.py::load_lock"
+    },
+    {
+      "action": "producer_upgrade_required",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required"
     },
     {
       "action": "source_manifest",
@@ -715,8 +750,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::_git_value",
       "language": "Python",
-      "line_end": 64,
-      "line_start": 56,
+      "line_end": 68,
+      "line_start": 60,
       "locator": "scripts/toolchain_identity.py::_git_value"
     },
     {
@@ -733,8 +768,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::producer_metadata",
       "language": "Python",
-      "line_end": 78,
-      "line_start": 67,
+      "line_end": 90,
+      "line_start": 71,
       "locator": "scripts/toolchain_identity.py::producer_metadata"
     },
     {
@@ -747,12 +782,21 @@
       "locator": "scripts/toolchain_identity.py::source_tool_paths"
     },
     {
+      "id": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "kind": "function",
+      "label": "scripts/toolchain_identity.py::source_toolchain_manifest",
+      "language": "Python",
+      "line_end": 57,
+      "line_start": 56,
+      "locator": "scripts/toolchain_identity.py::source_toolchain_manifest"
+    },
+    {
       "id": "scripts/toolchain_identity.py::sync_vendored_tools",
       "kind": "function",
       "label": "scripts/toolchain_identity.py::sync_vendored_tools",
       "language": "Python",
-      "line_end": 95,
-      "line_start": 81,
+      "line_end": 107,
+      "line_start": 93,
       "locator": "scripts/toolchain_identity.py::sync_vendored_tools"
     },
     {
@@ -778,8 +822,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "language": "Python",
-      "line_end": 205,
-      "line_start": 126,
+      "line_end": 234,
+      "line_start": 138,
       "locator": "scripts/toolchain_identity.py::validate_toolchain_lock"
     },
     {
@@ -787,8 +831,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::write_toolchain_lock",
       "language": "Python",
-      "line_end": 123,
-      "line_start": 98,
+      "line_end": 135,
+      "line_start": 110,
       "locator": "scripts/toolchain_identity.py::write_toolchain_lock"
     },
     {
@@ -796,8 +840,8 @@
       "kind": "function",
       "label": "scripts/upgrade_governance_toolchain.py::build_plan",
       "language": "Python",
-      "line_end": 91,
-      "line_start": 40,
+      "line_end": 108,
+      "line_start": 57,
       "locator": "scripts/upgrade_governance_toolchain.py::build_plan"
     },
     {
@@ -805,8 +849,8 @@
       "kind": "function",
       "label": "scripts/upgrade_governance_toolchain.py::emit",
       "language": "Python",
-      "line_end": 107,
-      "line_start": 94,
+      "line_end": 126,
+      "line_start": 111,
       "locator": "scripts/upgrade_governance_toolchain.py::emit"
     },
     {
@@ -823,9 +867,18 @@
       "kind": "function",
       "label": "scripts/upgrade_governance_toolchain.py::main",
       "language": "Python",
-      "line_end": 160,
-      "line_start": 110,
+      "line_end": 179,
+      "line_start": 129,
       "locator": "scripts/upgrade_governance_toolchain.py::main"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+      "language": "Python",
+      "line_end": 54,
+      "line_start": 40,
+      "locator": "scripts/upgrade_governance_toolchain.py::producer_upgrade_required"
     },
     {
       "id": "scripts/upgrade_governance_toolchain.py::sha256",
@@ -864,7 +917,7 @@
       "locator": "scripts/validate_schema_toolchain.py::validate"
     }
   ],
-  "observed_head": "f567c9ce71e7df23891cc89e57d2b896730a236a",
+  "observed_head": "6388a0ecc1a3bc21192bc72206f69e03e2a2b4fb",
   "schema_version": 1,
-  "source_digest": "5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b"
+  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
 }

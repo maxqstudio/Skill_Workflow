@@ -18,7 +18,7 @@ Branch: work/sw2-22-consumer-toolchain-provenance-upgrade
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 65c28fcdfebec68a20adc02ae95406f9261d5a51
 Current candidate SHA: external final acceptance evidence
-Current source digest: 5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b
+Current source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -118,7 +118,7 @@ SEQUENCE_SYNC: PASS
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
-- SW2-22 exact producer source identity in consumer toolchain locks is NOT_PROVEN.
+- SW2-22 exact content-addressed producer identity, package-copy fallback, and strongest-available Git provenance are NOT_PROVEN.
 - SW2-22 deterministic read-only upgrade planning and apply idempotence are NOT_PROVEN.
 - SW2-22 semantic-authority preservation across consumer upgrades is NOT_PROVEN.
 - SW2-22 legacy v2.1 and real-consumer compatibility are NOT_PROVEN.
@@ -136,8 +136,9 @@ See KNOWN_DEFECTS.md.
 
 ## Explicitly blocked
 - Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.
+- Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.
 - Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.
-- Do not claim an upgrade is current when producer source identity is missing, malformed, or mismatched.
+- Do not claim an upgrade is current when producer content identity is missing, malformed, or mismatched.
 - Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
 - Do not begin SW2-23 or publish a new release unless the Owner explicitly authorizes that separate boundary.
 

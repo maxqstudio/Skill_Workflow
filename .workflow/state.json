@@ -1,8 +1,9 @@
 {
   "blocked_actions": [
     "Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.",
+    "Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.",
     "Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.",
-    "Do not claim an upgrade is current when producer source identity is missing, malformed, or mismatched.",
+    "Do not claim an upgrade is current when producer content identity is missing, malformed, or mismatched.",
     "Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.",
     "Do not begin SW2-23 or publish a new release unless the Owner explicitly authorizes that separate boundary."
   ],
@@ -16,7 +17,7 @@
   ],
   "not_proven": [
     "Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.",
-    "SW2-22 exact producer source identity in consumer toolchain locks is NOT_PROVEN.",
+    "SW2-22 exact content-addressed producer identity, package-copy fallback, and strongest-available Git provenance are NOT_PROVEN.",
     "SW2-22 deterministic read-only upgrade planning and apply idempotence are NOT_PROVEN.",
     "SW2-22 semantic-authority preservation across consumer upgrades is NOT_PROVEN.",
     "SW2-22 legacy v2.1 and real-consumer compatibility are NOT_PROVEN."

@@ -12,7 +12,7 @@
       "scripts/upgrade_governance_toolchain.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-22-GOVERNANCE.actual.json",
-    "source_digest": "5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b"
+    "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
   },
   "critical": true,
   "evidence_boundary": "SW2-22 sequence evidence covers exact producer identity generation/validation plus deterministic source-side toolchain upgrade planning/apply. It does not authorize writes outside vendored toolchain-owned files and the toolchain lock.",
@@ -22,7 +22,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-22-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b"
+    "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4"
   },
   "implementation_base_sha": "65c28fcdfebec68a20adc02ae95406f9261d5a51",
   "mode": "DURING",

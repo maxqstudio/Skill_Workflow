@@ -86,8 +86,8 @@ Rationale: The Owner explicitly selected MIT for the public project. The choice 
 
 Status: ACCEPTED
 
-Toolchain contract version 2 replaces informational producer commit hints with validator-enforced Git repository, exact source SHA, and release identity. Consumer upgrades are source-side, plan-before-write, limited to vendored tool files plus the lock, and legacy v2.1 locks migrate explicitly.
+Toolchain contract version 2 replaces informational producer commit hints with validator-enforced exact source-content identity. Verifiable Git checkouts add repository, exact source SHA, release identity, and GIT+CONTENT provenance; copied skill/package sources without .git use CONTENT identity with Git-only fields explicitly NOT_PROVEN. Consumer upgrades are source-side, plan-before-write, limited to vendored tool files plus the lock, preserve stronger provenance for identical content, and legacy v2.1 locks migrate explicitly.
 
-Rationale: Content digests prove internal byte consistency but do not identify which upstream Skill Workflow snapshot supplied those bytes. Exact producer identity plus a deterministic read-only upgrade plan closes that provenance gap without allowing automated edits to Owner semantic authority.
+Rationale: The public skills installation path may copy the skill without .git metadata, so Git SHA cannot be a universal prerequisite. Exact content identity remains available in both checkout and packaged distributions, while Git provenance is retained when verifiable rather than guessed. This closes the provenance gap without breaking public installation or allowing automated edits to Owner semantic authority.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

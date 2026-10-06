@@ -26,7 +26,7 @@ The initializer creates the profile/spec skeleton and vendors the runtime tools 
 
 ### Toolchain identity and later upgrades
 
-Initialization records a content manifest and exact producer identity in `.workflow/toolchain.lock.json`. Updating an installed agent skill does not silently replace the vendored governance tools already committed in a consumer repository. To inspect a later Skill Workflow checkout against an existing consumer, run `scripts/upgrade_governance_toolchain.py --root <project> --check` from that checkout and review the machine-readable plan before using `--apply`. Legacy hint-only locks require this explicit migration path.
+Initialization records a content manifest and exact source-content identity in `.workflow/toolchain.lock.json`. A Git checkout records stronger `GIT+CONTENT` provenance with repository/SHA/release; a copied skill/package without `.git` records `CONTENT` identity and explicitly marks Git-only fields `NOT_PROVEN`. Updating an installed agent skill does not silently replace the vendored governance tools already committed in a consumer repository. To inspect a later Skill Workflow checkout/package against an existing consumer, run `scripts/upgrade_governance_toolchain.py --root <project> --check` from that source and review the machine-readable plan before using `--apply`. Legacy hint-only locks require this explicit migration path, and weaker package metadata must not downgrade stronger provenance for identical content.
 
 ## 3. Populate semantic authority
 
