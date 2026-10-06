@@ -7,14 +7,14 @@ Authority verified at SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-19
-Status: V2_1_STABLE_RELEASED
-Roadmap phase: SW2-19
+Phase: SW2-20
+Status: IN_PROGRESS
+Roadmap phase: SW2-20
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-20-documentation-inventory-freshness
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
 Current candidate SHA: external final acceptance evidence
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-19-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-20-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -112,6 +112,10 @@ SEQUENCE_SYNC: PASS
 - SW2-19 V2.1 stable publication is accepted on exact release main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict finalize/preflight with publication_authority=true; v2.1.0 tag and GitHub release id 404150971 both target the exact SHA; publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e.
 
 ## Not proven
+- SW2-20 deterministic discovery and exactly-one classification of every tracked documentation surface are NOT_PROVEN.
+- SW2-20 dynamic documentation claim freshness against canonical authority is NOT_PROVEN.
+- SW2-20 fail-closed add/delete/move/rename coverage plus stale-semantic regression is NOT_PROVEN.
+- SW2-20 complete cross-platform and real-consumer acceptance is NOT_PROVEN.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -121,14 +125,16 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Treat v2.1.0 at 81b76ccad6785538d898a0fd5767e1b426a2eb56 as the accepted stable V2.1 release baseline.
-- For defects in the stable release, repair forward under a new governed patch release; never retarget an existing stable tag.
-- Before new feature or compatibility work changes accepted V2.1 guarantees, declare a new governed roadmap phase and acceptance boundary.
+- Build a deterministic git-tracked documentation inventory and exact-one role classifier.
+- Define machine-readable freshness rules for dynamic claims including current release/version, phase, license, repository enforcement, schema/toolchain, and support state.
+- Add regressions for every stale-document class captured in SW2-DEF-DOC-003 plus add/delete/move/rename coverage drift.
+- Repair all confirmed stale source-authored documents through the new coverage/freshness contract, then run the complete exact-head acceptance matrix.
 
 ## Explicitly blocked
-- Do not move, retarget, delete-and-recreate, or silently replace the stable v2.1.0 tag as a normal rollback path.
-- Do not move, retarget, delete-and-recreate, or silently replace the historical v2.0.0 tag.
-- Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
-- Do not weaken accepted Skill Workflow V2.1 guarantees without a new governed acceptance boundary.
+- Do not repair stale documentation only by adding more hand-maintained required-file lists.
+- Do not treat Markdown shape, link validity, or file presence as proof that dynamic documentation claims are current.
+- Do not let tracked documentation files escape deterministic discovery/classification through implicit exclusions.
+- Do not rewrite generated Project Truth or historical sequence evidence manually to satisfy documentation freshness.
+- Do not weaken accepted V2.1 governance, exact-head, cross-platform, consumer, or release guarantees.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

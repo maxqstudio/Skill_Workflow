@@ -4,29 +4,27 @@
 
 ## Evidence boundary
 
-SW2-19 covers performance-budget acceptance and V2.1 publication only. It must preserve all accepted V2 governance, Project Truth, historical-evidence, CI applicability, cross-platform, and real-consumer guarantees.
+SW2-20 covers deterministic discovery, classification, authority binding, freshness validation, and complete machine-readable coverage of tracked documentation surfaces. It must preserve accepted V2.1 Project Truth, sequence, cross-platform, real-consumer, performance, and release guarantees.
 
 Final tested source: external final acceptance evidence.
 Current source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-19-R1 | Measured develop, verify, and finalize performance budgets are reproducible, evidence-backed, and accepted without weakening governance. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7. Benchmark authority run 37336599123 recorded 3 independent Ubuntu runners x 5 repeats per mode (15 observations/mode); accepted budgets are develop <=2.5s, verify <=3.5s, finalize <=10.0s. Governance CI run 37380692462 passed the permanent unified-CI budget contract on Ubuntu and Windows, including baseline, over-limit, sample-count, tamper, and validator checks. | PASS |
-| SW2-19-R2 | Generated-document drift and adversarial false-PASS regressions remain zero under the V2.1 candidate. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance finalized successfully with synchronized tracked governance and read-only revalidation; Project Truth Compiler, cross-document, release-preflight, and STRICT adversarial false-PASS regressions passed. | PASS |
-| SW2-19-R3 | Ubuntu/Windows governance and the real consumer preserve parity on the exact V2.1 release candidate. | PASS on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 in Governance CI run 37380692462: Self Governance, Governance Selftest Ubuntu, Governance Selftest Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance (max-grounding) all succeeded. | PASS |
-| SW2-19-R4 | A versioned V2.1 GitHub tag/release is published from the exact tested SHA under strict publication authority. | Stable v2.1.0 publication is accepted from exact tested main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict exact-head governance finalize and V2.1 preflight with publication_authority=true while only SW2-19-R4 was publication-pending before publication; live tag identity and GitHub release target identity both passed against the exact tested SHA. Publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e; GitHub release id is 404150971. The v2.1.0 tag is immutable release evidence and must not be moved or retargeted. | PASS |
+| SW2-20-R1 | Every tracked documentation surface is deterministically discovered and classified exactly once without a hand-maintained complete-file allowlist. | NOT_PROVEN until tracked-file inventory, role classification, explicit exclusion semantics, and add/delete/move/rename regressions pass. | NOT_PROVEN |
+| SW2-20-R2 | Dynamic claims in source-authored documentation are deterministically bound to canonical authority or explicitly classified historical/static. | NOT_PROVEN until phase, release/version, license, repository enforcement, schema/toolchain, and support-state freshness rules reject stale semantics. | NOT_PROVEN |
+| SW2-20-R3 | Machine-readable documentation coverage evidence proves no tracked document is silently omitted and reproduces all confirmed stale-document classes from SW2-DEF-DOC-003. | NOT_PROVEN until coverage evidence plus stale README, CONTRIBUTING, SECURITY, versioning/release, and missing-handbook-page regressions pass. | NOT_PROVEN |
+| SW2-20-R4 | All confirmed stale documentation is repaired through the new contract and the exact final candidate passes the permanent Ubuntu/Windows/sequence/engine/consumer acceptance matrix. | NOT_PROVEN until final exact-head permanent acceptance is green after complete documentation coverage/freshness repair. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_governance_engine.py
-- python scripts/selftest_project_truth_compiler.py
+- python scripts/selftest_public_docs.py
+- python scripts/selftest_repository_health.py
 - python scripts/selftest_cross_document_regressions.py
-- python .github/scripts/selftest_ci_applicability.py
+- python scripts/validate_public_docs.py --root .
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 8a16ddb1994d1a6080816c8b9b78f75137d33e72 --mode finalize --expected-head <EXACT_HEAD>
-- python scripts/selftest_performance_budget.py
-- python scripts/validate_performance_budget.py --root .
+- python scripts/governance_engine.py --root . --base 81b76ccad6785538d898a0fd5767e1b426a2eb56 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -40,8 +38,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-19-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-20-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 

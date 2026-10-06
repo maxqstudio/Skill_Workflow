@@ -10,7 +10,7 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: main
+Active branch: work/sw2-20-documentation-inventory-freshness
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
 Current source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9

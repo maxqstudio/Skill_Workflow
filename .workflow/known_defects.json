@@ -53,6 +53,12 @@
       "id": "SW2-DEF-SEQ-001",
       "status": "FIXED/ACCEPTED",
       "summary": "Static Python call resolution could falsely bind an attribute call on an unresolved expression receiver to an unrelated project function with the same leaf name."
+    },
+    {
+      "evidence": "2026-10-06 audit: README.md still names v2.0.0 while accepted authority is v2.1.0; CONTRIBUTING.md still claims no Owner-approved license and default-branch deletion/non-fast-forward enforcement; SECURITY.md still says no stable release exists; docs/handbook/reference/versioning.md says stable V2 publication remains blocked under SW2-09; docs/handbook/reference/release-process.md presents SW2-09/SW2-09-R4 as generic future publication semantics; scripts/validate_public_docs.py uses a hand-maintained REQUIRED_PUBLIC_FILES tuple and omits docs/handbook/architecture/analyzer-contract.md plus root community docs.",
+      "id": "SW2-DEF-DOC-003",
+      "status": "CONFIRMED",
+      "summary": "Documentation governance is not coverage-complete: tracked source-authored documents can contain stale semantic claims while current validators still pass because discovery/freshness coverage is partly hand-maintained and dynamic facts are not uniformly authority-bound."
     }
   ],
   "schema_version": 1

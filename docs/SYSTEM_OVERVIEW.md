@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-19
+Current phase: SW2-20
 
-Current status: V2_1_STABLE_RELEASED
+Current status: IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,15 +110,17 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat v2.1.0 at 81b76ccad6785538d898a0fd5767e1b426a2eb56 as the accepted stable V2.1 release baseline.
-- For defects in the stable release, repair forward under a new governed patch release; never retarget an existing stable tag.
-- Before new feature or compatibility work changes accepted V2.1 guarantees, declare a new governed roadmap phase and acceptance boundary.
+- Build a deterministic git-tracked documentation inventory and exact-one role classifier.
+- Define machine-readable freshness rules for dynamic claims including current release/version, phase, license, repository enforcement, schema/toolchain, and support state.
+- Add regressions for every stale-document class captured in SW2-DEF-DOC-003 plus add/delete/move/rename coverage drift.
+- Repair all confirmed stale source-authored documents through the new coverage/freshness contract, then run the complete exact-head acceptance matrix.
 
 Blocked actions:
-- Do not move, retarget, delete-and-recreate, or silently replace the stable v2.1.0 tag as a normal rollback path.
-- Do not move, retarget, delete-and-recreate, or silently replace the historical v2.0.0 tag.
-- Do not claim that GitHub automatically blocks merges or requires checks while no repository ruleset is configured.
-- Do not weaken accepted Skill Workflow V2.1 guarantees without a new governed acceptance boundary.
+- Do not repair stale documentation only by adding more hand-maintained required-file lists.
+- Do not treat Markdown shape, link validity, or file presence as proof that dynamic documentation claims are current.
+- Do not let tracked documentation files escape deterministic discovery/classification through implicit exclusions.
+- Do not rewrite generated Project Truth or historical sequence evidence manually to satisfy documentation freshness.
+- Do not weaken accepted V2.1 governance, exact-head, cross-platform, consumer, or release guarantees.
 
 Known blockers:
 - None declared.
@@ -201,6 +203,10 @@ Known blockers:
 
 ### Not proven
 
+- SW2-20 deterministic discovery and exactly-one classification of every tracked documentation surface are NOT_PROVEN.
+- SW2-20 dynamic documentation claim freshness against canonical authority is NOT_PROVEN.
+- SW2-20 fail-closed add/delete/move/rename coverage plus stale-semantic regression is NOT_PROVEN.
+- SW2-20 complete cross-platform and real-consumer acceptance is NOT_PROVEN.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations
