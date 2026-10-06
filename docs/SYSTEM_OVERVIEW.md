@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-20
 
-Current status: IN_PROGRESS
+Current status: SW2_20_DOCUMENTATION_INVENTORY_FRESHNESS_ACCEPTED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,17 +110,15 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Build a deterministic git-tracked documentation inventory and exact-one role classifier.
-- Define machine-readable freshness rules for dynamic claims including current release/version, phase, license, repository enforcement, schema/toolchain, and support state.
-- Add regressions for every stale-document class captured in SW2-DEF-DOC-003 plus add/delete/move/rename coverage drift.
-- Repair all confirmed stale source-authored documents through the new coverage/freshness contract, then run the complete exact-head acceptance matrix.
+- Run the complete permanent exact-head matrix on the promoted SW2-20 candidate.
+- If and only if all permanent contexts pass, mark PR #33 ready and squash-merge with an expected-head guard.
+- Verify merged-tree identity and the complete post-merge main matrix before declaring SW2-20 closed.
 
 Blocked actions:
-- Do not repair stale documentation only by adding more hand-maintained required-file lists.
-- Do not treat Markdown shape, link validity, or file presence as proof that dynamic documentation claims are current.
-- Do not let tracked documentation files escape deterministic discovery/classification through implicit exclusions.
-- Do not rewrite generated Project Truth or historical sequence evidence manually to satisfy documentation freshness.
-- Do not weaken accepted V2.1 governance, exact-head, cross-platform, consumer, or release guarantees.
+- Do not weaken or bypass deterministic documentation discovery/classification or freshness validation.
+- Do not replace tracked-document discovery with a hand-maintained complete-file allowlist.
+- Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
+- Do not begin a new governed phase until SW2-20 is merged and accepted on main.
 
 Known blockers:
 - None declared.
@@ -200,13 +198,10 @@ Known blockers:
 - SW2-18 Unified CI Orchestrator is accepted on main 8a16ddb1994d1a6080816c8b9b78f75137d33e72 with tree d99d4798da694cd65ae490b2b871a11c4e6294e6 equal to exact tested candidate 719a7491cd5773b0dee260fd4e713e5caad93374. Post-merge Governance CI run 37330706174 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance.
 - SW2-19 R1-R3 pre-publication acceptance is proven on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 with Governance CI run 37380692462: all six permanent contexts succeeded on Ubuntu/Windows and the pinned max-grounding consumer; the permanent performance-budget contract enforces develop <=2.5s, verify <=3.5s, and finalize <=10.0s from benchmark authority run 37336599123; V2.1 release-preflight regression also passed while SW2-19-R4 remains publication-pending.
 - SW2-19 V2.1 stable publication is accepted on exact release main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict finalize/preflight with publication_authority=true; v2.1.0 tag and GitHub release id 404150971 both target the exact SHA; publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e.
+- SW2-20 Deterministic Documentation Inventory & Freshness Contract is promoted from exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance CI run 37398146243 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; deterministic coverage reported 124/124 classified tracked documentation surfaces with zero freshness failures, and Self Governance stopped only at the expected pre-promotion Project Truth boundary.
 
 ### Not proven
 
-- SW2-20 deterministic discovery and exactly-one classification of every tracked documentation surface are NOT_PROVEN.
-- SW2-20 dynamic documentation claim freshness against canonical authority is NOT_PROVEN.
-- SW2-20 fail-closed add/delete/move/rename coverage plus stale-semantic regression is NOT_PROVEN.
-- SW2-20 complete cross-platform and real-consumer acceptance is NOT_PROVEN.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Important limitations

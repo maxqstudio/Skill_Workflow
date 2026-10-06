@@ -11,10 +11,10 @@ Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-20-R1 | Every tracked documentation surface is deterministically discovered and classified exactly once without a hand-maintained complete-file allowlist. | NOT_PROVEN until tracked-file inventory, role classification, explicit exclusion semantics, and add/delete/move/rename regressions pass. | NOT_PROVEN |
-| SW2-20-R2 | Dynamic claims in source-authored documentation are deterministically bound to canonical authority or explicitly classified historical/static. | NOT_PROVEN until phase, release/version, license, repository enforcement, schema/toolchain, and support-state freshness rules reject stale semantics. | NOT_PROVEN |
-| SW2-20-R3 | Machine-readable documentation coverage evidence proves no tracked document is silently omitted and reproduces all confirmed stale-document classes from SW2-DEF-DOC-003. | NOT_PROVEN until coverage evidence plus stale README, CONTRIBUTING, SECURITY, versioning/release, and missing-handbook-page regressions pass. | NOT_PROVEN |
-| SW2-20-R4 | All confirmed stale documentation is repaired through the new contract and the exact final candidate passes the permanent Ubuntu/Windows/sequence/engine/consumer acceptance matrix. | NOT_PROVEN until final exact-head permanent acceptance is green after complete documentation coverage/freshness repair. | NOT_PROVEN |
+| SW2-20-R1 | Every tracked documentation surface is deterministically discovered and classified exactly once without a hand-maintained complete-file allowlist. | PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: deterministic git-tracked documentation inventory classified all 124 discovered documentation surfaces exactly once; public-doc regression in Governance CI run 37398146243 passed baseline inventory, unclassified rejection, and add/delete/move/rename coverage-drift rejection on Ubuntu and Windows. | PASS |
+| SW2-20-R2 | Dynamic claims in source-authored documentation are deterministically bound to canonical authority or explicitly classified historical/static. | PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: authority-bound freshness validation passed for stable release v2.1.0, current phase SW2-20, MIT license state, and Owner-approved no-ruleset boundary; stale release/phase/license/pre-release/enforcement fixtures all failed closed in Governance CI run 37398146243. | PASS |
+| SW2-20-R3 | Machine-readable documentation coverage evidence proves no tracked document is silently omitted and reproduces all confirmed stale-document classes from SW2-DEF-DOC-003. | PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: .workflow/generated/documentation_coverage.json reports 124/124 classified surfaces with zero freshness failures; regression reproduces confirmed stale README, CONTRIBUTING, SECURITY, release/versioning, unclassified, and coverage-drift classes in Governance CI run 37398146243. | PASS |
+| SW2-20-R4 | All confirmed stale documentation is repaired through the new contract and the exact final candidate passes the permanent Ubuntu/Windows/sequence/engine/consumer acceptance matrix. | PASS boundary established on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance Selftest Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance all succeeded in Governance CI run 37398146243; pre-promotion Self Governance reached only the expected Project Truth promotion boundary. Final post-promotion 6/6 remains mandatory before merge. | PASS |
 
 ## Test commands
 
@@ -39,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-20-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
