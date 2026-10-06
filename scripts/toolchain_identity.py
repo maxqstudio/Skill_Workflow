@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -15,6 +16,7 @@ SOURCE_ONLY_TOOLS = {
     "initialize_project_truth.py",
     "migrate_governance_v1.py",
     "selftest_project_truth_compiler.py",
+    "upgrade_governance_toolchain.py",
 }
 
 
@@ -63,9 +65,16 @@ def _git_value(root: Path, *args: str) -> str:
 
 
 def producer_metadata(skill_root: Path) -> dict[str, str]:
+    repository = _git_value(skill_root, "config", "--get", "remote.origin.url")
+    source_sha = _git_value(skill_root, "rev-parse", "HEAD").lower()
+    release = _git_value(skill_root, "describe", "--tags", "--exact-match", "HEAD")
+    if not repository or not re.fullmatch(r"[0-9a-f]{40}", source_sha):
+        raise ValueError("TOOLCHAIN_PRODUCER_GIT_IDENTITY_UNAVAILABLE")
     return {
-        "repository": _git_value(skill_root, "config", "--get", "remote.origin.url"),
-        "commit_hint": _git_value(skill_root, "rev-parse", "HEAD"),
+        "identity_source": "GIT",
+        "repository": repository,
+        "source_sha": source_sha,
+        "release": release or "UNRELEASED",
     }
 
 
@@ -181,4 +190,16 @@ def validate_toolchain_lock(project_root: Path, spec_root: Path) -> list[str]:
     producer = lock.get("producer")
     if not isinstance(producer, dict):
         failures.append("TOOLCHAIN_PRODUCER_METADATA_INVALID")
+        return failures
+    if str(producer.get("identity_source", "")).strip() != "GIT":
+        failures.append("TOOLCHAIN_PRODUCER_IDENTITY_SOURCE_INVALID")
+    if not str(producer.get("repository", "")).strip():
+        failures.append("TOOLCHAIN_PRODUCER_REPOSITORY_MISSING")
+    source_sha = str(producer.get("source_sha", "")).strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{40}", source_sha):
+        failures.append("TOOLCHAIN_PRODUCER_SOURCE_SHA_INVALID")
+    if not str(producer.get("release", "")).strip():
+        failures.append("TOOLCHAIN_PRODUCER_RELEASE_MISSING")
+    if "commit_hint" in producer:
+        failures.append("TOOLCHAIN_PRODUCER_LEGACY_COMMIT_HINT")
     return failures

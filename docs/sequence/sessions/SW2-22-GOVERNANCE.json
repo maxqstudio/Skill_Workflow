@@ -8,13 +8,14 @@
       "scripts/toolchain_identity.py::validate_toolchain_lock",
       "scripts/initialize_project_truth.py::main",
       "scripts/migrate_governance_v1.py::main",
-      "scripts/validate_schema_toolchain.py::main"
+      "scripts/validate_schema_toolchain.py::main",
+      "scripts/upgrade_governance_toolchain.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-22-GOVERNANCE.actual.json",
     "source_digest": "d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3"
   },
   "critical": true,
-  "evidence_boundary": "SW2-22 sequence evidence covers consumer toolchain identity generation/validation, initialization/migration, and governance validation paths. Upgrade implementation is intentionally absent at RED and remains NOT_PROVEN until source and regression evidence exist.",
+  "evidence_boundary": "SW2-22 sequence evidence covers exact producer identity generation/validation plus deterministic source-side toolchain upgrade planning/apply. It does not authorize writes outside vendored toolchain-owned files and the toolchain lock.",
   "human_view": {
     "diagram": "docs/sequence/generated/SW2-22-GOVERNANCE.human.mmd",
     "document": "docs/sequence/views/SW2-22-GOVERNANCE.md",

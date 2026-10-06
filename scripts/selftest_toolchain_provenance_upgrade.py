@@ -50,6 +50,13 @@ def main() -> int:
         baseline = run(skill_root, sys.executable, str(upgrader), "--root", str(root), "--check")
         if "UPGRADE_REQUIRED=NO" not in baseline or "RESULT=PASS" not in baseline:
             return fail("CURRENT_CHECK_NOT_CLEAN")
+        plan_line = next((line for line in baseline.splitlines() if line.startswith("PLAN_JSON=")), "")
+        if not plan_line:
+            return fail("MACHINE_READABLE_PLAN_MISSING")
+        plan = json.loads(plan_line.split("=", 1)[1])
+        file_plan = plan.get("files") or {}
+        if sorted(file_plan) != ["added", "changed", "removed", "unchanged", "unmanaged"]:
+            return fail("PLAN_FILE_CLASSES_INCOMPLETE")
 
         tool = root / ".workflow" / "tools" / "sync_project_truth.py"
         tool.write_text(tool.read_text(encoding="utf-8") + "\n# sw2-22 tamper\n", encoding="utf-8", newline="\n")
