@@ -18,7 +18,7 @@ Branch: work/sw2-21-closure-defect-lifecycle
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 8c72be9de2157ba743a1d593e1ed17adabc613a2
 Current candidate SHA: external final acceptance evidence
-Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
+Current source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

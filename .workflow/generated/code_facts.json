@@ -277,10 +277,17 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 183
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_cross_document_regressions.py",
       "is_test": false,
       "language": "Python",
-      "lines": 44
+      "lines": 49
     },
     {
       "directory": "scripts",
@@ -414,6 +421,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 184
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 222
     },
     {
       "directory": "scripts",
@@ -10171,6 +10185,222 @@
       "target_token": "subprocess.run"
     },
     {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "lifecycle.validate"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "lifecycle.validate"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "materialize"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "materialize"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "repr"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "repr"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "require_failure"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "Path.cwd"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "fixture_regressions"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "lifecycle.validate"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "target_token": "repr"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::materialize",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::materialize",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::materialize",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::materialize",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::materialize",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "target_token": "lifecycle.validate"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "target_token": "materialize"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::write_json",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::write_json",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_closure_defect_lifecycle.py::write_json",
+      "target_token": "target.write_text"
+    },
+    {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "Path"
     },
@@ -10200,6 +10430,10 @@
     },
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "claim_backlink_comment"
     },
     {
@@ -10241,6 +10475,10 @@
     {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_cross_document_regressions.py::main",
+      "target_token": "selftest_closure_defect_lifecycle.main"
     },
     {
       "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
@@ -16837,6 +17075,422 @@
     {
       "caller": "scripts/toolchain_identity.py::write_toolchain_lock",
       "target_token": "toolchain_digest"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::accepted_state",
+      "target_token": "status.upper"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::git_root",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::git_root",
+      "target_token": "start.resolve"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::git_root",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::git_root",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::load_json",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::load_json",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::load_json",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::load_json",
+      "target_token": "path.as_posix"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::load_json",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "args.expected_base.strip"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "git_root"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::main",
+      "target_token": "validate"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::text",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "acceptance.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "accepted_state"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "enumerate"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "enumerate"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "known_defects.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "load_json"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "load_json"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "pattern.search"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "required.items"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "seen.add"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "session.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "session_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "state.get"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "text"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "target_token": "type"
     },
     {
       "caller": "scripts/validate_cross_document_consistency.py::all_docs",
@@ -26118,10 +26772,58 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 19,
+      "line_start": 16,
+      "locator": "scripts/selftest_closure_defect_lifecycle.py::write_json",
+      "symbol": "write_json"
+    },
+    {
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 84,
+      "line_start": 22,
+      "locator": "scripts/selftest_closure_defect_lifecycle.py::fixture",
+      "symbol": "fixture"
+    },
+    {
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 92,
+      "line_start": 87,
+      "locator": "scripts/selftest_closure_defect_lifecycle.py::materialize",
+      "symbol": "materialize"
+    },
+    {
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 102,
+      "line_start": 95,
+      "locator": "scripts/selftest_closure_defect_lifecycle.py::require_failure",
+      "symbol": "require_failure"
+    },
+    {
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 169,
+      "line_start": 105,
+      "locator": "scripts/selftest_closure_defect_lifecycle.py::fixture_regressions",
+      "symbol": "fixture_regressions"
+    },
+    {
+      "file": "scripts/selftest_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 179,
+      "line_start": 172,
+      "locator": "scripts/selftest_closure_defect_lifecycle.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_cross_document_regressions.py",
       "kind": "function",
-      "line_end": 40,
-      "line_start": 7,
+      "line_end": 45,
+      "line_start": 9,
       "locator": "scripts/selftest_cross_document_regressions.py::main",
       "symbol": "main"
     },
@@ -27014,6 +27716,54 @@
       "symbol": "validate_toolchain_lock"
     },
     {
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 23,
+      "locator": "scripts/validate_closure_defect_lifecycle.py::load_json",
+      "symbol": "load_json"
+    },
+    {
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 39,
+      "line_start": 30,
+      "locator": "scripts/validate_closure_defect_lifecycle.py::git_root",
+      "symbol": "git_root"
+    },
+    {
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 43,
+      "line_start": 42,
+      "locator": "scripts/validate_closure_defect_lifecycle.py::text",
+      "symbol": "text"
+    },
+    {
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 48,
+      "line_start": 46,
+      "locator": "scripts/validate_closure_defect_lifecycle.py::accepted_state",
+      "symbol": "accepted_state"
+    },
+    {
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 207,
+      "line_start": 51,
+      "locator": "scripts/validate_closure_defect_lifecycle.py::validate",
+      "symbol": "validate"
+    },
+    {
+      "file": "scripts/validate_closure_defect_lifecycle.py",
+      "kind": "function",
+      "line_end": 218,
+      "line_start": 210,
+      "locator": "scripts/validate_closure_defect_lifecycle.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
       "line_end": 67,
@@ -27775,13 +28525,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc",
+  "source_digest": "ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb",
   "source_summary": {
-    "files": 64,
+    "files": 66,
     "languages": {
-      "Python": 64
+      "Python": 66
     },
-    "lines": 16002,
+    "lines": 16412,
     "test_files": 0
   },
   "tests": []
