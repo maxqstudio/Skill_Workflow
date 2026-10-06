@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556
+Authority verified at SHA: 65c28fcdfebec68a20adc02ae95406f9261d5a51
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-21
-Status: SW2_21_ACCEPTANCE_CLOSURE_DEFECT_LIFECYCLE_RECONCILIATION_ACCEPTED
-Roadmap phase: SW2-21
+Phase: SW2-22
+Status: SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_RED
+Roadmap phase: SW2-22
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-22-consumer-toolchain-provenance-upgrade
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556
+Last accepted SHA: 65c28fcdfebec68a20adc02ae95406f9261d5a51
 Current candidate SHA: external final acceptance evidence
-Current source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
+Current source digest: d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-21-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-22-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -114,9 +114,14 @@ SEQUENCE_SYNC: PASS
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.
 - SW2-21 pre-promotion evidence is proven on exact candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance CI run 37408981020 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; Self Governance stopped only at the intentionally unpromoted Project Truth boundary after implementation/regression nodes passed.
 - SW2-21 Acceptance Closure & Defect Lifecycle Reconciliation is accepted on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320 equal to exact tested candidate 93686660d079a6e31f099eb07afbc6ecff1d2112. Final candidate Governance CI run 37409327637 and post-merge main Governance CI run 37409673401 both passed all six permanent contexts. SW2-21 remains the terminal CURRENT roadmap node; no later governed phase is authorized until the Owner explicitly extends the roadmap.
+- SW2-22 Consumer Toolchain Provenance & Upgrade Contract is Owner-authorized from exact terminal main 65c28fcdfebec68a20adc02ae95406f9261d5a51; implementation remains RED/NOT_PROVEN until dedicated regression and permanent CI evidence pass.
 
 ## Not proven
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
+- SW2-22 exact producer source identity in consumer toolchain locks is NOT_PROVEN.
+- SW2-22 deterministic read-only upgrade planning and apply idempotence are NOT_PROVEN.
+- SW2-22 semantic-authority preservation across consumer upgrades is NOT_PROVEN.
+- SW2-22 legacy v2.1 and real-consumer compatibility are NOT_PROVEN.
 
 ## Known blockers
 - None declared.
@@ -125,15 +130,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Treat SW2-21 on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 as the accepted terminal roadmap authority for the current roadmap.
-- Preserve the accepted V2.1 release identity and SW2-21 closure/defect-lifecycle contract.
-- Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.
+- Reproduce the accepted SW2-22 RED gap on exact base 65c28fcdfebec68a20adc02ae95406f9261d5a51.
+- Implement the minimum exact producer-identity and deterministic toolchain upgrade contract required by SW2-22.
+- Promote no SW2-22 requirement until permanent exact-head evidence proves it.
 
 ## Explicitly blocked
-- Do not rewrite historical acceptance evidence merely to make defect status look cleaner.
-- Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.
-- Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.
+- Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.
+- Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.
+- Do not claim an upgrade is current when producer source identity is missing, malformed, or mismatched.
 - Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Do not begin SW2-23 or publish a new release unless the Owner explicitly authorizes that separate boundary.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

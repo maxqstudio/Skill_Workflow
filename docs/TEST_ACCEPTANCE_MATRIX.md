@@ -4,27 +4,27 @@
 
 ## Evidence boundary
 
-SW2-21 terminal acceptance covers durable accepted-closure semantics, immutable phase-open implementation-base provenance, accepted-main rebinding, and known-defect lifecycle reconciliation. It preserves V2.1/SW2-20 exact-head, no-ruleset, cross-platform, sequence, performance, release, documentation-freshness, and real-consumer guarantees.
+SW2-22 covers exact producer identity for vendored consumer toolchains and deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
+Current source digest: d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-21-R1 | Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions. | PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112: Governance CI run 37409327637 passed lifecycle and branch-agnostic closure regression in the complete six-context matrix. Candidate was squash-merged to main as 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320, and post-merge Governance CI run 37409673401 passed all six permanent contexts. | PASS |
-| SW2-21-R2 | The next governed phase deterministically rebinds its implementation base to the exact accepted main commit. | PASS: SW2-21 opened from exact accepted terminal main 8723bf0315a1e6cee005198affbc9ec1576e8ba7; the final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112 passed base-binding regression in Governance CI run 37409327637. Terminal closure advances last_accepted_sha to accepted feature main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 without rewriting the immutable SW2-21 implementation_base_sha 8723bf0315a1e6cee005198affbc9ec1576e8ba7. | PASS |
-| SW2-21-R3 | Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability. | PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112: known-defect lifecycle reconciliation and invalid-status/missing-evidence/unknown-phase/duplicate-ID negative regressions passed in Governance CI run 37409327637; post-merge main run 37409673401 revalidated the same merged tree. | PASS |
-| SW2-21-R4 | Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance. | PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320: Governance CI run 37409327637 passed all six permanent contexts. Candidate was squash-merged to main as 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with identical tree bca3b301be91ba07443b51eb7dc5d539e2a98320. Post-merge Governance CI run 37409673401 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the feature acceptance boundary. | PASS |
+| SW2-22-R1 | Consumer toolchain locks bind vendored bytes to explicit producer repository, exact source SHA, and exact release identity when tagged; missing/malformed/hint-only producer identity fails closed. | RED baseline pending. | NOT_PROVEN |
+| SW2-22-R2 | A source-side read-only upgrade check produces a deterministic machine-readable plan and reports whether upgrade is required without mutating the consumer. | RED baseline pending. | NOT_PROVEN |
+| SW2-22-R3 | Upgrade apply mutates only toolchain-owned surfaces, preserves Owner semantic authority, and is idempotent for an already-current consumer. | RED baseline pending. | NOT_PROVEN |
+| SW2-22-R4 | Legacy v2.1, STANDARD, STRICT, tamper, Ubuntu/Windows, and pinned max-grounding consumer paths retain governance parity under the new provenance/upgrade contract. | RED baseline pending. | NOT_PROVEN |
+| SW2-22-R5 | Exact final candidate and post-merge main pass the complete six-context permanent Governance CI matrix. | No final candidate exists. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_governance_engine.py
-- python scripts/selftest_closure_defect_lifecycle.py
-- python scripts/selftest_cross_document_regressions.py
-- python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 8723bf0315a1e6cee005198affbc9ec1576e8ba7
-- python scripts/validate_project_docs.py --root .
-- python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 8723bf0315a1e6cee005198affbc9ec1576e8ba7 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/selftest_schema_toolchain.py
+- python scripts/selftest_toolchain_provenance_upgrade.py
+- python scripts/validate_schema_toolchain.py --root .
+- python scripts/selftest_adoption_profiles.py
+- python scripts/selftest_strict_project_workflow.py
+- python scripts/governance_engine.py --root . --base 65c28fcdfebec68a20adc02ae95406f9261d5a51 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -38,8 +38,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-21-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-22-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
@@ -52,7 +52,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: PASS
-HUMAN_COMPREHENSION_GATE: PASS
+SYSTEM_OVERVIEW status: NOT_PROVEN
+HUMAN_COMPREHENSION_GATE: NOT_PROVEN
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

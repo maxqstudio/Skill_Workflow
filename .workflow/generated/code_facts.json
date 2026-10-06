@@ -396,6 +396,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_toolchain_provenance_upgrade.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 105
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/sequence_contract.py",
       "is_test": false,
       "language": "Python",
@@ -414,6 +421,20 @@
       "is_test": false,
       "language": "Python",
       "lines": 154
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 366
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/tmp_sw2_22_open_red_v2.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 113
     },
     {
       "directory": "scripts",
@@ -15585,6 +15606,362 @@
       "target_token": "path.write_text"
     },
     {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::fail",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "agents.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "agents.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "agents.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "lock_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "lock_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "lock_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "lock_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "migrated.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "re.fullmatch"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "state_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "state_path.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "state_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "tool.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "tool.read_bytes"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "tool.read_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "tool.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "upgrader.is_file"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::run",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::run",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::run",
+      "target_token": "subprocess.run"
+    },
+    {
       "caller": "scripts/sequence_contract.py::_selected_snapshot",
       "target_token": "ValueError"
     },
@@ -16799,6 +17176,314 @@
     {
       "caller": "scripts/sync_project_truth.py::sync_once",
       "target_token": "validate_args.extend"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::load",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::main",
+      "target_token": "install_red_test"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::main",
+      "target_token": "open_authority"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::main",
+      "target_token": "prove_red"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::main",
+      "target_token": "sync_sequence"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "p.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "phase.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "state.setdefault"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "state.setdefault"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::prove_red",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::prove_red",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::prove_red",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::prove_red",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::prove_red",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::run",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::run",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::run",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::run",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "acceptance.setdefault"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::write",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::write",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red.py::write",
+      "target_token": "target.write_text"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::commit_anchor",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::commit_anchor",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::commit_anchor",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "target_token": "phase.write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "acceptance.setdefault"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "commit_anchor"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "generate_current_sequence"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.install_red_test"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.open_authority"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.prove_red"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "phase.write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "previous.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "previous.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_open_red_v2.py::main",
+      "target_token": "print"
     },
     {
       "caller": "scripts/toolchain_identity.py::_git_value",
@@ -27456,6 +28141,30 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_toolchain_provenance_upgrade.py",
+      "kind": "function",
+      "line_end": 16,
+      "line_start": 12,
+      "locator": "scripts/selftest_toolchain_provenance_upgrade.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": "scripts/selftest_toolchain_provenance_upgrade.py",
+      "kind": "function",
+      "line_end": 21,
+      "line_start": 19,
+      "locator": "scripts/selftest_toolchain_provenance_upgrade.py::fail",
+      "symbol": "fail"
+    },
+    {
+      "file": "scripts/selftest_toolchain_provenance_upgrade.py",
+      "kind": "function",
+      "line_end": 101,
+      "line_start": 24,
+      "locator": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/sequence_contract.py",
       "kind": "function",
       "line_end": 25,
@@ -27685,6 +28394,94 @@
       "line_end": 150,
       "line_start": 135,
       "locator": "scripts/sync_project_truth.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 15,
+      "line_start": 14,
+      "locator": "scripts/tmp_sw2_22_open_red.py::load",
+      "symbol": "load"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 21,
+      "line_start": 18,
+      "locator": "scripts/tmp_sw2_22_open_red.py::write",
+      "symbol": "write"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 31,
+      "line_start": 24,
+      "locator": "scripts/tmp_sw2_22_open_red.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 186,
+      "line_start": 34,
+      "locator": "scripts/tmp_sw2_22_open_red.py::open_authority",
+      "symbol": "open_authority"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 296,
+      "line_start": 189,
+      "locator": "scripts/tmp_sw2_22_open_red.py::install_red_test",
+      "symbol": "install_red_test"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 337,
+      "line_start": 299,
+      "locator": "scripts/tmp_sw2_22_open_red.py::sync_sequence",
+      "symbol": "sync_sequence"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 354,
+      "line_start": 340,
+      "locator": "scripts/tmp_sw2_22_open_red.py::prove_red",
+      "symbol": "prove_red"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red.py",
+      "kind": "function",
+      "line_end": 362,
+      "line_start": 357,
+      "locator": "scripts/tmp_sw2_22_open_red.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red_v2.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 16,
+      "locator": "scripts/tmp_sw2_22_open_red_v2.py::commit_anchor",
+      "symbol": "commit_anchor"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red_v2.py",
+      "kind": "function",
+      "line_end": 73,
+      "line_start": 30,
+      "locator": "scripts/tmp_sw2_22_open_red_v2.py::generate_current_sequence",
+      "symbol": "generate_current_sequence"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_open_red_v2.py",
+      "kind": "function",
+      "line_end": 109,
+      "line_start": 76,
+      "locator": "scripts/tmp_sw2_22_open_red_v2.py::main",
       "symbol": "main"
     },
     {
@@ -28569,13 +29366,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346",
+  "source_digest": "d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3",
   "source_summary": {
-    "files": 66,
+    "files": 69,
     "languages": {
-      "Python": 66
+      "Python": 69
     },
-    "lines": 16435,
+    "lines": 17019,
     "test_files": 0
   },
   "tests": []

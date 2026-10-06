@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-21",
+  "current_phase": "SW2-22",
   "phases": [
     {
       "exit_criteria": [
@@ -266,8 +266,22 @@
       ],
       "id": "SW2-21",
       "objective": "Make accepted-phase closure state remain semantically valid across squash merge and keep defect lifecycle authority synchronized with accepted remediation evidence.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Acceptance Closure & Defect Lifecycle Reconciliation"
+    },
+    {
+      "exit_criteria": [
+        "Every newly written consumer toolchain lock records machine-verifiable producer repository, exact source SHA, and exact release tag when the producer HEAD is tagged; untagged development sources are explicitly marked UNRELEASED rather than guessed.",
+        "Missing, malformed, or legacy hint-only producer identity fails closed under the current validator and has an explicit deterministic migration path.",
+        "A source-side upgrade command provides a read-only check/plan before mutation, reports added/removed/changed/unchanged tool-owned surfaces plus source/target identity, and returns non-success when upgrade is required.",
+        "Apply mutates only vendored toolchain-owned files and the toolchain lock, preserves AGENTS.md and semantic .workflow authority, and repeated apply against the same source is idempotent.",
+        "STANDARD, STRICT, legacy-v2.1, tamper, Ubuntu, Windows, and pinned max-grounding consumer regressions prove fail-closed behavior and compatibility.",
+        "The exact final candidate and post-merge main both pass the complete permanent Governance CI matrix without weakening exact-head, no-ruleset, sequence, performance, documentation, or consumer guarantees."
+      ],
+      "id": "SW2-22",
+      "objective": "Bind every vendored consumer toolchain to explicit upstream source identity and provide deterministic, fail-closed, idempotent upgrade planning and execution without modifying Owner semantic authority.",
+      "status": "CURRENT",
+      "title": "Consumer Toolchain Provenance & Upgrade Contract"
     }
   ],
   "schema_version": 1

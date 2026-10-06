@@ -1,80 +1,72 @@
 {
-  "evidence_boundary": "SW2-21 terminal acceptance covers durable accepted-closure semantics, immutable phase-open implementation-base provenance, accepted-main rebinding, and known-defect lifecycle reconciliation. It preserves V2.1/SW2-20 exact-head, no-ruleset, cross-platform, sequence, performance, release, documentation-freshness, and real-consumer guarantees.",
-  "human_comprehension_questions": {
-    "How does failure/recovery behave?": "PASS",
-    "How does important data flow through the system?": "PASS",
-    "What are the important lifecycle states and transitions?": "PASS",
-    "What are the main user/domain workflows?": "PASS",
-    "What are the major components and how do they relate?": "PASS",
-    "What is mutable and what is immutable?": "PASS",
-    "What is proven and what is not proven?": "PASS",
-    "What is the current project state?": "PASS",
-    "What is the project and what problem does it solve?": "PASS",
-    "What may happen next and what is blocked?": "PASS",
-    "Who uses it and what are the primary outcomes?": "PASS",
-    "Who/what is authoritative for important decisions?": "PASS"
-  },
-  "human_comprehension_status": "PASS",
+  "evidence_boundary": "SW2-22 covers exact producer identity for vendored consumer toolchains and deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.",
+  "human_comprehension_questions": {},
+  "human_comprehension_status": "NOT_PROVEN",
   "requirements": [
     {
-      "evidence": "PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112: Governance CI run 37409327637 passed lifecycle and branch-agnostic closure regression in the complete six-context matrix. Candidate was squash-merged to main as 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320, and post-merge Governance CI run 37409673401 passed all six permanent contexts.",
-      "id": "SW2-21-R1",
-      "requirement": "Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions.",
-      "status": "PASS"
+      "evidence": "RED baseline pending.",
+      "id": "SW2-22-R1",
+      "requirement": "Consumer toolchain locks bind vendored bytes to explicit producer repository, exact source SHA, and exact release identity when tagged; missing/malformed/hint-only producer identity fails closed.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: SW2-21 opened from exact accepted terminal main 8723bf0315a1e6cee005198affbc9ec1576e8ba7; the final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112 passed base-binding regression in Governance CI run 37409327637. Terminal closure advances last_accepted_sha to accepted feature main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 without rewriting the immutable SW2-21 implementation_base_sha 8723bf0315a1e6cee005198affbc9ec1576e8ba7.",
-      "id": "SW2-21-R2",
-      "requirement": "The next governed phase deterministically rebinds its implementation base to the exact accepted main commit.",
-      "status": "PASS"
+      "evidence": "RED baseline pending.",
+      "id": "SW2-22-R2",
+      "requirement": "A source-side read-only upgrade check produces a deterministic machine-readable plan and reports whether upgrade is required without mutating the consumer.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112: known-defect lifecycle reconciliation and invalid-status/missing-evidence/unknown-phase/duplicate-ID negative regressions passed in Governance CI run 37409327637; post-merge main run 37409673401 revalidated the same merged tree.",
-      "id": "SW2-21-R3",
-      "requirement": "Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability.",
-      "status": "PASS"
+      "evidence": "RED baseline pending.",
+      "id": "SW2-22-R3",
+      "requirement": "Upgrade apply mutates only toolchain-owned surfaces, preserves Owner semantic authority, and is idempotent for an already-current consumer.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact final candidate 93686660d079a6e31f099eb07afbc6ecff1d2112 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320: Governance CI run 37409327637 passed all six permanent contexts. Candidate was squash-merged to main as 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with identical tree bca3b301be91ba07443b51eb7dc5d539e2a98320. Post-merge Governance CI run 37409673401 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the feature acceptance boundary.",
-      "id": "SW2-21-R4",
-      "requirement": "Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance.",
-      "status": "PASS"
+      "evidence": "RED baseline pending.",
+      "id": "SW2-22-R4",
+      "requirement": "Legacy v2.1, STANDARD, STRICT, tamper, Ubuntu/Windows, and pinned max-grounding consumer paths retain governance parity under the new provenance/upgrade contract.",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "evidence": "No final candidate exists.",
+      "id": "SW2-22-R5",
+      "requirement": "Exact final candidate and post-merge main pass the complete six-context permanent Governance CI matrix.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-21-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_session": "SW2-22-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
-    "python scripts/selftest_governance_engine.py",
-    "python scripts/selftest_closure_defect_lifecycle.py",
-    "python scripts/selftest_cross_document_regressions.py",
-    "python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 8723bf0315a1e6cee005198affbc9ec1576e8ba7",
-    "python scripts/validate_project_docs.py --root .",
-    "python scripts/validate_sequence_sessions.py --root .",
-    "python scripts/governance_engine.py --root . --base 8723bf0315a1e6cee005198affbc9ec1576e8ba7 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/selftest_schema_toolchain.py",
+    "python scripts/selftest_toolchain_provenance_upgrade.py",
+    "python scripts/validate_schema_toolchain.py --root .",
+    "python scripts/selftest_adoption_profiles.py",
+    "python scripts/selftest_strict_project_workflow.py",
+    "python scripts/governance_engine.py --root . --base 65c28fcdfebec68a20adc02ae95406f9261d5a51 --mode finalize --expected-head <EXACT_HEAD>"
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
-    "HUMAN_COMPREHENSION": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "NOT_PROVEN",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
-    "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
