@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623
+Source digest: 5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -49,7 +49,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_public_docs.py | Python | 85 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
-| scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
+| scripts/selftest_schema_toolchain.py | Python | 184 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_sequence_squash_provenance.py | Python | 64 | scripts | NO |
@@ -58,9 +58,6 @@ Generated/refreshed: current compiler run
 | scripts/sequence_contract.py | Python | 269 | scripts | NO |
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 154 | scripts | NO |
-| scripts/tmp_sw2_22_implement.py | Python | 373 | scripts | NO |
-| scripts/tmp_sw2_22_open_red.py | Python | 366 | scripts | NO |
-| scripts/tmp_sw2_22_open_red_v2.py | Python | 113 | scripts | NO |
 | scripts/toolchain_identity.py | Python | 205 | scripts | NO |
 | scripts/upgrade_governance_toolchain.py | Python | 164 | scripts | NO |
 | scripts/validate_closure_defect_lifecycle.py | Python | 228 | scripts | NO |

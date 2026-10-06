@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623
+Source digest: 5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -65,9 +65,6 @@ responsibility, callers, or state ownership.
 | scripts/sequence_contract.py | 16 | 0 | 16 | 0 |
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 4 | 0 | 4 | 0 |
-| scripts/tmp_sw2_22_implement.py | 13 | 0 | 13 | 0 |
-| scripts/tmp_sw2_22_open_red.py | 8 | 0 | 8 | 0 |
-| scripts/tmp_sw2_22_open_red_v2.py | 3 | 0 | 3 | 0 |
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
 | scripts/upgrade_governance_toolchain.py | 6 | 0 | 6 | 0 |
 | scripts/validate_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
@@ -698,7 +695,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 13-31 |
 | write_json | function | 34-35 |
-| main | function | 38-167 |
+| main | function | 38-180 |
 
 </details>
 
@@ -811,54 +808,6 @@ responsibility, callers, or state ownership.
 | compiler_args | function | 25-33 |
 | sync_once | function | 36-132 |
 | main | function | 135-150 |
-
-</details>
-
-<details>
-<summary><code>scripts/tmp_sw2_22_implement.py</code> — 13 symbols</summary>
-
-| Symbol | Kind | Lines@SHA |
-|---|---|---|
-| read | function | 12-13 |
-| write | function | 16-19 |
-| load | function | 22-23 |
-| dump | function | 26-27 |
-| replace_once | function | 30-36 |
-| run | function | 39-44 |
-| patch_toolchain_identity | function | 47-67 |
-| write_upgrader | function | 70-238 |
-| update_authority_and_docs | function | 241-299 |
-| strengthen_regression | function | 302-309 |
-| commit_source | function | 312-315 |
-| regenerate_sequence | function | 318-333 |
-| main | function | 336-369 |
-
-</details>
-
-<details>
-<summary><code>scripts/tmp_sw2_22_open_red.py</code> — 8 symbols</summary>
-
-| Symbol | Kind | Lines@SHA |
-|---|---|---|
-| load | function | 14-15 |
-| write | function | 18-21 |
-| run | function | 24-31 |
-| open_authority | function | 34-186 |
-| install_red_test | function | 189-296 |
-| sync_sequence | function | 299-337 |
-| prove_red | function | 340-354 |
-| main | function | 357-362 |
-
-</details>
-
-<details>
-<summary><code>scripts/tmp_sw2_22_open_red_v2.py</code> — 3 symbols</summary>
-
-| Symbol | Kind | Lines@SHA |
-|---|---|---|
-| commit_anchor | function | 16-27 |
-| generate_current_sequence | function | 30-73 |
-| main | function | 76-109 |
 
 </details>
 

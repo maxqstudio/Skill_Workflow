@@ -13,7 +13,7 @@ Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-22-consumer-toolchain-provenance-upgrade
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: 65c28fcdfebec68a20adc02ae95406f9261d5a51
-Current source digest: fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623
+Current source digest: 5b1ee4379f8dd41426ff1b56dec5f54311707c6bfa9934ea25f1dce043a0162b
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.
