@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-22-consumer-toolchain-provenance-upgrade
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 65c28fcdfebec68a20adc02ae95406f9261d5a51
+Last accepted SHA: 44e3e45b9a231744c7962e0b4153d720d80653bc
 Current source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
 
 ## Authorities
