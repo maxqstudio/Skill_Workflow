@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
+
+import selftest_closure_defect_lifecycle
 from generate_project_docs import claim_backlink_comment
 from validate_cross_document_consistency import is_skill_reference_document, is_template_document
 
@@ -32,6 +34,9 @@ def main() -> int:
         raise RuntimeError("bundled skill reference was not recognized")
     if is_skill_reference_document(root, root / "docs" / "PROJECT_TRUTH_SYNC.md"):
         raise RuntimeError("canonical project document was misclassified as a skill reference")
+
+    if selftest_closure_defect_lifecycle.main() != 0:
+        raise RuntimeError("closure/defect lifecycle regression failed")
 
     print("CLAIM_BACKLINK_PROJECTION=PASS")
     print("TEMPLATE_PATH_SYMBOL_SCOPE=PASS")
