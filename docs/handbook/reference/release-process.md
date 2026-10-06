@@ -4,7 +4,7 @@
 
 Skill Workflow separates release **process evidence**, release **preflight authority**, and release **publication**.
 
-Skill Workflow V2.0.0 has been published from its exact accepted release commit. The rules below describe the evidence boundary that produced that release and remain the reference for governed publication: no new stable tag or GitHub release is authoritative until its exact publication candidate passes strict preflight and the governed publication transaction completes.
+The current stable release is `v2.1.0`, published from its exact accepted release commit. `v2.0.0` remains historical immutable release evidence. The rules below describe the governed publication boundary: no new stable tag or GitHub release is authoritative until its exact publication candidate passes strict preflight and the governed publication transaction completes.
 
 ## Release candidate inputs
 
@@ -44,22 +44,22 @@ A PASS in evidence-only mode is **not** permission to tag, publish, or claim fin
 3. requires every non-publication acceptance requirement to be `PASS`;
 4. requires every truth gate to be `PASS` or `NOT_APPLICABLE`;
 5. validates version syntax and tag non-existence;
-6. for a stable version, requires SW2-09 to be current and every prior SW2 phase to be complete;
-7. allows only `SW2-09-R4` to remain `NOT_PROVEN` during stable preflight, because creation of the exact versioned tag/release is the publication action being authorized.
+6. for a stable version, requires the current phase to have an explicit stable-release contract in `scripts/release_preflight.py` and every prior SW2 phase to be complete;
+7. allows only that active release phase's declared publication requirement to remain `NOT_PROVEN` during stable preflight, because creation of the exact versioned tag/release is the publication action being authorized.
 
-`SW2-09-R4` is publication-pending, not waived. Any `FAIL`, any other `NOT_PROVEN` requirement, a missing SW2-09 release requirement, or any unproven truth gate blocks publication authority. After the exact tag/release is created, R4 must be promoted from the resulting publication evidence.
+The publication requirement is publication-pending, not waived. Any `FAIL`, any other `NOT_PROVEN` requirement, a missing phase release requirement, an unauthorized stable-release phase, or any unproven truth gate blocks publication authority. After the exact tag/release is created, the publication requirement must be promoted from the resulting publication evidence.
 
 Only a successful strict preflight may emit `publication_authority=true`. The preflight itself is still read-only and does not create a Git tag or GitHub release.
 
 ## Evidence artifacts
 
-The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose the requested/effective governance modes, whether the run was evidence-only or strict, whether the version was stable, whether a publication requirement is pending, and whether publication authority was granted.
+The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose the requested/effective governance modes, whether the run was evidence-only or strict, whether the version was stable, the publication-requirement state, and whether publication authority was granted.
 
 ## Publication transaction
 
 Publication is a separate governed action after strict preflight. The stable tag and GitHub release must both point to the exact tested publication commit. Release notes must identify that commit and the accepted compatibility/migration boundary. Publication must fail closed if the requested tag already exists or the repository HEAD no longer matches the accepted publication candidate.
 
-After publication, verify that the tag target and GitHub release target both resolve to the preflight-authorized commit before promoting `SW2-09-R4` to PASS. A publication record that points anywhere else is not acceptable evidence.
+After publication, verify that the tag target and GitHub release target both resolve to the preflight-authorized commit before promoting the active phase's publication requirement to PASS. A publication record that points anywhere else is not acceptable evidence.
 
 ## Release rollback
 
@@ -68,7 +68,7 @@ A stable release is immutable evidence. Never move or retarget an existing stabl
 If a published release is found defective:
 
 1. Stop recommending or automating adoption of the defective version and record the affected tag, exact commit, and failure evidence.
-2. Consumers should pin the last known-good release or accepted commit while the repair is prepared. If no earlier stable V2 tag exists, use the last accepted pre-release/main commit that is explicitly supported for recovery.
+2. Consumers should pin the last known-good release or accepted commit while the repair is prepared.
 3. Repair forward on a new branch and run the full governance, migration, compatibility, and strict release-preflight gates again.
 4. Publish a new semantic patch release from the newly tested commit. Do not overwrite release assets or silently replace the original tag target.
 5. Update the defective release notes to point users to the corrective release when GitHub metadata can be changed without altering the tag target.

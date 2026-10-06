@@ -6,6 +6,7 @@ from __future__ import annotations
 import tempfile
 from pathlib import Path
 
+import selftest_documentation_contract
 from validate_doc_quality import GENERATED_MARKER
 from validate_public_docs import (
     GENERATED_REFERENCE_FILES,
@@ -70,6 +71,7 @@ def main() -> int:
         missing.unlink()
         assert validate(root)["result"] == "FAIL"
 
+    assert selftest_documentation_contract.main() == 0
     print("PUBLIC_DOC_BASELINE=PASS")
     print("PUBLIC_DOC_MARKER_TAMPER_REJECTION=PASS")
     print("README_REFERENCE_MANUAL_REGRESSION_REJECTION=PASS")

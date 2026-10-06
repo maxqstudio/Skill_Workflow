@@ -1,0 +1,649 @@
+{
+  "authority": {
+    "current_phase": "SW2-20",
+    "license_present": true,
+    "no_ruleset_boundary": true,
+    "stable_release": "v2.1.0"
+  },
+  "documentation_candidates": 124,
+  "freshness_failures": [],
+  "inventory_digest": "202294b345549558bee40b79ff99e7aa3e36d2d527b30b87da600af3644edea1",
+  "items": [
+    {
+      "freshness_mode": "authority-bound",
+      "path": "AGENTS.md",
+      "role": "root_agent_contract"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "CODE_OF_CONDUCT.md",
+      "role": "root_community_policy"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "CONTRIBUTING.md",
+      "role": "root_community_policy"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "LICENSE",
+      "role": "root_legal"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "README.md",
+      "role": "root_public_entry"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "SECURITY.md",
+      "role": "root_community_policy"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "SKILL.md",
+      "role": "root_skill_contract"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/ARCHITECTURE.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/CHANGELOG.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/CURRENT_STATE.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/DATA_CONTRACTS.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/DECISIONS.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/DOC_SYNC_MATRIX.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/FLOW_INDEX.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/GLOSSARY.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/KNOWN_DEFECTS.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/MODULE_MAP.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/PROJECT_MANIFEST.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/PROJECT_TRUTH_SYNC.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/README.md",
+      "role": "docs_entry"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/ROADMAP.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/RUNBOOK.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/SEQUENCE_CONTRACTS.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/SOURCE_AUTHORITY_MAP.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/SYMBOL_INDEX.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/SYSTEM_OVERVIEW.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/TEST_ACCEPTANCE_MATRIX.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/WORKFLOW_STATE_MACHINE.md",
+      "role": "project_truth_projection"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/README.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/architecture/analyzer-contract.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/architecture/validation-engine.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/concepts/governance-model.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/getting-started/adoption.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/getting-started/installation.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/guides/troubleshooting.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/commands.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/documentation-system.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/release-process.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/repository-governance.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/versioning.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/sequence/README.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-00-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-01-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-02-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-03-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-03-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-04-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-04-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-05-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-05-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-06-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-06-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-07-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-07-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-08-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-08-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-09-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-09-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-10-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-10-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-11-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-11-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-12-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-12-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-13-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-13-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-14-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-14-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-15-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-15-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-16-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-16-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-17-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-17-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-18-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-18-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-19-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-19-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-20-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-20-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-03-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-04-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-05-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-06-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-07-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-08-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-09-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-10-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-11-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-12-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-13-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-14-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-15-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-16-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-17-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-18-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-19-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-20-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "references/execution-and-acceptance.md",
+      "role": "skill_reference"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "references/governance-and-project-truth.md",
+      "role": "skill_reference"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "references/project-truth-synchronization.md",
+      "role": "skill_reference"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "references/sequence-contracts.md",
+      "role": "skill_reference"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/AGENTS.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/API_CONTRACTS.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/ARCHITECTURE.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/CHANGELOG.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/CURRENT_STATE.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/DATA_CONTRACTS.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/DECISIONS.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/DOC_SYNC_MATRIX.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/FLOW_INDEX.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/GLOSSARY.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/KNOWN_DEFECTS.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/MODULE_MAP.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/PROJECT_MANIFEST.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/PROJECT_TRUTH_SYNC.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/RUNBOOK.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/SEQUENCE_CONTRACTS.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/SOURCE_AUTHORITY_MAP.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/SYMBOL_INDEX.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/SYSTEM_OVERVIEW.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/TEST_ACCEPTANCE_MATRIX.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/UI_INFORMATION_ARCHITECTURE.md",
+      "role": "template_documentation"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "templates/WORKFLOW_STATE_MACHINE.md",
+      "role": "template_documentation"
+    }
+  ],
+  "result": "PASS",
+  "role_counts": {
+    "docs_entry": 1,
+    "handbook_source": 13,
+    "project_truth_projection": 20,
+    "root_agent_contract": 1,
+    "root_community_policy": 3,
+    "root_legal": 1,
+    "root_public_entry": 1,
+    "root_skill_contract": 1,
+    "sequence_generated_diagram": 39,
+    "sequence_human_view": 18,
+    "skill_reference": 4,
+    "template_documentation": 22
+  },
+  "schema_version": 1
+}

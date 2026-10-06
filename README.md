@@ -2,7 +2,7 @@
 
 Strict, deterministic project governance and handoff for long-running software work across humans and coding agents.
 
-**Stable release:** `v2.0.0`
+**Stable release:** `v2.1.0`
 **License:** MIT
 
 Skill Workflow keeps project authority, current phase, architecture, workflows, evidence, and legal next actions explicit inside the repository. Generated documentation is a projection of governed sources—not a second source of truth.
@@ -74,7 +74,7 @@ The `skills` CLI can target Codex, Claude Code, Cursor, Gemini CLI, GitHub Copil
 
 ## Project state and governance
 
-This repository dogfoods Skill Workflow. The accepted stable V2 release is `v2.0.0`; post-release governance work continues through explicit roadmap/acceptance boundaries.
+This repository dogfoods Skill Workflow. The accepted stable V2.1 release is `v2.1.0`; subsequent governance work continues through explicit roadmap/acceptance boundaries.
 
 Maintainers can inspect the generated [system overview](docs/SYSTEM_OVERVIEW.md), [current state](docs/CURRENT_STATE.md), [roadmap](docs/ROADMAP.md), [project manifest](docs/PROJECT_MANIFEST.md), and [Project Truth ledger](docs/PROJECT_TRUTH_SYNC.md). Those files are generated evidence/navigation for this repository, not the public product manual.
 

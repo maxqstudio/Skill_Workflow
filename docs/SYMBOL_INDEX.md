@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
+Source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -45,6 +45,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_adoption_profiles.py | 7 | 0 | 7 | 0 |
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
+| scripts/selftest_documentation_contract.py | 13 | 0 | 12 | 1 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/selftest_governance_engine.py | 16 | 0 | 12 | 4 |
@@ -65,6 +66,7 @@ responsibility, callers, or state ownership.
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
+| scripts/validate_documentation_contract.py | 16 | 0 | 16 | 0 |
 | scripts/validate_github_ruleset.py | 2 | 0 | 2 | 0 |
 | scripts/validate_handoff.py | 5 | 0 | 5 | 0 |
 | scripts/validate_human_comprehension.py | 3 | 0 | 3 | 0 |
@@ -299,21 +301,21 @@ responsibility, callers, or state ownership.
 | git_z | function | 349-358 |
 | state_base | function | 361-369 |
 | collect_changed_paths | function | 372-386 |
-| classify_path | function | 389-421 |
-| classify_changed_paths | function | 424-425 |
-| effective_mode | function | 428-436 |
-| develop_node_names | function | 439-474 |
-| planned_node_names | function | 477-487 |
-| governed_status | function | 490-503 |
-| cli_action | function | 506-511 |
-| command_action | function | 514-529 |
-| command_action.run | method | 515-527 |
-| compile_scripts_action | function | 532-549 |
-| compile_scripts_action.run | method | 534-547 |
-| _regression_node | function | 552-557 |
-| build_mode_dag | function | 560-755 |
-| build_dag | function | 758-832 |
-| main | function | 835-967 |
+| classify_path | function | 389-429 |
+| classify_changed_paths | function | 432-433 |
+| effective_mode | function | 436-444 |
+| develop_node_names | function | 447-482 |
+| planned_node_names | function | 485-495 |
+| governed_status | function | 498-511 |
+| cli_action | function | 514-519 |
+| command_action | function | 522-537 |
+| command_action.run | method | 523-535 |
+| compile_scripts_action | function | 540-557 |
+| compile_scripts_action.run | method | 542-555 |
+| _regression_node | function | 560-565 |
+| build_mode_dag | function | 568-763 |
+| build_dag | function | 766-840 |
+| main | function | 843-975 |
 
 </details>
 
@@ -535,6 +537,27 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_documentation_contract.py</code> — 13 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| require | function | 15-17 |
+| git | function | 20-25 |
+| run_git | function | 28-34 |
+| write | function | 37-40 |
+| write_json | function | 43-44 |
+| fixture_root | function | 47-86 |
+| kinds | function | 89-90 |
+| baseline_inventory_contract | function | 93-104 |
+| stale_semantic_regressions | function | 107-125 |
+| coverage_drift_contract | function | 128-163 |
+| coverage_drift_contract.expect_stale | method | 136-145 |
+| unclassified_surface_contract | function | 166-174 |
+| main | function | 177-183 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_generated_doc_presentation.py</code> — 1 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -569,11 +592,11 @@ responsibility, callers, or state ownership.
 | dag_fail_closed | function | 133-170 |
 | dag_fail_closed.fail | method | 136-137 |
 | dag_fail_closed.downstream | method | 139-142 |
-| mode_planning_contract | function | 173-275 |
-| smart_validation_dag_contract | function | 279-423 |
-| changed_path_collection_contract | function | 426-448 |
-| mode_cli_integration_contract | function | 451-544 |
-| main | function | 547-557 |
+| mode_planning_contract | function | 173-295 |
+| smart_validation_dag_contract | function | 299-443 |
+| changed_path_collection_contract | function | 446-468 |
+| mode_cli_integration_contract | function | 471-564 |
+| main | function | 567-577 |
 
 </details>
 
@@ -620,7 +643,7 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 21-79 |
+| main | function | 22-81 |
 
 </details>
 
@@ -818,6 +841,30 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/validate_documentation_contract.py</code> — 16 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| _git | function | 69-78 |
+| tracked_paths | function | 81-89 |
+| is_documentation_candidate | function | 92-95 |
+| classify_document | function | 98-129 |
+| _load_json | function | 132-137 |
+| latest_stable_tag | function | 140-151 |
+| current_phase | function | 154-156 |
+| license_present | function | 159-160 |
+| no_ruleset_boundary | function | 163-172 |
+| _line_number | function | 175-176 |
+| _historical_context | function | 179-181 |
+| _finding | function | 184-197 |
+| freshness_findings | function | 200-252 |
+| build_report | function | 255-296 |
+| report_text | function | 299-300 |
+| main | function | 303-336 |
+
+</details>
+
+<details>
 <summary><code>scripts/validate_github_ruleset.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -891,8 +938,8 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| validate | function | 92-173 |
-| main | function | 176-190 |
+| validate | function | 93-204 |
+| main | function | 207-221 |
 
 </details>
 

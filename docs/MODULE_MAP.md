@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9
+Source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -21,7 +21,7 @@ Generated/refreshed: current compiler run
 | scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
 | scripts/generate_sequence_plan.py | Python | 49 | scripts | NO |
 | scripts/generate_symbol_index.py | Python | 261 | scripts | NO |
-| scripts/governance_engine.py | Python | 971 | scripts | NO |
+| scripts/governance_engine.py | Python | 979 | scripts | NO |
 | scripts/initialize_project_truth.py | Python | 156 | scripts | NO |
 | scripts/migrate_governance_v1.py | Python | 149 | scripts | NO |
 | scripts/project_profile.py | Python | 264 | scripts | NO |
@@ -38,13 +38,14 @@ Generated/refreshed: current compiler run
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 44 | scripts | NO |
+| scripts/selftest_documentation_contract.py | Python | 187 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
-| scripts/selftest_governance_engine.py | Python | 561 | scripts | NO |
+| scripts/selftest_governance_engine.py | Python | 581 | scripts | NO |
 | scripts/selftest_historical_evidence.py | Python | 204 | scripts | NO |
 | scripts/selftest_performance_budget.py | Python | 73 | scripts | NO |
 | scripts/selftest_project_truth_compiler.py | Python | 608 | scripts | NO |
-| scripts/selftest_public_docs.py | Python | 83 | scripts | NO |
+| scripts/selftest_public_docs.py | Python | 85 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
 | scripts/selftest_schema_toolchain.py | Python | 171 | scripts | NO |
@@ -58,13 +59,14 @@ Generated/refreshed: current compiler run
 | scripts/toolchain_identity.py | Python | 184 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
+| scripts/validate_documentation_contract.py | Python | 340 | scripts | NO |
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |
 | scripts/validate_performance_budget.py | Python | 146 | scripts | NO |
 | scripts/validate_project_docs.py | Python | 92 | scripts | NO |
 | scripts/validate_project_truth.py | Python | 365 | scripts | NO |
-| scripts/validate_public_docs.py | Python | 194 | scripts | NO |
+| scripts/validate_public_docs.py | Python | 225 | scripts | NO |
 | scripts/validate_repository_health.py | Python | 146 | scripts | NO |
 | scripts/validate_schema_toolchain.py | Python | 76 | scripts | NO |
 | scripts/validate_sequence_contract.py | Python | 336 | scripts | NO |

@@ -7,6 +7,7 @@ import argparse
 import json
 from pathlib import Path
 
+import validate_documentation_contract as documentation_contract
 from validate_doc_quality import GENERATED_MARKER, normalized_shape
 
 PUBLIC_MARKER = "PUBLIC PRODUCT DOCUMENTATION - SOURCE-AUTHORED"
@@ -156,6 +157,34 @@ def validate(root: Path) -> dict[str, object]:
         if GENERATED_MARKER not in path.read_text(encoding="utf-8", errors="strict"):
             failures.append("GENERATED_GOVERNANCE_MARKER_MISSING:" + relative)
 
+    documentation_contract_status = "NOT_APPLICABLE"
+    if (root / ".git").exists():
+        documentation_report = documentation_contract.build_report(root)
+        documentation_contract_status = str(documentation_report.get("result", "FAIL"))
+        expected_coverage = documentation_contract.report_text(documentation_report)
+        coverage_path = root / documentation_contract.REPORT_PATH
+        if not coverage_path.is_file():
+            failures.append("DOCUMENTATION_COVERAGE_REPORT_MISSING:" + documentation_contract.REPORT_PATH)
+        else:
+            try:
+                actual_coverage = coverage_path.read_text(encoding="utf-8", errors="strict")
+            except Exception as exc:
+                failures.append("DOCUMENTATION_COVERAGE_REPORT_READ_FAILURE:" + type(exc).__name__)
+            else:
+                if actual_coverage != expected_coverage:
+                    failures.append("DOCUMENTATION_COVERAGE_REPORT_STALE:" + documentation_contract.REPORT_PATH)
+        for finding in documentation_report.get("freshness_failures", []):
+            if not isinstance(finding, dict):
+                continue
+            failures.append(
+                "DOCUMENTATION_FRESHNESS:"
+                + str(finding.get("kind", "UNKNOWN"))
+                + ":"
+                + str(finding.get("path", "UNKNOWN"))
+                + ":"
+                + str(finding.get("line", 0))
+            )
+
     return {
         "schema_version": 1,
         "result": "FAIL" if failures else "PASS",
@@ -164,11 +193,13 @@ def validate(root: Path) -> dict[str, object]:
         "public_root": "docs/handbook",
         "generated_governance_root": "docs",
         "canonical_consumer_layout_changed": False,
+        "documentation_contract": documentation_contract_status,
         "failures": failures,
         "evidence_boundary": (
             "This gate proves public documentation structure, navigation, source-authored/generated-layer separation, "
-            "required migration/rollback guidance, and obvious README reference-manual regressions. It does not by itself "
-            "prove that an operational rollback has been executed against an external consumer."
+            "deterministic tracked-document coverage/freshness, required migration/rollback guidance, and obvious README "
+            "reference-manual regressions. It does not by itself prove that an operational rollback has been executed "
+            "against an external consumer."
         ),
     }
 
