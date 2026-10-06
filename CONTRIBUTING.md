@@ -20,7 +20,7 @@ Unknown impact must broaden verification rather than silently skip checks.
 
 ## Branches and pull requests
 
-Create changes on a branch and merge through a pull request. The default branch is governed against deletion and non-fast-forward updates, and the repository currently permits squash merge for governed changes.
+Create changes on a branch and merge through a pull request. Project governance requires exact-candidate evidence before acceptance. GitHub currently has no repository ruleset enforcing required checks or merge protection automatically, so platform mergeability is not acceptance authority.
 
 A pull request is not accepted merely because GitHub allows it to merge. Required project evidence must also be green on the exact candidate SHA.
 
@@ -60,4 +60,4 @@ Do not place vulnerability details, secrets, tokens, exploit material, or privat
 
 ## License boundary
 
-This repository does not currently declare an Owner-approved public license. Do not add, infer, or claim a license until an accepted governance decision records the Owner's explicit choice.
+Skill Workflow is distributed under the [MIT License](LICENSE). Contributions must preserve applicable license notices and must not claim a different license without a new accepted governance decision.
