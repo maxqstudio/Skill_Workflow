@@ -41,10 +41,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "Feature evidence exists on 326c101980b9ad820d5d5dc77b6b8689dea6b9b5 / Governance CI run 37428635525, but R5 requires a promoted exact final candidate plus post-merge main revalidation; merge has not occurred.",
+      "evidence": "PASS: exact helper-free final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf with tree ee4377857a42f85151fdd2e546fb4aaa0797f92a passed all six permanent contexts in Governance CI run 37429305042; it was squash-merged to main as 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a; post-merge Governance CI run 37429617130 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence with Mermaid render, Governance Engine Performance, and Consumer Engine Performance. This closes the SW2-22 feature acceptance boundary.",
       "id": "SW2-22-R5",
       "requirement": "Exact final candidate and post-merge main pass the complete six-context permanent Governance CI matrix.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
