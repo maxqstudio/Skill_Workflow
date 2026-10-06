@@ -163,10 +163,27 @@ def fixture_regressions() -> None:
         if report["result"] != "PASS":
             raise RuntimeError("BRANCH_AGNOSTIC_ACCEPTED_STATE_REJECTED:" + repr(report["failures"]))
 
+    data = fixture()
+    data["state"].update({
+        "status": "SW2_21_ACCEPTED",
+        "working_branch": "main",
+        "last_accepted_sha": "b" * 40,
+        "next_authorized_actions": [
+            "Treat the accepted phase as terminal until the roadmap is explicitly extended."
+        ],
+    })
+    with tempfile.TemporaryDirectory(prefix="sw2-closure-defect-") as td:
+        root = Path(td)
+        materialize(root, data)
+        report = lifecycle.validate(root, expected_base=BASE)
+        if report["result"] != "PASS":
+            raise RuntimeError("ACCEPTED_BASE_LIFECYCLE_REJECTED:" + repr(report["failures"]))
+
     print("CLOSURE_BASE_REBIND_REJECTION=PASS")
     print("CLOSURE_STALE_ACTION_REJECTION=PASS")
     print("DEFECT_LIFECYCLE_NEGATIVE_PATHS=PASS")
     print("BRANCH_AGNOSTIC_ACCEPTED_CLOSURE=PASS")
+    print("ACCEPTED_BASE_LIFECYCLE=PASS")
 
 
 def main() -> int:

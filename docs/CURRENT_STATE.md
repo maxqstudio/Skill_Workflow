@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 8723bf0315a1e6cee005198affbc9ec1576e8ba7
+Authority verified at SHA: 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556
 Governance profile: strict
 
 ## Current phase
 Phase: SW2-21
-Status: SW2_21_ACCEPTANCE_CANDIDATE
+Status: SW2_21_ACCEPTANCE_CLOSURE_DEFECT_LIFECYCLE_RECONCILIATION_ACCEPTED
 Roadmap phase: SW2-21
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-21-authorized-closure-defect-lifecycle
+Branch: main
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 8723bf0315a1e6cee005198affbc9ec1576e8ba7
+Last accepted SHA: 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556
 Current candidate SHA: external final acceptance evidence
-Current source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
+Current source digest: 53b6ad518404a1217f6c232a5cc4f55fe81f77b7fc42fba7990558f900999346
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -113,12 +113,9 @@ SEQUENCE_SYNC: PASS
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is promoted from exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance CI run 37398146243 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; deterministic coverage reported 124/124 classified tracked documentation surfaces with zero freshness failures, and Self Governance stopped only at the expected pre-promotion Project Truth boundary.
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.
 - SW2-21 pre-promotion evidence is proven on exact candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance CI run 37408981020 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; Self Governance stopped only at the intentionally unpromoted Project Truth boundary after implementation/regression nodes passed.
+- SW2-21 Acceptance Closure & Defect Lifecycle Reconciliation is accepted on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 with tree bca3b301be91ba07443b51eb7dc5d539e2a98320 equal to exact tested candidate 93686660d079a6e31f099eb07afbc6ecff1d2112. Final candidate Governance CI run 37409327637 and post-merge main Governance CI run 37409673401 both passed all six permanent contexts. SW2-21 remains the terminal CURRENT roadmap node; no later governed phase is authorized until the Owner explicitly extends the roadmap.
 
 ## Not proven
-- SW2-21 branch-agnostic accepted-closure semantics are NOT_PROVEN.
-- SW2-21 deterministic accepted-main baseline rebinding is NOT_PROVEN.
-- SW2-21 known-defect lifecycle reconciliation and stale-ledger rejection are NOT_PROVEN.
-- SW2-21 complete cross-platform and real-consumer acceptance is NOT_PROVEN.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -128,16 +125,15 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Require all six permanent Governance CI contexts to pass on the exact promoted SW2-21 candidate.
-- Do not merge while any permanent context is not SUCCESS.
-- After squash merge with expected-head guard, verify merged tree identity and rerun post-merge Governance CI.
-- Do not open any later phase without explicit Owner roadmap approval.
+- Treat SW2-21 on main 28dc261abf3bd80f6fbfd495f38c50c0f2bf1556 as the accepted terminal roadmap authority for the current roadmap.
+- Preserve the accepted V2.1 release identity and SW2-21 closure/defect-lifecycle contract.
+- Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.
 
 ## Explicitly blocked
 - Do not rewrite historical acceptance evidence merely to make defect status look cleaner.
 - Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.
 - Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.
 - Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin any broader V2.2 feature work until SW2-21 is accepted on main.
+- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->
