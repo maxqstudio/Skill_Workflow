@@ -22,7 +22,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Promote exact candidate evidence
+      - name: Promote exact candidate evidence from a clean local commit
         shell: bash
         run: |
           python - <<'PY'
@@ -49,10 +49,7 @@ jobs:
                   req['evidence'] = f'Feature evidence exists on {SHA} / Governance CI run {RUN}, but R5 requires a promoted exact final candidate plus post-merge main revalidation; merge has not occurred.'
 
           for gate in list(data['truth_gates']):
-              if gate in {'RUNTIME_E2E', 'BEHAVIORAL_SYNC', 'TEST_RUNTIME_TRACEABILITY'}:
-                  data['truth_gates'][gate] = 'NOT_APPLICABLE'
-              else:
-                  data['truth_gates'][gate] = 'PASS'
+              data['truth_gates'][gate] = 'NOT_APPLICABLE' if gate in {'RUNTIME_E2E', 'BEHAVIORAL_SYNC', 'TEST_RUNTIME_TRACEABILITY'} else 'PASS'
           data['sequence_sync_status'] = 'PASS'
           data['human_comprehension_status'] = 'PASS'
           ap.write_text(json.dumps(data, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
@@ -60,16 +57,13 @@ jobs:
           sp = Path('.workflow/state.json')
           state = json.loads(sp.read_text(encoding='utf-8'))
           state['status'] = 'SW2_22_R1_R4_ACCEPTED_PENDING_FINAL_CANDIDATE'
-          state['not_proven'] = [
-              x for x in state.get('not_proven', [])
-              if not x.startswith('SW2-22 ')
-          ]
+          state['not_proven'] = [x for x in state.get('not_proven', []) if not x.startswith('SW2-22 ')]
           state['not_proven'].append('SW2-22 R5 final candidate plus post-merge main six-context revalidation remains NOT_PROVEN until merge and exact post-merge evidence exist.')
           proof = f'SW2-22 R1-R4 are proven on exact helper-free candidate {SHA} by Governance CI run {RUN}, which passed all six permanent contexts including Ubuntu/Windows toolchain regression, sequence rendering, performance, and pinned max-grounding consumer parity.'
           if proof not in state.setdefault('proven', []):
               state['proven'].append(proof)
           state['next_authorized_actions'] = [
-              'Synchronize the promoted SW2-22 evidence and run the complete permanent Governance CI matrix on the new helper-free promotion head.',
+              'Run the complete permanent Governance CI matrix on the helper-free SW2-22 promotion head.',
               'Only if that exact promotion head passes all six permanent contexts may PR #38 advance from DRAFT toward merge.',
               'Keep SW2-22 R5 NOT_PROVEN until squash merge and exact post-merge main revalidation pass.',
               'Do not begin SW2-23 or publish a new release without separate Owner authorization.'
@@ -78,13 +72,15 @@ jobs:
           PY
 
           python scripts/sync_project_truth.py --root .
+          git add .workflow docs artifacts/sequence
+          git diff --cached --quiet && { echo 'NO_PROMOTION_CHANGES'; exit 1; }
+          git commit -m 'SW2-22: promote R1-R4 exact candidate evidence'
+
           python scripts/validate_human_comprehension.py --root . --require-pass
           python scripts/validate_handoff.py --root .
           python scripts/validate_cross_document_consistency.py --root . --base 65c28fcdfebec68a20adc02ae95406f9261d5a51 --require-base
           python scripts/validate_project_truth.py --root .
           python scripts/validate_project_docs.py --root .
           python scripts/validate_sequence_sessions.py --root .
-          git add .workflow docs artifacts/sequence
-          git diff --cached --quiet && { echo 'NO_PROMOTION_CHANGES'; exit 1; }
-          git commit -m 'SW2-22: promote R1-R4 exact candidate evidence'
+          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence scripts references)"
           git push origin HEAD:work/sw2-22-consumer-toolchain-provenance-upgrade
