@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-22
-Status: SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_RED
+Status: SW2_22_IMPLEMENTED_PENDING_ACCEPTANCE
 Roadmap phase: SW2-22
 ROADMAP_SYNC: PASS
 
@@ -18,7 +18,7 @@ Branch: work/sw2-22-consumer-toolchain-provenance-upgrade
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 65c28fcdfebec68a20adc02ae95406f9261d5a51
 Current candidate SHA: external final acceptance evidence
-Current source digest: d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3
+Current source digest: fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -130,9 +130,9 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Reproduce the accepted SW2-22 RED gap on exact base 65c28fcdfebec68a20adc02ae95406f9261d5a51.
-- Implement the minimum exact producer-identity and deterministic toolchain upgrade contract required by SW2-22.
-- Promote no SW2-22 requirement until permanent exact-head evidence proves it.
+- Run the permanent exact-head matrix on the helper-free SW2-22 implementation candidate.
+- Promote R1-R4 only from exact candidate evidence; R5 remains pending merge and post-merge revalidation.
+- Do not begin SW2-23 or publish a new release without separate Owner authorization.
 
 ## Explicitly blocked
 - Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.

@@ -321,23 +321,9 @@
     {
       "action": "path.read_bytes",
       "evidence": "STATIC",
-      "from": "scripts/selftest_sequence_human_view.py::sha256",
-      "resolver": "python_ast",
-      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
-    },
-    {
-      "action": "path.read_bytes",
-      "evidence": "STATIC",
       "from": "scripts/toolchain_identity.py::_sha256",
       "resolver": "python_ast",
       "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
-    },
-    {
-      "action": "hashlib.sha256",
-      "evidence": "STATIC",
-      "from": "scripts/toolchain_identity.py::_sha256",
-      "resolver": "python_ast",
-      "to": "scripts/selftest_sequence_human_view.py::sha256"
     },
     {
       "action": "_git_value",
@@ -373,13 +359,6 @@
       "from": "scripts/toolchain_identity.py::tool_manifest",
       "resolver": "python_ast",
       "to": "scripts/toolchain_identity.py::_sha256"
-    },
-    {
-      "action": "hashlib.sha256",
-      "evidence": "STATIC",
-      "from": "scripts/toolchain_identity.py::toolchain_digest",
-      "resolver": "python_ast",
-      "to": "scripts/selftest_sequence_human_view.py::sha256"
     },
     {
       "action": "lock_path.read_text",
@@ -431,6 +410,104 @@
       "to": "scripts/toolchain_identity.py::toolchain_digest"
     },
     {
+      "action": "producer_metadata",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::producer_metadata"
+    },
+    {
+      "action": "tool_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::tool_manifest"
+    },
+    {
+      "action": "validate_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    },
+    {
+      "action": "load_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::load_lock"
+    },
+    {
+      "action": "source_manifest",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::source_manifest"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "sync_vendored_tools",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::sync_vendored_tools"
+    },
+    {
+      "action": "validate_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::validate_toolchain_lock"
+    },
+    {
+      "action": "write_toolchain_lock",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::write_toolchain_lock"
+    },
+    {
+      "action": "build_plan",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::build_plan"
+    },
+    {
+      "action": "emit",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::emit"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::sha256",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "source_tool_paths",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/toolchain_identity.py::source_tool_paths"
+    },
+    {
+      "action": "sha256",
+      "evidence": "STATIC",
+      "from": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "resolver": "python_ast",
+      "to": "scripts/upgrade_governance_toolchain.py::sha256"
+    },
+    {
       "action": "validate",
       "evidence": "STATIC",
       "from": "scripts/validate_schema_toolchain.py::main",
@@ -465,7 +542,8 @@
     "scripts/toolchain_identity.py::validate_toolchain_lock",
     "scripts/initialize_project_truth.py::main",
     "scripts/migrate_governance_v1.py::main",
-    "scripts/validate_schema_toolchain.py::main"
+    "scripts/validate_schema_toolchain.py::main",
+    "scripts/upgrade_governance_toolchain.py::main"
   ],
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
@@ -633,21 +711,12 @@
       "locator": "scripts/schema_contract.py::validate_spec_tree_versions"
     },
     {
-      "id": "scripts/selftest_sequence_human_view.py::sha256",
-      "kind": "function",
-      "label": "scripts/selftest_sequence_human_view.py::sha256",
-      "language": "Python",
-      "line_end": 36,
-      "line_start": 35,
-      "locator": "scripts/selftest_sequence_human_view.py::sha256"
-    },
-    {
       "id": "scripts/toolchain_identity.py::_git_value",
       "kind": "function",
       "label": "scripts/toolchain_identity.py::_git_value",
       "language": "Python",
-      "line_end": 62,
-      "line_start": 54,
+      "line_end": 64,
+      "line_start": 56,
       "locator": "scripts/toolchain_identity.py::_git_value"
     },
     {
@@ -655,8 +724,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::_sha256",
       "language": "Python",
-      "line_end": 22,
-      "line_start": 21,
+      "line_end": 24,
+      "line_start": 23,
       "locator": "scripts/toolchain_identity.py::_sha256"
     },
     {
@@ -664,8 +733,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::producer_metadata",
       "language": "Python",
-      "line_end": 69,
-      "line_start": 65,
+      "line_end": 78,
+      "line_start": 67,
       "locator": "scripts/toolchain_identity.py::producer_metadata"
     },
     {
@@ -673,8 +742,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::source_tool_paths",
       "language": "Python",
-      "line_end": 31,
-      "line_start": 25,
+      "line_end": 33,
+      "line_start": 27,
       "locator": "scripts/toolchain_identity.py::source_tool_paths"
     },
     {
@@ -682,8 +751,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::sync_vendored_tools",
       "language": "Python",
-      "line_end": 86,
-      "line_start": 72,
+      "line_end": 95,
+      "line_start": 81,
       "locator": "scripts/toolchain_identity.py::sync_vendored_tools"
     },
     {
@@ -691,8 +760,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::tool_manifest",
       "language": "Python",
-      "line_end": 41,
-      "line_start": 34,
+      "line_end": 43,
+      "line_start": 36,
       "locator": "scripts/toolchain_identity.py::tool_manifest"
     },
     {
@@ -700,8 +769,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::toolchain_digest",
       "language": "Python",
-      "line_end": 51,
-      "line_start": 44,
+      "line_end": 53,
+      "line_start": 46,
       "locator": "scripts/toolchain_identity.py::toolchain_digest"
     },
     {
@@ -709,8 +778,8 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "language": "Python",
-      "line_end": 184,
-      "line_start": 117,
+      "line_end": 205,
+      "line_start": 126,
       "locator": "scripts/toolchain_identity.py::validate_toolchain_lock"
     },
     {
@@ -718,9 +787,63 @@
       "kind": "function",
       "label": "scripts/toolchain_identity.py::write_toolchain_lock",
       "language": "Python",
-      "line_end": 114,
-      "line_start": 89,
+      "line_end": 123,
+      "line_start": 98,
       "locator": "scripts/toolchain_identity.py::write_toolchain_lock"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "language": "Python",
+      "line_end": 91,
+      "line_start": 40,
+      "locator": "scripts/upgrade_governance_toolchain.py::build_plan"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::emit",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::emit",
+      "language": "Python",
+      "line_end": 107,
+      "line_start": 94,
+      "locator": "scripts/upgrade_governance_toolchain.py::emit"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "language": "Python",
+      "line_end": 37,
+      "line_start": 30,
+      "locator": "scripts/upgrade_governance_toolchain.py::load_lock"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::main",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::main",
+      "language": "Python",
+      "line_end": 160,
+      "line_start": 110,
+      "locator": "scripts/upgrade_governance_toolchain.py::main"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::sha256",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::sha256",
+      "language": "Python",
+      "line_end": 23,
+      "line_start": 22,
+      "locator": "scripts/upgrade_governance_toolchain.py::sha256"
+    },
+    {
+      "id": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "kind": "function",
+      "label": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "language": "Python",
+      "line_end": 27,
+      "line_start": 26,
+      "locator": "scripts/upgrade_governance_toolchain.py::source_manifest"
     },
     {
       "id": "scripts/validate_schema_toolchain.py::main",
@@ -741,7 +864,7 @@
       "locator": "scripts/validate_schema_toolchain.py::validate"
     }
   ],
-  "observed_head": "8c3163bd1ab651feb474aeabdd470255e0b16d5f",
+  "observed_head": "8797f00bb8f1fb319cfbd043b23389712fa24deb",
   "schema_version": 1,
-  "source_digest": "d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3"
+  "source_digest": "fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623"
 }

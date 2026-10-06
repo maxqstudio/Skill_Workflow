@@ -82,4 +82,12 @@ Skill Workflow is licensed under the MIT License, with the repository LICENSE fi
 
 Rationale: The Owner explicitly selected MIT for the public project. The choice keeps reuse and redistribution permissive while preserving the required copyright and license notice.
 
+## SW2-ADR-011 — Make consumer toolchain provenance exact and upgrades explicit
+
+Status: ACCEPTED
+
+Toolchain contract version 2 replaces informational producer commit hints with validator-enforced Git repository, exact source SHA, and release identity. Consumer upgrades are source-side, plan-before-write, limited to vendored tool files plus the lock, and legacy v2.1 locks migrate explicitly.
+
+Rationale: Content digests prove internal byte consistency but do not identify which upstream Skill Workflow snapshot supplied those bytes. Exact producer identity plus a deterministic read-only upgrade plan closes that provenance gap without allowing automated edits to Owner semantic authority.
+
 <!-- CLAIM_BACKLINKS: TRUTH-SW2-MODE-SAFETY TRUTH-SW2-PERFORMANCE-PARITY TRUTH-SW2-SCHEMA-MIGRATION TRUTH-SW2-TOOLCHAIN-IDENTITY -->

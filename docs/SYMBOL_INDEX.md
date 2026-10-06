@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3
+Source digest: fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -65,9 +65,11 @@ responsibility, callers, or state ownership.
 | scripts/sequence_contract.py | 16 | 0 | 16 | 0 |
 | scripts/sequence_human_view.py | 9 | 0 | 7 | 2 |
 | scripts/sync_project_truth.py | 4 | 0 | 4 | 0 |
+| scripts/tmp_sw2_22_implement.py | 13 | 0 | 13 | 0 |
 | scripts/tmp_sw2_22_open_red.py | 8 | 0 | 8 | 0 |
 | scripts/tmp_sw2_22_open_red_v2.py | 3 | 0 | 3 | 0 |
 | scripts/toolchain_identity.py | 9 | 0 | 9 | 0 |
+| scripts/upgrade_governance_toolchain.py | 6 | 0 | 6 | 0 |
 | scripts/validate_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
@@ -755,7 +757,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 12-16 |
 | fail | function | 19-21 |
-| main | function | 24-101 |
+| main | function | 24-108 |
 
 </details>
 
@@ -813,6 +815,27 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/tmp_sw2_22_implement.py</code> — 13 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| read | function | 12-13 |
+| write | function | 16-19 |
+| load | function | 22-23 |
+| dump | function | 26-27 |
+| replace_once | function | 30-36 |
+| run | function | 39-44 |
+| patch_toolchain_identity | function | 47-67 |
+| write_upgrader | function | 70-238 |
+| update_authority_and_docs | function | 241-299 |
+| strengthen_regression | function | 302-309 |
+| commit_source | function | 312-315 |
+| regenerate_sequence | function | 318-333 |
+| main | function | 336-369 |
+
+</details>
+
+<details>
 <summary><code>scripts/tmp_sw2_22_open_red.py</code> — 8 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -844,15 +867,29 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _sha256 | function | 21-22 |
-| source_tool_paths | function | 25-31 |
-| tool_manifest | function | 34-41 |
-| toolchain_digest | function | 44-51 |
-| _git_value | function | 54-62 |
-| producer_metadata | function | 65-69 |
-| sync_vendored_tools | function | 72-86 |
-| write_toolchain_lock | function | 89-114 |
-| validate_toolchain_lock | function | 117-184 |
+| _sha256 | function | 23-24 |
+| source_tool_paths | function | 27-33 |
+| tool_manifest | function | 36-43 |
+| toolchain_digest | function | 46-53 |
+| _git_value | function | 56-64 |
+| producer_metadata | function | 67-78 |
+| sync_vendored_tools | function | 81-95 |
+| write_toolchain_lock | function | 98-123 |
+| validate_toolchain_lock | function | 126-205 |
+
+</details>
+
+<details>
+<summary><code>scripts/upgrade_governance_toolchain.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| sha256 | function | 22-23 |
+| source_manifest | function | 26-27 |
+| load_lock | function | 30-37 |
+| build_plan | function | 40-91 |
+| emit | function | 94-107 |
+| main | function | 110-160 |
 
 </details>
 

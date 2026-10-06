@@ -146,20 +146,6 @@
     },
     {
       "actions": [
-        "path.read_bytes"
-      ],
-      "evidence": [
-        "STATIC"
-      ],
-      "from": "module:scripts/selftest_sequence_human_view.py",
-      "machine_edge_count": 1,
-      "resolvers": [
-        "python_ast"
-      ],
-      "to": "module:scripts/project_snapshot.py"
-    },
-    {
-      "actions": [
         "dst.read_bytes",
         "lock_path.read_text",
         "path.read_bytes",
@@ -178,17 +164,37 @@
     },
     {
       "actions": [
-        "hashlib.sha256"
+        "path.read_bytes",
+        "path.read_text"
       ],
       "evidence": [
         "STATIC"
       ],
-      "from": "module:scripts/toolchain_identity.py",
+      "from": "module:scripts/upgrade_governance_toolchain.py",
       "machine_edge_count": 2,
       "resolvers": [
         "python_ast"
       ],
-      "to": "module:scripts/selftest_sequence_human_view.py"
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "producer_metadata",
+        "source_tool_paths",
+        "sync_vendored_tools",
+        "tool_manifest",
+        "validate_toolchain_lock",
+        "write_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/upgrade_governance_toolchain.py",
+      "machine_edge_count": 7,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
     },
     {
       "actions": [
@@ -239,7 +245,8 @@
     "scripts/toolchain_identity.py::validate_toolchain_lock",
     "scripts/initialize_project_truth.py::main",
     "scripts/migrate_governance_v1.py::main",
-    "scripts/validate_schema_toolchain.py::main"
+    "scripts/validate_schema_toolchain.py::main",
+    "scripts/upgrade_governance_toolchain.py::main"
   ],
   "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
   "generated": true,
@@ -304,15 +311,6 @@
       ]
     },
     {
-      "id": "module:scripts/selftest_sequence_human_view.py",
-      "kind": "module",
-      "label": "scripts/selftest_sequence_human_view.py",
-      "machine_node_count": 1,
-      "machine_nodes": [
-        "scripts/selftest_sequence_human_view.py::sha256"
-      ]
-    },
-    {
       "id": "module:scripts/toolchain_identity.py",
       "kind": "module",
       "label": "scripts/toolchain_identity.py",
@@ -330,6 +328,20 @@
       ]
     },
     {
+      "id": "module:scripts/upgrade_governance_toolchain.py",
+      "kind": "module",
+      "label": "scripts/upgrade_governance_toolchain.py",
+      "machine_node_count": 6,
+      "machine_nodes": [
+        "scripts/upgrade_governance_toolchain.py::build_plan",
+        "scripts/upgrade_governance_toolchain.py::emit",
+        "scripts/upgrade_governance_toolchain.py::load_lock",
+        "scripts/upgrade_governance_toolchain.py::main",
+        "scripts/upgrade_governance_toolchain.py::sha256",
+        "scripts/upgrade_governance_toolchain.py::source_manifest"
+      ]
+    },
+    {
       "id": "module:scripts/validate_schema_toolchain.py",
       "kind": "module",
       "label": "scripts/validate_schema_toolchain.py",
@@ -340,14 +352,14 @@
       ]
     }
   ],
-  "observed_head": "8c3163bd1ab651feb474aeabdd470255e0b16d5f",
+  "observed_head": "8797f00bb8f1fb319cfbd043b23389712fa24deb",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 15,
-    "cross_component_machine_edges": 30,
-    "internal_machine_edges_collapsed": 21,
-    "machine_edge_count": 51,
-    "machine_node_count": 30,
+    "aggregated_cross_component_edges": 21,
+    "cross_component_machine_edges": 36,
+    "internal_machine_edges_collapsed": 26,
+    "machine_edge_count": 62,
+    "machine_node_count": 35,
     "node_map": {
       "scripts/initialize_project_truth.py::copy_file": "module:scripts/initialize_project_truth.py",
       "scripts/initialize_project_truth.py::ensure_gitattributes": "module:scripts/initialize_project_truth.py",
@@ -367,7 +379,6 @@
       "scripts/schema_contract.py::require_json_schema_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::validate_spec_tree_versions": "module:scripts/schema_contract.py",
-      "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
       "scripts/toolchain_identity.py::_git_value": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::_sha256": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::producer_metadata": "module:scripts/toolchain_identity.py",
@@ -377,11 +388,17 @@
       "scripts/toolchain_identity.py::toolchain_digest": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::validate_toolchain_lock": "module:scripts/toolchain_identity.py",
       "scripts/toolchain_identity.py::write_toolchain_lock": "module:scripts/toolchain_identity.py",
+      "scripts/upgrade_governance_toolchain.py::build_plan": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::emit": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::load_lock": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::main": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::sha256": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::source_manifest": "module:scripts/upgrade_governance_toolchain.py",
       "scripts/validate_schema_toolchain.py::main": "module:scripts/validate_schema_toolchain.py",
       "scripts/validate_schema_toolchain.py::validate": "module:scripts/validate_schema_toolchain.py"
     },
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3"
+  "source_digest": "fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623"
 }

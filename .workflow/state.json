@@ -10,9 +10,9 @@
   "last_accepted_branch": "main",
   "last_accepted_sha": "65c28fcdfebec68a20adc02ae95406f9261d5a51",
   "next_authorized_actions": [
-    "Reproduce the accepted SW2-22 RED gap on exact base 65c28fcdfebec68a20adc02ae95406f9261d5a51.",
-    "Implement the minimum exact producer-identity and deterministic toolchain upgrade contract required by SW2-22.",
-    "Promote no SW2-22 requirement until permanent exact-head evidence proves it."
+    "Run the permanent exact-head matrix on the helper-free SW2-22 implementation candidate.",
+    "Promote R1-R4 only from exact candidate evidence; R5 remains pending merge and post-merge revalidation.",
+    "Do not begin SW2-23 or publish a new release without separate Owner authorization."
   ],
   "not_proven": [
     "Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.",
@@ -101,6 +101,6 @@
     "SW2-22 Consumer Toolchain Provenance & Upgrade Contract is Owner-authorized from exact terminal main 65c28fcdfebec68a20adc02ae95406f9261d5a51; implementation remains RED/NOT_PROVEN until dedicated regression and permanent CI evidence pass."
   ],
   "schema_version": 1,
-  "status": "SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_RED",
+  "status": "SW2_22_IMPLEMENTED_PENDING_ACCEPTANCE",
   "working_branch": "work/sw2-22-consumer-toolchain-provenance-upgrade"
 }

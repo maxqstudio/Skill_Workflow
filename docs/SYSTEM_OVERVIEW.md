@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 69 files, 1 language categories.
+Observed source inventory: 71 files, 1 language categories.
 
 ## Major components
 
@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-22
 
-Current status: SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_RED
+Current status: SW2_22_IMPLEMENTED_PENDING_ACCEPTANCE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Reproduce the accepted SW2-22 RED gap on exact base 65c28fcdfebec68a20adc02ae95406f9261d5a51.
-- Implement the minimum exact producer-identity and deterministic toolchain upgrade contract required by SW2-22.
-- Promote no SW2-22 requirement until permanent exact-head evidence proves it.
+- Run the permanent exact-head matrix on the helper-free SW2-22 implementation candidate.
+- Promote R1-R4 only from exact candidate evidence; R5 remains pending merge and post-merge revalidation.
+- Do not begin SW2-23 or publish a new release without separate Owner authorization.
 
 Blocked actions:
 - Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.

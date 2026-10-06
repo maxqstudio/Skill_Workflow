@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-22-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-22-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-22-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-22-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-22-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-22-GOVERNANCE.human.json)
-- Source digest: `d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3`
+- Source digest: `fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 30 | 8 |
-| Interactions / edges | 51 | 15 |
-| Internal machine edges collapsed | 21 | — |
-| Cross-component edges aggregated | 15 | — |
+| Participants / nodes | 35 | 8 |
+| Interactions / edges | 62 | 15 |
+| Internal machine edges collapsed | 26 | — |
+| Cross-component edges aggregated | 21 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -31,22 +31,22 @@ sequenceDiagram
     participant module_scripts_project_profile_py_2 as scripts/project_profile.py
     participant module_scripts_project_snapshot_py_3 as scripts/project_snapshot.py
     participant module_scripts_schema_contract_py_4 as scripts/schema_contract.py
-    participant module_scripts_selftest_sequence_human_view_py_5 as scripts/selftest_sequence_human_view.py
-    participant module_scripts_toolchain_identity_py_6 as scripts/toolchain_identity.py
+    participant module_scripts_toolchain_identity_py_5 as scripts/toolchain_identity.py
+    participant module_scripts_upgrade_governance_toolchain_py_6 as scripts/upgrade_governance_toolchain.py
     participant module_scripts_validate_schema_toolchain_py_7 as scripts/validate_schema_toolchain.py
     module_scripts_initialize_project_truth_py_0->>module_scripts_project_snapshot_py_3: 1 static interaction
-    module_scripts_initialize_project_truth_py_0->>module_scripts_toolchain_identity_py_6: 1 static interaction
+    module_scripts_initialize_project_truth_py_0->>module_scripts_toolchain_identity_py_5: 1 static interaction
     module_scripts_migrate_governance_v1_py_1->>module_scripts_project_profile_py_2: 2 static interactions
     module_scripts_migrate_governance_v1_py_1->>module_scripts_project_snapshot_py_3: 4 static interactions
     module_scripts_migrate_governance_v1_py_1->>module_scripts_schema_contract_py_4: 5 static interactions
-    module_scripts_migrate_governance_v1_py_1->>module_scripts_toolchain_identity_py_6: 3 static interactions
+    module_scripts_migrate_governance_v1_py_1->>module_scripts_toolchain_identity_py_5: 3 static interactions
     module_scripts_project_profile_py_2->>module_scripts_project_snapshot_py_3: 1 static interaction
     module_scripts_project_profile_py_2->>module_scripts_schema_contract_py_4: 1 static interaction
     module_scripts_schema_contract_py_4->>module_scripts_project_snapshot_py_3: 1 static interaction
-    module_scripts_selftest_sequence_human_view_py_5->>module_scripts_project_snapshot_py_3: 1 static interaction
-    module_scripts_toolchain_identity_py_6->>module_scripts_project_snapshot_py_3: 5 static interactions
-    module_scripts_toolchain_identity_py_6->>module_scripts_selftest_sequence_human_view_py_5: 2 static interactions
+    module_scripts_toolchain_identity_py_5->>module_scripts_project_snapshot_py_3: 5 static interactions
+    module_scripts_upgrade_governance_toolchain_py_6->>module_scripts_project_snapshot_py_3: 2 static interactions
+    module_scripts_upgrade_governance_toolchain_py_6->>module_scripts_toolchain_identity_py_5: 7 static interactions
     module_scripts_validate_schema_toolchain_py_7->>module_scripts_project_profile_py_2: 1 static interaction
     module_scripts_validate_schema_toolchain_py_7->>module_scripts_schema_contract_py_4: 1 static interaction
-    module_scripts_validate_schema_toolchain_py_7->>module_scripts_toolchain_identity_py_6: 1 static interaction
+    module_scripts_validate_schema_toolchain_py_7->>module_scripts_toolchain_identity_py_5: 1 static interaction
 ```

@@ -399,7 +399,7 @@
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "is_test": false,
       "language": "Python",
-      "lines": 105
+      "lines": 112
     },
     {
       "directory": "scripts",
@@ -424,6 +424,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 373
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/tmp_sw2_22_open_red.py",
       "is_test": false,
       "language": "Python",
@@ -441,7 +448,14 @@
       "file": "scripts/toolchain_identity.py",
       "is_test": false,
       "language": "Python",
-      "lines": 184
+      "lines": 205
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 164
     },
     {
       "directory": "scripts",
@@ -15631,6 +15645,18 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "baseline.splitlines"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "fail"
     },
     {
@@ -15720,6 +15746,14 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "line.startswith"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15744,6 +15778,18 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "migrated.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "next"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "plan.get"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "plan_line.split"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -15828,6 +15874,10 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "sorted"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -17178,6 +17228,330 @@
       "target_token": "validate_args.extend"
     },
     {
+      "caller": "scripts/tmp_sw2_22_implement.py::commit_source",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::commit_source",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::commit_source",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::dump",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::dump",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::load",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::load",
+      "target_token": "read"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "commit_source"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "dump"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "patch_toolchain_identity"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "regenerate_sequence"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "strengthen_regression"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "update_authority_and_docs"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::main",
+      "target_token": "write_upgrader"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::patch_toolchain_identity",
+      "target_token": "replace_once"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::patch_toolchain_identity",
+      "target_token": "replace_once"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::patch_toolchain_identity",
+      "target_token": "replace_once"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::patch_toolchain_identity",
+      "target_token": "replace_once"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "cmd.extend"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "dump"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "target_token": "read"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "target_token": "text.count"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "target_token": "text.replace"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::run",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::run",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::run",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::run",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::strengthen_regression",
+      "target_token": "RuntimeError"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::strengthen_regression",
+      "target_token": "read"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::strengthen_regression",
+      "target_token": "text.replace"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::strengthen_regression",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "adoption.replace"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "commands.replace"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "contracts.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "decisions.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "dump"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "dump"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "dump"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "entries.append"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "load"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "read"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "read"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "read"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "replace_once"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::write",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::write",
+      "target_token": "target.write_text"
+    },
+    {
+      "caller": "scripts/tmp_sw2_22_implement.py::write_upgrader",
+      "target_token": "write"
+    },
+    {
       "caller": "scripts/tmp_sw2_22_open_red.py::load",
       "target_token": "json.loads"
     },
@@ -17503,11 +17877,23 @@
     },
     {
       "caller": "scripts/toolchain_identity.py::producer_metadata",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::producer_metadata",
       "target_token": "_git_value"
     },
     {
       "caller": "scripts/toolchain_identity.py::producer_metadata",
       "target_token": "_git_value"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::producer_metadata",
+      "target_token": "_git_value"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::producer_metadata",
+      "target_token": "re.fullmatch"
     },
     {
       "caller": "scripts/toolchain_identity.py::source_tool_paths",
@@ -17611,6 +17997,26 @@
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "target_token": "isinstance"
     },
     {
@@ -17667,7 +18073,23 @@
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
-      "target_token": "repr"
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "re.fullmatch"
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
@@ -17675,6 +18097,10 @@
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "repr"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "target_token": "set"
     },
     {
@@ -17704,6 +18130,22 @@
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "target_token": "str"
     },
     {
       "caller": "scripts/toolchain_identity.py::validate_toolchain_lock",
@@ -17792,6 +18234,346 @@
     {
       "caller": "scripts/toolchain_identity.py::write_toolchain_lock",
       "target_token": "toolchain_digest"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "load_lock"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "producer_metadata"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "source_manifest"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "tool_manifest"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "target_token": "validate_toolchain_lock"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "key.upper"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "source_identity.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::emit",
+      "target_token": "target_identity.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "action.add_argument"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "action.add_argument"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "build_plan"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "build_plan"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "emit"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "emit"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "parser.add_mutually_exclusive_group"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "spec_root.is_dir"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "sync_vendored_tools"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "target.is_file"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "target.unlink"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "tool_root.is_dir"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "validate_toolchain_lock"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::main",
+      "target_token": "write_toolchain_lock"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::sha256",
+      "target_token": "hashlib.sha256"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::sha256",
+      "target_token": "path.read_bytes"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "target_token": "sha256"
+    },
+    {
+      "caller": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "target_token": "source_tool_paths"
     },
     {
       "caller": "scripts/validate_closure_defect_lifecycle.py::accepted_state",
@@ -28159,7 +28941,7 @@
     {
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "kind": "function",
-      "line_end": 101,
+      "line_end": 108,
       "line_start": 24,
       "locator": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "symbol": "main"
@@ -28397,6 +29179,110 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 13,
+      "line_start": 12,
+      "locator": "scripts/tmp_sw2_22_implement.py::read",
+      "symbol": "read"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 19,
+      "line_start": 16,
+      "locator": "scripts/tmp_sw2_22_implement.py::write",
+      "symbol": "write"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 23,
+      "line_start": 22,
+      "locator": "scripts/tmp_sw2_22_implement.py::load",
+      "symbol": "load"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 26,
+      "locator": "scripts/tmp_sw2_22_implement.py::dump",
+      "symbol": "dump"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 36,
+      "line_start": 30,
+      "locator": "scripts/tmp_sw2_22_implement.py::replace_once",
+      "symbol": "replace_once"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 44,
+      "line_start": 39,
+      "locator": "scripts/tmp_sw2_22_implement.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 67,
+      "line_start": 47,
+      "locator": "scripts/tmp_sw2_22_implement.py::patch_toolchain_identity",
+      "symbol": "patch_toolchain_identity"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 238,
+      "line_start": 70,
+      "locator": "scripts/tmp_sw2_22_implement.py::write_upgrader",
+      "symbol": "write_upgrader"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 299,
+      "line_start": 241,
+      "locator": "scripts/tmp_sw2_22_implement.py::update_authority_and_docs",
+      "symbol": "update_authority_and_docs"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 309,
+      "line_start": 302,
+      "locator": "scripts/tmp_sw2_22_implement.py::strengthen_regression",
+      "symbol": "strengthen_regression"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 315,
+      "line_start": 312,
+      "locator": "scripts/tmp_sw2_22_implement.py::commit_source",
+      "symbol": "commit_source"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 333,
+      "line_start": 318,
+      "locator": "scripts/tmp_sw2_22_implement.py::regenerate_sequence",
+      "symbol": "regenerate_sequence"
+    },
+    {
+      "file": "scripts/tmp_sw2_22_implement.py",
+      "kind": "function",
+      "line_end": 369,
+      "line_start": 336,
+      "locator": "scripts/tmp_sw2_22_implement.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/tmp_sw2_22_open_red.py",
       "kind": "function",
       "line_end": 15,
@@ -28487,74 +29373,122 @@
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 22,
-      "line_start": 21,
+      "line_end": 24,
+      "line_start": 23,
       "locator": "scripts/toolchain_identity.py::_sha256",
       "symbol": "_sha256"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 31,
-      "line_start": 25,
+      "line_end": 33,
+      "line_start": 27,
       "locator": "scripts/toolchain_identity.py::source_tool_paths",
       "symbol": "source_tool_paths"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 41,
-      "line_start": 34,
+      "line_end": 43,
+      "line_start": 36,
       "locator": "scripts/toolchain_identity.py::tool_manifest",
       "symbol": "tool_manifest"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 51,
-      "line_start": 44,
+      "line_end": 53,
+      "line_start": 46,
       "locator": "scripts/toolchain_identity.py::toolchain_digest",
       "symbol": "toolchain_digest"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 62,
-      "line_start": 54,
+      "line_end": 64,
+      "line_start": 56,
       "locator": "scripts/toolchain_identity.py::_git_value",
       "symbol": "_git_value"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 69,
-      "line_start": 65,
+      "line_end": 78,
+      "line_start": 67,
       "locator": "scripts/toolchain_identity.py::producer_metadata",
       "symbol": "producer_metadata"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 86,
-      "line_start": 72,
+      "line_end": 95,
+      "line_start": 81,
       "locator": "scripts/toolchain_identity.py::sync_vendored_tools",
       "symbol": "sync_vendored_tools"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 114,
-      "line_start": 89,
+      "line_end": 123,
+      "line_start": 98,
       "locator": "scripts/toolchain_identity.py::write_toolchain_lock",
       "symbol": "write_toolchain_lock"
     },
     {
       "file": "scripts/toolchain_identity.py",
       "kind": "function",
-      "line_end": 184,
-      "line_start": 117,
+      "line_end": 205,
+      "line_start": 126,
       "locator": "scripts/toolchain_identity.py::validate_toolchain_lock",
       "symbol": "validate_toolchain_lock"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 23,
+      "line_start": 22,
+      "locator": "scripts/upgrade_governance_toolchain.py::sha256",
+      "symbol": "sha256"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 27,
+      "line_start": 26,
+      "locator": "scripts/upgrade_governance_toolchain.py::source_manifest",
+      "symbol": "source_manifest"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 37,
+      "line_start": 30,
+      "locator": "scripts/upgrade_governance_toolchain.py::load_lock",
+      "symbol": "load_lock"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 91,
+      "line_start": 40,
+      "locator": "scripts/upgrade_governance_toolchain.py::build_plan",
+      "symbol": "build_plan"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 107,
+      "line_start": 94,
+      "locator": "scripts/upgrade_governance_toolchain.py::emit",
+      "symbol": "emit"
+    },
+    {
+      "file": "scripts/upgrade_governance_toolchain.py",
+      "kind": "function",
+      "line_end": 160,
+      "line_start": 110,
+      "locator": "scripts/upgrade_governance_toolchain.py::main",
+      "symbol": "main"
     },
     {
       "file": "scripts/validate_closure_defect_lifecycle.py",
@@ -29366,13 +30300,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3",
+  "source_digest": "fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623",
   "source_summary": {
-    "files": 69,
+    "files": 71,
     "languages": {
-      "Python": 69
+      "Python": 71
     },
-    "lines": 17019,
+    "lines": 17584,
     "test_files": 0
   },
   "tests": []

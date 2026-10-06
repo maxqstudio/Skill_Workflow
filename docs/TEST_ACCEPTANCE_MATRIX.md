@@ -7,7 +7,7 @@
 SW2-22 covers exact producer identity for vendored consumer toolchains and deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.
 
 Final tested source: external final acceptance evidence.
-Current source digest: d55c1b60014addb131cea9723859bacbffa49378aebed7af1d7d211c969715b3
+Current source digest: fd55883a78eb907bf3cfb3caa473d46de9f2caa3354c1588e71b8fb9baf42623
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
