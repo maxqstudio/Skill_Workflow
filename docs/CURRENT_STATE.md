@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-22
-Status: SW2_22_R1_R4_ACCEPTED_PENDING_FINAL_CANDIDATE
+Status: SW2_22_R1_R4_PROVEN_PENDING_FINAL_CANDIDATE
 Roadmap phase: SW2-22
 ROADMAP_SYNC: PASS
 

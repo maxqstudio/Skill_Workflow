@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-22
 
-Current status: SW2_22_R1_R4_ACCEPTED_PENDING_FINAL_CANDIDATE
+Current status: SW2_22_R1_R4_PROVEN_PENDING_FINAL_CANDIDATE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 

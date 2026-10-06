@@ -101,6 +101,6 @@
     "SW2-22 R1-R4 are proven on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5 by Governance CI run 37428635525, which passed all six permanent contexts including Ubuntu/Windows toolchain regression, sequence rendering, performance, and pinned max-grounding consumer parity."
   ],
   "schema_version": 1,
-  "status": "SW2_22_R1_R4_ACCEPTED_PENDING_FINAL_CANDIDATE",
+  "status": "SW2_22_R1_R4_PROVEN_PENDING_FINAL_CANDIDATE",
   "working_branch": "work/sw2-22-consumer-toolchain-provenance-upgrade"
 }
