@@ -11,10 +11,10 @@ Current source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-21-R1 | Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions. | NOT_PROVEN until closure-state validation and negative regression reject stale merge instructions while allowing branch-agnostic accepted semantics. | NOT_PROVEN |
-| SW2-21-R2 | The next governed phase deterministically rebinds its implementation base to the exact accepted main commit. | NOT_PROVEN until phase-open and engine/base regressions prove last_accepted_sha is exact accepted main and cannot silently remain on an older release baseline. | NOT_PROVEN |
-| SW2-21-R3 | Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability. | NOT_PROVEN until current stale CONFIRMED records are reconciled from accepted evidence and regression rejects invalid lifecycle/status combinations. | NOT_PROVEN |
-| SW2-21-R4 | Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance. | NOT_PROVEN until the final promoted candidate passes all six permanent contexts and merged main revalidates successfully. | NOT_PROVEN |
+| SW2-21-R1 | Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions. | PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: lifecycle regression in Governance CI run 37408981020 rejected stale PR/branch-specific accepted-state actions and accepted branch-agnostic closure semantics. Ubuntu and Windows Governance Selftest both passed the permanent regression. | PASS |
+| SW2-21-R2 | The next governed phase deterministically rebinds its implementation base to the exact accepted main commit. | PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: state.last_accepted_sha and SW2-21 implementation_base_sha are both bound to terminal accepted main 8723bf0315a1e6cee005198affbc9ec1576e8ba7; base-mismatch negative regression passed in Governance CI run 37408981020. | PASS |
+| SW2-21-R3 | Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability. | PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: stale CONFIRMED ledger entries were reconciled to OPEN/FIXED-ACCEPTED/HISTORICAL/NOT_PROVEN lifecycle semantics with completed-phase resolution evidence; invalid status, missing evidence, unknown phase, and duplicate-ID regressions passed in Governance CI run 37408981020. | PASS |
+| SW2-21-R4 | Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance. | PASS promotion boundary on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance Selftest passed on Ubuntu and Windows, SW2 Sequence Evidence passed, Governance Engine Performance passed, and Consumer Engine Performance passed in Governance CI run 37408981020. Self Governance traversed all implementation/regression nodes and stopped only at the intentionally unpromoted Project Truth gate. A fresh promoted 6/6 permanent matrix remains mandatory before merge. | PASS |
 
 ## Test commands
 
@@ -39,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-21-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 

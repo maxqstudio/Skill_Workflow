@@ -17,28 +17,28 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN until closure-state validation and negative regression reject stale merge instructions while allowing branch-agnostic accepted semantics.",
+      "evidence": "PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: lifecycle regression in Governance CI run 37408981020 rejected stale PR/branch-specific accepted-state actions and accepted branch-agnostic closure semantics. Ubuntu and Windows Governance Selftest both passed the permanent regression.",
       "id": "SW2-21-R1",
       "requirement": "Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until phase-open and engine/base regressions prove last_accepted_sha is exact accepted main and cannot silently remain on an older release baseline.",
+      "evidence": "PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: state.last_accepted_sha and SW2-21 implementation_base_sha are both bound to terminal accepted main 8723bf0315a1e6cee005198affbc9ec1576e8ba7; base-mismatch negative regression passed in Governance CI run 37408981020.",
       "id": "SW2-21-R2",
       "requirement": "The next governed phase deterministically rebinds its implementation base to the exact accepted main commit.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until current stale CONFIRMED records are reconciled from accepted evidence and regression rejects invalid lifecycle/status combinations.",
+      "evidence": "PASS on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: stale CONFIRMED ledger entries were reconciled to OPEN/FIXED-ACCEPTED/HISTORICAL/NOT_PROVEN lifecycle semantics with completed-phase resolution evidence; invalid status, missing evidence, unknown phase, and duplicate-ID regressions passed in Governance CI run 37408981020.",
       "id": "SW2-21-R3",
       "requirement": "Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN until the final promoted candidate passes all six permanent contexts and merged main revalidates successfully.",
+      "evidence": "PASS promotion boundary on exact pre-promotion candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance Selftest passed on Ubuntu and Windows, SW2 Sequence Evidence passed, Governance Engine Performance passed, and Consumer Engine Performance passed in Governance CI run 37408981020. Self Governance traversed all implementation/regression nodes and stopped only at the intentionally unpromoted Project Truth gate. A fresh promoted 6/6 permanent matrix remains mandatory before merge.",
       "id": "SW2-21-R4",
       "requirement": "Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -46,7 +46,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-21-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_closure_defect_lifecycle.py",
@@ -58,23 +58,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
+    "SEQUENCE_SYNC": "PASS",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

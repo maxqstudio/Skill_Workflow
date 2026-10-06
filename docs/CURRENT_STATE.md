@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-21
-Status: IN_PROGRESS
+Status: SW2_21_ACCEPTANCE_CANDIDATE
 Roadmap phase: SW2-21
 ROADMAP_SYNC: PASS
 
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-21-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -112,6 +112,7 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-19 V2.1 stable publication is accepted on exact release main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict finalize/preflight with publication_authority=true; v2.1.0 tag and GitHub release id 404150971 both target the exact SHA; publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e.
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is promoted from exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance CI run 37398146243 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; deterministic coverage reported 124/124 classified tracked documentation surfaces with zero freshness failures, and Self Governance stopped only at the expected pre-promotion Project Truth boundary.
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.
+- SW2-21 pre-promotion evidence is proven on exact candidate b257a981431f0e3068a007655da5d33a1248f2b5: Governance CI run 37408981020 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; Self Governance stopped only at the intentionally unpromoted Project Truth boundary after implementation/regression nodes passed.
 
 ## Not proven
 - SW2-21 branch-agnostic accepted-closure semantics are NOT_PROVEN.
@@ -127,10 +128,10 @@ SEQUENCE_SYNC: NOT_PROVEN
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Reconcile closure-state and known-defect lifecycle semantics only within SW2-21 scope.
-- Run targeted lifecycle regression and regenerate deterministic Project Truth/sequence evidence.
-- Require the complete exact-head permanent matrix before SW2-21 merge.
-- After merge, require post-merge main revalidation before closure.
+- Require all six permanent Governance CI contexts to pass on the exact promoted SW2-21 candidate.
+- Do not merge while any permanent context is not SUCCESS.
+- After squash merge with expected-head guard, verify merged tree identity and rerun post-merge Governance CI.
+- Do not open any later phase without explicit Owner roadmap approval.
 
 ## Explicitly blocked
 - Do not rewrite historical acceptance evidence merely to make defect status look cleaner.
