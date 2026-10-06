@@ -1,0 +1,47 @@
+name: TEMP SW2-20 Documentation RED Proof
+
+on:
+  push:
+    branches:
+      - ops/sw2-20-phase-open
+    paths:
+      - .github/workflows/tmp-sw2-20-doc-red-proof.yml
+
+permissions:
+  contents: read
+
+jobs:
+  prove-red:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-20-documentation-inventory-freshness
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run documentation contract and require stale-doc rejection
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          python scripts/validate_documentation_contract.py --root . --report artifacts/sw2_20_red_report.json --write-report | tee artifacts/sw2_20_red.log
+          rc=${PIPESTATUS[0]}
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            echo 'EXPECTED_RED_BUT_GOT_PASS'
+            exit 1
+          fi
+          grep -q 'STALE_STABLE_RELEASE' artifacts/sw2_20_red.log
+          grep -q 'STALE_LICENSE_STATE' artifacts/sw2_20_red.log
+          grep -q 'STALE_PRE_RELEASE_STATE' artifacts/sw2_20_red.log
+          grep -q 'STALE_CURRENT_PHASE' artifacts/sw2_20_red.log
+          echo 'SW2_20_RED_PROOF=PASS'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sw2-20-documentation-red-proof
+          path: |
+            artifacts/sw2_20_red_report.json
+            artifacts/sw2_20_red.log
+          if-no-files-found: error
