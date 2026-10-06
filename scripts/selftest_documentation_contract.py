@@ -114,6 +114,7 @@ def stale_semantic_regressions() -> None:
             ("docs/handbook/reference/versioning.md", "# Versioning\n\nAccepted stable release is `v2.0.0`.\n", "STALE_STABLE_RELEASE"),
             ("AGENTS.md", "# Agent contract\n\nCurrently the project is SW2-19.\n", "STALE_CURRENT_PHASE"),
             ("CONTRIBUTING.md", "# Contributing\n\nThe public license has not yet been selected.\n", "STALE_LICENSE_STATE"),
+            ("CONTRIBUTING.md", "# Contributing\n\nThis repository does not currently declare an Owner-approved public license.\n", "STALE_LICENSE_STATE"),
         )
         originals = {path: (root / path).read_text(encoding="utf-8") for path, _, _ in cases}
         for path, stale_text, expected_kind in cases:
@@ -121,7 +122,7 @@ def stale_semantic_regressions() -> None:
             report = contract.build_report(root)
             require(expected_kind in kinds(report), f"{expected_kind} not detected for {path}: {report['freshness_failures']}")
             (root / path).write_text(originals[path], encoding="utf-8", newline="\n")
-    print("DOCUMENTATION_STALE_SEMANTICS=PASS cases=6")
+    print("DOCUMENTATION_STALE_SEMANTICS=PASS cases=7")
 
 
 def coverage_drift_contract() -> None:

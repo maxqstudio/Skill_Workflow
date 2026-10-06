@@ -564,13 +564,6 @@
       "to": "scripts/schema_contract.py::_profile_version"
     },
     {
-      "action": "buffer.write",
-      "evidence": "STATIC",
-      "from": "scripts/script_runner.py::invoke_main",
-      "resolver": "python_ast",
-      "to": "scripts/selftest_adoption_profiles.py::write"
-    },
-    {
       "action": "path.read_bytes",
       "evidence": "STATIC",
       "from": "scripts/selftest_sequence_human_view.py::sha256",
@@ -900,6 +893,132 @@
       "to": "scripts/validate_cross_document_consistency.py::read"
     },
     {
+      "action": "_line_number",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::_finding",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_line_number"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::_load_json",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "hashlib.sha256",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_sequence_human_view.py::sha256"
+    },
+    {
+      "action": "classify_document",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::classify_document"
+    },
+    {
+      "action": "current_phase",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::current_phase"
+    },
+    {
+      "action": "freshness_findings",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::freshness_findings"
+    },
+    {
+      "action": "is_documentation_candidate",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::is_documentation_candidate"
+    },
+    {
+      "action": "latest_stable_tag",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::latest_stable_tag"
+    },
+    {
+      "action": "license_present",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::license_present"
+    },
+    {
+      "action": "no_ruleset_boundary",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::no_ruleset_boundary"
+    },
+    {
+      "action": "tracked_paths",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::build_report",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::tracked_paths"
+    },
+    {
+      "action": "_load_json",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::current_phase",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_load_json"
+    },
+    {
+      "action": "target.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::freshness_findings",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "_finding",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::freshness_findings",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_finding"
+    },
+    {
+      "action": "_historical_context",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::freshness_findings",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_historical_context"
+    },
+    {
+      "action": "_git",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_git"
+    },
+    {
+      "action": "_load_json",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_load_json"
+    },
+    {
+      "action": "_git",
+      "evidence": "STATIC",
+      "from": "scripts/validate_documentation_contract.py::tracked_paths",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::_git"
+    },
+    {
       "action": "documentation_settings",
       "evidence": "STATIC",
       "from": "scripts/validate_project_docs.py::main",
@@ -942,6 +1061,13 @@
       "to": "scripts/validate_public_docs.py::validate"
     },
     {
+      "action": "coverage_path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
       "action": "docs_index.read_text",
       "evidence": "STATIC",
       "from": "scripts/validate_public_docs.py::validate",
@@ -975,6 +1101,20 @@
       "from": "scripts/validate_public_docs.py::validate",
       "resolver": "python_ast",
       "to": "scripts/validate_doc_quality.py::normalized_shape"
+    },
+    {
+      "action": "documentation_contract.build_report",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::build_report"
+    },
+    {
+      "action": "documentation_contract.report_text",
+      "evidence": "STATIC",
+      "from": "scripts/validate_public_docs.py::validate",
+      "resolver": "python_ast",
+      "to": "scripts/validate_documentation_contract.py::report_text"
     },
     {
       "action": "path.read_text",
@@ -1716,15 +1856,6 @@
       "locator": "scripts/script_runner.py::invoke_main"
     },
     {
-      "id": "scripts/selftest_adoption_profiles.py::write",
-      "kind": "function",
-      "label": "scripts/selftest_adoption_profiles.py::write",
-      "language": "Python",
-      "line_end": 19,
-      "line_start": 17,
-      "locator": "scripts/selftest_adoption_profiles.py::write"
-    },
-    {
       "id": "scripts/selftest_sequence_human_view.py::sha256",
       "kind": "function",
       "label": "scripts/selftest_sequence_human_view.py::sha256",
@@ -1959,6 +2090,141 @@
       "locator": "scripts/validate_doc_quality.py::normalized_shape"
     },
     {
+      "id": "scripts/validate_documentation_contract.py::_finding",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::_finding",
+      "language": "Python",
+      "line_end": 197,
+      "line_start": 184,
+      "locator": "scripts/validate_documentation_contract.py::_finding"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::_git",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::_git",
+      "language": "Python",
+      "line_end": 78,
+      "line_start": 69,
+      "locator": "scripts/validate_documentation_contract.py::_git"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::_historical_context",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::_historical_context",
+      "language": "Python",
+      "line_end": 181,
+      "line_start": 179,
+      "locator": "scripts/validate_documentation_contract.py::_historical_context"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::_line_number",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::_line_number",
+      "language": "Python",
+      "line_end": 176,
+      "line_start": 175,
+      "locator": "scripts/validate_documentation_contract.py::_line_number"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::_load_json",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::_load_json",
+      "language": "Python",
+      "line_end": 137,
+      "line_start": 132,
+      "locator": "scripts/validate_documentation_contract.py::_load_json"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::build_report",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::build_report",
+      "language": "Python",
+      "line_end": 296,
+      "line_start": 255,
+      "locator": "scripts/validate_documentation_contract.py::build_report"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::classify_document",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::classify_document",
+      "language": "Python",
+      "line_end": 129,
+      "line_start": 98,
+      "locator": "scripts/validate_documentation_contract.py::classify_document"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::current_phase",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::current_phase",
+      "language": "Python",
+      "line_end": 156,
+      "line_start": 154,
+      "locator": "scripts/validate_documentation_contract.py::current_phase"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::freshness_findings",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::freshness_findings",
+      "language": "Python",
+      "line_end": 252,
+      "line_start": 200,
+      "locator": "scripts/validate_documentation_contract.py::freshness_findings"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::is_documentation_candidate",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::is_documentation_candidate",
+      "language": "Python",
+      "line_end": 95,
+      "line_start": 92,
+      "locator": "scripts/validate_documentation_contract.py::is_documentation_candidate"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "language": "Python",
+      "line_end": 151,
+      "line_start": 140,
+      "locator": "scripts/validate_documentation_contract.py::latest_stable_tag"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::license_present",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::license_present",
+      "language": "Python",
+      "line_end": 160,
+      "line_start": 159,
+      "locator": "scripts/validate_documentation_contract.py::license_present"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "language": "Python",
+      "line_end": 172,
+      "line_start": 163,
+      "locator": "scripts/validate_documentation_contract.py::no_ruleset_boundary"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::report_text",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::report_text",
+      "language": "Python",
+      "line_end": 300,
+      "line_start": 299,
+      "locator": "scripts/validate_documentation_contract.py::report_text"
+    },
+    {
+      "id": "scripts/validate_documentation_contract.py::tracked_paths",
+      "kind": "function",
+      "label": "scripts/validate_documentation_contract.py::tracked_paths",
+      "language": "Python",
+      "line_end": 89,
+      "line_start": 81,
+      "locator": "scripts/validate_documentation_contract.py::tracked_paths"
+    },
+    {
       "id": "scripts/validate_project_docs.py::main",
       "kind": "function",
       "label": "scripts/validate_project_docs.py::main",
@@ -1972,8 +2238,8 @@
       "kind": "function",
       "label": "scripts/validate_public_docs.py::main",
       "language": "Python",
-      "line_end": 190,
-      "line_start": 176,
+      "line_end": 221,
+      "line_start": 207,
       "locator": "scripts/validate_public_docs.py::main"
     },
     {
@@ -1981,8 +2247,8 @@
       "kind": "function",
       "label": "scripts/validate_public_docs.py::validate",
       "language": "Python",
-      "line_end": 173,
-      "line_start": 92,
+      "line_end": 204,
+      "line_start": 93,
       "locator": "scripts/validate_public_docs.py::validate"
     },
     {
@@ -2175,7 +2441,7 @@
       "locator": "scripts/validate_sequence_sessions.py::write_json"
     }
   ],
-  "observed_head": "2b904ad2da7a7493c37c4bd547ba228a63012d51",
+  "observed_head": "698c624a87ac2cc5d4268dca96ab38e783acd171",
   "schema_version": 1,
-  "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
+  "source_digest": "1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36"
 }

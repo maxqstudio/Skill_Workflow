@@ -1,8 +1,8 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 26,
-    "interaction_count": 26,
+    "interaction_ceiling": 28,
+    "interaction_count": 28,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
     "participant_ceiling": 14,
@@ -116,20 +116,6 @@
     },
     {
       "actions": [
-        "buffer.write"
-      ],
-      "evidence": [
-        "STATIC"
-      ],
-      "from": "module:scripts/script_runner.py",
-      "machine_edge_count": 1,
-      "resolvers": [
-        "python_ast"
-      ],
-      "to": "module:scripts/selftest_adoption_profiles.py"
-    },
-    {
-      "actions": [
         "path.read_bytes"
       ],
       "evidence": [
@@ -240,6 +226,35 @@
     },
     {
       "actions": [
+        "path.read_text",
+        "target.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_documentation_contract.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "hashlib.sha256"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_documentation_contract.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/selftest_sequence_human_view.py"
+    },
+    {
+      "actions": [
         "documentation_settings",
         "parse_profile"
       ],
@@ -297,6 +312,7 @@
     },
     {
       "actions": [
+        "coverage_path.read_text",
         "docs_index.read_text",
         "handbook_index.read_text",
         "path.read_text",
@@ -306,7 +322,7 @@
         "STATIC"
       ],
       "from": "module:scripts/validate_public_docs.py",
-      "machine_edge_count": 4,
+      "machine_edge_count": 5,
       "resolvers": [
         "python_ast"
       ],
@@ -325,6 +341,21 @@
         "python_ast"
       ],
       "to": "module:scripts/validate_doc_quality.py"
+    },
+    {
+      "actions": [
+        "documentation_contract.build_report",
+        "documentation_contract.report_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_public_docs.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_documentation_contract.py"
     },
     {
       "actions": [
@@ -503,15 +534,6 @@
       ]
     },
     {
-      "id": "module:scripts/selftest_adoption_profiles.py",
-      "kind": "module",
-      "label": "scripts/selftest_adoption_profiles.py",
-      "machine_node_count": 1,
-      "machine_nodes": [
-        "scripts/selftest_adoption_profiles.py::write"
-      ]
-    },
-    {
       "id": "module:scripts/selftest_sequence_human_view.py",
       "kind": "module",
       "label": "scripts/selftest_sequence_human_view.py",
@@ -567,6 +589,29 @@
       "machine_node_count": 1,
       "machine_nodes": [
         "scripts/validate_doc_quality.py::normalized_shape"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_documentation_contract.py",
+      "kind": "module",
+      "label": "scripts/validate_documentation_contract.py",
+      "machine_node_count": 15,
+      "machine_nodes": [
+        "scripts/validate_documentation_contract.py::_finding",
+        "scripts/validate_documentation_contract.py::_git",
+        "scripts/validate_documentation_contract.py::_historical_context",
+        "scripts/validate_documentation_contract.py::_line_number",
+        "scripts/validate_documentation_contract.py::_load_json",
+        "scripts/validate_documentation_contract.py::build_report",
+        "scripts/validate_documentation_contract.py::classify_document",
+        "scripts/validate_documentation_contract.py::current_phase",
+        "scripts/validate_documentation_contract.py::freshness_findings",
+        "scripts/validate_documentation_contract.py::is_documentation_candidate",
+        "scripts/validate_documentation_contract.py::latest_stable_tag",
+        "scripts/validate_documentation_contract.py::license_present",
+        "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+        "scripts/validate_documentation_contract.py::report_text",
+        "scripts/validate_documentation_contract.py::tracked_paths"
       ]
     },
     {
@@ -626,14 +671,14 @@
       ]
     }
   ],
-  "observed_head": "2b904ad2da7a7493c37c4bd547ba228a63012d51",
+  "observed_head": "698c624a87ac2cc5d4268dca96ab38e783acd171",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 25,
-    "cross_component_machine_edges": 51,
-    "internal_machine_edges_collapsed": 116,
-    "machine_edge_count": 167,
-    "machine_node_count": 99,
+    "aggregated_cross_component_edges": 28,
+    "cross_component_machine_edges": 56,
+    "internal_machine_edges_collapsed": 131,
+    "machine_edge_count": 187,
+    "machine_node_count": 113,
     "node_map": {
       "scripts/governance_engine.py::ValidationDAG": "module:scripts/governance_engine.py",
       "scripts/governance_engine.py::ValidationNode": "module:scripts/governance_engine.py",
@@ -683,7 +728,6 @@
       "scripts/schema_contract.py::_profile_version": "module:scripts/schema_contract.py",
       "scripts/schema_contract.py::require_profile_schema_version": "module:scripts/schema_contract.py",
       "scripts/script_runner.py::invoke_main": "module:scripts/script_runner.py",
-      "scripts/selftest_adoption_profiles.py::write": "module:scripts/selftest_adoption_profiles.py",
       "scripts/selftest_sequence_human_view.py::sha256": "module:scripts/selftest_sequence_human_view.py",
       "scripts/sync_project_truth.py::compiler_args": "module:scripts/sync_project_truth.py",
       "scripts/sync_project_truth.py::main": "module:scripts/sync_project_truth.py",
@@ -710,6 +754,21 @@
       "scripts/validate_cross_document_consistency.py::strip_fences": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_cross_document_consistency.py::truth_claims": "module:scripts/validate_cross_document_consistency.py",
       "scripts/validate_doc_quality.py::normalized_shape": "module:scripts/validate_doc_quality.py",
+      "scripts/validate_documentation_contract.py::_finding": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::_git": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::_historical_context": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::_line_number": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::_load_json": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::build_report": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::classify_document": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::current_phase": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::freshness_findings": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::is_documentation_candidate": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::latest_stable_tag": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::license_present": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::no_ruleset_boundary": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::report_text": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::tracked_paths": "module:scripts/validate_documentation_contract.py",
       "scripts/validate_project_docs.py::main": "module:scripts/validate_project_docs.py",
       "scripts/validate_public_docs.py::main": "module:scripts/validate_public_docs.py",
       "scripts/validate_public_docs.py::validate": "module:scripts/validate_public_docs.py",
@@ -738,5 +797,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
+  "source_digest": "1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36"
 }

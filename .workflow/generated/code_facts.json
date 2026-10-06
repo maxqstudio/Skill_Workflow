@@ -284,6 +284,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_documentation_contract.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 187
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_generated_doc_presentation.py",
       "is_test": false,
       "language": "Python",
@@ -329,7 +336,7 @@
       "file": "scripts/selftest_public_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 83
+      "lines": 85
     },
     {
       "directory": "scripts",
@@ -424,6 +431,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/validate_documentation_contract.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 340
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/validate_github_ruleset.py",
       "is_test": false,
       "language": "Python",
@@ -469,7 +483,7 @@
       "file": "scripts/validate_public_docs.py",
       "is_test": false,
       "language": "Python",
-      "lines": 194
+      "lines": 225
     },
     {
       "directory": "scripts",
@@ -10229,6 +10243,390 @@
       "target_token": "print"
     },
     {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "all"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "contract.build_report"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "fixture_root"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "contract.build_report"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "contract.report_text"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "expect_stale"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "expect_stale"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "expect_stale"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "expect_stale"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "fixture_root"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "report_path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "report_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::fixture_root",
+      "target_token": "write_json"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::kinds",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::kinds",
+      "target_token": "report.get"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::kinds",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::main",
+      "target_token": "baseline_inventory_contract"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::main",
+      "target_token": "coverage_drift_contract"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::main",
+      "target_token": "stale_semantic_regressions"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::main",
+      "target_token": "unclassified_surface_contract"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::require",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::run_git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::run_git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "target_token": "contract.build_report"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "target_token": "fixture_root"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "target_token": "kinds"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "contract.build_report"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "fixture_root"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "kinds"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "require"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "run_git"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::write",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::write",
+      "target_token": "target.write_text"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::write_json",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_documentation_contract.py::write_json",
+      "target_token": "write"
+    },
+    {
       "caller": "scripts/selftest_generated_doc_presentation.py::main",
       "target_token": "any"
     },
@@ -12855,6 +13253,10 @@
     {
       "caller": "scripts/selftest_public_docs.py::main",
       "target_token": "rollback_text.replace"
+    },
+    {
+      "caller": "scripts/selftest_public_docs.py::main",
+      "target_token": "selftest_documentation_contract.main"
     },
     {
       "caller": "scripts/selftest_public_docs.py::main",
@@ -17973,6 +18375,670 @@
       "target_token": "text.splitlines"
     },
     {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "_line_number"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "match.start"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "match.start"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "max"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_finding",
+      "target_token": "text.rfind"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_git",
+      "target_token": "completed.stdout.decode"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_historical_context",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_historical_context",
+      "target_token": "text.lower"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_line_number",
+      "target_token": "text.count"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_load_json",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_load_json",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::_load_json",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "classify_document"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "current_phase"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "dict"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "freshness_findings"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "hashlib.sha256"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "is_documentation_candidate"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "items.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "items.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "latest_stable_tag"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "license_present"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "no_ruleset_boundary"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "role_counts.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "role_counts.items"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::build_report",
+      "target_token": "tracked_paths"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.count"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::classify_document",
+      "target_token": "path.startswith"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::current_phase",
+      "target_token": "_load_json"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::current_phase",
+      "target_token": "roadmap.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::current_phase",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "CURRENT_PHASE_RE.finditer"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "ENFORCEMENT_DENIAL_RE.search"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "ENFORCEMENT_POSITIVE_RE.finditer"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "LICENSE_NEGATIVE_RE.finditer"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "PRE_RELEASE_RE.finditer"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "STABLE_RELEASE_RE.finditer"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_finding"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_finding"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_finding"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_finding"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_finding"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_historical_context"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_historical_context"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_historical_context"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "authority.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "authority.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "authority.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "authority.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "bool"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "findings.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "findings.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "findings.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "findings.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "findings.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.group"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.group"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.group"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.group"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.group"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.start"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.start"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.start"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.start"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "max"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "target.read_text"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.find"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.rfind"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.rfind"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.rfind"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "text.rfind"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::is_documentation_candidate",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "SEMVER_RE.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "_git"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "candidates.append"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "line.strip"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "match.groups"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "max"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "build_report"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.is_absolute"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.relative_to"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_path.write_text"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "report_text"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "_load_json"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::report_text",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::tracked_paths",
+      "target_token": "_git"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::tracked_paths",
+      "target_token": "item.decode"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::tracked_paths",
+      "target_token": "payload.split"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::tracked_paths",
+      "target_token": "sorted"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::tracked_paths",
+      "target_token": "tuple"
+    },
+    {
       "caller": "scripts/validate_github_ruleset.py::main",
       "target_token": "Path"
     },
@@ -20414,6 +21480,14 @@
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "coverage_path.is_file"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "coverage_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "docs_index.is_file"
     },
     {
@@ -20422,6 +21496,38 @@
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "documentation_contract.build_report"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "documentation_contract.report_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "documentation_report.get"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "documentation_report.get"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "failures.append"
     },
     {
@@ -20483,6 +21589,18 @@
     {
       "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "failures.extend"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "finding.get"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "finding.get"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "finding.get"
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
@@ -20491,6 +21609,10 @@
     {
       "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "handbook_index.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "isinstance"
     },
     {
       "caller": "scripts/validate_public_docs.py::validate",
@@ -20523,6 +21645,26 @@
     {
       "caller": "scripts/validate_public_docs.py::validate",
       "target_token": "readme_path.read_text"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_public_docs.py::validate",
+      "target_token": "type"
     },
     {
       "caller": "scripts/validate_repository_health.py::_load_json",
@@ -24968,6 +26110,110 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 17,
+      "line_start": 15,
+      "locator": "scripts/selftest_documentation_contract.py::require",
+      "symbol": "require"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 25,
+      "line_start": 20,
+      "locator": "scripts/selftest_documentation_contract.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 34,
+      "line_start": 28,
+      "locator": "scripts/selftest_documentation_contract.py::run_git",
+      "symbol": "run_git"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 40,
+      "line_start": 37,
+      "locator": "scripts/selftest_documentation_contract.py::write",
+      "symbol": "write"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 44,
+      "line_start": 43,
+      "locator": "scripts/selftest_documentation_contract.py::write_json",
+      "symbol": "write_json"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 86,
+      "line_start": 47,
+      "locator": "scripts/selftest_documentation_contract.py::fixture_root",
+      "symbol": "fixture_root"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 90,
+      "line_start": 89,
+      "locator": "scripts/selftest_documentation_contract.py::kinds",
+      "symbol": "kinds"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 104,
+      "line_start": 93,
+      "locator": "scripts/selftest_documentation_contract.py::baseline_inventory_contract",
+      "symbol": "baseline_inventory_contract"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 125,
+      "line_start": 107,
+      "locator": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
+      "symbol": "stale_semantic_regressions"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 163,
+      "line_start": 128,
+      "locator": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
+      "symbol": "coverage_drift_contract"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "method",
+      "line_end": 145,
+      "line_start": 136,
+      "locator": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
+      "symbol": "coverage_drift_contract.expect_stale"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 174,
+      "line_start": 166,
+      "locator": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
+      "symbol": "unclassified_surface_contract"
+    },
+    {
+      "file": "scripts/selftest_documentation_contract.py",
+      "kind": "function",
+      "line_end": 183,
+      "line_start": 177,
+      "locator": "scripts/selftest_documentation_contract.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_generated_doc_presentation.py",
       "kind": "function",
       "line_end": 50,
@@ -25234,8 +26480,8 @@
     {
       "file": "scripts/selftest_public_docs.py",
       "kind": "function",
-      "line_end": 79,
-      "line_start": 21,
+      "line_end": 81,
+      "line_start": 22,
       "locator": "scripts/selftest_public_docs.py::main",
       "symbol": "main"
     },
@@ -25952,6 +27198,134 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 78,
+      "line_start": 69,
+      "locator": "scripts/validate_documentation_contract.py::_git",
+      "symbol": "_git"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 89,
+      "line_start": 81,
+      "locator": "scripts/validate_documentation_contract.py::tracked_paths",
+      "symbol": "tracked_paths"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 95,
+      "line_start": 92,
+      "locator": "scripts/validate_documentation_contract.py::is_documentation_candidate",
+      "symbol": "is_documentation_candidate"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 129,
+      "line_start": 98,
+      "locator": "scripts/validate_documentation_contract.py::classify_document",
+      "symbol": "classify_document"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 137,
+      "line_start": 132,
+      "locator": "scripts/validate_documentation_contract.py::_load_json",
+      "symbol": "_load_json"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 151,
+      "line_start": 140,
+      "locator": "scripts/validate_documentation_contract.py::latest_stable_tag",
+      "symbol": "latest_stable_tag"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 156,
+      "line_start": 154,
+      "locator": "scripts/validate_documentation_contract.py::current_phase",
+      "symbol": "current_phase"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 160,
+      "line_start": 159,
+      "locator": "scripts/validate_documentation_contract.py::license_present",
+      "symbol": "license_present"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 172,
+      "line_start": 163,
+      "locator": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
+      "symbol": "no_ruleset_boundary"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 176,
+      "line_start": 175,
+      "locator": "scripts/validate_documentation_contract.py::_line_number",
+      "symbol": "_line_number"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 181,
+      "line_start": 179,
+      "locator": "scripts/validate_documentation_contract.py::_historical_context",
+      "symbol": "_historical_context"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 197,
+      "line_start": 184,
+      "locator": "scripts/validate_documentation_contract.py::_finding",
+      "symbol": "_finding"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 252,
+      "line_start": 200,
+      "locator": "scripts/validate_documentation_contract.py::freshness_findings",
+      "symbol": "freshness_findings"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 296,
+      "line_start": 255,
+      "locator": "scripts/validate_documentation_contract.py::build_report",
+      "symbol": "build_report"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 300,
+      "line_start": 299,
+      "locator": "scripts/validate_documentation_contract.py::report_text",
+      "symbol": "report_text"
+    },
+    {
+      "file": "scripts/validate_documentation_contract.py",
+      "kind": "function",
+      "line_end": 336,
+      "line_start": 303,
+      "locator": "scripts/validate_documentation_contract.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/validate_github_ruleset.py",
       "kind": "function",
       "line_end": 84,
@@ -26122,16 +27496,16 @@
     {
       "file": "scripts/validate_public_docs.py",
       "kind": "function",
-      "line_end": 173,
-      "line_start": 92,
+      "line_end": 204,
+      "line_start": 93,
       "locator": "scripts/validate_public_docs.py::validate",
       "symbol": "validate"
     },
     {
       "file": "scripts/validate_public_docs.py",
       "kind": "function",
-      "line_end": 190,
-      "line_start": 176,
+      "line_end": 221,
+      "line_start": 207,
       "locator": "scripts/validate_public_docs.py::main",
       "symbol": "main"
     },
@@ -26385,13 +27759,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9",
+  "source_digest": "1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36",
   "source_summary": {
-    "files": 62,
+    "files": 64,
     "languages": {
-      "Python": 62
+      "Python": 64
     },
-    "lines": 15414,
+    "lines": 15974,
     "test_files": 0
   },
   "tests": []

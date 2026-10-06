@@ -12,7 +12,7 @@
       "scripts/validate_sequence_sessions.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-20-GOVERNANCE.actual.json",
-    "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
+    "source_digest": "1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36"
   },
   "critical": true,
   "evidence_boundary": "SW2-20 baseline sequence covers the existing documentation/governance validation pipeline before deterministic documentation inventory/freshness implementation. Static pipeline evidence does not prove coverage completeness or semantic freshness until SW2-20 requirements pass.",
@@ -22,7 +22,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-20-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "7abd9a3f5f6aff240118b972882e73715d92a32455cfa428683923a36545f1a9"
+    "source_digest": "1245c195ba84efbde13e61c13cc79f01f95680921e35a2c8c04546f89f3e3e36"
   },
   "implementation_base_sha": "81b76ccad6785538d898a0fd5767e1b426a2eb56",
   "mode": "DURING",

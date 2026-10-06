@@ -45,7 +45,8 @@ STABLE_RELEASE_RE = re.compile(
 )
 CURRENT_PHASE_RE = re.compile(r"(?i)\bcurrent(?:ly)?\b[^\n]{0,120}\b(SW2-\d+)\b")
 LICENSE_NEGATIVE_RE = re.compile(
-    r"(?i)(?:no\s+(?:owner-approved\s+)?(?:public\s+)?license|"
+    r"(?i)(?:(?:this\s+repository\s+)?does\s+not\s+currently\s+declare\s+an?\s+owner-approved\s+(?:public\s+)?license|"
+    r"no\s+(?:owner-approved\s+)?(?:public\s+)?license|"
     r"(?:public\s+)?license\s+(?:has\s+)?not\s+(?:yet\s+)?been\s+(?:selected|approved)|"
     r"license\s+choice\s+(?:is\s+)?(?:pending|not\s+approved))"
 )
