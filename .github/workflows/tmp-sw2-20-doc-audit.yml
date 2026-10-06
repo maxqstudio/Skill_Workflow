@@ -1,0 +1,47 @@
+name: TEMP SW2-20 Documentation Audit
+
+on:
+  push:
+    branches:
+      - work/sw2-20-documentation-inventory-freshness
+    paths:
+      - .github/workflows/tmp-sw2-20-doc-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-20-documentation-inventory-freshness
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run SW2-20 regression harness
+        run: python scripts/selftest_public_docs.py
+      - name: Generate current documentation coverage report
+        id: coverage
+        shell: bash
+        run: |
+          set +e
+          python scripts/validate_documentation_contract.py --root . --write-report > "$RUNNER_TEMP/documentation-audit.log" 2>&1
+          rc=$?
+          set -e
+          cat "$RUNNER_TEMP/documentation-audit.log"
+          echo "validator_rc=$rc" >> "$GITHUB_OUTPUT"
+          test -f .workflow/generated/documentation_coverage.json
+      - name: Upload diagnostic coverage evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sw2-20-documentation-audit
+          path: |
+            .workflow/generated/documentation_coverage.json
+            ${{ runner.temp }}/documentation-audit.log
+          if-no-files-found: error
+          retention-days: 7
