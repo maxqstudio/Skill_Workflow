@@ -1,0 +1,50 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-21-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-21-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/governance_engine.py::main",
+      "scripts/sync_project_truth.py::main",
+      "scripts/generate_project_docs.py::main",
+      "scripts/validate_project_docs.py::main",
+      "scripts/validate_cross_document_consistency.py::main",
+      "scripts/validate_sequence_sessions.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-21-GOVERNANCE.actual.json",
+    "source_digest": "91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568"
+  },
+  "critical": true,
+  "evidence_boundary": "SW2-21 sequence evidence covers closure-state reconciliation, accepted-main baseline authority, defect-lifecycle validation, Project Truth synchronization, and final acceptance plumbing. Static structure alone does not prove lifecycle correctness or post-merge semantic freshness.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-21-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-21-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-21-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568"
+  },
+  "implementation_base_sha": "8c72be9de2157ba743a1d593e1ed17adabc613a2",
+  "mode": "DURING",
+  "phase": "SW2-21",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-21-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_cross_document_regressions.py"
+  ]
+}

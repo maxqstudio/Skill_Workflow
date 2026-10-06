@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
+Source digest: 91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -20,6 +20,7 @@ responsibility, callers, or state ownership.
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
+| artifacts/tmp/sw2_21_phase_open.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
@@ -134,6 +135,16 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run_performance_budget_contract | function | 28-54 |
 | main | function | 57-115 |
+
+</details>
+
+<details>
+<summary><code>artifacts/tmp/sw2_21_phase_open.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| load | function | 9-10 |
+| write | function | 13-14 |
 
 </details>
 

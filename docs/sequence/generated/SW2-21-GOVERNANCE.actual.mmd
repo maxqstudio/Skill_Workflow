@@ -1,0 +1,425 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568
+%% OBSERVED_HEAD: 0784873984c40cb3f12ef351277a2dd718cc8edd
+%% GENERATED_BY: generate_sequence_actual.py
+sequenceDiagram
+    participant scripts_analyzer_contract_py__AnalyzerContractError_0 as scripts/analyzer_contract.py::AnalyzerContractError
+    participant scripts_analyzer_contract_py__AnalyzerResult_1 as scripts/analyzer_contract.py::AnalyzerResult
+    participant scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2 as scripts/analyzer_contract.py::AnalyzerResult.coverage_record
+    participant scripts_analyzer_contract_py__coverage_records_3 as scripts/analyzer_contract.py::coverage_records
+    participant scripts_analyzer_contract_py__generic_fallback_4 as scripts/analyzer_contract.py::generic_fallback
+    participant scripts_analyzer_contract_py__validate_result_5 as scripts/analyzer_contract.py::validate_result
+    participant scripts_extract_project_facts_py__PythonFacts_6 as scripts/extract_project_facts.py::PythonFacts
+    participant scripts_extract_project_facts_py___extract_from_snapshot_7 as scripts/extract_project_facts.py::_extract_from_snapshot
+    participant scripts_extract_project_facts_py__extract_project_facts_8 as scripts/extract_project_facts.py::extract_project_facts
+    participant scripts_extract_project_facts_py__is_test_file_9 as scripts/extract_project_facts.py::is_test_file
+    participant scripts_generate_project_docs_py__canonical_bytes_10 as scripts/generate_project_docs.py::canonical_bytes
+    participant scripts_generate_project_docs_py__canonical_generated_bytes_11 as scripts/generate_project_docs.py::canonical_generated_bytes
+    participant scripts_generate_project_docs_py__git_root_12 as scripts/generate_project_docs.py::git_root
+    participant scripts_generate_project_docs_py__input_digest_13 as scripts/generate_project_docs.py::input_digest
+    participant scripts_generate_project_docs_py__load_json_14 as scripts/generate_project_docs.py::load_json
+    participant scripts_generate_project_docs_py__main_15 as scripts/generate_project_docs.py::main
+    participant scripts_generate_project_docs_py__read_specs_16 as scripts/generate_project_docs.py::read_specs
+    participant scripts_generate_project_docs_py__render_all_17 as scripts/generate_project_docs.py::render_all
+    participant scripts_generate_project_docs_py__validate_inputs_18 as scripts/generate_project_docs.py::validate_inputs
+    participant scripts_governance_engine_py__ValidationDAG_19 as scripts/governance_engine.py::ValidationDAG
+    participant scripts_governance_engine_py__ValidationNode_20 as scripts/governance_engine.py::ValidationNode
+    participant scripts_governance_engine_py___regression_node_21 as scripts/governance_engine.py::_regression_node
+    participant scripts_governance_engine_py__build_dag_22 as scripts/governance_engine.py::build_dag
+    participant scripts_governance_engine_py__build_mode_dag_23 as scripts/governance_engine.py::build_mode_dag
+    participant scripts_governance_engine_py__classify_changed_paths_24 as scripts/governance_engine.py::classify_changed_paths
+    participant scripts_governance_engine_py__classify_path_25 as scripts/governance_engine.py::classify_path
+    participant scripts_governance_engine_py__cli_action_26 as scripts/governance_engine.py::cli_action
+    participant scripts_governance_engine_py__collect_changed_paths_27 as scripts/governance_engine.py::collect_changed_paths
+    participant scripts_governance_engine_py__command_action_28 as scripts/governance_engine.py::command_action
+    participant scripts_governance_engine_py__compile_scripts_action_29 as scripts/governance_engine.py::compile_scripts_action
+    participant scripts_governance_engine_py__dependency_closure_30 as scripts/governance_engine.py::dependency_closure
+    participant scripts_governance_engine_py__develop_node_names_31 as scripts/governance_engine.py::develop_node_names
+    participant scripts_governance_engine_py__effective_mode_32 as scripts/governance_engine.py::effective_mode
+    participant scripts_governance_engine_py__git_33 as scripts/governance_engine.py::git
+    participant scripts_governance_engine_py__git_z_34 as scripts/governance_engine.py::git_z
+    participant scripts_governance_engine_py__governed_status_35 as scripts/governance_engine.py::governed_status
+    participant scripts_governance_engine_py__main_36 as scripts/governance_engine.py::main
+    participant scripts_governance_engine_py__planned_node_names_37 as scripts/governance_engine.py::planned_node_names
+    participant scripts_governance_engine_py__state_base_38 as scripts/governance_engine.py::state_base
+    participant scripts_governance_engine_py__verify_node_names_39 as scripts/governance_engine.py::verify_node_names
+    participant scripts_governance_engine_py__verify_seed_node_names_40 as scripts/governance_engine.py::verify_seed_node_names
+    participant scripts_project_profile_py___bool_value_41 as scripts/project_profile.py::_bool_value
+    participant scripts_project_profile_py___clean_42 as scripts/project_profile.py::_clean
+    participant scripts_project_profile_py__contract_settings_43 as scripts/project_profile.py::contract_settings
+    participant scripts_project_profile_py__documentation_settings_44 as scripts/project_profile.py::documentation_settings
+    participant scripts_project_profile_py__normalized_profile_45 as scripts/project_profile.py::normalized_profile
+    participant scripts_project_profile_py__parse_profile_46 as scripts/project_profile.py::parse_profile
+    participant scripts_project_profile_py__required_docs_47 as scripts/project_profile.py::required_docs
+    participant scripts_project_profile_py__runtime_settings_48 as scripts/project_profile.py::runtime_settings
+    participant scripts_project_profile_py__sequence_settings_49 as scripts/project_profile.py::sequence_settings
+    participant scripts_project_profile_py__validate_profile_50 as scripts/project_profile.py::validate_profile
+    participant scripts_project_snapshot_py__ProjectSnapshot_capture_51 as scripts/project_snapshot.py::ProjectSnapshot.capture
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_52 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_memoized_53 as scripts/project_snapshot.py::ProjectSnapshot.memoized
+    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_54 as scripts/project_snapshot.py::ProjectSnapshot.metrics
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_56 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_57 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_project_snapshot_py__SnapshotFile_58 as scripts/project_snapshot.py::SnapshotFile
+    participant scripts_project_snapshot_py___git_59 as scripts/project_snapshot.py::_git
+    participant scripts_project_snapshot_py___git_optional_60 as scripts/project_snapshot.py::_git_optional
+    participant scripts_project_snapshot_py__active_project_snapshot_61 as scripts/project_snapshot.py::active_project_snapshot
+    participant scripts_project_snapshot_py__active_snapshot_for_62 as scripts/project_snapshot.py::active_snapshot_for
+    participant scripts_project_snapshot_py__canonical_source_bytes_63 as scripts/project_snapshot.py::canonical_source_bytes
+    participant scripts_project_snapshot_py__discover_source_paths_64 as scripts/project_snapshot.py::discover_source_paths
+    participant scripts_project_snapshot_py__resolve_snapshot_65 as scripts/project_snapshot.py::resolve_snapshot
+    participant scripts_project_truth_impact_py__normalize_path_66 as scripts/project_truth_impact.py::normalize_path
+    participant scripts_project_truth_impact_py__plan_project_truth_impact_67 as scripts/project_truth_impact.py::plan_project_truth_impact
+    participant scripts_project_truth_projection_code_py__render_acceptance_68 as scripts/project_truth_projection_code.py::render_acceptance
+    participant scripts_project_truth_projection_code_py__render_flows_69 as scripts/project_truth_projection_code.py::render_flows
+    participant scripts_project_truth_projection_code_py__render_modules_70 as scripts/project_truth_projection_code.py::render_modules
+    participant scripts_project_truth_projection_code_py__render_symbols_71 as scripts/project_truth_projection_code.py::render_symbols
+    participant scripts_project_truth_projection_common_py__auth_lookup_72 as scripts/project_truth_projection_common.py::auth_lookup
+    participant scripts_project_truth_projection_common_py__bullets_73 as scripts/project_truth_projection_common.py::bullets
+    participant scripts_project_truth_projection_common_py__cell_74 as scripts/project_truth_projection_common.py::cell
+    participant scripts_project_truth_projection_common_py__claim_backlink_comment_75 as scripts/project_truth_projection_common.py::claim_backlink_comment
+    participant scripts_project_truth_projection_common_py__clean_76 as scripts/project_truth_projection_common.py::clean
+    participant scripts_project_truth_projection_common_py__generated_header_77 as scripts/project_truth_projection_common.py::generated_header
+    participant scripts_project_truth_projection_common_py__normalize_markdown_78 as scripts/project_truth_projection_common.py::normalize_markdown
+    participant scripts_project_truth_projection_common_py__wanted_doc_names_79 as scripts/project_truth_projection_common.py::wanted_doc_names
+    participant scripts_project_truth_projection_contracts_py__render_api_80 as scripts/project_truth_projection_contracts.py::render_api
+    participant scripts_project_truth_projection_contracts_py__render_data_81 as scripts/project_truth_projection_contracts.py::render_data
+    participant scripts_project_truth_projection_contracts_py__render_runbook_82 as scripts/project_truth_projection_contracts.py::render_runbook
+    participant scripts_project_truth_projection_contracts_py__render_ui_83 as scripts/project_truth_projection_contracts.py::render_ui
+    participant scripts_project_truth_projection_governance_py__render_changelog_84 as scripts/project_truth_projection_governance.py::render_changelog
+    participant scripts_project_truth_projection_governance_py__render_decisions_85 as scripts/project_truth_projection_governance.py::render_decisions
+    participant scripts_project_truth_projection_governance_py__render_defects_86 as scripts/project_truth_projection_governance.py::render_defects
+    participant scripts_project_truth_projection_governance_py__render_doc_sync_87 as scripts/project_truth_projection_governance.py::render_doc_sync
+    participant scripts_project_truth_projection_governance_py__render_glossary_88 as scripts/project_truth_projection_governance.py::render_glossary
+    participant scripts_project_truth_projection_governance_py__render_truth_89 as scripts/project_truth_projection_governance.py::render_truth
+    participant scripts_project_truth_projection_state_py__render_architecture_90 as scripts/project_truth_projection_state.py::render_architecture
+    participant scripts_project_truth_projection_state_py__render_authority_91 as scripts/project_truth_projection_state.py::render_authority
+    participant scripts_project_truth_projection_state_py__render_current_state_92 as scripts/project_truth_projection_state.py::render_current_state
+    participant scripts_project_truth_projection_state_py__render_project_manifest_93 as scripts/project_truth_projection_state.py::render_project_manifest
+    participant scripts_project_truth_projection_state_py__render_roadmap_94 as scripts/project_truth_projection_state.py::render_roadmap
+    participant scripts_project_truth_projection_state_py__render_sequence_95 as scripts/project_truth_projection_state.py::render_sequence
+    participant scripts_project_truth_projection_state_py__render_system_overview_96 as scripts/project_truth_projection_state.py::render_system_overview
+    participant scripts_project_truth_projection_state_py__render_workflows_97 as scripts/project_truth_projection_state.py::render_workflows
+    participant scripts_schema_contract_py___profile_version_98 as scripts/schema_contract.py::_profile_version
+    participant scripts_schema_contract_py__require_json_schema_version_99 as scripts/schema_contract.py::require_json_schema_version
+    participant scripts_schema_contract_py__require_profile_schema_version_100 as scripts/schema_contract.py::require_profile_schema_version
+    participant scripts_script_runner_py__invoke_main_101 as scripts/script_runner.py::invoke_main
+    participant scripts_selftest_sequence_human_view_py__sha256_102 as scripts/selftest_sequence_human_view.py::sha256
+    participant scripts_sync_project_truth_py__compiler_args_103 as scripts/sync_project_truth.py::compiler_args
+    participant scripts_sync_project_truth_py__main_104 as scripts/sync_project_truth.py::main
+    participant scripts_sync_project_truth_py__run_main_105 as scripts/sync_project_truth.py::run_main
+    participant scripts_sync_project_truth_py__sync_once_106 as scripts/sync_project_truth.py::sync_once
+    participant scripts_validate_cross_document_consistency_py__all_docs_107 as scripts/validate_cross_document_consistency.py::all_docs
+    participant scripts_validate_cross_document_consistency_py__claim_rows_108 as scripts/validate_cross_document_consistency.py::claim_rows
+    participant scripts_validate_cross_document_consistency_py__diff_changes_109 as scripts/validate_cross_document_consistency.py::diff_changes
+    participant scripts_validate_cross_document_consistency_py__git_110 as scripts/validate_cross_document_consistency.py::git
+    participant scripts_validate_cross_document_consistency_py__git_root_111 as scripts/validate_cross_document_consistency.py::git_root
+    participant scripts_validate_cross_document_consistency_py__is_skill_reference_document_112 as scripts/validate_cross_document_consistency.py::is_skill_reference_document
+    participant scripts_validate_cross_document_consistency_py__is_source_113 as scripts/validate_cross_document_consistency.py::is_source
+    participant scripts_validate_cross_document_consistency_py__is_template_document_114 as scripts/validate_cross_document_consistency.py::is_template_document
+    participant scripts_validate_cross_document_consistency_py__likely_path_115 as scripts/validate_cross_document_consistency.py::likely_path
+    participant scripts_validate_cross_document_consistency_py__main_116 as scripts/validate_cross_document_consistency.py::main
+    participant scripts_validate_cross_document_consistency_py__parse_table_117 as scripts/validate_cross_document_consistency.py::parse_table
+    participant scripts_validate_cross_document_consistency_py__read_118 as scripts/validate_cross_document_consistency.py::read
+    participant scripts_validate_cross_document_consistency_py__required_docs_for_diff_119 as scripts/validate_cross_document_consistency.py::required_docs_for_diff
+    participant scripts_validate_cross_document_consistency_py__resolve_declared_doc_ref_120 as scripts/validate_cross_document_consistency.py::resolve_declared_doc_ref
+    participant scripts_validate_cross_document_consistency_py__resolve_ref_121 as scripts/validate_cross_document_consistency.py::resolve_ref
+    participant scripts_validate_cross_document_consistency_py__scalar_fields_122 as scripts/validate_cross_document_consistency.py::scalar_fields
+    participant scripts_validate_cross_document_consistency_py__source_has_symbol_123 as scripts/validate_cross_document_consistency.py::source_has_symbol
+    participant scripts_validate_cross_document_consistency_py__split_refs_124 as scripts/validate_cross_document_consistency.py::split_refs
+    participant scripts_validate_cross_document_consistency_py__strip_fences_125 as scripts/validate_cross_document_consistency.py::strip_fences
+    participant scripts_validate_cross_document_consistency_py__truth_claims_126 as scripts/validate_cross_document_consistency.py::truth_claims
+    participant scripts_validate_doc_quality_py__normalized_shape_127 as scripts/validate_doc_quality.py::normalized_shape
+    participant scripts_validate_project_docs_py__main_128 as scripts/validate_project_docs.py::main
+    participant scripts_validate_sequence_sessions_py__build_historical_manifest_129 as scripts/validate_sequence_sessions.py::build_historical_manifest
+    participant scripts_validate_sequence_sessions_py__evidence_paths_130 as scripts/validate_sequence_sessions.py::evidence_paths
+    participant scripts_validate_sequence_sessions_py__evidence_paths_add_131 as scripts/validate_sequence_sessions.py::evidence_paths.add
+    participant scripts_validate_sequence_sessions_py__fail_payload_132 as scripts/validate_sequence_sessions.py::fail_payload
+    participant scripts_validate_sequence_sessions_py__git_commit_exists_133 as scripts/validate_sequence_sessions.py::git_commit_exists
+    participant scripts_validate_sequence_sessions_py__git_path_clean_134 as scripts/validate_sequence_sessions.py::git_path_clean
+    participant scripts_validate_sequence_sessions_py__git_show_bytes_135 as scripts/validate_sequence_sessions.py::git_show_bytes
+    participant scripts_validate_sequence_sessions_py__historical_sessions_136 as scripts/validate_sequence_sessions.py::historical_sessions
+    participant scripts_validate_sequence_sessions_py__load_session_137 as scripts/validate_sequence_sessions.py::load_session
+    participant scripts_validate_sequence_sessions_py__main_138 as scripts/validate_sequence_sessions.py::main
+    participant scripts_validate_sequence_sessions_py__repo_relative_path_139 as scripts/validate_sequence_sessions.py::repo_relative_path
+    participant scripts_validate_sequence_sessions_py__run_validator_140 as scripts/validate_sequence_sessions.py::run_validator
+    participant scripts_validate_sequence_sessions_py__session_scope_141 as scripts/validate_sequence_sessions.py::session_scope
+    participant scripts_validate_sequence_sessions_py__sha256_bytes_142 as scripts/validate_sequence_sessions.py::sha256_bytes
+    participant scripts_validate_sequence_sessions_py__sha256_file_143 as scripts/validate_sequence_sessions.py::sha256_file
+    participant scripts_validate_sequence_sessions_py__verify_historical_manifest_144 as scripts/validate_sequence_sessions.py::verify_historical_manifest
+    participant scripts_validate_sequence_sessions_py__write_json_145 as scripts/validate_sequence_sessions.py::write_json
+    scripts_analyzer_contract_py__coverage_records_3->>scripts_analyzer_contract_py__validate_result_5: validate_result [STATIC]
+    scripts_analyzer_contract_py__generic_fallback_4->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_analyzer_contract_py__generic_fallback_4->>scripts_analyzer_contract_py__validate_result_5: validate_result [STATIC]
+    scripts_analyzer_contract_py__validate_result_5->>scripts_analyzer_contract_py__AnalyzerContractError_0: AnalyzerContractError [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2: fallback.coverage_record [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_analyzer_contract_py__coverage_records_3: coverage_records [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_analyzer_contract_py__generic_fallback_4: generic_fallback [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_analyzer_contract_py__validate_result_5: validate_result [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_extract_project_facts_py__PythonFacts_6: PythonFacts [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_extract_project_facts_py__is_test_file_9: is_test_file [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_7->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: snapshot.read_text [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_8->>scripts_extract_project_facts_py___extract_from_snapshot_7: _extract_from_snapshot [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_8->>scripts_project_snapshot_py__ProjectSnapshot_memoized_53: snap.memoized [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_8->>scripts_project_snapshot_py__resolve_snapshot_65: resolve_snapshot [STATIC]
+    scripts_generate_project_docs_py__input_digest_13->>scripts_generate_project_docs_py__canonical_bytes_10: canonical_bytes [STATIC]
+    scripts_generate_project_docs_py__input_digest_13->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_generate_project_docs_py__input_digest_13->>scripts_selftest_sequence_human_view_py__sha256_102: hashlib.sha256 [STATIC]
+    scripts_generate_project_docs_py__load_json_14->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: path.read_text [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_extract_project_facts_py__extract_project_facts_8: extract_project_facts [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__canonical_generated_bytes_11: canonical_generated_bytes [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__git_root_12: git_root [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__input_digest_13: input_digest [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__load_json_14: load_json [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__read_specs_16: read_specs [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__render_all_17: render_all [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_generate_project_docs_py__validate_inputs_18: validate_inputs [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__contract_settings_43: contract_settings [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__documentation_settings_44: documentation_settings [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__normalized_profile_45: normalized_profile [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__parse_profile_46: parse_profile [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__required_docs_47: required_docs [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_profile_py__sequence_settings_49: sequence_settings [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55: facts_output.read_bytes [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55: path.read_bytes [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: profile_path.read_text [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_truth_impact_py__plan_project_truth_impact_67: plan_project_truth_impact [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_generate_project_docs_py__main_15->>scripts_project_truth_projection_common_py__wanted_doc_names_79: wanted_doc_names [STATIC]
+    scripts_generate_project_docs_py__read_specs_16->>scripts_generate_project_docs_py__load_json_14: load_json [STATIC]
+    scripts_generate_project_docs_py__read_specs_16->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_generate_project_docs_py__read_specs_16->>scripts_schema_contract_py__require_json_schema_version_99: require_json_schema_version [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_code_py__render_acceptance_68: render_acceptance [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_code_py__render_flows_69: render_flows [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_code_py__render_modules_70: render_modules [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_code_py__render_symbols_71: render_symbols [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_common_py__claim_backlink_comment_75: claim_backlink_comment [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_common_py__generated_header_77: generated_header [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_common_py__normalize_markdown_78: normalize_markdown [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_common_py__wanted_doc_names_79: wanted_doc_names [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_contracts_py__render_api_80: render_api [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_contracts_py__render_data_81: render_data [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_contracts_py__render_runbook_82: render_runbook [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_contracts_py__render_ui_83: render_ui [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_governance_py__render_changelog_84: render_changelog [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_governance_py__render_decisions_85: render_decisions [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_governance_py__render_defects_86: render_defects [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_governance_py__render_doc_sync_87: render_doc_sync [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_governance_py__render_glossary_88: render_glossary [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_governance_py__render_truth_89: render_truth [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_architecture_90: render_architecture [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_authority_91: render_authority [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_current_state_92: render_current_state [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_project_manifest_93: render_project_manifest [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_roadmap_94: render_roadmap [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_sequence_95: render_sequence [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_system_overview_96: render_system_overview [STATIC]
+    scripts_generate_project_docs_py__render_all_17->>scripts_project_truth_projection_state_py__render_workflows_97: render_workflows [STATIC]
+    scripts_generate_project_docs_py__validate_inputs_18->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_generate_project_docs_py__validate_inputs_18->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: seen_phase_ids.add [STATIC]
+    scripts_governance_engine_py___regression_node_21->>scripts_governance_engine_py__ValidationNode_20: ValidationNode [STATIC]
+    scripts_governance_engine_py___regression_node_21->>scripts_governance_engine_py__command_action_28: command_action [STATIC]
+    scripts_governance_engine_py__build_dag_22->>scripts_governance_engine_py__ValidationDAG_19: ValidationDAG [STATIC]
+    scripts_governance_engine_py__build_dag_22->>scripts_governance_engine_py__ValidationNode_20: ValidationNode [STATIC]
+    scripts_governance_engine_py__build_dag_22->>scripts_governance_engine_py__cli_action_26: cli_action [STATIC]
+    scripts_governance_engine_py__build_dag_22->>scripts_governance_engine_py__governed_status_35: governed_status [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py__ValidationDAG_19: ValidationDAG [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py__ValidationNode_20: ValidationNode [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py___regression_node_21: _regression_node [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py__cli_action_26: cli_action [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py__command_action_28: command_action [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py__compile_scripts_action_29: compile_scripts_action [STATIC]
+    scripts_governance_engine_py__build_mode_dag_23->>scripts_governance_engine_py__governed_status_35: governed_status [STATIC]
+    scripts_governance_engine_py__classify_changed_paths_24->>scripts_governance_engine_py__classify_path_25: classify_path [STATIC]
+    scripts_governance_engine_py__cli_action_26->>scripts_script_runner_py__invoke_main_101: invoke_main [STATIC]
+    scripts_governance_engine_py__collect_changed_paths_27->>scripts_governance_engine_py__git_z_34: git_z [STATIC]
+    scripts_governance_engine_py__develop_node_names_31->>scripts_governance_engine_py__dependency_closure_30: dependency_closure [STATIC]
+    scripts_governance_engine_py__develop_node_names_31->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: names.add [STATIC]
+    scripts_governance_engine_py__governed_status_35->>scripts_governance_engine_py__git_33: git [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__build_dag_22: build_dag [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__build_mode_dag_23: build_mode_dag [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__classify_changed_paths_24: classify_changed_paths [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__collect_changed_paths_27: collect_changed_paths [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__effective_mode_32: effective_mode [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__planned_node_names_37: planned_node_names [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_governance_engine_py__state_base_38: state_base [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_project_snapshot_py__ProjectSnapshot_capture_51: ProjectSnapshot.capture [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_project_snapshot_py__ProjectSnapshot_metrics_54: snapshot.metrics [STATIC]
+    scripts_governance_engine_py__main_36->>scripts_project_snapshot_py__active_project_snapshot_61: active_project_snapshot [STATIC]
+    scripts_governance_engine_py__planned_node_names_37->>scripts_governance_engine_py__develop_node_names_31: develop_node_names [STATIC]
+    scripts_governance_engine_py__planned_node_names_37->>scripts_governance_engine_py__verify_node_names_39: verify_node_names [STATIC]
+    scripts_governance_engine_py__state_base_38->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: path.read_text [STATIC]
+    scripts_governance_engine_py__verify_node_names_39->>scripts_governance_engine_py__dependency_closure_30: dependency_closure [STATIC]
+    scripts_governance_engine_py__verify_node_names_39->>scripts_governance_engine_py__verify_seed_node_names_40: verify_seed_node_names [STATIC]
+    scripts_governance_engine_py__verify_seed_node_names_40->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: seeds.add [STATIC]
+    scripts_project_profile_py__documentation_settings_44->>scripts_project_profile_py___bool_value_41: _bool_value [STATIC]
+    scripts_project_profile_py__documentation_settings_44->>scripts_project_profile_py__normalized_profile_45: normalized_profile [STATIC]
+    scripts_project_profile_py__parse_profile_46->>scripts_project_profile_py___clean_42: _clean [STATIC]
+    scripts_project_profile_py__parse_profile_46->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: path.read_text [STATIC]
+    scripts_project_profile_py__parse_profile_46->>scripts_schema_contract_py__require_profile_schema_version_100: require_profile_schema_version [STATIC]
+    scripts_project_profile_py__required_docs_47->>scripts_project_profile_py__contract_settings_43: contract_settings [STATIC]
+    scripts_project_profile_py__required_docs_47->>scripts_project_profile_py__normalized_profile_45: normalized_profile [STATIC]
+    scripts_project_profile_py__required_docs_47->>scripts_project_profile_py__sequence_settings_49: sequence_settings [STATIC]
+    scripts_project_profile_py__required_docs_47->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: required.add [STATIC]
+    scripts_project_profile_py__runtime_settings_48->>scripts_project_profile_py___bool_value_41: _bool_value [STATIC]
+    scripts_project_profile_py__sequence_settings_49->>scripts_project_profile_py___bool_value_41: _bool_value [STATIC]
+    scripts_project_profile_py__sequence_settings_49->>scripts_project_profile_py__normalized_profile_45: normalized_profile [STATIC]
+    scripts_project_profile_py__validate_profile_50->>scripts_project_profile_py__contract_settings_43: contract_settings [STATIC]
+    scripts_project_profile_py__validate_profile_50->>scripts_project_profile_py__documentation_settings_44: documentation_settings [STATIC]
+    scripts_project_profile_py__validate_profile_50->>scripts_project_profile_py__normalized_profile_45: normalized_profile [STATIC]
+    scripts_project_profile_py__validate_profile_50->>scripts_project_profile_py__runtime_settings_48: runtime_settings [STATIC]
+    scripts_project_profile_py__validate_profile_50->>scripts_project_profile_py__sequence_settings_49: sequence_settings [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_51->>scripts_project_snapshot_py__SnapshotError_57: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_51->>scripts_project_snapshot_py__SnapshotFile_58: SnapshotFile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_51->>scripts_project_snapshot_py___git_optional_60: _git_optional [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_51->>scripts_project_snapshot_py__canonical_source_bytes_63: canonical_source_bytes [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_51->>scripts_project_snapshot_py__discover_source_paths_64: discover_source_paths [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_51->>scripts_selftest_sequence_human_view_py__sha256_102: hashlib.sha256 [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_52->>scripts_project_snapshot_py__SnapshotError_57: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55->>scripts_project_snapshot_py__ProjectSnapshot_entry_52: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_56->>scripts_project_snapshot_py__ProjectSnapshot_entry_52: self.entry [STATIC]
+    scripts_project_snapshot_py___git_optional_60->>scripts_project_snapshot_py___git_59: _git [STATIC]
+    scripts_project_snapshot_py__canonical_source_bytes_63->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55: path.read_bytes [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_64->>scripts_project_snapshot_py__SnapshotError_57: SnapshotError [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_64->>scripts_project_snapshot_py___git_59: _git [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_65->>scripts_project_snapshot_py__ProjectSnapshot_capture_51: ProjectSnapshot.capture [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_65->>scripts_project_snapshot_py__SnapshotError_57: SnapshotError [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_65->>scripts_project_snapshot_py__active_snapshot_for_62: active_snapshot_for [STATIC]
+    scripts_project_truth_impact_py__plan_project_truth_impact_67->>scripts_project_truth_impact_py__normalize_path_66: normalize_path [STATIC]
+    scripts_project_truth_impact_py__plan_project_truth_impact_67->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: affected.add [STATIC]
+    scripts_project_truth_impact_py__plan_project_truth_impact_67->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: direct_docs.add [STATIC]
+    scripts_project_truth_impact_py__plan_project_truth_impact_67->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: tokens.add [STATIC]
+    scripts_project_truth_projection_code_py__render_acceptance_68->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_code_py__render_acceptance_68->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_code_py__render_acceptance_68->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_code_py__render_flows_69->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_code_py__render_flows_69->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_code_py__render_modules_70->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_code_py__render_symbols_71->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_code_py__render_symbols_71->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_code_py__render_symbols_71->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_common_py__auth_lookup_72->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_common_py__bullets_73->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_common_py__cell_74->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_common_py__claim_backlink_comment_75->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_common_py__wanted_doc_names_79->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: wanted.add [STATIC]
+    scripts_project_truth_projection_contracts_py__render_api_80->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_contracts_py__render_data_81->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_contracts_py__render_runbook_82->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_contracts_py__render_ui_83->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_governance_py__render_changelog_84->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_governance_py__render_changelog_84->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_governance_py__render_decisions_85->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_governance_py__render_defects_86->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_governance_py__render_glossary_88->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_governance_py__render_truth_89->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_governance_py__render_truth_89->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_state_py__render_architecture_90->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_architecture_90->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_state_py__render_authority_91->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_state_py__render_authority_91->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_current_state_92->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_state_py__render_current_state_92->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_state_py__render_project_manifest_93->>scripts_project_truth_projection_common_py__auth_lookup_72: auth_lookup [STATIC]
+    scripts_project_truth_projection_state_py__render_project_manifest_93->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_state_py__render_project_manifest_93->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_project_manifest_93->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_state_py__render_roadmap_94->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_roadmap_94->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_state_py__render_sequence_95->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_system_overview_96->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_state_py__render_system_overview_96->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_system_overview_96->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_project_truth_projection_state_py__render_workflows_97->>scripts_project_truth_projection_common_py__bullets_73: bullets [STATIC]
+    scripts_project_truth_projection_state_py__render_workflows_97->>scripts_project_truth_projection_common_py__cell_74: cell [STATIC]
+    scripts_project_truth_projection_state_py__render_workflows_97->>scripts_project_truth_projection_common_py__clean_76: clean [STATIC]
+    scripts_schema_contract_py__require_profile_schema_version_100->>scripts_schema_contract_py___profile_version_98: _profile_version [STATIC]
+    scripts_selftest_sequence_human_view_py__sha256_102->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55: path.read_bytes [STATIC]
+    scripts_sync_project_truth_py__main_104->>scripts_project_snapshot_py__ProjectSnapshot_capture_51: ProjectSnapshot.capture [STATIC]
+    scripts_sync_project_truth_py__main_104->>scripts_project_snapshot_py__active_project_snapshot_61: active_project_snapshot [STATIC]
+    scripts_sync_project_truth_py__main_104->>scripts_project_snapshot_py__active_snapshot_for_62: active_snapshot_for [STATIC]
+    scripts_sync_project_truth_py__main_104->>scripts_sync_project_truth_py__sync_once_106: sync_once [STATIC]
+    scripts_sync_project_truth_py__run_main_105->>scripts_script_runner_py__invoke_main_101: invoke_main [STATIC]
+    scripts_sync_project_truth_py__sync_once_106->>scripts_project_profile_py__documentation_settings_44: documentation_settings [STATIC]
+    scripts_sync_project_truth_py__sync_once_106->>scripts_project_profile_py__parse_profile_46: parse_profile [STATIC]
+    scripts_sync_project_truth_py__sync_once_106->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: acceptance_path.read_text [STATIC]
+    scripts_sync_project_truth_py__sync_once_106->>scripts_sync_project_truth_py__compiler_args_103: compiler_args [STATIC]
+    scripts_sync_project_truth_py__sync_once_106->>scripts_sync_project_truth_py__run_main_105: run_main [STATIC]
+    scripts_validate_cross_document_consistency_py__claim_rows_108->>scripts_validate_cross_document_consistency_py__strip_fences_125: strip_fences [STATIC]
+    scripts_validate_cross_document_consistency_py__diff_changes_109->>scripts_validate_cross_document_consistency_py__git_110: git [STATIC]
+    scripts_validate_cross_document_consistency_py__git_root_111->>scripts_validate_cross_document_consistency_py__git_110: git [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__contract_settings_43: contract_settings [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__documentation_settings_44: documentation_settings [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__normalized_profile_45: normalized_profile [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__parse_profile_46: parse_profile [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__required_docs_47: required_docs [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__sequence_settings_49: sequence_settings [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_project_profile_py__validate_profile_50: validate_profile [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__all_docs_107: all_docs [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__claim_rows_108: claim_rows [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__diff_changes_109: diff_changes [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__git_110: git [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__git_root_111: git_root [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__is_skill_reference_document_112: is_skill_reference_document [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__is_template_document_114: is_template_document [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__likely_path_115: likely_path [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__parse_table_117: parse_table [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__read_118: read [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__required_docs_for_diff_119: required_docs_for_diff [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__resolve_declared_doc_ref_120: resolve_declared_doc_ref [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__resolve_ref_121: resolve_ref [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__scalar_fields_122: scalar_fields [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__source_has_symbol_123: source_has_symbol [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__split_refs_124: split_refs [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__strip_fences_125: strip_fences [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_cross_document_consistency_py__truth_claims_126: truth_claims [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: statuses.add [STATIC]
+    scripts_validate_cross_document_consistency_py__main_116->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: texts.add [STATIC]
+    scripts_validate_cross_document_consistency_py__read_118->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: path.read_text [STATIC]
+    scripts_validate_cross_document_consistency_py__required_docs_for_diff_119->>scripts_validate_cross_document_consistency_py__is_source_113: is_source [STATIC]
+    scripts_validate_cross_document_consistency_py__required_docs_for_diff_119->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: required.add [STATIC]
+    scripts_validate_cross_document_consistency_py__source_has_symbol_123->>scripts_validate_cross_document_consistency_py__read_118: read [STATIC]
+    scripts_validate_cross_document_consistency_py__truth_claims_126->>scripts_validate_cross_document_consistency_py__parse_table_117: parse_table [STATIC]
+    scripts_validate_cross_document_consistency_py__truth_claims_126->>scripts_validate_cross_document_consistency_py__read_118: read [STATIC]
+    scripts_validate_project_docs_py__main_128->>scripts_project_profile_py__documentation_settings_44: documentation_settings [STATIC]
+    scripts_validate_project_docs_py__main_128->>scripts_project_profile_py__parse_profile_46: parse_profile [STATIC]
+    scripts_validate_project_docs_py__main_128->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: agents_path.read_text [STATIC]
+    scripts_validate_project_docs_py__main_128->>scripts_script_runner_py__invoke_main_101: invoke_main [STATIC]
+    scripts_validate_project_docs_py__main_128->>scripts_validate_doc_quality_py__normalized_shape_127: validate_doc_quality.normalized_shape [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__evidence_paths_130: evidence_paths [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__git_commit_exists_133: git_commit_exists [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__git_path_clean_134: git_path_clean [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__git_show_bytes_135: git_show_bytes [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__historical_sessions_136: historical_sessions [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__load_session_137: load_session [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__sha256_bytes_142: sha256_bytes [STATIC]
+    scripts_validate_sequence_sessions_py__build_historical_manifest_129->>scripts_validate_sequence_sessions_py__sha256_file_143: sha256_file [STATIC]
+    scripts_validate_sequence_sessions_py__evidence_paths_130->>scripts_validate_sequence_sessions_py__evidence_paths_add_131: add [STATIC]
+    scripts_validate_sequence_sessions_py__evidence_paths_add_131->>scripts_validate_sequence_sessions_py__repo_relative_path_139: repo_relative_path [STATIC]
+    scripts_validate_sequence_sessions_py__historical_sessions_136->>scripts_validate_sequence_sessions_py__load_session_137: load_session [STATIC]
+    scripts_validate_sequence_sessions_py__historical_sessions_136->>scripts_validate_sequence_sessions_py__session_scope_141: session_scope [STATIC]
+    scripts_validate_sequence_sessions_py__load_session_137->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: path.read_text [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_project_profile_py__parse_profile_46: parse_profile [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_project_profile_py__sequence_settings_49: sequence_settings [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__build_historical_manifest_129: build_historical_manifest [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__fail_payload_132: fail_payload [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__historical_sessions_136: historical_sessions [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__load_session_137: load_session [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__run_validator_140: run_validator [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__session_scope_141: session_scope [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__sha256_file_143: sha256_file [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__verify_historical_manifest_144: verify_historical_manifest [STATIC]
+    scripts_validate_sequence_sessions_py__main_138->>scripts_validate_sequence_sessions_py__write_json_145: write_json [STATIC]
+    scripts_validate_sequence_sessions_py__sha256_bytes_142->>scripts_selftest_sequence_human_view_py__sha256_102: hashlib.sha256 [STATIC]
+    scripts_validate_sequence_sessions_py__sha256_file_143->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_55: path.read_bytes [STATIC]
+    scripts_validate_sequence_sessions_py__sha256_file_143->>scripts_validate_sequence_sessions_py__sha256_bytes_142: sha256_bytes [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_project_snapshot_py__ProjectSnapshot_read_text_56: manifest_path.read_text [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__evidence_paths_130: evidence_paths [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__git_commit_exists_133: git_commit_exists [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__git_path_clean_134: git_path_clean [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__git_show_bytes_135: git_show_bytes [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__historical_sessions_136: historical_sessions [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__load_session_137: load_session [STATIC]
+    scripts_validate_sequence_sessions_py__verify_historical_manifest_144->>scripts_validate_sequence_sessions_py__sha256_bytes_142: sha256_bytes [STATIC]

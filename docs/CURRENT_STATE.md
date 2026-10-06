@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
+Authority verified at SHA: 8c72be9de2157ba743a1d593e1ed17adabc613a2
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-20
-Status: SW2_20_DOCUMENTATION_INVENTORY_FRESHNESS_ACCEPTED
-Roadmap phase: SW2-20
+Phase: SW2-21
+Status: IN_PROGRESS
+Roadmap phase: SW2-21
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-21-closure-defect-lifecycle
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 81b76ccad6785538d898a0fd5767e1b426a2eb56
+Last accepted SHA: 8c72be9de2157ba743a1d593e1ed17adabc613a2
 Current candidate SHA: external final acceptance evidence
-Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
+Current source digest: 91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,8 +35,8 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-20-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Current sequence session: SW2-21-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -111,8 +111,13 @@ SEQUENCE_SYNC: PASS
 - SW2-19 R1-R3 pre-publication acceptance is proven on exact candidate 359a757b9edc44b8449310dd5471854ddae50fc7 with Governance CI run 37380692462: all six permanent contexts succeeded on Ubuntu/Windows and the pinned max-grounding consumer; the permanent performance-budget contract enforces develop <=2.5s, verify <=3.5s, and finalize <=10.0s from benchmark authority run 37336599123; V2.1 release-preflight regression also passed while SW2-19-R4 remains publication-pending.
 - SW2-19 V2.1 stable publication is accepted on exact release main 81b76ccad6785538d898a0fd5767e1b426a2eb56 with tree e53543885eebd42bb1eeb813dbf08cc8eb4ba92f. Publication run 37384892850 passed strict finalize/preflight with publication_authority=true; v2.1.0 tag and GitHub release id 404150971 both target the exact SHA; publication artifact 11377810204 has sha256:fbdd9d219a44b6de67b1678d67815f5a2c4d1cbda024ca02be1974002b2a250e.
 - SW2-20 Deterministic Documentation Inventory & Freshness Contract is promoted from exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: Governance CI run 37398146243 passed Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance; deterministic coverage reported 124/124 classified tracked documentation surfaces with zero freshness failures, and Self Governance stopped only at the expected pre-promotion Project Truth boundary.
+- SW2-20 Deterministic Documentation Inventory & Freshness Contract is accepted on main 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5 equal to exact tested candidate 173074055f841defd549cc896cfe26a5f60214b4. Final candidate Governance CI run 37398686766 and post-merge main Governance CI run 37398984162 both succeeded across all six permanent contexts.
 
 ## Not proven
+- SW2-21 branch-agnostic accepted-closure semantics are NOT_PROVEN.
+- SW2-21 deterministic accepted-main baseline rebinding is NOT_PROVEN.
+- SW2-21 known-defect lifecycle reconciliation and stale-ledger rejection are NOT_PROVEN.
+- SW2-21 complete cross-platform and real-consumer acceptance is NOT_PROVEN.
 - Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
 
 ## Known blockers
@@ -122,14 +127,16 @@ SEQUENCE_SYNC: PASS
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Run the complete permanent exact-head matrix on the promoted SW2-20 candidate.
-- If and only if all permanent contexts pass, mark PR #33 ready and squash-merge with an expected-head guard.
-- Verify merged-tree identity and the complete post-merge main matrix before declaring SW2-20 closed.
+- Map stale closure-state fields and known-defect lifecycle drift against accepted main and historical acceptance evidence.
+- Define deterministic closure-state and defect-lifecycle validation with negative regressions.
+- Reconcile only defects whose remediation or historical disposition is already proven by accepted evidence.
+- Run the complete exact-head permanent matrix before SW2-21 merge.
 
 ## Explicitly blocked
-- Do not weaken or bypass deterministic documentation discovery/classification or freshness validation.
-- Do not replace tracked-document discovery with a hand-maintained complete-file allowlist.
+- Do not rewrite historical acceptance evidence merely to make defect status look cleaner.
+- Do not mark a defect FIXED/ACCEPTED unless an accepted phase/run proves the remediation.
+- Do not make accepted closure semantics depend on a PR number or a branch-only action that becomes false after squash merge.
 - Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase until SW2-20 is merged and accepted on main.
+- Do not begin any broader V2.2 feature work until SW2-21 is accepted on main.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->
