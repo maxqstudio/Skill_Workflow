@@ -108,13 +108,6 @@
       "lines": 119
     },
     {
-      "directory": "artifacts/tmp",
-      "file": "artifacts/tmp/sw2_21_phase_open.py",
-      "is_test": false,
-      "language": "Python",
-      "lines": 147
-    },
-    {
       "directory": "scripts",
       "file": "scripts/analyzer_contract.py",
       "is_test": false,
@@ -1160,22 +1153,6 @@
     {
       "caller": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
       "target_token": "subprocess.run"
-    },
-    {
-      "caller": "artifacts/tmp/sw2_21_phase_open.py::load",
-      "target_token": "Path"
-    },
-    {
-      "caller": "artifacts/tmp/sw2_21_phase_open.py::load",
-      "target_token": "json.loads"
-    },
-    {
-      "caller": "artifacts/tmp/sw2_21_phase_open.py::write",
-      "target_token": "Path"
-    },
-    {
-      "caller": "artifacts/tmp/sw2_21_phase_open.py::write",
-      "target_token": "json.dumps"
     },
     {
       "caller": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
@@ -24557,22 +24534,6 @@
       "symbol": "main"
     },
     {
-      "file": "artifacts/tmp/sw2_21_phase_open.py",
-      "kind": "function",
-      "line_end": 10,
-      "line_start": 9,
-      "locator": "artifacts/tmp/sw2_21_phase_open.py::load",
-      "symbol": "load"
-    },
-    {
-      "file": "artifacts/tmp/sw2_21_phase_open.py",
-      "kind": "function",
-      "line_end": 14,
-      "line_start": 13,
-      "locator": "artifacts/tmp/sw2_21_phase_open.py::write",
-      "symbol": "write"
-    },
-    {
       "file": "scripts/analyzer_contract.py",
       "kind": "class",
       "line_end": 33,
@@ -27814,13 +27775,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568",
+  "source_digest": "d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc",
   "source_summary": {
-    "files": 65,
+    "files": 64,
     "languages": {
-      "Python": 65
+      "Python": 64
     },
-    "lines": 16149,
+    "lines": 16002,
     "test_files": 0
   },
   "tests": []

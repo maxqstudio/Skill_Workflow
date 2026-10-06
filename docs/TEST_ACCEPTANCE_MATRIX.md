@@ -7,7 +7,7 @@
 SW2-21 covers accepted-phase closure semantics, accepted-main baseline rebinding, and known-defect lifecycle reconciliation only. It must preserve V2.1/SW2-20 governance, documentation freshness, exact-head, no-ruleset, cross-platform, consumer, performance, and release guarantees.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 91203282dda8f00f1602f8d28b4d8c1d1cd51d9320803edd90b29f71a7e42568
+Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
