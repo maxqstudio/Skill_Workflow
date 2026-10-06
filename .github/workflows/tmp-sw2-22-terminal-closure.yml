@@ -118,7 +118,7 @@ jobs:
           git add .workflow docs artifacts/sequence
           git diff --cached --quiet || git commit -m 'SW2-22: synchronize terminal closure evidence'
 
-          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json --report artifacts/sequence/SW2-22-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json --no-write-report
           python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json
           python scripts/validate_sequence_sessions.py --root .
           python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 65c28fcdfebec68a20adc02ae95406f9261d5a51
