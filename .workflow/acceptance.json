@@ -1,7 +1,20 @@
 {
   "evidence_boundary": "SW2-22 covers content-addressed producer identity for vendored consumer toolchains, enriches it with exact Git provenance when verifiable Git metadata is available, and provides deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.",
-  "human_comprehension_questions": {},
-  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_questions": {
+    "How does failure/recovery behave?": "PASS",
+    "How does important data flow through the system?": "PASS",
+    "What are the important lifecycle states and transitions?": "PASS",
+    "What are the main user/domain workflows?": "PASS",
+    "What are the major components and how do they relate?": "PASS",
+    "What is mutable and what is immutable?": "PASS",
+    "What is proven and what is not proven?": "PASS",
+    "What is the current project state?": "PASS",
+    "What is the project and what problem does it solve?": "PASS",
+    "What may happen next and what is blocked?": "PASS",
+    "Who uses it and what are the primary outcomes?": "PASS",
+    "Who/what is authoritative for important decisions?": "PASS"
+  },
+  "human_comprehension_status": "PASS",
   "requirements": [
     {
       "evidence": "RED baseline pending.",
@@ -55,7 +68,7 @@
     "DOC_READABILITY": "PASS",
     "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
     "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
-    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
     "PROJECT_STATE_SYNC": "NOT_PROVEN",
