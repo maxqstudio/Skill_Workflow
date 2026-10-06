@@ -4,27 +4,27 @@
 
 ## Evidence boundary
 
-SW2-20 covers deterministic discovery, classification, authority binding, freshness validation, and complete machine-readable coverage of tracked documentation surfaces. It must preserve accepted V2.1 Project Truth, sequence, cross-platform, real-consumer, performance, and release guarantees.
+SW2-21 covers accepted-phase closure semantics, accepted-main baseline rebinding, and known-defect lifecycle reconciliation only. It must preserve V2.1/SW2-20 governance, documentation freshness, exact-head, no-ruleset, cross-platform, consumer, performance, and release guarantees.
 
 Final tested source: external final acceptance evidence.
-Current source digest: d12a1fef04277fd920b4eb97ad30ff563d214dcaa89d12d28774c4830c65f2dc
+Current source digest: ecaa82f44900a50b372bcd1b6ad8e4d330b1789f3ddc93dccdf9d8e3a42d93eb
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-20-R1 | Every tracked documentation surface is deterministically discovered and classified exactly once without a hand-maintained complete-file allowlist. | PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: deterministic git-tracked documentation inventory classified all 124 discovered documentation surfaces exactly once; public-doc regression in Governance CI run 37398146243 passed baseline inventory, unclassified rejection, and add/delete/move/rename coverage-drift rejection on Ubuntu and Windows. | PASS |
-| SW2-20-R2 | Dynamic claims in source-authored documentation are deterministically bound to canonical authority or explicitly classified historical/static. | PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: authority-bound freshness validation passed for stable release v2.1.0, current phase SW2-20, MIT license state, and Owner-approved no-ruleset boundary; stale release/phase/license/pre-release/enforcement fixtures all failed closed in Governance CI run 37398146243. | PASS |
-| SW2-20-R3 | Machine-readable documentation coverage evidence proves no tracked document is silently omitted and reproduces all confirmed stale-document classes from SW2-DEF-DOC-003. | PASS on exact implementation candidate 2ec6511fb6640f654667c42796d486950072d055: .workflow/generated/documentation_coverage.json reports 124/124 classified surfaces with zero freshness failures; regression reproduces confirmed stale README, CONTRIBUTING, SECURITY, release/versioning, unclassified, and coverage-drift classes in Governance CI run 37398146243. | PASS |
-| SW2-20-R4 | All confirmed stale documentation is repaired through the new contract and the exact final candidate passes the permanent Ubuntu/Windows/sequence/engine/consumer acceptance matrix. | PASS on exact final candidate 173074055f841defd549cc896cfe26a5f60214b4: Governance CI run 37398686766 passed all six permanent contexts. Candidate was squash-merged to main as 8c72be9de2157ba743a1d593e1ed17adabc613a2 with tree abed5d5a4d9ad675be5b6be59264313e15adcfb5. Post-merge Governance CI run 37398984162 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence, Governance Engine Performance, and Consumer Engine Performance. This closes the exact-head and post-merge acceptance boundary. | PASS |
+| SW2-21-R1 | Accepted closure state remains semantically valid before and after squash merge without stale PR-specific next actions. | NOT_PROVEN until closure-state validation and negative regression reject stale merge instructions while allowing branch-agnostic accepted semantics. | NOT_PROVEN |
+| SW2-21-R2 | The next governed phase deterministically rebinds its implementation base to the exact accepted main commit. | NOT_PROVEN until phase-open and engine/base regressions prove last_accepted_sha is exact accepted main and cannot silently remain on an older release baseline. | NOT_PROVEN |
+| SW2-21-R3 | Known-defect lifecycle status and evidence are synchronized with accepted remediation/history without erasing auditability. | NOT_PROVEN until current stale CONFIRMED records are reconciled from accepted evidence and regression rejects invalid lifecycle/status combinations. | NOT_PROVEN |
+| SW2-21-R4 | Exact final candidate preserves all prior governance guarantees across Ubuntu, Windows, sequence, engine, and real-consumer acceptance. | NOT_PROVEN until the final promoted candidate passes all six permanent contexts and merged main revalidates successfully. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_public_docs.py
-- python scripts/selftest_repository_health.py
+- python scripts/selftest_governance_engine.py
+- python scripts/selftest_closure_defect_lifecycle.py
 - python scripts/selftest_cross_document_regressions.py
-- python scripts/validate_public_docs.py --root .
+- python scripts/validate_closure_defect_lifecycle.py --root . --expected-base 8723bf0315a1e6cee005198affbc9ec1576e8ba7
 - python scripts/validate_project_docs.py --root .
 - python scripts/validate_sequence_sessions.py --root .
-- python scripts/governance_engine.py --root . --base 81b76ccad6785538d898a0fd5767e1b426a2eb56 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/governance_engine.py --root . --base 8723bf0315a1e6cee005198affbc9ec1576e8ba7 --mode finalize --expected-head <EXACT_HEAD>
 
 ## Runtime checks
 
@@ -38,8 +38,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-20-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-21-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
