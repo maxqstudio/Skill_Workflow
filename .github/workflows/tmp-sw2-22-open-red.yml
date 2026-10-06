@@ -1,4 +1,4 @@
-name: tmp-sw2-22-implementation
+name: tmp-sw2-22-cleanup
 
 on:
   push:
@@ -8,8 +8,12 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: sw2-22-cleanup
+  cancel-in-progress: true
+
 jobs:
-  implement:
+  cleanup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout working branch
@@ -21,40 +25,71 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Implement and run targeted SW2-22 gates
+      - name: Wait for helper deletion boundary
+        id: helpers
         shell: bash
         run: |
-          set +e
-          python scripts/tmp_sw2_22_implement.py 2>&1 | tee "$RUNNER_TEMP/sw2-22-impl.log"
-          rc=${PIPESTATUS[0]}
-          set -e
-          if [ "$rc" -ne 0 ]; then
-            grep -q 'DOCUMENTATION_COVERAGE_REPORT_STALE:.workflow/generated/documentation_coverage.json' "$RUNNER_TEMP/sw2-22-impl.log"
-            python scripts/validate_documentation_contract.py --root . --write-report
-            python scripts/validate_documentation_contract.py --root .
-            python scripts/selftest_public_docs.py
-            python scripts/validate_public_docs.py --root .
-            python scripts/selftest_cross_document_regressions.py
-            python - <<'PY'
-          import json
-          from pathlib import Path
-          state_path = Path('.workflow/state.json')
-          state = json.loads(state_path.read_text(encoding='utf-8'))
-          state['status'] = 'SW2_22_IMPLEMENTED_PENDING_ACCEPTANCE'
-          state['next_authorized_actions'] = [
-              'Run the permanent exact-head matrix on the helper-free SW2-22 implementation candidate.',
-              'Promote R1-R4 only from exact candidate evidence; R5 remains pending merge and post-merge revalidation.',
-              'Do not begin SW2-23 or publish a new release without separate Owner authorization.'
-          ]
-          state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
-          PY
-            python scripts/sync_project_truth.py --root .
-            python scripts/validate_project_docs.py --root .
-            echo 'SW2_22_TARGETED_IMPLEMENTATION=PASS repaired=documentation_coverage_ordering'
+          if [ -e scripts/tmp_sw2_22_open_red.py ] || [ -e scripts/tmp_sw2_22_open_red_v2.py ] || [ -e scripts/tmp_sw2_22_implement.py ]; then
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo 'SW2_22_CLEANUP=DEFER helpers-still-tracked'
+          else
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
           fi
-      - name: Commit synchronized implementation state
+      - name: Remove producer-self vendoring and regenerate exact source projections
+        if: steps.helpers.outputs.ready == 'true'
+        shell: bash
         run: |
-          git add .workflow docs artifacts/sequence scripts references
-          git diff --cached --quiet && { echo "NO_CHANGES"; exit 1; }
-          git commit -m "SW2-22: synchronize implementation evidence"
-          git push origin HEAD:work/sw2-22-consumer-toolchain-provenance-upgrade
+          rm -rf .workflow/tools .workflow/toolchain.lock.json
+          python scripts/selftest_schema_toolchain.py
+          python scripts/validate_schema_toolchain.py --root .
+          python scripts/selftest_adoption_profiles.py
+          python scripts/selftest_strict_project_workflow.py
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+          root = Path('.')
+          session_path = root / 'docs/sequence/sessions/SW2-22-GOVERNANCE.json'
+          session = json.loads(session_path.read_text(encoding='utf-8'))
+          actual = session['actual']
+          cmd = [sys.executable, 'scripts/generate_sequence_actual.py', '--root', '.', '--output-json', actual['graph'], '--output-mermaid', actual['diagram']]
+          for entry in actual['entries']:
+              cmd.extend(['--entry', entry])
+          subprocess.run(cmd, check=True)
+          human = session['human_view']
+          subprocess.run([
+              sys.executable, 'scripts/sequence_human_view.py', '--root', '.',
+              '--actual-json', actual['graph'], '--actual-mermaid', actual['diagram'],
+              '--output-json', human['graph'], '--output-mermaid', human['diagram'],
+              '--output-markdown', human['document'], '--session-id', session['session_id']
+          ], check=True)
+          graph = json.loads(Path(actual['graph']).read_text(encoding='utf-8'))
+          session['actual']['source_digest'] = graph['source_digest']
+          session['human_view']['source_digest'] = graph['source_digest']
+          session_path.write_text(json.dumps(session, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
+          PY
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json --report artifacts/sequence/SW2-22-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-22-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/sync_project_truth.py --root .
+          python scripts/validate_documentation_contract.py --root . --write-report
+          python scripts/validate_documentation_contract.py --root .
+          python scripts/validate_project_docs.py --root .
+          python scripts/selftest_public_docs.py
+          python scripts/validate_public_docs.py --root .
+          python scripts/selftest_cross_document_regressions.py
+          test ! -d .workflow/tools
+          test ! -e .workflow/toolchain.lock.json
+          echo 'SW2_22_HELPER_FREE_TARGETED=PASS'
+      - name: Commit cleanup projections
+        if: steps.helpers.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git add -A .workflow docs artifacts/sequence
+          if git diff --cached --quiet; then
+            echo 'SW2_22_CLEANUP_NO_GENERATED_CHANGES'
+          else
+            git commit -m "SW2-22: remove producer-self vendoring and refresh evidence"
+            git push origin HEAD:work/sw2-22-consumer-toolchain-provenance-upgrade
+          fi
