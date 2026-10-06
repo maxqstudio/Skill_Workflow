@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -21,27 +22,37 @@ def fail(code: str) -> int:
     return 1
 
 
+def producer(lock: dict) -> dict:
+    value = lock.get("producer")
+    return value if isinstance(value, dict) else {}
+
+
 def main() -> int:
     skill_root = Path(__file__).resolve().parent.parent
     source_sha = run(skill_root, "git", "rev-parse", "HEAD").strip()
     with tempfile.TemporaryDirectory(prefix="skill-workflow-toolchain-upgrade-") as td:
-        root = Path(td)
+        temp_root = Path(td)
+        root = temp_root / "git-consumer"
+        root.mkdir()
         run(skill_root, sys.executable, str(skill_root / "scripts" / "initialize_project_truth.py"), "--root", str(root))
         lock_path = root / ".workflow" / "toolchain.lock.json"
         lock = json.loads(lock_path.read_text(encoding="utf-8"))
-        producer = lock.get("producer") or {}
-        recorded_sha = str(producer.get("source_sha", "")).strip()
+        identity = producer(lock)
+        recorded_sha = str(identity.get("source_sha", "")).strip()
+        recorded_digest = str(identity.get("source_digest", "")).strip()
+        if str(identity.get("identity_source", "")).strip() != "GIT+CONTENT":
+            return fail("GIT_CONTENT_IDENTITY_MISSING")
+        if not re.fullmatch(r"[0-9a-f]{64}", recorded_digest):
+            return fail("PRODUCER_SOURCE_DIGEST_MISSING")
         if not re.fullmatch(r"[0-9a-f]{40}", recorded_sha):
             return fail("PRODUCER_SOURCE_SHA_MISSING")
         if recorded_sha != source_sha:
             return fail("PRODUCER_SOURCE_SHA_MISMATCH")
-        if not str(producer.get("repository", "")).strip():
+        if not str(identity.get("repository", "")).strip() or identity.get("repository") == "NOT_PROVEN":
             return fail("PRODUCER_REPOSITORY_MISSING")
-        if not str(producer.get("release", "")).strip():
+        if not str(identity.get("release", "")).strip() or identity.get("release") == "NOT_PROVEN":
             return fail("PRODUCER_RELEASE_IDENTITY_MISSING")
-        if str(producer.get("identity_source", "")).strip() != "GIT":
-            return fail("PRODUCER_IDENTITY_SOURCE_NOT_GIT")
-        if "commit_hint" in producer:
+        if "commit_hint" in identity:
             return fail("LEGACY_COMMIT_HINT_STILL_AUTHORITATIVE")
 
         upgrader = skill_root / "scripts" / "upgrade_governance_toolchain.py"
@@ -88,15 +99,57 @@ def main() -> int:
             return fail("APPLY_NOT_IDEMPOTENT")
 
         lock = json.loads(lock_path.read_text(encoding="utf-8"))
-        lock["producer"] = {"repository": lock["producer"]["repository"], "commit_hint": source_sha}
+        lock["producer"] = {"repository": producer(lock)["repository"], "commit_hint": source_sha}
         lock_path.write_text(json.dumps(lock, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
         legacy_check = run(skill_root, sys.executable, str(upgrader), "--root", str(root), "--check", expect=1)
         if "UPGRADE_REQUIRED=YES" not in legacy_check:
             return fail("LEGACY_HINT_ONLY_NOT_DETECTED")
         run(skill_root, sys.executable, str(upgrader), "--root", str(root), "--apply")
         migrated = json.loads(lock_path.read_text(encoding="utf-8"))
-        if str((migrated.get("producer") or {}).get("source_sha", "")) != source_sha:
+        if str(producer(migrated).get("source_sha", "")) != source_sha:
             return fail("LEGACY_PROVENANCE_NOT_MIGRATED")
+        if str(producer(migrated).get("identity_source", "")) != "GIT+CONTENT":
+            return fail("LEGACY_PROVENANCE_NOT_STRENGTHENED")
+
+        package_root = temp_root / "package-copy"
+        shutil.copytree(skill_root / "scripts", package_root / "scripts")
+        shutil.copytree(skill_root / "templates", package_root / "templates")
+        if (package_root / ".git").exists():
+            return fail("PACKAGE_COPY_UNEXPECTED_GIT_METADATA")
+
+        package_consumer = temp_root / "package-consumer"
+        package_consumer.mkdir()
+        package_initializer = package_root / "scripts" / "initialize_project_truth.py"
+        run(package_root, sys.executable, str(package_initializer), "--root", str(package_consumer))
+        package_lock_path = package_consumer / ".workflow" / "toolchain.lock.json"
+        package_lock = json.loads(package_lock_path.read_text(encoding="utf-8"))
+        package_identity = producer(package_lock)
+        package_digest = str(package_identity.get("source_digest", "")).strip()
+        if str(package_identity.get("identity_source", "")) != "CONTENT":
+            return fail("PACKAGE_CONTENT_IDENTITY_MISSING")
+        if not re.fullmatch(r"[0-9a-f]{64}", package_digest):
+            return fail("PACKAGE_SOURCE_DIGEST_MISSING")
+        if package_identity.get("repository") != "NOT_PROVEN":
+            return fail("PACKAGE_REPOSITORY_NOT_FAIL_CLOSED")
+        if package_identity.get("source_sha") != "NOT_PROVEN":
+            return fail("PACKAGE_SOURCE_SHA_NOT_FAIL_CLOSED")
+        if package_identity.get("release") != "NOT_PROVEN":
+            return fail("PACKAGE_RELEASE_NOT_FAIL_CLOSED")
+        run(
+            package_consumer,
+            sys.executable,
+            str(package_consumer / ".workflow" / "tools" / "validate_schema_toolchain.py"),
+            "--root",
+            str(package_consumer),
+        )
+
+        package_upgrader = package_root / "scripts" / "upgrade_governance_toolchain.py"
+        no_downgrade = run(package_root, sys.executable, str(package_upgrader), "--root", str(root), "--check")
+        if "UPGRADE_REQUIRED=NO" not in no_downgrade or "RESULT=PASS" not in no_downgrade:
+            return fail("STRONG_PROVENANCE_DOWNGRADE_REQUESTED")
+        preserved_lock = json.loads(lock_path.read_text(encoding="utf-8"))
+        if str(producer(preserved_lock).get("identity_source", "")) != "GIT+CONTENT":
+            return fail("STRONG_PROVENANCE_WAS_DOWNGRADED")
 
     print("EXACT_PRODUCER_IDENTITY=PASS")
     print("READ_ONLY_UPGRADE_PLAN=PASS")
@@ -104,6 +157,8 @@ def main() -> int:
     print("SEMANTIC_AUTHORITY_PRESERVATION=PASS")
     print("UPGRADE_IDEMPOTENCE=PASS")
     print("LEGACY_PROVENANCE_MIGRATION=PASS")
+    print("CONTENT_PACKAGE_IDENTITY=PASS")
+    print("STRONG_PROVENANCE_NO_DOWNGRADE=PASS")
     print("RESULT=PASS")
     return 0
 
