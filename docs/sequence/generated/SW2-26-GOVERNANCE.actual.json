@@ -615,7 +615,7 @@
       "locator": "scripts/validate_sequence_sessions.py::repo_relative_path"
     }
   ],
-  "observed_head": "727e05fdc202a4d72be4779cacfac03e2c685d13",
+  "observed_head": "722da2407148d9cd754108b62f7423e58ac7c4a4",
   "schema_version": 1,
   "source_digest": "461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea"
 }

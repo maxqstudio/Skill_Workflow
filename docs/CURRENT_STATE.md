@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-26
-Status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_IMPLEMENTED_AWAITING_FINAL_ACCEPTANCE
+Status: SW2_26_FEATURE_ACCEPTANCE_RECORDED_AWAITING_EXACT_HEAD_REVALIDATION
 Roadmap phase: SW2-26
 ROADMAP_SYNC: PASS
 
@@ -128,6 +128,7 @@ SEQUENCE_SYNC: NOT_PROVEN
 - Owner explicitly authorized opening SW2-26 on 2026-10-08, without authorizing stable publication; SW2-25 implementation acceptance remains tied to 40c88c990f671fb70cdab8fa391610977bc4c04a and terminal closure to 1344108d314f880f4a2e5bf31eb5323285ea0484.
 - SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.
 - SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.
+- SW2-26 source-derived helper-free candidate b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Ubuntu and Windows, sequence, consumer, performance), with no release publication.
 
 ## Not proven
 - Offline trusted-root revocation freshness and Owner-distributed trust-root origin remain NOT_PROVEN; caller must independently obtain/pin expected trusted root SHA-256 and update policy out of band.
@@ -136,18 +137,17 @@ SEQUENCE_SYNC: NOT_PROVEN
 - Stable v2.1.0 remains the only authorized release; SW2-26 may not publish tags or packages.
 
 ## Known blockers
-- R5 six-context helper-free current source acceptance is not yet demonstrated.
-- R6 equal-tree squash, postmerge exact-main acceptance and separate terminal closure are pending.
-- Independent Owner trust root distribution and revocation freshness are outside the current signed provenance proof and must not be falsely claimed.
+- R6 equal-tree squash, exact-main six-context postmerge acceptance and separate terminal closure remain pending.
+- This R5 evidence-authority commit changes the candidate SHA; the final helper-free candidate requires all six contexts again before merge.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Regenerate canonical Project Truth, current sequence and coverage after removing temporary source-digest affecting helpers; independently validate identical outputs on Windows and Ubuntu CI.
-- Test offline verification with trust root obtained independently and explicit network isolation; do not claim revocation freshness.
-- Remove all temporary CI helpers and branch-only attestation push trigger before final candidate.
-- Run exact feature SHA all six permanent Governance CI contexts; complete equal-tree squash, postmerge main acceptance and separate terminal closure only after actual evidence; do not publish releases.
+- Regenerate source-derived Project Truth and sequence/coverage from the new SW2-26 R5 evidence authority, remove temporary helpers, and rerun all six contexts at exact helper-free candidate SHA.
+- Keep PR #46 DRAFT until final feature candidate six-context SUCCESS, then mark ready and squash merge with expected head SHA, comparing feature and squash trees.
+- Rerun all six postmerge main CI contexts; perform a separate terminal governance-closure PR and retest its main SHA.
+- Do not publish new stable tag, GitHub Release or package. Owner-distributed trust root and offline freshness remain outside the proven scope.
 
 ## Explicitly blocked
 - Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.
