@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-26
 
-Current status: SW2_26_IMPLEMENTATION_ACCEPTED_AWAITING_SEPARATE_TERMINAL_CLOSURE
+Current status: SW2_26_TERMINAL_CLOSURE_PENDING
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -122,7 +122,8 @@ Blocked actions:
 - Do not open SW2-27 without explicit Owner discussion and authorization.
 
 Known blockers:
-- Separate terminal SW2-26 governance closure is not yet exact-candidate/terminal-main accepted; R6 remains NOT_PROVEN pending closure CI and merge.
+- R6 terminal governance closure requires exact-helper-free candidate/main six-context acceptance; feature PR #46 and implementation main already passed.
+- Trusted offline root distribution and revocation freshness remain explicitly outside the proven boundary (not a phase-blocking publication claim).
 
 ## Proven vs not proven
 
@@ -219,6 +220,7 @@ Known blockers:
 - SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.
 - SW2-26 source-derived helper-free candidate b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Ubuntu and Windows, sequence, consumer, performance), with no release publication.
 - SW2-26 final helper-free feature SHA 63bc52ead4837534f6dd14e70cadf89ad301905a tree bd3b0f695554f54820ae3ff51b97a3acffe03535 passed all six Governance CI contexts run 37796154612; PR #46 squash merged to main 4d5bf33ea347de041e50239d86385b0e33339dec with equal tree; exact postmerge main run 37796628346 passed six of six contexts.
+- SW2-26 closure lifecycle validator requires nonterminal status and preceding implementation-base authority until separate closure is actually accepted; implementation main 4d5bf33ea347de041e50239d86385b0e33339dec remains independently proven by run 37796628346.
 
 ### Not proven
 

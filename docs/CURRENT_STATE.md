@@ -3,12 +3,12 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 4d5bf33ea347de041e50239d86385b0e33339dec
+Authority verified at SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
 Governance profile: strict
 
 ## Current phase
 Phase: SW2-26
-Status: SW2_26_IMPLEMENTATION_ACCEPTED_AWAITING_SEPARATE_TERMINAL_CLOSURE
+Status: SW2_26_TERMINAL_CLOSURE_PENDING
 Roadmap phase: SW2-26
 ROADMAP_SYNC: PASS
 
@@ -16,7 +16,7 @@ ROADMAP_SYNC: PASS
 Repository: maxqstudio/Skill_Workflow
 Branch: work/sw2-26-terminal-closure
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 4d5bf33ea347de041e50239d86385b0e33339dec
+Last accepted SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
 Current candidate SHA: external final acceptance evidence
 Current source digest: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
 
@@ -130,6 +130,7 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.
 - SW2-26 source-derived helper-free candidate b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Ubuntu and Windows, sequence, consumer, performance), with no release publication.
 - SW2-26 final helper-free feature SHA 63bc52ead4837534f6dd14e70cadf89ad301905a tree bd3b0f695554f54820ae3ff51b97a3acffe03535 passed all six Governance CI contexts run 37796154612; PR #46 squash merged to main 4d5bf33ea347de041e50239d86385b0e33339dec with equal tree; exact postmerge main run 37796628346 passed six of six contexts.
+- SW2-26 closure lifecycle validator requires nonterminal status and preceding implementation-base authority until separate closure is actually accepted; implementation main 4d5bf33ea347de041e50239d86385b0e33339dec remains independently proven by run 37796628346.
 
 ## Not proven
 - Offline trusted-root revocation freshness and Owner-distributed trust-root origin remain NOT_PROVEN; caller must independently obtain/pin expected trusted root SHA-256 and update policy out of band.
@@ -138,7 +139,8 @@ SEQUENCE_SYNC: NOT_PROVEN
 - Stable v2.1.0 remains the only authorized release; SW2-26 may not publish tags or packages.
 
 ## Known blockers
-- Separate terminal SW2-26 governance closure is not yet exact-candidate/terminal-main accepted; R6 remains NOT_PROVEN pending closure CI and merge.
+- R6 terminal governance closure requires exact-helper-free candidate/main six-context acceptance; feature PR #46 and implementation main already passed.
+- Trusted offline root distribution and revocation freshness remain explicitly outside the proven boundary (not a phase-blocking publication claim).
 
 ## Known defects
 See KNOWN_DEFECTS.md.
