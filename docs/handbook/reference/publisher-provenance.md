@@ -51,3 +51,9 @@ GitHub Actions [run 37786698990](https://github.com/maxqstudio/Skill_Workflow/ac
 ## Feature acceptance evidence
 
 At helper-free feature SHA `b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5`, [permanent Governance CI run 37787819701](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37787819701) passed all six contexts. This is R5 implementation evidence, **not** proof that the subsequent authority/projection synchronization commit has passed or that SW2-26 has completed postmerge or terminal closure. R6 remains pending until the separate transactions pass on their respective exact main SHAs.
+
+## Squash-merged implementation verification
+
+Feature candidate `63bc52ead4837534f6dd14e70cadf89ad301905a` passed six permanent Governance CI contexts ([run 37796154612](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37796154612)). PR #46 squash-merged to `main` `4d5bf33ea347de041e50239d86385b0e33339dec` with an identical Git tree `bd3b0f695554f54820ae3ff51b97a3acffe03535`, and [postmerge CI run 37796628346](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37796628346) passed all six contexts. Separate governance terminal closure still requires its own candidate and main acceptance; no publication is authorized.
+
+Terminal governance closure is tracked separately in [PR #47](https://github.com/maxqstudio/Skill_Workflow/pull/47). Its evidence-only candidate and terminal-main six-context checks are required before changing this phase from implementation accepted to terminally accepted.

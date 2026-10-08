@@ -3,20 +3,20 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
+Authority verified at SHA: 4d5bf33ea347de041e50239d86385b0e33339dec
 Governance profile: strict
 
 ## Current phase
 Phase: SW2-26
-Status: SW2_26_FEATURE_ACCEPTANCE_RECORDED_AWAITING_EXACT_HEAD_REVALIDATION
+Status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_ACCEPTED
 Roadmap phase: SW2-26
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-26-trusted-publisher-attestation
+Branch: main
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
+Last accepted SHA: 4d5bf33ea347de041e50239d86385b0e33339dec
 Current candidate SHA: external final acceptance evidence
 Current source digest: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
 
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-26-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -129,31 +129,32 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.
 - SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.
 - SW2-26 source-derived helper-free candidate b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Ubuntu and Windows, sequence, consumer, performance), with no release publication.
+- SW2-26 final helper-free feature SHA 63bc52ead4837534f6dd14e70cadf89ad301905a tree bd3b0f695554f54820ae3ff51b97a3acffe03535 passed all six Governance CI contexts run 37796154612; PR #46 squash merged to main 4d5bf33ea347de041e50239d86385b0e33339dec with equal tree; exact postmerge main run 37796628346 passed six of six contexts.
+- SW2-26 closure lifecycle validator requires nonterminal status and preceding implementation-base authority until separate closure is actually accepted; implementation main 4d5bf33ea347de041e50239d86385b0e33339dec remains independently proven by run 37796628346.
+- SW2-26 separate closure feature candidate 5ee55d3b14acd31e4fc1037205ed274dc67bfa40 passed six permanent Governance CI contexts on exact SHA run 37799404115. Terminal authority candidate/main post-projection checks remain required before this accepted state is externally asserted.
 
 ## Not proven
-- Offline trusted-root revocation freshness and Owner-distributed trust-root origin remain NOT_PROVEN; caller must independently obtain/pin expected trusted root SHA-256 and update policy out of band.
-- GitHub automatic required-status-check ruleset enforcement remains NOT_PROVEN under Owner boundary.
-- R5 current code helper-free six-context acceptance and R6 merge, postmerge and terminal governance closure are pending.
-- Stable v2.1.0 remains the only authorized release; SW2-26 may not publish tags or packages.
+- Offline trusted-root cryptographic verification cannot prove independent Owner distribution or latest revocation/rotation status; trust root acquisition and update remain out-of-band.
+- GitHub automatic required-status-check ruleset enforcement remains NOT_PROVEN under Owner policy.
+- No new stable tag, release, registry package or independent publication authority has been issued; stable version remains v2.1.0.
+- No external Owner PC runtime or external consumer repository mutation was performed.
 
 ## Known blockers
-- R6 equal-tree squash, exact-main six-context postmerge acceptance and separate terminal closure remain pending.
-- This R5 evidence-authority commit changes the candidate SHA; the final helper-free candidate requires all six contexts again before merge.
+- None declared.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Regenerate source-derived Project Truth and sequence/coverage from the new SW2-26 R5 evidence authority, remove temporary helpers, and rerun all six contexts at exact helper-free candidate SHA.
-- Keep PR #46 DRAFT until final feature candidate six-context SUCCESS, then mark ready and squash merge with expected head SHA, comparing feature and squash trees.
-- Rerun all six postmerge main CI contexts; perform a separate terminal governance-closure PR and retest its main SHA.
-- Do not publish new stable tag, GitHub Release or package. Owner-distributed trust root and offline freshness remain outside the proven scope.
+- Treat source implementation main 4d5bf33ea347de041e50239d86385b0e33339dec as the accepted SW2-26 product source authority. Terminal governance evidence is a separate main transaction.
+- Retain the manual-only trusted Sigstore attestation dry-run workflow and pinned offline trust policy; a trusted Owner root distribution channel and root revocation freshness remain outside proven scope.
+- Keep stable release v2.1.0, publication_authority=false and publisher identity assumptions constrained to actual verified GitHub OIDC evidence.
+- Require explicit Owner authorization before any new phase, stable publication, consumer repository mutation or external machine access.
 
 ## Explicitly blocked
-- Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.
-- Do not publish or retag stable release, GitHub Release, registry asset, or change license. Publication authority remains false.
-- Do not weaken all six permanent CI contexts, Windows/Ubuntu parity, STRICT finalize, exact SHA, consumer tests, Mermaid, performance or documentation validation.
-- Do not classify a self-asserted manifest, unsigned digest or merely successful CLI mock as authenticated GitHub publisher evidence.
-- Do not start SW2-27 without new explicit Owner authorization.
+- Do not open SW2-27 or change governed scope without explicit Owner authorization.
+- Do not publish a new stable tag, GitHub Release or registry package, change license, or claim Owner publication authority absent a separately approved release transaction.
+- Do not treat an unsigned manifest or a caller-supplied trusted-root digest as independently authenticated publisher identity.
+- Do not weaken six permanent Governance CI contexts, Windows/Ubuntu regression, source-derived documentation, sequence acceptance or exact SHA verification.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->
