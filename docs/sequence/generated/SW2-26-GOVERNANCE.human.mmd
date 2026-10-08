@@ -1,0 +1,12 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
+%% POLICY_ID: module-collapse-v1
+%% GENERATED_BY: sequence_human_view.py
+sequenceDiagram
+    participant module__github_scripts_publisher_provenance_py_0 as .github/scripts/publisher_provenance.py
+    participant module__github_scripts_release_bundle_py_1 as .github/scripts/release_bundle.py
+    participant module_scripts_project_snapshot_py_2 as scripts/project_snapshot.py
+    participant module_scripts_validate_sequence_sessions_py_3 as scripts/validate_sequence_sessions.py
+    module__github_scripts_publisher_provenance_py_0->>module_scripts_project_snapshot_py_2: 1 static interaction
+    module__github_scripts_release_bundle_py_1->>module_scripts_project_snapshot_py_2: 2 static interactions
+    module__github_scripts_release_bundle_py_1->>module_scripts_validate_sequence_sessions_py_3: 3 static interactions

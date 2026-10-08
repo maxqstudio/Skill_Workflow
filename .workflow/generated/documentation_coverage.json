@@ -1,13 +1,13 @@
 {
   "authority": {
-    "current_phase": "SW2-25",
+    "current_phase": "SW2-26",
     "license_present": true,
     "no_ruleset_boundary": true,
     "stable_release": "v2.1.0"
   },
-  "documentation_candidates": 141,
+  "documentation_candidates": 142,
   "freshness_failures": [],
-  "inventory_digest": "961ef1d9a6dc5fcd0c186feae9677e21dab1c25df7473fbd6acea0bb04a74eae",
+  "inventory_digest": "acb995055f06b0fa52b01a1119f76a9b737240257c7c4b2cb78fc666d22273a1",
   "items": [
     {
       "freshness_mode": "authority-bound",
@@ -197,6 +197,11 @@
     {
       "freshness_mode": "authority-bound",
       "path": "docs/handbook/reference/documentation-system.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/publisher-provenance.md",
       "role": "handbook_source"
     },
     {
@@ -718,7 +723,7 @@
   "result": "PASS",
   "role_counts": {
     "docs_entry": 1,
-    "handbook_source": 15,
+    "handbook_source": 16,
     "project_truth_projection": 20,
     "root_agent_contract": 1,
     "root_community_policy": 3,

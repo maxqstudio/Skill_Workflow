@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: PASS
+Human comprehension status: NOT_PROVEN
 
 ## One-minute summary
 
@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 83 files, 1 language categories.
+Observed source inventory: 86 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-25
+Current phase: SW2-26
 
-Current status: SW2_25_REPRODUCIBLE_RELEASE_BUNDLE_ACCEPTED
+Current status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_RED_PENDING
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,17 +110,21 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat exact accepted SW2-25 implementation main 40c88c990f671fb70cdab8fa391610977bc4c04a as canonical release bundle source authority; terminal closure evidence is a separate generated-only commit.
-- Keep release bundle dry-run read-only/manual, with unsigned manifest and publication_authority=false.
-- Require Owner phase discussion/approval before any release/publication or SW2-26.
+- Owner authorized SW2-26 on 2026-10-08; establish exact-scope BEFORE/RED evidence on this working branch and retain SW2-25 accepted implementation SHA independently from closure commit.
+- Add bounded signed provenance producer and independent cryptographic verifier; preserve SW2-25 deterministic ZIP/manifest and SHA-256 integrity checks.
+- Establish hostile fixtures, real GitHub OIDC/Sigstore attestation evidence and Ubuntu/Windows verifier regression, regenerate Project Truth and sequence, then execute six permanent contexts at exact feature SHA.
+- Keep stable release v2.1.0; do not publish a tag, release or registry artifact without separately authorized publication.
 
 Blocked actions:
-- Do not open SW2-26 without explicit Owner authorization and a new scoped acceptance boundary.
-- Do not publish a stable tag, GitHub Release, package registry asset or change license absent a separate approved publication phase.
-- Do not weaken six permanent CI contexts, Windows/Ubuntu test parity, exact SHA, consumer finalize, Mermaid, performance or documentation validation.
+- Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.
+- Do not publish or retag stable release, GitHub Release, registry asset, or change license. Publication authority remains false.
+- Do not weaken all six permanent CI contexts, Windows/Ubuntu parity, STRICT finalize, exact SHA, consumer tests, Mermaid, performance or documentation validation.
+- Do not classify a self-asserted manifest, unsigned digest or merely successful CLI mock as authenticated GitHub publisher evidence.
+- Do not start SW2-27 without new explicit Owner authorization.
 
 Known blockers:
-- None declared.
+- SW2-26 R1-R6 have no exact candidate acceptance evidence; unsigned SW2-25 release integrity must not be promoted to publisher authentication.
+- Trusted signed provenance implementation, independent verifier, GitHub attestations and source-derived regenerated documentation remain unproven.
 
 ## Proven vs not proven
 
@@ -212,13 +216,14 @@ Known blockers:
 - SW2-25 product candidate 82719678198a94bb314bccb4fe019579458b80c8 and identical-tree squash PR #44 accepted main 40c88c990f671fb70cdab8fa391610977bc4c04a tree d6b7be3396b77ffadc0a37f17b125bd2cd12bf5c were exact-SHA verified; feature Governance CI run 37717282205 six contexts SUCCESS, postmerge main run 37717454646 six contexts SUCCESS.
 - SW2-25 Release Bundle Dry Run exact candidate a4332aceecc320d11dceadbab9809ab7d87c38c9 run 37716191737: Ubuntu/Windows ZIP and complete JSON manifest bytes equal, malicious paths and tampered archive fail closed; no tag, release or owner mutation.
 - SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity.
+- Owner explicitly authorized opening SW2-26 on 2026-10-08, without authorizing stable publication; SW2-25 implementation acceptance remains tied to 40c88c990f671fb70cdab8fa391610977bc4c04a and terminal closure to 1344108d314f880f4a2e5bf31eb5323285ea0484.
 
 ### Not proven
 
-- An unsigned detached SHA-256 manifest cannot authenticate the publisher or the source Git SHA offline: provenance against trusted independent authority remains NOT_PROVEN.
-- No new stable tag or release has been authorized or published; stable product remains v2.1.0, and release publication authority is false.
-- GitHub automatic required-status-check ruleset enforcement remains intentionally NOT_PROVEN (non-blocking under Owner decision).
-- Cross-OS bundle byte parity proved on pinned candidate run 37716191737; no external consumer repositories or Owner PC runtime were modified.
+- Publisher authentication and trusted source Git identity for SW2-26 have not yet been implemented or evidenced.
+- An offline trusted-root file may be stale or fail to reflect revocation; proof of latest trust root or remote provenance is not inherent in offline verification.
+- No new stable tag, GitHub Release or package publication is authorized; stable product remains v2.1.0 and publication authority is false.
+- Automatic required-status-check ruleset enforcement remains NOT_PROVEN under prior Owner governance boundary.
 
 ## Important limitations
 

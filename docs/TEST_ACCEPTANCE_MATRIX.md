@@ -4,19 +4,19 @@
 
 ## Evidence boundary
 
-SW2-25 R1-R6 feature acceptance includes exact clean Git blob product bundle, detached offline SHA-256 verification, Windows/Ubuntu byte parity, secret/path/mode and manifest tamper rejection, GitHub six-context exact feature/main checks and equal-tree squash. ZIP/manifest are unsigned and do not authenticate publisher or permit tag/release publication; terminal closure candidate/main are independently retested after this authority projection.
+SW2-26 BEFORE/RED ONLY: trusted GitHub Actions publisher authentication, signed provenance for both SW2-25 ZIP and manifest, independent Sigstore trust root and strict exact-source/signing-workflow policy are declared but NOT_PROVEN. All six new requirements must receive live GitHub exact-SHA attestation, negative fixture and permanent CI evidence before acceptance. Historical SW2-25 integrity acceptance remains intact. publication_authority=false.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
+Current source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-25-R1 | An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature. | PASS: .github/scripts/release_bundle.py builds curated product-only Git-blob byte snapshot from exact clean HEAD. Deterministic canonical file order, fixed ZIP metadata, content SHA-256, source_git_sha verified at build, consumer toolchain digest, explicit offline source identity NOT_PROVEN and publication_authority=false; actual product-build GitHub CI run 37716191737 Ubuntu and Windows passed. | PASS |
-| SW2-25-R2 | A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized. | PASS: GitHub Release Bundle Dry Run run 37716191737 at exact SHA a4332aceecc320d11dceadbab9809ab7d87c38c9: both Ubuntu and Windows built and verified the same bundle, parity job 113113186605 compared full ZIP bytes and full JSON manifest bytes and passed CROSS_OS_BUNDLE_EXACT_BYTES=PASS. A clean clone built identical ZIP bytes; ZIP_STORED removes zlib dependency. Later source/docs changes require final exact candidate CI independently. | PASS |
-| SW2-25-R3 | Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates. | PASS: hostile fixture regressions in .github/scripts/selftest_release_bundle.py succeeded on GitHub for dirty worktree, non-exact SHA, secret paths, tracked private surfaces outside allowlist, unsafe Windows reserved names, symlink Git tree mode, missing mandatory surfaces, and output inside repo; no semantic or external mutations. Test source and policy rerun during exact GitHub evidence synchronization. | PASS |
-| SW2-25-R4 | Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority. | PASS: detached offline manifest verification checks full archive and every file checksum, canonical metadata/mode/order, duplicate/missing/extra entries, path traversal, swapped/rehashed manifest and extra ZIP injection; rehashed timestamp tamper is still rejected. Forged valid SHA in an unsigned manifest remains explicitly publisher_authenticated=false, Git claim only, not publication authority. Cross-platform dry-run parity 37716191737 PASS. | PASS |
-| SW2-25-R5 | Release preflight and public handbook document read-only distribution dry-run boundaries; permanent CI exercises actual bundle build/verify and fail-closed regressions across Ubuntu and Windows, preserving the existing six contexts with no extra release or tag. | PASS: exact helper-free branch SHA e01406e5528ab51370262dc52f486fc537c288e7, permanent Governance CI run 37717003472 terminal 6/6 SUCCESS, including Windows and Ubuntu release-bundle negative fixture and actual full Git-blob build/detached verification; dedicated read-only manual-only Release Bundle Dry Run 37716191737 Windows/Ubuntu byte-equal manifest and ZIP; SW2-25 source-authored handbook/release-process/README, governed doc inventory, source-derived Mermaid and Project Truth all passed. Release asset publication explicitly forbidden; no extra permanent CI context added. | PASS |
-| SW2-25-R6 | An exact helper-free final feature candidate passes all six permanent Governance CI contexts, squash merges with identical tree, and passes full six-context postmerge main before terminal closure; no release or distribution publication happens without separate Owner authority. | PASS: final exact helper-free feature 82719678198a94bb314bccb4fe019579458b80c8 tree d6b7be3396b77ffadc0a37f17b125bd2cd12bf5c passed all six permanent contexts in Governance CI 37717282205; PR #44 squash merged as accepted main 40c88c990f671fb70cdab8fa391610977bc4c04a with identical tree; postmerge exact-main six permanent checks SUCCESS in run 37717454646. Terminal closure candidate and main undergo separate exact six-context tests. | PASS |
+| SW2-26-R1 | Trusted producer identity pins repository, signer workflow, expected exact Git SHA and authoritative trust policy independently of unsigned artifact claims. | NOT_PROVEN: scope declared; independent trust-policy verifier and negative-path regression not implemented. | NOT_PROVEN |
+| SW2-26-R2 | GitHub Actions OIDC/Sigstore builds signed in-toto/SLSA attestations for exact deterministic ZIP and detached JSON manifest with least-privilege signer permissions, without release publishing. | NOT_PROVEN: no SW2-26 signed ZIP/manifest pair or real GitHub attestation execution yet. | NOT_PROVEN |
+| SW2-26-R3 | An independent cryptographic verifier validates SW2-25 content integrity together with trusted attestation signatures, expected GitHub workflow, source SHA and each artifact digest; offline limitations are explicit. | NOT_PROVEN: needs live signer, verifier and independently provisioned trusted root. | NOT_PROVEN |
+| SW2-26-R4 | Unsigned or forged claims, altered ZIP/manifest, wrong source SHA, repo or signer, missing/stale trust evidence, substitution and replay against a pinned expected SHA are rejected with deterministic first-failed-gate evidence. | NOT_PROVEN: adversarial fixture suite and GitHub verifier proof pending. | NOT_PROVEN |
+| SW2-26-R5 | Ubuntu and Windows exercise full verifier regression; historical SW2-25 integrity, Mermaid, source-derived docs, consumer acceptance and all six permanent checks remain mandatory and synchronized. | NOT_PROVEN: cross-platform exact-SHA GitHub evidence and source-generated documentation not yet created. | NOT_PROVEN |
+| SW2-26-R6 | Exact helper-free SW2-26 candidate passes all six Governance CI contexts; equal-tree squash to main, postmerge six-context acceptance and separate terminal closure six-context acceptance precede accepted status. | NOT_PROVEN: no SW2-26 accepted feature, PR merge, postmerge evidence or terminal closure. | NOT_PROVEN |
 
 ## Test commands
 
@@ -25,6 +25,7 @@ Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c8
 - python scripts/selftest_release_preflight.py
 - python scripts/validate_schema_toolchain.py --root .
 - python scripts/validate_sequence_sessions.py --root .
+- python .github/scripts/selftest_publisher_provenance.py
 
 ## Runtime checks
 
@@ -33,26 +34,26 @@ Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c8
 ## Roadmap synchronization evidence
 
 Roadmap authority: .workflow/roadmap.json
-ROADMAP_SYNC: PASS
+ROADMAP_SYNC: NOT_PROVEN
 
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-25-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-26-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
 Documentation root: docs/
 Documentation mode: GENERATED
-DOC_LAYOUT: PASS
-PROJECT_DOCS_NORMALIZED: PASS
-DOC_READABILITY: PASS
-PROJECT_DOCS_SYNC: PASS
+DOC_LAYOUT: NOT_PROVEN
+PROJECT_DOCS_NORMALIZED: NOT_PROVEN
+DOC_READABILITY: NOT_PROVEN
+PROJECT_DOCS_SYNC: NOT_PROVEN
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: PASS
-HUMAN_COMPREHENSION_GATE: PASS
+SYSTEM_OVERVIEW status: NOT_PROVEN
+HUMAN_COMPREHENSION_GATE: NOT_PROVEN
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

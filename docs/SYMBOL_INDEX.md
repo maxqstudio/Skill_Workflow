@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
+Source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -19,11 +19,14 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
 | .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
 | .github/scripts/ci_parallel_windows.py | 4 | 0 | 2 | 2 |
+| .github/scripts/export_sw2_26_projection.py | 2 | 0 | 2 | 0 |
+| .github/scripts/publisher_provenance.py | 6 | 1 | 5 | 0 |
 | .github/scripts/release_bundle.py | 14 | 1 | 13 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_ci_parallel_final_gates.py | 8 | 0 | 5 | 3 |
 | .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
 | .github/scripts/selftest_ci_parallel_windows.py | 10 | 0 | 4 | 6 |
+| .github/scripts/selftest_publisher_provenance.py | 7 | 0 | 5 | 2 |
 | .github/scripts/selftest_release_bundle.py | 6 | 0 | 5 | 1 |
 | .github/scripts/selftest_release_bundle_ci.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
@@ -156,6 +159,30 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/export_sw2_26_projection.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 21-28 |
+| main | function | 31-86 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/publisher_provenance.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| ProvenanceError | class | 21-22 |
+| fail | function | 25-26 |
+| digest | function | 29-30 |
+| verify_subject | function | 33-75 |
+| verify | function | 78-102 |
+| main | function | 105-119 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/release_bundle.py</code> — 14 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -229,6 +256,21 @@ responsibility, callers, or state ownership.
 | main.regression_failure | method | 69-71 |
 | main.final_failure | method | 78-80 |
 | main.mutating_group | method | 86-89 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_publisher_provenance.py</code> — 7 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 13-14 |
+| fixture | function | 17-32 |
+| rejects | function | 35-41 |
+| fake_verification | function | 44-50 |
+| main | function | 53-121 |
+| main.verify | method | 66-67 |
+| main.mocked_gh | method | 79-91 |
 
 </details>
 

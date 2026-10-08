@@ -1,45 +1,45 @@
 {
-  "schema_version": 1,
-  "session_id": "SW2-26-GOVERNANCE",
-  "phase": "SW2-26",
-  "scope": "CURRENT",
-  "status": "IN_PROGRESS",
-  "mode": "DURING",
-  "critical": true,
-  "implementation_base_sha": "1344108d314f880f4a2e5bf31eb5323285ea0484",
-  "evidence_boundary": "Static source graph depicts SW2-25 deterministic ZIP plus detached publisher verification; it cannot prove a real GitHub attestation, unforgeability, current trust roots or release approval. GitHub exact-SHA evidence is separately required.",
+  "acceptance_report": "artifacts/sequence/SW2-26-GOVERNANCE.acceptance.json",
   "actual": {
-    "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.actual.json",
     "diagram": "docs/sequence/generated/SW2-26-GOVERNANCE.actual.mmd",
-    "source_digest": "",
     "entries": [
       ".github/scripts/release_bundle.py::build",
       ".github/scripts/release_bundle.py::verify",
       ".github/scripts/publisher_provenance.py::verify",
       ".github/scripts/publisher_provenance.py::verify_subject"
-    ]
+    ],
+    "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.actual.json",
+    "source_digest": "37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1"
   },
+  "critical": true,
+  "evidence_boundary": "Static source graph depicts SW2-25 deterministic ZIP plus detached publisher verification; it cannot prove a real GitHub attestation, unforgeability, current trust roots or release approval. GitHub exact-SHA evidence is separately required.",
   "human_view": {
-    "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.human.json",
     "diagram": "docs/sequence/generated/SW2-26-GOVERNANCE.human.mmd",
     "document": "docs/sequence/views/SW2-26-GOVERNANCE.md",
     "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": ""
+    "source_digest": "37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1"
   },
+  "implementation_base_sha": "1344108d314f880f4a2e5bf31eb5323285ea0484",
+  "mode": "DURING",
+  "phase": "SW2-26",
   "plan": {
-    "required": false,
     "contract": "",
     "diagram": "",
-    "sha256": "",
     "frozen": false,
-    "frozen_commit": ""
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
   },
   "runtime_trace": {
-    "required": false,
-    "graph": ""
+    "graph": "",
+    "required": false
   },
-  "acceptance_report": "artifacts/sequence/SW2-26-GOVERNANCE.acceptance.json",
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-26-GOVERNANCE",
+  "status": "COMPLETE",
   "tests": [
     ".github/scripts/selftest_publisher_provenance.py",
     ".github/scripts/selftest_release_bundle.py",
