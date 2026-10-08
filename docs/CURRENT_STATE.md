@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-24
-Status: SW2_24_BASELINE_AND_PARALLEL_RUNNER_PROVEN_PENDING_CI
+Status: SW2_24_R1_R4_PROVEN_PENDING_PUBLIC_DOCS_AND_FINAL_ACCEPTANCE
 Roadmap phase: SW2-24
 ROADMAP_SYNC: PASS
 
@@ -121,22 +121,21 @@ SEQUENCE_SYNC: PASS
 - SW2-23 PR #40 squash merged to product main 83de063673320a71da108afe0e5e28575d3cacf1 with identical Git tree 938237dd29a412f9448a74e3f7e18a5590b8d9f9; postmerge permanent Governance CI run 37708565187 passed all six contexts on exact product main.
 
 ## Not proven
-- SW2-24 R3-R6 remain NOT_PROVEN until final exact-head evidence.
-- Cold/warm hosted runner and billed GitHub minutes cannot be inferred from job timestamps; no savings claim is authorized.
-- Required status check enforcement remains intentionally NOT_PROVEN under Owner no-ruleset boundary.
+- SW2-24 R5/R6 final accepted source and exact postmerge CI remain NOT_PROVEN.
+- Six-run baseline vs three candidate-run 16.9% Windows timing improvement is observed, not hardware-normalized causal proof. Aggregate job-seconds did not fall, GitHub billable minutes and cache state NOT_PROVEN.
+- Automatic required checks/ruleset enforcement remain intentionally NOT_PROVEN by Owner-approved governance boundary.
 
 ## Known blockers
-- SW2-24 R3 NOT_PROVEN: permanent six-context cross-platform CI on optimized branch not yet terminal.
-- SW2-24 R4 NOT_PROVEN: at least three comparable exact-head candidate run timings and any 15% median Windows improvement not yet demonstrated.
-- SW2-24 R5/R6 NOT_PROVEN: public documentation, final exact candidate merge/main and terminal closure not yet accepted.
+- SW2-24 R5 NOT_PROVEN until the current source, public handbook, documentation inventory, GitHub-rendered sequence and exact governed specs are verified on helper-free candidate.
+- SW2-24 R6 NOT_PROVEN until final candidate six-context CI, equal-tree squash feature merge, exact main six-context CI and separate terminal closure.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Complete exact optimizer source/doc sync, remove temporary workflows and run six-context permanent CI on a single helper-free SHA.
-- If repeated permanent CI confirms no missed test, compare >=3 exact candidate run Windows elapsed and job-seconds to six-run pinned baseline; reject claimed optimization if not proven.
-- Promote R3-R5 only after full evidence, then merge through squash and exact post-merge main 6/6; close SW2-24 in separate terminal transaction.
+- Regenerate SW2-24 current source/sequence/docs Project Truth and verify README/handbook stale claims. Remove temporary helper before exact candidate CI.
+- Require exact final full six-context run then squash PR #42 only after all R1-R5 acceptance evidence and no performance regression.
+- After exact main six-context PASS, complete separate evidence-only terminal SW2-24 closure; do not open SW2-25 without Owner permission.
 
 ## Explicitly blocked
 - Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.
