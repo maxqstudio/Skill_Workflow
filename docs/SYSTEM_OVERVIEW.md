@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-26
 
-Current status: SW2_26_FEATURE_ACCEPTANCE_RECORDED_AWAITING_EXACT_HEAD_REVALIDATION
+Current status: SW2_26_IMPLEMENTATION_ACCEPTED_AWAITING_SEPARATE_TERMINAL_CLOSURE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,21 +110,19 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Regenerate source-derived Project Truth and sequence/coverage from the new SW2-26 R5 evidence authority, remove temporary helpers, and rerun all six contexts at exact helper-free candidate SHA.
-- Keep PR #46 DRAFT until final feature candidate six-context SUCCESS, then mark ready and squash merge with expected head SHA, comparing feature and squash trees.
-- Rerun all six postmerge main CI contexts; perform a separate terminal governance-closure PR and retest its main SHA.
-- Do not publish new stable tag, GitHub Release or package. Owner-distributed trust root and offline freshness remain outside the proven scope.
+- Finish the separate SW2-26 terminal governance closure PR by reprojecting source-derived docs and recording full feature/main/closure evidence.
+- Require exact closure candidate six-context SUCCESS; squash merge only with equal tree; require terminal main six-context SUCCESS.
+- Keep manual trusted attestation and publication_authority=false; stable v2.1.0 unchanged.
+- Do not open the next phase without new Owner approval.
 
 Blocked actions:
-- Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.
-- Do not publish or retag stable release, GitHub Release, registry asset, or change license. Publication authority remains false.
-- Do not weaken all six permanent CI contexts, Windows/Ubuntu parity, STRICT finalize, exact SHA, consumer tests, Mermaid, performance or documentation validation.
-- Do not classify a self-asserted manifest, unsigned digest or merely successful CLI mock as authenticated GitHub publisher evidence.
-- Do not start SW2-27 without new explicit Owner authorization.
+- Do not claim SW2-26 terminally closed until a separate evidence-only closure PR passes six exact-candidate and terminal-main permanent CI contexts.
+- Do not publish new tag, stable release, package registry artifact, or modify license absent separate Owner authorization. publication_authority=false.
+- Do not remove/skip six permanent contexts, consumer regression, Windows/Ubuntu parity, source-derived Project Truth/sequence or fail-closed tests.
+- Do not open SW2-27 without explicit Owner discussion and authorization.
 
 Known blockers:
-- R6 equal-tree squash, exact-main six-context postmerge acceptance and separate terminal closure remain pending.
-- This R5 evidence-authority commit changes the candidate SHA; the final helper-free candidate requires all six contexts again before merge.
+- Separate terminal SW2-26 governance closure is not yet exact-candidate/terminal-main accepted; R6 remains NOT_PROVEN pending closure CI and merge.
 
 ## Proven vs not proven
 
@@ -220,6 +218,7 @@ Known blockers:
 - SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.
 - SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.
 - SW2-26 source-derived helper-free candidate b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Ubuntu and Windows, sequence, consumer, performance), with no release publication.
+- SW2-26 final helper-free feature SHA 63bc52ead4837534f6dd14e70cadf89ad301905a tree bd3b0f695554f54820ae3ff51b97a3acffe03535 passed all six Governance CI contexts run 37796154612; PR #46 squash merged to main 4d5bf33ea347de041e50239d86385b0e33339dec with equal tree; exact postmerge main run 37796628346 passed six of six contexts.
 
 ### Not proven
 
