@@ -47,3 +47,7 @@ For production/offline consumers, the expected SHA-256 of `trusted_root.jsonl` i
 ## Pinned-root verifier proof
 
 GitHub Actions [run 37786698990](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37786698990) exercised the new mandatory expected trusted-root SHA-256 input and verified both signed subjects, including with all HTTP(S) proxies pointed at a blocked local endpoint. Four cryptographic negative paths remained rejected. CI derives a root digest from the root fetched through official GitHub CLI, which proves verifier plumbing rather than independent Owner distribution. Production operators must obtain and pin their expected root digest through a separate trusted channel; offline checks still cannot establish subsequent revocation freshness.
+
+## Feature acceptance evidence
+
+At helper-free feature SHA `b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5`, [permanent Governance CI run 37787819701](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37787819701) passed all six contexts. This is R5 implementation evidence, **not** proof that the subsequent authority/projection synchronization commit has passed or that SW2-26 has completed postmerge or terminal closure. R6 remains pending until the separate transactions pass on their respective exact main SHAs.
