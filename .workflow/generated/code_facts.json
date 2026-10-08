@@ -102,6 +102,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/publisher_provenance.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 123
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/release_bundle.py",
       "is_test": false,
       "language": "Python",
@@ -134,6 +141,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 105
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 126
     },
     {
       "directory": ".github/scripts",
@@ -1430,6 +1444,270 @@
     {
       "caller": ".github/scripts/ci_parallel_windows.py::run.regressions",
       "target_token": "independent.run_groups"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::digest",
+      "target_token": "hashlib.sha256"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::digest",
+      "target_token": "path.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::fail",
+      "target_token": "ProvenanceError"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "ap.parse_args"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "REF.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "attestation.is_file"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "attestation.stat"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "digest"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "digest"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "release_bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "trusted_root.is_file"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "trusted_root.stat"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "verify_subject"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "digest"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "item.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "result.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "result.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "signature.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "statement.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "statement.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "subject.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "subject.get"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify_subject",
+      "target_token": "subprocess.run"
     },
     {
       "caller": ".github/scripts/release_bundle.py::build",
@@ -2818,6 +3096,294 @@
     {
       "caller": ".github/scripts/selftest_ci_parallel_windows.py::put",
       "target_token": "p.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fake_verification",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fake_verification",
+      "target_token": "prov.digest"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "path.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "path.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "target_token": "root.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "attestation.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "bundle.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "bundle.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "bundle.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "fake_verification"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "manifest.read_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "manifest.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "patch.object"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "patch.object"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "patch.object"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "patch.object"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "patch.object"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "patch.object"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "release_bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "release_bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "subprocess.CompletedProcess"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "subprocess.CompletedProcess"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "subprocess.CompletedProcess"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "subprocess.CompletedProcess"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "trusted.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "cmd.index"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "fake_verification"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "observed.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "target_token": "subprocess.CompletedProcess"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.verify",
+      "target_token": "prov.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::rejects",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::rejects",
+      "target_token": "callback"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::rejects",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::rejects",
+      "target_token": "str"
     },
     {
       "caller": ".github/scripts/selftest_release_bundle.py::commit",
@@ -30699,6 +31265,54 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/publisher_provenance.py",
+      "kind": "class",
+      "line_end": 22,
+      "line_start": 21,
+      "locator": ".github/scripts/publisher_provenance.py::ProvenanceError",
+      "symbol": "ProvenanceError"
+    },
+    {
+      "file": ".github/scripts/publisher_provenance.py",
+      "kind": "function",
+      "line_end": 26,
+      "line_start": 25,
+      "locator": ".github/scripts/publisher_provenance.py::fail",
+      "symbol": "fail"
+    },
+    {
+      "file": ".github/scripts/publisher_provenance.py",
+      "kind": "function",
+      "line_end": 30,
+      "line_start": 29,
+      "locator": ".github/scripts/publisher_provenance.py::digest",
+      "symbol": "digest"
+    },
+    {
+      "file": ".github/scripts/publisher_provenance.py",
+      "kind": "function",
+      "line_end": 75,
+      "line_start": 33,
+      "locator": ".github/scripts/publisher_provenance.py::verify_subject",
+      "symbol": "verify_subject"
+    },
+    {
+      "file": ".github/scripts/publisher_provenance.py",
+      "kind": "function",
+      "line_end": 102,
+      "line_start": 78,
+      "locator": ".github/scripts/publisher_provenance.py::verify",
+      "symbol": "verify"
+    },
+    {
+      "file": ".github/scripts/publisher_provenance.py",
+      "kind": "function",
+      "line_end": 119,
+      "line_start": 105,
+      "locator": ".github/scripts/publisher_provenance.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/release_bundle.py",
       "kind": "class",
       "line_end": 40,
@@ -30993,6 +31607,62 @@
       "line_start": 86,
       "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.mutating_group",
       "symbol": "main.mutating_group"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "function",
+      "line_end": 14,
+      "line_start": 13,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "function",
+      "line_end": 32,
+      "line_start": 17,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::fixture",
+      "symbol": "fixture"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "function",
+      "line_end": 41,
+      "line_start": 35,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::rejects",
+      "symbol": "rejects"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "function",
+      "line_end": 50,
+      "line_start": 44,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::fake_verification",
+      "symbol": "fake_verification"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "function",
+      "line_end": 122,
+      "line_start": 53,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "method",
+      "line_end": 67,
+      "line_start": 66,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::main.verify",
+      "symbol": "main.verify"
+    },
+    {
+      "file": ".github/scripts/selftest_publisher_provenance.py",
+      "kind": "method",
+      "line_end": 92,
+      "line_start": 79,
+      "locator": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
+      "symbol": "main.mocked_gh"
     },
     {
       "file": ".github/scripts/selftest_release_bundle.py",
@@ -34780,13 +35450,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975",
+  "source_digest": "19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d",
   "source_summary": {
-    "files": 83,
+    "files": 85,
     "languages": {
-      "Python": 83
+      "Python": 85
     },
-    "lines": 18876,
+    "lines": 19125,
     "test_files": 0
   },
   "tests": []
