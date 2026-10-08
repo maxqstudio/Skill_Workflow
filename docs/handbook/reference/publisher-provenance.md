@@ -12,7 +12,7 @@ The SW2-25 detached SHA-256 manifest establishes package integrity relative to a
 
 1. Retain the exact-source clean Git-blob product build, deterministic ZIP bytes, detached manifest and offline SHA-256 verifier unchanged as independently tested source-integrity checks.
 2. On an explicitly triggered GitHub Actions run, generate in-toto/SLSA provenance for **both** ZIP and JSON manifest using GitHub OIDC and Sigstore (native `actions/attest`). Limit `id-token: write` and `attestations: write` permissions to the attestation job only. Do not give it `contents: write` or release permissions.
-3. Require a verifier backed by the actual `gh attestation verify` cryptographic check, not ad hoc JSON or a caller-provided `publisher_authenticated` boolean. Verify expected repository, trusted signer workflow, *exact* source SHA, artifact digest, and supplied trusted root for offline use. Verify both subjects independently, in addition to SW2-25 manifest content checks.
+3. Require a verifier backed by the actual `gh attestation verify` cryptographic check, not ad hoc JSON or a caller-provided `publisher_authenticated` boolean. The verifier requires `--expected-root-sha256` from a separate trusted policy/channel and rejects missing or mismatched root digest before asking GitHub CLI to validate attestations. Verify expected repository, trusted signer workflow, *exact* source SHA, artifact digest, and supplied trusted root for offline use. Verify both subjects independently, in addition to SW2-25 manifest content checks.
 4. Treat signed provenance as identification of the executing workflow and source claim, **not** Owner release approval or a guarantee the source/build is safe. Do not interpret self-asserted predicate fields as signer-controlled certificate identity.
 5. Keep `publication_authority=false`; do not automatically create stable tags, GitHub Releases or publish packages. Archive CI attestation evidence only.
 
@@ -39,3 +39,7 @@ Upstream guidance: https://docs.github.com/en/actions/concepts/security/artifact
 ## Live adversarial evidence
 
 At exact SHA `f87586fa784a22614217121c14519637df4155dd`, [GitHub Actions run 37783624068](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37783624068) generated a signed ZIP+manifest pair and independently verified both subjects. The real verifier rejected four signed negative cases: incorrect signer workflow, source ref, source SHA, and damaged attestation bundle. The current acceptance phase remains unfinished; no isolated network-offline simulation, freshness guarantee, six-context helper-free acceptance, postmerge acceptance, or terminal closure is claimed.
+
+## Trusted-root bootstrap and limitations
+
+For production/offline consumers, the expected SHA-256 of `trusted_root.jsonl` is an independently trusted policy input, not a digest read from the same downloaded package or unsigned manifest. The CI smoke test obtains a fresh Sigstore root using the official GitHub CLI and records its digest in the same trusted GitHub runner to exercise the pinning mechanism. That smoke test does **not** establish an independently distributed Owner trust anchor. Offline verification cannot determine whether the root has since been revoked; a previously pinned root is only as trustworthy as its initial acquisition and update process.
