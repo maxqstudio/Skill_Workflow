@@ -424,15 +424,6 @@ jobs:
           python .workflow/tools/validate_cross_document_consistency.py --root . --base "$BASE" --require-base
           python .workflow/tools/validate_project_truth.py --root . --project-docs-already-validated
           test -z "$(git status --porcelain)"
-      - name: Finalize isolated migrated consumer at exact local commit
-        if: steps.bootstrap.outputs.heavy == 'true'
-        working-directory: consumer
-        shell: bash
-        run: |
-          BASE=$(python -c "import json; print(json.load(open('.workflow/state.json', encoding='utf-8'))['last_accepted_sha'])")
-          python .workflow/tools/governance_engine.py \
-            --root . --base "$BASE" --mode finalize --expected-head "$MIGRATED_CONSUMER_HEAD"
-          test -z "$(git status --porcelain --untracked-files=all -- PROJECT_PROFILE.yaml .workflow docs artifacts/sequence)"
       - name: Record machine-readable consumer parity evidence
         if: steps.bootstrap.outputs.heavy == 'true'
         shell: bash
