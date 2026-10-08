@@ -1,8 +1,8 @@
-<!-- SOURCE-AUTHORED PUBLIC DESIGN NOTE; SW2-26 BEFORE/RED, NOT ACCEPTED -->
+<!-- PUBLIC PRODUCT DOCUMENTATION - SOURCE-AUTHORED -->
 
 # Trusted publisher provenance (SW2-26 design boundary)
 
-**Status:** IN PROGRESS; no authenticated publisher claim or permission to publish.
+**Status:** IN PROGRESS; not accepted and no permission to publish. A bounded GitHub Actions OIDC/Sigstore smoke run successfully signed and verified both artifacts at exact candidate `fe8cf3754a477b3ac97ddbd00cf891bad93c1cf3` (run [37726441523](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37726441523)). This evidence is not final helper-free acceptance.
 
 ## Problem and trust boundary
 
@@ -29,3 +29,9 @@ Offline verification depends on a trust root obtained out-of-band. A stale trust
 No SW2-26 PASS until GitHub Actions supplies real exact-SHA signatures and independent verification, targeted hostile fixtures, Windows/Ubuntu regression, six permanent contexts on feature and postmerge main, source-derived sequence and docs, and a separate terminal closure.
 
 Upstream guidance: https://docs.github.com/en/actions/concepts/security/artifact-attestations ; https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/verify-attestations-offline ; https://cli.github.com/manual/gh_attestation_verify
+
+## Verified evidence versus open acceptance
+
+- The completed smoke run verified a signed ZIP and independently signed detached manifest against exact SHA/ref, GitHub issuer, repository and signer workflow; its machine report retained `publication_authority=false` and `offline_trusted_root_freshness=NOT_PROVEN`.
+- Mocked negative tests prove only code-path expectations; live signer mismatch and trust-chain negative tests must be evidenced by GitHub CI, and source-generated Project Truth must remain synchronized.
+- `gh attestation verify --bundle ... --custom-trusted-root ...` supports detached offline verification after trusted root material has been obtained independently. It does **not** prove latest root revocation or the safety of the workflow's source.

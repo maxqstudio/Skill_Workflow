@@ -35,7 +35,7 @@ def verify_subject(artifact, attestation, trusted_root, expected_sha, expected_r
         "gh", "attestation", "verify", str(artifact),
         "--repo", REPO, "--signer-workflow", SIGNER,
         "--source-digest", expected_sha, "--source-ref", expected_ref,
-        "--cert-oidc-issuer", OIDC_ISSUER,
+        "--cert-oidc-issuer", OIDC_ISSUER, "--deny-self-hosted-runners",
         "--predicate-type", PREDICATE, "--bundle", str(attestation),
         "--custom-trusted-root", str(trusted_root), "--format", "json",
     ]

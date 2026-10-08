@@ -78,6 +78,7 @@ def main():
         observed = []
         def mocked_gh(cmd, **kwargs):
             assert cmd[:3] == ["gh", "attestation", "verify"]
+            assert "--deny-self-hosted-runners" in cmd
             for flag, value in {
                 "--repo": prov.REPO, "--signer-workflow": prov.SIGNER,
                 "--source-digest": sha, "--source-ref": ref,
