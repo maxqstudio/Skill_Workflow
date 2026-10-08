@@ -57,12 +57,6 @@ jobs:
             --base "$base" \
             --mode finalize \
             --expected-head "$expected"
-      - name: TEMP Source-derived SW2-26 evidence export (remove before final CI)
-        if: always()
-        shell: bash
-        run: |
-          python .github/scripts/export_sw2_26_projection.txt
-          python .github/scripts/sw26_codefacts_patch.txt
       - name: Upload generated governance preview
         if: always()
         uses: actions/upload-artifact@v4
