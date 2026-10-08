@@ -3,6 +3,7 @@
 from __future__ import annotations
 from pathlib import Path
 import ci_parallel_selftests as parallel
+import ci_parallel_final_gates as final_gates
 
 WINDOWS_STEP = "Windows bounded independent regression matrix"
 SELFTEST_STEP = "CI parallel regression contract self-test"
@@ -89,9 +90,13 @@ def findings(workflow: str) -> list[str]:
         specs=dict(parallel.GROUPS).get(name)
         if specs is None or tuple("python "+item for item in specs)!=commands:
             problems.append("CI_WINDOWS_INVENTORY_NOT_EQUAL_UBUNTU:"+name)
-    for mandatory in FINAL_SERIAL_STEPS:
+    if final_gates.GATES!=("verify_read_only","strict_workflow_selftest"):
+        problems.append("CI_WINDOWS_FINAL_GATE_SET_CHANGED")
+    for mandatory,command in FINAL_SERIAL_STEPS.items():
         if mandatory not in steps or GUARD_LINUX not in steps.get(mandatory,""):
             problems.append("CI_UBUNTU_FINAL_GATE_FALLBACK_MISSING:"+mandatory)
+        elif command not in steps[mandatory]:
+            problems.append("CI_UBUNTU_FINAL_GATE_COMMAND_MISSING:"+mandatory)
     # Windows runs the same two complete gates in one bounded independent process.
     if WINDOWS_FINAL_STEP not in steps or FINAL_SELFTEST_STEP not in steps:
         problems.append("CI_WINDOWS_FINAL_OR_REGRESSION_MISSING")
