@@ -9,8 +9,8 @@ STEPS=(
     ("Build and detached-verify exact-head read-only bundle",
      "python .github/scripts/release_bundle.py build"),
 )
-PIN="\${{ github.event.pull_request.head.sha || github.sha }}"
-DISPATCH_PIN="\${{ inputs.candidate_sha || github.sha }}"
+PIN="$" + "{{ github.event.pull_request.head.sha || github.sha }}"
+DISPATCH_PIN="$" + "{{ inputs.candidate_sha || github.sha }}"
 
 
 def findings(governance:str,dryrun:str)->list[str]:
