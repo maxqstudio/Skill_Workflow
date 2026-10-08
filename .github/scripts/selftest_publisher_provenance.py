@@ -63,13 +63,16 @@ def main():
         print("PROVENANCE_SW2_25_UNSIGNED_INTEGRITY_NOT_AUTHENTICATED=PASS")
         ref = "refs/heads/work/sw2-26-trusted-publisher-attestation"
 
-        def verify(expected=sha, expected_ref=ref):
-            return prov.verify(bundle, manifest, attestation, trusted, expected, expected_ref)
+        def verify(expected=sha, expected_ref=ref, root_pin=None):
+            pin = (prov.digest(trusted) if trusted.is_file() else "0"*64) if root_pin is None else root_pin
+            return prov.verify(bundle, manifest, attestation, trusted, expected, expected_ref, pin)
 
         rejects("PROVENANCE_ATTESTATION_BUNDLE_MISSING", verify)
         attestation.write_text("{}\n", encoding="utf-8")
         rejects("PROVENANCE_INDEPENDENT_TRUST_ROOT_MISSING", verify)
         trusted.write_text("{}\n", encoding="utf-8")
+        rejects("PROVENANCE_TRUST_ROOT_PIN_INVALID", lambda: verify(root_pin="invalid"))
+        rejects("PROVENANCE_TRUST_ROOT_PIN_MISMATCH", lambda: verify(root_pin="0"*64))
         rejects("PROVENANCE_EXPECTED_SHA_INVALID", lambda: verify("main"))
         rejects("PROVENANCE_EXPECTED_REF_INVALID", lambda: verify(sha, "refs/tags/v2.1.0"))
         rejects("PROVENANCE_SOURCE_SHA_MISMATCH", lambda: verify("0"*40))
@@ -107,6 +110,11 @@ def main():
             rejects("PROVENANCE_VERIFIED_OUTPUT_INVALID", verify)
         with patch.object(prov.subprocess, "run", side_effect=lambda cmd, **k: subprocess.CompletedProcess(cmd, 0, fake_verification(bundle), "")):
             rejects("PROVENANCE_VERIFIED_SUBJECT_MISMATCH", verify)
+        original_root = trusted.read_bytes()
+        pinned_root = prov.digest(trusted)
+        trusted.write_bytes(b"forged-root\n")
+        rejects("PROVENANCE_TRUST_ROOT_PIN_MISMATCH", lambda: verify(root_pin=pinned_root))
+        trusted.write_bytes(original_root)
         print("PROVENANCE_MOCKED_SIGNATURE_AND_SUBJECT_FAILURES_REJECTED=PASS")
 
         original = bundle.read_bytes()
