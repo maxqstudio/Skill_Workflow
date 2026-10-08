@@ -137,6 +137,14 @@ def finalize(root: Path, expected_head: str, base: str) -> dict:
                 result["first_failed_gate"] = name
                 return result
             if name.startswith("source_test_"):
+                # unittest exits 0 even if zero tests are discovered.
+                if is_source_test(command) and "-m" in command and "unittest" in command:
+                    found = re.search(r"Ran (\d+) tests?", p.stdout)
+                    if found is None or int(found.group(1)) == 0:
+                        item["result"] = "FAIL"
+                        item["failure"] = "CONSUMER_SOURCE_TEST_ZERO_OR_UNVERIFIED"
+                        result["first_failed_gate"] = name + ":NO_TESTS"
+                        return result
                 result["source_tests_executed"] += 1
             try:
                 require_clean(root)
