@@ -67,7 +67,7 @@ ENFORCEMENT_DENIAL_RE = re.compile(
 
 
 PROVENANCE_HINT_ONLY_RE = re.compile(
-    r"(?i)\\bproducer\\s+repository\\s+and\\s+(?:commit|sha)\\s+fields?\\s+are\\s+(?:only\\s+)?provenance\\s+hints\\b"
+    r"(?i)\bproducer\s+repository\s+and\s+(?:commit|sha)\s+fields?\s+are\s+(?:only\s+)?provenance\s+hints\b"
 )
 
 
