@@ -53,7 +53,21 @@ If the previous accepted state predates schema v1 entirely, use the Skill Workfl
 
 Projects with vendored governance tools store `.workflow/toolchain.lock.json`. The lock records the exact `.workflow/tools/*.py` file hashes and a deterministic manifest digest. Final validation recomputes those hashes; a changed, missing, or unexpected vendored Python tool invalidates the lock.
 
-Producer repository and commit fields are provenance hints. The file manifest and digest bind the actual vendored tool bytes; cache state, mutable upstream state, and an unlocked tool directory are not acceptance authority.
+The lock binds **exact vendored tool bytes** through a deterministic file manifest and a mandatory source-content digest. When verifiable Git metadata is available, `identity_source=GIT+CONTENT` additionally binds the producer repository and exact source SHA; a release tag is recorded only when verifiable at HEAD. For installed/copied skill packages without `.git`, `identity_source=CONTENT` records the exact content digest while Git-only repository, source SHA, and release fields are explicitly `NOT_PROVEN`—they must not be invented. A legacy `commit_hint`-only lock is **migration input, not acceptance authority**. A package copy with unchanged bytes must not downgrade an existing stronger `GIT+CONTENT` lock. Cache state, mutable upstream state, and an unlocked tool directory are never acceptance authority.
+
+Before changing a consumer's vendored toolchain, run an explicit **read-only** upgrade inspection from the desired Skill Workflow source checkout or package:
+
+```bash
+python scripts/upgrade_governance_toolchain.py --root <project> --check
+```
+
+Review the deterministic `PLAN_JSON` and the reported file classes before applying only toolchain-owned changes:
+
+```bash
+python scripts/upgrade_governance_toolchain.py --root <project> --apply
+```
+
+`--apply` must not overwrite the consumer's `AGENTS.md`, semantic `.workflow/*.json`, application source, or project-specific configuration. Repeated apply against identical source bytes is idempotent; unknown or tampered toolchain identity must fail closed. A successful toolchain upgrade does **not** bypass the consumer's own source/runtime/governance acceptance requirements.
 
 Validate directly with:
 
@@ -68,3 +82,13 @@ python .workflow/tools/validate_schema_toolchain.py --root .
 - Unknown future versions fail closed. Existing tools never downgrade them.
 - An incompatible schema change requires a new schema version, an explicit deterministic migration path, negative tests for unsupported versions, and an update to this compatibility policy.
 - Stable product release/version labels are separate from schema versions and require their own exact release evidence.
+
+## Consumer acceptance after an upgrade
+
+A valid toolchain lock is necessary but not sufficient for acceptance. After using `--check` and `--apply`, commit the migrated consumer snapshot and run its own complete source tests and Project Truth validators through the vendored `finalize_consumer.py` command, with the exact committed consumer HEAD and the proven last accepted ancestor:
+
+```bash
+python .workflow/tools/finalize_consumer.py --root . --base <ACCEPTED_SHA> --expected-head <NEW_HEAD>
+```
+
+This consumer path differs from the Skill Workflow **producer's** `governance_engine.py --mode finalize`, which includes source-only producer regression scripts. Consumer finalization must never assume those scripts exist in application repositories. The consumer command requires declared source tests and all mandatory project-local validators to PASS on an unchanged, clean commit; it cannot promote historical runtime evidence or claim that other consumer repositories were upgraded.

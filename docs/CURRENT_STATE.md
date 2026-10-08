@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 44e3e45b9a231744c7962e0b4153d720d80653bc
+Authority verified at SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-22
-Status: SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_ACCEPTED
-Roadmap phase: SW2-22
+Phase: SW2-23
+Status: SW2_23_R1_R6_PROVEN_PENDING_EXACT_FINAL_CI
+Roadmap phase: SW2-23
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-23-multi-consumer-adoption
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 44e3e45b9a231744c7962e0b4153d720d80653bc
+Last accepted SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
 Current candidate SHA: external final acceptance evidence
-Current source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
+Current source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-22-GOVERNANCE
+Current sequence session: SW2-23-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -119,24 +119,26 @@ SEQUENCE_SYNC: PASS
 - SW2-22 Consumer Toolchain Provenance & Upgrade Contract is accepted: exact final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf passed Governance CI 37429305042 6/6, squash-merged to main 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a, and post-merge Governance CI 37429617130 passed all six permanent contexts.
 
 ## Not proven
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
+- SW2-23 R7 merge/postmerge exact-SHA acceptance and terminal closure are NOT_PROVEN; PR #40 remains DRAFT.
+- Pinned max-grounding isolated consumer finalize PASS does not prove actual consumer upstream was modified or that historical runtime/E2E was reexecuted.
+- Automatic GitHub merge ruleset enforcement remains NOT_PROVEN by Owner decision.
 
 ## Known blockers
-- None declared.
+- SW2-23 R7 remains NOT_PROVEN until final feature candidate and accepted main exact-tree, six-context postmerge evidence.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Treat SW2-22 on main 44e3e45b9a231744c7962e0b4153d720d80653bc as the accepted terminal roadmap authority for the current roadmap.
-- Preserve the accepted V2.1 release identity and SW2-22 consumer toolchain provenance/upgrade contract.
-- Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.
+- Regenerate exact current sequence and deterministic Project Truth after R3 fix; remove temporary helpers before exact six-context permanent candidate CI.
+- If final candidate six-context acceptance PASS, execute reviewed squash PR #40, compare tree identity and require main postmerge 6/6; do not change Owner's no-ruleset boundary.
+- Complete terminal accepted closure only after post-merge evidence and fresh exact-head six-context final CI.
 
 ## Explicitly blocked
-- Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.
-- Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.
-- Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.
-- Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Do not modify actual consumer repositories during SW2-23 compatibility evaluation.
+- Do not treat missing AGENTS.md/toolchain lock or legacy hint-only provenance as compatibility PASS.
+- Do not weaken finalize, exact-head, fail-closed, sequence, or required cross-platform acceptance.
+- Do not claim platform-required checks with no GitHub ruleset.
+- Do not begin SW2-24 or release a new stable tag without separate Owner authorization.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

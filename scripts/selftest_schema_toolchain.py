@@ -164,6 +164,7 @@ def main() -> int:
     assert "READ_ONLY_UPGRADE_PLAN=PASS" in provenance_upgrade
     assert "SEMANTIC_AUTHORITY_PRESERVATION=PASS" in provenance_upgrade
     assert "UPGRADE_IDEMPOTENCE=PASS" in provenance_upgrade
+    assert "INTERRUPTED_UPGRADE_FAIL_CLOSED=PASS" in provenance_upgrade
     assert "LEGACY_PROVENANCE_MIGRATION=PASS" in provenance_upgrade
     assert "CONTENT_PACKAGE_IDENTITY=PASS" in provenance_upgrade
     assert "STRONG_PROVENANCE_NO_DOWNGRADE=PASS" in provenance_upgrade

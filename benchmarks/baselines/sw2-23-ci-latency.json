@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "purpose": "SW2-23 representative permanent-CI latency comparison; descriptive sample, not statistically significant or billing evidence.",
+  "baseline": {
+    "repository": "maxqstudio/Skill_Workflow",
+    "exact_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
+    "run_id": 37430818483,
+    "attempt": 1,
+    "job_seconds": {
+      "Self Governance (ubuntu-latest)": 15,
+      "Governance Selftest (ubuntu-latest)": 20,
+      "Governance Selftest (windows-latest)": 87,
+      "SW2 Sequence Evidence (ubuntu-latest)": 32,
+      "Governance Engine Performance (ubuntu-latest)": 13,
+      "Consumer Engine Performance (max-grounding)": 25
+    }
+  },
+  "candidate": {
+    "repository": "maxqstudio/Skill_Workflow",
+    "exact_sha": "56b4e4ddeba1a9934f547b4728fbd2dba67d9b17",
+    "run_id": 37706618341,
+    "attempt": 1,
+    "job_seconds": {
+      "Self Governance (ubuntu-latest)": 16,
+      "Governance Selftest (ubuntu-latest)": 19,
+      "Governance Selftest (windows-latest)": 73,
+      "SW2 Sequence Evidence (ubuntu-latest)": 34,
+      "Governance Engine Performance (ubuntu-latest)": 10,
+      "Consumer Engine Performance (max-grounding)": 33
+    }
+  },
+  "interpretation": {
+    "baseline_total_job_seconds": 192,
+    "candidate_total_job_seconds": 185,
+    "delta_job_seconds": -7,
+    "baseline_max_job_seconds": 87,
+    "candidate_max_job_seconds": 73,
+    "candidate_added_tests": [
+      "Exact pinned read-only compatibility classification of 3 consumers",
+      "Isolated max-grounding toolchain check-plan-apply-check",
+      "Interrupted upgrade negative path"
+    ],
+    "caution": "GitHub hosted-runner durations vary; this is one paired historical comparison, not a proven performance gain or monetary cost. Total job-seconds is a rough billed-runner-time proxy, excludes queue and varying price multipliers. Existing performance baseline gate remains mandatory."
+  }
+}

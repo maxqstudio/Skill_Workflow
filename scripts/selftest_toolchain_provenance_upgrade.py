@@ -77,6 +77,13 @@ def main() -> int:
             return fail("TAMPER_NOT_PLANNED")
         if tool.read_bytes() != tampered_before:
             return fail("CHECK_MODE_MUTATED_CONSUMER")
+        # Simulate an interrupted tool-copy: bytes changed but the previously
+        # accepted lock did not. Validation must reject this half-updated state.
+        invalid = run(root, sys.executable,
+            str(root / ".workflow" / "tools" / "validate_schema_toolchain.py"),
+            "--root", str(root), expect=1)
+        if "TOOLCHAIN" not in invalid:
+            return fail("INTERRUPTED_UPGRADE_FALSE_PASS")
 
         agents = root / "AGENTS.md"
         agents.write_text(agents.read_text(encoding="utf-8") + "\nOWNER_SENTINEL\n", encoding="utf-8", newline="\n")
@@ -156,6 +163,7 @@ def main() -> int:
     print("TOOL_OWNED_APPLY=PASS")
     print("SEMANTIC_AUTHORITY_PRESERVATION=PASS")
     print("UPGRADE_IDEMPOTENCE=PASS")
+    print("INTERRUPTED_UPGRADE_FAIL_CLOSED=PASS")
     print("LEGACY_PROVENANCE_MIGRATION=PASS")
     print("CONTENT_PACKAGE_IDENTITY=PASS")
     print("STRONG_PROVENANCE_NO_DOWNGRADE=PASS")

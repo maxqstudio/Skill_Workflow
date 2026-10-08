@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 68 files, 1 language categories.
+Observed source inventory: 72 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-22
+Current phase: SW2-23
 
-Current status: SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_ACCEPTED
+Current status: SW2_23_R1_R6_PROVEN_PENDING_EXACT_FINAL_CI
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,19 +110,19 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-22 on main 44e3e45b9a231744c7962e0b4153d720d80653bc as the accepted terminal roadmap authority for the current roadmap.
-- Preserve the accepted V2.1 release identity and SW2-22 consumer toolchain provenance/upgrade contract.
-- Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.
+- Regenerate exact current sequence and deterministic Project Truth after R3 fix; remove temporary helpers before exact six-context permanent candidate CI.
+- If final candidate six-context acceptance PASS, execute reviewed squash PR #40, compare tree identity and require main postmerge 6/6; do not change Owner's no-ruleset boundary.
+- Complete terminal accepted closure only after post-merge evidence and fresh exact-head six-context final CI.
 
 Blocked actions:
-- Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.
-- Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.
-- Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.
-- Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Do not modify actual consumer repositories during SW2-23 compatibility evaluation.
+- Do not treat missing AGENTS.md/toolchain lock or legacy hint-only provenance as compatibility PASS.
+- Do not weaken finalize, exact-head, fail-closed, sequence, or required cross-platform acceptance.
+- Do not claim platform-required checks with no GitHub ruleset.
+- Do not begin SW2-24 or release a new stable tag without separate Owner authorization.
 
 Known blockers:
-- None declared.
+- SW2-23 R7 remains NOT_PROVEN until final feature candidate and accepted main exact-tree, six-context postmerge evidence.
 
 ## Proven vs not proven
 
@@ -209,7 +209,9 @@ Known blockers:
 
 ### Not proven
 
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
+- SW2-23 R7 merge/postmerge exact-SHA acceptance and terminal closure are NOT_PROVEN; PR #40 remains DRAFT.
+- Pinned max-grounding isolated consumer finalize PASS does not prove actual consumer upstream was modified or that historical runtime/E2E was reexecuted.
+- Automatic GitHub merge ruleset enforcement remains NOT_PROVEN by Owner decision.
 
 ## Important limitations
 

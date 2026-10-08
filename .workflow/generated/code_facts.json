@@ -130,6 +130,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/finalize_consumer.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 189
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/generate_module_map.py",
       "is_test": false,
       "language": "Python",
@@ -284,6 +291,20 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/selftest_consumer_compatibility_matrix.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 91
+    },
+    {
+      "directory": "scripts",
+      "file": "scripts/selftest_consumer_finalize.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 94
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/selftest_cross_document_regressions.py",
       "is_test": false,
       "language": "Python",
@@ -294,7 +315,7 @@
       "file": "scripts/selftest_documentation_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 187
+      "lines": 188
     },
     {
       "directory": "scripts",
@@ -364,7 +385,7 @@
       "file": "scripts/selftest_schema_toolchain.py",
       "is_test": false,
       "language": "Python",
-      "lines": 186
+      "lines": 187
     },
     {
       "directory": "scripts",
@@ -399,7 +420,7 @@
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "is_test": false,
       "language": "Python",
-      "lines": 167
+      "lines": 175
     },
     {
       "directory": "scripts",
@@ -445,6 +466,13 @@
     },
     {
       "directory": "scripts",
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 179
+    },
+    {
+      "directory": "scripts",
       "file": "scripts/validate_cross_document_consistency.py",
       "is_test": false,
       "language": "Python",
@@ -462,7 +490,7 @@
       "file": "scripts/validate_documentation_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 340
+      "lines": 349
     },
     {
       "directory": "scripts",
@@ -2245,6 +2273,390 @@
     {
       "caller": "scripts/extract_project_facts.py::main",
       "target_token": "print"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "found.group"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "int"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "is_source_test"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "plan"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "re.search"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "require_clean"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "result.update"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "round"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::finalize",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::git",
+      "target_token": "p.stdout.strip"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::is_source_test",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::is_source_test",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::is_source_test",
+      "target_token": "tuple"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "finalize"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "location.is_relative_to"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "location.parent.mkdir"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "location.write_text"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "data.get"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "is_source_test"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "parse_owner_command"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::owner_tests",
+      "target_token": "path.read_text"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "ord"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "raw.strip"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::parse_owner_command",
+      "target_token": "shlex.split"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "argv.extend"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "enumerate"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "gates.append"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "owner_tests"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "require_clean"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "root.is_dir"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "script.is_file"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "script.resolve"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::plan",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::require_clean",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/finalize_consumer.py::require_clean",
+      "target_token": "git"
     },
     {
       "caller": "scripts/generate_module_map.py::head",
@@ -10447,6 +10859,378 @@
       "target_token": "target.write_text"
     },
     {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::assert_class",
+      "target_token": "cc.classify"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "all"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "assert_class"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "cc.audit"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "cc.audit"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "cc.audit"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "copy.deepcopy"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::expect_error",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::expect_error",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::expect_error",
+      "target_token": "fn"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::expect_error",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::expect_error",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "commit"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::git",
+      "target_token": "p.stdout.strip"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "all"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.is_source_test"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.is_source_test"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.owner_tests"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.parse_owner_command"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.parse_owner_command"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.parse_owner_command"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.parse_owner_command"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.parse_owner_command"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.parse_owner_command"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.plan"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.plan"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.plan"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.plan"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.plan"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "consumer.plan"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "expect_error"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "fixture"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::main",
+      "target_token": "write"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::write",
+      "target_token": "p.parent.mkdir"
+    },
+    {
+      "caller": "scripts/selftest_consumer_finalize.py::write",
+      "target_token": "p.write_text"
+    },
+    {
       "caller": "scripts/selftest_cross_document_regressions.py::main",
       "target_token": "Path"
     },
@@ -15752,6 +16536,10 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "identity.get"
     },
     {
@@ -15920,6 +16708,10 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "producer"
     },
     {
@@ -16008,6 +16800,10 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "shutil.copytree"
     },
     {
@@ -16029,6 +16825,14 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "state_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -18675,6 +19479,362 @@
       "target_token": "type"
     },
     {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "os.environ.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "response.read"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "urllib.request.Request"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "target_token": "urllib.request.urlopen"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "REPO.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "classify"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "fetcher"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "item.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "len"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "matrix.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "matrix.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "reports.append"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "seen.add"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "target_token": "set"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "DIGEST.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "any"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "files.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "lock.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "producer.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "profile_bytes.decode"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "profile_match.group"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "re.search"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "re.search"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "REPO.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "_request"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "_request"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "base64.b64decode"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "commit.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "payload.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "target_token": "payload.get"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "ap.add_argument"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "ap.parse_args"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "audit"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "path.parent.mkdir"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "path.write_text"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "read_json"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "target_token": "type"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::read_json",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::read_json",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::read_json",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": "scripts/validate_consumer_compatibility_matrix.py::read_json",
+      "target_token": "path.read_text"
+    },
+    {
       "caller": "scripts/validate_cross_document_consistency.py::all_docs",
       "target_token": "any"
     },
@@ -20440,6 +21600,10 @@
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "PROVENANCE_HINT_ONLY_RE.finditer"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
       "target_token": "STABLE_RELEASE_RE.finditer"
     },
     {
@@ -20464,6 +21628,10 @@
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "_finding"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
       "target_token": "_historical_context"
     },
     {
@@ -20520,7 +21688,7 @@
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
-      "target_token": "len"
+      "target_token": "findings.append"
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
@@ -20536,7 +21704,7 @@
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
-      "target_token": "match.end"
+      "target_token": "len"
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
@@ -20561,6 +21729,14 @@
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
       "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.end"
+    },
+    {
+      "caller": "scripts/validate_documentation_contract.py::freshness_findings",
+      "target_token": "match.group"
     },
     {
       "caller": "scripts/validate_documentation_contract.py::freshness_findings",
@@ -26626,6 +27802,70 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 39,
+      "line_start": 36,
+      "locator": "scripts/finalize_consumer.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 45,
+      "line_start": 42,
+      "locator": "scripts/finalize_consumer.py::require_clean",
+      "symbol": "require_clean"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 66,
+      "line_start": 48,
+      "locator": "scripts/finalize_consumer.py::parse_owner_command",
+      "symbol": "parse_owner_command"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 71,
+      "line_start": 69,
+      "locator": "scripts/finalize_consumer.py::is_source_test",
+      "symbol": "is_source_test"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 87,
+      "line_start": 74,
+      "locator": "scripts/finalize_consumer.py::owner_tests",
+      "symbol": "owner_tests"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 115,
+      "line_start": 90,
+      "locator": "scripts/finalize_consumer.py::plan",
+      "symbol": "plan"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 162,
+      "line_start": 118,
+      "locator": "scripts/finalize_consumer.py::finalize",
+      "symbol": "finalize"
+    },
+    {
+      "file": "scripts/finalize_consumer.py",
+      "kind": "function",
+      "line_end": 185,
+      "line_start": 165,
+      "locator": "scripts/finalize_consumer.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/generate_module_map.py",
       "kind": "function",
       "line_end": 36,
@@ -28002,6 +29242,78 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/selftest_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 25,
+      "line_start": 23,
+      "locator": "scripts/selftest_consumer_compatibility_matrix.py::assert_class",
+      "symbol": "assert_class"
+    },
+    {
+      "file": "scripts/selftest_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 87,
+      "line_start": 28,
+      "locator": "scripts/selftest_consumer_compatibility_matrix.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": "scripts/selftest_consumer_compatibility_matrix.py",
+      "kind": "method",
+      "line_end": 65,
+      "line_start": 63,
+      "locator": "scripts/selftest_consumer_compatibility_matrix.py::main.source",
+      "symbol": "main.source"
+    },
+    {
+      "file": "scripts/selftest_consumer_finalize.py",
+      "kind": "function",
+      "line_end": 14,
+      "line_start": 11,
+      "locator": "scripts/selftest_consumer_finalize.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": "scripts/selftest_consumer_finalize.py",
+      "kind": "function",
+      "line_end": 19,
+      "line_start": 16,
+      "locator": "scripts/selftest_consumer_finalize.py::write",
+      "symbol": "write"
+    },
+    {
+      "file": "scripts/selftest_consumer_finalize.py",
+      "kind": "function",
+      "line_end": 24,
+      "line_start": 21,
+      "locator": "scripts/selftest_consumer_finalize.py::commit",
+      "symbol": "commit"
+    },
+    {
+      "file": "scripts/selftest_consumer_finalize.py",
+      "kind": "function",
+      "line_end": 37,
+      "line_start": 26,
+      "locator": "scripts/selftest_consumer_finalize.py::fixture",
+      "symbol": "fixture"
+    },
+    {
+      "file": "scripts/selftest_consumer_finalize.py",
+      "kind": "function",
+      "line_end": 46,
+      "line_start": 39,
+      "locator": "scripts/selftest_consumer_finalize.py::expect_error",
+      "symbol": "expect_error"
+    },
+    {
+      "file": "scripts/selftest_consumer_finalize.py",
+      "kind": "function",
+      "line_end": 91,
+      "line_start": 48,
+      "locator": "scripts/selftest_consumer_finalize.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/selftest_cross_document_regressions.py",
       "kind": "function",
       "line_end": 45,
@@ -28076,7 +29388,7 @@
     {
       "file": "scripts/selftest_documentation_contract.py",
       "kind": "function",
-      "line_end": 125,
+      "line_end": 126,
       "line_start": 107,
       "locator": "scripts/selftest_documentation_contract.py::stale_semantic_regressions",
       "symbol": "stale_semantic_regressions"
@@ -28084,32 +29396,32 @@
     {
       "file": "scripts/selftest_documentation_contract.py",
       "kind": "function",
-      "line_end": 163,
-      "line_start": 128,
+      "line_end": 164,
+      "line_start": 129,
       "locator": "scripts/selftest_documentation_contract.py::coverage_drift_contract",
       "symbol": "coverage_drift_contract"
     },
     {
       "file": "scripts/selftest_documentation_contract.py",
       "kind": "method",
-      "line_end": 145,
-      "line_start": 136,
+      "line_end": 146,
+      "line_start": 137,
       "locator": "scripts/selftest_documentation_contract.py::coverage_drift_contract.expect_stale",
       "symbol": "coverage_drift_contract.expect_stale"
     },
     {
       "file": "scripts/selftest_documentation_contract.py",
       "kind": "function",
-      "line_end": 174,
-      "line_start": 166,
+      "line_end": 175,
+      "line_start": 167,
       "locator": "scripts/selftest_documentation_contract.py::unclassified_surface_contract",
       "symbol": "unclassified_surface_contract"
     },
     {
       "file": "scripts/selftest_documentation_contract.py",
       "kind": "function",
-      "line_end": 183,
-      "line_start": 177,
+      "line_end": 184,
+      "line_start": 178,
       "locator": "scripts/selftest_documentation_contract.py::main",
       "symbol": "main"
     },
@@ -28460,7 +29772,7 @@
     {
       "file": "scripts/selftest_schema_toolchain.py",
       "kind": "function",
-      "line_end": 182,
+      "line_end": 183,
       "line_start": 38,
       "locator": "scripts/selftest_schema_toolchain.py::main",
       "symbol": "main"
@@ -28620,7 +29932,7 @@
     {
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "kind": "function",
-      "line_end": 163,
+      "line_end": 171,
       "line_start": 30,
       "locator": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "symbol": "main"
@@ -29042,6 +30354,54 @@
       "symbol": "main"
     },
     {
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 29,
+      "line_start": 25,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::read_json",
+      "symbol": "read_json"
+    },
+    {
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 76,
+      "line_start": 32,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "symbol": "classify"
+    },
+    {
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 91,
+      "line_start": 79,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::_request",
+      "symbol": "_request"
+    },
+    {
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 112,
+      "line_start": 94,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::fetch_snapshot",
+      "symbol": "fetch_snapshot"
+    },
+    {
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 155,
+      "line_start": 115,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "symbol": "audit"
+    },
+    {
+      "file": "scripts/validate_consumer_compatibility_matrix.py",
+      "kind": "function",
+      "line_end": 175,
+      "line_start": 158,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::main",
+      "symbol": "main"
+    },
+    {
       "file": "scripts/validate_cross_document_consistency.py",
       "kind": "function",
       "line_end": 67,
@@ -29244,128 +30604,128 @@
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 78,
-      "line_start": 69,
+      "line_end": 83,
+      "line_start": 74,
       "locator": "scripts/validate_documentation_contract.py::_git",
       "symbol": "_git"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 89,
-      "line_start": 81,
+      "line_end": 94,
+      "line_start": 86,
       "locator": "scripts/validate_documentation_contract.py::tracked_paths",
       "symbol": "tracked_paths"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 95,
-      "line_start": 92,
+      "line_end": 100,
+      "line_start": 97,
       "locator": "scripts/validate_documentation_contract.py::is_documentation_candidate",
       "symbol": "is_documentation_candidate"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 129,
-      "line_start": 98,
+      "line_end": 134,
+      "line_start": 103,
       "locator": "scripts/validate_documentation_contract.py::classify_document",
       "symbol": "classify_document"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 137,
-      "line_start": 132,
+      "line_end": 142,
+      "line_start": 137,
       "locator": "scripts/validate_documentation_contract.py::_load_json",
       "symbol": "_load_json"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 151,
-      "line_start": 140,
+      "line_end": 156,
+      "line_start": 145,
       "locator": "scripts/validate_documentation_contract.py::latest_stable_tag",
       "symbol": "latest_stable_tag"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 156,
-      "line_start": 154,
+      "line_end": 161,
+      "line_start": 159,
       "locator": "scripts/validate_documentation_contract.py::current_phase",
       "symbol": "current_phase"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 160,
-      "line_start": 159,
+      "line_end": 165,
+      "line_start": 164,
       "locator": "scripts/validate_documentation_contract.py::license_present",
       "symbol": "license_present"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 172,
-      "line_start": 163,
+      "line_end": 177,
+      "line_start": 168,
       "locator": "scripts/validate_documentation_contract.py::no_ruleset_boundary",
       "symbol": "no_ruleset_boundary"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 176,
-      "line_start": 175,
+      "line_end": 181,
+      "line_start": 180,
       "locator": "scripts/validate_documentation_contract.py::_line_number",
       "symbol": "_line_number"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 181,
-      "line_start": 179,
+      "line_end": 186,
+      "line_start": 184,
       "locator": "scripts/validate_documentation_contract.py::_historical_context",
       "symbol": "_historical_context"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 197,
-      "line_start": 184,
+      "line_end": 202,
+      "line_start": 189,
       "locator": "scripts/validate_documentation_contract.py::_finding",
       "symbol": "_finding"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 252,
-      "line_start": 200,
+      "line_end": 261,
+      "line_start": 205,
       "locator": "scripts/validate_documentation_contract.py::freshness_findings",
       "symbol": "freshness_findings"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 296,
-      "line_start": 255,
+      "line_end": 305,
+      "line_start": 264,
       "locator": "scripts/validate_documentation_contract.py::build_report",
       "symbol": "build_report"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 300,
-      "line_start": 299,
+      "line_end": 309,
+      "line_start": 308,
       "locator": "scripts/validate_documentation_contract.py::report_text",
       "symbol": "report_text"
     },
     {
       "file": "scripts/validate_documentation_contract.py",
       "kind": "function",
-      "line_end": 336,
-      "line_start": 303,
+      "line_end": 345,
+      "line_start": 312,
       "locator": "scripts/validate_documentation_contract.py::main",
       "symbol": "main"
     },
@@ -29803,13 +31163,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4",
+  "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e",
   "source_summary": {
-    "files": 68,
+    "files": 72,
     "languages": {
-      "Python": 68
+      "Python": 72
     },
-    "lines": 16850,
+    "lines": 17422,
     "test_files": 0
   },
   "tests": []

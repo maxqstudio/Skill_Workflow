@@ -1,0 +1,41 @@
+{
+  "authority": "GitHub main commit snapshots verified at SW2-23 phase opening; fixture only, no external writes",
+  "consumer_snapshots": [
+    {
+      "acceptance": "NOT_PROVEN",
+      "classification": "LEGACY_PRECONDITIONS_MISSING",
+      "profile": "strict",
+      "repository": "maxqstudio/max-grounding",
+      "root_agents": "MISSING",
+      "sha": "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f",
+      "toolchain_lock": "MISSING"
+    },
+    {
+      "acceptance": "NOT_PROVEN",
+      "classification": "EXPLICIT_MIGRATION_REQUIRED",
+      "profile": "strict",
+      "repository": "maxqstudio/DoctorCode",
+      "root_agents": "PRESENT",
+      "sha": "bc3846e6d5c412ebe09146a66661d2c49072889b",
+      "toolchain_lock": "LEGACY_HINT_ONLY"
+    },
+    {
+      "acceptance": "NOT_PROVEN",
+      "classification": "LEGACY_PRECONDITIONS_MISSING",
+      "profile": "strict",
+      "repository": "maxqstudio/max-remote-commander",
+      "root_agents": "MISSING",
+      "sha": "b968b023c322cc22dc804c5bbcb9370aee5f9ae1",
+      "toolchain_lock": "MISSING"
+    }
+  ],
+  "preconditions": {
+    "consumer_repository_mutation": "DENIED",
+    "exact_sha": "REQUIRED",
+    "owner_semantics": "IMMUTABLE",
+    "test_checkout": "ISOLATED_ONLY",
+    "unsupported": "FAIL_CLOSED"
+  },
+  "schema_version": 1,
+  "source_main_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66"
+}

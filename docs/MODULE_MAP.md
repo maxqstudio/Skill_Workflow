@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
+Source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -16,6 +16,7 @@ Generated/refreshed: current compiler run
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
+| scripts/finalize_consumer.py | Python | 189 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
 | scripts/generate_project_docs.py | Python | 601 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
@@ -38,8 +39,10 @@ Generated/refreshed: current compiler run
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
 | scripts/selftest_closure_defect_lifecycle.py | Python | 200 | scripts | NO |
+| scripts/selftest_consumer_compatibility_matrix.py | Python | 91 | scripts | NO |
+| scripts/selftest_consumer_finalize.py | Python | 94 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 49 | scripts | NO |
-| scripts/selftest_documentation_contract.py | Python | 187 | scripts | NO |
+| scripts/selftest_documentation_contract.py | Python | 188 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 581 | scripts | NO |
@@ -49,21 +52,22 @@ Generated/refreshed: current compiler run
 | scripts/selftest_public_docs.py | Python | 85 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
-| scripts/selftest_schema_toolchain.py | Python | 186 | scripts | NO |
+| scripts/selftest_schema_toolchain.py | Python | 187 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_sequence_squash_provenance.py | Python | 64 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 869 | scripts | NO |
-| scripts/selftest_toolchain_provenance_upgrade.py | Python | 167 | scripts | NO |
+| scripts/selftest_toolchain_provenance_upgrade.py | Python | 175 | scripts | NO |
 | scripts/sequence_contract.py | Python | 269 | scripts | NO |
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 154 | scripts | NO |
 | scripts/toolchain_identity.py | Python | 234 | scripts | NO |
 | scripts/upgrade_governance_toolchain.py | Python | 183 | scripts | NO |
 | scripts/validate_closure_defect_lifecycle.py | Python | 228 | scripts | NO |
+| scripts/validate_consumer_compatibility_matrix.py | Python | 179 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
-| scripts/validate_documentation_contract.py | Python | 340 | scripts | NO |
+| scripts/validate_documentation_contract.py | Python | 349 | scripts | NO |
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |

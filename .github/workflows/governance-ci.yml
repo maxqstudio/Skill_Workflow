@@ -42,6 +42,8 @@ jobs:
         run: python .github/scripts/validate_skill_reference_split.py --root .
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
+      - name: Multi-consumer classification negative-path regression
+        run: python scripts/selftest_consumer_compatibility_matrix.py
       - name: Governance Engine V2 regression
         run: python scripts/selftest_governance_engine.py
       - name: Run final Governance Engine V2 acceptance
@@ -120,6 +122,8 @@ jobs:
         run: |
           python .github/scripts/selftest_skill_reference_split.py
           python .github/scripts/validate_skill_reference_split.py --root .
+      - name: Consumer finalize negative-path regression
+        run: python scripts/selftest_consumer_finalize.py
       - name: Schema and toolchain version regression
         run: |
           python scripts/selftest_schema_toolchain.py
@@ -351,6 +355,14 @@ jobs:
           echo "EXPECTED_CONSUMER_HEAD=$expected"
           echo "ACTUAL_CONSUMER_HEAD=$actual"
           test "$actual" = "$expected"
+      - name: Audit pinned representative consumers read-only
+        if: steps.bootstrap.outputs.heavy == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          python scripts/validate_consumer_compatibility_matrix.py
+          --matrix .workflow/consumer_compatibility_matrix.json
+          --report artifacts/performance/sw2-23-consumer-compatibility.json
       - name: Install pinned consumer test dependencies
         if: steps.bootstrap.outputs.heavy == 'true'
         working-directory: consumer
@@ -362,6 +374,13 @@ jobs:
           python scripts/migrate_governance_v1.py --root consumer
           python scripts/validate_schema_toolchain.py --root consumer
           test "$(git -C consumer rev-parse HEAD)" = "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f"
+      - name: Verify isolated consumer toolchain check-plan-apply idempotence
+        if: steps.bootstrap.outputs.heavy == 'true'
+        run: |
+          python scripts/upgrade_governance_toolchain.py --root consumer --check
+          python scripts/upgrade_governance_toolchain.py --root consumer --apply
+          python scripts/upgrade_governance_toolchain.py --root consumer --check
+          python scripts/validate_schema_toolchain.py --root consumer
       - name: Run consumer source acceptance under candidate toolchain
         if: steps.bootstrap.outputs.heavy == 'true'
         working-directory: consumer
@@ -407,6 +426,16 @@ jobs:
           python .workflow/tools/validate_cross_document_consistency.py --root . --base "$BASE" --require-base
           python .workflow/tools/validate_project_truth.py --root . --project-docs-already-validated
           test -z "$(git status --porcelain)"
+      - name: Finalize migrated consumer with consumer-owned source tests and full validators
+        if: steps.bootstrap.outputs.heavy == 'true'
+        shell: bash
+        run: |
+          BASE=$(python -c "import json; print(json.load(open('consumer/.workflow/state.json', encoding='utf-8'))['last_accepted_sha'])")
+          test -n "$BASE"
+          python consumer/.workflow/tools/finalize_consumer.py \
+            --root consumer --base "$BASE" --expected-head "$MIGRATED_CONSUMER_HEAD" \
+            --report artifacts/performance/sw2-23-consumer-finalize.json
+          test -z "$(git -C consumer status --porcelain)"
       - name: Record machine-readable consumer parity evidence
         if: steps.bootstrap.outputs.heavy == 'true'
         shell: bash
@@ -439,5 +468,7 @@ jobs:
           path: |
             artifacts/performance/sw2-01-max-grounding-engine.json
             artifacts/performance/sw2-08-max-grounding-parity.json
+            artifacts/performance/sw2-23-consumer-compatibility.json
+            artifacts/performance/sw2-23-consumer-finalize.json
           if-no-files-found: error
           retention-days: 14

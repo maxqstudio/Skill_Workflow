@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
+Source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -23,6 +23,7 @@ responsibility, callers, or state ownership.
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
+| scripts/finalize_consumer.py | 8 | 0 | 8 | 0 |
 | scripts/generate_module_map.py | 3 | 0 | 3 | 0 |
 | scripts/generate_project_docs.py | 9 | 0 | 9 | 0 |
 | scripts/generate_sequence_actual.py | 21 | 3 | 9 | 9 |
@@ -45,6 +46,8 @@ responsibility, callers, or state ownership.
 | scripts/selftest_adoption_profiles.py | 7 | 0 | 7 | 0 |
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
+| scripts/selftest_consumer_compatibility_matrix.py | 3 | 0 | 2 | 1 |
+| scripts/selftest_consumer_finalize.py | 6 | 0 | 6 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_documentation_contract.py | 13 | 0 | 12 | 1 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
@@ -68,6 +71,7 @@ responsibility, callers, or state ownership.
 | scripts/toolchain_identity.py | 10 | 0 | 10 | 0 |
 | scripts/upgrade_governance_toolchain.py | 7 | 0 | 7 | 0 |
 | scripts/validate_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
+| scripts/validate_consumer_compatibility_matrix.py | 6 | 0 | 6 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
 | scripts/validate_documentation_contract.py | 16 | 0 | 16 | 0 |
@@ -194,6 +198,22 @@ responsibility, callers, or state ownership.
 | _extract_from_snapshot | function | 151-247 |
 | extract_project_facts | function | 250-259 |
 | main | function | 262-285 |
+
+</details>
+
+<details>
+<summary><code>scripts/finalize_consumer.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 36-39 |
+| require_clean | function | 42-45 |
+| parse_owner_command | function | 48-66 |
+| is_source_test | function | 69-71 |
+| owner_tests | function | 74-87 |
+| plan | function | 90-115 |
+| finalize | function | 118-162 |
+| main | function | 165-185 |
 
 </details>
 
@@ -546,6 +566,31 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_consumer_compatibility_matrix.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| assert_class | function | 23-25 |
+| main | function | 28-87 |
+| main.source | method | 63-65 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_consumer_finalize.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 11-14 |
+| write | function | 16-19 |
+| commit | function | 21-24 |
+| fixture | function | 26-37 |
+| expect_error | function | 39-46 |
+| main | function | 48-91 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_cross_document_regressions.py</code> — 1 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -567,11 +612,11 @@ responsibility, callers, or state ownership.
 | fixture_root | function | 47-86 |
 | kinds | function | 89-90 |
 | baseline_inventory_contract | function | 93-104 |
-| stale_semantic_regressions | function | 107-125 |
-| coverage_drift_contract | function | 128-163 |
-| coverage_drift_contract.expect_stale | method | 136-145 |
-| unclassified_surface_contract | function | 166-174 |
-| main | function | 177-183 |
+| stale_semantic_regressions | function | 107-126 |
+| coverage_drift_contract | function | 129-164 |
+| coverage_drift_contract.expect_stale | method | 137-146 |
+| unclassified_surface_contract | function | 167-175 |
+| main | function | 178-184 |
 
 </details>
 
@@ -695,7 +740,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 13-31 |
 | write_json | function | 34-35 |
-| main | function | 38-182 |
+| main | function | 38-183 |
 
 </details>
 
@@ -755,7 +800,7 @@ responsibility, callers, or state ownership.
 | run | function | 13-17 |
 | fail | function | 20-22 |
 | producer | function | 25-27 |
-| main | function | 30-163 |
+| main | function | 30-171 |
 
 </details>
 
@@ -860,6 +905,20 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/validate_consumer_compatibility_matrix.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| read_json | function | 25-29 |
+| classify | function | 32-76 |
+| _request | function | 79-91 |
+| fetch_snapshot | function | 94-112 |
+| audit | function | 115-155 |
+| main | function | 158-175 |
+
+</details>
+
+<details>
 <summary><code>scripts/validate_cross_document_consistency.py</code> — 23 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -905,22 +964,22 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _git | function | 69-78 |
-| tracked_paths | function | 81-89 |
-| is_documentation_candidate | function | 92-95 |
-| classify_document | function | 98-129 |
-| _load_json | function | 132-137 |
-| latest_stable_tag | function | 140-151 |
-| current_phase | function | 154-156 |
-| license_present | function | 159-160 |
-| no_ruleset_boundary | function | 163-172 |
-| _line_number | function | 175-176 |
-| _historical_context | function | 179-181 |
-| _finding | function | 184-197 |
-| freshness_findings | function | 200-252 |
-| build_report | function | 255-296 |
-| report_text | function | 299-300 |
-| main | function | 303-336 |
+| _git | function | 74-83 |
+| tracked_paths | function | 86-94 |
+| is_documentation_candidate | function | 97-100 |
+| classify_document | function | 103-134 |
+| _load_json | function | 137-142 |
+| latest_stable_tag | function | 145-156 |
+| current_phase | function | 159-161 |
+| license_present | function | 164-165 |
+| no_ruleset_boundary | function | 168-177 |
+| _line_number | function | 180-181 |
+| _historical_context | function | 184-186 |
+| _finding | function | 189-202 |
+| freshness_findings | function | 205-261 |
+| build_report | function | 264-305 |
+| report_text | function | 308-309 |
+| main | function | 312-345 |
 
 </details>
 

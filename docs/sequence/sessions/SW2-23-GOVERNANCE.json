@@ -1,0 +1,54 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-23-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/upgrade_governance_toolchain.py::build_plan",
+      "scripts/upgrade_governance_toolchain.py::main",
+      "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "scripts/validate_documentation_contract.py::freshness_findings",
+      "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "scripts/finalize_consumer.py::plan",
+      "scripts/finalize_consumer.py::finalize"
+    ],
+    "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.json",
+    "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e"
+  },
+  "critical": true,
+  "evidence_boundary": "Static sequence evidence covers source-side toolchain identity/upgrade, pinned read-only consumer classification, and exact-head consumer-owned finalization. Execution of app source tests and full validators is proven separately by permanent GitHub CI; historical runtime/device evidence is not re-executed by consumer finalize.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-23-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-23-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e"
+  },
+  "implementation_base_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
+  "mode": "DURING",
+  "phase": "SW2-23",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-23-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_toolchain_provenance_upgrade.py",
+    "scripts/selftest_documentation_contract.py",
+    "scripts/selftest_consumer_compatibility_matrix.py",
+    "scripts/selftest_consumer_finalize.py"
+  ]
+}
