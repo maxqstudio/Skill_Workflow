@@ -169,7 +169,13 @@ jobs:
       - name: Project Truth Compiler self-test
         if: matrix.os != 'windows-latest'
         run: python scripts/selftest_project_truth_compiler.py
+      - name: Windows complete final gates negative-path regression
+        run: python .github/scripts/selftest_ci_parallel_final_gates.py
+      - name: Windows concurrent full STRICT and read-only VERIFY
+        if: matrix.os == 'windows-latest'
+        run: python .github/scripts/ci_parallel_final_gates.py --root .
       - name: Verify mode is read-only
+        if: matrix.os != 'windows-latest'
         shell: bash
         run: |
           expected="$(git rev-parse HEAD)"
@@ -179,6 +185,7 @@ jobs:
       - name: LITE and STANDARD adoption fixtures
         run: python scripts/selftest_adoption_profiles.py
       - name: STRICT workflow self-test
+        if: matrix.os != 'windows-latest'
         run: python scripts/selftest_strict_project_workflow.py
 
   sequence-evidence:
