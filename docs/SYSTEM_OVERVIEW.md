@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-26
 
-Current status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_IN_PROGRESS
+Current status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_IMPLEMENTED_AWAITING_FINAL_ACCEPTANCE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -123,9 +123,9 @@ Blocked actions:
 - Do not start SW2-27 without new explicit Owner authorization.
 
 Known blockers:
-- SW2-26 R3, R4, R5 and R6 remain NOT_PROVEN: isolated offline trust verification, remaining adversarial/replay scope, six-context helper-free acceptance and exact-main closure are pending.
-- Generated docs/sequence must be synchronized on helper-free candidate SHA and validated in permanent CI.
-- Stable publication remains separately unauthorized.
+- R5 six-context helper-free current source acceptance is not yet demonstrated.
+- R6 equal-tree squash, postmerge exact-main acceptance and separate terminal closure are pending.
+- Independent Owner trust root distribution and revocation freshness are outside the current signed provenance proof and must not be falsely claimed.
 
 ## Proven vs not proven
 
@@ -219,13 +219,14 @@ Known blockers:
 - SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity.
 - Owner explicitly authorized opening SW2-26 on 2026-10-08, without authorizing stable publication; SW2-25 implementation acceptance remains tied to 40c88c990f671fb70cdab8fa391610977bc4c04a and terminal closure to 1344108d314f880f4a2e5bf31eb5323285ea0484.
 - SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.
+- SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.
 
 ### Not proven
 
-- Publisher authentication and trusted source Git identity for SW2-26 have not yet been implemented or evidenced.
-- An offline trusted-root file may be stale or fail to reflect revocation; proof of latest trust root or remote provenance is not inherent in offline verification.
-- No new stable tag, GitHub Release or package publication is authorized; stable product remains v2.1.0 and publication authority is false.
-- Automatic required-status-check ruleset enforcement remains NOT_PROVEN under prior Owner governance boundary.
+- Offline trusted-root revocation freshness and Owner-distributed trust-root origin remain NOT_PROVEN; caller must independently obtain/pin expected trusted root SHA-256 and update policy out of band.
+- GitHub automatic required-status-check ruleset enforcement remains NOT_PROVEN under Owner boundary.
+- R5 current code helper-free six-context acceptance and R6 merge, postmerge and terminal governance closure are pending.
+- Stable v2.1.0 remains the only authorized release; SW2-26 may not publish tags or packages.
 
 ## Important limitations
 

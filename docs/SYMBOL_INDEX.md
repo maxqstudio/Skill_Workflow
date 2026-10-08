@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d
+Source digest: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -166,8 +166,8 @@ responsibility, callers, or state ownership.
 | fail | function | 25-26 |
 | digest | function | 29-30 |
 | verify_subject | function | 33-75 |
-| verify | function | 78-102 |
-| main | function | 105-119 |
+| verify | function | 78-107 |
+| main | function | 110-124 |
 
 </details>
 
@@ -257,9 +257,9 @@ responsibility, callers, or state ownership.
 | fixture | function | 17-32 |
 | rejects | function | 35-41 |
 | fake_verification | function | 44-50 |
-| main | function | 53-122 |
-| main.verify | method | 66-67 |
-| main.mocked_gh | method | 79-92 |
+| main | function | 53-130 |
+| main.verify | method | 66-68 |
+| main.mocked_gh | method | 82-95 |
 
 </details>
 

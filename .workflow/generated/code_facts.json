@@ -105,7 +105,7 @@
       "file": ".github/scripts/publisher_provenance.py",
       "is_test": false,
       "language": "Python",
-      "lines": 123
+      "lines": 128
     },
     {
       "directory": ".github/scripts",
@@ -147,7 +147,7 @@
       "file": ".github/scripts/selftest_publisher_provenance.py",
       "is_test": false,
       "language": "Python",
-      "lines": 126
+      "lines": 134
     },
     {
       "directory": ".github/scripts",
@@ -1539,7 +1539,7 @@
     },
     {
       "caller": ".github/scripts/publisher_provenance.py::verify",
-      "target_token": "fail"
+      "target_token": "digest"
     },
     {
       "caller": ".github/scripts/publisher_provenance.py::verify",
@@ -1560,6 +1560,22 @@
     {
       "caller": ".github/scripts/publisher_provenance.py::verify",
       "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/publisher_provenance.py::verify",
+      "target_token": "re.fullmatch"
     },
     {
       "caller": ".github/scripts/publisher_provenance.py::verify",
@@ -3243,6 +3259,22 @@
     },
     {
       "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "prov.digest"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "rejects"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
       "target_token": "rejects"
     },
     {
@@ -3319,7 +3351,31 @@
     },
     {
       "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "trusted.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "trusted.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "trusted.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
       "target_token": "trusted.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main",
+      "target_token": "verify"
     },
     {
       "caller": ".github/scripts/selftest_publisher_provenance.py::main",
@@ -3367,7 +3423,15 @@
     },
     {
       "caller": ".github/scripts/selftest_publisher_provenance.py::main.verify",
+      "target_token": "prov.digest"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.verify",
       "target_token": "prov.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_publisher_provenance.py::main.verify",
+      "target_token": "trusted.is_file"
     },
     {
       "caller": ".github/scripts/selftest_publisher_provenance.py::rejects",
@@ -31299,7 +31363,7 @@
     {
       "file": ".github/scripts/publisher_provenance.py",
       "kind": "function",
-      "line_end": 102,
+      "line_end": 107,
       "line_start": 78,
       "locator": ".github/scripts/publisher_provenance.py::verify",
       "symbol": "verify"
@@ -31307,8 +31371,8 @@
     {
       "file": ".github/scripts/publisher_provenance.py",
       "kind": "function",
-      "line_end": 119,
-      "line_start": 105,
+      "line_end": 124,
+      "line_start": 110,
       "locator": ".github/scripts/publisher_provenance.py::main",
       "symbol": "main"
     },
@@ -31643,7 +31707,7 @@
     {
       "file": ".github/scripts/selftest_publisher_provenance.py",
       "kind": "function",
-      "line_end": 122,
+      "line_end": 130,
       "line_start": 53,
       "locator": ".github/scripts/selftest_publisher_provenance.py::main",
       "symbol": "main"
@@ -31651,7 +31715,7 @@
     {
       "file": ".github/scripts/selftest_publisher_provenance.py",
       "kind": "method",
-      "line_end": 67,
+      "line_end": 68,
       "line_start": 66,
       "locator": ".github/scripts/selftest_publisher_provenance.py::main.verify",
       "symbol": "main.verify"
@@ -31659,8 +31723,8 @@
     {
       "file": ".github/scripts/selftest_publisher_provenance.py",
       "kind": "method",
-      "line_end": 92,
-      "line_start": 79,
+      "line_end": 95,
+      "line_start": 82,
       "locator": ".github/scripts/selftest_publisher_provenance.py::main.mocked_gh",
       "symbol": "main.mocked_gh"
     },
@@ -35450,13 +35514,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d",
+  "source_digest": "461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea",
   "source_summary": {
     "files": 85,
     "languages": {
       "Python": 85
     },
-    "lines": 19125,
+    "lines": 19138,
     "test_files": 0
   },
   "tests": []
