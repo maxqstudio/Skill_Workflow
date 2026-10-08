@@ -57,6 +57,9 @@ jobs:
             --base "$base" \
             --mode finalize \
             --expected-head "$expected"
+      - name: TEMP Export source-derived closure projections (remove before acceptance)
+        if: always()
+        run: python .github/scripts/sw26_closure_projection.txt
       - name: Upload generated governance preview
         if: always()
         uses: actions/upload-artifact@v4
