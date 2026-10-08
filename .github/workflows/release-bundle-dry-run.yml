@@ -1,0 +1,92 @@
+name: Release Bundle Dry Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact source commit SHA for read-only package verification
+        required: true
+        type: string
+  push:
+    branches:
+      - work/sw2-25-reproducible-release-bundle
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Dry-run bundle (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.candidate_sha || github.sha }}
+          fetch-depth: 0
+      - name: Prove exact requested SHA
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ inputs.candidate_sha || github.sha }}"
+      - name: Run deterministic and hostile-fixture regressions
+        run: python .github/scripts/selftest_release_bundle.py
+      - name: Build and detached-verify read-only package
+        shell: bash
+        run: |
+          python .github/scripts/release_bundle.py build \
+            --root . \
+            --expected-head "${{ inputs.candidate_sha || github.sha }}" \
+            --bundle "${{ runner.temp }}/bundle.zip" \
+            --manifest "${{ runner.temp }}/manifest.json"
+          python .github/scripts/release_bundle.py verify \
+            --bundle "${{ runner.temp }}/bundle.zip" \
+            --manifest "${{ runner.temp }}/manifest.json"
+          test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Upload non-authoritative dry-run artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dryrun-bundle-${{ matrix.os }}
+          path: |
+            ${{ runner.temp }}/bundle.zip
+            ${{ runner.temp }}/manifest.json
+          if-no-files-found: error
+
+  parity:
+    name: Dry-run bundle cross-OS byte identity
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download both exact-head artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: dryrun-bundle-*
+          path: ${{ runner.temp }}/bundles
+          merge-multiple: false
+      - name: Verify both OS ZIP and manifest bytes are equal
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          root=Path(os.environ["RUNNER_TEMP"])/"bundles"
+          a=root/"dryrun-bundle-ubuntu-latest"
+          b=root/"dryrun-bundle-windows-latest"
+          for filename in ("bundle.zip","manifest.json"):
+              left=(a/filename).read_bytes()
+              right=(b/filename).read_bytes()
+              assert left==right, "CROSS_OS_BUNDLE_BYTES_DIFFER:"+filename
+              print(filename+"_SHA256="+hashlib.sha256(left).hexdigest())
+          data=json.loads((a/"manifest.json").read_text(encoding="utf-8"))
+          assert data["publication_authority"] is False
+          assert data["offline_source_git_identity"]=="NOT_PROVEN"
+          assert data["source_git_sha"]=="${{ inputs.candidate_sha || github.sha }}"
+          print("CROSS_OS_BUNDLE_EXACT_BYTES=PASS")
+          print("BUNDLE_PUBLICATION_AUTHORITY=false")
+          PY
