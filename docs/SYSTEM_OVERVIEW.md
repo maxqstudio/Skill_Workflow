@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: PASS
+Human comprehension status: NOT_PROVEN
 
 ## One-minute summary
 
@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 72 files, 1 language categories.
+Observed source inventory: 73 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-23
+Current phase: SW2-24
 
-Current status: SW2_23_MULTI_CONSUMER_COMPATIBILITY_ACCEPTED
+Current status: SW2_24_CI_BASELINE_IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,15 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-23 accepted on exact feature main 83de063673320a71da108afe0e5e28575d3cacf1 as terminal authority for the current roadmap.
-- Preserve v2.1.0 release, exact consumer toolchain provenance, supported consumer-owned finalize, and all six permanent Governance CI contexts.
-- Do not begin SW2-24 or any new phase until the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Record exact baseline and RED negative-path tests for parallel-runner failure/skip/mutation boundaries.
+- Optimize only test groups with isolated workspace and independence evidence, measuring warm and cold runs.
+- Reconcile Project Truth/sequence then require final six-context exact candidate and postmerge main before closure.
 
 Blocked actions:
-- Do not modify actual consumer repositories during SW2-23 compatibility evaluation.
-- Do not treat missing AGENTS.md/toolchain lock or legacy hint-only provenance as compatibility PASS.
-- Do not weaken finalize, exact-head, fail-closed, sequence, or required cross-platform acceptance.
-- Do not claim platform-required checks with no GitHub ruleset.
-- Do not begin SW2-24 or release a new stable tag without separate Owner authorization.
+- Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.
+- Do not parallelize dependent or source-mutating gates or reuse cached PASS authority.
+- Do not mutate actual consumer repositories, publish release, or modify GitHub ruleset.
+- Do not begin SW2-25 until Owner authorizes it.
 
 Known blockers:
 - None declared.
@@ -211,8 +210,9 @@ Known blockers:
 
 ### Not proven
 
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this is non-blocking by Owner decision.
-- Pinned external consumer repositories were audited read-only; only an isolated migrated max-grounding copy was tested through consumer finalize. No external consumer adoption or runtime/device E2E is implied.
+- SW2-24 R1-R6 are NOT_PROVEN pending measured exact-run baseline, regression, and feature/main acceptance.
+- Any wall-clock or billed-minutes savings is NOT_PROVEN until comparable samples exist; previous observed 56-94 second Windows durations are variable.
+- Owner-approved absence of automatic GitHub required checks/ruleset remains NOT_PROVEN and non-blocking.
 
 ## Important limitations
 
@@ -246,18 +246,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | PASS | One-minute summary |
-| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
-| What are the major components and how do they relate? | PASS | Major components |
-| How does important data flow through the system? | PASS | Main data flow |
-| What are the main user/domain workflows? | PASS | Main user workflows |
-| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
-| Who/what is authoritative for important decisions? | PASS | Authority model |
-| What is mutable and what is immutable? | PASS | Mutable vs immutable |
-| How does failure/recovery behave? | PASS | Failure and recovery |
-| What is the current project state? | PASS | Current project state |
-| What is proven and what is not proven? | PASS | Proven vs not proven |
-| What may happen next and what is blocked? | PASS | Current project state |
+| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
+| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
+| What are the major components and how do they relate? | NOT_PROVEN | Major components |
+| How does important data flow through the system? | NOT_PROVEN | Main data flow |
+| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
+| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
+| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
+| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
+| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
+| What is the current project state? | NOT_PROVEN | Current project state |
+| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
+| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.

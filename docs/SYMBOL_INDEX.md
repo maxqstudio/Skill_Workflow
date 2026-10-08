@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
+Source digest: 973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -18,6 +18,7 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
+| .github/scripts/tmp_sw2_24_open.py | 4 | 0 | 4 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
@@ -121,6 +122,18 @@ responsibility, callers, or state ownership.
 | copy_fixture | function | 18-22 |
 | require_failure | function | 25-28 |
 | main | function | 31-74 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/tmp_sw2_24_open.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 11-13 |
+| load | function | 14-15 |
+| save | function | 16-19 |
+| git | function | 20-21 |
 
 </details>
 

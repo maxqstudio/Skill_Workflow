@@ -4,25 +4,24 @@
 
 ## Evidence boundary
 
-SW2-23 feature acceptance is proven by exact candidate and equal-tree squash main, followed by all six permanent contexts successful on exact postmerge main. Consumer-owned full finalize reexecuted on isolated pinned max-grounding, not the actual upstream consumer; other consumer snapshots are classification-only. No new external runtime/device E2E, automatic branch ruleset or new release is claimed. Terminal closure requires separate exact-head evidence.
+Phase-open boundary only; no SW2-24 performance improvement, concurrency safety, exact final CI, or merge is proven.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
+Current source digest: 973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-23-R1 | Freeze at least three genuinely different real consumer SHA snapshots and classify their exact compatibility/preconditions without consumer repository mutation. | PASS: exact pinned main snapshots of max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f, DoctorCode bc3846e6d5c412ebe09146a66661d2c49072889b, and max-remote-commander b968b023c322cc22dc804c5bbcb9370aee5f9ae1 were independently read via authenticated GitHub API and classified without writes; permanent Consumer Engine Performance run 37706993081 on exact branch SHA 005eb5e6e20a9eb116d71f55e0fb0be6e576376a succeeded; 3/3 pinned classification matches. This is snapshot classification only, not adoption PASS. | PASS |
-| SW2-23-R2 | Reject incompatible/legacy consumer snapshots with explicit first failed gates; never fabricate successful adoption. | PASS: hermetic cross-platform regression in scripts/selftest_consumer_compatibility_matrix.py rejects mutable refs, expectation tamper, malformed/missing/legacy locks, unsupported schema and unknown producer identity. Incompatible real snapshots remain explicit LEGACY_PRECONDITIONS_MISSING or EXPLICIT_MIGRATION_REQUIRED, not false adoption PASS. Permanent Governance Selftest Ubuntu/Windows run 37706993081 succeeded. | PASS |
-| SW2-23-R3 | Execute isolated supported consumer check-plan-apply-validate-finalize and test semantic preservation and idempotence. | PASS: producer source candidate e86e402f24700b1a1a572a1bbc5e545611f46f54 permanently ran isolated pinned max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f through explicit legacy migration, read-only check-plan-apply-check and toolchain validation, replayed consumer application source tests and all mandatory STRICT project validators under vendored consumer-owned finalize on exact committed local consumer SHA 24124a9abd84fc1b2ab2996443d9884cb455d73e. Consumer Engine Performance job 113087372514 in CI run 37708148062 SUCCESS; CONSUMER_FINALIZE=PASS with empty first_failed_gate and an external machine-readable artifact. Previous producer-root finalize attempt in run 37706882513 correctly FAILED due to unavailable source-only producer scripts; dedicated consumer finalize fixes that contract without copying producer tests or silently claiming runtime E2E. | PASS |
-| SW2-23-R4 | Cover GIT+CONTENT and CONTENT package copies plus tamper, unsupported schema, and interrupted-upgrade negative paths. | PASS: permanent schema/toolchain regression on Ubuntu and Windows run 37706993081 covers exact GIT+CONTENT checkout and CONTENT copied package identity, legacy hint rejection and migration, stronger provenance no-downgrade, toolchain tamper, interrupted partial-tool update rejection, and idempotent repair, with no Owner semantic authority mutation in fixtures. | PASS |
-| SW2-23-R5 | Record reproducible CI timing/cost evidence without weakening final acceptance or silently skipping unknown impact. | PASS (descriptive evidence only): benchmarks/baselines/sw2-23-ci-latency.json binds baseline run 37430818483 attempt 1 to candidate run 37706618341 attempt 1 by exact SHA, six permanent contexts, and per-job observed runtimes (192 vs 185 job-seconds). Latest permanent run 37706993081 all six successful including budget-protected engine/consumer performance. Hosting variability prevents claiming a stable speedup or monetary savings; final CI remains exhaustive. | PASS |
-| SW2-23-R6 | Repair provenance-hint-only public documentation and add regression that detects this stale contract claim. | PASS: RED candidate 51642558c32d0b3db3b673aa1fa9d119eab0300c had permanent Ubuntu documentation regression failure STALE_TOOLCHAIN_PROVENANCE not detected. Subsequent validator and docs/handbook/reference/versioning.md repair describes GIT+CONTENT, CONTENT/NOT_PROVEN, check/apply and semantic protection; scripts/selftest_documentation_contract.py and docs inventory pass in permanent Governance Selftest Ubuntu/Windows run 37706993081. | PASS |
-| SW2-23-R7 | Exact final feature candidate and post-merge main pass all six permanent GitHub Governance CI contexts. | PASS: feature candidate 9309c8e6442478f94b4492e8ee086f0be35adb2e tree 938237dd29a412f9448a74e3f7e18a5590b8d9f9 passed all six permanent contexts in Governance CI run 37708376562; it was squash merged as main 83de063673320a71da108afe0e5e28575d3cacf1 with exactly equal tree; postmerge Governance CI run 37708565187 passed all six permanent contexts on exact main. Terminal closure candidate and closure main are independently retested after this authority projection. | PASS |
+| SW2-24-R1 | A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
+| SW2-24-R2 | Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
+| SW2-24-R3 | Bounded parallel self-test orchestration is deterministic, runs each selected command exactly once, captures explicit first failed gate and full failed command evidence, rejects missing/racy/mutating tests, and preserves six permanent contexts, STRICT, verify, finalize, Windows, Mermaid, performance and consumer gates. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
+| SW2-24-R4 | Before and after measurements use exact GitHub Actions runs with a cold/warm distinction; measured speed and job-seconds are reported without unproven cost or statistically causal claims, and no significant observed performance regression is silently accepted. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
+| SW2-24-R5 | Authoritative public documentation, roadmap, source-derived sequence and human-view Mermaid remain consistent and readable; changes are backed by negative regressions, including false skipping/cache laundering. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
+| SW2-24-R6 | Final exact helper-free feature candidate passes six permanent checks, is squash-merged with exact tree identity, and passes six permanent postmerge main checks before terminal accepted closure. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_toolchain_provenance_upgrade.py
-- python scripts/selftest_documentation_contract.py
+- python scripts/selftest_governance_engine.py
+- python scripts/selftest_performance_budget.py
 - python scripts/validate_schema_toolchain.py --root .
 - python scripts/validate_sequence_sessions.py --root .
 
@@ -38,8 +37,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-23-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-24-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
@@ -52,7 +51,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: PASS
-HUMAN_COMPREHENSION_GATE: PASS
+SYSTEM_OVERVIEW status: NOT_PROVEN
+HUMAN_COMPREHENSION_GATE: NOT_PROVEN
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

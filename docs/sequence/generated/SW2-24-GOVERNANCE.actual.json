@@ -1,0 +1,1004 @@
+{
+  "coverage": {
+    "analyzers": [
+      {
+        "analyzer_id": "python_sequence",
+        "claimed_extensions": [
+          ".py"
+        ],
+        "dynamic_behavior": "NOT_PROVEN",
+        "languages": [
+          "Python"
+        ],
+        "limitations": [
+          "dynamic dispatch",
+          "dependency injection",
+          "reflection",
+          "callbacks/events",
+          "framework magic not visible statically"
+        ],
+        "parse_failures": [],
+        "proof_status": "PROVEN_STATIC_WITH_LIMITATIONS",
+        "semantic_level": "python_ast_static",
+        "unsupported_files": []
+      },
+      {
+        "analyzer_id": "js_ts_http_sequence",
+        "claimed_extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ],
+        "dynamic_behavior": "NOT_PROVEN",
+        "languages": [
+          "JavaScript",
+          "TypeScript"
+        ],
+        "limitations": [
+          "dynamic dispatch",
+          "dependency injection",
+          "reflection",
+          "callbacks/events",
+          "framework magic not visible statically",
+          "JS/TS function-level call ownership is not fully resolved"
+        ],
+        "parse_failures": [],
+        "proof_status": "PROVEN_STATIC_WITH_LIMITATIONS",
+        "semantic_level": "http_module_static",
+        "unsupported_files": []
+      },
+      {
+        "analyzer_id": "generic_inventory",
+        "claimed_extensions": [],
+        "dynamic_behavior": "NOT_PROVEN",
+        "languages": [],
+        "limitations": [
+          "semantic symbols, routes, calls, and runtime ordering are NOT_PROVEN for unsupported languages",
+          "dynamic dispatch",
+          "dependency injection",
+          "reflection",
+          "callbacks/events",
+          "framework magic not visible statically"
+        ],
+        "parse_failures": [],
+        "proof_status": "NOT_APPLICABLE",
+        "semantic_level": "inventory_only",
+        "unsupported_files": []
+      }
+    ],
+    "dynamic_behavior": "NOT_PROVEN",
+    "generic_fallback": {
+      "analyzer_id": "generic_inventory",
+      "claimed_extensions": [],
+      "dynamic_behavior": "NOT_PROVEN",
+      "languages": [],
+      "limitations": [
+        "semantic symbols, routes, calls, and runtime ordering are NOT_PROVEN for unsupported languages",
+        "dynamic dispatch",
+        "dependency injection",
+        "reflection",
+        "callbacks/events",
+        "framework magic not visible statically"
+      ],
+      "parse_failures": [],
+      "proof_status": "NOT_APPLICABLE",
+      "semantic_level": "inventory_only",
+      "unsupported_files": []
+    },
+    "js_ts_http_module_scan": true,
+    "limitations": [
+      "dynamic dispatch",
+      "dependency injection",
+      "reflection",
+      "callbacks/events",
+      "framework magic not visible statically",
+      "JS/TS function-level call ownership is not fully resolved"
+    ],
+    "python_ast": true,
+    "python_parse_failures": [],
+    "python_route_decorators": true,
+    "runtime_trace": false
+  },
+  "edges": [
+    {
+      "action": "validate_result",
+      "evidence": "STATIC",
+      "from": "scripts/analyzer_contract.py::coverage_records",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::validate_result"
+    },
+    {
+      "action": "AnalyzerResult",
+      "evidence": "STATIC",
+      "from": "scripts/analyzer_contract.py::generic_fallback",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::AnalyzerResult"
+    },
+    {
+      "action": "validate_result",
+      "evidence": "STATIC",
+      "from": "scripts/analyzer_contract.py::generic_fallback",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::validate_result"
+    },
+    {
+      "action": "AnalyzerContractError",
+      "evidence": "STATIC",
+      "from": "scripts/analyzer_contract.py::validate_result",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::AnalyzerContractError"
+    },
+    {
+      "action": "extract_project_facts",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::_cached_facts",
+      "resolver": "python_ast",
+      "to": "scripts/extract_project_facts.py::extract_project_facts"
+    },
+    {
+      "action": "active_project_snapshot",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::_cached_facts",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::active_project_snapshot"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::baseline_comparison",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "_cached_facts",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::_cached_facts"
+    },
+    {
+      "action": "baseline_comparison",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::baseline_comparison"
+    },
+    {
+      "action": "copy_for_sync",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::copy_for_sync"
+    },
+    {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::git"
+    },
+    {
+      "action": "governance_tool",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::governance_tool"
+    },
+    {
+      "action": "run_command",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::run_command"
+    },
+    {
+      "action": "timed",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/benchmark_governance.py::timed"
+    },
+    {
+      "action": "extract_project_facts",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/extract_project_facts.py::extract_project_facts"
+    },
+    {
+      "action": "ProjectSnapshot.capture",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.capture"
+    },
+    {
+      "action": "fresh_snapshot.metrics",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.metrics"
+    },
+    {
+      "action": "active_project_snapshot",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::active_project_snapshot"
+    },
+    {
+      "action": "compute_source_digest",
+      "evidence": "STATIC",
+      "from": "scripts/benchmark_governance.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::compute_source_digest"
+    },
+    {
+      "action": "AnalyzerResult",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::AnalyzerResult"
+    },
+    {
+      "action": "fallback.coverage_record",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record"
+    },
+    {
+      "action": "coverage_records",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::coverage_records"
+    },
+    {
+      "action": "generic_fallback",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::generic_fallback"
+    },
+    {
+      "action": "validate_result",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/analyzer_contract.py::validate_result"
+    },
+    {
+      "action": "PythonFacts",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/extract_project_facts.py::PythonFacts"
+    },
+    {
+      "action": "is_test_file",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/extract_project_facts.py::is_test_file"
+    },
+    {
+      "action": "snapshot.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "_extract_from_snapshot",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::extract_project_facts",
+      "resolver": "python_ast",
+      "to": "scripts/extract_project_facts.py::_extract_from_snapshot"
+    },
+    {
+      "action": "snap.memoized",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::extract_project_facts",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.memoized"
+    },
+    {
+      "action": "resolve_snapshot",
+      "evidence": "STATIC",
+      "from": "scripts/extract_project_facts.py::extract_project_facts",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::resolve_snapshot"
+    },
+    {
+      "action": "dependency_closure",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::develop_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::dependency_closure"
+    },
+    {
+      "action": "names.add",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::develop_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "develop_node_names",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::planned_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::develop_node_names"
+    },
+    {
+      "action": "verify_node_names",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::planned_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::verify_node_names"
+    },
+    {
+      "action": "dependency_closure",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::verify_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::dependency_closure"
+    },
+    {
+      "action": "verify_seed_node_names",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::verify_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/governance_engine.py::verify_seed_node_names"
+    },
+    {
+      "action": "seeds.add",
+      "evidence": "STATIC",
+      "from": "scripts/governance_engine.py::verify_seed_node_names",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "SnapshotFile",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotFile"
+    },
+    {
+      "action": "_git_optional",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::_git_optional"
+    },
+    {
+      "action": "canonical_source_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::canonical_source_bytes"
+    },
+    {
+      "action": "discover_source_paths",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::discover_source_paths"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "self.entry",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "action": "self.entry",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "action": "_git",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::_git_optional",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::_git"
+    },
+    {
+      "action": "path.read_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::canonical_source_bytes",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::discover_source_paths",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "_git",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::discover_source_paths",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::_git"
+    },
+    {
+      "action": "ProjectSnapshot.capture",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::resolve_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.capture"
+    },
+    {
+      "action": "SnapshotError",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::resolve_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "action": "active_snapshot_for",
+      "evidence": "STATIC",
+      "from": "scripts/project_snapshot.py::resolve_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::active_snapshot_for"
+    },
+    {
+      "action": "BUDGET.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/selftest_performance_budget.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "load_module",
+      "evidence": "STATIC",
+      "from": "scripts/selftest_performance_budget.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_performance_budget.py::load_module"
+    },
+    {
+      "action": "require",
+      "evidence": "STATIC",
+      "from": "scripts/selftest_performance_budget.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/selftest_performance_budget.py::require"
+    },
+    {
+      "action": "module.validate_contract",
+      "evidence": "STATIC",
+      "from": "scripts/selftest_performance_budget.py::main",
+      "resolver": "python_ast",
+      "to": "scripts/validate_performance_budget.py::validate_contract"
+    },
+    {
+      "action": "active_snapshot_for",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::_selected_snapshot",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::active_snapshot_for"
+    },
+    {
+      "action": "canonical_source_bytes",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::canonical_source_bytes"
+    },
+    {
+      "action": "discover_source_paths",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::discover_source_paths"
+    },
+    {
+      "action": "_selected_snapshot",
+      "evidence": "STATIC",
+      "from": "scripts/sequence_contract.py::compute_source_digest",
+      "resolver": "python_ast",
+      "to": "scripts/sequence_contract.py::_selected_snapshot"
+    },
+    {
+      "action": "close_enough",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_performance_budget.py::close_enough"
+    },
+    {
+      "action": "derived_budget",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_performance_budget.py::derived_budget"
+    },
+    {
+      "action": "seen_ids.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "seen_samples.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_performance_budget.py::validate_contract",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "repo_relative_path",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::repo_relative_path"
+    }
+  ],
+  "entries": [
+    "scripts/governance_engine.py::planned_node_names",
+    "scripts/benchmark_governance.py::main",
+    "scripts/selftest_performance_budget.py::main"
+  ],
+  "generated": true,
+  "generated_by": "generate_sequence_actual.py",
+  "nodes": [
+    {
+      "id": "scripts/analyzer_contract.py::AnalyzerContractError",
+      "kind": "class",
+      "label": "scripts/analyzer_contract.py::AnalyzerContractError",
+      "language": "Python",
+      "line_end": 33,
+      "line_start": 32,
+      "locator": "scripts/analyzer_contract.py::AnalyzerContractError"
+    },
+    {
+      "id": "scripts/analyzer_contract.py::AnalyzerResult",
+      "kind": "class",
+      "label": "scripts/analyzer_contract.py::AnalyzerResult",
+      "language": "Python",
+      "line_end": 62,
+      "line_start": 37,
+      "locator": "scripts/analyzer_contract.py::AnalyzerResult"
+    },
+    {
+      "id": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
+      "kind": "method",
+      "label": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
+      "language": "Python",
+      "line_end": 62,
+      "line_start": 51,
+      "locator": "scripts/analyzer_contract.py::AnalyzerResult.coverage_record"
+    },
+    {
+      "id": "scripts/analyzer_contract.py::coverage_records",
+      "kind": "function",
+      "label": "scripts/analyzer_contract.py::coverage_records",
+      "language": "Python",
+      "line_end": 153,
+      "line_start": 152,
+      "locator": "scripts/analyzer_contract.py::coverage_records"
+    },
+    {
+      "id": "scripts/analyzer_contract.py::generic_fallback",
+      "kind": "function",
+      "label": "scripts/analyzer_contract.py::generic_fallback",
+      "language": "Python",
+      "line_end": 149,
+      "line_start": 126,
+      "locator": "scripts/analyzer_contract.py::generic_fallback"
+    },
+    {
+      "id": "scripts/analyzer_contract.py::validate_result",
+      "kind": "function",
+      "label": "scripts/analyzer_contract.py::validate_result",
+      "language": "Python",
+      "line_end": 100,
+      "line_start": 73,
+      "locator": "scripts/analyzer_contract.py::validate_result"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::_cached_facts",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::_cached_facts",
+      "language": "Python",
+      "line_end": 289,
+      "line_start": 287,
+      "locator": "scripts/benchmark_governance.py::_cached_facts"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::baseline_comparison",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::baseline_comparison",
+      "language": "Python",
+      "line_end": 137,
+      "line_start": 106,
+      "locator": "scripts/benchmark_governance.py::baseline_comparison"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::copy_for_sync",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::copy_for_sync",
+      "language": "Python",
+      "line_end": 103,
+      "line_start": 91,
+      "locator": "scripts/benchmark_governance.py::copy_for_sync"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::git",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::git",
+      "language": "Python",
+      "line_end": 39,
+      "line_start": 31,
+      "locator": "scripts/benchmark_governance.py::git"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::governance_tool",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::governance_tool",
+      "language": "Python",
+      "line_end": 88,
+      "line_start": 81,
+      "locator": "scripts/benchmark_governance.py::governance_tool"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::main",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::main",
+      "language": "Python",
+      "line_end": 284,
+      "line_start": 140,
+      "locator": "scripts/benchmark_governance.py::main"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::run_command",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::run_command",
+      "language": "Python",
+      "line_end": 78,
+      "line_start": 62,
+      "locator": "scripts/benchmark_governance.py::run_command"
+    },
+    {
+      "id": "scripts/benchmark_governance.py::timed",
+      "kind": "function",
+      "label": "scripts/benchmark_governance.py::timed",
+      "language": "Python",
+      "line_end": 59,
+      "line_start": 42,
+      "locator": "scripts/benchmark_governance.py::timed"
+    },
+    {
+      "id": "scripts/extract_project_facts.py::PythonFacts",
+      "kind": "class",
+      "label": "scripts/extract_project_facts.py::PythonFacts",
+      "language": "Python",
+      "line_end": 135,
+      "line_start": 60,
+      "locator": "scripts/extract_project_facts.py::PythonFacts"
+    },
+    {
+      "id": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "kind": "function",
+      "label": "scripts/extract_project_facts.py::_extract_from_snapshot",
+      "language": "Python",
+      "line_end": 247,
+      "line_start": 151,
+      "locator": "scripts/extract_project_facts.py::_extract_from_snapshot"
+    },
+    {
+      "id": "scripts/extract_project_facts.py::extract_project_facts",
+      "kind": "function",
+      "label": "scripts/extract_project_facts.py::extract_project_facts",
+      "language": "Python",
+      "line_end": 259,
+      "line_start": 250,
+      "locator": "scripts/extract_project_facts.py::extract_project_facts"
+    },
+    {
+      "id": "scripts/extract_project_facts.py::is_test_file",
+      "kind": "function",
+      "label": "scripts/extract_project_facts.py::is_test_file",
+      "language": "Python",
+      "line_end": 148,
+      "line_start": 138,
+      "locator": "scripts/extract_project_facts.py::is_test_file"
+    },
+    {
+      "id": "scripts/governance_engine.py::dependency_closure",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::dependency_closure",
+      "language": "Python",
+      "line_end": 295,
+      "line_start": 266,
+      "locator": "scripts/governance_engine.py::dependency_closure"
+    },
+    {
+      "id": "scripts/governance_engine.py::develop_node_names",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::develop_node_names",
+      "language": "Python",
+      "line_end": 482,
+      "line_start": 447,
+      "locator": "scripts/governance_engine.py::develop_node_names"
+    },
+    {
+      "id": "scripts/governance_engine.py::planned_node_names",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::planned_node_names",
+      "language": "Python",
+      "line_end": 495,
+      "line_start": 485,
+      "locator": "scripts/governance_engine.py::planned_node_names"
+    },
+    {
+      "id": "scripts/governance_engine.py::verify_node_names",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::verify_node_names",
+      "language": "Python",
+      "line_end": 338,
+      "line_start": 333,
+      "locator": "scripts/governance_engine.py::verify_node_names"
+    },
+    {
+      "id": "scripts/governance_engine.py::verify_seed_node_names",
+      "kind": "function",
+      "label": "scripts/governance_engine.py::verify_seed_node_names",
+      "language": "Python",
+      "line_end": 330,
+      "line_start": 298,
+      "locator": "scripts/governance_engine.py::verify_seed_node_names"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.capture",
+      "language": "Python",
+      "line_end": 168,
+      "line_start": 134,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.capture"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.entry",
+      "language": "Python",
+      "line_end": 185,
+      "line_start": 173,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.entry"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.memoized",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.memoized",
+      "language": "Python",
+      "line_end": 200,
+      "line_start": 193,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.memoized"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+      "language": "Python",
+      "line_end": 214,
+      "line_start": 202,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.metrics"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+      "language": "Python",
+      "line_end": 188,
+      "line_start": 187,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "id": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "kind": "method",
+      "label": "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+      "language": "Python",
+      "line_end": 191,
+      "line_start": 190,
+      "locator": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "id": "scripts/project_snapshot.py::SnapshotError",
+      "kind": "class",
+      "label": "scripts/project_snapshot.py::SnapshotError",
+      "language": "Python",
+      "line_end": 37,
+      "line_start": 36,
+      "locator": "scripts/project_snapshot.py::SnapshotError"
+    },
+    {
+      "id": "scripts/project_snapshot.py::SnapshotFile",
+      "kind": "class",
+      "label": "scripts/project_snapshot.py::SnapshotFile",
+      "language": "Python",
+      "line_end": 116,
+      "line_start": 110,
+      "locator": "scripts/project_snapshot.py::SnapshotFile"
+    },
+    {
+      "id": "scripts/project_snapshot.py::_git",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::_git",
+      "language": "Python",
+      "line_end": 45,
+      "line_start": 40,
+      "locator": "scripts/project_snapshot.py::_git"
+    },
+    {
+      "id": "scripts/project_snapshot.py::_git_optional",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::_git_optional",
+      "language": "Python",
+      "line_end": 52,
+      "line_start": 48,
+      "locator": "scripts/project_snapshot.py::_git_optional"
+    },
+    {
+      "id": "scripts/project_snapshot.py::active_project_snapshot",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::active_project_snapshot",
+      "language": "Python",
+      "line_end": 228,
+      "line_start": 223,
+      "locator": "scripts/project_snapshot.py::active_project_snapshot"
+    },
+    {
+      "id": "scripts/project_snapshot.py::active_snapshot_for",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::active_snapshot_for",
+      "language": "Python",
+      "line_end": 235,
+      "line_start": 231,
+      "locator": "scripts/project_snapshot.py::active_snapshot_for"
+    },
+    {
+      "id": "scripts/project_snapshot.py::canonical_source_bytes",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::canonical_source_bytes",
+      "language": "Python",
+      "line_end": 106,
+      "line_start": 104,
+      "locator": "scripts/project_snapshot.py::canonical_source_bytes"
+    },
+    {
+      "id": "scripts/project_snapshot.py::discover_source_paths",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::discover_source_paths",
+      "language": "Python",
+      "line_end": 101,
+      "line_start": 55,
+      "locator": "scripts/project_snapshot.py::discover_source_paths"
+    },
+    {
+      "id": "scripts/project_snapshot.py::resolve_snapshot",
+      "kind": "function",
+      "label": "scripts/project_snapshot.py::resolve_snapshot",
+      "language": "Python",
+      "line_end": 247,
+      "line_start": 238,
+      "locator": "scripts/project_snapshot.py::resolve_snapshot"
+    },
+    {
+      "id": "scripts/selftest_performance_budget.py::load_module",
+      "kind": "function",
+      "label": "scripts/selftest_performance_budget.py::load_module",
+      "language": "Python",
+      "line_end": 22,
+      "line_start": 16,
+      "locator": "scripts/selftest_performance_budget.py::load_module"
+    },
+    {
+      "id": "scripts/selftest_performance_budget.py::main",
+      "kind": "function",
+      "label": "scripts/selftest_performance_budget.py::main",
+      "language": "Python",
+      "line_end": 69,
+      "line_start": 30,
+      "locator": "scripts/selftest_performance_budget.py::main"
+    },
+    {
+      "id": "scripts/selftest_performance_budget.py::require",
+      "kind": "function",
+      "label": "scripts/selftest_performance_budget.py::require",
+      "language": "Python",
+      "line_end": 27,
+      "line_start": 25,
+      "locator": "scripts/selftest_performance_budget.py::require"
+    },
+    {
+      "id": "scripts/sequence_contract.py::_selected_snapshot",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::_selected_snapshot",
+      "language": "Python",
+      "line_end": 56,
+      "line_start": 49,
+      "locator": "scripts/sequence_contract.py::_selected_snapshot"
+    },
+    {
+      "id": "scripts/sequence_contract.py::compute_source_digest",
+      "kind": "function",
+      "label": "scripts/sequence_contract.py::compute_source_digest",
+      "language": "Python",
+      "line_end": 86,
+      "line_start": 70,
+      "locator": "scripts/sequence_contract.py::compute_source_digest"
+    },
+    {
+      "id": "scripts/validate_performance_budget.py::close_enough",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::close_enough",
+      "language": "Python",
+      "line_end": 16,
+      "line_start": 15,
+      "locator": "scripts/validate_performance_budget.py::close_enough"
+    },
+    {
+      "id": "scripts/validate_performance_budget.py::derived_budget",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::derived_budget",
+      "language": "Python",
+      "line_end": 20,
+      "line_start": 19,
+      "locator": "scripts/validate_performance_budget.py::derived_budget"
+    },
+    {
+      "id": "scripts/validate_performance_budget.py::validate_contract",
+      "kind": "function",
+      "label": "scripts/validate_performance_budget.py::validate_contract",
+      "language": "Python",
+      "line_end": 108,
+      "line_start": 23,
+      "locator": "scripts/validate_performance_budget.py::validate_contract"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "kind": "method",
+      "label": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "language": "Python",
+      "line_end": 112,
+      "line_start": 109,
+      "locator": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "language": "Python",
+      "line_end": 83,
+      "line_start": 71,
+      "locator": "scripts/validate_sequence_sessions.py::repo_relative_path"
+    }
+  ],
+  "observed_head": "33394c111dadeff4e5055868b32e721d93f26a48",
+  "schema_version": 1,
+  "source_digest": "973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c"
+}
