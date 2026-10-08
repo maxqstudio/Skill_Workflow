@@ -7,7 +7,7 @@
 Phase open only. All SW2-23 consumer, negative-path, latency, documentation and final CI requirements are NOT_PROVEN until individually executed. Read-only pinned consumer audit does not equal adoption PASS.
 
 Final tested source: external final acceptance evidence.
-Current source digest: eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609
+Current source digest: 80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

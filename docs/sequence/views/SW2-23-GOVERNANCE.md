@@ -9,15 +9,15 @@
 - Machine graph: [docs/sequence/generated/SW2-23-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-23-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-23-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-23-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-23-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-23-GOVERNANCE.human.json)
-- Source digest: `eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609`
+- Source digest: `80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 25 | 4 |
-| Interactions / edges | 39 | 4 |
-| Internal machine edges collapsed | 24 | — |
+| Participants / nodes | 29 | 6 |
+| Interactions / edges | 42 | 5 |
+| Internal machine edges collapsed | 26 | — |
 | Cross-component edges aggregated | 11 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
@@ -29,9 +29,12 @@ sequenceDiagram
     participant module_scripts_project_snapshot_py_0 as scripts/project_snapshot.py
     participant module_scripts_toolchain_identity_py_1 as scripts/toolchain_identity.py
     participant module_scripts_upgrade_governance_toolchain_py_2 as scripts/upgrade_governance_toolchain.py
-    participant module_scripts_validate_documentation_contract_py_3 as scripts/validate_documentation_contract.py
+    participant module_scripts_validate_consumer_compatibility_matrix_py_3 as scripts/validate_consumer_compatibility_matrix.py
+    participant module_scripts_validate_documentation_contract_py_4 as scripts/validate_documentation_contract.py
+    participant module_scripts_validate_sequence_sessions_py_5 as scripts/validate_sequence_sessions.py
     module_scripts_toolchain_identity_py_1->>module_scripts_project_snapshot_py_0: 5 static interactions
     module_scripts_upgrade_governance_toolchain_py_2->>module_scripts_project_snapshot_py_0: 2 static interactions
     module_scripts_upgrade_governance_toolchain_py_2->>module_scripts_toolchain_identity_py_1: 7 static interactions
-    module_scripts_validate_documentation_contract_py_3->>module_scripts_project_snapshot_py_0: 1 static interaction
+    module_scripts_validate_consumer_compatibility_matrix_py_3->>module_scripts_validate_sequence_sessions_py_5: 1 static interaction
+    module_scripts_validate_documentation_contract_py_4->>module_scripts_project_snapshot_py_0: 1 static interaction
 ```

@@ -95,13 +95,6 @@
     },
     {
       "directory": ".github/scripts",
-      "file": ".github/scripts/tmp_sw2_23_evidence_sync.py",
-      "is_test": false,
-      "language": "Python",
-      "lines": 54
-    },
-    {
-      "directory": ".github/scripts",
       "file": ".github/scripts/validate_skill_reference_split.py",
       "is_test": false,
       "language": "Python",
@@ -878,38 +871,6 @@
     {
       "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
       "target_token": "module.validate"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::cmd",
-      "target_token": "print"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::cmd",
-      "target_token": "str"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::cmd",
-      "target_token": "str"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::cmd",
-      "target_token": "subprocess.run"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::load",
-      "target_token": "Path"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::load",
-      "target_token": "json.loads"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::save",
-      "target_token": "Path"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_23_evidence_sync.py::save",
-      "target_token": "json.dumps"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
@@ -26855,30 +26816,6 @@
       "symbol": "main"
     },
     {
-      "file": ".github/scripts/tmp_sw2_23_evidence_sync.py",
-      "kind": "function",
-      "line_end": 11,
-      "line_start": 9,
-      "locator": ".github/scripts/tmp_sw2_23_evidence_sync.py::cmd",
-      "symbol": "cmd"
-    },
-    {
-      "file": ".github/scripts/tmp_sw2_23_evidence_sync.py",
-      "kind": "function",
-      "line_end": 12,
-      "line_start": 12,
-      "locator": ".github/scripts/tmp_sw2_23_evidence_sync.py::load",
-      "symbol": "load"
-    },
-    {
-      "file": ".github/scripts/tmp_sw2_23_evidence_sync.py",
-      "kind": "function",
-      "line_end": 13,
-      "line_start": 13,
-      "locator": ".github/scripts/tmp_sw2_23_evidence_sync.py::save",
-      "symbol": "save"
-    },
-    {
       "file": ".github/scripts/validate_skill_reference_split.py",
       "kind": "function",
       "line_end": 36,
@@ -30424,13 +30361,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609",
+  "source_digest": "80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be",
   "source_summary": {
-    "files": 71,
+    "files": 70,
     "languages": {
-      "Python": 71
+      "Python": 70
     },
-    "lines": 17184,
+    "lines": 17130,
     "test_files": 0
   },
   "tests": []

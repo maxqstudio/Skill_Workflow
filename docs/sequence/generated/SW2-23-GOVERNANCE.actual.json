@@ -347,6 +347,20 @@
       "to": "scripts/upgrade_governance_toolchain.py::sha256"
     },
     {
+      "action": "classify",
+      "evidence": "STATIC",
+      "from": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "resolver": "python_ast",
+      "to": "scripts/validate_consumer_compatibility_matrix.py::classify"
+    },
+    {
+      "action": "seen.add",
+      "evidence": "STATIC",
+      "from": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "_line_number",
       "evidence": "STATIC",
       "from": "scripts/validate_documentation_contract.py::_finding",
@@ -373,13 +387,22 @@
       "from": "scripts/validate_documentation_contract.py::freshness_findings",
       "resolver": "python_ast",
       "to": "scripts/validate_documentation_contract.py::_historical_context"
+    },
+    {
+      "action": "repo_relative_path",
+      "evidence": "STATIC",
+      "from": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::repo_relative_path"
     }
   ],
   "entries": [
     "scripts/upgrade_governance_toolchain.py::build_plan",
     "scripts/upgrade_governance_toolchain.py::main",
     "scripts/toolchain_identity.py::validate_toolchain_lock",
-    "scripts/validate_documentation_contract.py::freshness_findings"
+    "scripts/validate_documentation_contract.py::freshness_findings",
+    "scripts/validate_consumer_compatibility_matrix.py::classify",
+    "scripts/validate_consumer_compatibility_matrix.py::audit"
   ],
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
@@ -574,6 +597,24 @@
       "locator": "scripts/upgrade_governance_toolchain.py::source_manifest"
     },
     {
+      "id": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "kind": "function",
+      "label": "scripts/validate_consumer_compatibility_matrix.py::audit",
+      "language": "Python",
+      "line_end": 155,
+      "line_start": 115,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::audit"
+    },
+    {
+      "id": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "kind": "function",
+      "label": "scripts/validate_consumer_compatibility_matrix.py::classify",
+      "language": "Python",
+      "line_end": 76,
+      "line_start": 32,
+      "locator": "scripts/validate_consumer_compatibility_matrix.py::classify"
+    },
+    {
       "id": "scripts/validate_documentation_contract.py::_finding",
       "kind": "function",
       "label": "scripts/validate_documentation_contract.py::_finding",
@@ -608,9 +649,27 @@
       "line_end": 261,
       "line_start": 205,
       "locator": "scripts/validate_documentation_contract.py::freshness_findings"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "kind": "method",
+      "label": "scripts/validate_sequence_sessions.py::evidence_paths.add",
+      "language": "Python",
+      "line_end": 112,
+      "line_start": 109,
+      "locator": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "id": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "kind": "function",
+      "label": "scripts/validate_sequence_sessions.py::repo_relative_path",
+      "language": "Python",
+      "line_end": 83,
+      "line_start": 71,
+      "locator": "scripts/validate_sequence_sessions.py::repo_relative_path"
     }
   ],
-  "observed_head": "e5eb911d0f95699629056b48a5fce60fd7189ed0",
+  "observed_head": "97f3597c25a01f6c427f22910aea345dfb18ec58",
   "schema_version": 1,
-  "source_digest": "eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609"
+  "source_digest": "80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be"
 }
