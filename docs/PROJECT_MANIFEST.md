@@ -13,7 +13,7 @@ Repository: maxqstudio/Skill_Workflow
 Active branch: work/sw2-23-multi-consumer-adoption
 Current authoritative SHA: external final acceptance evidence
 Last accepted SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
-Current source digest: 80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be
+Current source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
 
 ## Authorities
 Source authority: Implementation truth is the exact committed Skill_Workflow source tree under the tested Git HEAD.

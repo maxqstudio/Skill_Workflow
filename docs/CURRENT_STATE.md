@@ -18,7 +18,7 @@ Branch: work/sw2-23-multi-consumer-adoption
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
 Current candidate SHA: external final acceptance evidence
-Current source digest: 80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be
+Current source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-23-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.

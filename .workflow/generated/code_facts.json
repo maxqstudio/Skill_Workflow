@@ -371,7 +371,7 @@
       "file": "scripts/selftest_schema_toolchain.py",
       "is_test": false,
       "language": "Python",
-      "lines": 186
+      "lines": 187
     },
     {
       "directory": "scripts",
@@ -406,7 +406,7 @@
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "is_test": false,
       "language": "Python",
-      "lines": 167
+      "lines": 175
     },
     {
       "directory": "scripts",
@@ -15866,6 +15866,10 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "fail"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "identity.get"
     },
     {
@@ -16034,6 +16038,10 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "producer"
     },
     {
@@ -16122,6 +16130,10 @@
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "shutil.copytree"
     },
     {
@@ -16143,6 +16155,14 @@
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "target_token": "state_path.write_text"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
+      "target_token": "str"
     },
     {
       "caller": "scripts/selftest_toolchain_provenance_upgrade.py::main",
@@ -28970,7 +28990,7 @@
     {
       "file": "scripts/selftest_schema_toolchain.py",
       "kind": "function",
-      "line_end": 182,
+      "line_end": 183,
       "line_start": 38,
       "locator": "scripts/selftest_schema_toolchain.py::main",
       "symbol": "main"
@@ -29130,7 +29150,7 @@
     {
       "file": "scripts/selftest_toolchain_provenance_upgrade.py",
       "kind": "function",
-      "line_end": 163,
+      "line_end": 171,
       "line_start": 30,
       "locator": "scripts/selftest_toolchain_provenance_upgrade.py::main",
       "symbol": "main"
@@ -30361,13 +30381,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be",
+  "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef",
   "source_summary": {
     "files": 70,
     "languages": {
       "Python": 70
     },
-    "lines": 17130,
+    "lines": 17139,
     "test_files": 0
   },
   "tests": []

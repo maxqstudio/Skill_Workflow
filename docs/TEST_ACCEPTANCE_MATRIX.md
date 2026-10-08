@@ -7,7 +7,7 @@
 Phase open only. All SW2-23 consumer, negative-path, latency, documentation and final CI requirements are NOT_PROVEN until individually executed. Read-only pinned consumer audit does not equal adoption PASS.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be
+Current source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
@@ -39,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-23-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
@@ -52,7 +52,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: NOT_PROVEN
-HUMAN_COMPREHENSION_GATE: NOT_PROVEN
+SYSTEM_OVERVIEW status: PASS
+HUMAN_COMPREHENSION_GATE: PASS
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

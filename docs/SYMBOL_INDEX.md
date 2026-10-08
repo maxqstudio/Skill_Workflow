@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be
+Source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -708,7 +708,7 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | run | function | 13-31 |
 | write_json | function | 34-35 |
-| main | function | 38-182 |
+| main | function | 38-183 |
 
 </details>
 
@@ -768,7 +768,7 @@ responsibility, callers, or state ownership.
 | run | function | 13-17 |
 | fail | function | 20-22 |
 | producer | function | 25-27 |
-| main | function | 30-163 |
+| main | function | 30-171 |
 
 </details>
 

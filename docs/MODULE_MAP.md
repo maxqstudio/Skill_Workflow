@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be
+Source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -50,12 +50,12 @@ Generated/refreshed: current compiler run
 | scripts/selftest_public_docs.py | Python | 85 | scripts | NO |
 | scripts/selftest_release_preflight.py | Python | 360 | scripts | NO |
 | scripts/selftest_repository_health.py | Python | 90 | scripts | NO |
-| scripts/selftest_schema_toolchain.py | Python | 186 | scripts | NO |
+| scripts/selftest_schema_toolchain.py | Python | 187 | scripts | NO |
 | scripts/selftest_sequence_call_resolution.py | Python | 107 | scripts | NO |
 | scripts/selftest_sequence_human_view.py | Python | 206 | scripts | NO |
 | scripts/selftest_sequence_squash_provenance.py | Python | 64 | scripts | NO |
 | scripts/selftest_strict_project_workflow.py | Python | 869 | scripts | NO |
-| scripts/selftest_toolchain_provenance_upgrade.py | Python | 167 | scripts | NO |
+| scripts/selftest_toolchain_provenance_upgrade.py | Python | 175 | scripts | NO |
 | scripts/sequence_contract.py | Python | 269 | scripts | NO |
 | scripts/sequence_human_view.py | Python | 316 | scripts | NO |
 | scripts/sync_project_truth.py | Python | 154 | scripts | NO |

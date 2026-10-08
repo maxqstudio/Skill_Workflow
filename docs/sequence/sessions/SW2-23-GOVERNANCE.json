@@ -11,7 +11,7 @@
       "scripts/validate_consumer_compatibility_matrix.py::audit"
     ],
     "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.json",
-    "source_digest": "80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be"
+    "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef"
   },
   "critical": true,
   "evidence_boundary": "Static sequence evidence maps consumer classification/upgrade and documentation freshness paths; it does not prove remote consumer compatibility, runtime behavior, or an authorized external repository mutation.",
@@ -21,7 +21,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "80274cde6504c04fb099d76665cbf64b89a803933ae4614c23615e4ef0d603be"
+    "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef"
   },
   "implementation_base_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
   "mode": "DURING",
