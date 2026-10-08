@@ -5,7 +5,7 @@ from pathlib import Path
 import ci_parallel_selftests as parallel
 import ci_parallel_final_gates as final_gates
 
-WINDOWS_STEP = "Windows bounded independent regression matrix"
+WINDOWS_STEP = "Windows combined 19 regressions plus full STRICT and VERIFY"
 SELFTEST_STEP = "CI parallel regression contract self-test"
 GUARD_LINUX = "if: matrix.os != 'windows-latest'"
 GUARD_WINDOWS = "if: matrix.os == 'windows-latest'"
@@ -38,7 +38,7 @@ SERIAL_STEPS = {
     "cross_document": ("Cross-document regression",("python scripts/selftest_cross_document_regressions.py",)),
     "adoption_profiles": ("LITE and STANDARD adoption fixtures",("python scripts/selftest_adoption_profiles.py",)),
 }
-WINDOWS_FINAL_STEP = "Windows concurrent full STRICT and read-only VERIFY"
+COMBINED_SELFTEST_STEP = "Windows combined orchestration negative-path regression"
 FINAL_SELFTEST_STEP = "Windows complete final gates negative-path regression"
 FINAL_SERIAL_STEPS = {
     "Verify mode is read-only": "python scripts/governance_engine.py --root . --base ",
@@ -82,7 +82,7 @@ def findings(workflow: str) -> list[str]:
     else:
         windows=steps[WINDOWS_STEP]
         if GUARD_WINDOWS not in windows or (
-            "python .github/scripts/ci_parallel_selftests.py --root . --workers 3" not in windows
+            "python .github/scripts/ci_parallel_windows.py --root ." not in windows
         ):
             problems.append("CI_PARALLEL_WINDOWS_BOUNDARY_WEAKENED")
         if "python .github/scripts/selftest_ci_parallel_selftests.py" not in steps[SELFTEST_STEP]:
@@ -107,17 +107,22 @@ def findings(workflow: str) -> list[str]:
             problems.append("CI_UBUNTU_FINAL_GATE_FALLBACK_MISSING:"+mandatory)
         elif command not in steps[mandatory]:
             problems.append("CI_UBUNTU_FINAL_GATE_COMMAND_MISSING:"+mandatory)
-    # Windows runs the same two complete gates in one bounded independent process.
-    if WINDOWS_FINAL_STEP not in steps or FINAL_SELFTEST_STEP not in steps:
-        problems.append("CI_WINDOWS_FINAL_OR_REGRESSION_MISSING")
+    # Both complete final gates and all 19 source regressions are dispatched
+    # through one mandatory Windows step, never parallel-via-cached-PASS.
+    if COMBINED_SELFTEST_STEP not in steps or FINAL_SELFTEST_STEP not in steps:
+        problems.append("CI_WINDOWS_COMBINED_OR_FINAL_NEGATIVE_TEST_MISSING")
     else:
-        body=steps[WINDOWS_FINAL_STEP]
-        if GUARD_WINDOWS not in body or (
-            "python .github/scripts/ci_parallel_final_gates.py --root ." not in body
-        ):
-            problems.append("CI_WINDOWS_FINAL_BOUNDARY_WEAKENED")
+        if "python .github/scripts/selftest_ci_parallel_windows.py" not in steps[COMBINED_SELFTEST_STEP]:
+            problems.append("CI_WINDOWS_COMBINED_NEGATIVE_TEST_MISSING")
         if "python .github/scripts/selftest_ci_parallel_final_gates.py" not in steps[FINAL_SELFTEST_STEP]:
             problems.append("CI_WINDOWS_FINAL_NEGATIVE_TEST_MISSING")
+    if WINDOWS_STEP in steps and (
+        "python .github/scripts/ci_parallel_windows.py --root ." not in steps[WINDOWS_STEP]
+        or GUARD_WINDOWS not in steps[WINDOWS_STEP]
+    ):
+        problems.append("CI_WINDOWS_COMPLETE_GATES_NOT_BLOCKING")
+    if final_gates.GATES!=("verify_read_only","strict_workflow_selftest"):
+        problems.append("CI_WINDOWS_FINAL_GATE_SET_CHANGED")
     return problems
 
 
