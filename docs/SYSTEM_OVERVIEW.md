@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-25
 
-Current status: SW2_25_R1_R4_PROVEN_PENDING_PERMANENT_CI
+Current status: SW2_25_R1_R5_PROVEN_PENDING_FEATURE_MERGE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Implement dry-run deterministic bundle with exact-SHA and detached integrity verification, negative-path fixtures, and per-OS permanent CI evidence.
-- Synchronize public product docs, source-generated sequence, acceptance and documentation inventory.
-- Keep PR DRAFT and R6 NOT_PROVEN until candidate and post-merge main 6/6; use separate terminal closure.
+- Require final unchanged toolchain and all six permanent contexts on exact helper-free candidate before making PR #44 ready.
+- Squash expected SHA only after PASS and confirm equal-tree main, then postmerge exact main six permanent CI contexts PASS.
+- Terminal R6 accepted closure is a separate evidence-only transaction; no stable tag, release publication, or SW2-26 scope authorized.
 
 Blocked actions:
 - Do not publish a Git tag, GitHub release or external artifact to a distribution channel.
@@ -121,8 +121,7 @@ Blocked actions:
 - Do not open SW2-26 without explicit Owner authorization.
 
 Known blockers:
-- SW2-25 R5 NOT_PROVEN: permanent six-context exact-helper-free source/documentation/consumer/performance acceptance has not passed.
-- SW2-25 R6 NOT_PROVEN: exact feature/main merge and terminal closure pending.
+- SW2-25-R6 NOT_PROVEN until exact final helper-free feature candidate all-six CI, equal-tree squash main, postmerge main six-context CI and separate terminal accepted closure.
 
 ## Proven vs not proven
 
@@ -214,9 +213,9 @@ Known blockers:
 
 ### Not proven
 
-- SW2-25 R5/R6 full terminal acceptance and exact postmerge CI NOT_PROVEN.
-- Detached SHA manifest is unsigned and cannot authenticate publisher/source Git commit offline; no stable publication granted.
-- GitHub automatic required-status checks remain intentionally NOT_PROVEN by Owner boundary.
+- SW2-25 R6 feature/postmerge/terminal exact-SHA acceptance NOT_PROVEN.
+- Unsigned detached SHA-256 verifies archive content but does not independently authenticate the publisher or asserted source Git SHA offline; publication_authority=false.
+- Required GitHub status-check ruleset remains intentionally NOT_PROVEN by Owner boundary.
 
 ## Important limitations
 
