@@ -112,6 +112,7 @@ def stale_semantic_regressions() -> None:
             ("CONTRIBUTING.md", "# Contributing\n\nThe default branch main enforces required checks and blocks deletion.\n", "STALE_MERGE_ENFORCEMENT"),
             ("SECURITY.md", "# Security\n\nUntil a versioned stable release exists, report all findings privately.\n", "STALE_PRE_RELEASE_STATE"),
             ("docs/handbook/reference/versioning.md", "# Versioning\n\nAccepted stable release is `v2.0.0`.\n", "STALE_STABLE_RELEASE"),
+            ("docs/handbook/reference/versioning.md", "# Versioning\n\nProducer repository and commit fields are provenance hints.\n", "STALE_TOOLCHAIN_PROVENANCE"),
             ("AGENTS.md", "# Agent contract\n\nCurrently the project is SW2-19.\n", "STALE_CURRENT_PHASE"),
             ("CONTRIBUTING.md", "# Contributing\n\nThe public license has not yet been selected.\n", "STALE_LICENSE_STATE"),
             ("CONTRIBUTING.md", "# Contributing\n\nThis repository does not currently declare an Owner-approved public license.\n", "STALE_LICENSE_STATE"),
