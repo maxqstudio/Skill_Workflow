@@ -22,7 +22,7 @@ def main()->int:
     group_commands={name:spec for name, specs in ci.GROUPS for spec in specs}
     assert len(group_commands)==len(ci.GROUPS)
     expected_count=sum(len(scripts) for _,scripts in ci.GROUPS)
-    assert expected_count==11,expected_count
+    assert expected_count==10,expected_count
     with tempfile.TemporaryDirectory(prefix="sw2-24-ci-parallel-") as td:
         root=Path(td)
         for _,scripts in ci.GROUPS:
