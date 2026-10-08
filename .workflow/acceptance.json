@@ -1,20 +1,20 @@
 {
   "evidence_boundary": "Phase open only. All SW2-23 consumer, negative-path, latency, documentation and final CI requirements are NOT_PROVEN until individually executed. Read-only pinned consumer audit does not equal adoption PASS.",
   "human_comprehension_questions": {
-    "How does failure/recovery behave?": "NOT_PROVEN",
-    "How does important data flow through the system?": "NOT_PROVEN",
-    "What are the important lifecycle states and transitions?": "NOT_PROVEN",
-    "What are the main user/domain workflows?": "NOT_PROVEN",
-    "What are the major components and how do they relate?": "NOT_PROVEN",
-    "What is mutable and what is immutable?": "NOT_PROVEN",
-    "What is proven and what is not proven?": "NOT_PROVEN",
-    "What is the current project state?": "NOT_PROVEN",
-    "What is the project and what problem does it solve?": "NOT_PROVEN",
-    "What may happen next and what is blocked?": "NOT_PROVEN",
-    "Who uses it and what are the primary outcomes?": "NOT_PROVEN",
-    "Who/what is authoritative for important decisions?": "NOT_PROVEN"
+    "How does failure/recovery behave?": "PASS",
+    "How does important data flow through the system?": "PASS",
+    "What are the important lifecycle states and transitions?": "PASS",
+    "What are the main user/domain workflows?": "PASS",
+    "What are the major components and how do they relate?": "PASS",
+    "What is mutable and what is immutable?": "PASS",
+    "What is proven and what is not proven?": "PASS",
+    "What is the current project state?": "PASS",
+    "What is the project and what problem does it solve?": "PASS",
+    "What may happen next and what is blocked?": "PASS",
+    "Who uses it and what are the primary outcomes?": "PASS",
+    "Who/what is authoritative for important decisions?": "PASS"
   },
-  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_status": "PASS",
   "requirements": [
     {
       "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
@@ -64,7 +64,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-23-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python scripts/selftest_toolchain_provenance_upgrade.py",
     "python scripts/selftest_documentation_contract.py",
@@ -78,7 +78,7 @@
     "DOC_READABILITY": "PASS",
     "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
     "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
-    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
     "PROJECT_STATE_SYNC": "NOT_PROVEN",
@@ -87,7 +87,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
