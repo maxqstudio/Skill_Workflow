@@ -122,6 +122,8 @@ jobs:
         run: |
           python .github/scripts/selftest_skill_reference_split.py
           python .github/scripts/validate_skill_reference_split.py --root .
+      - name: Consumer finalize negative-path regression
+        run: python scripts/selftest_consumer_finalize.py
       - name: Schema and toolchain version regression
         run: |
           python scripts/selftest_schema_toolchain.py
@@ -424,6 +426,16 @@ jobs:
           python .workflow/tools/validate_cross_document_consistency.py --root . --base "$BASE" --require-base
           python .workflow/tools/validate_project_truth.py --root . --project-docs-already-validated
           test -z "$(git status --porcelain)"
+      - name: Finalize migrated consumer with consumer-owned source tests and full validators
+        if: steps.bootstrap.outputs.heavy == 'true'
+        shell: bash
+        run: |
+          BASE=$(python -c "import json; print(json.load(open('consumer/.workflow/state.json', encoding='utf-8'))['last_accepted_sha'])")
+          test -n "$BASE"
+          python consumer/.workflow/tools/finalize_consumer.py \
+            --root consumer --base "$BASE" --expected-head "$MIGRATED_CONSUMER_HEAD" \
+            --report artifacts/performance/sw2-23-consumer-finalize.json
+          test -z "$(git -C consumer status --porcelain)"
       - name: Record machine-readable consumer parity evidence
         if: steps.bootstrap.outputs.heavy == 'true'
         shell: bash
@@ -457,5 +469,6 @@ jobs:
             artifacts/performance/sw2-01-max-grounding-engine.json
             artifacts/performance/sw2-08-max-grounding-parity.json
             artifacts/performance/sw2-23-consumer-compatibility.json
+            artifacts/performance/sw2-23-consumer-finalize.json
           if-no-files-found: error
           retention-days: 14
