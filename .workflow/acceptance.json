@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "R1-R5 proven by exact clean Git-blob packaging, offline detached manifest, attacker-style tamper/unsafe mode tests, cross-OS full-byte parity and helper-free permanent six-context run 37717003472. Manifest is not a cryptographic publisher signature, no release/tag created. SW2-25-R6 exact feature/main tree and postmerge final CI plus terminal closure NOT_PROVEN.",
+  "evidence_boundary": "SW2-25 R1-R6 feature acceptance includes exact clean Git blob product bundle, detached offline SHA-256 verification, Windows/Ubuntu byte parity, secret/path/mode and manifest tamper rejection, GitHub six-context exact feature/main checks and equal-tree squash. ZIP/manifest are unsigned and do not authenticate publisher or permit tag/release publication; terminal closure candidate/main are independently retested after this authority projection.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -47,10 +47,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "evidence": "PASS: final exact helper-free feature 82719678198a94bb314bccb4fe019579458b80c8 tree d6b7be3396b77ffadc0a37f17b125bd2cd12bf5c passed all six permanent contexts in Governance CI 37717282205; PR #44 squash merged as accepted main 40c88c990f671fb70cdab8fa391610977bc4c04a with identical tree; postmerge exact-main six permanent checks SUCCESS in run 37717454646. Terminal closure candidate and main undergo separate exact six-context tests.",
       "id": "SW2-25-R6",
       "requirement": "An exact helper-free final feature candidate passes all six permanent Governance CI contexts, squash merges with identical tree, and passes full six-context postmerge main before terminal closure; no release or distribution publication happens without separate Owner authority.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -68,23 +68,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

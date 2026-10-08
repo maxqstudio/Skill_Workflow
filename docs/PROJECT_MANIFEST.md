@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-25-reproducible-release-bundle
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 91b58b98049a7d27ed65169508177ea7dc978ca1
+Last accepted SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
 Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 
 ## Authorities

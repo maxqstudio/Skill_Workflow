@@ -3,20 +3,20 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 91b58b98049a7d27ed65169508177ea7dc978ca1
+Authority verified at SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
 Governance profile: strict
 
 ## Current phase
 Phase: SW2-25
-Status: SW2_25_R1_R5_PROVEN_PENDING_FEATURE_MERGE
+Status: SW2_25_REPRODUCIBLE_RELEASE_BUNDLE_ACCEPTED
 Roadmap phase: SW2-25
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: work/sw2-25-reproducible-release-bundle
+Branch: main
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 91b58b98049a7d27ed65169508177ea7dc978ca1
+Last accepted SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
 Current candidate SHA: external final acceptance evidence
 Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 
@@ -122,27 +122,30 @@ SEQUENCE_SYNC: PASS
 - SW2-24 exact feature candidate e53b656811da5a8db2069715c643125eaba705df tree 433185f88756eeeda2eb7c8b63d39c96280ad505 passed all six permanent GitHub Governance CI contexts in run 37713622290, including 19 source regression commands, full STRICT/VERIFY, Mermaid, consumer and performance.
 - SW2-24 PR #42 squash merged to accepted feature main 272aed60e21b6d5fc8cd027081d3de743a7726d4 with identical source tree 433185f88756eeeda2eb7c8b63d39c96280ad505; postmerge Governance CI run 37713767803 passed all six permanent contexts on the exact product main.
 - SW2-24 latency target measured in GitHub run 37713042819 attempts 1/2/3 on helper-free SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab: Windows 49,68,64s median 64s versus six-run historical median 77s (16.9% observed reduction). All three attempts 6/6 successful, no monetary cost-saving claim.
+- SW2-25 product candidate 82719678198a94bb314bccb4fe019579458b80c8 and identical-tree squash PR #44 accepted main 40c88c990f671fb70cdab8fa391610977bc4c04a tree d6b7be3396b77ffadc0a37f17b125bd2cd12bf5c were exact-SHA verified; feature Governance CI run 37717282205 six contexts SUCCESS, postmerge main run 37717454646 six contexts SUCCESS.
+- SW2-25 Release Bundle Dry Run exact candidate a4332aceecc320d11dceadbab9809ab7d87c38c9 run 37716191737: Ubuntu/Windows ZIP and complete JSON manifest bytes equal, malicious paths and tampered archive fail closed; no tag, release or owner mutation.
+- SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity.
 
 ## Not proven
-- SW2-25 R6 feature/postmerge/terminal exact-SHA acceptance NOT_PROVEN.
-- Unsigned detached SHA-256 verifies archive content but does not independently authenticate the publisher or asserted source Git SHA offline; publication_authority=false.
-- Required GitHub status-check ruleset remains intentionally NOT_PROVEN by Owner boundary.
+- An unsigned detached SHA-256 manifest cannot authenticate the publisher or the source Git SHA offline: provenance against trusted independent authority remains NOT_PROVEN.
+- No new stable tag or release has been authorized or published; stable product remains v2.1.0, and release publication authority is false.
+- GitHub automatic required-status-check ruleset enforcement remains intentionally NOT_PROVEN (non-blocking under Owner decision).
+- Cross-OS bundle byte parity proved on pinned candidate run 37716191737; no external consumer repositories or Owner PC runtime were modified.
 
 ## Known blockers
-- SW2-25-R6 NOT_PROVEN until exact final helper-free feature candidate all-six CI, equal-tree squash main, postmerge main six-context CI and separate terminal accepted closure.
+- None declared.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Require final unchanged toolchain and all six permanent contexts on exact helper-free candidate before making PR #44 ready.
-- Squash expected SHA only after PASS and confirm equal-tree main, then postmerge exact main six permanent CI contexts PASS.
-- Terminal R6 accepted closure is a separate evidence-only transaction; no stable tag, release publication, or SW2-26 scope authorized.
+- Treat exact accepted SW2-25 implementation main 40c88c990f671fb70cdab8fa391610977bc4c04a as canonical release bundle source authority; terminal closure evidence is a separate generated-only commit.
+- Keep release bundle dry-run read-only/manual, with unsigned manifest and publication_authority=false.
+- Require Owner phase discussion/approval before any release/publication or SW2-26.
 
 ## Explicitly blocked
-- Do not publish a Git tag, GitHub release or external artifact to a distribution channel.
-- Do not weaken six permanent CI contexts, strict/verify, Windows/Ubuntu, consumer, performance, Mermaid or documentation gates.
-- Do not mutate owner devices or external consumer repositories.
-- Do not open SW2-26 without explicit Owner authorization.
+- Do not open SW2-26 without explicit Owner authorization and a new scoped acceptance boundary.
+- Do not publish a stable tag, GitHub Release, package registry asset or change license absent a separate approved publication phase.
+- Do not weaken six permanent CI contexts, Windows/Ubuntu test parity, exact SHA, consumer finalize, Mermaid, performance or documentation validation.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->
