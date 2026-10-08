@@ -64,6 +64,24 @@ jobs:
             --expected-sha "${{ github.sha }}" \
             --expected-ref "${{ github.ref }}"
           test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Validate detached offline bundle with network disabled
+        shell: bash
+        env:
+          GH_TOKEN: ""
+          GITHUB_TOKEN: ""
+          HTTPS_PROXY: http://127.0.0.1:1
+          HTTP_PROXY: http://127.0.0.1:1
+          ALL_PROXY: http://127.0.0.1:1
+          NO_PROXY: ""
+        run: |
+          python .github/scripts/publisher_provenance.py \
+            --bundle "${{ runner.temp }}/product.zip" \
+            --manifest "${{ runner.temp }}/manifest.json" \
+            --attestation "${{ steps.signed.outputs.bundle-path }}" \
+            --trusted-root "${{ runner.temp }}/trusted_root.jsonl" \
+            --expected-sha "${{ github.sha }}" \
+            --expected-ref "${{ github.ref }}"
+          echo "PROVENANCE_NETWORK_ISOLATED_OFFLINE=PASS"
       - name: Real signed-attestation rejection checks
         shell: bash
         env:
