@@ -22,6 +22,9 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
+          git add docs/handbook/reference/ci-latency.md
+          python scripts/validate_documentation_contract.py --root . --write-report
+          git add .workflow/generated/documentation_coverage.json
           python .github/scripts/validate_ci_parallel_contract.py
           python .github/scripts/selftest_ci_parallel_selftests.py
           python .github/scripts/ci_parallel_selftests.py --root . --workers 3
