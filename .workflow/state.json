@@ -1,24 +1,21 @@
 {
   "blocked_actions": [
-    "Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.",
-    "Do not parallelize dependent or source-mutating gates or reuse cached PASS authority.",
-    "Do not mutate actual consumer repositories, publish release, or modify GitHub ruleset.",
-    "Do not begin SW2-25 until Owner authorizes it."
+    "No new SW2-25 phase until the Owner authorizes scope and its acceptance boundary.",
+    "Do not weaken six permanent checks, Windows/Ubuntu regression parity, exact-head provenance, sequence Mermaid, consumer finalization or performance evidence.",
+    "Do not auto-enable branch ruleset, change license, publish release, or mutate external consumers."
   ],
-  "blockers": [
-    "SW2-24 R6 NOT_PROVEN: final helper-free exact candidate, squash PR #42 tree identity, postmerge main six-context CI and terminal evidence-only closure are pending."
-  ],
+  "blockers": [],
   "last_accepted_branch": "main",
-  "last_accepted_sha": "e5bbd9e485380cda962656e7ce8a5477cfce0e68",
+  "last_accepted_sha": "272aed60e21b6d5fc8cd027081d3de743a7726d4",
   "next_authorized_actions": [
-    "Remove all temporary writer files and run six permanent Governance CI contexts on the exact helper-free final SW2-24 candidate.",
-    "If exact candidate CI and 21 commands PASS, make PR #42 ready, squash-merge with expected HEAD and verify equal Git tree, then exact main six-context CI.",
-    "Open separate evidence-only terminal closure after postmerge PASS; no SW2-25 or new release authorized."
+    "Treat SW2-24 terminal accepted main feature 272aed60e21b6d5fc8cd027081d3de743a7726d4 as the last accepted implementation authority.",
+    "Preserve six-context Governance CI and 19+2 exhaustive Windows acceptance with Ubuntu serial parity.",
+    "Require explicit Owner authorization before adding SW2-25 to authoritative roadmap."
   ],
   "not_proven": [
-    "R6 final accepted feature/main and terminal closure exact provenance remains NOT_PROVEN.",
-    "Observed Windows median 64s (16.9% faster than 77s six-run historic median) is hosted runner comparison, not a cost-saving or hardware-normalized causal result; GitHub billed minutes and warm/cold caches remain NOT_PROVEN.",
-    "Automatic required check ruleset enforcement remains intentionally NOT_PROVEN by Owner decision."
+    "GitHub automatic required-check enforcement remains intentionally NOT_PROVEN under Owner-approved no-ruleset governance; non-blocking.",
+    "Observed Windows median 64s versus historical 77s is non-randomized hosted-runner evidence, not hardware-normalized causal improvement. Candidate median aggregate job-seconds 199 versus 197 historical does not support a monetary cost-saving claim; billing and warm/cold cache state remain NOT_PROVEN.",
+    "Consumer migration/finalize acceptance used isolated pinned max-grounding, not modifications of upstream consumer repositories or fresh device/runtime E2E."
   ],
   "phase": "SW2-24",
   "proven": [
@@ -101,9 +98,12 @@
     "SW2-22 R1-R4 are proven on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5 by Governance CI run 37428635525, which passed all six permanent contexts including Ubuntu/Windows toolchain regression, sequence rendering, performance, and pinned max-grounding consumer parity.",
     "SW2-22 Consumer Toolchain Provenance & Upgrade Contract is accepted: exact final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf passed Governance CI 37429305042 6/6, squash-merged to main 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a, and post-merge Governance CI 37429617130 passed all six permanent contexts.",
     "SW2-23 final product candidate 9309c8e6442478f94b4492e8ee086f0be35adb2e passed six permanent contexts in Governance CI run 37708376562, including Windows and Ubuntu selftests, blocking Mermaid, producer self governance, and pinned consumer exact-head finalize.",
-    "SW2-23 PR #40 squash merged to product main 83de063673320a71da108afe0e5e28575d3cacf1 with identical Git tree 938237dd29a412f9448a74e3f7e18a5590b8d9f9; postmerge permanent Governance CI run 37708565187 passed all six contexts on exact product main."
+    "SW2-23 PR #40 squash merged to product main 83de063673320a71da108afe0e5e28575d3cacf1 with identical Git tree 938237dd29a412f9448a74e3f7e18a5590b8d9f9; postmerge permanent Governance CI run 37708565187 passed all six contexts on exact product main.",
+    "SW2-24 exact feature candidate e53b656811da5a8db2069715c643125eaba705df tree 433185f88756eeeda2eb7c8b63d39c96280ad505 passed all six permanent GitHub Governance CI contexts in run 37713622290, including 19 source regression commands, full STRICT/VERIFY, Mermaid, consumer and performance.",
+    "SW2-24 PR #42 squash merged to accepted feature main 272aed60e21b6d5fc8cd027081d3de743a7726d4 with identical source tree 433185f88756eeeda2eb7c8b63d39c96280ad505; postmerge Governance CI run 37713767803 passed all six permanent contexts on the exact product main.",
+    "SW2-24 latency target measured in GitHub run 37713042819 attempts 1/2/3 on helper-free SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab: Windows 49,68,64s median 64s versus six-run historical median 77s (16.9% observed reduction). All three attempts 6/6 successful, no monetary cost-saving claim."
   ],
   "schema_version": 1,
-  "status": "SW2_24_R1_R5_PROVEN_PENDING_FINAL_EXACT_CI",
-  "working_branch": "work/sw2-24-ci-latency-cost-optimization"
+  "status": "SW2_24_CI_LATENCY_COST_OPTIMIZATION_ACCEPTED",
+  "working_branch": "main"
 }
