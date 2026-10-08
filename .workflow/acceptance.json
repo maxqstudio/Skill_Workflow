@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-26 candidate: R1/R2 real signed provenance in GitHub run 37783624068; R3/R4 exact real OIDC/Sigstore and offline proxy-isolated attestation plus adversarial rejection in run 37786698990 at SHA 2fc46b8eefd0adf284530a89887db8cc2dc64cfc. R5 helper-free six-context acceptance on current signed-root-pin source and R6 postmerge terminal closure remain NOT_PROVEN. No independent Owner-distributed trust root or root revocation freshness claim. publication_authority=false.",
+  "evidence_boundary": "SW2-26 R1-R4 real GitHub OIDC/Sigstore provenance, pinned trust-root and negative paths in run 37786698990; R5 helper-free six permanent contexts SUCCESS at exact feature SHA b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 run 37787819701, with subsequent evidence-only authority update subject to fresh six-context revalidation. R6 squash, postmerge main and separate terminal closure NOT_PROVEN. publication_authority=false; Owner root distribution and revocation freshness are not established.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -41,10 +41,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: cross-platform exact-SHA GitHub evidence and source-generated documentation not yet created.",
+      "evidence": "PASS: exact helper-free feature SHA b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Self Governance Ubuntu, Governance Selftest Ubuntu and Windows, Sequence Evidence Ubuntu, Governance Engine Performance, Consumer Performance); actual source-facts and sequence were synchronized. R6 postmerge and terminal closure remain NOT_PROVEN, and this R5 evidence must be rerun for any changed head.",
       "id": "SW2-26-R5",
       "requirement": "Ubuntu and Windows exercise full verifier regression; historical SW2-25 integrity, Mermaid, source-derived docs, consumer acceptance and all six permanent checks remain mandatory and synchronized.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: no SW2-26 accepted feature, PR merge, postmerge evidence or terminal closure.",
