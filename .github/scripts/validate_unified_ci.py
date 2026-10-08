@@ -8,6 +8,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from validate_ci_parallel_contract import findings as ci_parallel_findings
+
 FIXED_CONTEXTS = (
     "Self Governance (ubuntu-latest)",
     "SW2 Sequence Evidence (ubuntu-latest)",
@@ -99,6 +101,7 @@ def main() -> int:
     if not classifier.is_file():
         failures.append("APPLICABILITY_CLASSIFIER_MISSING")
 
+    failures.extend(ci_parallel_findings(text))
     failures.extend(run_performance_budget_contract(root))
 
     if failures:
@@ -108,6 +111,7 @@ def main() -> int:
     print("UNIFIED_CI_REQUIRED_CONTEXTS=PASS")
     print("UNIFIED_CI_GOVERNANCE_MATRIX=PASS")
     print("UNIFIED_CI_BOOTSTRAP=PASS")
+    print("UNIFIED_CI_PARALLEL_INVENTORY=PASS")
     print("UNIFIED_CI_LEGACY_ROUTINES_REMOVED=PASS")
     print("UNIFIED_CI_SPECIAL_WORKFLOWS_PRESERVED=PASS")
     if (root / PERFORMANCE_BUDGET).is_file():

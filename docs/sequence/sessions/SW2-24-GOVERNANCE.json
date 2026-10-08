@@ -1,0 +1,47 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-24-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-24-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/governance_engine.py::planned_node_names",
+      "scripts/benchmark_governance.py::main",
+      "scripts/selftest_performance_budget.py::main"
+    ],
+    "graph": "docs/sequence/generated/SW2-24-GOVERNANCE.actual.json",
+    "source_digest": "0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681"
+  },
+  "critical": true,
+  "evidence_boundary": "Static source graph describes CI applicability, governance DAG and performance measurement; it does not prove actual parallel scheduling speed, cross-run performance, external bill charges, or GitHub-side required check enforcement.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-24-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-24-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-24-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": "0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681"
+  },
+  "implementation_base_sha": "e5bbd9e485380cda962656e7ce8a5477cfce0e68",
+  "mode": "DURING",
+  "phase": "SW2-24",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-24-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_governance_engine.py",
+    "scripts/selftest_performance_budget.py"
+  ]
+}

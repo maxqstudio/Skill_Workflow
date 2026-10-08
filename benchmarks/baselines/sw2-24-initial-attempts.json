@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-24",
+  "status": "REJECTED_FOR_PERFORMANCE_OBJECTIVE",
+  "producer_repo": "maxqstudio/Skill_Workflow",
+  "source_sha": "2a12cee1873851c422664e07468bf5863a7299db",
+  "run_id": 37710214509,
+  "attempts": [
+    {
+      "attempt": 1,
+      "windows_seconds": 73,
+      "total_six_job_seconds": 198,
+      "contexts_passed": 6
+    },
+    {
+      "attempt": 2,
+      "windows_seconds": 48,
+      "total_six_job_seconds": 173,
+      "contexts_passed": 6
+    },
+    {
+      "attempt": 3,
+      "windows_seconds": 80,
+      "total_six_job_seconds": 205,
+      "contexts_passed": 6
+    }
+  ],
+  "baseline_windows_median_seconds": 77,
+  "candidate_windows_median_seconds": 73,
+  "relative_median_improvement_percent": 5.194805194805195,
+  "objective_minimum_improvement_percent": 15,
+  "performance_gate": "NOT_PROVEN",
+  "boundary": "Three complete six-context exact-SHA successful attempts demonstrate no loss of governance but fall short of required 15% median Windows latency improvement. Do not cherry-pick fastest attempt; subsequent independent final-gate overlap requires fresh exact-SHA measurement."
+}

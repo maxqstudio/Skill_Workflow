@@ -1,13 +1,13 @@
 {
   "authority": {
-    "current_phase": "SW2-23",
+    "current_phase": "SW2-24",
     "license_present": true,
     "no_ruleset_boundary": true,
     "stable_release": "v2.1.0"
   },
-  "documentation_candidates": 133,
+  "documentation_candidates": 137,
   "freshness_failures": [],
-  "inventory_digest": "aaf1cd1a51d75c4a5638f1e93f1271f2e69c475cef9e4cf145f6a364c3d6217a",
+  "inventory_digest": "bc510a1f8623ec960471483e7a1578873b322fe38d377e5610cb019793a096ec",
   "items": [
     {
       "freshness_mode": "authority-bound",
@@ -182,6 +182,11 @@
     {
       "freshness_mode": "authority-bound",
       "path": "docs/handbook/guides/troubleshooting.md",
+      "role": "handbook_source"
+    },
+    {
+      "freshness_mode": "authority-bound",
+      "path": "docs/handbook/reference/ci-latency.md",
       "role": "handbook_source"
     },
     {
@@ -441,6 +446,16 @@
     },
     {
       "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-24-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-24-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
       "path": "docs/sequence/views/SW2-03-GOVERNANCE.md",
       "role": "sequence_human_view"
     },
@@ -542,6 +557,11 @@
     {
       "freshness_mode": "generated-or-static",
       "path": "docs/sequence/views/SW2-23-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-24-GOVERNANCE.md",
       "role": "sequence_human_view"
     },
     {
@@ -678,15 +698,15 @@
   "result": "PASS",
   "role_counts": {
     "docs_entry": 1,
-    "handbook_source": 13,
+    "handbook_source": 14,
     "project_truth_projection": 20,
     "root_agent_contract": 1,
     "root_community_policy": 3,
     "root_legal": 1,
     "root_public_entry": 1,
     "root_skill_contract": 1,
-    "sequence_generated_diagram": 45,
-    "sequence_human_view": 21,
+    "sequence_generated_diagram": 47,
+    "sequence_human_view": 22,
     "skill_reference": 4,
     "template_documentation": 22
   },

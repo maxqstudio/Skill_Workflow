@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-24",
+  "authority": "Exact successful GitHub Actions run metadata. Each job duration is completed_at minus started_at, rounded to integer seconds; steps not conflated with queue wait. Historical recorded runs are not independent controlled hardware trials.",
+  "baseline_authority": {
+    "repo": "maxqstudio/Skill_Workflow",
+    "terminal_accepted_main": "e5bbd9e485380cda962656e7ce8a5477cfce0e68",
+    "contexts": 6,
+    "runs": [
+      {
+        "run_id": 37430818483,
+        "attempt": 1,
+        "head_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
+        "jobs": [
+          {
+            "context": "Self Governance (ubuntu-latest)",
+            "seconds": 18,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Engine Performance (ubuntu-latest)",
+            "seconds": 13,
+            "conclusion": "success"
+          },
+          {
+            "context": "Consumer Engine Performance (max-grounding)",
+            "seconds": 25,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (ubuntu-latest)",
+            "seconds": 20,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (windows-latest)",
+            "seconds": 87,
+            "conclusion": "success"
+          },
+          {
+            "context": "SW2 Sequence Evidence (ubuntu-latest)",
+            "seconds": 32,
+            "conclusion": "success"
+          }
+        ],
+        "sum_job_seconds": 195,
+        "longest_job_seconds": 87,
+        "context_count": 6,
+        "all_success": true
+      },
+      {
+        "run_id": 37706618341,
+        "attempt": 1,
+        "head_sha": "56b4e4ddeba1a9934f547b4728fbd2dba67d9b17",
+        "jobs": [
+          {
+            "context": "Consumer Engine Performance (max-grounding)",
+            "seconds": 33,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (windows-latest)",
+            "seconds": 73,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (ubuntu-latest)",
+            "seconds": 19,
+            "conclusion": "success"
+          },
+          {
+            "context": "SW2 Sequence Evidence (ubuntu-latest)",
+            "seconds": 34,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Engine Performance (ubuntu-latest)",
+            "seconds": 10,
+            "conclusion": "success"
+          },
+          {
+            "context": "Self Governance (ubuntu-latest)",
+            "seconds": 16,
+            "conclusion": "success"
+          }
+        ],
+        "sum_job_seconds": 185,
+        "longest_job_seconds": 73,
+        "context_count": 6,
+        "all_success": true
+      },
+      {
+        "run_id": 37708376562,
+        "attempt": 1,
+        "head_sha": "9309c8e6442478f94b4492e8ee086f0be35adb2e",
+        "jobs": [
+          {
+            "context": "SW2 Sequence Evidence (ubuntu-latest)",
+            "seconds": 37,
+            "conclusion": "success"
+          },
+          {
+            "context": "Consumer Engine Performance (max-grounding)",
+            "seconds": 34,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Engine Performance (ubuntu-latest)",
+            "seconds": 13,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (ubuntu-latest)",
+            "seconds": 17,
+            "conclusion": "success"
+          },
+          {
+            "context": "Self Governance (ubuntu-latest)",
+            "seconds": 19,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (windows-latest)",
+            "seconds": 79,
+            "conclusion": "success"
+          }
+        ],
+        "sum_job_seconds": 199,
+        "longest_job_seconds": 79,
+        "context_count": 6,
+        "all_success": true
+      },
+      {
+        "run_id": 37708565187,
+        "attempt": 1,
+        "head_sha": "83de063673320a71da108afe0e5e28575d3cacf1",
+        "jobs": [
+          {
+            "context": "Governance Engine Performance (ubuntu-latest)",
+            "seconds": 15,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (ubuntu-latest)",
+            "seconds": 24,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (windows-latest)",
+            "seconds": 94,
+            "conclusion": "success"
+          },
+          {
+            "context": "SW2 Sequence Evidence (ubuntu-latest)",
+            "seconds": 37,
+            "conclusion": "success"
+          },
+          {
+            "context": "Self Governance (ubuntu-latest)",
+            "seconds": 18,
+            "conclusion": "success"
+          },
+          {
+            "context": "Consumer Engine Performance (max-grounding)",
+            "seconds": 42,
+            "conclusion": "success"
+          }
+        ],
+        "sum_job_seconds": 230,
+        "longest_job_seconds": 94,
+        "context_count": 6,
+        "all_success": true
+      },
+      {
+        "run_id": 37708853965,
+        "attempt": 1,
+        "head_sha": "7d51613f5e4006807d3f180110d9ba2750da305c",
+        "jobs": [
+          {
+            "context": "Self Governance (ubuntu-latest)",
+            "seconds": 13,
+            "conclusion": "success"
+          },
+          {
+            "context": "SW2 Sequence Evidence (ubuntu-latest)",
+            "seconds": 32,
+            "conclusion": "success"
+          },
+          {
+            "context": "Consumer Engine Performance (max-grounding)",
+            "seconds": 36,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Engine Performance (ubuntu-latest)",
+            "seconds": 19,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (ubuntu-latest)",
+            "seconds": 18,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (windows-latest)",
+            "seconds": 56,
+            "conclusion": "success"
+          }
+        ],
+        "sum_job_seconds": 174,
+        "longest_job_seconds": 56,
+        "context_count": 6,
+        "all_success": true
+      },
+      {
+        "run_id": 37708986331,
+        "attempt": 1,
+        "head_sha": "e5bbd9e485380cda962656e7ce8a5477cfce0e68",
+        "jobs": [
+          {
+            "context": "Self Governance (ubuntu-latest)",
+            "seconds": 19,
+            "conclusion": "success"
+          },
+          {
+            "context": "Consumer Engine Performance (max-grounding)",
+            "seconds": 35,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (windows-latest)",
+            "seconds": 75,
+            "conclusion": "success"
+          },
+          {
+            "context": "SW2 Sequence Evidence (ubuntu-latest)",
+            "seconds": 35,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Engine Performance (ubuntu-latest)",
+            "seconds": 18,
+            "conclusion": "success"
+          },
+          {
+            "context": "Governance Selftest (ubuntu-latest)",
+            "seconds": 20,
+            "conclusion": "success"
+          }
+        ],
+        "sum_job_seconds": 202,
+        "longest_job_seconds": 75,
+        "context_count": 6,
+        "all_success": true
+      }
+    ]
+  },
+  "summary": {
+    "samples": 6,
+    "windows_job_seconds": [
+      87,
+      73,
+      79,
+      94,
+      56,
+      75
+    ],
+    "windows_median_seconds": 77,
+    "windows_min_seconds": 56,
+    "windows_max_seconds": 94,
+    "aggregate_job_seconds_median": 197,
+    "longest_job_seconds_median": 77,
+    "windows_bottleneck_in_every_run": true
+  },
+  "performance_acceptance_policy": {
+    "candidate_samples_min": 3,
+    "objective": "Bounded independent cross-platform self-test speedup; target reduction >=15% in median Windows job seconds across >=3 completed exact candidate runs vs six-run historical baseline, with zero missing checks or cross-platform regressions. If target is not demonstrated, do not claim improvement or close SW2-24 as performance success.",
+    "not_cost_proof": "Job-seconds is a rough workload metric, not GitHub billed-minute pricing; Windows/Linux multipliers, queue time, runner variability, cache state, and workload differences may invalidate causal savings.",
+    "required_final_boundary": "Always execute full six-context permanent CI on exact final candidate and main regardless of impact or warm caches."
+  }
+}

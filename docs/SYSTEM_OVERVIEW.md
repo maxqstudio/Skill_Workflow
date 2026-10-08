@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 72 files, 1 language categories.
+Observed source inventory: 79 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-23
+Current phase: SW2-24
 
-Current status: SW2_23_MULTI_CONSUMER_COMPATIBILITY_ACCEPTED
+Current status: SW2_24_R1_R5_PROVEN_PENDING_FINAL_EXACT_CI
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,19 +110,18 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-23 accepted on exact feature main 83de063673320a71da108afe0e5e28575d3cacf1 as terminal authority for the current roadmap.
-- Preserve v2.1.0 release, exact consumer toolchain provenance, supported consumer-owned finalize, and all six permanent Governance CI contexts.
-- Do not begin SW2-24 or any new phase until the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Remove all temporary writer files and run six permanent Governance CI contexts on the exact helper-free final SW2-24 candidate.
+- If exact candidate CI and 21 commands PASS, make PR #42 ready, squash-merge with expected HEAD and verify equal Git tree, then exact main six-context CI.
+- Open separate evidence-only terminal closure after postmerge PASS; no SW2-25 or new release authorized.
 
 Blocked actions:
-- Do not modify actual consumer repositories during SW2-23 compatibility evaluation.
-- Do not treat missing AGENTS.md/toolchain lock or legacy hint-only provenance as compatibility PASS.
-- Do not weaken finalize, exact-head, fail-closed, sequence, or required cross-platform acceptance.
-- Do not claim platform-required checks with no GitHub ruleset.
-- Do not begin SW2-24 or release a new stable tag without separate Owner authorization.
+- Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.
+- Do not parallelize dependent or source-mutating gates or reuse cached PASS authority.
+- Do not mutate actual consumer repositories, publish release, or modify GitHub ruleset.
+- Do not begin SW2-25 until Owner authorizes it.
 
 Known blockers:
-- None declared.
+- SW2-24 R6 NOT_PROVEN: final helper-free exact candidate, squash PR #42 tree identity, postmerge main six-context CI and terminal evidence-only closure are pending.
 
 ## Proven vs not proven
 
@@ -211,8 +210,9 @@ Known blockers:
 
 ### Not proven
 
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this is non-blocking by Owner decision.
-- Pinned external consumer repositories were audited read-only; only an isolated migrated max-grounding copy was tested through consumer finalize. No external consumer adoption or runtime/device E2E is implied.
+- R6 final accepted feature/main and terminal closure exact provenance remains NOT_PROVEN.
+- Observed Windows median 64s (16.9% faster than 77s six-run historic median) is hosted runner comparison, not a cost-saving or hardware-normalized causal result; GitHub billed minutes and warm/cold caches remain NOT_PROVEN.
+- Automatic required check ruleset enforcement remains intentionally NOT_PROVEN by Owner decision.
 
 ## Important limitations
 

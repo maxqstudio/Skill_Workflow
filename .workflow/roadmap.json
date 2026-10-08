@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-23",
+  "current_phase": "SW2-24",
   "phases": [
     {
       "exit_criteria": [
@@ -295,8 +295,22 @@
       ],
       "id": "SW2-23",
       "objective": "Prove representative real-consumer adoption, deterministic provenance-aware toolchain upgrades, explicit unsupported-consumer rejection, and fail-closed evidence without mutating external consumer repositories or weakening governance.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Multi-Consumer Compatibility & Adoption Contract"
+    },
+    {
+      "exit_criteria": [
+        "A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs.",
+        "Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests.",
+        "Bounded parallel self-test orchestration is deterministic, runs each selected command exactly once, captures explicit first failed gate and full failed command evidence, rejects missing/racy/mutating tests, and preserves six permanent contexts, STRICT, verify, finalize, Windows, Mermaid, performance and consumer gates.",
+        "Before and after measurements use exact GitHub Actions runs with a cold/warm distinction; measured speed and job-seconds are reported without unproven cost or statistically causal claims, and no significant observed performance regression is silently accepted.",
+        "Authoritative public documentation, roadmap, source-derived sequence and human-view Mermaid remain consistent and readable; changes are backed by negative regressions, including false skipping/cache laundering.",
+        "Final exact helper-free feature candidate passes six permanent checks, is squash-merged with exact tree identity, and passes six permanent postmerge main checks before terminal accepted closure."
+      ],
+      "id": "SW2-24",
+      "objective": "Reduce unnecessary critical-path latency in the existing six-context GitHub Governance CI through evidence-based bounded parallelism and setup reuse while preserving exhaustive, exact-SHA, fail-closed acceptance on Windows and Ubuntu, without adding billable permanent contexts.",
+      "status": "CURRENT",
+      "title": "CI Latency & Cost Optimization"
     }
   ],
   "schema_version": 1

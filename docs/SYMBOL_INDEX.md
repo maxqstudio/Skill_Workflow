@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
+Source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -16,8 +16,15 @@ responsibility, callers, or state ownership.
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
 | .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
+| .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
+| .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
+| .github/scripts/ci_parallel_windows.py | 4 | 0 | 2 | 2 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
+| .github/scripts/selftest_ci_parallel_final_gates.py | 8 | 0 | 5 | 3 |
+| .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
+| .github/scripts/selftest_ci_parallel_windows.py | 10 | 0 | 4 | 6 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
+| .github/scripts/validate_ci_parallel_contract.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
@@ -104,12 +111,98 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/ci_parallel_final_gates.py</code> — 7 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 25-28 |
+| require_exact_clean | function | 31-38 |
+| authority | function | 41-54 |
+| commands | function | 57-67 |
+| run_one | function | 70-87 |
+| run | function | 90-112 |
+| main | function | 115-127 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/ci_parallel_selftests.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| Result | class | 44-52 |
+| commands_for_group | function | 55-68 |
+| subprocess_runner | function | 71-76 |
+| run_one | function | 79-101 |
+| run_groups | function | 104-133 |
+| main | function | 136-149 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/ci_parallel_windows.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 22-88 |
+| run.regressions | method | 42-44 |
+| run.finality | method | 45-46 |
+| main | function | 91-109 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_ci_applicability.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | require | function | 7-9 |
 | main | function | 12-36 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_ci_parallel_final_gates.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 13-16 |
+| write | function | 18-21 |
+| commit | function | 23-26 |
+| fixture | function | 28-38 |
+| main | function | 40-92 |
+| main.success | method | 48-56 |
+| main.failure | method | 68-70 |
+| main.mutation | method | 76-79 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_ci_parallel_selftests.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 18-94 |
+| main.ok | method | 51-59 |
+| main.failed | method | 72-74 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_ci_parallel_windows.py</code> — 10 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 14-15 |
+| put | function | 17-20 |
+| commit | function | 22-25 |
+| main | function | 27-102 |
+| main.entered | method | 48-55 |
+| main.group_pass | method | 56-58 |
+| main.final_pass | method | 59-61 |
+| main.regression_failure | method | 69-71 |
+| main.final_failure | method | 78-80 |
+| main.mutating_group | method | 86-89 |
 
 </details>
 
@@ -121,6 +214,17 @@ responsibility, callers, or state ownership.
 | copy_fixture | function | 18-22 |
 | require_failure | function | 25-28 |
 | main | function | 31-74 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/validate_ci_parallel_contract.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| steps_from_workflow | function | 53-65 |
+| findings | function | 68-126 |
+| main | function | 129-144 |
 
 </details>
 
@@ -140,8 +244,8 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| run_performance_budget_contract | function | 28-54 |
-| main | function | 57-115 |
+| run_performance_budget_contract | function | 30-56 |
+| main | function | 59-119 |
 
 </details>
 

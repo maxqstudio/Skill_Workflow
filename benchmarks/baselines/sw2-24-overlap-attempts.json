@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-24",
+  "status": "REJECTED_FOR_PERFORMANCE_OBJECTIVE",
+  "repo": "maxqstudio/Skill_Workflow",
+  "implementation": "Seven temp-fixture groups plus complete independent Windows STRICT/verify overlap",
+  "head_sha": "8c4889ade0465a294f09a8ac8b15c35e5b744bd3",
+  "run_id": 37710902468,
+  "attempts": [
+    {
+      "attempt": 1,
+      "windows_seconds": 55,
+      "aggregate_job_seconds": 181,
+      "contexts_passed": 6
+    },
+    {
+      "attempt": 2,
+      "windows_seconds": 69,
+      "aggregate_job_seconds": 195,
+      "contexts_passed": 6
+    },
+    {
+      "attempt": 3,
+      "windows_seconds": 79,
+      "aggregate_job_seconds": 205,
+      "contexts_passed": 6
+    }
+  ],
+  "baseline_windows_median_seconds": 77,
+  "observed_windows_median_seconds": 69,
+  "median_improvement_percent": 10.38961038961039,
+  "required_improvement_percent": 15,
+  "performance_gate": "NOT_PROVEN",
+  "scope": "All 3 exact-SHA attempts had six permanent contexts SUCCESS, including both Windows final gates. Comparison remains insufficient for the locked 15% median latency target; no samples omitted."
+}

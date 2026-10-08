@@ -1,0 +1,361 @@
+{
+  "complexity": {
+    "absolute_numeric_limit": null,
+    "interaction_ceiling": 10,
+    "interaction_count": 10,
+    "max_interactions_per_directed_component_pair": 1,
+    "max_participants_per_semantic_component": 1,
+    "participant_ceiling": 9,
+    "participant_count": 9,
+    "participant_granularity": "semantic_module_or_external_boundary",
+    "policy_id": "module-collapse-v1",
+    "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
+  },
+  "edges": [
+    {
+      "actions": [
+        "extract_project_facts"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/benchmark_governance.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/extract_project_facts.py"
+    },
+    {
+      "actions": [
+        "ProjectSnapshot.capture",
+        "active_project_snapshot",
+        "fresh_snapshot.metrics",
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/benchmark_governance.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "compute_source_digest"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/benchmark_governance.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/sequence_contract.py"
+    },
+    {
+      "actions": [
+        "AnalyzerResult",
+        "coverage_records",
+        "fallback.coverage_record",
+        "generic_fallback",
+        "validate_result"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/analyzer_contract.py"
+    },
+    {
+      "actions": [
+        "resolve_snapshot",
+        "snap.memoized",
+        "snapshot.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/extract_project_facts.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "names.add",
+        "seeds.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/governance_engine.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
+        "BUDGET.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/selftest_performance_budget.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "module.validate_contract"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/selftest_performance_budget.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_performance_budget.py"
+    },
+    {
+      "actions": [
+        "active_snapshot_for",
+        "canonical_source_bytes",
+        "discover_source_paths"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/sequence_contract.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "seen_ids.add",
+        "seen_samples.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_performance_budget.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    }
+  ],
+  "entries": [
+    "scripts/governance_engine.py::planned_node_names",
+    "scripts/benchmark_governance.py::main",
+    "scripts/selftest_performance_budget.py::main"
+  ],
+  "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
+  "generated": true,
+  "generated_by": "sequence_human_view.py",
+  "nodes": [
+    {
+      "id": "module:scripts/analyzer_contract.py",
+      "kind": "module",
+      "label": "scripts/analyzer_contract.py",
+      "machine_node_count": 6,
+      "machine_nodes": [
+        "scripts/analyzer_contract.py::AnalyzerContractError",
+        "scripts/analyzer_contract.py::AnalyzerResult",
+        "scripts/analyzer_contract.py::AnalyzerResult.coverage_record",
+        "scripts/analyzer_contract.py::coverage_records",
+        "scripts/analyzer_contract.py::generic_fallback",
+        "scripts/analyzer_contract.py::validate_result"
+      ]
+    },
+    {
+      "id": "module:scripts/benchmark_governance.py",
+      "kind": "module",
+      "label": "scripts/benchmark_governance.py",
+      "machine_node_count": 8,
+      "machine_nodes": [
+        "scripts/benchmark_governance.py::_cached_facts",
+        "scripts/benchmark_governance.py::baseline_comparison",
+        "scripts/benchmark_governance.py::copy_for_sync",
+        "scripts/benchmark_governance.py::git",
+        "scripts/benchmark_governance.py::governance_tool",
+        "scripts/benchmark_governance.py::main",
+        "scripts/benchmark_governance.py::run_command",
+        "scripts/benchmark_governance.py::timed"
+      ]
+    },
+    {
+      "id": "module:scripts/extract_project_facts.py",
+      "kind": "module",
+      "label": "scripts/extract_project_facts.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/extract_project_facts.py::PythonFacts",
+        "scripts/extract_project_facts.py::_extract_from_snapshot",
+        "scripts/extract_project_facts.py::extract_project_facts",
+        "scripts/extract_project_facts.py::is_test_file"
+      ]
+    },
+    {
+      "id": "module:scripts/governance_engine.py",
+      "kind": "module",
+      "label": "scripts/governance_engine.py",
+      "machine_node_count": 5,
+      "machine_nodes": [
+        "scripts/governance_engine.py::dependency_closure",
+        "scripts/governance_engine.py::develop_node_names",
+        "scripts/governance_engine.py::planned_node_names",
+        "scripts/governance_engine.py::verify_node_names",
+        "scripts/governance_engine.py::verify_seed_node_names"
+      ]
+    },
+    {
+      "id": "module:scripts/project_snapshot.py",
+      "kind": "module",
+      "label": "scripts/project_snapshot.py",
+      "machine_node_count": 15,
+      "machine_nodes": [
+        "scripts/project_snapshot.py::ProjectSnapshot.capture",
+        "scripts/project_snapshot.py::ProjectSnapshot.entry",
+        "scripts/project_snapshot.py::ProjectSnapshot.memoized",
+        "scripts/project_snapshot.py::ProjectSnapshot.metrics",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+        "scripts/project_snapshot.py::SnapshotError",
+        "scripts/project_snapshot.py::SnapshotFile",
+        "scripts/project_snapshot.py::_git",
+        "scripts/project_snapshot.py::_git_optional",
+        "scripts/project_snapshot.py::active_project_snapshot",
+        "scripts/project_snapshot.py::active_snapshot_for",
+        "scripts/project_snapshot.py::canonical_source_bytes",
+        "scripts/project_snapshot.py::discover_source_paths",
+        "scripts/project_snapshot.py::resolve_snapshot"
+      ]
+    },
+    {
+      "id": "module:scripts/selftest_performance_budget.py",
+      "kind": "module",
+      "label": "scripts/selftest_performance_budget.py",
+      "machine_node_count": 3,
+      "machine_nodes": [
+        "scripts/selftest_performance_budget.py::load_module",
+        "scripts/selftest_performance_budget.py::main",
+        "scripts/selftest_performance_budget.py::require"
+      ]
+    },
+    {
+      "id": "module:scripts/sequence_contract.py",
+      "kind": "module",
+      "label": "scripts/sequence_contract.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/sequence_contract.py::_selected_snapshot",
+        "scripts/sequence_contract.py::compute_source_digest"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_performance_budget.py",
+      "kind": "module",
+      "label": "scripts/validate_performance_budget.py",
+      "machine_node_count": 3,
+      "machine_nodes": [
+        "scripts/validate_performance_budget.py::close_enough",
+        "scripts/validate_performance_budget.py::derived_budget",
+        "scripts/validate_performance_budget.py::validate_contract"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_sequence_sessions.py",
+      "kind": "module",
+      "label": "scripts/validate_sequence_sessions.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/validate_sequence_sessions.py::evidence_paths.add",
+        "scripts/validate_sequence_sessions.py::repo_relative_path"
+      ]
+    }
+  ],
+  "observed_head": "0fd67ef449e7a502f8fd6497b6a21dafc2340a50",
+  "policy_id": "module-collapse-v1",
+  "projection": {
+    "aggregated_cross_component_edges": 15,
+    "cross_component_machine_edges": 25,
+    "internal_machine_edges_collapsed": 40,
+    "machine_edge_count": 65,
+    "machine_node_count": 48,
+    "node_map": {
+      "scripts/analyzer_contract.py::AnalyzerContractError": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::AnalyzerResult": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::AnalyzerResult.coverage_record": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::coverage_records": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::generic_fallback": "module:scripts/analyzer_contract.py",
+      "scripts/analyzer_contract.py::validate_result": "module:scripts/analyzer_contract.py",
+      "scripts/benchmark_governance.py::_cached_facts": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::baseline_comparison": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::copy_for_sync": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::git": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::governance_tool": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::main": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::run_command": "module:scripts/benchmark_governance.py",
+      "scripts/benchmark_governance.py::timed": "module:scripts/benchmark_governance.py",
+      "scripts/extract_project_facts.py::PythonFacts": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::_extract_from_snapshot": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::extract_project_facts": "module:scripts/extract_project_facts.py",
+      "scripts/extract_project_facts.py::is_test_file": "module:scripts/extract_project_facts.py",
+      "scripts/governance_engine.py::dependency_closure": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::develop_node_names": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::planned_node_names": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::verify_node_names": "module:scripts/governance_engine.py",
+      "scripts/governance_engine.py::verify_seed_node_names": "module:scripts/governance_engine.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.capture": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.memoized": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.metrics": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotError": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotFile": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::_git": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::_git_optional": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::active_project_snapshot": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::active_snapshot_for": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::canonical_source_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::discover_source_paths": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::resolve_snapshot": "module:scripts/project_snapshot.py",
+      "scripts/selftest_performance_budget.py::load_module": "module:scripts/selftest_performance_budget.py",
+      "scripts/selftest_performance_budget.py::main": "module:scripts/selftest_performance_budget.py",
+      "scripts/selftest_performance_budget.py::require": "module:scripts/selftest_performance_budget.py",
+      "scripts/sequence_contract.py::_selected_snapshot": "module:scripts/sequence_contract.py",
+      "scripts/sequence_contract.py::compute_source_digest": "module:scripts/sequence_contract.py",
+      "scripts/validate_performance_budget.py::close_enough": "module:scripts/validate_performance_budget.py",
+      "scripts/validate_performance_budget.py::derived_budget": "module:scripts/validate_performance_budget.py",
+      "scripts/validate_performance_budget.py::validate_contract": "module:scripts/validate_performance_budget.py",
+      "scripts/validate_sequence_sessions.py::evidence_paths.add": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::repo_relative_path": "module:scripts/validate_sequence_sessions.py"
+    },
+    "unresolved_machine_edges": []
+  },
+  "schema_version": 1,
+  "source_digest": "0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681"
+}

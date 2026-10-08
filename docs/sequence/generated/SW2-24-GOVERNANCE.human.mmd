@@ -1,0 +1,24 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
+%% POLICY_ID: module-collapse-v1
+%% GENERATED_BY: sequence_human_view.py
+sequenceDiagram
+    participant module_scripts_analyzer_contract_py_0 as scripts/analyzer_contract.py
+    participant module_scripts_benchmark_governance_py_1 as scripts/benchmark_governance.py
+    participant module_scripts_extract_project_facts_py_2 as scripts/extract_project_facts.py
+    participant module_scripts_governance_engine_py_3 as scripts/governance_engine.py
+    participant module_scripts_project_snapshot_py_4 as scripts/project_snapshot.py
+    participant module_scripts_selftest_performance_budget_py_5 as scripts/selftest_performance_budget.py
+    participant module_scripts_sequence_contract_py_6 as scripts/sequence_contract.py
+    participant module_scripts_validate_performance_budget_py_7 as scripts/validate_performance_budget.py
+    participant module_scripts_validate_sequence_sessions_py_8 as scripts/validate_sequence_sessions.py
+    module_scripts_benchmark_governance_py_1->>module_scripts_extract_project_facts_py_2: 2 static interactions
+    module_scripts_benchmark_governance_py_1->>module_scripts_project_snapshot_py_4: 5 static interactions
+    module_scripts_benchmark_governance_py_1->>module_scripts_sequence_contract_py_6: 1 static interaction
+    module_scripts_extract_project_facts_py_2->>module_scripts_analyzer_contract_py_0: 5 static interactions
+    module_scripts_extract_project_facts_py_2->>module_scripts_project_snapshot_py_4: 3 static interactions
+    module_scripts_governance_engine_py_3->>module_scripts_validate_sequence_sessions_py_8: 2 static interactions
+    module_scripts_selftest_performance_budget_py_5->>module_scripts_project_snapshot_py_4: 1 static interaction
+    module_scripts_selftest_performance_budget_py_5->>module_scripts_validate_performance_budget_py_7: 1 static interaction
+    module_scripts_sequence_contract_py_6->>module_scripts_project_snapshot_py_4: 3 static interactions
+    module_scripts_validate_performance_budget_py_7->>module_scripts_validate_sequence_sessions_py_8: 2 static interactions

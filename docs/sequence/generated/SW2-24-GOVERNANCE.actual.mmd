@@ -1,0 +1,118 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
+%% OBSERVED_HEAD: 0fd67ef449e7a502f8fd6497b6a21dafc2340a50
+%% GENERATED_BY: generate_sequence_actual.py
+sequenceDiagram
+    participant scripts_analyzer_contract_py__AnalyzerContractError_0 as scripts/analyzer_contract.py::AnalyzerContractError
+    participant scripts_analyzer_contract_py__AnalyzerResult_1 as scripts/analyzer_contract.py::AnalyzerResult
+    participant scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2 as scripts/analyzer_contract.py::AnalyzerResult.coverage_record
+    participant scripts_analyzer_contract_py__coverage_records_3 as scripts/analyzer_contract.py::coverage_records
+    participant scripts_analyzer_contract_py__generic_fallback_4 as scripts/analyzer_contract.py::generic_fallback
+    participant scripts_analyzer_contract_py__validate_result_5 as scripts/analyzer_contract.py::validate_result
+    participant scripts_benchmark_governance_py___cached_facts_6 as scripts/benchmark_governance.py::_cached_facts
+    participant scripts_benchmark_governance_py__baseline_comparison_7 as scripts/benchmark_governance.py::baseline_comparison
+    participant scripts_benchmark_governance_py__copy_for_sync_8 as scripts/benchmark_governance.py::copy_for_sync
+    participant scripts_benchmark_governance_py__git_9 as scripts/benchmark_governance.py::git
+    participant scripts_benchmark_governance_py__governance_tool_10 as scripts/benchmark_governance.py::governance_tool
+    participant scripts_benchmark_governance_py__main_11 as scripts/benchmark_governance.py::main
+    participant scripts_benchmark_governance_py__run_command_12 as scripts/benchmark_governance.py::run_command
+    participant scripts_benchmark_governance_py__timed_13 as scripts/benchmark_governance.py::timed
+    participant scripts_extract_project_facts_py__PythonFacts_14 as scripts/extract_project_facts.py::PythonFacts
+    participant scripts_extract_project_facts_py___extract_from_snapshot_15 as scripts/extract_project_facts.py::_extract_from_snapshot
+    participant scripts_extract_project_facts_py__extract_project_facts_16 as scripts/extract_project_facts.py::extract_project_facts
+    participant scripts_extract_project_facts_py__is_test_file_17 as scripts/extract_project_facts.py::is_test_file
+    participant scripts_governance_engine_py__dependency_closure_18 as scripts/governance_engine.py::dependency_closure
+    participant scripts_governance_engine_py__develop_node_names_19 as scripts/governance_engine.py::develop_node_names
+    participant scripts_governance_engine_py__planned_node_names_20 as scripts/governance_engine.py::planned_node_names
+    participant scripts_governance_engine_py__verify_node_names_21 as scripts/governance_engine.py::verify_node_names
+    participant scripts_governance_engine_py__verify_seed_node_names_22 as scripts/governance_engine.py::verify_seed_node_names
+    participant scripts_project_snapshot_py__ProjectSnapshot_capture_23 as scripts/project_snapshot.py::ProjectSnapshot.capture
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_24 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_memoized_25 as scripts/project_snapshot.py::ProjectSnapshot.memoized
+    participant scripts_project_snapshot_py__ProjectSnapshot_metrics_26 as scripts/project_snapshot.py::ProjectSnapshot.metrics
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_28 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_29 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_project_snapshot_py__SnapshotFile_30 as scripts/project_snapshot.py::SnapshotFile
+    participant scripts_project_snapshot_py___git_31 as scripts/project_snapshot.py::_git
+    participant scripts_project_snapshot_py___git_optional_32 as scripts/project_snapshot.py::_git_optional
+    participant scripts_project_snapshot_py__active_project_snapshot_33 as scripts/project_snapshot.py::active_project_snapshot
+    participant scripts_project_snapshot_py__active_snapshot_for_34 as scripts/project_snapshot.py::active_snapshot_for
+    participant scripts_project_snapshot_py__canonical_source_bytes_35 as scripts/project_snapshot.py::canonical_source_bytes
+    participant scripts_project_snapshot_py__discover_source_paths_36 as scripts/project_snapshot.py::discover_source_paths
+    participant scripts_project_snapshot_py__resolve_snapshot_37 as scripts/project_snapshot.py::resolve_snapshot
+    participant scripts_selftest_performance_budget_py__load_module_38 as scripts/selftest_performance_budget.py::load_module
+    participant scripts_selftest_performance_budget_py__main_39 as scripts/selftest_performance_budget.py::main
+    participant scripts_selftest_performance_budget_py__require_40 as scripts/selftest_performance_budget.py::require
+    participant scripts_sequence_contract_py___selected_snapshot_41 as scripts/sequence_contract.py::_selected_snapshot
+    participant scripts_sequence_contract_py__compute_source_digest_42 as scripts/sequence_contract.py::compute_source_digest
+    participant scripts_validate_performance_budget_py__close_enough_43 as scripts/validate_performance_budget.py::close_enough
+    participant scripts_validate_performance_budget_py__derived_budget_44 as scripts/validate_performance_budget.py::derived_budget
+    participant scripts_validate_performance_budget_py__validate_contract_45 as scripts/validate_performance_budget.py::validate_contract
+    participant scripts_validate_sequence_sessions_py__evidence_paths_add_46 as scripts/validate_sequence_sessions.py::evidence_paths.add
+    participant scripts_validate_sequence_sessions_py__repo_relative_path_47 as scripts/validate_sequence_sessions.py::repo_relative_path
+    scripts_analyzer_contract_py__coverage_records_3->>scripts_analyzer_contract_py__validate_result_5: validate_result [STATIC]
+    scripts_analyzer_contract_py__generic_fallback_4->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_analyzer_contract_py__generic_fallback_4->>scripts_analyzer_contract_py__validate_result_5: validate_result [STATIC]
+    scripts_analyzer_contract_py__validate_result_5->>scripts_analyzer_contract_py__AnalyzerContractError_0: AnalyzerContractError [STATIC]
+    scripts_benchmark_governance_py___cached_facts_6->>scripts_extract_project_facts_py__extract_project_facts_16: extract_project_facts [STATIC]
+    scripts_benchmark_governance_py___cached_facts_6->>scripts_project_snapshot_py__active_project_snapshot_33: active_project_snapshot [STATIC]
+    scripts_benchmark_governance_py__baseline_comparison_7->>scripts_project_snapshot_py__ProjectSnapshot_read_text_28: path.read_text [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py___cached_facts_6: _cached_facts [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py__baseline_comparison_7: baseline_comparison [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py__copy_for_sync_8: copy_for_sync [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py__git_9: git [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py__governance_tool_10: governance_tool [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py__run_command_12: run_command [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_benchmark_governance_py__timed_13: timed [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_extract_project_facts_py__extract_project_facts_16: extract_project_facts [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_project_snapshot_py__ProjectSnapshot_capture_23: ProjectSnapshot.capture [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_project_snapshot_py__ProjectSnapshot_metrics_26: fresh_snapshot.metrics [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_project_snapshot_py__active_project_snapshot_33: active_project_snapshot [STATIC]
+    scripts_benchmark_governance_py__main_11->>scripts_sequence_contract_py__compute_source_digest_42: compute_source_digest [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_analyzer_contract_py__AnalyzerResult_1: AnalyzerResult [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_analyzer_contract_py__AnalyzerResult_coverage_record_2: fallback.coverage_record [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_analyzer_contract_py__coverage_records_3: coverage_records [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_analyzer_contract_py__generic_fallback_4: generic_fallback [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_analyzer_contract_py__validate_result_5: validate_result [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_extract_project_facts_py__PythonFacts_14: PythonFacts [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_extract_project_facts_py__is_test_file_17: is_test_file [STATIC]
+    scripts_extract_project_facts_py___extract_from_snapshot_15->>scripts_project_snapshot_py__ProjectSnapshot_read_text_28: snapshot.read_text [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_16->>scripts_extract_project_facts_py___extract_from_snapshot_15: _extract_from_snapshot [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_16->>scripts_project_snapshot_py__ProjectSnapshot_memoized_25: snap.memoized [STATIC]
+    scripts_extract_project_facts_py__extract_project_facts_16->>scripts_project_snapshot_py__resolve_snapshot_37: resolve_snapshot [STATIC]
+    scripts_governance_engine_py__develop_node_names_19->>scripts_governance_engine_py__dependency_closure_18: dependency_closure [STATIC]
+    scripts_governance_engine_py__develop_node_names_19->>scripts_validate_sequence_sessions_py__evidence_paths_add_46: names.add [STATIC]
+    scripts_governance_engine_py__planned_node_names_20->>scripts_governance_engine_py__develop_node_names_19: develop_node_names [STATIC]
+    scripts_governance_engine_py__planned_node_names_20->>scripts_governance_engine_py__verify_node_names_21: verify_node_names [STATIC]
+    scripts_governance_engine_py__verify_node_names_21->>scripts_governance_engine_py__dependency_closure_18: dependency_closure [STATIC]
+    scripts_governance_engine_py__verify_node_names_21->>scripts_governance_engine_py__verify_seed_node_names_22: verify_seed_node_names [STATIC]
+    scripts_governance_engine_py__verify_seed_node_names_22->>scripts_validate_sequence_sessions_py__evidence_paths_add_46: seeds.add [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_23->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_23->>scripts_project_snapshot_py__SnapshotFile_30: SnapshotFile [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_23->>scripts_project_snapshot_py___git_optional_32: _git_optional [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_23->>scripts_project_snapshot_py__canonical_source_bytes_35: canonical_source_bytes [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_capture_23->>scripts_project_snapshot_py__discover_source_paths_36: discover_source_paths [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_24->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27->>scripts_project_snapshot_py__ProjectSnapshot_entry_24: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_28->>scripts_project_snapshot_py__ProjectSnapshot_entry_24: self.entry [STATIC]
+    scripts_project_snapshot_py___git_optional_32->>scripts_project_snapshot_py___git_31: _git [STATIC]
+    scripts_project_snapshot_py__canonical_source_bytes_35->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_27: path.read_bytes [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_36->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__discover_source_paths_36->>scripts_project_snapshot_py___git_31: _git [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_37->>scripts_project_snapshot_py__ProjectSnapshot_capture_23: ProjectSnapshot.capture [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_37->>scripts_project_snapshot_py__SnapshotError_29: SnapshotError [STATIC]
+    scripts_project_snapshot_py__resolve_snapshot_37->>scripts_project_snapshot_py__active_snapshot_for_34: active_snapshot_for [STATIC]
+    scripts_selftest_performance_budget_py__main_39->>scripts_project_snapshot_py__ProjectSnapshot_read_text_28: BUDGET.read_text [STATIC]
+    scripts_selftest_performance_budget_py__main_39->>scripts_selftest_performance_budget_py__load_module_38: load_module [STATIC]
+    scripts_selftest_performance_budget_py__main_39->>scripts_selftest_performance_budget_py__require_40: require [STATIC]
+    scripts_selftest_performance_budget_py__main_39->>scripts_validate_performance_budget_py__validate_contract_45: module.validate_contract [STATIC]
+    scripts_sequence_contract_py___selected_snapshot_41->>scripts_project_snapshot_py__active_snapshot_for_34: active_snapshot_for [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_42->>scripts_project_snapshot_py__canonical_source_bytes_35: canonical_source_bytes [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_42->>scripts_project_snapshot_py__discover_source_paths_36: discover_source_paths [STATIC]
+    scripts_sequence_contract_py__compute_source_digest_42->>scripts_sequence_contract_py___selected_snapshot_41: _selected_snapshot [STATIC]
+    scripts_validate_performance_budget_py__validate_contract_45->>scripts_validate_performance_budget_py__close_enough_43: close_enough [STATIC]
+    scripts_validate_performance_budget_py__validate_contract_45->>scripts_validate_performance_budget_py__derived_budget_44: derived_budget [STATIC]
+    scripts_validate_performance_budget_py__validate_contract_45->>scripts_validate_sequence_sessions_py__evidence_paths_add_46: seen_ids.add [STATIC]
+    scripts_validate_performance_budget_py__validate_contract_45->>scripts_validate_sequence_sessions_py__evidence_paths_add_46: seen_samples.add [STATIC]
+    scripts_validate_sequence_sessions_py__evidence_paths_add_46->>scripts_validate_sequence_sessions_py__repo_relative_path_47: repo_relative_path [STATIC]
