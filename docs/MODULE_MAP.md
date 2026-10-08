@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b
+Source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -11,11 +11,13 @@ Generated/refreshed: current compiler run
 | .github/scripts/ci_applicability.py | Python | 91 | .github/scripts | NO |
 | .github/scripts/ci_parallel_final_gates.py | Python | 131 | .github/scripts | NO |
 | .github/scripts/ci_parallel_selftests.py | Python | 153 | .github/scripts | NO |
+| .github/scripts/ci_parallel_windows.py | Python | 113 | .github/scripts | NO |
 | .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_final_gates.py | Python | 95 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_selftests.py | Python | 97 | .github/scripts | NO |
+| .github/scripts/selftest_ci_parallel_windows.py | Python | 105 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
-| .github/scripts/validate_ci_parallel_contract.py | Python | 142 | .github/scripts | NO |
+| .github/scripts/validate_ci_parallel_contract.py | Python | 147 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
 | .github/scripts/validate_unified_ci.py | Python | 123 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |

@@ -95,6 +95,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/ci_parallel_windows.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 113
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/selftest_ci_applicability.py",
       "is_test": false,
       "language": "Python",
@@ -116,6 +123,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 105
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/selftest_skill_reference_split.py",
       "is_test": false,
       "language": "Python",
@@ -126,7 +140,7 @@
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 142
+      "lines": 147
     },
     {
       "directory": ".github/scripts",
@@ -1202,6 +1216,194 @@
       "target_token": "subprocess.run"
     },
     {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "evidence.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "info.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "info.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "info.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "info.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "concurrent.futures.ThreadPoolExecutor"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "final.authority"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "final.commands"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "final.require_exact_clean"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "finals.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "finals.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "independent.commands_for_group"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "left.result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "pool.submit"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "pool.submit"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "regress.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "regress.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "regress.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "result.update"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "right.result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "tuple"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "type"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "type"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run",
+      "target_token": "type"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run.finality",
+      "target_token": "final.run"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_windows.py::run.regressions",
+      "target_token": "independent.run_groups"
+    },
+    {
       "caller": ".github/scripts/selftest_ci_applicability.py::main",
       "target_token": "classify"
     },
@@ -1606,6 +1808,198 @@
       "target_token": "time.sleep"
     },
     {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "combined.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "combined.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "combined.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "combined.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "combined.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "observed.clear"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "observed.clear"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "observed.clear"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "spec.split"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "target_token": "threading.Lock"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.entered",
+      "target_token": "max"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.entered",
+      "target_token": "observed.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.entered",
+      "target_token": "time.sleep"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.final_failure",
+      "target_token": "entered"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.final_pass",
+      "target_token": "entered"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.group_pass",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.group_pass",
+      "target_token": "entered"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.mutating_group",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.mutating_group",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.regression_failure",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.regression_failure",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::main.regression_failure",
+      "target_token": "entered"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::put",
+      "target_token": "p.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_windows.py::put",
+      "target_token": "p.write_text"
+    },
+    {
       "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
       "target_token": "Path"
     },
@@ -1756,6 +2150,14 @@
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
       "target_token": "dict"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
     },
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
@@ -28601,6 +29003,38 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/ci_parallel_windows.py",
+      "kind": "function",
+      "line_end": 88,
+      "line_start": 22,
+      "locator": ".github/scripts/ci_parallel_windows.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 44,
+      "line_start": 42,
+      "locator": ".github/scripts/ci_parallel_windows.py::run.regressions",
+      "symbol": "run.regressions"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 46,
+      "line_start": 45,
+      "locator": ".github/scripts/ci_parallel_windows.py::run.finality",
+      "symbol": "run.finality"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_windows.py",
+      "kind": "function",
+      "line_end": 109,
+      "line_start": 91,
+      "locator": ".github/scripts/ci_parallel_windows.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/selftest_ci_applicability.py",
       "kind": "function",
       "line_end": 9,
@@ -28705,6 +29139,86 @@
       "symbol": "main.failed"
     },
     {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "function",
+      "line_end": 15,
+      "line_start": 14,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "function",
+      "line_end": 20,
+      "line_start": 17,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::put",
+      "symbol": "put"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "function",
+      "line_end": 25,
+      "line_start": 22,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::commit",
+      "symbol": "commit"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "function",
+      "line_end": 102,
+      "line_start": 27,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 55,
+      "line_start": 48,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.entered",
+      "symbol": "main.entered"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 58,
+      "line_start": 56,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.group_pass",
+      "symbol": "main.group_pass"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 61,
+      "line_start": 59,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.final_pass",
+      "symbol": "main.final_pass"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 71,
+      "line_start": 69,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.regression_failure",
+      "symbol": "main.regression_failure"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 80,
+      "line_start": 78,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.final_failure",
+      "symbol": "main.final_failure"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_windows.py",
+      "kind": "method",
+      "line_end": 89,
+      "line_start": 86,
+      "locator": ".github/scripts/selftest_ci_parallel_windows.py::main.mutating_group",
+      "symbol": "main.mutating_group"
+    },
+    {
       "file": ".github/scripts/selftest_skill_reference_split.py",
       "kind": "function",
       "line_end": 22,
@@ -28739,7 +29253,7 @@
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 121,
+      "line_end": 126,
       "line_start": 68,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::findings",
       "symbol": "findings"
@@ -28747,8 +29261,8 @@
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 139,
-      "line_start": 124,
+      "line_end": 144,
+      "line_start": 129,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::main",
       "symbol": "main"
     },
@@ -32410,13 +32924,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b",
+  "source_digest": "0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681",
   "source_summary": {
-    "files": 77,
+    "files": 79,
     "languages": {
-      "Python": 77
+      "Python": 79
     },
-    "lines": 18044,
+    "lines": 18267,
     "test_files": 0
   },
   "tests": []

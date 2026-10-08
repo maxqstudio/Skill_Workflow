@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b
+Source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -18,9 +18,11 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
 | .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
 | .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
+| .github/scripts/ci_parallel_windows.py | 4 | 0 | 2 | 2 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_ci_parallel_final_gates.py | 8 | 0 | 5 | 3 |
 | .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
+| .github/scripts/selftest_ci_parallel_windows.py | 10 | 0 | 4 | 6 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_ci_parallel_contract.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
@@ -138,6 +140,18 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/ci_parallel_windows.py</code> — 4 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 22-88 |
+| run.regressions | method | 42-44 |
+| run.finality | method | 45-46 |
+| main | function | 91-109 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_ci_applicability.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -175,6 +189,24 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/selftest_ci_parallel_windows.py</code> — 10 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 14-15 |
+| put | function | 17-20 |
+| commit | function | 22-25 |
+| main | function | 27-102 |
+| main.entered | method | 48-55 |
+| main.group_pass | method | 56-58 |
+| main.final_pass | method | 59-61 |
+| main.regression_failure | method | 69-71 |
+| main.final_failure | method | 78-80 |
+| main.mutating_group | method | 86-89 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_skill_reference_split.py</code> — 3 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -191,8 +223,8 @@ responsibility, callers, or state ownership.
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | steps_from_workflow | function | 53-65 |
-| findings | function | 68-121 |
-| main | function | 124-139 |
+| findings | function | 68-126 |
+| main | function | 129-144 |
 
 </details>
 
