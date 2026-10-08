@@ -115,8 +115,11 @@ def source_tree(root: Path) -> list[tuple[str,str,bytes]]:
         if len(blob)>MAX_FILE_BYTES:
             fail("BUNDLE_FILE_TOO_LARGE:"+name)
         current=(root/name)
-        if not current.is_file() or current.is_symlink() or current.read_bytes()!=blob:
-            fail("BUNDLE_WORKTREE_SOURCE_MISMATCH:"+name)
+        # The immutable Git blob is packaging authority. A clean Windows
+        # checkout may contain autocrlf-normalized bytes differing from Git's
+        # canonical stored object; git status enforces no user changes.
+        if not current.is_file() or current.is_symlink():
+            fail("BUNDLE_WORKTREE_SOURCE_MISSING_OR_SYMLINK:"+name)
         paths.append((name,mode,blob))
         found.add(name)
     missing=REQUIRED-found
