@@ -29,7 +29,7 @@ SOURCE_ONLY = {
 ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
 MAX_FILE_BYTES = 8 * 1024 * 1024
 MAX_ARCHIVE_BYTES = 32 * 1024 * 1024
-COMPRESSION = zipfile.ZIP_DEFLATED
+COMPRESSION = zipfile.ZIP_STORED  # Deliberately avoid OS/zlib-dependent DEFLATE byte streams.
 WINDOWS_RESERVED = {"CON","PRN","AUX","NUL",*[f"COM{i}" for i in range(1,10)],
                     *[f"LPT{i}" for i in range(1,10)]}
 SHA_RE = re.compile(r"[0-9a-f]{40}", re.ASCII)
