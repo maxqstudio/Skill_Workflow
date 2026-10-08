@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 79 files, 1 language categories.
+Observed source inventory: 83 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-24
+Current phase: SW2-25
 
-Current status: SW2_24_CI_LATENCY_COST_OPTIMIZATION_ACCEPTED
+Current status: SW2_25_R1_R5_PROVEN_PENDING_FEATURE_MERGE
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,17 +110,18 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-24 terminal accepted main feature 272aed60e21b6d5fc8cd027081d3de743a7726d4 as the last accepted implementation authority.
-- Preserve six-context Governance CI and 19+2 exhaustive Windows acceptance with Ubuntu serial parity.
-- Require explicit Owner authorization before adding SW2-25 to authoritative roadmap.
+- Require final unchanged toolchain and all six permanent contexts on exact helper-free candidate before making PR #44 ready.
+- Squash expected SHA only after PASS and confirm equal-tree main, then postmerge exact main six permanent CI contexts PASS.
+- Terminal R6 accepted closure is a separate evidence-only transaction; no stable tag, release publication, or SW2-26 scope authorized.
 
 Blocked actions:
-- No new SW2-25 phase until the Owner authorizes scope and its acceptance boundary.
-- Do not weaken six permanent checks, Windows/Ubuntu regression parity, exact-head provenance, sequence Mermaid, consumer finalization or performance evidence.
-- Do not auto-enable branch ruleset, change license, publish release, or mutate external consumers.
+- Do not publish a Git tag, GitHub release or external artifact to a distribution channel.
+- Do not weaken six permanent CI contexts, strict/verify, Windows/Ubuntu, consumer, performance, Mermaid or documentation gates.
+- Do not mutate owner devices or external consumer repositories.
+- Do not open SW2-26 without explicit Owner authorization.
 
 Known blockers:
-- None declared.
+- SW2-25-R6 NOT_PROVEN until exact final helper-free feature candidate all-six CI, equal-tree squash main, postmerge main six-context CI and separate terminal accepted closure.
 
 ## Proven vs not proven
 
@@ -212,9 +213,9 @@ Known blockers:
 
 ### Not proven
 
-- GitHub automatic required-check enforcement remains intentionally NOT_PROVEN under Owner-approved no-ruleset governance; non-blocking.
-- Observed Windows median 64s versus historical 77s is non-randomized hosted-runner evidence, not hardware-normalized causal improvement. Candidate median aggregate job-seconds 199 versus 197 historical does not support a monetary cost-saving claim; billing and warm/cold cache state remain NOT_PROVEN.
-- Consumer migration/finalize acceptance used isolated pinned max-grounding, not modifications of upstream consumer repositories or fresh device/runtime E2E.
+- SW2-25 R6 feature/postmerge/terminal exact-SHA acceptance NOT_PROVEN.
+- Unsigned detached SHA-256 verifies archive content but does not independently authenticate the publisher or asserted source Git SHA offline; publication_authority=false.
+- Required GitHub status-check ruleset remains intentionally NOT_PROVEN by Owner boundary.
 
 ## Important limitations
 

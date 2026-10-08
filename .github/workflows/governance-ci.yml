@@ -114,6 +114,23 @@ jobs:
         env:
           PYTHONPYCACHEPREFIX: ${{ runner.temp }}/pycache
         run: python -m compileall -q scripts
+      - name: Release bundle static CI contract regression
+        run: |
+          python .github/scripts/validate_release_bundle_ci.py
+          python .github/scripts/selftest_release_bundle_ci.py
+      - name: Release bundle content-integrity regressions
+        run: python .github/scripts/selftest_release_bundle.py
+      - name: Build and detached-verify exact-head read-only bundle
+        shell: bash
+        run: |
+          python .github/scripts/release_bundle.py build \
+            --root . \
+            --expected-head "${{ github.event.pull_request.head.sha || github.sha }}" \
+            --bundle "${{ runner.temp }}/governance-release-bundle.zip" \
+            --manifest "${{ runner.temp }}/governance-release-bundle.json"
+          python .github/scripts/release_bundle.py verify \
+            --bundle "${{ runner.temp }}/governance-release-bundle.zip" \
+            --manifest "${{ runner.temp }}/governance-release-bundle.json"
       - name: Unified CI contract regression
         run: |
           python .github/scripts/selftest_ci_applicability.py

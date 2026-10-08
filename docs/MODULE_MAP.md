@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
+Source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -12,14 +12,18 @@ Generated/refreshed: current compiler run
 | .github/scripts/ci_parallel_final_gates.py | Python | 131 | .github/scripts | NO |
 | .github/scripts/ci_parallel_selftests.py | Python | 153 | .github/scripts | NO |
 | .github/scripts/ci_parallel_windows.py | Python | 113 | .github/scripts | NO |
+| .github/scripts/release_bundle.py | Python | 312 | .github/scripts | NO |
 | .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_final_gates.py | Python | 95 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_selftests.py | Python | 97 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_windows.py | Python | 105 | .github/scripts | NO |
+| .github/scripts/selftest_release_bundle.py | Python | 186 | .github/scripts | NO |
+| .github/scripts/selftest_release_bundle_ci.py | Python | 37 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
 | .github/scripts/validate_ci_parallel_contract.py | Python | 147 | .github/scripts | NO |
+| .github/scripts/validate_release_bundle_ci.py | Python | 68 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
-| .github/scripts/validate_unified_ci.py | Python | 123 | .github/scripts | NO |
+| .github/scripts/validate_unified_ci.py | Python | 129 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |

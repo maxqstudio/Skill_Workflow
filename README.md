@@ -65,6 +65,7 @@ Source code owns implementation facts. `.workflow/*.json` owns declared governan
 | Diagnose failures | [Troubleshooting](docs/handbook/guides/troubleshooting.md) |
 | Use commands directly | [Command reference](docs/handbook/reference/commands.md) |
 | Inspect release behavior | [Release process](docs/handbook/reference/release-process.md) |
+| Audit source bundle integrity | [Reproducible release bundle](docs/handbook/reference/release-bundle.md) |
 
 The full entry points are the [documentation index](docs/README.md) and [handbook](docs/handbook/README.md).
 

@@ -1,0 +1,211 @@
+{
+  "complexity": {
+    "absolute_numeric_limit": null,
+    "interaction_ceiling": 5,
+    "interaction_count": 5,
+    "max_interactions_per_directed_component_pair": 1,
+    "max_participants_per_semantic_component": 1,
+    "participant_ceiling": 5,
+    "participant_count": 5,
+    "participant_granularity": "semantic_module_or_external_boundary",
+    "policy_id": "module-collapse-v1",
+    "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
+  },
+  "edges": [
+    {
+      "actions": [
+        "bundle_path.read_bytes",
+        "manifest_path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/release_bundle.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "casefold.add",
+        "found.add",
+        "seen.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/release_bundle.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/release_preflight.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "requirement_ids.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/release_preflight.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
+    {
+      "actions": [
+        "path.read_bytes"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/toolchain_identity.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    }
+  ],
+  "entries": [
+    ".github/scripts/release_bundle.py::build",
+    ".github/scripts/release_bundle.py::verify",
+    ".github/scripts/release_bundle.py::source_tree",
+    "scripts/release_preflight.py::validate",
+    "scripts/toolchain_identity.py::producer_metadata"
+  ],
+  "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
+  "generated": true,
+  "generated_by": "sequence_human_view.py",
+  "nodes": [
+    {
+      "id": "module:.github/scripts/release_bundle.py",
+      "kind": "module",
+      "label": ".github/scripts/release_bundle.py",
+      "machine_node_count": 13,
+      "machine_nodes": [
+        ".github/scripts/release_bundle.py::BundleError",
+        ".github/scripts/release_bundle.py::build",
+        ".github/scripts/release_bundle.py::checked_head",
+        ".github/scripts/release_bundle.py::digest_manifest",
+        ".github/scripts/release_bundle.py::fail",
+        ".github/scripts/release_bundle.py::git",
+        ".github/scripts/release_bundle.py::include_path",
+        ".github/scripts/release_bundle.py::sha",
+        ".github/scripts/release_bundle.py::source_tree",
+        ".github/scripts/release_bundle.py::toolchain_digest",
+        ".github/scripts/release_bundle.py::validate_path",
+        ".github/scripts/release_bundle.py::verify",
+        ".github/scripts/release_bundle.py::write_zip"
+      ]
+    },
+    {
+      "id": "module:scripts/project_snapshot.py",
+      "kind": "module",
+      "label": "scripts/project_snapshot.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/project_snapshot.py::ProjectSnapshot.entry",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+        "scripts/project_snapshot.py::SnapshotError"
+      ]
+    },
+    {
+      "id": "module:scripts/release_preflight.py",
+      "kind": "module",
+      "label": "scripts/release_preflight.py",
+      "machine_node_count": 3,
+      "machine_nodes": [
+        "scripts/release_preflight.py::_load",
+        "scripts/release_preflight.py::git",
+        "scripts/release_preflight.py::validate"
+      ]
+    },
+    {
+      "id": "module:scripts/toolchain_identity.py",
+      "kind": "module",
+      "label": "scripts/toolchain_identity.py",
+      "machine_node_count": 6,
+      "machine_nodes": [
+        "scripts/toolchain_identity.py::_git_value",
+        "scripts/toolchain_identity.py::_sha256",
+        "scripts/toolchain_identity.py::producer_metadata",
+        "scripts/toolchain_identity.py::source_tool_paths",
+        "scripts/toolchain_identity.py::source_toolchain_manifest",
+        "scripts/toolchain_identity.py::toolchain_digest"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_sequence_sessions.py",
+      "kind": "module",
+      "label": "scripts/validate_sequence_sessions.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/validate_sequence_sessions.py::evidence_paths.add",
+        "scripts/validate_sequence_sessions.py::repo_relative_path"
+      ]
+    }
+  ],
+  "observed_head": "9a75681d266fd08fed9498e22dd9c72664cff715",
+  "policy_id": "module-collapse-v1",
+  "projection": {
+    "aggregated_cross_component_edges": 3,
+    "cross_component_machine_edges": 8,
+    "internal_machine_edges_collapsed": 36,
+    "machine_edge_count": 44,
+    "machine_node_count": 28,
+    "node_map": {
+      ".github/scripts/release_bundle.py::BundleError": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::build": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::checked_head": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::digest_manifest": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::fail": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::git": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::include_path": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::sha": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::source_tree": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::toolchain_digest": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::validate_path": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::verify": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::write_zip": "module:.github/scripts/release_bundle.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotError": "module:scripts/project_snapshot.py",
+      "scripts/release_preflight.py::_load": "module:scripts/release_preflight.py",
+      "scripts/release_preflight.py::git": "module:scripts/release_preflight.py",
+      "scripts/release_preflight.py::validate": "module:scripts/release_preflight.py",
+      "scripts/toolchain_identity.py::_git_value": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::_sha256": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::producer_metadata": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_tool_paths": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_toolchain_manifest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::toolchain_digest": "module:scripts/toolchain_identity.py",
+      "scripts/validate_sequence_sessions.py::evidence_paths.add": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::repo_relative_path": "module:scripts/validate_sequence_sessions.py"
+    },
+    "unresolved_machine_edges": []
+  },
+  "schema_version": 1,
+  "source_digest": "6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975"
+}

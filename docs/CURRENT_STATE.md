@@ -3,22 +3,22 @@
 # CURRENT STATE
 
 Last updated: generated from current specs
-Authority verified at SHA: 272aed60e21b6d5fc8cd027081d3de743a7726d4
+Authority verified at SHA: 91b58b98049a7d27ed65169508177ea7dc978ca1
 Governance profile: strict
 
 ## Current phase
-Phase: SW2-24
-Status: SW2_24_CI_LATENCY_COST_OPTIMIZATION_ACCEPTED
-Roadmap phase: SW2-24
+Phase: SW2-25
+Status: SW2_25_R1_R5_PROVEN_PENDING_FEATURE_MERGE
+Roadmap phase: SW2-25
 ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
-Branch: main
+Branch: work/sw2-25-reproducible-release-bundle
 Authoritative SHA: external final acceptance evidence
-Last accepted SHA: 272aed60e21b6d5fc8cd027081d3de743a7726d4
+Last accepted SHA: 91b58b98049a7d27ed65169508177ea7dc978ca1
 Current candidate SHA: external final acceptance evidence
-Current source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
+Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -35,7 +35,7 @@ PROJECT_DOCS_SYNC: PASS
 ## Sequence governance
 Sequence policy: REQUIRED
 Current sequence mode: DURING
-Current sequence session: SW2-24-GOVERNANCE
+Current sequence session: SW2-25-GOVERNANCE
 SEQUENCE_SYNC: PASS
 
 ## Proven
@@ -124,24 +124,25 @@ SEQUENCE_SYNC: PASS
 - SW2-24 latency target measured in GitHub run 37713042819 attempts 1/2/3 on helper-free SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab: Windows 49,68,64s median 64s versus six-run historical median 77s (16.9% observed reduction). All three attempts 6/6 successful, no monetary cost-saving claim.
 
 ## Not proven
-- GitHub automatic required-check enforcement remains intentionally NOT_PROVEN under Owner-approved no-ruleset governance; non-blocking.
-- Observed Windows median 64s versus historical 77s is non-randomized hosted-runner evidence, not hardware-normalized causal improvement. Candidate median aggregate job-seconds 199 versus 197 historical does not support a monetary cost-saving claim; billing and warm/cold cache state remain NOT_PROVEN.
-- Consumer migration/finalize acceptance used isolated pinned max-grounding, not modifications of upstream consumer repositories or fresh device/runtime E2E.
+- SW2-25 R6 feature/postmerge/terminal exact-SHA acceptance NOT_PROVEN.
+- Unsigned detached SHA-256 verifies archive content but does not independently authenticate the publisher or asserted source Git SHA offline; publication_authority=false.
+- Required GitHub status-check ruleset remains intentionally NOT_PROVEN by Owner boundary.
 
 ## Known blockers
-- None declared.
+- SW2-25-R6 NOT_PROVEN until exact final helper-free feature candidate all-six CI, equal-tree squash main, postmerge main six-context CI and separate terminal accepted closure.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Treat SW2-24 terminal accepted main feature 272aed60e21b6d5fc8cd027081d3de743a7726d4 as the last accepted implementation authority.
-- Preserve six-context Governance CI and 19+2 exhaustive Windows acceptance with Ubuntu serial parity.
-- Require explicit Owner authorization before adding SW2-25 to authoritative roadmap.
+- Require final unchanged toolchain and all six permanent contexts on exact helper-free candidate before making PR #44 ready.
+- Squash expected SHA only after PASS and confirm equal-tree main, then postmerge exact main six permanent CI contexts PASS.
+- Terminal R6 accepted closure is a separate evidence-only transaction; no stable tag, release publication, or SW2-26 scope authorized.
 
 ## Explicitly blocked
-- No new SW2-25 phase until the Owner authorizes scope and its acceptance boundary.
-- Do not weaken six permanent checks, Windows/Ubuntu regression parity, exact-head provenance, sequence Mermaid, consumer finalization or performance evidence.
-- Do not auto-enable branch ruleset, change license, publish release, or mutate external consumers.
+- Do not publish a Git tag, GitHub release or external artifact to a distribution channel.
+- Do not weaken six permanent CI contexts, strict/verify, Windows/Ubuntu, consumer, performance, Mermaid or documentation gates.
+- Do not mutate owner devices or external consumer repositories.
+- Do not open SW2-26 without explicit Owner authorization.
 
 <!-- CLAIM_BACKLINKS: TRUTH-SW-ROADMAP-SYNC -->

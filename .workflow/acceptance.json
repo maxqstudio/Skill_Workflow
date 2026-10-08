@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "R1-R6 proven by six historical exact CI sample baselines, all original cross-platform gates, three exact-SHA six-context timing samples, source/docs/sequence validation, exact-feature squash tree identity, and postmerge exact-main six-context CI. Observed 16.9% Windows improvement does not prove billed cost savings, hardware-normalized causality, new device runtime E2E or automatic branch protection. Terminal closure candidate and main require separately successful exact CI.",
+  "evidence_boundary": "R1-R5 proven by exact clean Git-blob packaging, offline detached manifest, attacker-style tamper/unsafe mode tests, cross-OS full-byte parity and helper-free permanent six-context run 37717003472. Manifest is not a cryptographic publisher signature, no release/tag created. SW2-25-R6 exact feature/main tree and postmerge final CI plus terminal closure NOT_PROVEN.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,73 +17,74 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: benchmarks/baselines/sw2-24-ci-latency.json records six successful exact-SHA GitHub runs (37430818483, 37706618341, 37708376562, 37708565187, 37708853965, 37708986331), six contexts per run, per-job durations, observed Windows median 77 seconds and aggregate job-seconds median 197. The source is historical GitHub run metadata, not a billed charge or causal speed claim.",
-      "id": "SW2-24-R1",
-      "requirement": "A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs.",
+      "evidence": "PASS: .github/scripts/release_bundle.py builds curated product-only Git-blob byte snapshot from exact clean HEAD. Deterministic canonical file order, fixed ZIP metadata, content SHA-256, source_git_sha verified at build, consumer toolchain digest, explicit offline source identity NOT_PROVEN and publication_authority=false; actual product-build GitHub CI run 37716191737 Ubuntu and Windows passed.",
+      "id": "SW2-25-R1",
+      "requirement": "An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS: isolated fixture inventory audited in scripts/selftest_schema_toolchain.py, scripts/selftest_historical_evidence.py, scripts/selftest_public_docs.py, scripts/selftest_project_truth_compiler.py, scripts/selftest_release_preflight.py, scripts/selftest_analyzer_contract.py and scripts/selftest_consumer_finalize.py; all use temp fixtures and no shared root mutations. .github/scripts/validate_ci_parallel_contract.py statically enforces 10 original commands, seven named groups, Ubuntu serial fallback, Windows bounded dispatch and untouched STRICT/verify. Negative tamper and missing-test selftests succeeded in GitHub runner 37710069327; parallel execution is not yet final cross-platform acceptance.",
-      "id": "SW2-24-R2",
-      "requirement": "Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests.",
+      "evidence": "PASS: GitHub Release Bundle Dry Run run 37716191737 at exact SHA a4332aceecc320d11dceadbab9809ab7d87c38c9: both Ubuntu and Windows built and verified the same bundle, parity job 113113186605 compared full ZIP bytes and full JSON manifest bytes and passed CROSS_OS_BUNDLE_EXACT_BYTES=PASS. A clean clone built identical ZIP bytes; ZIP_STORED removes zlib dependency. Later source/docs changes require final exact candidate CI independently.",
+      "id": "SW2-25-R2",
+      "requirement": "A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS: exact source SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab, permanent Governance CI 37713042819 all six contexts successful in attempts 1/2/3; Windows combined orchestrator executed full 15-group/19-command fixed regression inventory with complete STRICT and read-only VERIFY. Cross-OS workflow static contract requires Ubuntu serial fallback, exact SHA, no dropped command, fixture source mutation refusal, first failed gate, and both complete finals. Mandatory adversarial negative paths PASS, no cached acceptance.",
-      "id": "SW2-24-R3",
-      "requirement": "Bounded parallel self-test orchestration is deterministic, runs each selected command exactly once, captures explicit first failed gate and full failed command evidence, rejects missing/racy/mutating tests, and preserves six permanent contexts, STRICT, verify, finalize, Windows, Mermaid, performance and consumer gates.",
+      "evidence": "PASS: hostile fixture regressions in .github/scripts/selftest_release_bundle.py succeeded on GitHub for dirty worktree, non-exact SHA, secret paths, tracked private surfaces outside allowlist, unsafe Windows reserved names, symlink Git tree mode, missing mandatory surfaces, and output inside repo; no semantic or external mutations. Test source and policy rerun during exact GitHub evidence synchronization.",
+      "id": "SW2-25-R3",
+      "requirement": "Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS observed Windows median reduction 77s baseline (6 exact successful historical runs) to 64s candidate, three all-six-context successful exact-SHA attempts on 8bb6f0f839c8557ecb084cae2df8dfe151169aab, run 37713042819 attempts 1/2/3: Windows 49,68,64 seconds (16.883% reduction versus declared >=15%). Full details in benchmarks/baselines/sw2-24-combined-attempts.json; median aggregate job-seconds 199 versus 197 historical and hosted runner cache/billing NOT_PROVEN, so no monetary saving or causal hardware-normalized performance claim.",
-      "id": "SW2-24-R4",
-      "requirement": "Before and after measurements use exact GitHub Actions runs with a cold/warm distinction; measured speed and job-seconds are reported without unproven cost or statistically causal claims, and no significant observed performance regression is silently accepted.",
+      "evidence": "PASS: detached offline manifest verification checks full archive and every file checksum, canonical metadata/mode/order, duplicate/missing/extra entries, path traversal, swapped/rehashed manifest and extra ZIP injection; rehashed timestamp tamper is still rejected. Forged valid SHA in an unsigned manifest remains explicitly publisher_authenticated=false, Git claim only, not publication authority. Cross-platform dry-run parity 37716191737 PASS.",
+      "id": "SW2-25-R4",
+      "requirement": "Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS: docs/handbook/reference/ci-latency.md documents exact historical baseline, all three earlier failed 15% experiments, final 16.9% observed median improvement with unchanged six contexts, no cost claim, strict negative paths and Owner no-ruleset boundary; benchmarks/baselines/sw2-24-{ci-latency,initial-attempts,overlap-attempts,expanded-attempts,combined-attempts}.json retain complete samples. SW2-24 CURRENT source-derived actual/human Mermaid, frozen SW2-23 history and deterministic Project Truth/doc inventory regenerated with targeted GitHub sync run 37713472471 SUCCESS; final six-context exact helper-free acceptance is separately R6 NOT_PROVEN.",
-      "id": "SW2-24-R5",
-      "requirement": "Authoritative public documentation, roadmap, source-derived sequence and human-view Mermaid remain consistent and readable; changes are backed by negative regressions, including false skipping/cache laundering.",
+      "evidence": "PASS: exact helper-free branch SHA e01406e5528ab51370262dc52f486fc537c288e7, permanent Governance CI run 37717003472 terminal 6/6 SUCCESS, including Windows and Ubuntu release-bundle negative fixture and actual full Git-blob build/detached verification; dedicated read-only manual-only Release Bundle Dry Run 37716191737 Windows/Ubuntu byte-equal manifest and ZIP; SW2-25 source-authored handbook/release-process/README, governed doc inventory, source-derived Mermaid and Project Truth all passed. Release asset publication explicitly forbidden; no extra permanent CI context added.",
+      "id": "SW2-25-R5",
+      "requirement": "Release preflight and public handbook document read-only distribution dry-run boundaries; permanent CI exercises actual bundle build/verify and fail-closed regressions across Ubuntu and Windows, preserving the existing six contexts with no extra release or tag.",
       "status": "PASS"
     },
     {
-      "evidence": "PASS: exact helper-free feature candidate e53b656811da5a8db2069715c643125eaba705df tree 433185f88756eeeda2eb7c8b63d39c96280ad505 passed all six permanent contexts in Governance CI run 37713622290; PR #42 squash merged to exact feature main 272aed60e21b6d5fc8cd027081d3de743a7726d4 with identical tree, then full postmerge Governance CI run 37713767803 passed six permanent contexts on exact accepted main. Terminal closure candidate and final closure main are independently retested.",
-      "id": "SW2-24-R6",
-      "requirement": "Final exact helper-free feature candidate passes six permanent checks, is squash-merged with exact tree identity, and passes six permanent postmerge main checks before terminal accepted closure.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "id": "SW2-25-R6",
+      "requirement": "An exact helper-free final feature candidate passes all six permanent Governance CI contexts, squash merges with identical tree, and passes full six-context postmerge main before terminal closure; no release or distribution publication happens without separate Owner authority.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-24-GOVERNANCE",
+  "sequence_session": "SW2-25-GOVERNANCE",
   "sequence_sync_status": "PASS",
   "test_commands": [
-    "python scripts/selftest_governance_engine.py",
-    "python scripts/selftest_performance_budget.py",
+    "python .github/scripts/selftest_release_bundle.py",
+    "python .github/scripts/selftest_release_bundle_ci.py",
+    "python scripts/selftest_release_preflight.py",
     "python scripts/validate_schema_toolchain.py --root .",
     "python scripts/validate_sequence_sessions.py --root ."
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

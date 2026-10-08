@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-24",
+  "current_phase": "SW2-25",
   "phases": [
     {
       "exit_criteria": [
@@ -309,8 +309,22 @@
       ],
       "id": "SW2-24",
       "objective": "Reduce unnecessary critical-path latency in the existing six-context GitHub Governance CI through evidence-based bounded parallelism and setup reuse while preserving exhaustive, exact-SHA, fail-closed acceptance on Windows and Ubuntu, without adding billable permanent contexts.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "CI Latency & Cost Optimization"
+    },
+    {
+      "exit_criteria": [
+        "An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature.",
+        "A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized.",
+        "Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates.",
+        "Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority.",
+        "Release preflight and public handbook document read-only distribution dry-run boundaries; permanent CI exercises actual bundle build/verify and fail-closed regressions across Ubuntu and Windows, preserving the existing six contexts with no extra release or tag.",
+        "An exact helper-free final feature candidate passes all six permanent Governance CI contexts, squash merges with identical tree, and passes full six-context postmerge main before terminal closure; no release or distribution publication happens without separate Owner authority."
+      ],
+      "id": "SW2-25",
+      "objective": "Build deterministic, content-addressed, independently verifiable consumer distribution artifacts and release dry-run evidence while preserving fail-closed GitHub acceptance and forbidding unauthorized publication.",
+      "status": "CURRENT",
+      "title": "Reproducible Release Bundle & Integrity Verification"
     }
   ],
   "schema_version": 1
