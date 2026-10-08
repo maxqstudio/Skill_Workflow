@@ -36,7 +36,10 @@ CONTEXT_NAMES = ("Self Governance (ubuntu-latest)",
 
 def steps_from_workflow(workflow: str) -> dict[str, str]:
     import re
-    segments = re.split(r"(?m)^      - name: ", workflow)
+    if "  governance-selftest:\n" not in workflow or "  sequence-evidence:\n" not in workflow:
+        raise ValueError("CI_PARALLEL_GOVERNANCE_MATRIX_SCOPE_MISSING")
+    block=workflow.split("  governance-selftest:\n",1)[1].split("  sequence-evidence:\n",1)[0]
+    segments = re.split(r"(?m)^      - name: ", block)
     result={}
     for segment in segments[1:]:
         first,sep,rest=segment.partition("\n")
