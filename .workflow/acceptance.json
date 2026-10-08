@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "R1-R4 supported by six historical CI samples, fixed 21-gate deterministic negative paths and three exact-SHA six-context successful candidate attempts meeting observed Windows latency target. R5 full current authoritative source/docs/sequence acceptance and R6 exact helper-free feature candidate, merge and postmerge main remain NOT_PROVEN. Hosted runner performance is variable and no billable-minute savings claimed.",
+  "evidence_boundary": "SW2-24 R1-R5 each have exact historical and combined-candidate run evidence, 21 blocking Windows commands, static cross-OS contract, negative-path and public docs/sequence checks. Observed Windows median 64s versus 77s baseline satisfies target without a supported cost-savings claim; final exact feature/merge/main six-context authority and terminal closure R6 remain NOT_PROVEN.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -41,10 +41,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
+      "evidence": "PASS: docs/handbook/reference/ci-latency.md documents exact historical baseline, all three earlier failed 15% experiments, final 16.9% observed median improvement with unchanged six contexts, no cost claim, strict negative paths and Owner no-ruleset boundary; benchmarks/baselines/sw2-24-{ci-latency,initial-attempts,overlap-attempts,expanded-attempts,combined-attempts}.json retain complete samples. SW2-24 CURRENT source-derived actual/human Mermaid, frozen SW2-23 history and deterministic Project Truth/doc inventory regenerated with targeted GitHub sync run 37713472471 SUCCESS; final six-context exact helper-free acceptance is separately R6 NOT_PROVEN.",
       "id": "SW2-24-R5",
       "requirement": "Authoritative public documentation, roadmap, source-derived sequence and human-view Mermaid remain consistent and readable; changes are backed by negative regressions, including false skipping/cache laundering.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
