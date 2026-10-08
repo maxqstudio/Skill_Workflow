@@ -26,14 +26,17 @@ def main()->int:
         wf.replace("      - name: Consumer finalize negative-path regression",
                    "      - name: Removed consumer finalize regression",1)))
     print("CI_PARALLEL_WORKFLOW_TAMPER_REJECTED=PASS")
-    assert len(ci.GROUPS)==7 and ci.MAX_WORKERS==3
+    assert len(ci.GROUPS)==15 and ci.MAX_WORKERS==3
     assert ci.GROUP_NAMES==(
         "consumer_finalize","schema_toolchain","analyzer_contract",
-        "historical_evidence","public_docs","release_preflight","project_truth_compiler")
+        "historical_evidence","public_docs","release_preflight","project_truth_compiler",
+        "engine_regression","sequence_call_resolution","sequence_squash_provenance",
+        "sequence_human_view","repository_health","ruleset_policy",
+        "cross_document","adoption_profiles")
     group_commands={name:spec for name, specs in ci.GROUPS for spec in specs}
     assert len(group_commands)==len(ci.GROUPS)
     expected_count=sum(len(scripts) for _,scripts in ci.GROUPS)
-    assert expected_count==10,expected_count
+    assert expected_count==19,expected_count
     with tempfile.TemporaryDirectory(prefix="sw2-24-ci-parallel-") as td:
         root=Path(td)
         for _,scripts in ci.GROUPS:
