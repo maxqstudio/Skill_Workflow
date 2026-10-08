@@ -90,7 +90,7 @@ jobs:
 
       - name: TEMP SW2-26 source-generated projection export (remove before acceptance)
         if: always()
-        run: python .github/scripts/export_sw2_26_projection.py
+        run: python .github/scripts/export_sw2_26_projection.txt
 
   governance-selftest:
     name: Governance Selftest (${{ matrix.os }})
