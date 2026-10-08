@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d
+Source digest: eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -11,7 +11,7 @@ Generated/refreshed: current compiler run
 | .github/scripts/ci_applicability.py | Python | 91 | .github/scripts | NO |
 | .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
-| .github/scripts/tmp_sw2_23_phase_open.py | Python | 191 | .github/scripts | NO |
+| .github/scripts/tmp_sw2_23_evidence_sync.py | Python | 54 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
 | .github/scripts/validate_unified_ci.py | Python | 119 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
@@ -39,8 +39,9 @@ Generated/refreshed: current compiler run
 | scripts/selftest_adoption_profiles.py | Python | 189 | scripts | NO |
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
 | scripts/selftest_closure_defect_lifecycle.py | Python | 200 | scripts | NO |
+| scripts/selftest_consumer_compatibility_matrix.py | Python | 91 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 49 | scripts | NO |
-| scripts/selftest_documentation_contract.py | Python | 187 | scripts | NO |
+| scripts/selftest_documentation_contract.py | Python | 188 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |
 | scripts/selftest_github_ruleset.py | Python | 64 | scripts | NO |
 | scripts/selftest_governance_engine.py | Python | 581 | scripts | NO |
@@ -62,9 +63,10 @@ Generated/refreshed: current compiler run
 | scripts/toolchain_identity.py | Python | 234 | scripts | NO |
 | scripts/upgrade_governance_toolchain.py | Python | 183 | scripts | NO |
 | scripts/validate_closure_defect_lifecycle.py | Python | 228 | scripts | NO |
+| scripts/validate_consumer_compatibility_matrix.py | Python | 179 | scripts | NO |
 | scripts/validate_cross_document_consistency.py | Python | 750 | scripts | NO |
 | scripts/validate_doc_quality.py | Python | 269 | scripts | NO |
-| scripts/validate_documentation_contract.py | Python | 340 | scripts | NO |
+| scripts/validate_documentation_contract.py | Python | 349 | scripts | NO |
 | scripts/validate_github_ruleset.py | Python | 104 | scripts | NO |
 | scripts/validate_handoff.py | Python | 417 | scripts | NO |
 | scripts/validate_human_comprehension.py | Python | 214 | scripts | NO |

@@ -578,8 +578,8 @@
       "kind": "function",
       "label": "scripts/validate_documentation_contract.py::_finding",
       "language": "Python",
-      "line_end": 197,
-      "line_start": 184,
+      "line_end": 202,
+      "line_start": 189,
       "locator": "scripts/validate_documentation_contract.py::_finding"
     },
     {
@@ -587,8 +587,8 @@
       "kind": "function",
       "label": "scripts/validate_documentation_contract.py::_historical_context",
       "language": "Python",
-      "line_end": 181,
-      "line_start": 179,
+      "line_end": 186,
+      "line_start": 184,
       "locator": "scripts/validate_documentation_contract.py::_historical_context"
     },
     {
@@ -596,8 +596,8 @@
       "kind": "function",
       "label": "scripts/validate_documentation_contract.py::_line_number",
       "language": "Python",
-      "line_end": 176,
-      "line_start": 175,
+      "line_end": 181,
+      "line_start": 180,
       "locator": "scripts/validate_documentation_contract.py::_line_number"
     },
     {
@@ -605,12 +605,12 @@
       "kind": "function",
       "label": "scripts/validate_documentation_contract.py::freshness_findings",
       "language": "Python",
-      "line_end": 252,
-      "line_start": 200,
+      "line_end": 261,
+      "line_start": 205,
       "locator": "scripts/validate_documentation_contract.py::freshness_findings"
     }
   ],
-  "observed_head": "00c1acf2b23281a035744047cf59372e8b18e8ce",
+  "observed_head": "e5eb911d0f95699629056b48a5fce60fd7189ed0",
   "schema_version": 1,
-  "source_digest": "8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d"
+  "source_digest": "eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609"
 }

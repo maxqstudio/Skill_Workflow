@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d
+Source digest: eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -18,7 +18,7 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
-| .github/scripts/tmp_sw2_23_phase_open.py | 4 | 0 | 4 | 0 |
+| .github/scripts/tmp_sw2_23_evidence_sync.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
@@ -46,6 +46,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_adoption_profiles.py | 7 | 0 | 7 | 0 |
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
+| scripts/selftest_consumer_compatibility_matrix.py | 3 | 0 | 2 | 1 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_documentation_contract.py | 13 | 0 | 12 | 1 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
@@ -69,6 +70,7 @@ responsibility, callers, or state ownership.
 | scripts/toolchain_identity.py | 10 | 0 | 10 | 0 |
 | scripts/upgrade_governance_toolchain.py | 7 | 0 | 7 | 0 |
 | scripts/validate_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
+| scripts/validate_consumer_compatibility_matrix.py | 6 | 0 | 6 | 0 |
 | scripts/validate_cross_document_consistency.py | 23 | 0 | 23 | 0 |
 | scripts/validate_doc_quality.py | 2 | 0 | 2 | 0 |
 | scripts/validate_documentation_contract.py | 16 | 0 | 16 | 0 |
@@ -122,14 +124,13 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>.github/scripts/tmp_sw2_23_phase_open.py</code> — 4 symbols</summary>
+<summary><code>.github/scripts/tmp_sw2_23_evidence_sync.py</code> — 3 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| cmd | function | 12-14 |
-| obj | function | 15-16 |
-| save | function | 17-20 |
-| git | function | 21-22 |
+| cmd | function | 9-11 |
+| load | function | 12-12 |
+| save | function | 13-13 |
 
 </details>
 
@@ -559,6 +560,17 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/selftest_consumer_compatibility_matrix.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| assert_class | function | 23-25 |
+| main | function | 28-87 |
+| main.source | method | 63-65 |
+
+</details>
+
+<details>
 <summary><code>scripts/selftest_cross_document_regressions.py</code> — 1 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -580,11 +592,11 @@ responsibility, callers, or state ownership.
 | fixture_root | function | 47-86 |
 | kinds | function | 89-90 |
 | baseline_inventory_contract | function | 93-104 |
-| stale_semantic_regressions | function | 107-125 |
-| coverage_drift_contract | function | 128-163 |
-| coverage_drift_contract.expect_stale | method | 136-145 |
-| unclassified_surface_contract | function | 166-174 |
-| main | function | 177-183 |
+| stale_semantic_regressions | function | 107-126 |
+| coverage_drift_contract | function | 129-164 |
+| coverage_drift_contract.expect_stale | method | 137-146 |
+| unclassified_surface_contract | function | 167-175 |
+| main | function | 178-184 |
 
 </details>
 
@@ -873,6 +885,20 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>scripts/validate_consumer_compatibility_matrix.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| read_json | function | 25-29 |
+| classify | function | 32-76 |
+| _request | function | 79-91 |
+| fetch_snapshot | function | 94-112 |
+| audit | function | 115-155 |
+| main | function | 158-175 |
+
+</details>
+
+<details>
 <summary><code>scripts/validate_cross_document_consistency.py</code> — 23 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -918,22 +944,22 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| _git | function | 69-78 |
-| tracked_paths | function | 81-89 |
-| is_documentation_candidate | function | 92-95 |
-| classify_document | function | 98-129 |
-| _load_json | function | 132-137 |
-| latest_stable_tag | function | 140-151 |
-| current_phase | function | 154-156 |
-| license_present | function | 159-160 |
-| no_ruleset_boundary | function | 163-172 |
-| _line_number | function | 175-176 |
-| _historical_context | function | 179-181 |
-| _finding | function | 184-197 |
-| freshness_findings | function | 200-252 |
-| build_report | function | 255-296 |
-| report_text | function | 299-300 |
-| main | function | 303-336 |
+| _git | function | 74-83 |
+| tracked_paths | function | 86-94 |
+| is_documentation_candidate | function | 97-100 |
+| classify_document | function | 103-134 |
+| _load_json | function | 137-142 |
+| latest_stable_tag | function | 145-156 |
+| current_phase | function | 159-161 |
+| license_present | function | 164-165 |
+| no_ruleset_boundary | function | 168-177 |
+| _line_number | function | 180-181 |
+| _historical_context | function | 184-186 |
+| _finding | function | 189-202 |
+| freshness_findings | function | 205-261 |
+| build_report | function | 264-305 |
+| report_text | function | 308-309 |
+| main | function | 312-345 |
 
 </details>
 

@@ -18,7 +18,7 @@ Branch: work/sw2-23-multi-consumer-adoption
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
 Current candidate SHA: external final acceptance evidence
-Current source digest: 8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d
+Current source digest: eb7e4e9bb48d07a1c166a01dbb8f0ef536ba9defa4f1edaabcd4274f5bbe4609
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
