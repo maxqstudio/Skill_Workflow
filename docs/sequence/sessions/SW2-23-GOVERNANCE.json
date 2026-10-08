@@ -13,7 +13,7 @@
       "scripts/finalize_consumer.py::finalize"
     ],
     "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.json",
-    "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef"
+    "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e"
   },
   "critical": true,
   "evidence_boundary": "Static sequence evidence covers source-side toolchain identity/upgrade, pinned read-only consumer classification, and exact-head consumer-owned finalization. Execution of app source tests and full validators is proven separately by permanent GitHub CI; historical runtime/device evidence is not re-executed by consumer finalize.",
@@ -23,7 +23,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef"
+    "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e"
   },
   "implementation_base_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
   "mode": "DURING",

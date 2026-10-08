@@ -102,6 +102,83 @@
   },
   "edges": [
     {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::finalize",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::git"
+    },
+    {
+      "action": "is_source_test",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::finalize",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::is_source_test"
+    },
+    {
+      "action": "plan",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::finalize",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::plan"
+    },
+    {
+      "action": "require_clean",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::finalize",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::require_clean"
+    },
+    {
+      "action": "is_source_test",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::owner_tests",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::is_source_test"
+    },
+    {
+      "action": "parse_owner_command",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::owner_tests",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::parse_owner_command"
+    },
+    {
+      "action": "path.read_text",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::owner_tests",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::plan",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::git"
+    },
+    {
+      "action": "owner_tests",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::plan",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::owner_tests"
+    },
+    {
+      "action": "require_clean",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::plan",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::require_clean"
+    },
+    {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": "scripts/finalize_consumer.py::require_clean",
+      "resolver": "python_ast",
+      "to": "scripts/finalize_consumer.py::git"
+    },
+    {
       "action": "SnapshotError",
       "evidence": "STATIC",
       "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
@@ -402,11 +479,76 @@
     "scripts/toolchain_identity.py::validate_toolchain_lock",
     "scripts/validate_documentation_contract.py::freshness_findings",
     "scripts/validate_consumer_compatibility_matrix.py::classify",
-    "scripts/validate_consumer_compatibility_matrix.py::audit"
+    "scripts/validate_consumer_compatibility_matrix.py::audit",
+    "scripts/finalize_consumer.py::plan",
+    "scripts/finalize_consumer.py::finalize"
   ],
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
   "nodes": [
+    {
+      "id": "scripts/finalize_consumer.py::finalize",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::finalize",
+      "language": "Python",
+      "line_end": 162,
+      "line_start": 118,
+      "locator": "scripts/finalize_consumer.py::finalize"
+    },
+    {
+      "id": "scripts/finalize_consumer.py::git",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::git",
+      "language": "Python",
+      "line_end": 39,
+      "line_start": 36,
+      "locator": "scripts/finalize_consumer.py::git"
+    },
+    {
+      "id": "scripts/finalize_consumer.py::is_source_test",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::is_source_test",
+      "language": "Python",
+      "line_end": 71,
+      "line_start": 69,
+      "locator": "scripts/finalize_consumer.py::is_source_test"
+    },
+    {
+      "id": "scripts/finalize_consumer.py::owner_tests",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::owner_tests",
+      "language": "Python",
+      "line_end": 87,
+      "line_start": 74,
+      "locator": "scripts/finalize_consumer.py::owner_tests"
+    },
+    {
+      "id": "scripts/finalize_consumer.py::parse_owner_command",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::parse_owner_command",
+      "language": "Python",
+      "line_end": 66,
+      "line_start": 48,
+      "locator": "scripts/finalize_consumer.py::parse_owner_command"
+    },
+    {
+      "id": "scripts/finalize_consumer.py::plan",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::plan",
+      "language": "Python",
+      "line_end": 115,
+      "line_start": 90,
+      "locator": "scripts/finalize_consumer.py::plan"
+    },
+    {
+      "id": "scripts/finalize_consumer.py::require_clean",
+      "kind": "function",
+      "label": "scripts/finalize_consumer.py::require_clean",
+      "language": "Python",
+      "line_end": 45,
+      "line_start": 42,
+      "locator": "scripts/finalize_consumer.py::require_clean"
+    },
     {
       "id": "scripts/project_snapshot.py::ProjectSnapshot.entry",
       "kind": "method",
@@ -669,7 +811,7 @@
       "locator": "scripts/validate_sequence_sessions.py::repo_relative_path"
     }
   ],
-  "observed_head": "33afab894576ca598fa7443747832bdfeb2e6987",
+  "observed_head": "518c4156f884ba32cdbe7e19bf537ea83d91957a",
   "schema_version": 1,
-  "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef"
+  "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e"
 }

@@ -1,16 +1,18 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
+%% SOURCE_DIGEST: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 %% POLICY_ID: module-collapse-v1
 %% GENERATED_BY: sequence_human_view.py
 sequenceDiagram
-    participant module_scripts_project_snapshot_py_0 as scripts/project_snapshot.py
-    participant module_scripts_toolchain_identity_py_1 as scripts/toolchain_identity.py
-    participant module_scripts_upgrade_governance_toolchain_py_2 as scripts/upgrade_governance_toolchain.py
-    participant module_scripts_validate_consumer_compatibility_matrix_py_3 as scripts/validate_consumer_compatibility_matrix.py
-    participant module_scripts_validate_documentation_contract_py_4 as scripts/validate_documentation_contract.py
-    participant module_scripts_validate_sequence_sessions_py_5 as scripts/validate_sequence_sessions.py
-    module_scripts_toolchain_identity_py_1->>module_scripts_project_snapshot_py_0: 5 static interactions
-    module_scripts_upgrade_governance_toolchain_py_2->>module_scripts_project_snapshot_py_0: 2 static interactions
-    module_scripts_upgrade_governance_toolchain_py_2->>module_scripts_toolchain_identity_py_1: 7 static interactions
-    module_scripts_validate_consumer_compatibility_matrix_py_3->>module_scripts_validate_sequence_sessions_py_5: 1 static interaction
-    module_scripts_validate_documentation_contract_py_4->>module_scripts_project_snapshot_py_0: 1 static interaction
+    participant module_scripts_finalize_consumer_py_0 as scripts/finalize_consumer.py
+    participant module_scripts_project_snapshot_py_1 as scripts/project_snapshot.py
+    participant module_scripts_toolchain_identity_py_2 as scripts/toolchain_identity.py
+    participant module_scripts_upgrade_governance_toolchain_py_3 as scripts/upgrade_governance_toolchain.py
+    participant module_scripts_validate_consumer_compatibility_matrix_py_4 as scripts/validate_consumer_compatibility_matrix.py
+    participant module_scripts_validate_documentation_contract_py_5 as scripts/validate_documentation_contract.py
+    participant module_scripts_validate_sequence_sessions_py_6 as scripts/validate_sequence_sessions.py
+    module_scripts_finalize_consumer_py_0->>module_scripts_project_snapshot_py_1: 1 static interaction
+    module_scripts_toolchain_identity_py_2->>module_scripts_project_snapshot_py_1: 5 static interactions
+    module_scripts_upgrade_governance_toolchain_py_3->>module_scripts_project_snapshot_py_1: 2 static interactions
+    module_scripts_upgrade_governance_toolchain_py_3->>module_scripts_toolchain_identity_py_2: 7 static interactions
+    module_scripts_validate_consumer_compatibility_matrix_py_4->>module_scripts_validate_sequence_sessions_py_6: 1 static interaction
+    module_scripts_validate_documentation_contract_py_5->>module_scripts_project_snapshot_py_1: 1 static interaction

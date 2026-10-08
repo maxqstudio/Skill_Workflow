@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
+Source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -23,6 +23,7 @@ responsibility, callers, or state ownership.
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
 | scripts/benchmark_governance.py | 8 | 0 | 8 | 0 |
 | scripts/extract_project_facts.py | 14 | 1 | 6 | 7 |
+| scripts/finalize_consumer.py | 8 | 0 | 8 | 0 |
 | scripts/generate_module_map.py | 3 | 0 | 3 | 0 |
 | scripts/generate_project_docs.py | 9 | 0 | 9 | 0 |
 | scripts/generate_sequence_actual.py | 21 | 3 | 9 | 9 |
@@ -46,6 +47,7 @@ responsibility, callers, or state ownership.
 | scripts/selftest_analyzer_contract.py | 4 | 0 | 4 | 0 |
 | scripts/selftest_closure_defect_lifecycle.py | 6 | 0 | 6 | 0 |
 | scripts/selftest_consumer_compatibility_matrix.py | 3 | 0 | 2 | 1 |
+| scripts/selftest_consumer_finalize.py | 6 | 0 | 6 | 0 |
 | scripts/selftest_cross_document_regressions.py | 1 | 0 | 1 | 0 |
 | scripts/selftest_documentation_contract.py | 13 | 0 | 12 | 1 |
 | scripts/selftest_generated_doc_presentation.py | 1 | 0 | 1 | 0 |
@@ -196,6 +198,22 @@ responsibility, callers, or state ownership.
 | _extract_from_snapshot | function | 151-247 |
 | extract_project_facts | function | 250-259 |
 | main | function | 262-285 |
+
+</details>
+
+<details>
+<summary><code>scripts/finalize_consumer.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 36-39 |
+| require_clean | function | 42-45 |
+| parse_owner_command | function | 48-66 |
+| is_source_test | function | 69-71 |
+| owner_tests | function | 74-87 |
+| plan | function | 90-115 |
+| finalize | function | 118-162 |
+| main | function | 165-185 |
 
 </details>
 
@@ -555,6 +573,20 @@ responsibility, callers, or state ownership.
 | assert_class | function | 23-25 |
 | main | function | 28-87 |
 | main.source | method | 63-65 |
+
+</details>
+
+<details>
+<summary><code>scripts/selftest_consumer_finalize.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 11-14 |
+| write | function | 16-19 |
+| commit | function | 21-24 |
+| fixture | function | 26-37 |
+| expect_error | function | 39-46 |
+| main | function | 48-91 |
 
 </details>
 

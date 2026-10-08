@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
+Source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -16,6 +16,7 @@ Generated/refreshed: current compiler run
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |
+| scripts/finalize_consumer.py | Python | 189 | scripts | NO |
 | scripts/generate_module_map.py | Python | 120 | scripts | NO |
 | scripts/generate_project_docs.py | Python | 601 | scripts | NO |
 | scripts/generate_sequence_actual.py | Python | 470 | scripts | NO |
@@ -39,6 +40,7 @@ Generated/refreshed: current compiler run
 | scripts/selftest_analyzer_contract.py | Python | 220 | scripts | NO |
 | scripts/selftest_closure_defect_lifecycle.py | Python | 200 | scripts | NO |
 | scripts/selftest_consumer_compatibility_matrix.py | Python | 91 | scripts | NO |
+| scripts/selftest_consumer_finalize.py | Python | 94 | scripts | NO |
 | scripts/selftest_cross_document_regressions.py | Python | 49 | scripts | NO |
 | scripts/selftest_documentation_contract.py | Python | 188 | scripts | NO |
 | scripts/selftest_generated_doc_presentation.py | Python | 54 | scripts | NO |

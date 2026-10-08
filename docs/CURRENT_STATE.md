@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-23
-Status: SW2_23_R1_R2_R4_R5_R6_PROVEN_R3_BLOCKED
+Status: SW2_23_R1_R6_PROVEN_PENDING_EXACT_FINAL_CI
 Roadmap phase: SW2-23
 ROADMAP_SYNC: PASS
 
@@ -18,7 +18,7 @@ Branch: work/sw2-23-multi-consumer-adoption
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
 Current candidate SHA: external final acceptance evidence
-Current source digest: 614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef
+Current source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -119,22 +119,20 @@ SEQUENCE_SYNC: PASS
 - SW2-22 Consumer Toolchain Provenance & Upgrade Contract is accepted: exact final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf passed Governance CI 37429305042 6/6, squash-merged to main 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a, and post-merge Governance CI 37429617130 passed all six permanent contexts.
 
 ## Not proven
-- SW2-23 R3 full check-plan-apply-validate-finalize on one compatible isolated consumer is NOT_PROVEN. Pinned max-grounding check/upgrade/source/Project Truth passes but producer-root finalize is unsupported without source-only scripts.
-- SW2-23 R7 exact feature-merge/post-merge acceptance remains NOT_PROVEN; PR #40 remains DRAFT.
-- Three pinned real consumer snapshots have classification proof only, not three full adoption PASS claims.
-- Automatic GitHub merge protection and required checks remain intentionally NOT_PROVEN under Owner-approved no-ruleset boundary.
+- SW2-23 R7 merge/postmerge exact-SHA acceptance and terminal closure are NOT_PROVEN; PR #40 remains DRAFT.
+- Pinned max-grounding isolated consumer finalize PASS does not prove actual consumer upstream was modified or that historical runtime/E2E was reexecuted.
+- Automatic GitHub merge ruleset enforcement remains NOT_PROVEN by Owner decision.
 
 ## Known blockers
-- SW2-23-R3 NOT_PROVEN: real legacy consumer cannot run producer-root Governance Engine finalize because producer-only selftest scripts are absent; a truly supported isolated end-to-end finalize fixture is not yet demonstrated.
-- SW2-23-R7 NOT_PROVEN: exact promotion candidate, squash merge and post-merge main six-context acceptance not yet complete.
+- SW2-23 R7 remains NOT_PROVEN until final feature candidate and accepted main exact-tree, six-context postmerge evidence.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Keep PR #40 DRAFT and repair the R3 compatibility/finalize precondition in a representative isolated fixture without copying producer-only scripts into real consumer repositories or weakening governance.
-- Preserve accepted SW2-22 main and existing six permanent CI contexts; refresh evidence only on exact helper-free branch candidates.
-- After R3 is proven, promote R7 only after exact feature candidate, squash-merge and post-merge main six-context success; terminal closure requires a separate evidence-only transition.
+- Regenerate exact current sequence and deterministic Project Truth after R3 fix; remove temporary helpers before exact six-context permanent candidate CI.
+- If final candidate six-context acceptance PASS, execute reviewed squash PR #40, compare tree identity and require main postmerge 6/6; do not change Owner's no-ruleset boundary.
+- Complete terminal accepted closure only after post-merge evidence and fresh exact-head six-context final CI.
 
 ## Explicitly blocked
 - Do not modify actual consumer repositories during SW2-23 compatibility evaluation.

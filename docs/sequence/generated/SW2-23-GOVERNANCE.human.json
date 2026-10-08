@@ -1,17 +1,31 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 5,
-    "interaction_count": 5,
+    "interaction_ceiling": 6,
+    "interaction_count": 6,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 6,
-    "participant_count": 6,
+    "participant_ceiling": 7,
+    "participant_count": 7,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
   },
   "edges": [
+    {
+      "actions": [
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/finalize_consumer.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
     {
       "actions": [
         "dst.read_bytes",
@@ -99,12 +113,29 @@
     "scripts/toolchain_identity.py::validate_toolchain_lock",
     "scripts/validate_documentation_contract.py::freshness_findings",
     "scripts/validate_consumer_compatibility_matrix.py::classify",
-    "scripts/validate_consumer_compatibility_matrix.py::audit"
+    "scripts/validate_consumer_compatibility_matrix.py::audit",
+    "scripts/finalize_consumer.py::plan",
+    "scripts/finalize_consumer.py::finalize"
   ],
   "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
   "generated": true,
   "generated_by": "sequence_human_view.py",
   "nodes": [
+    {
+      "id": "module:scripts/finalize_consumer.py",
+      "kind": "module",
+      "label": "scripts/finalize_consumer.py",
+      "machine_node_count": 7,
+      "machine_nodes": [
+        "scripts/finalize_consumer.py::finalize",
+        "scripts/finalize_consumer.py::git",
+        "scripts/finalize_consumer.py::is_source_test",
+        "scripts/finalize_consumer.py::owner_tests",
+        "scripts/finalize_consumer.py::parse_owner_command",
+        "scripts/finalize_consumer.py::plan",
+        "scripts/finalize_consumer.py::require_clean"
+      ]
+    },
     {
       "id": "module:scripts/project_snapshot.py",
       "kind": "module",
@@ -183,15 +214,22 @@
       ]
     }
   ],
-  "observed_head": "33afab894576ca598fa7443747832bdfeb2e6987",
+  "observed_head": "518c4156f884ba32cdbe7e19bf537ea83d91957a",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 11,
-    "cross_component_machine_edges": 16,
-    "internal_machine_edges_collapsed": 26,
-    "machine_edge_count": 42,
-    "machine_node_count": 29,
+    "cross_component_machine_edges": 17,
+    "internal_machine_edges_collapsed": 36,
+    "machine_edge_count": 53,
+    "machine_node_count": 36,
     "node_map": {
+      "scripts/finalize_consumer.py::finalize": "module:scripts/finalize_consumer.py",
+      "scripts/finalize_consumer.py::git": "module:scripts/finalize_consumer.py",
+      "scripts/finalize_consumer.py::is_source_test": "module:scripts/finalize_consumer.py",
+      "scripts/finalize_consumer.py::owner_tests": "module:scripts/finalize_consumer.py",
+      "scripts/finalize_consumer.py::parse_owner_command": "module:scripts/finalize_consumer.py",
+      "scripts/finalize_consumer.py::plan": "module:scripts/finalize_consumer.py",
+      "scripts/finalize_consumer.py::require_clean": "module:scripts/finalize_consumer.py",
       "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
@@ -225,5 +263,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "614d874a8c3ffa920ee00575f22b4210009a7d3352ea3fb90706028fab49c5ef"
+  "source_digest": "6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e"
 }
