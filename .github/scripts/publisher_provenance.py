@@ -75,7 +75,7 @@ def verify_subject(artifact, attestation, trusted_root, expected_sha, expected_r
         fail("PROVENANCE_VERIFIED_SUBJECT_MISMATCH")
 
 
-def verify(bundle, manifest, attestation, trusted_root, expected_sha, expected_ref):
+def verify(bundle, manifest, attestation, trusted_root, expected_sha, expected_ref, expected_root_sha256):
     if not SHA.fullmatch(expected_sha):
         fail("PROVENANCE_EXPECTED_SHA_INVALID")
     if not REF.fullmatch(expected_ref) or ".." in expected_ref or "//" in expected_ref:
@@ -84,6 +84,10 @@ def verify(bundle, manifest, attestation, trusted_root, expected_sha, expected_r
         fail("PROVENANCE_ATTESTATION_BUNDLE_MISSING")
     if not trusted_root.is_file() or not trusted_root.stat().st_size:
         fail("PROVENANCE_INDEPENDENT_TRUST_ROOT_MISSING")
+    if not re.fullmatch(r"[0-9a-f]{64}", expected_root_sha256):
+        fail("PROVENANCE_TRUST_ROOT_PIN_INVALID")
+    if digest(trusted_root) != expected_root_sha256:
+        fail("PROVENANCE_TRUST_ROOT_PIN_MISMATCH")
     try:
         integrity = release_bundle.verify(bundle, manifest)
     except (release_bundle.BundleError, OSError, ValueError) as exc:
@@ -98,18 +102,19 @@ def verify(bundle, manifest, attestation, trusted_root, expected_sha, expected_r
         "repository": REPO, "signer_workflow": SIGNER,
         "source_sha": expected_sha, "source_ref": expected_ref,
         "archive_sha256": digest(bundle), "manifest_sha256": digest(manifest),
-        "offline_trusted_root_freshness": "NOT_PROVEN", "first_failed_gate": "",
+        "offline_trusted_root_freshness": "NOT_PROVEN",
+        "trusted_root_sha256": expected_root_sha256, "first_failed_gate": "",
     }
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    for k in ("bundle", "manifest", "attestation", "trusted-root", "expected-sha", "expected-ref"):
+    for k in ("bundle", "manifest", "attestation", "trusted-root", "expected-sha", "expected-ref", "expected-root-sha256"):
         ap.add_argument("--"+k, required=True)
     a = ap.parse_args()
     try:
         result = verify(Path(a.bundle), Path(a.manifest), Path(a.attestation),
-                        Path(a.trusted_root), a.expected_sha, a.expected_ref)
+                        Path(a.trusted_root), a.expected_sha, a.expected_ref, a.expected_root_sha256)
     except ProvenanceError as exc:
         print("PROVENANCE_RESULT=FAIL")
         print("FIRST_FAILED_GATE="+str(exc))
