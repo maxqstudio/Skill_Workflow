@@ -27,6 +27,16 @@ SERIAL_STEPS = {
                           ("python scripts/selftest_release_preflight.py",)),
     "project_truth_compiler": ("Project Truth Compiler self-test",
                                ("python scripts/selftest_project_truth_compiler.py",)),
+    "engine_regression": ("Governance Engine V2 regression",("python scripts/selftest_governance_engine.py",)),
+    "sequence_call_resolution": ("Sequence call-resolution regression",("python scripts/selftest_sequence_call_resolution.py",)),
+    "sequence_squash_provenance": ("Sequence squash-provenance regression",("python scripts/selftest_sequence_squash_provenance.py",)),
+    "sequence_human_view": ("Sequence human-view regression",("python scripts/selftest_sequence_human_view.py",)),
+    "repository_health": ("Repository health regression",(
+        "python scripts/selftest_repository_health.py",
+        "python scripts/validate_repository_health.py --root .")),
+    "ruleset_policy": ("Ruleset policy regression",("python scripts/selftest_github_ruleset.py",)),
+    "cross_document": ("Cross-document regression",("python scripts/selftest_cross_document_regressions.py",)),
+    "adoption_profiles": ("LITE and STANDARD adoption fixtures",("python scripts/selftest_adoption_profiles.py",)),
 }
 WINDOWS_FINAL_STEP = "Windows concurrent full STRICT and read-only VERIFY"
 FINAL_SELFTEST_STEP = "Windows complete final gates negative-path regression"
