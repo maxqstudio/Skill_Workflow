@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-23
 
-Current status: SW2_23_CONSUMER_BASELINE_IN_PROGRESS
+Current status: SW2_23_R1_R2_R4_R5_R6_PROVEN_R3_BLOCKED
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Reproduce the stale provenance-hint-only public reference with a failing documentation regression before repair.
-- Audit exact pinned consumers read-only; simulate upgrades in isolated copies only and classify unsupported governance.
-- Measure CI latency and execute full exact-head acceptance before promotion; keep PR draft until every required gate passes.
+- Keep PR #40 DRAFT and repair the R3 compatibility/finalize precondition in a representative isolated fixture without copying producer-only scripts into real consumer repositories or weakening governance.
+- Preserve accepted SW2-22 main and existing six permanent CI contexts; refresh evidence only on exact helper-free branch candidates.
+- After R3 is proven, promote R7 only after exact feature candidate, squash-merge and post-merge main six-context success; terminal closure requires a separate evidence-only transition.
 
 Blocked actions:
 - Do not modify actual consumer repositories during SW2-23 compatibility evaluation.
@@ -122,7 +122,8 @@ Blocked actions:
 - Do not begin SW2-24 or release a new stable tag without separate Owner authorization.
 
 Known blockers:
-- None declared.
+- SW2-23-R3 NOT_PROVEN: real legacy consumer cannot run producer-root Governance Engine finalize because producer-only selftest scripts are absent; a truly supported isolated end-to-end finalize fixture is not yet demonstrated.
+- SW2-23-R7 NOT_PROVEN: exact promotion candidate, squash merge and post-merge main six-context acceptance not yet complete.
 
 ## Proven vs not proven
 
@@ -209,8 +210,9 @@ Known blockers:
 
 ### Not proven
 
-- SW2-23 R1-R7 are NOT_PROVEN pending exact pinned consumer compatibility and permanent CI evidence.
-- DoctorCode has legacy hint-only producer provenance at pinned main; max-grounding and max-remote-commander have no supported root AGENTS.md / toolchain lock at their pinned main snapshots; unsupported paths must fail closed.
+- SW2-23 R3 full check-plan-apply-validate-finalize on one compatible isolated consumer is NOT_PROVEN. Pinned max-grounding check/upgrade/source/Project Truth passes but producer-root finalize is unsupported without source-only scripts.
+- SW2-23 R7 exact feature-merge/post-merge acceptance remains NOT_PROVEN; PR #40 remains DRAFT.
+- Three pinned real consumer snapshots have classification proof only, not three full adoption PASS claims.
 - Automatic GitHub merge protection and required checks remain intentionally NOT_PROVEN under Owner-approved no-ruleset boundary.
 
 ## Important limitations
