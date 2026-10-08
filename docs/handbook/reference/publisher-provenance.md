@@ -43,3 +43,7 @@ At exact SHA `f87586fa784a22614217121c14519637df4155dd`, [GitHub Actions run 377
 ## Trusted-root bootstrap and limitations
 
 For production/offline consumers, the expected SHA-256 of `trusted_root.jsonl` is an independently trusted policy input, not a digest read from the same downloaded package or unsigned manifest. The CI smoke test obtains a fresh Sigstore root using the official GitHub CLI and records its digest in the same trusted GitHub runner to exercise the pinning mechanism. That smoke test does **not** establish an independently distributed Owner trust anchor. Offline verification cannot determine whether the root has since been revoked; a previously pinned root is only as trustworthy as its initial acquisition and update process.
+
+## Pinned-root verifier proof
+
+GitHub Actions [run 37786698990](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37786698990) exercised the new mandatory expected trusted-root SHA-256 input and verified both signed subjects, including with all HTTP(S) proxies pointed at a blocked local endpoint. Four cryptographic negative paths remained rejected. CI derives a root digest from the root fetched through official GitHub CLI, which proves verifier plumbing rather than independent Owner distribution. Production operators must obtain and pin their expected root digest through a separate trusted channel; offline checks still cannot establish subsequent revocation freshness.

@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-26 IN_PROGRESS: real GitHub OIDC/Sigstore ZIP+manifest attestation and independent trusted-root verification demonstrated on exact candidate f87586fa784a22614217121c14519637df4155dd run 37783624068, with four real negative attestations. R3 offline-isolated verification, remainder of R4 replay/trust limitations, R5 six-context helper-free regression and R6 merge/closure remain NOT_PROVEN. publication_authority=false; SW2-25 acceptance remains historical authority.",
+  "evidence_boundary": "SW2-26 candidate: R1/R2 real signed provenance in GitHub run 37783624068; R3/R4 exact real OIDC/Sigstore and offline proxy-isolated attestation plus adversarial rejection in run 37786698990 at SHA 2fc46b8eefd0adf284530a89887db8cc2dc64cfc. R5 helper-free six-context acceptance on current signed-root-pin source and R6 postmerge terminal closure remain NOT_PROVEN. No independent Owner-distributed trust root or root revocation freshness claim. publication_authority=false.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -29,16 +29,16 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: needs live signer, verifier and independently provisioned trusted root.",
+      "evidence": "PASS: GitHub Actions run 37786698990 on exact SHA 2fc46b8eefd0adf284530a89887db8cc2dc64cfc verified both signed ZIP and detached manifest using gh attestation verify with expected Git SHA/ref, repository, workflow, OIDC issuer and caller-pinned root digest. Detached proxy-isolated offline verifier PASS; actual offline root revocation freshness and Owner-distributed trust-anchor origin are explicitly NOT_PROVEN.",
       "id": "SW2-26-R3",
       "requirement": "An independent cryptographic verifier validates SW2-25 content integrity together with trusted attestation signatures, expected GitHub workflow, source SHA and each artifact digest; offline limitations are explicit.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN overall: real signed wrong signer, wrong source ref, wrong source SHA and corrupt attestation rejection succeeded in GitHub run 37783624068. Independent offline root freshness/replay policy and further adversarial cases remain; mocked tests alone are not cryptographic proof.",
+      "evidence": "PASS: exact GitHub run 37786698990 rejected real signer mismatch, source-ref mismatch, source-SHA mismatch and corrupt attestation; permanent Windows/Ubuntu fixture exercises missing attestation/root, invalid and replaced pinned root, untrusted ZIP and manifest changes, malformed and counterfeit gh outputs; independently pinned SHA rejects replay. Sigstore root revocation freshness is a documented offline limitation, not claimed.",
       "id": "SW2-26-R4",
       "requirement": "Unsigned or forged claims, altered ZIP/manifest, wrong source SHA, repo or signer, missing/stale trust evidence, substitution and replay against a pinned expected SHA are rejected with deterministic first-failed-gate evidence.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: cross-platform exact-SHA GitHub evidence and source-generated documentation not yet created.",
