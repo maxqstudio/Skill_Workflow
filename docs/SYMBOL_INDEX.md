@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c
+Source digest: da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -16,8 +16,10 @@ responsibility, callers, or state ownership.
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
 | .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
+| .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
 | .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
+| .github/scripts/selftest_ci_parallel_final_gates.py | 8 | 0 | 5 | 3 |
 | .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_ci_parallel_contract.py | 3 | 0 | 3 | 0 |
@@ -107,6 +109,21 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/ci_parallel_final_gates.py</code> — 7 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 25-28 |
+| require_exact_clean | function | 31-38 |
+| authority | function | 41-54 |
+| commands | function | 57-67 |
+| run_one | function | 70-87 |
+| run | function | 90-112 |
+| main | function | 115-127 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/ci_parallel_selftests.py</code> — 6 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -127,6 +144,22 @@ responsibility, callers, or state ownership.
 |---|---|---|
 | require | function | 7-9 |
 | main | function | 12-36 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_ci_parallel_final_gates.py</code> — 8 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 13-16 |
+| write | function | 18-21 |
+| commit | function | 23-26 |
+| fixture | function | 28-38 |
+| main | function | 40-92 |
+| main.success | method | 48-56 |
+| main.failure | method | 68-70 |
+| main.mutation | method | 76-79 |
 
 </details>
 
@@ -157,9 +190,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| steps_from_workflow | function | 37-49 |
-| findings | function | 52-90 |
-| main | function | 93-108 |
+| steps_from_workflow | function | 43-55 |
+| findings | function | 58-111 |
+| main | function | 114-129 |
 
 </details>
 

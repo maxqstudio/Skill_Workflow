@@ -18,7 +18,7 @@ Branch: work/sw2-24-ci-latency-cost-optimization
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: e5bbd9e485380cda962656e7ce8a5477cfce0e68
 Current candidate SHA: external final acceptance evidence
-Current source digest: a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c
+Current source digest: da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md

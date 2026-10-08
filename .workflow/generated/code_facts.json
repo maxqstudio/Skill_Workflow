@@ -81,6 +81,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 131
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/ci_parallel_selftests.py",
       "is_test": false,
       "language": "Python",
@@ -92,6 +99,13 @@
       "is_test": false,
       "language": "Python",
       "lines": 40
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 95
     },
     {
       "directory": ".github/scripts",
@@ -112,7 +126,7 @@
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 111
+      "lines": 132
     },
     {
       "directory": ".github/scripts",
@@ -724,6 +738,234 @@
       "target_token": "value.startswith"
     },
     {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "acceptance.is_file"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "acceptance.read_text"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "require_exact_clean"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "state.get"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::commands",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::commands",
+      "target_token": "SHA.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::commands",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::commands",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::git",
+      "target_token": "proc.stdout.strip"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::require_exact_clean",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::require_exact_clean",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::require_exact_clean",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::require_exact_clean",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "authority"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "commands"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "concurrent.futures.ThreadPoolExecutor"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "future.result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "next"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "pool.submit"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "report.update"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "require_exact_clean"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run",
+      "target_token": "type"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "os.environ.copy"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "runner"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "target_token": "type"
+    },
+    {
       "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
       "target_token": "ValueError"
     },
@@ -1006,6 +1248,166 @@
     {
       "caller": ".github/scripts/selftest_ci_applicability.py::require",
       "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::commit",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "target_token": "write"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::git",
+      "target_token": "proc.stdout.strip"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "final.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "final.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "final.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "final.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "fixture"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "target_token": "threading.Lock"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main.failure",
+      "target_token": "invoked.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main.mutation",
+      "target_token": "write"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main.success",
+      "target_token": "executed.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main.success",
+      "target_token": "max"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::main.success",
+      "target_token": "time.sleep"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::write",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_final_gates.py::write",
+      "target_token": "target.write_text"
     },
     {
       "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
@@ -1341,6 +1743,10 @@
     },
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "FINAL_SERIAL_STEPS.items"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
       "target_token": "SERIAL_STEPS.items"
     },
     {
@@ -1350,6 +1756,26 @@
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
       "target_token": "dict"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
     },
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
@@ -28071,6 +28497,62 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 28,
+      "line_start": 25,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 38,
+      "line_start": 31,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::require_exact_clean",
+      "symbol": "require_exact_clean"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 54,
+      "line_start": 41,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::authority",
+      "symbol": "authority"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 67,
+      "line_start": 57,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::commands",
+      "symbol": "commands"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 87,
+      "line_start": 70,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::run_one",
+      "symbol": "run_one"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 112,
+      "line_start": 90,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 127,
+      "line_start": 115,
+      "locator": ".github/scripts/ci_parallel_final_gates.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "class",
       "line_end": 44,
@@ -28135,6 +28617,70 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 16,
+      "line_start": 13,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 21,
+      "line_start": 18,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::write",
+      "symbol": "write"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 26,
+      "line_start": 23,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::commit",
+      "symbol": "commit"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 38,
+      "line_start": 28,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::fixture",
+      "symbol": "fixture"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "function",
+      "line_end": 92,
+      "line_start": 40,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "method",
+      "line_end": 56,
+      "line_start": 48,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::main.success",
+      "symbol": "main.success"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "method",
+      "line_end": 70,
+      "line_start": 68,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::main.failure",
+      "symbol": "main.failure"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_final_gates.py",
+      "kind": "method",
+      "line_end": 79,
+      "line_start": 76,
+      "locator": ".github/scripts/selftest_ci_parallel_final_gates.py::main.mutation",
+      "symbol": "main.mutation"
+    },
+    {
       "file": ".github/scripts/selftest_ci_parallel_selftests.py",
       "kind": "function",
       "line_end": 91,
@@ -28185,24 +28731,24 @@
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 49,
-      "line_start": 37,
+      "line_end": 55,
+      "line_start": 43,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
       "symbol": "steps_from_workflow"
     },
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 90,
-      "line_start": 52,
+      "line_end": 111,
+      "line_start": 58,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::findings",
       "symbol": "findings"
     },
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 108,
-      "line_start": 93,
+      "line_end": 129,
+      "line_start": 114,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::main",
       "symbol": "main"
     },
@@ -31864,13 +32410,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c",
+  "source_digest": "da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca",
   "source_summary": {
-    "files": 75,
+    "files": 77,
     "languages": {
-      "Python": 75
+      "Python": 77
     },
-    "lines": 17776,
+    "lines": 18023,
     "test_files": 0
   },
   "tests": []
