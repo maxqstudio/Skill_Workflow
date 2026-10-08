@@ -3,7 +3,7 @@
 
 Fixed, versioned commands; zero auto-discovery, zero shell execution, and no
 skipped tests on failure. Only explicitly audited temp-fixture selftests run
-concurrently; serial STRICT, verify/finalize and external consumer tests stay
+concurrently; full STRICT/verify, producer finalize and consumer source tests stay
 in their original permanent CI steps.
 """
 from __future__ import annotations
@@ -27,6 +27,14 @@ GROUPS=(
   ("public_docs", ("scripts/selftest_public_docs.py", "scripts/selftest_generated_doc_presentation.py", "scripts/validate_public_docs.py --root .")),
   ("release_preflight", ("scripts/selftest_release_preflight.py",)),
   ("project_truth_compiler", ("scripts/selftest_project_truth_compiler.py",)),
+  ("engine_regression", ("scripts/selftest_governance_engine.py",)),
+  ("sequence_call_resolution", ("scripts/selftest_sequence_call_resolution.py",)),
+  ("sequence_squash_provenance", ("scripts/selftest_sequence_squash_provenance.py",)),
+  ("sequence_human_view", ("scripts/selftest_sequence_human_view.py",)),
+  ("repository_health", ("scripts/selftest_repository_health.py", "scripts/validate_repository_health.py --root .")),
+  ("ruleset_policy", ("scripts/selftest_github_ruleset.py",)),
+  ("cross_document", ("scripts/selftest_cross_document_regressions.py",)),
+  ("adoption_profiles", ("scripts/selftest_adoption_profiles.py",)),
 )
 GROUP_NAMES=tuple(name for name, _ in GROUPS)
 PASS_MARKER="CI_PARALLEL_SELFTESTS_ALL_REQUIRED=PASS"
