@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-24",
+  "scope": "exact measured combined candidate",
+  "repository": "maxqstudio/Skill_Workflow",
+  "source_sha": "8bb6f0f839c8557ecb084cae2df8dfe151169aab",
+  "run_id": 37713042819,
+  "attempts": [
+    {
+      "attempt": 1,
+      "windows_seconds": 49,
+      "aggregate_job_seconds": 184,
+      "permanent_contexts": 6,
+      "result": "PASS"
+    },
+    {
+      "attempt": 2,
+      "windows_seconds": 68,
+      "aggregate_job_seconds": 203,
+      "permanent_contexts": 6,
+      "result": "PASS"
+    },
+    {
+      "attempt": 3,
+      "windows_seconds": 64,
+      "aggregate_job_seconds": 199,
+      "permanent_contexts": 6,
+      "result": "PASS"
+    }
+  ],
+  "baseline": {
+    "source_sha": "e5bbd9e485380cda962656e7ce8a5477cfce0e68",
+    "window_median_seconds": 77,
+    "aggregate_job_seconds_median": 197,
+    "samples": 6,
+    "source": "benchmarks/baselines/sw2-24-ci-latency.json"
+  },
+  "candidate": {
+    "windows_median_seconds": 64,
+    "aggregate_job_seconds_median": 199,
+    "windows_delta_seconds": -13,
+    "observed_improvement_percent": 16.883116883116884,
+    "required_improvement_percent": 15,
+    "result": "MEASURED_TARGET_MET"
+  },
+  "test_contract": {
+    "groups": 15,
+    "source_regression_commands": 19,
+    "full_final_gates": 2,
+    "required_contexts": 6,
+    "os": "Ubuntu+Windows",
+    "all_attempts_passed": true,
+    "source_mutation": "FAIL_CLOSED",
+    "cache_pass_authority": "PROHIBITED"
+  },
+  "caveats": [
+    "Two historical and current sets are not randomized controlled hardware comparisons; hosted runner startup and loads vary.",
+    "GitHub billable minutes cannot be estimated directly from these per-job timestamps and Windows multiplier/pricing is unspecified.",
+    "The candidate 199 median job-seconds versus 197 historical does not show a cost saving and is not a performance acceptance blocker unless a meaningful measured budget regression emerges.",
+    "Three samples prove candidate observed performance only; exact final candidate, post-merge main, and terminal closure require independent acceptance."
+  ]
+}
