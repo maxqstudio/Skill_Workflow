@@ -1,85 +1,95 @@
 {
-  "evidence_boundary": "SW2-22 covers content-addressed producer identity for vendored consumer toolchains, enriches it with exact Git provenance when verifiable Git metadata is available, and provides deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.",
+  "evidence_boundary": "Phase open only. All SW2-23 consumer, negative-path, latency, documentation and final CI requirements are NOT_PROVEN until individually executed. Read-only pinned consumer audit does not equal adoption PASS.",
   "human_comprehension_questions": {
-    "How does failure/recovery behave?": "PASS",
-    "How does important data flow through the system?": "PASS",
-    "What are the important lifecycle states and transitions?": "PASS",
-    "What are the main user/domain workflows?": "PASS",
-    "What are the major components and how do they relate?": "PASS",
-    "What is mutable and what is immutable?": "PASS",
-    "What is proven and what is not proven?": "PASS",
-    "What is the current project state?": "PASS",
-    "What is the project and what problem does it solve?": "PASS",
-    "What may happen next and what is blocked?": "PASS",
-    "Who uses it and what are the primary outcomes?": "PASS",
-    "Who/what is authoritative for important decisions?": "PASS"
+    "How does failure/recovery behave?": "NOT_PROVEN",
+    "How does important data flow through the system?": "NOT_PROVEN",
+    "What are the important lifecycle states and transitions?": "NOT_PROVEN",
+    "What are the main user/domain workflows?": "NOT_PROVEN",
+    "What are the major components and how do they relate?": "NOT_PROVEN",
+    "What is mutable and what is immutable?": "NOT_PROVEN",
+    "What is proven and what is not proven?": "NOT_PROVEN",
+    "What is the current project state?": "NOT_PROVEN",
+    "What is the project and what problem does it solve?": "NOT_PROVEN",
+    "What may happen next and what is blocked?": "NOT_PROVEN",
+    "Who uses it and what are the primary outcomes?": "NOT_PROVEN",
+    "Who/what is authoritative for important decisions?": "NOT_PROVEN"
   },
-  "human_comprehension_status": "PASS",
+  "human_comprehension_status": "NOT_PROVEN",
   "requirements": [
     {
-      "evidence": "PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 passed permanent schema/toolchain provenance regression on Ubuntu and Windows, including exact content identity, GIT+CONTENT checkout provenance, CONTENT package-copy fallback with Git-only fields NOT_PROVEN, legacy hint rejection/migration, tamper rejection, and no provenance downgrade for identical content.",
-      "id": "SW2-22-R1",
-      "requirement": "Consumer toolchain locks bind vendored bytes to an exact source-content digest. Verifiable Git checkouts additionally record repository, exact source SHA, release identity, and identity_source=GIT+CONTENT; copied/package sources without Git metadata use identity_source=CONTENT and explicitly mark Git-only fields NOT_PROVEN. Missing, malformed, mismatched, or legacy hint-only identity fails closed.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R1",
+      "requirement": "Freeze at least three genuinely different real consumer SHA snapshots and classify their exact compatibility/preconditions without consumer repository mutation.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 passed the permanent toolchain provenance/upgrade regression on Ubuntu and Windows; --check remained read-only, emitted deterministic PLAN_JSON and file classes, and returned upgrade-required status without mutating the consumer.",
-      "id": "SW2-22-R2",
-      "requirement": "A source-side read-only upgrade check produces a deterministic machine-readable plan and reports whether upgrade is required without mutating the consumer.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R2",
+      "requirement": "Reject incompatible/legacy consumer snapshots with explicit first failed gates; never fabricate successful adoption.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 passed tool-owned apply, AGENTS.md and semantic .workflow authority preservation, unmanaged-file fail-closed behavior, post-apply validation, and repeated-apply idempotence in the permanent Ubuntu/Windows regression lanes.",
-      "id": "SW2-22-R3",
-      "requirement": "Upgrade apply mutates only toolchain-owned surfaces, preserves Owner semantic authority, and is idempotent for an already-current consumer.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R3",
+      "requirement": "Execute isolated supported consumer check-plan-apply-validate-finalize and test semantic preservation and idempotence.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 completed all six permanent contexts, including Ubuntu/Windows Governance Selftest, STANDARD/STRICT adoption fixtures, sequence render, performance gates, and pinned max-grounding legacy-consumer migration/parity.",
-      "id": "SW2-22-R4",
-      "requirement": "Legacy v2.1, STANDARD, STRICT, tamper, Ubuntu/Windows, and pinned max-grounding consumer paths retain governance parity under the new provenance/upgrade contract.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R4",
+      "requirement": "Cover GIT+CONTENT and CONTENT package copies plus tamper, unsupported schema, and interrupted-upgrade negative paths.",
+      "status": "NOT_PROVEN"
     },
     {
-      "evidence": "PASS: exact helper-free final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf with tree ee4377857a42f85151fdd2e546fb4aaa0797f92a passed all six permanent contexts in Governance CI run 37429305042; it was squash-merged to main as 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a; post-merge Governance CI run 37429617130 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence with Mermaid render, Governance Engine Performance, and Consumer Engine Performance. This closes the SW2-22 feature acceptance boundary.",
-      "id": "SW2-22-R5",
-      "requirement": "Exact final candidate and post-merge main pass the complete six-context permanent Governance CI matrix.",
-      "status": "PASS"
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R5",
+      "requirement": "Record reproducible CI timing/cost evidence without weakening final acceptance or silently skipping unknown impact.",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R6",
+      "requirement": "Repair provenance-hint-only public documentation and add regression that detects this stale contract claim.",
+      "status": "NOT_PROVEN"
+    },
+    {
+      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "id": "SW2-23-R7",
+      "requirement": "Exact final feature candidate and post-merge main pass all six permanent GitHub Governance CI contexts.",
+      "status": "NOT_PROVEN"
     }
   ],
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
   "sequence_mode": "DURING",
-  "sequence_session": "SW2-22-GOVERNANCE",
-  "sequence_sync_status": "PASS",
+  "sequence_session": "SW2-23-GOVERNANCE",
+  "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
-    "python scripts/selftest_schema_toolchain.py",
     "python scripts/selftest_toolchain_provenance_upgrade.py",
+    "python scripts/selftest_documentation_contract.py",
     "python scripts/validate_schema_toolchain.py --root .",
-    "python scripts/selftest_adoption_profiles.py",
-    "python scripts/selftest_strict_project_workflow.py",
-    "python scripts/governance_engine.py --root . --base 65c28fcdfebec68a20adc02ae95406f9261d5a51 --mode finalize --expected-head <EXACT_HEAD>"
+    "python scripts/validate_sequence_sessions.py --root ."
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
-    "DOC_LAYOUT": "PASS",
-    "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "PASS",
-    "DOC_TEST_TRACEABILITY": "PASS",
-    "HUMAN_COMPREHENSION": "PASS",
-    "PROJECT_DOCS_NORMALIZED": "PASS",
-    "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "PASS",
-    "PROVENANCE_SYNC": "PASS",
-    "REFERENCE_SYNC": "PASS",
-    "ROADMAP_SYNC": "PASS",
+    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "DOC_LAYOUT": "NOT_PROVEN",
+    "DOC_READABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
+    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "PROJECT_DOCS_NORMALIZED": "NOT_PROVEN",
+    "PROJECT_DOCS_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "NOT_PROVEN",
+    "PROVENANCE_SYNC": "NOT_PROVEN",
+    "REFERENCE_SYNC": "NOT_PROVEN",
+    "ROADMAP_SYNC": "NOT_PROVEN",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "PASS",
-    "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "PASS",
-    "STRUCTURAL_SYNC": "PASS",
+    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "NOT_PROVEN",
+    "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }

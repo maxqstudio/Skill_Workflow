@@ -1,0 +1,48 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-23-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/upgrade_governance_toolchain.py::build_plan",
+      "scripts/upgrade_governance_toolchain.py::main",
+      "scripts/toolchain_identity.py::validate_toolchain_lock",
+      "scripts/validate_documentation_contract.py::freshness_findings"
+    ],
+    "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.json",
+    "source_digest": ""
+  },
+  "critical": true,
+  "evidence_boundary": "Static sequence evidence maps consumer classification/upgrade and documentation freshness paths; it does not prove remote consumer compatibility, runtime behavior, or an authorized external repository mutation.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-23-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-23-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-23-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": ""
+  },
+  "implementation_base_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
+  "mode": "DURING",
+  "phase": "SW2-23",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-23-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_toolchain_provenance_upgrade.py",
+    "scripts/selftest_documentation_contract.py"
+  ]
+}

@@ -1,23 +1,25 @@
 {
   "blocked_actions": [
-    "Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.",
-    "Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.",
-    "Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.",
-    "Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.",
-    "Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary."
+    "Do not modify actual consumer repositories during SW2-23 compatibility evaluation.",
+    "Do not treat missing AGENTS.md/toolchain lock or legacy hint-only provenance as compatibility PASS.",
+    "Do not weaken finalize, exact-head, fail-closed, sequence, or required cross-platform acceptance.",
+    "Do not claim platform-required checks with no GitHub ruleset.",
+    "Do not begin SW2-24 or release a new stable tag without separate Owner authorization."
   ],
   "blockers": [],
   "last_accepted_branch": "main",
-  "last_accepted_sha": "44e3e45b9a231744c7962e0b4153d720d80653bc",
+  "last_accepted_sha": "f6a1e417c2f8b5adb73273c4cba4768771f8bb66",
   "next_authorized_actions": [
-    "Treat SW2-22 on main 44e3e45b9a231744c7962e0b4153d720d80653bc as the accepted terminal roadmap authority for the current roadmap.",
-    "Preserve the accepted V2.1 release identity and SW2-22 consumer toolchain provenance/upgrade contract.",
-    "Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary."
+    "Reproduce the stale provenance-hint-only public reference with a failing documentation regression before repair.",
+    "Audit exact pinned consumers read-only; simulate upgrades in isolated copies only and classify unsupported governance.",
+    "Measure CI latency and execute full exact-head acceptance before promotion; keep PR draft until every required gate passes."
   ],
   "not_proven": [
-    "Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking."
+    "SW2-23 R1-R7 are NOT_PROVEN pending exact pinned consumer compatibility and permanent CI evidence.",
+    "DoctorCode has legacy hint-only producer provenance at pinned main; max-grounding and max-remote-commander have no supported root AGENTS.md / toolchain lock at their pinned main snapshots; unsupported paths must fail closed.",
+    "Automatic GitHub merge protection and required checks remain intentionally NOT_PROVEN under Owner-approved no-ruleset boundary."
   ],
-  "phase": "SW2-22",
+  "phase": "SW2-23",
   "proven": [
     "SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.",
     "Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.",
@@ -99,6 +101,6 @@
     "SW2-22 Consumer Toolchain Provenance & Upgrade Contract is accepted: exact final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf passed Governance CI 37429305042 6/6, squash-merged to main 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a, and post-merge Governance CI 37429617130 passed all six permanent contexts."
   ],
   "schema_version": 1,
-  "status": "SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_ACCEPTED",
-  "working_branch": "main"
+  "status": "SW2_23_CONSUMER_BASELINE_IN_PROGRESS",
+  "working_branch": "work/sw2-23-multi-consumer-adoption"
 }

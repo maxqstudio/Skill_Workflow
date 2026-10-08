@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-22",
+  "current_phase": "SW2-23",
   "phases": [
     {
       "exit_criteria": [
@@ -280,8 +280,23 @@
       ],
       "id": "SW2-22",
       "objective": "Bind every vendored consumer toolchain to exact content-addressed upstream identity, enrich provenance with exact Git source identity when verifiable Git metadata exists, and provide deterministic, fail-closed, idempotent upgrade planning and execution without modifying Owner semantic authority.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Consumer Toolchain Provenance & Upgrade Contract"
+    },
+    {
+      "exit_criteria": [
+        "At least three real consumer snapshots are pinned by exact SHA and independently classified by governance/profile/toolchain compatibility, with read-only source provenance.",
+        "Legacy/unsupported consumers are rejected with an exact first failed gate; missing AGENTS.md, missing locks, and legacy hint-only locks must not become a false compatibility PASS.",
+        "Compatible isolated consumer fixtures prove deterministic check-plan-apply-validate-finalize behavior, strict Owner semantic authority preservation and idempotence.",
+        "Git checkout and copied/package toolchain identity paths preserve content equivalence; tamper/unsupported schema/interrupted upgrade negative paths fail closed without partial semantic mutation.",
+        "Cross-platform and representative consumer evidence record actual measured CI time and cost/budget changes; any gating optimization preserves complete final acceptance.",
+        "Source-authored public documentation consistently describes SW2-22 GIT+CONTENT/CONTENT provenance and a regression rejects stale provenance-hint-only assertions.",
+        "Complete permanent exact-head Governance CI six-context matrix passes on feature candidate and post-merge main, with truthful evidence and separate closure transaction."
+      ],
+      "id": "SW2-23",
+      "objective": "Prove representative real-consumer adoption, deterministic provenance-aware toolchain upgrades, explicit unsupported-consumer rejection, and fail-closed evidence without mutating external consumer repositories or weakening governance.",
+      "status": "CURRENT",
+      "title": "Multi-Consumer Compatibility & Adoption Contract"
     }
   ],
   "schema_version": 1
