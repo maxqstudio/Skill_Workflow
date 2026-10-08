@@ -7,10 +7,6 @@ on:
         description: Exact source commit SHA for read-only package verification
         required: true
         type: string
-  push:
-    branches:
-      - work/sw2-25-reproducible-release-bundle
-
 permissions:
   contents: read
 
