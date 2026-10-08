@@ -107,6 +107,43 @@ def main()->int:
         expect_manipulation("BUNDLE_UNSAFE_PATH",lambda d:d["files"][0].update(path="../escape.txt"))
         expect_manipulation("BUNDLE_MANIFEST_REQUIRED_FILES_MISSING",lambda d:d["files"].__setitem__(slice(None),[x for x in d["files"] if x["path"]!="LICENSE"]))
         print("BUNDLE_MANIFEST_AUTHORITY_PATH_AND_SWAP_REJECTED=PASS")
+        # A forged SHA in an otherwise intact *unsigned* manifest must not
+        # become authenticated Git/publisher provenance in offline mode.
+        forged=json.loads(json.dumps(original))
+        forged["source_git_sha"]="1"*40
+        candidate.write_text(json.dumps(forged),encoding="utf-8")
+        claims=bundle.verify(first,candidate)
+        assert claims["result"]=="PASS" and claims["publisher_authenticated"] is False
+        assert claims["source_git_sha_claimed"]=="1"*40
+        print("BUNDLE_UNSIGNED_PRODUCER_CLAIM_NOT_AUTHENTICATED=PASS")
+
+        # Re-hash a noncanonical ZIP so byte/size checks pass. Metadata and
+        # unlisted payloads must still fail at the mandatory archive contract.
+        with zipfile.ZipFile(io.BytesIO(first.read_bytes())) as old_zip:
+            with zipfile.ZipFile(mutated,"w") as altered:
+                for index,item in enumerate(old_zip.infolist()):
+                    payload=old_zip.read(item)
+                    if index==0:
+                        item.date_time=(1981,1,1,0,0,0)
+                    altered.writestr(item,payload)
+        swapped=json.loads(json.dumps(original))
+        swapped["archive_sha256"]=bundle.sha(mutated.read_bytes())
+        swapped["archive_size"]=mutated.stat().st_size
+        candidate.write_text(json.dumps(swapped),encoding="utf-8")
+        raises("BUNDLE_ARCHIVE_NONCANONICAL_METADATA",lambda:bundle.verify(mutated,candidate))
+        with zipfile.ZipFile(io.BytesIO(first.read_bytes())) as old_zip:
+            with zipfile.ZipFile(mutated,"w") as altered:
+                for item in old_zip.infolist():
+                    altered.writestr(item,old_zip.read(item))
+                altered.writestr("templates/unlisted.txt",b"extra")
+        swapped=json.loads(json.dumps(original))
+        swapped["archive_sha256"]=bundle.sha(mutated.read_bytes())
+        swapped["archive_size"]=mutated.stat().st_size
+        candidate.write_text(json.dumps(swapped),encoding="utf-8")
+        raises("BUNDLE_ARCHIVE_FILE_SET_MISMATCH",lambda:bundle.verify(mutated,candidate))
+        raises("BUNDLE_WINDOWS_UNSAFE_NAME",lambda:bundle.validate_path("templates/CON.txt"))
+        print("BUNDLE_CANONICAL_METADATA_AND_EXTRA_FILE_REJECTED=PASS")
+
 
         put(root,"templates/id_rsa","fake")
         secret_head=commit(root,"tracked secret")
@@ -119,6 +156,17 @@ def main()->int:
         raises("BUNDLE_SECRET_FILENAME",lambda:bundle.build(root,other,second,manifest2))
         (root/"references/path.pem").unlink()
         fixed=commit(root,"fix")
+        # Add an actual mode-120000 Git tree entry without relying on OS symlink
+        # permissions; Git stores the mode regardless of Windows checkout policy.
+        target=subprocess.run(["git","-C",str(root),"hash-object","-w","--stdin"],
+                              input=b"../../secret",stdout=subprocess.PIPE,check=True).stdout.decode().strip()
+        run(root,"update-index","--add","--cacheinfo","120000,"+target+",templates/link")
+        run(root,"commit","-m","symlink Git tree fixture")
+        raises("BUNDLE_UNSAFE_GIT_MODE",lambda:bundle.source_tree(root))
+        run(root,"rm","--cached","--quiet","templates/link")
+        run(root,"commit","-m","remove link fixture")
+        fixed=run(root,"rev-parse","HEAD")
+        print("BUNDLE_SYMLINK_GIT_MODE_REJECTED=PASS")
         with tempfile.TemporaryDirectory(prefix="sw2-25-checkout-") as clone_dir:
             clone=Path(clone_dir)/"clone"
             subprocess.run(["git","clone","--quiet",str(root),str(clone)],check=True)
