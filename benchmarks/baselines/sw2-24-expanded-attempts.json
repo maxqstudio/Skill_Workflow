@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "phase": "SW2-24",
+  "status": "REJECTED_FOR_PERFORMANCE_OBJECTIVE",
+  "repository": "maxqstudio/Skill_Workflow",
+  "source_sha": "c21cd1188d0044f40eb30f6ef3451ffc6d3e2144",
+  "run_id": 37711580993,
+  "design": "15 isolated regression groups 19 commands; separate complete 2-gate STRICT/VERIFY overlap",
+  "attempts": [
+    {
+      "attempt": 1,
+      "windows_seconds": 64,
+      "aggregate_job_seconds": 193,
+      "contexts_passed": 6
+    },
+    {
+      "attempt": 2,
+      "windows_seconds": 68,
+      "aggregate_job_seconds": 197,
+      "contexts_passed": 6
+    },
+    {
+      "attempt": 3,
+      "windows_seconds": 78,
+      "aggregate_job_seconds": 207,
+      "contexts_passed": 6
+    }
+  ],
+  "windows_median_seconds": 68,
+  "baseline_windows_median_seconds": 77,
+  "improvement_percent": 11.688311688311689,
+  "required_percent": 15,
+  "performance_gate": "NOT_PROVEN",
+  "boundary": "All samples retained. 19 regression commands and both full final gates completed with all six permanent contexts on the same exact SHA, but the targeted median Windows improvement was not achieved. Nested combined overlap is a subsequent distinct candidate."
+}
