@@ -42,6 +42,8 @@ jobs:
         run: python .github/scripts/validate_skill_reference_split.py --root .
       - name: Cross-document regression
         run: python scripts/selftest_cross_document_regressions.py
+      - name: Multi-consumer classification negative-path regression
+        run: python scripts/selftest_consumer_compatibility_matrix.py
       - name: Governance Engine V2 regression
         run: python scripts/selftest_governance_engine.py
       - name: Run final Governance Engine V2 acceptance
@@ -351,6 +353,14 @@ jobs:
           echo "EXPECTED_CONSUMER_HEAD=$expected"
           echo "ACTUAL_CONSUMER_HEAD=$actual"
           test "$actual" = "$expected"
+      - name: Audit pinned representative consumers read-only
+        if: steps.bootstrap.outputs.heavy == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          python scripts/validate_consumer_compatibility_matrix.py
+          --matrix .workflow/consumer_compatibility_matrix.json
+          --report artifacts/performance/sw2-23-consumer-compatibility.json
       - name: Install pinned consumer test dependencies
         if: steps.bootstrap.outputs.heavy == 'true'
         working-directory: consumer
@@ -439,5 +449,6 @@ jobs:
           path: |
             artifacts/performance/sw2-01-max-grounding-engine.json
             artifacts/performance/sw2-08-max-grounding-parity.json
+            artifacts/performance/sw2-23-consumer-compatibility.json
           if-no-files-found: error
           retention-days: 14
