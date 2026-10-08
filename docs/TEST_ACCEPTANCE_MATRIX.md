@@ -4,17 +4,17 @@
 
 ## Evidence boundary
 
-SW2-26 BEFORE/RED ONLY: trusted GitHub Actions publisher authentication, signed provenance for both SW2-25 ZIP and manifest, independent Sigstore trust root and strict exact-source/signing-workflow policy are declared but NOT_PROVEN. All six new requirements must receive live GitHub exact-SHA attestation, negative fixture and permanent CI evidence before acceptance. Historical SW2-25 integrity acceptance remains intact. publication_authority=false.
+SW2-26 IN_PROGRESS: real GitHub OIDC/Sigstore ZIP+manifest attestation and independent trusted-root verification demonstrated on exact candidate f87586fa784a22614217121c14519637df4155dd run 37783624068, with four real negative attestations. R3 offline-isolated verification, remainder of R4 replay/trust limitations, R5 six-context helper-free regression and R6 merge/closure remain NOT_PROVEN. publication_authority=false; SW2-25 acceptance remains historical authority.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
+Current source digest: 19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-26-R1 | Trusted producer identity pins repository, signer workflow, expected exact Git SHA and authoritative trust policy independently of unsigned artifact claims. | NOT_PROVEN: scope declared; independent trust-policy verifier and negative-path regression not implemented. | NOT_PROVEN |
-| SW2-26-R2 | GitHub Actions OIDC/Sigstore builds signed in-toto/SLSA attestations for exact deterministic ZIP and detached JSON manifest with least-privilege signer permissions, without release publishing. | NOT_PROVEN: no SW2-26 signed ZIP/manifest pair or real GitHub attestation execution yet. | NOT_PROVEN |
+| SW2-26-R1 | Trusted producer identity pins repository, signer workflow, expected exact Git SHA and authoritative trust policy independently of unsigned artifact claims. | PASS: fixed REPO/SIGNER/OIDC policy in .github/scripts/publisher_provenance.py plus independently supplied expected source SHA/ref; GitHub run 37783624068 at f87586fa784a22614217121c14519637df4155dd validated certificate identity through gh CLI. | PASS |
+| SW2-26-R2 | GitHub Actions OIDC/Sigstore builds signed in-toto/SLSA attestations for exact deterministic ZIP and detached JSON manifest with least-privilege signer permissions, without release publishing. | PASS: GitHub Actions run 37783624068 on pinned f87586fa784a22614217121c14519637df4155dd issued real actions/attest@v4 Sigstore OIDC attestation for both product.zip and manifest.json; content-build, cryptographic verification and CI evidence succeeded; publication_authority=false, no tag/release. | PASS |
 | SW2-26-R3 | An independent cryptographic verifier validates SW2-25 content integrity together with trusted attestation signatures, expected GitHub workflow, source SHA and each artifact digest; offline limitations are explicit. | NOT_PROVEN: needs live signer, verifier and independently provisioned trusted root. | NOT_PROVEN |
-| SW2-26-R4 | Unsigned or forged claims, altered ZIP/manifest, wrong source SHA, repo or signer, missing/stale trust evidence, substitution and replay against a pinned expected SHA are rejected with deterministic first-failed-gate evidence. | NOT_PROVEN: adversarial fixture suite and GitHub verifier proof pending. | NOT_PROVEN |
+| SW2-26-R4 | Unsigned or forged claims, altered ZIP/manifest, wrong source SHA, repo or signer, missing/stale trust evidence, substitution and replay against a pinned expected SHA are rejected with deterministic first-failed-gate evidence. | NOT_PROVEN overall: real signed wrong signer, wrong source ref, wrong source SHA and corrupt attestation rejection succeeded in GitHub run 37783624068. Independent offline root freshness/replay policy and further adversarial cases remain; mocked tests alone are not cryptographic proof. | NOT_PROVEN |
 | SW2-26-R5 | Ubuntu and Windows exercise full verifier regression; historical SW2-25 integrity, Mermaid, source-derived docs, consumer acceptance and all six permanent checks remain mandatory and synchronized. | NOT_PROVEN: cross-platform exact-SHA GitHub evidence and source-generated documentation not yet created. | NOT_PROVEN |
 | SW2-26-R6 | Exact helper-free SW2-26 candidate passes all six Governance CI contexts; equal-tree squash to main, postmerge six-context acceptance and separate terminal closure six-context acceptance precede accepted status. | NOT_PROVEN: no SW2-26 accepted feature, PR merge, postmerge evidence or terminal closure. | NOT_PROVEN |
 
@@ -34,7 +34,7 @@ Current source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308
 ## Roadmap synchronization evidence
 
 Roadmap authority: .workflow/roadmap.json
-ROADMAP_SYNC: NOT_PROVEN
+ROADMAP_SYNC: PASS
 
 ## Sequence contract evidence
 
@@ -46,14 +46,14 @@ SEQUENCE_SYNC: NOT_PROVEN
 
 Documentation root: docs/
 Documentation mode: GENERATED
-DOC_LAYOUT: NOT_PROVEN
-PROJECT_DOCS_NORMALIZED: NOT_PROVEN
-DOC_READABILITY: NOT_PROVEN
-PROJECT_DOCS_SYNC: NOT_PROVEN
+DOC_LAYOUT: PASS
+PROJECT_DOCS_NORMALIZED: PASS
+DOC_READABILITY: PASS
+PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: NOT_PROVEN
-HUMAN_COMPREHENSION_GATE: NOT_PROVEN
+SYSTEM_OVERVIEW status: PASS
+HUMAN_COMPREHENSION_GATE: PASS
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

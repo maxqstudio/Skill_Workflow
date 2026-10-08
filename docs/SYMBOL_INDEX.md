@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
+Source digest: 19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -19,7 +19,6 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
 | .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
 | .github/scripts/ci_parallel_windows.py | 4 | 0 | 2 | 2 |
-| .github/scripts/export_sw2_26_projection.py | 2 | 0 | 2 | 0 |
 | .github/scripts/publisher_provenance.py | 6 | 1 | 5 | 0 |
 | .github/scripts/release_bundle.py | 14 | 1 | 13 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
@@ -159,16 +158,6 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>.github/scripts/export_sw2_26_projection.py</code> — 2 symbols</summary>
-
-| Symbol | Kind | Lines@SHA |
-|---|---|---|
-| run | function | 21-28 |
-| main | function | 31-86 |
-
-</details>
-
-<details>
 <summary><code>.github/scripts/publisher_provenance.py</code> — 6 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -268,9 +257,9 @@ responsibility, callers, or state ownership.
 | fixture | function | 17-32 |
 | rejects | function | 35-41 |
 | fake_verification | function | 44-50 |
-| main | function | 53-121 |
+| main | function | 53-122 |
 | main.verify | method | 66-67 |
-| main.mocked_gh | method | 79-91 |
+| main.mocked_gh | method | 79-92 |
 
 </details>
 

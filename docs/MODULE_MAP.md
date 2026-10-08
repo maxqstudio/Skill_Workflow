@@ -3,7 +3,7 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
+Source digest: 19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
@@ -12,14 +12,13 @@ Generated/refreshed: current compiler run
 | .github/scripts/ci_parallel_final_gates.py | Python | 131 | .github/scripts | NO |
 | .github/scripts/ci_parallel_selftests.py | Python | 153 | .github/scripts | NO |
 | .github/scripts/ci_parallel_windows.py | Python | 113 | .github/scripts | NO |
-| .github/scripts/export_sw2_26_projection.py | Python | 90 | .github/scripts | NO |
 | .github/scripts/publisher_provenance.py | Python | 123 | .github/scripts | NO |
 | .github/scripts/release_bundle.py | Python | 312 | .github/scripts | NO |
 | .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_final_gates.py | Python | 95 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_selftests.py | Python | 97 | .github/scripts | NO |
 | .github/scripts/selftest_ci_parallel_windows.py | Python | 105 | .github/scripts | NO |
-| .github/scripts/selftest_publisher_provenance.py | Python | 125 | .github/scripts | NO |
+| .github/scripts/selftest_publisher_provenance.py | Python | 126 | .github/scripts | NO |
 | .github/scripts/selftest_release_bundle.py | Python | 186 | .github/scripts | NO |
 | .github/scripts/selftest_release_bundle_ci.py | Python | 37 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |

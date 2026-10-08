@@ -4,7 +4,7 @@
 
 Current project phase: SW2-26
 Current roadmap phase: SW2-26
-ROADMAP_SYNC: NOT_PROVEN
+ROADMAP_SYNC: PASS
 
 ## Phase plan
 

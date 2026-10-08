@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: NOT_PROVEN
+Human comprehension status: PASS
 
 ## One-minute summary
 
@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 86 files, 1 language categories.
+Observed source inventory: 85 files, 1 language categories.
 
 ## Major components
 
@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-26
 
-Current status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_RED_PENDING
+Current status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,10 +110,10 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Owner authorized SW2-26 on 2026-10-08; establish exact-scope BEFORE/RED evidence on this working branch and retain SW2-25 accepted implementation SHA independently from closure commit.
-- Add bounded signed provenance producer and independent cryptographic verifier; preserve SW2-25 deterministic ZIP/manifest and SHA-256 integrity checks.
-- Establish hostile fixtures, real GitHub OIDC/Sigstore attestation evidence and Ubuntu/Windows verifier regression, regenerate Project Truth and sequence, then execute six permanent contexts at exact feature SHA.
-- Keep stable release v2.1.0; do not publish a tag, release or registry artifact without separately authorized publication.
+- Regenerate canonical Project Truth, current sequence and coverage after removing temporary source-digest affecting helpers; independently validate identical outputs on Windows and Ubuntu CI.
+- Test offline verification with trust root obtained independently and explicit network isolation; do not claim revocation freshness.
+- Remove all temporary CI helpers and branch-only attestation push trigger before final candidate.
+- Run exact feature SHA all six permanent Governance CI contexts; complete equal-tree squash, postmerge main acceptance and separate terminal closure only after actual evidence; do not publish releases.
 
 Blocked actions:
 - Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.
@@ -123,8 +123,9 @@ Blocked actions:
 - Do not start SW2-27 without new explicit Owner authorization.
 
 Known blockers:
-- SW2-26 R1-R6 have no exact candidate acceptance evidence; unsigned SW2-25 release integrity must not be promoted to publisher authentication.
-- Trusted signed provenance implementation, independent verifier, GitHub attestations and source-derived regenerated documentation remain unproven.
+- SW2-26 R3, R4, R5 and R6 remain NOT_PROVEN: isolated offline trust verification, remaining adversarial/replay scope, six-context helper-free acceptance and exact-main closure are pending.
+- Generated docs/sequence must be synchronized on helper-free candidate SHA and validated in permanent CI.
+- Stable publication remains separately unauthorized.
 
 ## Proven vs not proven
 
@@ -217,6 +218,7 @@ Known blockers:
 - SW2-25 Release Bundle Dry Run exact candidate a4332aceecc320d11dceadbab9809ab7d87c38c9 run 37716191737: Ubuntu/Windows ZIP and complete JSON manifest bytes equal, malicious paths and tampered archive fail closed; no tag, release or owner mutation.
 - SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity.
 - Owner explicitly authorized opening SW2-26 on 2026-10-08, without authorizing stable publication; SW2-25 implementation acceptance remains tied to 40c88c990f671fb70cdab8fa391610977bc4c04a and terminal closure to 1344108d314f880f4a2e5bf31eb5323285ea0484.
+- SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.
 
 ### Not proven
 

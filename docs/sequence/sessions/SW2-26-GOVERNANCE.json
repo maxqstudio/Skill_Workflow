@@ -9,7 +9,7 @@
       ".github/scripts/publisher_provenance.py::verify_subject"
     ],
     "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.actual.json",
-    "source_digest": "37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1"
+    "source_digest": "19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d"
   },
   "critical": true,
   "evidence_boundary": "Static source graph depicts SW2-25 deterministic ZIP plus detached publisher verification; it cannot prove a real GitHub attestation, unforgeability, current trust roots or release approval. GitHub exact-SHA evidence is separately required.",
@@ -19,7 +19,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1"
+    "source_digest": "19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d"
   },
   "implementation_base_sha": "40c88c990f671fb70cdab8fa391610977bc4c04a",
   "mode": "DURING",

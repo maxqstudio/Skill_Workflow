@@ -8,9 +8,9 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-26
-Status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_RED_PENDING
+Status: SW2_26_TRUSTED_PUBLISHER_PROVENANCE_IN_PROGRESS
 Roadmap phase: SW2-26
-ROADMAP_SYNC: NOT_PROVEN
+ROADMAP_SYNC: PASS
 
 ## Source
 Repository: maxqstudio/Skill_Workflow
@@ -18,7 +18,7 @@ Branch: work/sw2-26-trusted-publisher-attestation
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
 Current candidate SHA: external final acceptance evidence
-Current source digest: 37c3ed921f662d646b06c4b3da25d6c7cd87a8e4bf0d98003b2afb308f8680b1
+Current source digest: 19632f1e23266dacfdd3c0e033322a92f7ff5b47e14bc7c90cd2fb01e62fcf6d
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -27,10 +27,10 @@ Runtime status: NOT_APPLICABLE
 ## Documentation governance
 Documentation root: docs/
 Documentation mode: GENERATED
-DOC_LAYOUT: NOT_PROVEN
-PROJECT_DOCS_NORMALIZED: NOT_PROVEN
-DOC_READABILITY: NOT_PROVEN
-PROJECT_DOCS_SYNC: NOT_PROVEN
+DOC_LAYOUT: PASS
+PROJECT_DOCS_NORMALIZED: PASS
+DOC_READABILITY: PASS
+PROJECT_DOCS_SYNC: PASS
 
 ## Sequence governance
 Sequence policy: REQUIRED
@@ -126,6 +126,7 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-25 Release Bundle Dry Run exact candidate a4332aceecc320d11dceadbab9809ab7d87c38c9 run 37716191737: Ubuntu/Windows ZIP and complete JSON manifest bytes equal, malicious paths and tampered archive fail closed; no tag, release or owner mutation.
 - SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity.
 - Owner explicitly authorized opening SW2-26 on 2026-10-08, without authorizing stable publication; SW2-25 implementation acceptance remains tied to 40c88c990f671fb70cdab8fa391610977bc4c04a and terminal closure to 1344108d314f880f4a2e5bf31eb5323285ea0484.
+- SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.
 
 ## Not proven
 - Publisher authentication and trusted source Git identity for SW2-26 have not yet been implemented or evidenced.
@@ -134,17 +135,18 @@ SEQUENCE_SYNC: NOT_PROVEN
 - Automatic required-status-check ruleset enforcement remains NOT_PROVEN under prior Owner governance boundary.
 
 ## Known blockers
-- SW2-26 R1-R6 have no exact candidate acceptance evidence; unsigned SW2-25 release integrity must not be promoted to publisher authentication.
-- Trusted signed provenance implementation, independent verifier, GitHub attestations and source-derived regenerated documentation remain unproven.
+- SW2-26 R3, R4, R5 and R6 remain NOT_PROVEN: isolated offline trust verification, remaining adversarial/replay scope, six-context helper-free acceptance and exact-main closure are pending.
+- Generated docs/sequence must be synchronized on helper-free candidate SHA and validated in permanent CI.
+- Stable publication remains separately unauthorized.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Owner authorized SW2-26 on 2026-10-08; establish exact-scope BEFORE/RED evidence on this working branch and retain SW2-25 accepted implementation SHA independently from closure commit.
-- Add bounded signed provenance producer and independent cryptographic verifier; preserve SW2-25 deterministic ZIP/manifest and SHA-256 integrity checks.
-- Establish hostile fixtures, real GitHub OIDC/Sigstore attestation evidence and Ubuntu/Windows verifier regression, regenerate Project Truth and sequence, then execute six permanent contexts at exact feature SHA.
-- Keep stable release v2.1.0; do not publish a tag, release or registry artifact without separately authorized publication.
+- Regenerate canonical Project Truth, current sequence and coverage after removing temporary source-digest affecting helpers; independently validate identical outputs on Windows and Ubuntu CI.
+- Test offline verification with trust root obtained independently and explicit network isolation; do not claim revocation freshness.
+- Remove all temporary CI helpers and branch-only attestation push trigger before final candidate.
+- Run exact feature SHA all six permanent Governance CI contexts; complete equal-tree squash, postmerge main acceptance and separate terminal closure only after actual evidence; do not publish releases.
 
 ## Explicitly blocked
 - Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.
