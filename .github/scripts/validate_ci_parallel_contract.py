@@ -27,7 +27,12 @@ SERIAL_STEPS = {
     "project_truth_compiler": ("Project Truth Compiler self-test",
                                ("python scripts/selftest_project_truth_compiler.py",)),
 }
-ALWAYS_SERIAL = ("Verify mode is read-only", "STRICT workflow self-test")
+WINDOWS_FINAL_STEP = "Windows concurrent full STRICT and read-only VERIFY"
+FINAL_SELFTEST_STEP = "Windows complete final gates negative-path regression"
+FINAL_SERIAL_STEPS = {
+    "Verify mode is read-only": "python scripts/governance_engine.py --root . --base ",
+    "STRICT workflow self-test": "python scripts/selftest_strict_project_workflow.py",
+}
 CONTEXT_NAMES = ("Self Governance (ubuntu-latest)",
     "SW2 Sequence Evidence (ubuntu-latest)",
     "Governance Engine Performance (ubuntu-latest)",
@@ -84,9 +89,20 @@ def findings(workflow: str) -> list[str]:
         specs=dict(parallel.GROUPS).get(name)
         if specs is None or tuple("python "+item for item in specs)!=commands:
             problems.append("CI_WINDOWS_INVENTORY_NOT_EQUAL_UBUNTU:"+name)
-    for mandatory in ALWAYS_SERIAL:
-        if mandatory not in steps or "if: matrix.os" in steps.get(mandatory,""):
-            problems.append("CI_SERIAL_FINAL_GATE_WEAKENED:"+mandatory)
+    for mandatory in FINAL_SERIAL_STEPS:
+        if mandatory not in steps or GUARD_LINUX not in steps.get(mandatory,""):
+            problems.append("CI_UBUNTU_FINAL_GATE_FALLBACK_MISSING:"+mandatory)
+    # Windows runs the same two complete gates in one bounded independent process.
+    if WINDOWS_FINAL_STEP not in steps or FINAL_SELFTEST_STEP not in steps:
+        problems.append("CI_WINDOWS_FINAL_OR_REGRESSION_MISSING")
+    else:
+        body=steps[WINDOWS_FINAL_STEP]
+        if GUARD_WINDOWS not in body or (
+            "python .github/scripts/ci_parallel_final_gates.py --root ." not in body
+        ):
+            problems.append("CI_WINDOWS_FINAL_BOUNDARY_WEAKENED")
+        if "python .github/scripts/selftest_ci_parallel_final_gates.py" not in steps[FINAL_SELFTEST_STEP]:
+            problems.append("CI_WINDOWS_FINAL_NEGATIVE_TEST_MISSING")
     return problems
 
 
@@ -104,7 +120,7 @@ def main()->int:
     print("CI_PARALLEL_EXACT_INVENTORY=PASS")
     print("CI_PARALLEL_LINUX_FALLBACK=PASS")
     print("CI_PARALLEL_WINDOWS_BOUND=PASS")
-    print("CI_PARALLEL_STRICT_FINAL_GATES_UNCHANGED=PASS")
+    print("CI_PARALLEL_STRICT_AND_VERIFY_BOTH_EXECUTED=PASS")
     return 0
 
 if __name__=="__main__":
