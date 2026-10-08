@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-23-multi-consumer-adoption
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: f6a1e417c2f8b5adb73273c4cba4768771f8bb66
+Last accepted SHA: 83de063673320a71da108afe0e5e28575d3cacf1
 Current source digest: 6e399e829895d8a23f07c4e44ef2e75245bdb8ac9099ddd8e3baf9f8cbfe9f8e
 
 ## Authorities
