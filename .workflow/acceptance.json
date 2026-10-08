@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-26 accepted implementation, terminal closure pending: feature exact SHA 63bc52ead4837534f6dd14e70cadf89ad301905a all six Governance CI SUCCESS run 37796154612; equal-tree squash PR #46 to main 4d5bf33ea347de041e50239d86385b0e33339dec tree bd3b0f695554f54820ae3ff51b97a3acffe03535; postmerge exact-main run 37796628346 six of six SUCCESS. Real signed Sigstore provenance and four live negative cases run 37786698990. R6 separate terminal closure NOT_PROVEN until closure candidate/main pass. Publisher-independent Owner root distribution and offline root revocation freshness remain NOT_PROVEN. publication_authority=false.",
+  "evidence_boundary": "SW2-26 terminal authority projection after exact feature run 37796154612 six SUCCESS, equal-tree squash PR #46 source main 4d5bf33ea347de041e50239d86385b0e33339dec, exact postmerge main run 37796628346 six SUCCESS, separate closure feature run 37799404115 six SUCCESS. Source-derived projected closure candidate and terminal main require independent six-context acceptance before terminal closure can be externally claimed. Stable v2.1.0 unchanged, publication_authority=false; offline Owner root distribution/revocation freshness and GitHub automated required-status-check ruleset remain NOT_PROVEN.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -47,10 +47,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN terminal closure: feature helper-free SHA 63bc52ead4837534f6dd14e70cadf89ad301905a run 37796154612 six-context SUCCESS, equal-tree squash PR #46 to implementation main 4d5bf33ea347de041e50239d86385b0e33339dec, exact-main postmerge run 37796628346 six-context SUCCESS; separate closure PR, closure candidate six-context and terminal-main six-context still pending. Separate terminal governance closure is tracked as DRAFT PR #47 and must pass independent exact-SHA feature and postmerge CI before R6 can be accepted.",
+      "evidence": "PASS for completed exact-SHA preclosure prerequisites: feature SHA 63bc52ead4837534f6dd14e70cadf89ad301905a six permanent contexts SUCCESS run 37796154612; equal-tree squash PR #46 to accepted implementation main 4d5bf33ea347de041e50239d86385b0e33339dec tree bd3b0f695554f54820ae3ff51b97a3acffe03535; postmerge main run 37796628346 six-context SUCCESS; separate closure feature SHA 5ee55d3b14acd31e4fc1037205ed274dc67bfa40 six-context SUCCESS run 37799404115. Terminal projection and exact terminal-main CI are separately pending and no terminal acceptance is claimed until those pass.",
       "id": "SW2-26-R6",
       "requirement": "Exact helper-free SW2-26 candidate passes all six Governance CI contexts; equal-tree squash to main, postmerge six-context acceptance and separate terminal closure six-context acceptance precede accepted status.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -58,7 +58,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-26-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python .github/scripts/selftest_release_bundle.py",
     "python .github/scripts/selftest_release_bundle_ci.py",
@@ -69,23 +69,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
