@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-24
 
-Current status: SW2_24_R1_R4_PROVEN_PENDING_PUBLIC_DOCS_AND_FINAL_ACCEPTANCE
+Current status: SW2_24_R1_R5_PROVEN_PENDING_FINAL_EXACT_CI
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Regenerate SW2-24 current source/sequence/docs Project Truth and verify README/handbook stale claims. Remove temporary helper before exact candidate CI.
-- Require exact final full six-context run then squash PR #42 only after all R1-R5 acceptance evidence and no performance regression.
-- After exact main six-context PASS, complete separate evidence-only terminal SW2-24 closure; do not open SW2-25 without Owner permission.
+- Remove all temporary writer files and run six permanent Governance CI contexts on the exact helper-free final SW2-24 candidate.
+- If exact candidate CI and 21 commands PASS, make PR #42 ready, squash-merge with expected HEAD and verify equal Git tree, then exact main six-context CI.
+- Open separate evidence-only terminal closure after postmerge PASS; no SW2-25 or new release authorized.
 
 Blocked actions:
 - Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.
@@ -121,8 +121,7 @@ Blocked actions:
 - Do not begin SW2-25 until Owner authorizes it.
 
 Known blockers:
-- SW2-24 R5 NOT_PROVEN until the current source, public handbook, documentation inventory, GitHub-rendered sequence and exact governed specs are verified on helper-free candidate.
-- SW2-24 R6 NOT_PROVEN until final candidate six-context CI, equal-tree squash feature merge, exact main six-context CI and separate terminal closure.
+- SW2-24 R6 NOT_PROVEN: final helper-free exact candidate, squash PR #42 tree identity, postmerge main six-context CI and terminal evidence-only closure are pending.
 
 ## Proven vs not proven
 
@@ -211,9 +210,9 @@ Known blockers:
 
 ### Not proven
 
-- SW2-24 R5/R6 final accepted source and exact postmerge CI remain NOT_PROVEN.
-- Six-run baseline vs three candidate-run 16.9% Windows timing improvement is observed, not hardware-normalized causal proof. Aggregate job-seconds did not fall, GitHub billable minutes and cache state NOT_PROVEN.
-- Automatic required checks/ruleset enforcement remain intentionally NOT_PROVEN by Owner-approved governance boundary.
+- R6 final accepted feature/main and terminal closure exact provenance remains NOT_PROVEN.
+- Observed Windows median 64s (16.9% faster than 77s six-run historic median) is hosted runner comparison, not a cost-saving or hardware-normalized causal result; GitHub billed minutes and warm/cold caches remain NOT_PROVEN.
+- Automatic required check ruleset enforcement remains intentionally NOT_PROVEN by Owner decision.
 
 ## Important limitations
 
