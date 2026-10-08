@@ -2,10 +2,6 @@ name: Trusted Bundle Attestation (manual evidence only)
 
 on:
   workflow_dispatch:
-  # Temporary same-repository feature-branch smoke test; remove before final acceptance.
-  push:
-    branches:
-      - work/sw2-26-trusted-publisher-attestation
 
 permissions:
   contents: read
