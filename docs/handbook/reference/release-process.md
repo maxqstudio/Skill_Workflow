@@ -51,6 +51,10 @@ The publication requirement is publication-pending, not waived. Any `FAIL`, any 
 
 Only a successful strict preflight may emit `publication_authority=true`. The preflight itself is still read-only and does not create a Git tag or GitHub release.
 
+## Deterministic package dry-run (SW2-25)
+
+Before approving a future publication, maintainers can run the independent [Reproducible release bundle](release-bundle.md) process against an exact clean commit. It generates a content-addressed product ZIP and detached per-file SHA-256 manifest, re-verifies the complete artifact offline, and compares Windows/Ubuntu bytes. This is a **non-publishing** prerequisite for artifact reproducibility, not an alternative to the strict preflight. Both its manifest and CI dry-run enforce `publication_authority=false`. An unsigned manifest does not authenticate the publisher.
+
 ## Evidence artifacts
 
 The workflow uploads the governance report and release-preflight JSON together. These artifacts bind the result to the requested candidate SHA and expose the requested/effective governance modes, whether the run was evidence-only or strict, whether the version was stable, the publication-requirement state, and whether publication authority was granted.
