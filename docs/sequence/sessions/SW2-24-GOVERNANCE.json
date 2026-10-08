@@ -38,7 +38,7 @@
   "schema_version": 1,
   "scope": "CURRENT",
   "session_id": "SW2-24-GOVERNANCE",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETE",
   "test_traceability_required": true,
   "tests": [
     "scripts/selftest_governance_engine.py",

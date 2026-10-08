@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-24-ci-latency-cost-optimization
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: e5bbd9e485380cda962656e7ce8a5477cfce0e68
+Last accepted SHA: 272aed60e21b6d5fc8cd027081d3de743a7726d4
 Current source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
 
 ## Authorities

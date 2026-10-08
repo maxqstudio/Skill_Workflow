@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-24 R1-R5 each have exact historical and combined-candidate run evidence, 21 blocking Windows commands, static cross-OS contract, negative-path and public docs/sequence checks. Observed Windows median 64s versus 77s baseline satisfies target without a supported cost-savings claim; final exact feature/merge/main six-context authority and terminal closure R6 remain NOT_PROVEN.",
+  "evidence_boundary": "R1-R6 proven by six historical exact CI sample baselines, all original cross-platform gates, three exact-SHA six-context timing samples, source/docs/sequence validation, exact-feature squash tree identity, and postmerge exact-main six-context CI. Observed 16.9% Windows improvement does not prove billed cost savings, hardware-normalized causality, new device runtime E2E or automatic branch protection. Terminal closure candidate and main require separately successful exact CI.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -47,10 +47,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
+      "evidence": "PASS: exact helper-free feature candidate e53b656811da5a8db2069715c643125eaba705df tree 433185f88756eeeda2eb7c8b63d39c96280ad505 passed all six permanent contexts in Governance CI run 37713622290; PR #42 squash merged to exact feature main 272aed60e21b6d5fc8cd027081d3de743a7726d4 with identical tree, then full postmerge Governance CI run 37713767803 passed six permanent contexts on exact accepted main. Terminal closure candidate and final closure main are independently retested.",
       "id": "SW2-24-R6",
       "requirement": "Final exact helper-free feature candidate passes six permanent checks, is squash-merged with exact tree identity, and passes six permanent postmerge main checks before terminal accepted closure.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -67,23 +67,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
