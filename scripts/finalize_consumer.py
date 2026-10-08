@@ -167,8 +167,17 @@ def main() -> int:
     parser.add_argument("--root", required=True)
     parser.add_argument("--base", required=True)
     parser.add_argument("--expected-head", required=True)
+    parser.add_argument("--report", default="")
     args = parser.parse_args()
     result = finalize(Path(args.root), args.expected_head, args.base)
+    if args.report:
+        location = Path(args.report).resolve()
+        if location.is_relative_to(Path(args.root).resolve()):
+            print("CONSUMER_FINALIZE=FAIL")
+            print("FIRST_FAILED_GATE=REPORT_MUST_BE_OUTSIDE_CONSUMER")
+            return 1
+        location.parent.mkdir(parents=True, exist_ok=True)
+        location.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     print("CONSUMER_FINALIZE_JSON=" + json.dumps(result, sort_keys=True, separators=(",", ":")))
     print("CONSUMER_FINALIZE=" + result["result"])
     if result["first_failed_gate"]:
