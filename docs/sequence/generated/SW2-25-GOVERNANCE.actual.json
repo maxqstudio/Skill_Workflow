@@ -102,6 +102,216 @@
   },
   "edges": [
     {
+      "action": "checked_head",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::checked_head"
+    },
+    {
+      "action": "digest_manifest",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::digest_manifest"
+    },
+    {
+      "action": "fail",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "action": "sha",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::sha"
+    },
+    {
+      "action": "source_tree",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::source_tree"
+    },
+    {
+      "action": "toolchain_digest",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::toolchain_digest"
+    },
+    {
+      "action": "verify",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::verify"
+    },
+    {
+      "action": "write_zip",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::build",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::write_zip"
+    },
+    {
+      "action": "fail",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::checked_head",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::checked_head",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::git"
+    },
+    {
+      "action": "sha",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::digest_manifest",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::sha"
+    },
+    {
+      "action": "BundleError",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::fail",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::BundleError"
+    },
+    {
+      "action": "fail",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::git",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "action": "fail",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::source_tree",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "action": "git",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::source_tree",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::git"
+    },
+    {
+      "action": "include_path",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::source_tree",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::include_path"
+    },
+    {
+      "action": "validate_path",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::source_tree",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::validate_path"
+    },
+    {
+      "action": "casefold.add",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::source_tree",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "found.add",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::source_tree",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
+      "action": "digest_manifest",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::toolchain_digest",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::digest_manifest"
+    },
+    {
+      "action": "fail",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::validate_path",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "action": "digest_manifest",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::digest_manifest"
+    },
+    {
+      "action": "fail",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "action": "include_path",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::include_path"
+    },
+    {
+      "action": "sha",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::sha"
+    },
+    {
+      "action": "toolchain_digest",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::toolchain_digest"
+    },
+    {
+      "action": "validate_path",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": ".github/scripts/release_bundle.py::validate_path"
+    },
+    {
+      "action": "bundle_path.read_bytes",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_bytes"
+    },
+    {
+      "action": "manifest_path.read_text",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": "scripts/project_snapshot.py::ProjectSnapshot.read_text"
+    },
+    {
+      "action": "seen.add",
+      "evidence": "STATIC",
+      "from": ".github/scripts/release_bundle.py::verify",
+      "resolver": "python_ast",
+      "to": "scripts/validate_sequence_sessions.py::evidence_paths.add"
+    },
+    {
       "action": "SnapshotError",
       "evidence": "STATIC",
       "from": "scripts/project_snapshot.py::ProjectSnapshot.entry",
@@ -201,12 +411,132 @@
     }
   ],
   "entries": [
+    ".github/scripts/release_bundle.py::build",
+    ".github/scripts/release_bundle.py::verify",
+    ".github/scripts/release_bundle.py::source_tree",
     "scripts/release_preflight.py::validate",
     "scripts/toolchain_identity.py::producer_metadata"
   ],
   "generated": true,
   "generated_by": "generate_sequence_actual.py",
   "nodes": [
+    {
+      "id": ".github/scripts/release_bundle.py::BundleError",
+      "kind": "class",
+      "label": ".github/scripts/release_bundle.py::BundleError",
+      "language": "Python",
+      "line_end": 40,
+      "line_start": 39,
+      "locator": ".github/scripts/release_bundle.py::BundleError"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::build",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::build",
+      "language": "Python",
+      "line_end": 205,
+      "line_start": 169,
+      "locator": ".github/scripts/release_bundle.py::build"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::checked_head",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::checked_head",
+      "language": "Python",
+      "line_end": 65,
+      "line_start": 59,
+      "locator": ".github/scripts/release_bundle.py::checked_head"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::digest_manifest",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::digest_manifest",
+      "language": "Python",
+      "line_end": 143,
+      "line_start": 140,
+      "locator": ".github/scripts/release_bundle.py::digest_manifest"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::fail",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::fail",
+      "language": "Python",
+      "line_end": 44,
+      "line_start": 43,
+      "locator": ".github/scripts/release_bundle.py::fail"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::git",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::git",
+      "language": "Python",
+      "line_end": 56,
+      "line_start": 51,
+      "locator": ".github/scripts/release_bundle.py::git"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::include_path",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::include_path",
+      "language": "Python",
+      "line_end": 69,
+      "line_start": 68,
+      "locator": ".github/scripts/release_bundle.py::include_path"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::sha",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::sha",
+      "language": "Python",
+      "line_end": 48,
+      "line_start": 47,
+      "locator": ".github/scripts/release_bundle.py::sha"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::source_tree",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::source_tree",
+      "language": "Python",
+      "line_end": 137,
+      "line_start": 91,
+      "locator": ".github/scripts/release_bundle.py::source_tree"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::toolchain_digest",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::toolchain_digest",
+      "language": "Python",
+      "line_end": 151,
+      "line_start": 146,
+      "locator": ".github/scripts/release_bundle.py::toolchain_digest"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::validate_path",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::validate_path",
+      "language": "Python",
+      "line_end": 88,
+      "line_start": 72,
+      "locator": ".github/scripts/release_bundle.py::validate_path"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::verify",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::verify",
+      "language": "Python",
+      "line_end": 278,
+      "line_start": 208,
+      "locator": ".github/scripts/release_bundle.py::verify"
+    },
+    {
+      "id": ".github/scripts/release_bundle.py::write_zip",
+      "kind": "function",
+      "label": ".github/scripts/release_bundle.py::write_zip",
+      "language": "Python",
+      "line_end": 166,
+      "line_start": 154,
+      "locator": ".github/scripts/release_bundle.py::write_zip"
+    },
     {
       "id": "scripts/project_snapshot.py::ProjectSnapshot.entry",
       "kind": "method",
@@ -343,7 +673,7 @@
       "locator": "scripts/validate_sequence_sessions.py::repo_relative_path"
     }
   ],
-  "observed_head": "bc6970aed81209aa461fdaf829fbc2e6404f987d",
+  "observed_head": "9a75681d266fd08fed9498e22dd9c72664cff715",
   "schema_version": 1,
-  "source_digest": "a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2"
+  "source_digest": "6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975"
 }

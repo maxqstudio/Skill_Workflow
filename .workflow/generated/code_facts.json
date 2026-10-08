@@ -102,6 +102,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/release_bundle.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 312
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/selftest_ci_applicability.py",
       "is_test": false,
       "language": "Python",
@@ -130,6 +137,20 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 186
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_release_bundle_ci.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 37
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/selftest_skill_reference_split.py",
       "is_test": false,
       "language": "Python",
@@ -137,17 +158,17 @@
     },
     {
       "directory": ".github/scripts",
-      "file": ".github/scripts/tmp_sw2_25_open.py",
-      "is_test": false,
-      "language": "Python",
-      "lines": 101
-    },
-    {
-      "directory": ".github/scripts",
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "is_test": false,
       "language": "Python",
       "lines": 147
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/validate_release_bundle_ci.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 68
     },
     {
       "directory": ".github/scripts",
@@ -161,7 +182,7 @@
       "file": ".github/scripts/validate_unified_ci.py",
       "is_test": false,
       "language": "Python",
-      "lines": 123
+      "lines": 129
     },
     {
       "directory": "scripts",
@@ -1411,6 +1432,798 @@
       "target_token": "independent.run_groups"
     },
     {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "bundle_path.is_relative_to"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "bundle_path.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "bundle_path.resolve"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "bundle_path.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "checked_head"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "checked_head"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "digest_manifest"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "manifest_path.is_relative_to"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "manifest_path.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "manifest_path.resolve"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "manifest_path.write_text"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "sha"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "sha"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "source_tree"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "toolchain_digest"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::build",
+      "target_token": "write_zip"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::checked_head",
+      "target_token": "SHA_RE.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::checked_head",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::checked_head",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::checked_head",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::checked_head",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::checked_head",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::digest_manifest",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::digest_manifest",
+      "target_token": "sha"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::fail",
+      "target_token": "BundleError"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::git",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::git",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::git",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::include_path",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::include_path",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "b.add_argument"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "b.add_argument"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "b.add_argument"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "b.add_argument"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "build"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "modes.add_parser"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "modes.add_parser"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "parser.add_subparsers"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "report.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "v.add_argument"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "v.add_argument"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::main",
+      "target_token": "verify"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::sha",
+      "target_token": "hashlib.sha256"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "casefold.add"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "current.is_file"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "current.is_symlink"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "found.add"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "git"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "header.decode"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "include_path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "item.split"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "name.casefold"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "name_bytes.decode"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "paths.append"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "paths.sort"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "payload.split"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "sorted"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "sum"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::source_tree",
+      "target_token": "validate_path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::toolchain_digest",
+      "target_token": "digest_manifest"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "leaf.endswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "leaf.endswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "leaf.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "leaf.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "name.split"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "ord"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "part.endswith"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::validate_path",
+      "target_token": "part.split"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "HEX_RE.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "REQUIRED.issubset"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "SHA_RE.fullmatch"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "bundle_path.is_file"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "bundle_path.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "digest_manifest"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "fail"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "include_path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "info.is_dir"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "io.BytesIO"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "isinstance"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest.get"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest_path.is_file"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "manifest_path.read_text"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "name.casefold"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "name.casefold"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "seen.add"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "sha"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "sha"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "sha"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "sorted"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "toolchain_digest"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "validate_path"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "z.infolist"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "z.read"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "zip"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::verify",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::write_zip",
+      "target_token": "io.BytesIO"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::write_zip",
+      "target_token": "output.getvalue"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::write_zip",
+      "target_token": "z.writestr"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::write_zip",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/release_bundle.py::write_zip",
+      "target_token": "zipfile.ZipInfo"
+    },
+    {
       "caller": ".github/scripts/selftest_ci_applicability.py::main",
       "target_token": "classify"
     },
@@ -2007,6 +2820,750 @@
       "target_token": "p.write_text"
     },
     {
+      "caller": ".github/scripts/selftest_release_bundle.py::commit",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::commit",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::commit",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "altered.writestr"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "altered.writestr"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "altered.writestr"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.build"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.sha"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.sha"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.source_tree"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.validate_path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "candidate.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "candidate.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "candidate.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "commit"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "copied.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "copied_manifest.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "d.update"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "d.update"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "d.update"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "d.update"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "d.update"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "enumerate"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "expect_manipulation"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "first.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "first.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "first.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "first.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "first.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "io.BytesIO"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "io.BytesIO"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "manifest.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "manifest.read_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "manifest2.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "manifest2.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "mutated.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "mutated.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "mutated.stat"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "mutated.stat"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "mutated.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "mutated.write_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "old_zip.infolist"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "old_zip.infolist"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "old_zip.read"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "old_zip.read"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "put"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "root.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "second.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "second.read_bytes"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "slice"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "x.startswith"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "z.namelist"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "z.namelist"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "z.namelist"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "z.namelist"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main",
+      "target_token": "zipfile.ZipFile"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "bundle.verify"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "candidate.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "change"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "target_token": "raises"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::put",
+      "target_token": "p.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::put",
+      "target_token": "p.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::raises",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::raises",
+      "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::raises",
+      "target_token": "fn"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::raises",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::raises",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::run",
+      "target_token": "r.stdout.strip"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::run",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle.py::run",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "g.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "g.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "g.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "m.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "m.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "m.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "m.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "policy.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "policy.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "target_token": "require_issue"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::require_issue",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_release_bundle_ci.py::require_issue",
+      "target_token": "policy.findings"
+    },
+    {
       "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
       "target_token": "Path"
     },
@@ -2141,50 +3698,6 @@
     {
       "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
       "target_token": "module.validate"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::git",
-      "target_token": "subprocess.check_output"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::read",
-      "target_token": "Path"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::read",
-      "target_token": "json.loads"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
-      "target_token": "map"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
-      "target_token": "print"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
-      "target_token": "str"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
-      "target_token": "subprocess.run"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
-      "target_token": "Path"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
-      "target_token": "json.dumps"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
-      "target_token": "p.parent.mkdir"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
-      "target_token": "p.write_text"
     },
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
@@ -2357,6 +3870,86 @@
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
       "target_token": "workflow.split"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "governance.count"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "governance.count"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "governance.split"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "name.startswith"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "part.count"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "target_token": "part.split"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "findings"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/validate_release_bundle_ci.py::main",
+      "target_token": "str"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
@@ -2548,6 +4141,18 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "bundle_findings"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "bundle_workflow.is_file"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "bundle_workflow.read_text"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "ci_parallel_findings"
     },
     {
@@ -2593,6 +4198,14 @@
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.append"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.extend"
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
@@ -29086,6 +30699,118 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "class",
+      "line_end": 40,
+      "line_start": 39,
+      "locator": ".github/scripts/release_bundle.py::BundleError",
+      "symbol": "BundleError"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 44,
+      "line_start": 43,
+      "locator": ".github/scripts/release_bundle.py::fail",
+      "symbol": "fail"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 48,
+      "line_start": 47,
+      "locator": ".github/scripts/release_bundle.py::sha",
+      "symbol": "sha"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 56,
+      "line_start": 51,
+      "locator": ".github/scripts/release_bundle.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 65,
+      "line_start": 59,
+      "locator": ".github/scripts/release_bundle.py::checked_head",
+      "symbol": "checked_head"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 69,
+      "line_start": 68,
+      "locator": ".github/scripts/release_bundle.py::include_path",
+      "symbol": "include_path"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 88,
+      "line_start": 72,
+      "locator": ".github/scripts/release_bundle.py::validate_path",
+      "symbol": "validate_path"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 137,
+      "line_start": 91,
+      "locator": ".github/scripts/release_bundle.py::source_tree",
+      "symbol": "source_tree"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 143,
+      "line_start": 140,
+      "locator": ".github/scripts/release_bundle.py::digest_manifest",
+      "symbol": "digest_manifest"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 151,
+      "line_start": 146,
+      "locator": ".github/scripts/release_bundle.py::toolchain_digest",
+      "symbol": "toolchain_digest"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 166,
+      "line_start": 154,
+      "locator": ".github/scripts/release_bundle.py::write_zip",
+      "symbol": "write_zip"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 205,
+      "line_start": 169,
+      "locator": ".github/scripts/release_bundle.py::build",
+      "symbol": "build"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 278,
+      "line_start": 208,
+      "locator": ".github/scripts/release_bundle.py::verify",
+      "symbol": "verify"
+    },
+    {
+      "file": ".github/scripts/release_bundle.py",
+      "kind": "function",
+      "line_end": 308,
+      "line_start": 281,
+      "locator": ".github/scripts/release_bundle.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/selftest_ci_applicability.py",
       "kind": "function",
       "line_end": 9,
@@ -29270,6 +30995,70 @@
       "symbol": "main.mutating_group"
     },
     {
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "kind": "function",
+      "line_end": 17,
+      "line_start": 14,
+      "locator": ".github/scripts/selftest_release_bundle.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "kind": "function",
+      "line_end": 23,
+      "line_start": 20,
+      "locator": ".github/scripts/selftest_release_bundle.py::put",
+      "symbol": "put"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "kind": "function",
+      "line_end": 29,
+      "line_start": 26,
+      "locator": ".github/scripts/selftest_release_bundle.py::commit",
+      "symbol": "commit"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "kind": "function",
+      "line_end": 39,
+      "line_start": 32,
+      "locator": ".github/scripts/selftest_release_bundle.py::raises",
+      "symbol": "raises"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "kind": "function",
+      "line_end": 182,
+      "line_start": 42,
+      "locator": ".github/scripts/selftest_release_bundle.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle.py",
+      "kind": "method",
+      "line_end": 100,
+      "line_start": 96,
+      "locator": ".github/scripts/selftest_release_bundle.py::main.expect_manipulation",
+      "symbol": "main.expect_manipulation"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle_ci.py",
+      "kind": "function",
+      "line_end": 9,
+      "line_start": 7,
+      "locator": ".github/scripts/selftest_release_bundle_ci.py::require_issue",
+      "symbol": "require_issue"
+    },
+    {
+      "file": ".github/scripts/selftest_release_bundle_ci.py",
+      "kind": "function",
+      "line_end": 34,
+      "line_start": 11,
+      "locator": ".github/scripts/selftest_release_bundle_ci.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/selftest_skill_reference_split.py",
       "kind": "function",
       "line_end": 22,
@@ -29294,38 +31083,6 @@
       "symbol": "main"
     },
     {
-      "file": ".github/scripts/tmp_sw2_25_open.py",
-      "kind": "function",
-      "line_end": 10,
-      "line_start": 8,
-      "locator": ".github/scripts/tmp_sw2_25_open.py::run",
-      "symbol": "run"
-    },
-    {
-      "file": ".github/scripts/tmp_sw2_25_open.py",
-      "kind": "function",
-      "line_end": 12,
-      "line_start": 11,
-      "locator": ".github/scripts/tmp_sw2_25_open.py::git",
-      "symbol": "git"
-    },
-    {
-      "file": ".github/scripts/tmp_sw2_25_open.py",
-      "kind": "function",
-      "line_end": 14,
-      "line_start": 13,
-      "locator": ".github/scripts/tmp_sw2_25_open.py::read",
-      "symbol": "read"
-    },
-    {
-      "file": ".github/scripts/tmp_sw2_25_open.py",
-      "kind": "function",
-      "line_end": 18,
-      "line_start": 15,
-      "locator": ".github/scripts/tmp_sw2_25_open.py::save",
-      "symbol": "save"
-    },
-    {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
       "line_end": 65,
@@ -29347,6 +31104,22 @@
       "line_end": 144,
       "line_start": 129,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/validate_release_bundle_ci.py",
+      "kind": "function",
+      "line_end": 46,
+      "line_start": 16,
+      "locator": ".github/scripts/validate_release_bundle_ci.py::findings",
+      "symbol": "findings"
+    },
+    {
+      "file": ".github/scripts/validate_release_bundle_ci.py",
+      "kind": "function",
+      "line_end": 64,
+      "line_start": 49,
+      "locator": ".github/scripts/validate_release_bundle_ci.py::main",
       "symbol": "main"
     },
     {
@@ -29376,16 +31149,16 @@
     {
       "file": ".github/scripts/validate_unified_ci.py",
       "kind": "function",
-      "line_end": 56,
-      "line_start": 30,
+      "line_end": 57,
+      "line_start": 31,
       "locator": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
       "symbol": "run_performance_budget_contract"
     },
     {
       "file": ".github/scripts/validate_unified_ci.py",
       "kind": "function",
-      "line_end": 119,
-      "line_start": 59,
+      "line_end": 125,
+      "line_start": 60,
       "locator": ".github/scripts/validate_unified_ci.py::main",
       "symbol": "main"
     },
@@ -33007,13 +34780,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2",
+  "source_digest": "6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975",
   "source_summary": {
-    "files": 80,
+    "files": 83,
     "languages": {
-      "Python": 80
+      "Python": 83
     },
-    "lines": 18368,
+    "lines": 18876,
     "test_files": 0
   },
   "tests": []

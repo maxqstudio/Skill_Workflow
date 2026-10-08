@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-25
-Status: SW2_25_REPRODUCIBLE_BUNDLE_IN_PROGRESS
+Status: SW2_25_R1_R4_PROVEN_PENDING_PERMANENT_CI
 Roadmap phase: SW2-25
 ROADMAP_SYNC: PASS
 
@@ -18,7 +18,7 @@ Branch: work/sw2-25-reproducible-release-bundle
 Authoritative SHA: external final acceptance evidence
 Last accepted SHA: 91b58b98049a7d27ed65169508177ea7dc978ca1
 Current candidate SHA: external final acceptance evidence
-Current source digest: a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2
+Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 
 ## Runtime
 Environment: see SOURCE_AUTHORITY_MAP.md and RUNBOOK.md
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-25-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -124,12 +124,13 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-24 latency target measured in GitHub run 37713042819 attempts 1/2/3 on helper-free SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab: Windows 49,68,64s median 64s versus six-run historical median 77s (16.9% observed reduction). All three attempts 6/6 successful, no monetary cost-saving claim.
 
 ## Not proven
-- SW2-25 bundle determinism, cross-platform parity, independent integrity verification, packaging safety and final six-context acceptance are NOT_PROVEN.
-- Published stable release remains v2.1.0; no new release/tag authorized and no asset publication granted.
-- Automated GitHub required-status enforcement intentionally remains NOT_PROVEN under Owner decision.
+- SW2-25 R5/R6 full terminal acceptance and exact postmerge CI NOT_PROVEN.
+- Detached SHA manifest is unsigned and cannot authenticate publisher/source Git commit offline; no stable publication granted.
+- GitHub automatic required-status checks remain intentionally NOT_PROVEN by Owner boundary.
 
 ## Known blockers
-- SW2-25 R1-R6 NOT_PROVEN pending implementation and exact evidence.
+- SW2-25 R5 NOT_PROVEN: permanent six-context exact-helper-free source/documentation/consumer/performance acceptance has not passed.
+- SW2-25 R6 NOT_PROVEN: exact feature/main merge and terminal closure pending.
 
 ## Known defects
 See KNOWN_DEFECTS.md.

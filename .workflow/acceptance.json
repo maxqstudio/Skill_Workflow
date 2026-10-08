@@ -1,44 +1,44 @@
 {
-  "evidence_boundary": "Phase-open only; no deterministic package, independent integrity proof, new stable publication or release authority.",
+  "evidence_boundary": "SW2-25 R1-R4 proof covers exact source packaging, a pinned real cross-OS byte-parity run, adversarial path/manifests and detached offline integrity without publication or cryptographic publisher identity. R5 final cross-platform permanent six-context CI and R6 exact merge/postmerge/terminal closure remain NOT_PROVEN.",
   "human_comprehension_questions": {
-    "How does failure/recovery behave?": "NOT_PROVEN",
-    "How does important data flow through the system?": "NOT_PROVEN",
-    "What are the important lifecycle states and transitions?": "NOT_PROVEN",
-    "What are the main user/domain workflows?": "NOT_PROVEN",
-    "What are the major components and how do they relate?": "NOT_PROVEN",
-    "What is mutable and what is immutable?": "NOT_PROVEN",
-    "What is proven and what is not proven?": "NOT_PROVEN",
-    "What is the current project state?": "NOT_PROVEN",
-    "What is the project and what problem does it solve?": "NOT_PROVEN",
-    "What may happen next and what is blocked?": "NOT_PROVEN",
-    "Who uses it and what are the primary outcomes?": "NOT_PROVEN",
-    "Who/what is authoritative for important decisions?": "NOT_PROVEN"
+    "How does failure/recovery behave?": "PASS",
+    "How does important data flow through the system?": "PASS",
+    "What are the important lifecycle states and transitions?": "PASS",
+    "What are the main user/domain workflows?": "PASS",
+    "What are the major components and how do they relate?": "PASS",
+    "What is mutable and what is immutable?": "PASS",
+    "What is proven and what is not proven?": "PASS",
+    "What is the current project state?": "PASS",
+    "What is the project and what problem does it solve?": "PASS",
+    "What may happen next and what is blocked?": "PASS",
+    "Who uses it and what are the primary outcomes?": "PASS",
+    "Who/what is authoritative for important decisions?": "PASS"
   },
-  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "evidence": "PASS: .github/scripts/release_bundle.py builds curated product-only Git-blob byte snapshot from exact clean HEAD. Deterministic canonical file order, fixed ZIP metadata, content SHA-256, source_git_sha verified at build, consumer toolchain digest, explicit offline source identity NOT_PROVEN and publication_authority=false; actual product-build GitHub CI run 37716191737 Ubuntu and Windows passed.",
       "id": "SW2-25-R1",
       "requirement": "An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "evidence": "PASS: GitHub Release Bundle Dry Run run 37716191737 at exact SHA a4332aceecc320d11dceadbab9809ab7d87c38c9: both Ubuntu and Windows built and verified the same bundle, parity job 113113186605 compared full ZIP bytes and full JSON manifest bytes and passed CROSS_OS_BUNDLE_EXACT_BYTES=PASS. A clean clone built identical ZIP bytes; ZIP_STORED removes zlib dependency. Later source/docs changes require final exact candidate CI independently.",
       "id": "SW2-25-R2",
       "requirement": "A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "evidence": "PASS: hostile fixture regressions in .github/scripts/selftest_release_bundle.py succeeded on GitHub for dirty worktree, non-exact SHA, secret paths, tracked private surfaces outside allowlist, unsafe Windows reserved names, symlink Git tree mode, missing mandatory surfaces, and output inside repo; no semantic or external mutations. Test source and policy rerun during exact GitHub evidence synchronization.",
       "id": "SW2-25-R3",
       "requirement": "Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "evidence": "PASS: detached offline manifest verification checks full archive and every file checksum, canonical metadata/mode/order, duplicate/missing/extra entries, path traversal, swapped/rehashed manifest and extra ZIP injection; rehashed timestamp tamper is still rejected. Forged valid SHA in an unsigned manifest remains explicitly publisher_authenticated=false, Git claim only, not publication authority. Cross-platform dry-run parity 37716191737 PASS.",
       "id": "SW2-25-R4",
       "requirement": "Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
@@ -58,8 +58,10 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-25-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
+    "python .github/scripts/selftest_release_bundle.py",
+    "python .github/scripts/selftest_release_bundle_ci.py",
     "python scripts/selftest_release_preflight.py",
     "python scripts/validate_schema_toolchain.py --root .",
     "python scripts/validate_sequence_sessions.py --root ."
@@ -71,7 +73,7 @@
     "DOC_READABILITY": "PASS",
     "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
     "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
-    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
     "PROJECT_STATE_SYNC": "NOT_PROVEN",
@@ -80,7 +82,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"

@@ -1,17 +1,48 @@
 {
   "complexity": {
     "absolute_numeric_limit": null,
-    "interaction_ceiling": 3,
-    "interaction_count": 3,
+    "interaction_ceiling": 5,
+    "interaction_count": 5,
     "max_interactions_per_directed_component_pair": 1,
     "max_participants_per_semantic_component": 1,
-    "participant_ceiling": 4,
-    "participant_count": 4,
+    "participant_ceiling": 5,
+    "participant_count": 5,
     "participant_granularity": "semantic_module_or_external_boundary",
     "policy_id": "module-collapse-v1",
     "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
   },
   "edges": [
+    {
+      "actions": [
+        "bundle_path.read_bytes",
+        "manifest_path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/release_bundle.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "casefold.add",
+        "found.add",
+        "seen.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/release_bundle.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    },
     {
       "actions": [
         "path.read_text"
@@ -56,6 +87,9 @@
     }
   ],
   "entries": [
+    ".github/scripts/release_bundle.py::build",
+    ".github/scripts/release_bundle.py::verify",
+    ".github/scripts/release_bundle.py::source_tree",
     "scripts/release_preflight.py::validate",
     "scripts/toolchain_identity.py::producer_metadata"
   ],
@@ -63,6 +97,27 @@
   "generated": true,
   "generated_by": "sequence_human_view.py",
   "nodes": [
+    {
+      "id": "module:.github/scripts/release_bundle.py",
+      "kind": "module",
+      "label": ".github/scripts/release_bundle.py",
+      "machine_node_count": 13,
+      "machine_nodes": [
+        ".github/scripts/release_bundle.py::BundleError",
+        ".github/scripts/release_bundle.py::build",
+        ".github/scripts/release_bundle.py::checked_head",
+        ".github/scripts/release_bundle.py::digest_manifest",
+        ".github/scripts/release_bundle.py::fail",
+        ".github/scripts/release_bundle.py::git",
+        ".github/scripts/release_bundle.py::include_path",
+        ".github/scripts/release_bundle.py::sha",
+        ".github/scripts/release_bundle.py::source_tree",
+        ".github/scripts/release_bundle.py::toolchain_digest",
+        ".github/scripts/release_bundle.py::validate_path",
+        ".github/scripts/release_bundle.py::verify",
+        ".github/scripts/release_bundle.py::write_zip"
+      ]
+    },
     {
       "id": "module:scripts/project_snapshot.py",
       "kind": "module",
@@ -111,15 +166,28 @@
       ]
     }
   ],
-  "observed_head": "bc6970aed81209aa461fdaf829fbc2e6404f987d",
+  "observed_head": "9a75681d266fd08fed9498e22dd9c72664cff715",
   "policy_id": "module-collapse-v1",
   "projection": {
-    "aggregated_cross_component_edges": 0,
-    "cross_component_machine_edges": 3,
-    "internal_machine_edges_collapsed": 11,
-    "machine_edge_count": 14,
-    "machine_node_count": 15,
+    "aggregated_cross_component_edges": 3,
+    "cross_component_machine_edges": 8,
+    "internal_machine_edges_collapsed": 36,
+    "machine_edge_count": 44,
+    "machine_node_count": 28,
     "node_map": {
+      ".github/scripts/release_bundle.py::BundleError": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::build": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::checked_head": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::digest_manifest": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::fail": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::git": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::include_path": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::sha": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::source_tree": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::toolchain_digest": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::validate_path": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::verify": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::write_zip": "module:.github/scripts/release_bundle.py",
       "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
       "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
@@ -139,5 +207,5 @@
     "unresolved_machine_edges": []
   },
   "schema_version": 1,
-  "source_digest": "a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2"
+  "source_digest": "6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975"
 }

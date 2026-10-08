@@ -4,22 +4,24 @@
 
 ## Evidence boundary
 
-Phase-open only; no deterministic package, independent integrity proof, new stable publication or release authority.
+SW2-25 R1-R4 proof covers exact source packaging, a pinned real cross-OS byte-parity run, adversarial path/manifests and detached offline integrity without publication or cryptographic publisher identity. R5 final cross-platform permanent six-context CI and R6 exact merge/postmerge/terminal closure remain NOT_PROVEN.
 
 Final tested source: external final acceptance evidence.
-Current source digest: a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2
+Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-25-R1 | An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
-| SW2-25-R2 | A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
-| SW2-25-R3 | Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
-| SW2-25-R4 | Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
+| SW2-25-R1 | An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature. | PASS: .github/scripts/release_bundle.py builds curated product-only Git-blob byte snapshot from exact clean HEAD. Deterministic canonical file order, fixed ZIP metadata, content SHA-256, source_git_sha verified at build, consumer toolchain digest, explicit offline source identity NOT_PROVEN and publication_authority=false; actual product-build GitHub CI run 37716191737 Ubuntu and Windows passed. | PASS |
+| SW2-25-R2 | A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized. | PASS: GitHub Release Bundle Dry Run run 37716191737 at exact SHA a4332aceecc320d11dceadbab9809ab7d87c38c9: both Ubuntu and Windows built and verified the same bundle, parity job 113113186605 compared full ZIP bytes and full JSON manifest bytes and passed CROSS_OS_BUNDLE_EXACT_BYTES=PASS. A clean clone built identical ZIP bytes; ZIP_STORED removes zlib dependency. Later source/docs changes require final exact candidate CI independently. | PASS |
+| SW2-25-R3 | Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates. | PASS: hostile fixture regressions in .github/scripts/selftest_release_bundle.py succeeded on GitHub for dirty worktree, non-exact SHA, secret paths, tracked private surfaces outside allowlist, unsafe Windows reserved names, symlink Git tree mode, missing mandatory surfaces, and output inside repo; no semantic or external mutations. Test source and policy rerun during exact GitHub evidence synchronization. | PASS |
+| SW2-25-R4 | Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority. | PASS: detached offline manifest verification checks full archive and every file checksum, canonical metadata/mode/order, duplicate/missing/extra entries, path traversal, swapped/rehashed manifest and extra ZIP injection; rehashed timestamp tamper is still rejected. Forged valid SHA in an unsigned manifest remains explicitly publisher_authenticated=false, Git claim only, not publication authority. Cross-platform dry-run parity 37716191737 PASS. | PASS |
 | SW2-25-R5 | Release preflight and public handbook document read-only distribution dry-run boundaries; permanent CI exercises actual bundle build/verify and fail-closed regressions across Ubuntu and Windows, preserving the existing six contexts with no extra release or tag. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
 | SW2-25-R6 | An exact helper-free final feature candidate passes all six permanent Governance CI contexts, squash merges with identical tree, and passes full six-context postmerge main before terminal closure; no release or distribution publication happens without separate Owner authority. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
 
 ## Test commands
 
+- python .github/scripts/selftest_release_bundle.py
+- python .github/scripts/selftest_release_bundle_ci.py
 - python scripts/selftest_release_preflight.py
 - python scripts/validate_schema_toolchain.py --root .
 - python scripts/validate_sequence_sessions.py --root .
@@ -37,7 +39,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-25-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
@@ -50,7 +52,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: NOT_PROVEN
-HUMAN_COMPREHENSION_GATE: NOT_PROVEN
+SYSTEM_OVERVIEW status: PASS
+HUMAN_COMPREHENSION_GATE: PASS
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

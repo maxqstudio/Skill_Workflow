@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: NOT_PROVEN
+Human comprehension status: PASS
 
 ## One-minute summary
 
@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 80 files, 1 language categories.
+Observed source inventory: 83 files, 1 language categories.
 
 ## Major components
 
@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-25
 
-Current status: SW2_25_REPRODUCIBLE_BUNDLE_IN_PROGRESS
+Current status: SW2_25_R1_R4_PROVEN_PENDING_PERMANENT_CI
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -121,7 +121,8 @@ Blocked actions:
 - Do not open SW2-26 without explicit Owner authorization.
 
 Known blockers:
-- SW2-25 R1-R6 NOT_PROVEN pending implementation and exact evidence.
+- SW2-25 R5 NOT_PROVEN: permanent six-context exact-helper-free source/documentation/consumer/performance acceptance has not passed.
+- SW2-25 R6 NOT_PROVEN: exact feature/main merge and terminal closure pending.
 
 ## Proven vs not proven
 
@@ -213,9 +214,9 @@ Known blockers:
 
 ### Not proven
 
-- SW2-25 bundle determinism, cross-platform parity, independent integrity verification, packaging safety and final six-context acceptance are NOT_PROVEN.
-- Published stable release remains v2.1.0; no new release/tag authorized and no asset publication granted.
-- Automated GitHub required-status enforcement intentionally remains NOT_PROVEN under Owner decision.
+- SW2-25 R5/R6 full terminal acceptance and exact postmerge CI NOT_PROVEN.
+- Detached SHA manifest is unsigned and cannot authenticate publisher/source Git commit offline; no stable publication granted.
+- GitHub automatic required-status checks remain intentionally NOT_PROVEN by Owner boundary.
 
 ## Important limitations
 
@@ -249,18 +250,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
-| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
-| What are the major components and how do they relate? | NOT_PROVEN | Major components |
-| How does important data flow through the system? | NOT_PROVEN | Main data flow |
-| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
-| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
-| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
-| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
-| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
-| What is the current project state? | NOT_PROVEN | Current project state |
-| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
-| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
+| What is the project and what problem does it solve? | PASS | One-minute summary |
+| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
+| What are the major components and how do they relate? | PASS | Major components |
+| How does important data flow through the system? | PASS | Main data flow |
+| What are the main user/domain workflows? | PASS | Main user workflows |
+| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
+| Who/what is authoritative for important decisions? | PASS | Authority model |
+| What is mutable and what is immutable? | PASS | Mutable vs immutable |
+| How does failure/recovery behave? | PASS | Failure and recovery |
+| What is the current project state? | PASS | Current project state |
+| What is proven and what is not proven? | PASS | Proven vs not proven |
+| What may happen next and what is blocked? | PASS | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.

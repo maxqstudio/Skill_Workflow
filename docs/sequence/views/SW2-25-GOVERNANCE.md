@@ -9,16 +9,16 @@
 - Machine graph: [docs/sequence/generated/SW2-25-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-25-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-25-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-25-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-25-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-25-GOVERNANCE.human.json)
-- Source digest: `a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2`
+- Source digest: `6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975`
 
 ## Complexity
 
 | Metric | Machine | Human |
 |---|---:|---:|
-| Participants / nodes | 15 | 4 |
-| Interactions / edges | 14 | 3 |
-| Internal machine edges collapsed | 11 | — |
-| Cross-component edges aggregated | 0 | — |
+| Participants / nodes | 28 | 5 |
+| Interactions / edges | 44 | 5 |
+| Internal machine edges collapsed | 36 | — |
+| Cross-component edges aggregated | 3 | — |
 
 Policy `module-collapse-v1`: one participant per semantic module/external boundary and one rendered interaction per directed component pair. The ceilings are derived from the graph itself; this policy does not invent a global numeric readability limit.
 
@@ -26,11 +26,14 @@ Policy `module-collapse-v1`: one participant per semantic module/external bounda
 
 ```mermaid
 sequenceDiagram
-    participant module_scripts_project_snapshot_py_0 as scripts/project_snapshot.py
-    participant module_scripts_release_preflight_py_1 as scripts/release_preflight.py
-    participant module_scripts_toolchain_identity_py_2 as scripts/toolchain_identity.py
-    participant module_scripts_validate_sequence_sessions_py_3 as scripts/validate_sequence_sessions.py
-    module_scripts_release_preflight_py_1->>module_scripts_project_snapshot_py_0: 1 static interaction
-    module_scripts_release_preflight_py_1->>module_scripts_validate_sequence_sessions_py_3: 1 static interaction
-    module_scripts_toolchain_identity_py_2->>module_scripts_project_snapshot_py_0: 1 static interaction
+    participant module__github_scripts_release_bundle_py_0 as .github/scripts/release_bundle.py
+    participant module_scripts_project_snapshot_py_1 as scripts/project_snapshot.py
+    participant module_scripts_release_preflight_py_2 as scripts/release_preflight.py
+    participant module_scripts_toolchain_identity_py_3 as scripts/toolchain_identity.py
+    participant module_scripts_validate_sequence_sessions_py_4 as scripts/validate_sequence_sessions.py
+    module__github_scripts_release_bundle_py_0->>module_scripts_project_snapshot_py_1: 2 static interactions
+    module__github_scripts_release_bundle_py_0->>module_scripts_validate_sequence_sessions_py_4: 3 static interactions
+    module_scripts_release_preflight_py_2->>module_scripts_project_snapshot_py_1: 1 static interaction
+    module_scripts_release_preflight_py_2->>module_scripts_validate_sequence_sessions_py_4: 1 static interaction
+    module_scripts_toolchain_identity_py_3->>module_scripts_project_snapshot_py_1: 1 static interaction
 ```

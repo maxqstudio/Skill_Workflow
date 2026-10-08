@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2
+Source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -19,13 +19,16 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
 | .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
 | .github/scripts/ci_parallel_windows.py | 4 | 0 | 2 | 2 |
+| .github/scripts/release_bundle.py | 14 | 1 | 13 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_ci_parallel_final_gates.py | 8 | 0 | 5 | 3 |
 | .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
 | .github/scripts/selftest_ci_parallel_windows.py | 10 | 0 | 4 | 6 |
+| .github/scripts/selftest_release_bundle.py | 6 | 0 | 5 | 1 |
+| .github/scripts/selftest_release_bundle_ci.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
-| .github/scripts/tmp_sw2_25_open.py | 4 | 0 | 4 | 0 |
 | .github/scripts/validate_ci_parallel_contract.py | 3 | 0 | 3 | 0 |
+| .github/scripts/validate_release_bundle_ci.py | 2 | 0 | 2 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
@@ -153,6 +156,28 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/release_bundle.py</code> — 14 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| BundleError | class | 39-40 |
+| fail | function | 43-44 |
+| sha | function | 47-48 |
+| git | function | 51-56 |
+| checked_head | function | 59-65 |
+| include_path | function | 68-69 |
+| validate_path | function | 72-88 |
+| source_tree | function | 91-137 |
+| digest_manifest | function | 140-143 |
+| toolchain_digest | function | 146-151 |
+| write_zip | function | 154-166 |
+| build | function | 169-205 |
+| verify | function | 208-278 |
+| main | function | 281-308 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_ci_applicability.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -208,6 +233,30 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/selftest_release_bundle.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| run | function | 14-17 |
+| put | function | 20-23 |
+| commit | function | 26-29 |
+| raises | function | 32-39 |
+| main | function | 42-182 |
+| main.expect_manipulation | method | 96-100 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_release_bundle_ci.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| require_issue | function | 7-9 |
+| main | function | 11-34 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_skill_reference_split.py</code> — 3 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -219,18 +268,6 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>.github/scripts/tmp_sw2_25_open.py</code> — 4 symbols</summary>
-
-| Symbol | Kind | Lines@SHA |
-|---|---|---|
-| run | function | 8-10 |
-| git | function | 11-12 |
-| read | function | 13-14 |
-| save | function | 15-18 |
-
-</details>
-
-<details>
 <summary><code>.github/scripts/validate_ci_parallel_contract.py</code> — 3 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -238,6 +275,16 @@ responsibility, callers, or state ownership.
 | steps_from_workflow | function | 53-65 |
 | findings | function | 68-126 |
 | main | function | 129-144 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/validate_release_bundle_ci.py</code> — 2 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| findings | function | 16-46 |
+| main | function | 49-64 |
 
 </details>
 
@@ -257,8 +304,8 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| run_performance_budget_contract | function | 30-56 |
-| main | function | 59-119 |
+| run_performance_budget_contract | function | 31-57 |
+| main | function | 60-125 |
 
 </details>
 

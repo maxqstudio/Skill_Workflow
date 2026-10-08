@@ -1,12 +1,15 @@
 %% GENERATED FILE - DO NOT EDIT
-%% SOURCE_DIGEST: a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2
+%% SOURCE_DIGEST: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
 %% POLICY_ID: module-collapse-v1
 %% GENERATED_BY: sequence_human_view.py
 sequenceDiagram
-    participant module_scripts_project_snapshot_py_0 as scripts/project_snapshot.py
-    participant module_scripts_release_preflight_py_1 as scripts/release_preflight.py
-    participant module_scripts_toolchain_identity_py_2 as scripts/toolchain_identity.py
-    participant module_scripts_validate_sequence_sessions_py_3 as scripts/validate_sequence_sessions.py
-    module_scripts_release_preflight_py_1->>module_scripts_project_snapshot_py_0: 1 static interaction
-    module_scripts_release_preflight_py_1->>module_scripts_validate_sequence_sessions_py_3: 1 static interaction
-    module_scripts_toolchain_identity_py_2->>module_scripts_project_snapshot_py_0: 1 static interaction
+    participant module__github_scripts_release_bundle_py_0 as .github/scripts/release_bundle.py
+    participant module_scripts_project_snapshot_py_1 as scripts/project_snapshot.py
+    participant module_scripts_release_preflight_py_2 as scripts/release_preflight.py
+    participant module_scripts_toolchain_identity_py_3 as scripts/toolchain_identity.py
+    participant module_scripts_validate_sequence_sessions_py_4 as scripts/validate_sequence_sessions.py
+    module__github_scripts_release_bundle_py_0->>module_scripts_project_snapshot_py_1: 2 static interactions
+    module__github_scripts_release_bundle_py_0->>module_scripts_validate_sequence_sessions_py_4: 3 static interactions
+    module_scripts_release_preflight_py_2->>module_scripts_project_snapshot_py_1: 1 static interaction
+    module_scripts_release_preflight_py_2->>module_scripts_validate_sequence_sessions_py_4: 1 static interaction
+    module_scripts_toolchain_identity_py_3->>module_scripts_project_snapshot_py_1: 1 static interaction
