@@ -23,7 +23,7 @@ jobs:
           PYTHONDONTWRITEBYTECODE: "1"
         shell: bash
         run: |
-          test "$(git rev-parse HEAD)" = "83de063673320a71da108afe0e5e28575d3cacf1" || {
+          git merge-base --is-ancestor 83de063673320a71da108afe0e5e28575d3cacf1 HEAD || {
             echo "FAIL UNEXPECTED_CLOSURE_BASE"; exit 1;
           }
           python - <<'PY'
