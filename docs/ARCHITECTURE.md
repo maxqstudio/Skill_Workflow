@@ -2,7 +2,7 @@
 
 # ARCHITECTURE
 
-Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
+Current source digest: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
 
 ## Components
 
@@ -31,9 +31,9 @@ Current source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c8
 
 ## Observed implementation inventory
 
-Source files: 83
-Source lines: 18876
-Languages: Python=83
+Source files: 85
+Source lines: 19138
+Languages: Python=85
 
 Structural facts come from the code extractor. Component meaning comes from
 .workflow/architecture.json.

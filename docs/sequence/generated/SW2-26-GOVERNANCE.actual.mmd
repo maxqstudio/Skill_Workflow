@@ -1,0 +1,70 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
+%% OBSERVED_HEAD: 722da2407148d9cd754108b62f7423e58ac7c4a4
+%% GENERATED_BY: generate_sequence_actual.py
+sequenceDiagram
+    participant _github_scripts_publisher_provenance_py__ProvenanceError_0 as .github/scripts/publisher_provenance.py::ProvenanceError
+    participant _github_scripts_publisher_provenance_py__digest_1 as .github/scripts/publisher_provenance.py::digest
+    participant _github_scripts_publisher_provenance_py__fail_2 as .github/scripts/publisher_provenance.py::fail
+    participant _github_scripts_publisher_provenance_py__verify_3 as .github/scripts/publisher_provenance.py::verify
+    participant _github_scripts_publisher_provenance_py__verify_subject_4 as .github/scripts/publisher_provenance.py::verify_subject
+    participant _github_scripts_release_bundle_py__BundleError_5 as .github/scripts/release_bundle.py::BundleError
+    participant _github_scripts_release_bundle_py__build_6 as .github/scripts/release_bundle.py::build
+    participant _github_scripts_release_bundle_py__checked_head_7 as .github/scripts/release_bundle.py::checked_head
+    participant _github_scripts_release_bundle_py__digest_manifest_8 as .github/scripts/release_bundle.py::digest_manifest
+    participant _github_scripts_release_bundle_py__fail_9 as .github/scripts/release_bundle.py::fail
+    participant _github_scripts_release_bundle_py__git_10 as .github/scripts/release_bundle.py::git
+    participant _github_scripts_release_bundle_py__include_path_11 as .github/scripts/release_bundle.py::include_path
+    participant _github_scripts_release_bundle_py__sha_12 as .github/scripts/release_bundle.py::sha
+    participant _github_scripts_release_bundle_py__source_tree_13 as .github/scripts/release_bundle.py::source_tree
+    participant _github_scripts_release_bundle_py__toolchain_digest_14 as .github/scripts/release_bundle.py::toolchain_digest
+    participant _github_scripts_release_bundle_py__validate_path_15 as .github/scripts/release_bundle.py::validate_path
+    participant _github_scripts_release_bundle_py__verify_16 as .github/scripts/release_bundle.py::verify
+    participant _github_scripts_release_bundle_py__write_zip_17 as .github/scripts/release_bundle.py::write_zip
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_18 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_19 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_20 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_21 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_validate_sequence_sessions_py__evidence_paths_add_22 as scripts/validate_sequence_sessions.py::evidence_paths.add
+    participant scripts_validate_sequence_sessions_py__repo_relative_path_23 as scripts/validate_sequence_sessions.py::repo_relative_path
+    _github_scripts_publisher_provenance_py__digest_1->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_19: path.read_bytes [STATIC]
+    _github_scripts_publisher_provenance_py__fail_2->>_github_scripts_publisher_provenance_py__ProvenanceError_0: ProvenanceError [STATIC]
+    _github_scripts_publisher_provenance_py__verify_3->>_github_scripts_publisher_provenance_py__digest_1: digest [STATIC]
+    _github_scripts_publisher_provenance_py__verify_3->>_github_scripts_publisher_provenance_py__fail_2: fail [STATIC]
+    _github_scripts_publisher_provenance_py__verify_3->>_github_scripts_publisher_provenance_py__verify_subject_4: verify_subject [STATIC]
+    _github_scripts_publisher_provenance_py__verify_subject_4->>_github_scripts_publisher_provenance_py__digest_1: digest [STATIC]
+    _github_scripts_publisher_provenance_py__verify_subject_4->>_github_scripts_publisher_provenance_py__fail_2: fail [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__checked_head_7: checked_head [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__digest_manifest_8: digest_manifest [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__fail_9: fail [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__sha_12: sha [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__source_tree_13: source_tree [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__toolchain_digest_14: toolchain_digest [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__verify_16: verify [STATIC]
+    _github_scripts_release_bundle_py__build_6->>_github_scripts_release_bundle_py__write_zip_17: write_zip [STATIC]
+    _github_scripts_release_bundle_py__checked_head_7->>_github_scripts_release_bundle_py__fail_9: fail [STATIC]
+    _github_scripts_release_bundle_py__checked_head_7->>_github_scripts_release_bundle_py__git_10: git [STATIC]
+    _github_scripts_release_bundle_py__digest_manifest_8->>_github_scripts_release_bundle_py__sha_12: sha [STATIC]
+    _github_scripts_release_bundle_py__fail_9->>_github_scripts_release_bundle_py__BundleError_5: BundleError [STATIC]
+    _github_scripts_release_bundle_py__git_10->>_github_scripts_release_bundle_py__fail_9: fail [STATIC]
+    _github_scripts_release_bundle_py__source_tree_13->>_github_scripts_release_bundle_py__fail_9: fail [STATIC]
+    _github_scripts_release_bundle_py__source_tree_13->>_github_scripts_release_bundle_py__git_10: git [STATIC]
+    _github_scripts_release_bundle_py__source_tree_13->>_github_scripts_release_bundle_py__include_path_11: include_path [STATIC]
+    _github_scripts_release_bundle_py__source_tree_13->>_github_scripts_release_bundle_py__validate_path_15: validate_path [STATIC]
+    _github_scripts_release_bundle_py__source_tree_13->>scripts_validate_sequence_sessions_py__evidence_paths_add_22: casefold.add [STATIC]
+    _github_scripts_release_bundle_py__source_tree_13->>scripts_validate_sequence_sessions_py__evidence_paths_add_22: found.add [STATIC]
+    _github_scripts_release_bundle_py__toolchain_digest_14->>_github_scripts_release_bundle_py__digest_manifest_8: digest_manifest [STATIC]
+    _github_scripts_release_bundle_py__validate_path_15->>_github_scripts_release_bundle_py__fail_9: fail [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>_github_scripts_release_bundle_py__digest_manifest_8: digest_manifest [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>_github_scripts_release_bundle_py__fail_9: fail [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>_github_scripts_release_bundle_py__include_path_11: include_path [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>_github_scripts_release_bundle_py__sha_12: sha [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>_github_scripts_release_bundle_py__toolchain_digest_14: toolchain_digest [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>_github_scripts_release_bundle_py__validate_path_15: validate_path [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_19: bundle_path.read_bytes [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>scripts_project_snapshot_py__ProjectSnapshot_read_text_20: manifest_path.read_text [STATIC]
+    _github_scripts_release_bundle_py__verify_16->>scripts_validate_sequence_sessions_py__evidence_paths_add_22: seen.add [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_entry_18->>scripts_project_snapshot_py__SnapshotError_21: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_19->>scripts_project_snapshot_py__ProjectSnapshot_entry_18: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_20->>scripts_project_snapshot_py__ProjectSnapshot_entry_18: self.entry [STATIC]
+    scripts_validate_sequence_sessions_py__evidence_paths_add_22->>scripts_validate_sequence_sessions_py__repo_relative_path_23: repo_relative_path [STATIC]

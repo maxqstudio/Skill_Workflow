@@ -1,24 +1,30 @@
 {
   "blocked_actions": [
-    "Do not open SW2-26 without explicit Owner authorization and a new scoped acceptance boundary.",
-    "Do not publish a stable tag, GitHub Release, package registry asset or change license absent a separate approved publication phase.",
-    "Do not weaken six permanent CI contexts, Windows/Ubuntu test parity, exact SHA, consumer finalize, Mermaid, performance or documentation validation."
+    "Do not merge SW2-26 or claim acceptance before exact helper-free branch, postmerge and terminal closure six-context evidence.",
+    "Do not publish or retag stable release, GitHub Release, registry asset, or change license. Publication authority remains false.",
+    "Do not weaken all six permanent CI contexts, Windows/Ubuntu parity, STRICT finalize, exact SHA, consumer tests, Mermaid, performance or documentation validation.",
+    "Do not classify a self-asserted manifest, unsigned digest or merely successful CLI mock as authenticated GitHub publisher evidence.",
+    "Do not start SW2-27 without new explicit Owner authorization."
   ],
-  "blockers": [],
+  "blockers": [
+    "R6 equal-tree squash, exact-main six-context postmerge acceptance and separate terminal closure remain pending.",
+    "This R5 evidence-authority commit changes the candidate SHA; the final helper-free candidate requires all six contexts again before merge."
+  ],
   "last_accepted_branch": "main",
   "last_accepted_sha": "40c88c990f671fb70cdab8fa391610977bc4c04a",
   "next_authorized_actions": [
-    "Treat exact accepted SW2-25 implementation main 40c88c990f671fb70cdab8fa391610977bc4c04a as canonical release bundle source authority; terminal closure evidence is a separate generated-only commit.",
-    "Keep release bundle dry-run read-only/manual, with unsigned manifest and publication_authority=false.",
-    "Require Owner phase discussion/approval before any release/publication or SW2-26."
+    "Regenerate source-derived Project Truth and sequence/coverage from the new SW2-26 R5 evidence authority, remove temporary helpers, and rerun all six contexts at exact helper-free candidate SHA.",
+    "Keep PR #46 DRAFT until final feature candidate six-context SUCCESS, then mark ready and squash merge with expected head SHA, comparing feature and squash trees.",
+    "Rerun all six postmerge main CI contexts; perform a separate terminal governance-closure PR and retest its main SHA.",
+    "Do not publish new stable tag, GitHub Release or package. Owner-distributed trust root and offline freshness remain outside the proven scope."
   ],
   "not_proven": [
-    "An unsigned detached SHA-256 manifest cannot authenticate the publisher or the source Git SHA offline: provenance against trusted independent authority remains NOT_PROVEN.",
-    "No new stable tag or release has been authorized or published; stable product remains v2.1.0, and release publication authority is false.",
-    "GitHub automatic required-status-check ruleset enforcement remains intentionally NOT_PROVEN (non-blocking under Owner decision).",
-    "Cross-OS bundle byte parity proved on pinned candidate run 37716191737; no external consumer repositories or Owner PC runtime were modified."
+    "Offline trusted-root revocation freshness and Owner-distributed trust-root origin remain NOT_PROVEN; caller must independently obtain/pin expected trusted root SHA-256 and update policy out of band.",
+    "GitHub automatic required-status-check ruleset enforcement remains NOT_PROVEN under Owner boundary.",
+    "R5 current code helper-free six-context acceptance and R6 merge, postmerge and terminal governance closure are pending.",
+    "Stable v2.1.0 remains the only authorized release; SW2-26 may not publish tags or packages."
   ],
-  "phase": "SW2-25",
+  "phase": "SW2-26",
   "proven": [
     "SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.",
     "Post-merge main passed Self Governance run 37026303947, Governance Selftest run 37026303577 on Ubuntu and Windows, SW2 Sequence Evidence run 37026304352, SW2 Engine Performance run 37026303889, and SW2 Consumer Engine Performance run 37026304437.",
@@ -105,9 +111,13 @@
     "SW2-24 latency target measured in GitHub run 37713042819 attempts 1/2/3 on helper-free SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab: Windows 49,68,64s median 64s versus six-run historical median 77s (16.9% observed reduction). All three attempts 6/6 successful, no monetary cost-saving claim.",
     "SW2-25 product candidate 82719678198a94bb314bccb4fe019579458b80c8 and identical-tree squash PR #44 accepted main 40c88c990f671fb70cdab8fa391610977bc4c04a tree d6b7be3396b77ffadc0a37f17b125bd2cd12bf5c were exact-SHA verified; feature Governance CI run 37717282205 six contexts SUCCESS, postmerge main run 37717454646 six contexts SUCCESS.",
     "SW2-25 Release Bundle Dry Run exact candidate a4332aceecc320d11dceadbab9809ab7d87c38c9 run 37716191737: Ubuntu/Windows ZIP and complete JSON manifest bytes equal, malicious paths and tampered archive fail closed; no tag, release or owner mutation.",
-    "SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity."
+    "SW2-25 offline verification explicitly distinguishes a valid content SHA from independently authenticated publisher and Git identity.",
+    "Owner explicitly authorized opening SW2-26 on 2026-10-08, without authorizing stable publication; SW2-25 implementation acceptance remains tied to 40c88c990f671fb70cdab8fa391610977bc4c04a and terminal closure to 1344108d314f880f4a2e5bf31eb5323285ea0484.",
+    "SW2-26 GitHub Actions signed and independently verified ZIP plus detached manifest at exact candidate f87586fa784a22614217121c14519637df4155dd: Trusted Bundle Attestation run 37783624068 succeeded; real wrong signer, wrong ref, wrong source SHA and corrupt bundle rejected.",
+    "SW2-26 exact GitHub Actions run 37786698990 produced real GitHub OIDC/Sigstore signatures for ZIP and manifest, verified both with explicitly pinned trusted-root digest in both ordinary and network-proxy-isolated detached mode; wrong signer/ref/source SHA/corrupt attestation rejected.",
+    "SW2-26 source-derived helper-free candidate b10d3b8e47c96cf6025403ca7ce2542aa1a7cde5 passed all six permanent Governance CI contexts in run 37787819701 (Ubuntu and Windows, sequence, consumer, performance), with no release publication."
   ],
   "schema_version": 1,
-  "status": "SW2_25_REPRODUCIBLE_RELEASE_BUNDLE_ACCEPTED",
-  "working_branch": "main"
+  "status": "SW2_26_FEATURE_ACCEPTANCE_RECORDED_AWAITING_EXACT_HEAD_REVALIDATION",
+  "working_branch": "work/sw2-26-trusted-publisher-attestation"
 }

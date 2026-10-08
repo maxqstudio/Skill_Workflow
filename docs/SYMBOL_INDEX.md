@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 6ebaa47f7572741bed14a1c7e3c4b8e638eaf17f8ddb442b19de977c89766975
+Source digest: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -19,11 +19,13 @@ responsibility, callers, or state ownership.
 | .github/scripts/ci_parallel_final_gates.py | 7 | 0 | 7 | 0 |
 | .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
 | .github/scripts/ci_parallel_windows.py | 4 | 0 | 2 | 2 |
+| .github/scripts/publisher_provenance.py | 6 | 1 | 5 | 0 |
 | .github/scripts/release_bundle.py | 14 | 1 | 13 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_ci_parallel_final_gates.py | 8 | 0 | 5 | 3 |
 | .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
 | .github/scripts/selftest_ci_parallel_windows.py | 10 | 0 | 4 | 6 |
+| .github/scripts/selftest_publisher_provenance.py | 7 | 0 | 5 | 2 |
 | .github/scripts/selftest_release_bundle.py | 6 | 0 | 5 | 1 |
 | .github/scripts/selftest_release_bundle_ci.py | 2 | 0 | 2 | 0 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
@@ -156,6 +158,20 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/publisher_provenance.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| ProvenanceError | class | 21-22 |
+| fail | function | 25-26 |
+| digest | function | 29-30 |
+| verify_subject | function | 33-75 |
+| verify | function | 78-107 |
+| main | function | 110-124 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/release_bundle.py</code> — 14 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
@@ -229,6 +245,21 @@ responsibility, callers, or state ownership.
 | main.regression_failure | method | 69-71 |
 | main.final_failure | method | 78-80 |
 | main.mutating_group | method | 86-89 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_publisher_provenance.py</code> — 7 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| git | function | 13-14 |
+| fixture | function | 17-32 |
+| rejects | function | 35-41 |
+| fake_verification | function | 44-50 |
+| main | function | 53-130 |
+| main.verify | method | 66-68 |
+| main.mocked_gh | method | 82-95 |
 
 </details>
 

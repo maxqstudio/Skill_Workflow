@@ -1,0 +1,166 @@
+{
+  "complexity": {
+    "absolute_numeric_limit": null,
+    "interaction_ceiling": 3,
+    "interaction_count": 3,
+    "max_interactions_per_directed_component_pair": 1,
+    "max_participants_per_semantic_component": 1,
+    "participant_ceiling": 4,
+    "participant_count": 4,
+    "participant_granularity": "semantic_module_or_external_boundary",
+    "policy_id": "module-collapse-v1",
+    "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
+  },
+  "edges": [
+    {
+      "actions": [
+        "path.read_bytes"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/publisher_provenance.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "bundle_path.read_bytes",
+        "manifest_path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/release_bundle.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "casefold.add",
+        "found.add",
+        "seen.add"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:.github/scripts/release_bundle.py",
+      "machine_edge_count": 3,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/validate_sequence_sessions.py"
+    }
+  ],
+  "entries": [
+    ".github/scripts/release_bundle.py::build",
+    ".github/scripts/release_bundle.py::verify",
+    ".github/scripts/publisher_provenance.py::verify",
+    ".github/scripts/publisher_provenance.py::verify_subject"
+  ],
+  "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
+  "generated": true,
+  "generated_by": "sequence_human_view.py",
+  "nodes": [
+    {
+      "id": "module:.github/scripts/publisher_provenance.py",
+      "kind": "module",
+      "label": ".github/scripts/publisher_provenance.py",
+      "machine_node_count": 5,
+      "machine_nodes": [
+        ".github/scripts/publisher_provenance.py::ProvenanceError",
+        ".github/scripts/publisher_provenance.py::digest",
+        ".github/scripts/publisher_provenance.py::fail",
+        ".github/scripts/publisher_provenance.py::verify",
+        ".github/scripts/publisher_provenance.py::verify_subject"
+      ]
+    },
+    {
+      "id": "module:.github/scripts/release_bundle.py",
+      "kind": "module",
+      "label": ".github/scripts/release_bundle.py",
+      "machine_node_count": 13,
+      "machine_nodes": [
+        ".github/scripts/release_bundle.py::BundleError",
+        ".github/scripts/release_bundle.py::build",
+        ".github/scripts/release_bundle.py::checked_head",
+        ".github/scripts/release_bundle.py::digest_manifest",
+        ".github/scripts/release_bundle.py::fail",
+        ".github/scripts/release_bundle.py::git",
+        ".github/scripts/release_bundle.py::include_path",
+        ".github/scripts/release_bundle.py::sha",
+        ".github/scripts/release_bundle.py::source_tree",
+        ".github/scripts/release_bundle.py::toolchain_digest",
+        ".github/scripts/release_bundle.py::validate_path",
+        ".github/scripts/release_bundle.py::verify",
+        ".github/scripts/release_bundle.py::write_zip"
+      ]
+    },
+    {
+      "id": "module:scripts/project_snapshot.py",
+      "kind": "module",
+      "label": "scripts/project_snapshot.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/project_snapshot.py::ProjectSnapshot.entry",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+        "scripts/project_snapshot.py::SnapshotError"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_sequence_sessions.py",
+      "kind": "module",
+      "label": "scripts/validate_sequence_sessions.py",
+      "machine_node_count": 2,
+      "machine_nodes": [
+        "scripts/validate_sequence_sessions.py::evidence_paths.add",
+        "scripts/validate_sequence_sessions.py::repo_relative_path"
+      ]
+    }
+  ],
+  "observed_head": "722da2407148d9cd754108b62f7423e58ac7c4a4",
+  "policy_id": "module-collapse-v1",
+  "projection": {
+    "aggregated_cross_component_edges": 3,
+    "cross_component_machine_edges": 6,
+    "internal_machine_edges_collapsed": 35,
+    "machine_edge_count": 41,
+    "machine_node_count": 24,
+    "node_map": {
+      ".github/scripts/publisher_provenance.py::ProvenanceError": "module:.github/scripts/publisher_provenance.py",
+      ".github/scripts/publisher_provenance.py::digest": "module:.github/scripts/publisher_provenance.py",
+      ".github/scripts/publisher_provenance.py::fail": "module:.github/scripts/publisher_provenance.py",
+      ".github/scripts/publisher_provenance.py::verify": "module:.github/scripts/publisher_provenance.py",
+      ".github/scripts/publisher_provenance.py::verify_subject": "module:.github/scripts/publisher_provenance.py",
+      ".github/scripts/release_bundle.py::BundleError": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::build": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::checked_head": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::digest_manifest": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::fail": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::git": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::include_path": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::sha": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::source_tree": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::toolchain_digest": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::validate_path": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::verify": "module:.github/scripts/release_bundle.py",
+      ".github/scripts/release_bundle.py::write_zip": "module:.github/scripts/release_bundle.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotError": "module:scripts/project_snapshot.py",
+      "scripts/validate_sequence_sessions.py::evidence_paths.add": "module:scripts/validate_sequence_sessions.py",
+      "scripts/validate_sequence_sessions.py::repo_relative_path": "module:scripts/validate_sequence_sessions.py"
+    },
+    "unresolved_machine_edges": []
+  },
+  "schema_version": 1,
+  "source_digest": "461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea"
+}

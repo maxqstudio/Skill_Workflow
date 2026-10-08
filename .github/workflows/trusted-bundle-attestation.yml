@@ -1,0 +1,144 @@
+name: Trusted Bundle Attestation (manual evidence only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  attest:
+    name: Sign exact-source dry-run (ubuntu-latest)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout exact signed source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Pin Git tree and prevent dirty source
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Adversarial policy regressions
+        run: python .github/scripts/selftest_publisher_provenance.py
+      - name: Build and integrity-verify deterministic artifacts
+        shell: bash
+        run: |
+          python .github/scripts/release_bundle.py build \
+            --root . --expected-head "${{ github.sha }}" \
+            --bundle "${{ runner.temp }}/product.zip" \
+            --manifest "${{ runner.temp }}/manifest.json"
+          python .github/scripts/release_bundle.py verify \
+            --bundle "${{ runner.temp }}/product.zip" \
+            --manifest "${{ runner.temp }}/manifest.json"
+      - name: Sign ZIP and detached manifest together
+        id: signed
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            ${{ runner.temp }}/product.zip
+            ${{ runner.temp }}/manifest.json
+      - name: Obtain Sigstore root online for CI smoke check
+        shell: bash
+        run: |
+          gh attestation trusted-root > "${{ runner.temp }}/trusted_root.jsonl"
+          echo "TRUST_ROOT_SHA256=$(sha256sum "${{ runner.temp }}/trusted_root.jsonl" | cut -d ' ' -f 1)" >> "$GITHUB_ENV"
+      - name: Cryptographically verify both subjects
+        shell: bash
+        run: |
+          python .github/scripts/publisher_provenance.py \
+            --bundle "${{ runner.temp }}/product.zip" \
+            --manifest "${{ runner.temp }}/manifest.json" \
+            --attestation "${{ steps.signed.outputs.bundle-path }}" \
+            --trusted-root "${{ runner.temp }}/trusted_root.jsonl" \
+            --expected-root-sha256 "$TRUST_ROOT_SHA256" \
+            --expected-sha "${{ github.sha }}" \
+            --expected-ref "${{ github.ref }}"
+          test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Validate detached offline bundle with network disabled
+        shell: bash
+        env:
+          GH_TOKEN: ""
+          GITHUB_TOKEN: ""
+          HTTPS_PROXY: http://127.0.0.1:1
+          HTTP_PROXY: http://127.0.0.1:1
+          ALL_PROXY: http://127.0.0.1:1
+          NO_PROXY: ""
+        run: |
+          python .github/scripts/publisher_provenance.py \
+            --bundle "${{ runner.temp }}/product.zip" \
+            --manifest "${{ runner.temp }}/manifest.json" \
+            --attestation "${{ steps.signed.outputs.bundle-path }}" \
+            --trusted-root "${{ runner.temp }}/trusted_root.jsonl" \
+            --expected-root-sha256 "$TRUST_ROOT_SHA256" \
+            --expected-sha "${{ github.sha }}" \
+            --expected-ref "${{ github.ref }}"
+          echo "PROVENANCE_NETWORK_ISOLATED_OFFLINE=PASS"
+      - name: Real signed-attestation rejection checks
+        shell: bash
+        env:
+          SIGNED_BUNDLE: ${{ steps.signed.outputs.bundle-path }}
+          TRUST_ROOT: ${{ runner.temp }}/trusted_root.jsonl
+          VERIFIED_SHA: ${{ github.sha }}
+          VERIFIED_REF: ${{ github.ref }}
+        run: |
+          python - <<'PY'
+          import os
+          import subprocess
+          from pathlib import Path
+
+          runner = Path(os.environ["RUNNER_TEMP"])
+          product = runner / "product.zip"
+          bundle = os.environ["SIGNED_BUNDLE"]
+          trust = os.environ["TRUST_ROOT"]
+          command = [
+              "gh", "attestation", "verify", str(product),
+              "--repo", "maxqstudio/Skill_Workflow",
+              "--signer-workflow", "maxqstudio/Skill_Workflow/.github/workflows/trusted-bundle-attestation.yml",
+              "--source-digest", os.environ["VERIFIED_SHA"],
+              "--source-ref", os.environ["VERIFIED_REF"],
+              "--deny-self-hosted-runners",
+              "--bundle", bundle, "--custom-trusted-root", trust, "--format", "json"
+          ]
+          negative_cases = {
+              "WRONG_TRUSTED_SIGNER": command.copy(),
+              "WRONG_TRUSTED_SOURCE_REF": command.copy(),
+              "WRONG_TRUSTED_SOURCE_SHA": command.copy(),
+              "CORRUPT_ATTESTATION": command.copy(),
+          }
+          signer = negative_cases["WRONG_TRUSTED_SIGNER"]
+          signer[signer.index("--signer-workflow") + 1] = (
+              "maxqstudio/Skill_Workflow/.github/workflows/untrusted.yml"
+          )
+          ref = negative_cases["WRONG_TRUSTED_SOURCE_REF"]
+          ref[ref.index("--source-ref") + 1] = "refs/heads/incorrect-trusted-ref"
+          wrong_sha = negative_cases["WRONG_TRUSTED_SOURCE_SHA"]
+          wrong_sha[wrong_sha.index("--source-digest") + 1] = "0" * 40
+          bad_bundle = runner / "invalid-attestation.json"
+          bad_bundle.write_text('{"not-a-signed-bundle":true}\n', encoding="utf-8")
+          sig = negative_cases["CORRUPT_ATTESTATION"]
+          sig[sig.index("--bundle") + 1] = str(bad_bundle)
+          for label, cmd in negative_cases.items():
+              result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+              if result.returncode == 0:
+                  raise SystemExit("PROVENANCE_FALSE_ACCEPT:" + label)
+              print("PROVENANCE_REAL_" + label + "_REJECTED=PASS")
+          PY
+      - name: Upload CI artifacts (not a public release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: trusted-bundle-ci-evidence
+          path: |
+            ${{ runner.temp }}/product.zip
+            ${{ runner.temp }}/manifest.json
+            ${{ steps.signed.outputs.bundle-path }}
+          if-no-files-found: error
+          retention-days: 14
