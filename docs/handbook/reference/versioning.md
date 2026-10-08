@@ -82,3 +82,13 @@ python .workflow/tools/validate_schema_toolchain.py --root .
 - Unknown future versions fail closed. Existing tools never downgrade them.
 - An incompatible schema change requires a new schema version, an explicit deterministic migration path, negative tests for unsupported versions, and an update to this compatibility policy.
 - Stable product release/version labels are separate from schema versions and require their own exact release evidence.
+
+## Consumer acceptance after an upgrade
+
+A valid toolchain lock is necessary but not sufficient for acceptance. After using `--check` and `--apply`, commit the migrated consumer snapshot and run its own complete source tests and Project Truth validators through the vendored `finalize_consumer.py` command, with the exact committed consumer HEAD and the proven last accepted ancestor:
+
+```bash
+python .workflow/tools/finalize_consumer.py --root . --base <ACCEPTED_SHA> --expected-head <NEW_HEAD>
+```
+
+This consumer path differs from the Skill Workflow **producer's** `governance_engine.py --mode finalize`, which includes source-only producer regression scripts. Consumer finalization must never assume those scripts exist in application repositories. The consumer command requires declared source tests and all mandatory project-local validators to PASS on an unchanged, clean commit; it cannot promote historical runtime evidence or claim that other consumer repositories were upgraded.
