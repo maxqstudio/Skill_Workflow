@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from validate_ci_parallel_contract import findings as ci_parallel_findings
+from validate_release_bundle_ci import findings as bundle_findings
 
 FIXED_CONTEXTS = (
     "Self Governance (ubuntu-latest)",
@@ -102,6 +103,11 @@ def main() -> int:
         failures.append("APPLICABILITY_CLASSIFIER_MISSING")
 
     failures.extend(ci_parallel_findings(text))
+    bundle_workflow = workflows / "release-bundle-dry-run.yml"
+    if not bundle_workflow.is_file():
+        failures.append("BUNDLE_MANUAL_WORKFLOW_MISSING")
+    else:
+        failures.extend(bundle_findings(text, bundle_workflow.read_text(encoding="utf-8")))
     failures.extend(run_performance_budget_contract(root))
 
     if failures:
