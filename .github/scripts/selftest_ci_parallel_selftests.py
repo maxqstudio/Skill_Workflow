@@ -13,8 +13,19 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/".github"/"scripts"))
 import ci_parallel_selftests as ci
+import validate_ci_parallel_contract as contract
 
 def main()->int:
+    wf=(ROOT/".github/workflows/governance-ci.yml").read_text(encoding="utf-8")
+    assert not contract.findings(wf),contract.findings(wf)
+    assert any("CI_PARALLEL_WINDOWS_BOUNDARY_WEAKENED" in x for x in contract.findings(
+        wf.replace("if: matrix.os == 'windows-latest'", "if: always()",1)))
+    assert any("CI_UBUNTU_SERIAL_FALLBACK_MISSING" in x for x in contract.findings(
+        wf.replace("if: matrix.os != 'windows-latest'", "if: never()",1)))
+    assert any("CI_REQUIRED_SERIAL_STEP_MISSING" in x for x in contract.findings(
+        wf.replace("      - name: Consumer finalize negative-path regression",
+                   "      - name: Removed consumer finalize regression",1)))
+    print("CI_PARALLEL_WORKFLOW_TAMPER_REJECTED=PASS")
     assert len(ci.GROUPS)==7 and ci.MAX_WORKERS==3
     assert ci.GROUP_NAMES==(
         "consumer_finalize","schema_toolchain","analyzer_contract",
