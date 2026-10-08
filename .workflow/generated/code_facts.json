@@ -91,7 +91,7 @@
       "file": ".github/scripts/ci_parallel_selftests.py",
       "is_test": false,
       "language": "Python",
-      "lines": 145
+      "lines": 153
     },
     {
       "directory": ".github/scripts",
@@ -112,7 +112,7 @@
       "file": ".github/scripts/selftest_ci_parallel_selftests.py",
       "is_test": false,
       "language": "Python",
-      "lines": 94
+      "lines": 97
     },
     {
       "directory": ".github/scripts",
@@ -126,7 +126,7 @@
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 132
+      "lines": 142
     },
     {
       "directory": ".github/scripts",
@@ -28555,48 +28555,48 @@
     {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "class",
-      "line_end": 44,
-      "line_start": 36,
+      "line_end": 52,
+      "line_start": 44,
       "locator": ".github/scripts/ci_parallel_selftests.py::Result",
       "symbol": "Result"
     },
     {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "function",
-      "line_end": 60,
-      "line_start": 47,
+      "line_end": 68,
+      "line_start": 55,
       "locator": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
       "symbol": "commands_for_group"
     },
     {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "function",
-      "line_end": 68,
-      "line_start": 63,
+      "line_end": 76,
+      "line_start": 71,
       "locator": ".github/scripts/ci_parallel_selftests.py::subprocess_runner",
       "symbol": "subprocess_runner"
     },
     {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "function",
-      "line_end": 93,
-      "line_start": 71,
+      "line_end": 101,
+      "line_start": 79,
       "locator": ".github/scripts/ci_parallel_selftests.py::run_one",
       "symbol": "run_one"
     },
     {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "function",
-      "line_end": 125,
-      "line_start": 96,
+      "line_end": 133,
+      "line_start": 104,
       "locator": ".github/scripts/ci_parallel_selftests.py::run_groups",
       "symbol": "run_groups"
     },
     {
       "file": ".github/scripts/ci_parallel_selftests.py",
       "kind": "function",
-      "line_end": 141,
-      "line_start": 128,
+      "line_end": 149,
+      "line_start": 136,
       "locator": ".github/scripts/ci_parallel_selftests.py::main",
       "symbol": "main"
     },
@@ -28683,7 +28683,7 @@
     {
       "file": ".github/scripts/selftest_ci_parallel_selftests.py",
       "kind": "function",
-      "line_end": 91,
+      "line_end": 94,
       "line_start": 18,
       "locator": ".github/scripts/selftest_ci_parallel_selftests.py::main",
       "symbol": "main"
@@ -28691,16 +28691,16 @@
     {
       "file": ".github/scripts/selftest_ci_parallel_selftests.py",
       "kind": "method",
-      "line_end": 56,
-      "line_start": 48,
+      "line_end": 59,
+      "line_start": 51,
       "locator": ".github/scripts/selftest_ci_parallel_selftests.py::main.ok",
       "symbol": "main.ok"
     },
     {
       "file": ".github/scripts/selftest_ci_parallel_selftests.py",
       "kind": "method",
-      "line_end": 71,
-      "line_start": 69,
+      "line_end": 74,
+      "line_start": 72,
       "locator": ".github/scripts/selftest_ci_parallel_selftests.py::main.failed",
       "symbol": "main.failed"
     },
@@ -28731,24 +28731,24 @@
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 55,
-      "line_start": 43,
+      "line_end": 65,
+      "line_start": 53,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
       "symbol": "steps_from_workflow"
     },
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 111,
-      "line_start": 58,
+      "line_end": 121,
+      "line_start": 68,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::findings",
       "symbol": "findings"
     },
     {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 129,
-      "line_start": 114,
+      "line_end": 139,
+      "line_start": 124,
       "locator": ".github/scripts/validate_ci_parallel_contract.py::main",
       "symbol": "main"
     },
@@ -32410,13 +32410,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca",
+  "source_digest": "5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b",
   "source_summary": {
     "files": 77,
     "languages": {
       "Python": 77
     },
-    "lines": 18023,
+    "lines": 18044,
     "test_files": 0
   },
   "tests": []

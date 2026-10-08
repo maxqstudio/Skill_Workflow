@@ -9,7 +9,7 @@
 - Machine graph: [docs/sequence/generated/SW2-24-GOVERNANCE.actual.json](../../../docs/sequence/generated/SW2-24-GOVERNANCE.actual.json)
 - Full machine Mermaid: [docs/sequence/generated/SW2-24-GOVERNANCE.actual.mmd](../../../docs/sequence/generated/SW2-24-GOVERNANCE.actual.mmd)
 - Human projection data: [docs/sequence/generated/SW2-24-GOVERNANCE.human.json](../../../docs/sequence/generated/SW2-24-GOVERNANCE.human.json)
-- Source digest: `da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca`
+- Source digest: `5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b`
 
 ## Complexity
 

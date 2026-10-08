@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca
+Source digest: 5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -128,12 +128,12 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| Result | class | 36-44 |
-| commands_for_group | function | 47-60 |
-| subprocess_runner | function | 63-68 |
-| run_one | function | 71-93 |
-| run_groups | function | 96-125 |
-| main | function | 128-141 |
+| Result | class | 44-52 |
+| commands_for_group | function | 55-68 |
+| subprocess_runner | function | 71-76 |
+| run_one | function | 79-101 |
+| run_groups | function | 104-133 |
+| main | function | 136-149 |
 
 </details>
 
@@ -168,9 +168,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| main | function | 18-91 |
-| main.ok | method | 48-56 |
-| main.failed | method | 69-71 |
+| main | function | 18-94 |
+| main.ok | method | 51-59 |
+| main.failed | method | 72-74 |
 
 </details>
 
@@ -190,9 +190,9 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| steps_from_workflow | function | 43-55 |
-| findings | function | 58-111 |
-| main | function | 114-129 |
+| steps_from_workflow | function | 53-65 |
+| findings | function | 68-121 |
+| main | function | 124-139 |
 
 </details>
 

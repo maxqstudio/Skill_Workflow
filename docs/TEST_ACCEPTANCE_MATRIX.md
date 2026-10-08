@@ -7,7 +7,7 @@
 SW2-24 intermediate phase: R1 six-run historical timing baseline and R2 explicit independent runner test inventory have targeted proof. R3 permanent Windows/Linux CI, R4 comparable candidate samples, R5 final public docs/sequence, R6 merge/main exact acceptance are NOT_PROVEN. No acceptance shortening, cache-based PASSES, or external consumer changes.
 
 Final tested source: external final acceptance evidence.
-Current source digest: da51812b1e0c60a5b422fe36a12e1ce0e293c297dfec9539210d27d18070f1ca
+Current source digest: 5ff45ac77ddf09b3e0e36602720f23e7d287433a19730ee32d5403962da5d40b
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
