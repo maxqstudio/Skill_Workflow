@@ -108,7 +108,7 @@ def fetch_snapshot(repository: str, sha: str) -> dict[str, bytes | None]:
             raise
         if payload.get("encoding") != "base64" or not isinstance(payload.get("content"), str):
             raise ValueError("UNSUPPORTED_CONTENT_ENCODING:" + path)
-        files[path] = base64.b64decode(payload["content"], validate=True)
+        files[path] = base64.b64decode(payload["content"].replace("\n", "").replace("\r", ""), validate=True)
     return files
 
 
