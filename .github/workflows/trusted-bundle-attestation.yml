@@ -2,10 +2,6 @@ name: Trusted Bundle Attestation (manual evidence only)
 
 on:
   workflow_dispatch:
-  # TEMPORARY feature-branch-only signer smoke; must remove before acceptance.
-  push:
-    branches:
-      - work/sw2-26-trusted-publisher-attestation
 
 permissions:
   contents: read
