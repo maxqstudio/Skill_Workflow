@@ -93,6 +93,7 @@ jobs:
           negative_cases = {
               "WRONG_TRUSTED_SIGNER": command.copy(),
               "WRONG_TRUSTED_SOURCE_REF": command.copy(),
+              "WRONG_TRUSTED_SOURCE_SHA": command.copy(),
               "CORRUPT_ATTESTATION": command.copy(),
           }
           signer = negative_cases["WRONG_TRUSTED_SIGNER"]
@@ -101,6 +102,8 @@ jobs:
           )
           ref = negative_cases["WRONG_TRUSTED_SOURCE_REF"]
           ref[ref.index("--source-ref") + 1] = "refs/heads/incorrect-trusted-ref"
+          wrong_sha = negative_cases["WRONG_TRUSTED_SOURCE_SHA"]
+          wrong_sha[wrong_sha.index("--source-digest") + 1] = "0" * 40
           bad_bundle = runner / "invalid-attestation.json"
           bad_bundle.write_text('{"not-a-signed-bundle":true}\n', encoding="utf-8")
           sig = negative_cases["CORRUPT_ATTESTATION"]
