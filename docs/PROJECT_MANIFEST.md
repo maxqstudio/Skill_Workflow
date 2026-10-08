@@ -10,9 +10,9 @@ Governance profile: strict
 
 ## Repositories
 Repository: maxqstudio/Skill_Workflow
-Active branch: work/sw2-26-terminal-closure
+Active branch: main
 Current authoritative SHA: external final acceptance evidence
-Last accepted SHA: 40c88c990f671fb70cdab8fa391610977bc4c04a
+Last accepted SHA: 4d5bf33ea347de041e50239d86385b0e33339dec
 Current source digest: 461a0a8e27a9565b9f87f8abd223d43ad520c8a496e4a4036076b3b13631c2ea
 
 ## Authorities
