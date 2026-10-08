@@ -4,15 +4,15 @@
 
 ## Evidence boundary
 
-Phase-open boundary only; no SW2-24 performance improvement, concurrency safety, exact final CI, or merge is proven.
+SW2-24 intermediate phase: R1 six-run historical timing baseline and R2 explicit independent runner test inventory have targeted proof. R3 permanent Windows/Linux CI, R4 comparable candidate samples, R5 final public docs/sequence, R6 merge/main exact acceptance are NOT_PROVEN. No acceptance shortening, cache-based PASSES, or external consumer changes.
 
 Final tested source: external final acceptance evidence.
 Current source digest: a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-24-R1 | A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
-| SW2-24-R2 | Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
+| SW2-24-R1 | A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs. | PASS: benchmarks/baselines/sw2-24-ci-latency.json records six successful exact-SHA GitHub runs (37430818483, 37706618341, 37708376562, 37708565187, 37708853965, 37708986331), six contexts per run, per-job durations, observed Windows median 77 seconds and aggregate job-seconds median 197. The source is historical GitHub run metadata, not a billed charge or causal speed claim. | PASS |
+| SW2-24-R2 | Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests. | PASS: isolated fixture inventory audited in scripts/selftest_schema_toolchain.py, scripts/selftest_historical_evidence.py, scripts/selftest_public_docs.py, scripts/selftest_project_truth_compiler.py, scripts/selftest_release_preflight.py, scripts/selftest_analyzer_contract.py and scripts/selftest_consumer_finalize.py; all use temp fixtures and no shared root mutations. .github/scripts/validate_ci_parallel_contract.py statically enforces 10 original commands, seven named groups, Ubuntu serial fallback, Windows bounded dispatch and untouched STRICT/verify. Negative tamper and missing-test selftests succeeded in GitHub runner 37710069327; parallel execution is not yet final cross-platform acceptance. | PASS |
 | SW2-24-R3 | Bounded parallel self-test orchestration is deterministic, runs each selected command exactly once, captures explicit first failed gate and full failed command evidence, rejects missing/racy/mutating tests, and preserves six permanent contexts, STRICT, verify, finalize, Windows, Mermaid, performance and consumer gates. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
 | SW2-24-R4 | Before and after measurements use exact GitHub Actions runs with a cold/warm distinction; measured speed and job-seconds are reported without unproven cost or statistically causal claims, and no significant observed performance regression is silently accepted. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
 | SW2-24-R5 | Authoritative public documentation, roadmap, source-derived sequence and human-view Mermaid remain consistent and readable; changes are backed by negative regressions, including false skipping/cache laundering. | NOT_PROVEN: SW2-24 phase-open only, no final evidence. | NOT_PROVEN |
@@ -38,7 +38,7 @@ ROADMAP_SYNC: PASS
 
 Sequence mode for this phase/session: DURING
 Sequence session contract: SW2-24-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Project Truth Compiler evidence
 
@@ -51,7 +51,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: NOT_PROVEN
-HUMAN_COMPREHENSION_GATE: NOT_PROVEN
+SYSTEM_OVERVIEW status: PASS
+HUMAN_COMPREHENSION_GATE: PASS
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

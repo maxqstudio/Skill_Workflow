@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-24
-Status: SW2_24_CI_BASELINE_IN_PROGRESS
+Status: SW2_24_BASELINE_AND_PARALLEL_RUNNER_PROVEN_PENDING_CI
 Roadmap phase: SW2-24
 ROADMAP_SYNC: PASS
 
@@ -36,7 +36,7 @@ PROJECT_DOCS_SYNC: PASS
 Sequence policy: REQUIRED
 Current sequence mode: DURING
 Current sequence session: SW2-24-GOVERNANCE
-SEQUENCE_SYNC: NOT_PROVEN
+SEQUENCE_SYNC: PASS
 
 ## Proven
 - SW2-01 Governance Engine V2 was accepted and merged to main as 94717751cb0ca0a3680ccd93ac16219c9bd0425d.
@@ -121,20 +121,22 @@ SEQUENCE_SYNC: NOT_PROVEN
 - SW2-23 PR #40 squash merged to product main 83de063673320a71da108afe0e5e28575d3cacf1 with identical Git tree 938237dd29a412f9448a74e3f7e18a5590b8d9f9; postmerge permanent Governance CI run 37708565187 passed all six contexts on exact product main.
 
 ## Not proven
-- SW2-24 R1-R6 are NOT_PROVEN pending measured exact-run baseline, regression, and feature/main acceptance.
-- Any wall-clock or billed-minutes savings is NOT_PROVEN until comparable samples exist; previous observed 56-94 second Windows durations are variable.
-- Owner-approved absence of automatic GitHub required checks/ruleset remains NOT_PROVEN and non-blocking.
+- SW2-24 R3-R6 remain NOT_PROVEN until final exact-head evidence.
+- Cold/warm hosted runner and billed GitHub minutes cannot be inferred from job timestamps; no savings claim is authorized.
+- Required status check enforcement remains intentionally NOT_PROVEN under Owner no-ruleset boundary.
 
 ## Known blockers
-- None declared.
+- SW2-24 R3 NOT_PROVEN: permanent six-context cross-platform CI on optimized branch not yet terminal.
+- SW2-24 R4 NOT_PROVEN: at least three comparable exact-head candidate run timings and any 15% median Windows improvement not yet demonstrated.
+- SW2-24 R5/R6 NOT_PROVEN: public documentation, final exact candidate merge/main and terminal closure not yet accepted.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Record exact baseline and RED negative-path tests for parallel-runner failure/skip/mutation boundaries.
-- Optimize only test groups with isolated workspace and independence evidence, measuring warm and cold runs.
-- Reconcile Project Truth/sequence then require final six-context exact candidate and postmerge main before closure.
+- Complete exact optimizer source/doc sync, remove temporary workflows and run six-context permanent CI on a single helper-free SHA.
+- If repeated permanent CI confirms no missed test, compare >=3 exact candidate run Windows elapsed and job-seconds to six-run pinned baseline; reject claimed optimization if not proven.
+- Promote R3-R5 only after full evidence, then merge through squash and exact post-merge main 6/6; close SW2-24 in separate terminal transaction.
 
 ## Explicitly blocked
 - Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.

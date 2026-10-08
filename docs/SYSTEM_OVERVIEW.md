@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: NOT_PROVEN
+Human comprehension status: PASS
 
 ## One-minute summary
 
@@ -66,7 +66,7 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 Current phase: SW2-24
 
-Current status: SW2_24_CI_BASELINE_IN_PROGRESS
+Current status: SW2_24_BASELINE_AND_PARALLEL_RUNNER_PROVEN_PENDING_CI
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,9 +110,9 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Record exact baseline and RED negative-path tests for parallel-runner failure/skip/mutation boundaries.
-- Optimize only test groups with isolated workspace and independence evidence, measuring warm and cold runs.
-- Reconcile Project Truth/sequence then require final six-context exact candidate and postmerge main before closure.
+- Complete exact optimizer source/doc sync, remove temporary workflows and run six-context permanent CI on a single helper-free SHA.
+- If repeated permanent CI confirms no missed test, compare >=3 exact candidate run Windows elapsed and job-seconds to six-run pinned baseline; reject claimed optimization if not proven.
+- Promote R3-R5 only after full evidence, then merge through squash and exact post-merge main 6/6; close SW2-24 in separate terminal transaction.
 
 Blocked actions:
 - Do not remove, weaken or mark NOT_APPLICABLE any six permanent final contexts, Windows or Ubuntu regressions, Mermaid renderer, consumer finalization, or performance baseline.
@@ -121,7 +121,9 @@ Blocked actions:
 - Do not begin SW2-25 until Owner authorizes it.
 
 Known blockers:
-- None declared.
+- SW2-24 R3 NOT_PROVEN: permanent six-context cross-platform CI on optimized branch not yet terminal.
+- SW2-24 R4 NOT_PROVEN: at least three comparable exact-head candidate run timings and any 15% median Windows improvement not yet demonstrated.
+- SW2-24 R5/R6 NOT_PROVEN: public documentation, final exact candidate merge/main and terminal closure not yet accepted.
 
 ## Proven vs not proven
 
@@ -210,9 +212,9 @@ Known blockers:
 
 ### Not proven
 
-- SW2-24 R1-R6 are NOT_PROVEN pending measured exact-run baseline, regression, and feature/main acceptance.
-- Any wall-clock or billed-minutes savings is NOT_PROVEN until comparable samples exist; previous observed 56-94 second Windows durations are variable.
-- Owner-approved absence of automatic GitHub required checks/ruleset remains NOT_PROVEN and non-blocking.
+- SW2-24 R3-R6 remain NOT_PROVEN until final exact-head evidence.
+- Cold/warm hosted runner and billed GitHub minutes cannot be inferred from job timestamps; no savings claim is authorized.
+- Required status check enforcement remains intentionally NOT_PROVEN under Owner no-ruleset boundary.
 
 ## Important limitations
 
@@ -246,18 +248,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
-| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
-| What are the major components and how do they relate? | NOT_PROVEN | Major components |
-| How does important data flow through the system? | NOT_PROVEN | Main data flow |
-| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
-| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
-| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
-| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
-| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
-| What is the current project state? | NOT_PROVEN | Current project state |
-| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
-| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
+| What is the project and what problem does it solve? | PASS | One-minute summary |
+| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
+| What are the major components and how do they relate? | PASS | Major components |
+| How does important data flow through the system? | PASS | Main data flow |
+| What are the main user/domain workflows? | PASS | Main user workflows |
+| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
+| Who/what is authoritative for important decisions? | PASS | Authority model |
+| What is mutable and what is immutable? | PASS | Mutable vs immutable |
+| How does failure/recovery behave? | PASS | Failure and recovery |
+| What is the current project state? | PASS | Current project state |
+| What is proven and what is not proven? | PASS | Proven vs not proven |
+| What may happen next and what is blocked? | PASS | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.

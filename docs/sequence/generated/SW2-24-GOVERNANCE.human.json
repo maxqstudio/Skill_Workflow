@@ -296,7 +296,7 @@
       ]
     }
   ],
-  "observed_head": "090b27a003fae13602f5bf92c5a285bb1df11d47",
+  "observed_head": "2ee78d4a20159bb6b9465a769804a903564344c7",
   "policy_id": "module-collapse-v1",
   "projection": {
     "aggregated_cross_component_edges": 15,
