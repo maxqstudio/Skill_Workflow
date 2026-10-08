@@ -17,7 +17,7 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "PASS: exact pinned main snapshots of max-grounding 4c45a23..., DoctorCode bc3846e..., and max-remote-commander b968b02... were independently read via authenticated GitHub API and classified without writes; permanent Consumer Engine Performance run 37706993081 on exact branch SHA 005eb5e6... succeeded; 3/3 pinned classification matches. This is snapshot classification only, not adoption PASS.",
+      "evidence": "PASS: exact pinned main snapshots of max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f, DoctorCode bc3846e6d5c412ebe09146a66661d2c49072889b, and max-remote-commander b968b023c322cc22dc804c5bbcb9370aee5f9ae1 were independently read via authenticated GitHub API and classified without writes; permanent Consumer Engine Performance run 37706993081 on exact branch SHA 005eb5e6e20a9eb116d71f55e0fb0be6e576376a succeeded; 3/3 pinned classification matches. This is snapshot classification only, not adoption PASS.",
       "id": "SW2-23-R1",
       "requirement": "Freeze at least three genuinely different real consumer SHA snapshots and classify their exact compatibility/preconditions without consumer repository mutation.",
       "status": "PASS"
@@ -47,7 +47,7 @@
       "status": "PASS"
     },
     {
-      "evidence": "PASS: RED candidate 51642558c... had permanent Ubuntu documentation regression failure STALE_TOOLCHAIN_PROVENANCE not detected. Subsequent validator and docs/handbook/reference/versioning.md repair describes GIT+CONTENT, CONTENT/NOT_PROVEN, check/apply and semantic protection; scripts/selftest_documentation_contract.py and docs inventory pass in permanent Governance Selftest Ubuntu/Windows run 37706993081.",
+      "evidence": "PASS: RED candidate 51642558c32d0b3db3b673aa1fa9d119eab0300c had permanent Ubuntu documentation regression failure STALE_TOOLCHAIN_PROVENANCE not detected. Subsequent validator and docs/handbook/reference/versioning.md repair describes GIT+CONTENT, CONTENT/NOT_PROVEN, check/apply and semantic protection; scripts/selftest_documentation_contract.py and docs inventory pass in permanent Governance Selftest Ubuntu/Windows run 37706993081.",
       "id": "SW2-23-R6",
       "requirement": "Repair provenance-hint-only public documentation and add regression that detects this stale contract claim.",
       "status": "PASS"
