@@ -120,7 +120,7 @@ jobs:
           python .github/scripts/selftest_release_bundle_ci.py
       - name: Release bundle content-integrity regressions
         run: python .github/scripts/selftest_release_bundle.py
-      - name: SW2-26 publisher provenance RED boundary
+      - name: SW2-26 publisher provenance adversarial contract
         run: python .github/scripts/selftest_publisher_provenance.py
       - name: Build and detached-verify exact-head read-only bundle
         shell: bash
