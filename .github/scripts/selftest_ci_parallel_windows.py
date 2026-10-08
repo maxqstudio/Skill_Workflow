@@ -92,6 +92,9 @@ def main()->int:
         (root/".workflow/mutated.txt").unlink()
         print("CI_COMBINED_DIRTY_WORKTREE_REJECTED=PASS")
         (root/"scripts/selftest_release_preflight.py").unlink()
+        # Commit the missing-script fixture, otherwise the earlier clean-worktree
+        # gate correctly rejects the deletion before the inventory gate is reached.
+        commit(root)
         negative=combined.run(root,groups_runner=group_pass,final_runner=final_pass)
         assert negative["result"]=="FAIL" and "CI_PARALLEL_SCRIPT_MISSING_OR_ESCAPE" in negative["first_failed_gate"],negative
         print("CI_COMBINED_MISSING_SCRIPT_REJECTED=PASS")
