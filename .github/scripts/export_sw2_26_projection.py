@@ -33,7 +33,7 @@ def main():
     ok &= run(sys.executable, "scripts/validate_sequence_sessions.py",
               "--root", ".", "--freeze-historical",
               "--frozen-commit", subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
-              "--authorization-reason", "Owner-authorized SW2-26 phase open preserves terminal SW2-25 as historical")
+              "--authorize-migration", "Owner-authorized SW2-26 phase open preserves terminal SW2-25 as historical")
     session = json.loads(SESSION_FILE.read_text(encoding="utf-8"))
     act = session["actual"]
     gen = [sys.executable, "scripts/generate_sequence_actual.py", "--root", ".",
