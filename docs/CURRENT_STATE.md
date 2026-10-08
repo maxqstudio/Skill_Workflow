@@ -8,7 +8,7 @@ Governance profile: strict
 
 ## Current phase
 Phase: SW2-25
-Status: SW2_25_R1_R5_PROVEN_PENDING_FEATURE_MERGE
+Status: SW2_25_R1_R5_PROVEN_PENDING_EXACT_MERGE
 Roadmap phase: SW2-25
 ROADMAP_SYNC: PASS
 
@@ -124,20 +124,20 @@ SEQUENCE_SYNC: PASS
 - SW2-24 latency target measured in GitHub run 37713042819 attempts 1/2/3 on helper-free SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab: Windows 49,68,64s median 64s versus six-run historical median 77s (16.9% observed reduction). All three attempts 6/6 successful, no monetary cost-saving claim.
 
 ## Not proven
-- SW2-25 R6 feature/postmerge/terminal exact-SHA acceptance NOT_PROVEN.
-- Unsigned detached SHA-256 verifies archive content but does not independently authenticate the publisher or asserted source Git SHA offline; publication_authority=false.
-- Required GitHub status-check ruleset remains intentionally NOT_PROVEN by Owner boundary.
+- R6 exact final merged main and terminal acceptance remain NOT_PROVEN.
+- Unsigned SHA-256 manifest alone does not authenticate publisher or original Git SHA offline; stable release/tag not authorized.
+- GitHub required-status enforcement remains Owner-declared NOT_PROVEN.
 
 ## Known blockers
-- SW2-25-R6 NOT_PROVEN until exact final helper-free feature candidate all-six CI, equal-tree squash main, postmerge main six-context CI and separate terminal accepted closure.
+- SW2-25 R6 NOT_PROVEN: exact final feature head, equal-tree squash merge, postmerge main six-context CI and terminal closure pending.
 
 ## Known defects
 See KNOWN_DEFECTS.md.
 
 ## Next authorized action
-- Require final unchanged toolchain and all six permanent contexts on exact helper-free candidate before making PR #44 ready.
-- Squash expected SHA only after PASS and confirm equal-tree main, then postmerge exact main six permanent CI contexts PASS.
-- Terminal R6 accepted closure is a separate evidence-only transaction; no stable tag, release publication, or SW2-26 scope authorized.
+- Regenerate deterministic Project Truth, documentation inventory and current sequence, remove temporary helper then require six permanent contexts at exact candidate.
+- Squash PR #44 only after all six permanent checks on the exact tested head; prove identical tree and run exact postmerge main six-context CI.
+- Complete SW2-25 terminal closure in separate evidence-only transaction; do not publish or open SW2-26.
 
 ## Explicitly blocked
 - Do not publish a Git tag, GitHub release or external artifact to a distribution channel.
