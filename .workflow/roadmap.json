@@ -1,5 +1,5 @@
 {
-  "current_phase": "SW2-25",
+  "current_phase": "SW2-26",
   "phases": [
     {
       "exit_criteria": [
@@ -323,8 +323,22 @@
       ],
       "id": "SW2-25",
       "objective": "Build deterministic, content-addressed, independently verifiable consumer distribution artifacts and release dry-run evidence while preserving fail-closed GitHub acceptance and forbidding unauthorized publication.",
-      "status": "CURRENT",
+      "status": "COMPLETE",
       "title": "Reproducible Release Bundle & Integrity Verification"
+    },
+    {
+      "id": "SW2-26",
+      "title": "Trusted Publisher Provenance & Artifact Attestation",
+      "objective": "Authenticate GitHub Actions producer identity for exact-source reproducible ZIP and manifest through verifiable OIDC/Sigstore attestations, independent trust policy, adversarial negative paths and cross-platform acceptance without publication rights.",
+      "status": "CURRENT",
+      "exit_criteria": [
+        "Trusted identity policy pins repository, signer workflow and exact expected source commit independently of attacker-supplied manifest metadata; authorization to publish remains false.",
+        "An OIDC/Sigstore-based GitHub artifact attestation cryptographically binds both deterministic ZIP and detached manifest to an exact source build, with least-privilege GitHub Actions permissions isolated from existing read-only CI.",
+        "An independent verifier preserves the SW2-25 SHA-256 integrity checks, verifies signed provenance using an independently trusted Sigstore root, enforces expected repository, signer workflow, source SHA and each artifact digest, and reports the first failed gate.",
+        "Unsigned self-claims, payload/manifest alteration, incorrect signing identity, substituted bundle, wrong source SHA/ref, replay or rollback against independently pinned expectations, missing/revoked-or-stale-trust limitations and mismatched attestations fail closed without declaring unauthenticated input trusted.",
+        "Windows and Ubuntu regression plus a real GitHub Actions attestation/verification run provide exact-SHA evidence; all six permanent governance contexts, performance budgets, source-derived documentation, Mermaid, and historical SW2-25 evidence remain intact.",
+        "An exact helper-free feature commit passes the six permanent contexts, squash merges with equal Git tree, passes postmerge exact-main six-context checks, and receives separate terminal closure with another six-context run; no new tag, release or registry publication."
+      ]
     }
   ],
   "schema_version": 1
