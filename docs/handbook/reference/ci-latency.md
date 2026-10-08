@@ -40,7 +40,7 @@ Each group uses isolated temporary fixtures. The explicit inventory lives in `.g
 
 Only the Windows selftest job executes this inventory with a maximum of three concurrent workers. Each group runs its commands in sequence. Every group is dispatched regardless of a different group's failure. The runner returns non-zero on any failed, missing or incomplete gate and records the deterministic first failed gate plus individual outputs. It has no shell execution, dynamic test discovery, or success-result cache.
 
-The existing Windows read-only verify and STRICT workflow self-test remain serial, after the parallel group. The main producer finalize, consumer source tests and complete consumer validation, Mermaid rendering, and engine performance are all unchanged.
+**The producer read-only verify and STRICT workflow self-test remain complete, independently blocking acceptance gates.** On Windows, a second bounded two-worker group runs those full commands concurrently only after source identity and worktree cleanliness have been verified. The STRICT regression uses isolated temporary fixtures; verify is required to stay read-only. Both commands always execute, are never cancelled when the other fails, and the runner rejects any changed HEAD, dirty governed worktree, missing command, or failed gate. Ubuntu retains the original two serial steps as an independent fallback. The static CI validator and negative regression prohibit replacement with a cached PASS. The main producer finalization, consumer source tests and complete consumer validation, Mermaid rendering, and engine performance are unchanged.
 
 ## Required performance comparison
 
@@ -49,3 +49,9 @@ SW2-24 targets a **minimum 15% decrease** in median Windows selftest duration ve
 ## Fail-closed recovery
 
 If concurrency reveals fixture interference, non-deterministic results, or missing tests, the safe repair is to remove that group from parallel execution and restore its original serial Windows step **while retaining the test**. Never suppress the failed test, mark a required context not applicable, bypass the first failing gate, or silently promote source/runtime evidence.
+
+## Initial candidate observation and corrective action
+
+The first exact candidate `2a12cee1873851c422664e07468bf5863a7299db` completed three full six-context Governance CI attempts (run `37710214509`). Their Windows job durations were **73, 48 and 80 seconds**; median **73 seconds**, or only about **5.2% below** the historical 77-second median. This **failed the 15% optimization objective**. The failure is retained in `benchmarks/baselines/sw2-24-initial-attempts.json`, not silently discarded.
+
+The additional full STRICT/read-only VERIFY overlap is a subsequent implementation change requiring its own exact-head three-run measurement. Before that new evidence exists, any further speedup remains **NOT_PROVEN**.
