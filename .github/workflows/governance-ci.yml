@@ -89,6 +89,10 @@ jobs:
           fi
 
 
+      - name: TEMP SW2-26 projection recompilation (remove before acceptance)
+        if: always()
+        run: python .github/scripts/export_sw2_26_projection.txt
+
   governance-selftest:
     name: Governance Selftest (${{ matrix.os }})
     strategy:
