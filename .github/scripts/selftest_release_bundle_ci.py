@@ -16,7 +16,7 @@ def main()->int:
     require_issue(g.replace("Release bundle content-integrity regressions",
                             "Disabled bundle tests",1),m,
                   "BUNDLE_CI_REQUIRED_STEP_MISSING_OR_DUPLICATE")
-    require_issue(g.replace("release_bundle.py verify","release_bundle.py verify-disabled",1),
+    require_issue(g.replace("release_bundle.py verify","release_bundle.py check",1),
                   m,"BUNDLE_CI_BUILD_OR_VERIFY_INCOMPLETE")
     require_issue(g.replace("      - name: Build and detached-verify exact-head read-only bundle\n",
                             "      - name: Build and detached-verify exact-head read-only bundle\n        if: matrix.os != 'windows-latest'\n",1),
