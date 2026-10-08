@@ -66,6 +66,11 @@ ENFORCEMENT_DENIAL_RE = re.compile(
 )
 
 
+PROVENANCE_HINT_ONLY_RE = re.compile(
+    r"(?i)\\bproducer\\s+repository\\s+and\\s+(?:commit|sha)\\s+fields?\\s+are\\s+(?:only\\s+)?provenance\\s+hints\\b"
+)
+
+
 def _git(root: Path, *args: str, binary: bool = False):
     completed = subprocess.run(
         ["git", "-C", str(root), *args],
@@ -248,6 +253,10 @@ def freshness_findings(root: Path, path: str, role: str, authority: dict[str, ob
             line = text[start:end]
             if not ENFORCEMENT_DENIAL_RE.search(line):
                 findings.append(_finding(path, text, match, "STALE_MERGE_ENFORCEMENT", match.group(0), "no automatic GitHub ruleset enforcement is claimed"))
+
+    for match in PROVENANCE_HINT_ONLY_RE.finditer(text):
+        findings.append(_finding(path, text, match, "STALE_TOOLCHAIN_PROVENANCE",
+            match.group(0), "Exact source-content digest is mandatory; Git provenance is binding only when verifiable, and missing Git fields are NOT_PROVEN"))
 
     return findings
 
