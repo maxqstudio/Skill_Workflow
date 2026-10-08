@@ -26,7 +26,7 @@ These are hosted-runner observations, not an SLA, bill, or a causal comparison. 
 
 ## Bounded independent regression execution
 
-The seven original Windows regression **groups** still run, covering ten explicit commands:
+The first seven Windows regression **groups** retain their ten explicit commands:
 
 - Consumer finalize negative-path
 - Schema/toolchain migration and validation
@@ -35,6 +35,8 @@ The seven original Windows regression **groups** still run, covering ten explici
 - Public documentation, generated documentation presentation and validation
 - Release preflight
 - Project Truth Compiler self-test
+
+An additional eight independently audited fixture regression groups now enter the same bounded worker pool: Governance Engine V2, sequence call-resolution, sequence squash provenance, sequence human-view, repository health, ruleset policy, cross-document regression, and LITE/STANDARD adoption fixtures. The final explicit parallel inventory comprises **15 groups and 19 commands**; Ubuntu's original serial steps remain present for all 19 commands.
 
 Each group uses isolated temporary fixtures. The explicit inventory lives in `.github/scripts/ci_parallel_selftests.py` and is cross-checked against the **unchanged serial Ubuntu inventory** by `.github/scripts/validate_ci_parallel_contract.py`.
 
@@ -55,3 +57,9 @@ If concurrency reveals fixture interference, non-deterministic results, or missi
 The first exact candidate `2a12cee1873851c422664e07468bf5863a7299db` completed three full six-context Governance CI attempts (run `37710214509`). Their Windows job durations were **73, 48 and 80 seconds**; median **73 seconds**, or only about **5.2% below** the historical 77-second median. This **failed the 15% optimization objective**. The failure is retained in `benchmarks/baselines/sw2-24-initial-attempts.json`, not silently discarded.
 
 The additional full STRICT/read-only VERIFY overlap is a subsequent implementation change requiring its own exact-head three-run measurement. Before that new evidence exists, any further speedup remains **NOT_PROVEN**.
+
+## Second candidate observation and expanded independent inventory
+
+The full-STRICT/read-only-VERIFY overlap candidate `8c4889ade0465a294f09a8ac8b15c35e5b744bd3` completed three exact-SHA all-six-context runs (run `37710902468`). Windows job durations were **55, 69, and 79 seconds**, median **69 seconds**, a **10.4% decrease** relative to the historical 77-second median. The 15% target still failed. Every result, including the slowest, is retained in `benchmarks/baselines/sw2-24-overlap-attempts.json`.
+
+The expanded 19-command fixture inventory is a subsequent implementation change and must be assessed on a new clean exact SHA across at least three complete six-context attempts. Until accepted samples demonstrate the locked performance target, R4 remains **NOT_PROVEN**.
