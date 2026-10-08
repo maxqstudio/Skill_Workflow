@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "Phase open only. All SW2-23 consumer, negative-path, latency, documentation and final CI requirements are NOT_PROVEN until individually executed. Read-only pinned consumer audit does not equal adoption PASS.",
+  "evidence_boundary": "SW2-23 interim evidence only. R1,R2,R4,R5,R6 supported by exact targeted/permanent CI; real legacy consumer finalize is unsupported and remains R3 NOT_PROVEN. R7 is NOT_PROVEN premerge/postmerge. No external consumer repositories mutated; three snapshots classified, not upgraded in place. Not a phase closure.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -17,43 +17,43 @@
   "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "PASS: exact pinned main snapshots of max-grounding 4c45a23..., DoctorCode bc3846e..., and max-remote-commander b968b02... were independently read via authenticated GitHub API and classified without writes; permanent Consumer Engine Performance run 37706993081 on exact branch SHA 005eb5e6... succeeded; 3/3 pinned classification matches. This is snapshot classification only, not adoption PASS.",
       "id": "SW2-23-R1",
       "requirement": "Freeze at least three genuinely different real consumer SHA snapshots and classify their exact compatibility/preconditions without consumer repository mutation.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "PASS: hermetic cross-platform regression in scripts/selftest_consumer_compatibility_matrix.py rejects mutable refs, expectation tamper, malformed/missing/legacy locks, unsupported schema and unknown producer identity. Incompatible real snapshots remain explicit LEGACY_PRECONDITIONS_MISSING or EXPLICIT_MIGRATION_REQUIRED, not false adoption PASS. Permanent Governance Selftest Ubuntu/Windows run 37706993081 succeeded.",
       "id": "SW2-23-R2",
       "requirement": "Reject incompatible/legacy consumer snapshots with explicit first failed gates; never fabricate successful adoption.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "PARTIAL: pinned max-grounding isolated check-plan-apply-check, post-apply lock validation, source test suite and Project Truth governance parity succeeded in permanent Consumer Engine Performance run 37706993081. Full `governance_engine --mode finalize` on this legacy consumer FAILED in exploratory run 37706882513 because the consumer lacks producer `scripts/selftest_*` files; no silent copy or scope weakening is authorized. Full end-to-end finalize for a compatible isolated consumer remains NOT_PROVEN.",
       "id": "SW2-23-R3",
       "requirement": "Execute isolated supported consumer check-plan-apply-validate-finalize and test semantic preservation and idempotence.",
       "status": "NOT_PROVEN"
     },
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "PASS: permanent schema/toolchain regression on Ubuntu and Windows run 37706993081 covers exact GIT+CONTENT checkout and CONTENT copied package identity, legacy hint rejection and migration, stronger provenance no-downgrade, toolchain tamper, interrupted partial-tool update rejection, and idempotent repair, with no Owner semantic authority mutation in fixtures.",
       "id": "SW2-23-R4",
       "requirement": "Cover GIT+CONTENT and CONTENT package copies plus tamper, unsupported schema, and interrupted-upgrade negative paths.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "PASS (descriptive evidence only): benchmarks/baselines/sw2-23-ci-latency.json binds baseline run 37430818483 attempt 1 to candidate run 37706618341 attempt 1 by exact SHA, six permanent contexts, and per-job observed runtimes (192 vs 185 job-seconds). Latest permanent run 37706993081 all six successful including budget-protected engine/consumer performance. Hosting variability prevents claiming a stable speedup or monetary savings; final CI remains exhaustive.",
       "id": "SW2-23-R5",
       "requirement": "Record reproducible CI timing/cost evidence without weakening final acceptance or silently skipping unknown impact.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "PASS: RED candidate 51642558c... had permanent Ubuntu documentation regression failure STALE_TOOLCHAIN_PROVENANCE not detected. Subsequent validator and docs/handbook/reference/versioning.md repair describes GIT+CONTENT, CONTENT/NOT_PROVEN, check/apply and semantic protection; scripts/selftest_documentation_contract.py and docs inventory pass in permanent Governance Selftest Ubuntu/Windows run 37706993081.",
       "id": "SW2-23-R6",
       "requirement": "Repair provenance-hint-only public documentation and add regression that detects this stale contract claim.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: phase-open only; no SW2-23 final evidence.",
+      "evidence": "NOT_PROVEN: six-context premerge CI passed for intermediate candidate 005eb5e6e..., but exact final promoted candidate, merge tree identity, and postmerge main six-context acceptance are not yet established; PR #40 must remain DRAFT.",
       "id": "SW2-23-R7",
       "requirement": "Exact final feature candidate and post-merge main pass all six permanent GitHub Governance CI contexts.",
       "status": "NOT_PROVEN"
