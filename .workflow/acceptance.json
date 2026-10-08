@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-23 R1-R6 proven individually by pinned sources, negative regressions, real consumer isolated exact-commit finalize and measured CI. R7 final helper-free candidate/merge/postmerge CI remains NOT_PROVEN. All external consumer repositories unchanged; real legacy finalization is only on isolated local migrated snapshot. Historical device/runtime E2E and GitHub automatic merge enforcement remain outside evidence.",
+  "evidence_boundary": "SW2-23 feature acceptance is proven by exact candidate and equal-tree squash main, followed by all six permanent contexts successful on exact postmerge main. Consumer-owned full finalize reexecuted on isolated pinned max-grounding, not the actual upstream consumer; other consumer snapshots are classification-only. No new external runtime/device E2E, automatic branch ruleset or new release is claimed. Terminal closure requires separate exact-head evidence.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -53,10 +53,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: six-context premerge CI passed for intermediate candidate 005eb5e6e..., but exact final promoted candidate, merge tree identity, and postmerge main six-context acceptance are not yet established; PR #40 must remain DRAFT.",
+      "evidence": "PASS: feature candidate 9309c8e6442478f94b4492e8ee086f0be35adb2e tree 938237dd29a412f9448a74e3f7e18a5590b8d9f9 passed all six permanent contexts in Governance CI run 37708376562; it was squash merged as main 83de063673320a71da108afe0e5e28575d3cacf1 with exactly equal tree; postmerge Governance CI run 37708565187 passed all six permanent contexts on exact main. Terminal closure candidate and closure main are independently retested after this authority projection.",
       "id": "SW2-23-R7",
       "requirement": "Exact final feature candidate and post-merge main pass all six permanent GitHub Governance CI contexts.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     }
   ],
   "runtime_checks": [],
@@ -73,23 +73,23 @@
   ],
   "truth_gates": {
     "BEHAVIORAL_SYNC": "NOT_APPLICABLE",
-    "CROSS_DOCUMENT_CONSISTENCY": "NOT_PROVEN",
+    "CROSS_DOCUMENT_CONSISTENCY": "PASS",
     "DOC_LAYOUT": "PASS",
     "DOC_READABILITY": "PASS",
-    "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
-    "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
+    "DOC_SOURCE_TRACEABILITY": "PASS",
+    "DOC_TEST_TRACEABILITY": "PASS",
     "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
-    "PROJECT_STATE_SYNC": "NOT_PROVEN",
-    "PROVENANCE_SYNC": "NOT_PROVEN",
-    "REFERENCE_SYNC": "NOT_PROVEN",
+    "PROJECT_STATE_SYNC": "PASS",
+    "PROVENANCE_SYNC": "PASS",
+    "REFERENCE_SYNC": "PASS",
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
-    "SEMANTIC_SYNC": "NOT_PROVEN",
+    "SEMANTIC_SYNC": "PASS",
     "SEQUENCE_SYNC": "PASS",
-    "SOURCE_TESTS": "NOT_PROVEN",
-    "STRUCTURAL_SYNC": "NOT_PROVEN",
+    "SOURCE_TESTS": "PASS",
+    "STRUCTURAL_SYNC": "PASS",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
   }
 }
