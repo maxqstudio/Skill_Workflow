@@ -1,0 +1,45 @@
+{
+  "acceptance_report": "artifacts/sequence/SW2-25-GOVERNANCE.acceptance.json",
+  "actual": {
+    "diagram": "docs/sequence/generated/SW2-25-GOVERNANCE.actual.mmd",
+    "entries": [
+      "scripts/release_preflight.py::validate",
+      "scripts/toolchain_identity.py::producer_metadata"
+    ],
+    "graph": "docs/sequence/generated/SW2-25-GOVERNANCE.actual.json",
+    "source_digest": ""
+  },
+  "critical": true,
+  "evidence_boundary": "Static graph covers release preflight/provenance and bundle generation when implemented; runtime CI and byte parity require separately executed evidence. This phase does not grant stable publication.",
+  "human_view": {
+    "diagram": "docs/sequence/generated/SW2-25-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-25-GOVERNANCE.md",
+    "granularity": "module",
+    "graph": "docs/sequence/generated/SW2-25-GOVERNANCE.human.json",
+    "policy_id": "module-collapse-v1",
+    "source_digest": ""
+  },
+  "implementation_base_sha": "91b58b98049a7d27ed65169508177ea7dc978ca1",
+  "mode": "DURING",
+  "phase": "SW2-25",
+  "plan": {
+    "contract": "",
+    "diagram": "",
+    "frozen": false,
+    "frozen_commit": "",
+    "required": false,
+    "sha256": ""
+  },
+  "runtime_trace": {
+    "graph": "",
+    "required": false
+  },
+  "schema_version": 1,
+  "scope": "CURRENT",
+  "session_id": "SW2-25-GOVERNANCE",
+  "status": "IN_PROGRESS",
+  "test_traceability_required": true,
+  "tests": [
+    "scripts/selftest_release_preflight.py"
+  ]
+}
