@@ -4,27 +4,27 @@
 
 ## Evidence boundary
 
-SW2-22 covers content-addressed producer identity for vendored consumer toolchains, enriches it with exact Git provenance when verifiable Git metadata is available, and provides deterministic source-side upgrade planning/apply. It does not add remote auto-update, package-manager infrastructure, release publication, GitHub rulesets, or permission to rewrite Owner semantic authority.
+Phase open only. All SW2-23 consumer, negative-path, latency, documentation and final CI requirements are NOT_PROVEN until individually executed. Read-only pinned consumer audit does not equal adoption PASS.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4
+Current source digest: 8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-22-R1 | Consumer toolchain locks bind vendored bytes to an exact source-content digest. Verifiable Git checkouts additionally record repository, exact source SHA, release identity, and identity_source=GIT+CONTENT; copied/package sources without Git metadata use identity_source=CONTENT and explicitly mark Git-only fields NOT_PROVEN. Missing, malformed, mismatched, or legacy hint-only identity fails closed. | PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 passed permanent schema/toolchain provenance regression on Ubuntu and Windows, including exact content identity, GIT+CONTENT checkout provenance, CONTENT package-copy fallback with Git-only fields NOT_PROVEN, legacy hint rejection/migration, tamper rejection, and no provenance downgrade for identical content. | PASS |
-| SW2-22-R2 | A source-side read-only upgrade check produces a deterministic machine-readable plan and reports whether upgrade is required without mutating the consumer. | PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 passed the permanent toolchain provenance/upgrade regression on Ubuntu and Windows; --check remained read-only, emitted deterministic PLAN_JSON and file classes, and returned upgrade-required status without mutating the consumer. | PASS |
-| SW2-22-R3 | Upgrade apply mutates only toolchain-owned surfaces, preserves Owner semantic authority, and is idempotent for an already-current consumer. | PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 passed tool-owned apply, AGENTS.md and semantic .workflow authority preservation, unmanaged-file fail-closed behavior, post-apply validation, and repeated-apply idempotence in the permanent Ubuntu/Windows regression lanes. | PASS |
-| SW2-22-R4 | Legacy v2.1, STANDARD, STRICT, tamper, Ubuntu/Windows, and pinned max-grounding consumer paths retain governance parity under the new provenance/upgrade contract. | PASS on exact helper-free candidate 326c101980b9ad820d5d5dc77b6b8689dea6b9b5: Governance CI run 37428635525 completed all six permanent contexts, including Ubuntu/Windows Governance Selftest, STANDARD/STRICT adoption fixtures, sequence render, performance gates, and pinned max-grounding legacy-consumer migration/parity. | PASS |
-| SW2-22-R5 | Exact final candidate and post-merge main pass the complete six-context permanent Governance CI matrix. | PASS: exact helper-free final candidate a53dd4fedf1b4913c304485cdd6cc6b1ed2718cf with tree ee4377857a42f85151fdd2e546fb4aaa0797f92a passed all six permanent contexts in Governance CI run 37429305042; it was squash-merged to main as 44e3e45b9a231744c7962e0b4153d720d80653bc with identical tree ee4377857a42f85151fdd2e546fb4aaa0797f92a; post-merge Governance CI run 37429617130 passed Self Governance, Governance Selftest on Ubuntu and Windows, SW2 Sequence Evidence with Mermaid render, Governance Engine Performance, and Consumer Engine Performance. This closes the SW2-22 feature acceptance boundary. | PASS |
+| SW2-23-R1 | Freeze at least three genuinely different real consumer SHA snapshots and classify their exact compatibility/preconditions without consumer repository mutation. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
+| SW2-23-R2 | Reject incompatible/legacy consumer snapshots with explicit first failed gates; never fabricate successful adoption. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
+| SW2-23-R3 | Execute isolated supported consumer check-plan-apply-validate-finalize and test semantic preservation and idempotence. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
+| SW2-23-R4 | Cover GIT+CONTENT and CONTENT package copies plus tamper, unsupported schema, and interrupted-upgrade negative paths. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
+| SW2-23-R5 | Record reproducible CI timing/cost evidence without weakening final acceptance or silently skipping unknown impact. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
+| SW2-23-R6 | Repair provenance-hint-only public documentation and add regression that detects this stale contract claim. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
+| SW2-23-R7 | Exact final feature candidate and post-merge main pass all six permanent GitHub Governance CI contexts. | NOT_PROVEN: phase-open only; no SW2-23 final evidence. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_schema_toolchain.py
 - python scripts/selftest_toolchain_provenance_upgrade.py
+- python scripts/selftest_documentation_contract.py
 - python scripts/validate_schema_toolchain.py --root .
-- python scripts/selftest_adoption_profiles.py
-- python scripts/selftest_strict_project_workflow.py
-- python scripts/governance_engine.py --root . --base 65c28fcdfebec68a20adc02ae95406f9261d5a51 --mode finalize --expected-head <EXACT_HEAD>
+- python scripts/validate_sequence_sessions.py --root .
 
 ## Runtime checks
 
@@ -38,8 +38,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-22-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-23-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
@@ -52,7 +52,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: PASS
-HUMAN_COMPREHENSION_GATE: PASS
+SYSTEM_OVERVIEW status: NOT_PROVEN
+HUMAN_COMPREHENSION_GATE: NOT_PROVEN
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

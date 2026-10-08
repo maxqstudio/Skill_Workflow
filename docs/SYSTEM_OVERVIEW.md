@@ -3,7 +3,7 @@
 # SYSTEM OVERVIEW
 
 Status: CURRENT
-Human comprehension status: PASS
+Human comprehension status: NOT_PROVEN
 
 ## One-minute summary
 
@@ -27,7 +27,7 @@ Users / External Systems
     -> State / Evidence Authorities
     -> External Runtime / Outputs
 
-Observed source inventory: 68 files, 1 language categories.
+Observed source inventory: 69 files, 1 language categories.
 
 ## Major components
 
@@ -64,9 +64,9 @@ Authority: SKILL.md plus current .workflow project truth and exact Git candidate
 
 ## Lifecycle and state
 
-Current phase: SW2-22
+Current phase: SW2-23
 
-Current status: SW2_22_CONSUMER_TOOLCHAIN_PROVENANCE_UPGRADE_ACCEPTED
+Current status: SW2_23_CONSUMER_BASELINE_IN_PROGRESS
 
 See WORKFLOW_STATE_MACHINE.md for generated lifecycle contracts.
 
@@ -110,16 +110,16 @@ compiler does not infer them from implementation names.
 ## Current project state
 
 Next authorized actions:
-- Treat SW2-22 on main 44e3e45b9a231744c7962e0b4153d720d80653bc as the accepted terminal roadmap authority for the current roadmap.
-- Preserve the accepted V2.1 release identity and SW2-22 consumer toolchain provenance/upgrade contract.
-- Before any new governed phase or compatibility work, explicitly extend .workflow/roadmap.json and open a new acceptance boundary.
+- Reproduce the stale provenance-hint-only public reference with a failing documentation regression before repair.
+- Audit exact pinned consumers read-only; simulate upgrades in isolated copies only and classify unsupported governance.
+- Measure CI latency and execute full exact-head acceptance before promotion; keep PR draft until every required gate passes.
 
 Blocked actions:
-- Do not treat producer commit_hint metadata as acceptance-grade toolchain provenance.
-- Do not claim repository, source SHA, or release provenance when the Skill Workflow distribution does not contain verifiable Git metadata; use exact content identity and mark Git-only fields NOT_PROVEN.
-- Do not mutate AGENTS.md or project semantic .workflow authority as part of a toolchain upgrade.
-- Do not claim automatic GitHub merge protection or required-check enforcement while no repository ruleset is configured.
-- Do not begin a new governed phase unless the Owner explicitly extends .workflow/roadmap.json and opens a new acceptance boundary.
+- Do not modify actual consumer repositories during SW2-23 compatibility evaluation.
+- Do not treat missing AGENTS.md/toolchain lock or legacy hint-only provenance as compatibility PASS.
+- Do not weaken finalize, exact-head, fail-closed, sequence, or required cross-platform acceptance.
+- Do not claim platform-required checks with no GitHub ruleset.
+- Do not begin SW2-24 or release a new stable tag without separate Owner authorization.
 
 Known blockers:
 - None declared.
@@ -209,7 +209,9 @@ Known blockers:
 
 ### Not proven
 
-- Automatic GitHub merge protection and required-check enforcement remain intentionally NOT_PROVEN because no repository ruleset is configured; this remains non-blocking.
+- SW2-23 R1-R7 are NOT_PROVEN pending exact pinned consumer compatibility and permanent CI evidence.
+- DoctorCode has legacy hint-only producer provenance at pinned main; max-grounding and max-remote-commander have no supported root AGENTS.md / toolchain lock at their pinned main snapshots; unsupported paths must fail closed.
+- Automatic GitHub merge protection and required checks remain intentionally NOT_PROVEN under Owner-approved no-ruleset boundary.
 
 ## Important limitations
 
@@ -243,18 +245,18 @@ See GLOSSARY.md.
 
 | Question | Status | Answer location |
 |---|---|---|
-| What is the project and what problem does it solve? | PASS | One-minute summary |
-| Who uses it and what are the primary outcomes? | PASS | One-minute summary |
-| What are the major components and how do they relate? | PASS | Major components |
-| How does important data flow through the system? | PASS | Main data flow |
-| What are the main user/domain workflows? | PASS | Main user workflows |
-| What are the important lifecycle states and transitions? | PASS | Lifecycle and state |
-| Who/what is authoritative for important decisions? | PASS | Authority model |
-| What is mutable and what is immutable? | PASS | Mutable vs immutable |
-| How does failure/recovery behave? | PASS | Failure and recovery |
-| What is the current project state? | PASS | Current project state |
-| What is proven and what is not proven? | PASS | Proven vs not proven |
-| What may happen next and what is blocked? | PASS | Current project state |
+| What is the project and what problem does it solve? | NOT_PROVEN | One-minute summary |
+| Who uses it and what are the primary outcomes? | NOT_PROVEN | One-minute summary |
+| What are the major components and how do they relate? | NOT_PROVEN | Major components |
+| How does important data flow through the system? | NOT_PROVEN | Main data flow |
+| What are the main user/domain workflows? | NOT_PROVEN | Main user workflows |
+| What are the important lifecycle states and transitions? | NOT_PROVEN | Lifecycle and state |
+| Who/what is authoritative for important decisions? | NOT_PROVEN | Authority model |
+| What is mutable and what is immutable? | NOT_PROVEN | Mutable vs immutable |
+| How does failure/recovery behave? | NOT_PROVEN | Failure and recovery |
+| What is the current project state? | NOT_PROVEN | Current project state |
+| What is proven and what is not proven? | NOT_PROVEN | Proven vs not proven |
+| What may happen next and what is blocked? | NOT_PROVEN | Current project state |
 
 The compiler projects the declared human-comprehension status. It does not
 grant PASS automatically.

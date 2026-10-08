@@ -95,6 +95,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/tmp_sw2_23_phase_open.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 191
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/validate_skill_reference_split.py",
       "is_test": false,
       "language": "Python",
@@ -857,6 +864,46 @@
     {
       "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
       "target_token": "module.validate"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::cmd",
+      "target_token": "list"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::cmd",
+      "target_token": "map"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::cmd",
+      "target_token": "map"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::cmd",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::cmd",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::obj",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::save",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::save",
+      "target_token": "target.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_23_phase_open.py::save",
+      "target_token": "target.write_text"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
@@ -26330,6 +26377,38 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/tmp_sw2_23_phase_open.py",
+      "kind": "function",
+      "line_end": 14,
+      "line_start": 12,
+      "locator": ".github/scripts/tmp_sw2_23_phase_open.py::cmd",
+      "symbol": "cmd"
+    },
+    {
+      "file": ".github/scripts/tmp_sw2_23_phase_open.py",
+      "kind": "function",
+      "line_end": 16,
+      "line_start": 15,
+      "locator": ".github/scripts/tmp_sw2_23_phase_open.py::obj",
+      "symbol": "obj"
+    },
+    {
+      "file": ".github/scripts/tmp_sw2_23_phase_open.py",
+      "kind": "function",
+      "line_end": 20,
+      "line_start": 17,
+      "locator": ".github/scripts/tmp_sw2_23_phase_open.py::save",
+      "symbol": "save"
+    },
+    {
+      "file": ".github/scripts/tmp_sw2_23_phase_open.py",
+      "kind": "function",
+      "line_end": 22,
+      "line_start": 21,
+      "locator": ".github/scripts/tmp_sw2_23_phase_open.py::git",
+      "symbol": "git"
+    },
+    {
       "file": ".github/scripts/validate_skill_reference_split.py",
       "kind": "function",
       "line_end": 36,
@@ -29803,13 +29882,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "5bf9ef6916e302ea9e3692192afa6c9f6bb4693c17ef7d1013c6fa76df5badd4",
+  "source_digest": "8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d",
   "source_summary": {
-    "files": 68,
+    "files": 69,
     "languages": {
-      "Python": 68
+      "Python": 69
     },
-    "lines": 16850,
+    "lines": 17041,
     "test_files": 0
   },
   "tests": []

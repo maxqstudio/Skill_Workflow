@@ -1,13 +1,13 @@
 {
   "authority": {
-    "current_phase": "SW2-22",
+    "current_phase": "SW2-23",
     "license_present": true,
     "no_ruleset_boundary": true,
     "stable_release": "v2.1.0"
   },
-  "documentation_candidates": 130,
+  "documentation_candidates": 133,
   "freshness_failures": [],
-  "inventory_digest": "ed9bb1a62cce93f731bb718998a2135b40adb826c34664aa03b5122306be4b50",
+  "inventory_digest": "aaf1cd1a51d75c4a5638f1e93f1271f2e69c475cef9e4cf145f6a364c3d6217a",
   "items": [
     {
       "freshness_mode": "authority-bound",
@@ -431,6 +431,16 @@
     },
     {
       "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-23-GOVERNANCE.actual.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/generated/SW2-23-GOVERNANCE.human.mmd",
+      "role": "sequence_generated_diagram"
+    },
+    {
+      "freshness_mode": "generated-or-static",
       "path": "docs/sequence/views/SW2-03-GOVERNANCE.md",
       "role": "sequence_human_view"
     },
@@ -527,6 +537,11 @@
     {
       "freshness_mode": "generated-or-static",
       "path": "docs/sequence/views/SW2-22-GOVERNANCE.md",
+      "role": "sequence_human_view"
+    },
+    {
+      "freshness_mode": "generated-or-static",
+      "path": "docs/sequence/views/SW2-23-GOVERNANCE.md",
       "role": "sequence_human_view"
     },
     {
@@ -670,8 +685,8 @@
     "root_legal": 1,
     "root_public_entry": 1,
     "root_skill_contract": 1,
-    "sequence_generated_diagram": 43,
-    "sequence_human_view": 20,
+    "sequence_generated_diagram": 45,
+    "sequence_human_view": 21,
     "skill_reference": 4,
     "template_documentation": 22
   },

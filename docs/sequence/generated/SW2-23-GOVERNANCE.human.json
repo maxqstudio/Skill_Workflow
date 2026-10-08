@@ -1,0 +1,189 @@
+{
+  "complexity": {
+    "absolute_numeric_limit": null,
+    "interaction_ceiling": 4,
+    "interaction_count": 4,
+    "max_interactions_per_directed_component_pair": 1,
+    "max_participants_per_semantic_component": 1,
+    "participant_ceiling": 4,
+    "participant_count": 4,
+    "participant_granularity": "semantic_module_or_external_boundary",
+    "policy_id": "module-collapse-v1",
+    "rationale": "Ceilings are derived from distinct semantic components and directed component pairs. No arbitrary global participant/interaction limit is used by module-collapse-v1."
+  },
+  "edges": [
+    {
+      "actions": [
+        "dst.read_bytes",
+        "lock_path.read_text",
+        "path.read_bytes",
+        "src.read_bytes",
+        "target.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/toolchain_identity.py",
+      "machine_edge_count": 5,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "path.read_bytes",
+        "path.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/upgrade_governance_toolchain.py",
+      "machine_edge_count": 2,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    },
+    {
+      "actions": [
+        "producer_metadata",
+        "source_tool_paths",
+        "sync_vendored_tools",
+        "tool_manifest",
+        "validate_toolchain_lock",
+        "write_toolchain_lock"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/upgrade_governance_toolchain.py",
+      "machine_edge_count": 7,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/toolchain_identity.py"
+    },
+    {
+      "actions": [
+        "target.read_text"
+      ],
+      "evidence": [
+        "STATIC"
+      ],
+      "from": "module:scripts/validate_documentation_contract.py",
+      "machine_edge_count": 1,
+      "resolvers": [
+        "python_ast"
+      ],
+      "to": "module:scripts/project_snapshot.py"
+    }
+  ],
+  "entries": [
+    "scripts/upgrade_governance_toolchain.py::build_plan",
+    "scripts/upgrade_governance_toolchain.py::main",
+    "scripts/toolchain_identity.py::validate_toolchain_lock",
+    "scripts/validate_documentation_contract.py::freshness_findings"
+  ],
+  "evidence_boundary": "Human view is a deterministic projection of static machine evidence. It does not prove runtime ordering and cannot replace the full machine graph.",
+  "generated": true,
+  "generated_by": "sequence_human_view.py",
+  "nodes": [
+    {
+      "id": "module:scripts/project_snapshot.py",
+      "kind": "module",
+      "label": "scripts/project_snapshot.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/project_snapshot.py::ProjectSnapshot.entry",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_bytes",
+        "scripts/project_snapshot.py::ProjectSnapshot.read_text",
+        "scripts/project_snapshot.py::SnapshotError"
+      ]
+    },
+    {
+      "id": "module:scripts/toolchain_identity.py",
+      "kind": "module",
+      "label": "scripts/toolchain_identity.py",
+      "machine_node_count": 10,
+      "machine_nodes": [
+        "scripts/toolchain_identity.py::_git_value",
+        "scripts/toolchain_identity.py::_sha256",
+        "scripts/toolchain_identity.py::producer_metadata",
+        "scripts/toolchain_identity.py::source_tool_paths",
+        "scripts/toolchain_identity.py::source_toolchain_manifest",
+        "scripts/toolchain_identity.py::sync_vendored_tools",
+        "scripts/toolchain_identity.py::tool_manifest",
+        "scripts/toolchain_identity.py::toolchain_digest",
+        "scripts/toolchain_identity.py::validate_toolchain_lock",
+        "scripts/toolchain_identity.py::write_toolchain_lock"
+      ]
+    },
+    {
+      "id": "module:scripts/upgrade_governance_toolchain.py",
+      "kind": "module",
+      "label": "scripts/upgrade_governance_toolchain.py",
+      "machine_node_count": 7,
+      "machine_nodes": [
+        "scripts/upgrade_governance_toolchain.py::build_plan",
+        "scripts/upgrade_governance_toolchain.py::emit",
+        "scripts/upgrade_governance_toolchain.py::load_lock",
+        "scripts/upgrade_governance_toolchain.py::main",
+        "scripts/upgrade_governance_toolchain.py::producer_upgrade_required",
+        "scripts/upgrade_governance_toolchain.py::sha256",
+        "scripts/upgrade_governance_toolchain.py::source_manifest"
+      ]
+    },
+    {
+      "id": "module:scripts/validate_documentation_contract.py",
+      "kind": "module",
+      "label": "scripts/validate_documentation_contract.py",
+      "machine_node_count": 4,
+      "machine_nodes": [
+        "scripts/validate_documentation_contract.py::_finding",
+        "scripts/validate_documentation_contract.py::_historical_context",
+        "scripts/validate_documentation_contract.py::_line_number",
+        "scripts/validate_documentation_contract.py::freshness_findings"
+      ]
+    }
+  ],
+  "observed_head": "00c1acf2b23281a035744047cf59372e8b18e8ce",
+  "policy_id": "module-collapse-v1",
+  "projection": {
+    "aggregated_cross_component_edges": 11,
+    "cross_component_machine_edges": 15,
+    "internal_machine_edges_collapsed": 24,
+    "machine_edge_count": 39,
+    "machine_node_count": 25,
+    "node_map": {
+      "scripts/project_snapshot.py::ProjectSnapshot.entry": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_bytes": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::ProjectSnapshot.read_text": "module:scripts/project_snapshot.py",
+      "scripts/project_snapshot.py::SnapshotError": "module:scripts/project_snapshot.py",
+      "scripts/toolchain_identity.py::_git_value": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::_sha256": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::producer_metadata": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_tool_paths": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::source_toolchain_manifest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::sync_vendored_tools": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::tool_manifest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::toolchain_digest": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::validate_toolchain_lock": "module:scripts/toolchain_identity.py",
+      "scripts/toolchain_identity.py::write_toolchain_lock": "module:scripts/toolchain_identity.py",
+      "scripts/upgrade_governance_toolchain.py::build_plan": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::emit": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::load_lock": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::main": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::producer_upgrade_required": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::sha256": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/upgrade_governance_toolchain.py::source_manifest": "module:scripts/upgrade_governance_toolchain.py",
+      "scripts/validate_documentation_contract.py::_finding": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::_historical_context": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::_line_number": "module:scripts/validate_documentation_contract.py",
+      "scripts/validate_documentation_contract.py::freshness_findings": "module:scripts/validate_documentation_contract.py"
+    },
+    "unresolved_machine_edges": []
+  },
+  "schema_version": 1,
+  "source_digest": "8876c0b243ca263d2aa4cfd387e8b3b8ad92eb4e53dcbf25af9c592e829e975d"
+}
