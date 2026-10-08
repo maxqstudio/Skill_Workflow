@@ -372,6 +372,13 @@ jobs:
           python scripts/migrate_governance_v1.py --root consumer
           python scripts/validate_schema_toolchain.py --root consumer
           test "$(git -C consumer rev-parse HEAD)" = "4c45a23c48b7954bbfb0ab86bcc92c975f345a1f"
+      - name: Verify isolated consumer toolchain check-plan-apply idempotence
+        if: steps.bootstrap.outputs.heavy == 'true'
+        run: |
+          python scripts/upgrade_governance_toolchain.py --root consumer --check
+          python scripts/upgrade_governance_toolchain.py --root consumer --apply
+          python scripts/upgrade_governance_toolchain.py --root consumer --check
+          python scripts/validate_schema_toolchain.py --root consumer
       - name: Run consumer source acceptance under candidate toolchain
         if: steps.bootstrap.outputs.heavy == 'true'
         working-directory: consumer
