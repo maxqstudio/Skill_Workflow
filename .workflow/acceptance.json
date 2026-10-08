@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-25 R1-R4 proof covers exact source packaging, a pinned real cross-OS byte-parity run, adversarial path/manifests and detached offline integrity without publication or cryptographic publisher identity. R5 final cross-platform permanent six-context CI and R6 exact merge/postmerge/terminal closure remain NOT_PROVEN.",
+  "evidence_boundary": "R1-R5 proven by exact clean Git-blob packaging, offline detached manifest, attacker-style tamper/unsafe mode tests, cross-OS full-byte parity and helper-free permanent six-context run 37717003472. Manifest is not a cryptographic publisher signature, no release/tag created. SW2-25-R6 exact feature/main tree and postmerge final CI plus terminal closure NOT_PROVEN.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -41,10 +41,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
+      "evidence": "PASS: exact helper-free branch SHA e01406e5528ab51370262dc52f486fc537c288e7, permanent Governance CI run 37717003472 terminal 6/6 SUCCESS, including Windows and Ubuntu release-bundle negative fixture and actual full Git-blob build/detached verification; dedicated read-only manual-only Release Bundle Dry Run 37716191737 Windows/Ubuntu byte-equal manifest and ZIP; SW2-25 source-authored handbook/release-process/README, governed doc inventory, source-derived Mermaid and Project Truth all passed. Release asset publication explicitly forbidden; no extra permanent CI context added.",
       "id": "SW2-25-R5",
       "requirement": "Release preflight and public handbook document read-only distribution dry-run boundaries; permanent CI exercises actual bundle build/verify and fail-closed regressions across Ubuntu and Windows, preserving the existing six contexts with no extra release or tag.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: SW2-25 phase-open only.",
