@@ -1,0 +1,34 @@
+%% GENERATED FILE - DO NOT EDIT
+%% SOURCE_DIGEST: a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2
+%% OBSERVED_HEAD: bc6970aed81209aa461fdaf829fbc2e6404f987d
+%% GENERATED_BY: generate_sequence_actual.py
+sequenceDiagram
+    participant scripts_project_snapshot_py__ProjectSnapshot_entry_0 as scripts/project_snapshot.py::ProjectSnapshot.entry
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_bytes_1 as scripts/project_snapshot.py::ProjectSnapshot.read_bytes
+    participant scripts_project_snapshot_py__ProjectSnapshot_read_text_2 as scripts/project_snapshot.py::ProjectSnapshot.read_text
+    participant scripts_project_snapshot_py__SnapshotError_3 as scripts/project_snapshot.py::SnapshotError
+    participant scripts_release_preflight_py___load_4 as scripts/release_preflight.py::_load
+    participant scripts_release_preflight_py__git_5 as scripts/release_preflight.py::git
+    participant scripts_release_preflight_py__validate_6 as scripts/release_preflight.py::validate
+    participant scripts_toolchain_identity_py___git_value_7 as scripts/toolchain_identity.py::_git_value
+    participant scripts_toolchain_identity_py___sha256_8 as scripts/toolchain_identity.py::_sha256
+    participant scripts_toolchain_identity_py__producer_metadata_9 as scripts/toolchain_identity.py::producer_metadata
+    participant scripts_toolchain_identity_py__source_tool_paths_10 as scripts/toolchain_identity.py::source_tool_paths
+    participant scripts_toolchain_identity_py__source_toolchain_manifest_11 as scripts/toolchain_identity.py::source_toolchain_manifest
+    participant scripts_toolchain_identity_py__toolchain_digest_12 as scripts/toolchain_identity.py::toolchain_digest
+    participant scripts_validate_sequence_sessions_py__evidence_paths_add_13 as scripts/validate_sequence_sessions.py::evidence_paths.add
+    participant scripts_validate_sequence_sessions_py__repo_relative_path_14 as scripts/validate_sequence_sessions.py::repo_relative_path
+    scripts_project_snapshot_py__ProjectSnapshot_entry_0->>scripts_project_snapshot_py__SnapshotError_3: SnapshotError [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_bytes_1->>scripts_project_snapshot_py__ProjectSnapshot_entry_0: self.entry [STATIC]
+    scripts_project_snapshot_py__ProjectSnapshot_read_text_2->>scripts_project_snapshot_py__ProjectSnapshot_entry_0: self.entry [STATIC]
+    scripts_release_preflight_py___load_4->>scripts_project_snapshot_py__ProjectSnapshot_read_text_2: path.read_text [STATIC]
+    scripts_release_preflight_py__validate_6->>scripts_release_preflight_py___load_4: _load [STATIC]
+    scripts_release_preflight_py__validate_6->>scripts_release_preflight_py__git_5: git [STATIC]
+    scripts_release_preflight_py__validate_6->>scripts_validate_sequence_sessions_py__evidence_paths_add_13: requirement_ids.add [STATIC]
+    scripts_toolchain_identity_py___sha256_8->>scripts_project_snapshot_py__ProjectSnapshot_read_bytes_1: path.read_bytes [STATIC]
+    scripts_toolchain_identity_py__producer_metadata_9->>scripts_toolchain_identity_py___git_value_7: _git_value [STATIC]
+    scripts_toolchain_identity_py__producer_metadata_9->>scripts_toolchain_identity_py__source_toolchain_manifest_11: source_toolchain_manifest [STATIC]
+    scripts_toolchain_identity_py__producer_metadata_9->>scripts_toolchain_identity_py__toolchain_digest_12: toolchain_digest [STATIC]
+    scripts_toolchain_identity_py__source_toolchain_manifest_11->>scripts_toolchain_identity_py___sha256_8: _sha256 [STATIC]
+    scripts_toolchain_identity_py__source_toolchain_manifest_11->>scripts_toolchain_identity_py__source_tool_paths_10: source_tool_paths [STATIC]
+    scripts_validate_sequence_sessions_py__evidence_paths_add_13->>scripts_validate_sequence_sessions_py__repo_relative_path_14: repo_relative_path [STATIC]

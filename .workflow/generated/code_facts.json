@@ -137,6 +137,13 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/tmp_sw2_25_open.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 101
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "is_test": false,
       "language": "Python",
@@ -2134,6 +2141,50 @@
     {
       "caller": ".github/scripts/selftest_skill_reference_split.py::require_failure",
       "target_token": "module.validate"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::git",
+      "target_token": "subprocess.check_output"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::read",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::read",
+      "target_token": "json.loads"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
+      "target_token": "map"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::run",
+      "target_token": "subprocess.run"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
+      "target_token": "p.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/tmp_sw2_25_open.py::save",
+      "target_token": "p.write_text"
     },
     {
       "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
@@ -29243,6 +29294,38 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/tmp_sw2_25_open.py",
+      "kind": "function",
+      "line_end": 10,
+      "line_start": 8,
+      "locator": ".github/scripts/tmp_sw2_25_open.py::run",
+      "symbol": "run"
+    },
+    {
+      "file": ".github/scripts/tmp_sw2_25_open.py",
+      "kind": "function",
+      "line_end": 12,
+      "line_start": 11,
+      "locator": ".github/scripts/tmp_sw2_25_open.py::git",
+      "symbol": "git"
+    },
+    {
+      "file": ".github/scripts/tmp_sw2_25_open.py",
+      "kind": "function",
+      "line_end": 14,
+      "line_start": 13,
+      "locator": ".github/scripts/tmp_sw2_25_open.py::read",
+      "symbol": "read"
+    },
+    {
+      "file": ".github/scripts/tmp_sw2_25_open.py",
+      "kind": "function",
+      "line_end": 18,
+      "line_start": 15,
+      "locator": ".github/scripts/tmp_sw2_25_open.py::save",
+      "symbol": "save"
+    },
+    {
       "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
       "line_end": 65,
@@ -32924,13 +33007,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681",
+  "source_digest": "a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2",
   "source_summary": {
-    "files": 79,
+    "files": 80,
     "languages": {
-      "Python": 79
+      "Python": 80
     },
-    "lines": 18267,
+    "lines": 18368,
     "test_files": 0
   },
   "tests": []

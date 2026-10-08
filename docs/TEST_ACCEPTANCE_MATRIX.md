@@ -4,24 +4,23 @@
 
 ## Evidence boundary
 
-R1-R6 proven by six historical exact CI sample baselines, all original cross-platform gates, three exact-SHA six-context timing samples, source/docs/sequence validation, exact-feature squash tree identity, and postmerge exact-main six-context CI. Observed 16.9% Windows improvement does not prove billed cost savings, hardware-normalized causality, new device runtime E2E or automatic branch protection. Terminal closure candidate and main require separately successful exact CI.
+Phase-open only; no deterministic package, independent integrity proof, new stable publication or release authority.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 0d7766c7313b204cae11b8d8ffc5a8723b7624843f20b06b7791eac515caf681
+Current source digest: a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|
-| SW2-24-R1 | A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs. | PASS: benchmarks/baselines/sw2-24-ci-latency.json records six successful exact-SHA GitHub runs (37430818483, 37706618341, 37708376562, 37708565187, 37708853965, 37708986331), six contexts per run, per-job durations, observed Windows median 77 seconds and aggregate job-seconds median 197. The source is historical GitHub run metadata, not a billed charge or causal speed claim. | PASS |
-| SW2-24-R2 | Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests. | PASS: isolated fixture inventory audited in scripts/selftest_schema_toolchain.py, scripts/selftest_historical_evidence.py, scripts/selftest_public_docs.py, scripts/selftest_project_truth_compiler.py, scripts/selftest_release_preflight.py, scripts/selftest_analyzer_contract.py and scripts/selftest_consumer_finalize.py; all use temp fixtures and no shared root mutations. .github/scripts/validate_ci_parallel_contract.py statically enforces 10 original commands, seven named groups, Ubuntu serial fallback, Windows bounded dispatch and untouched STRICT/verify. Negative tamper and missing-test selftests succeeded in GitHub runner 37710069327; parallel execution is not yet final cross-platform acceptance. | PASS |
-| SW2-24-R3 | Bounded parallel self-test orchestration is deterministic, runs each selected command exactly once, captures explicit first failed gate and full failed command evidence, rejects missing/racy/mutating tests, and preserves six permanent contexts, STRICT, verify, finalize, Windows, Mermaid, performance and consumer gates. | PASS: exact source SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab, permanent Governance CI 37713042819 all six contexts successful in attempts 1/2/3; Windows combined orchestrator executed full 15-group/19-command fixed regression inventory with complete STRICT and read-only VERIFY. Cross-OS workflow static contract requires Ubuntu serial fallback, exact SHA, no dropped command, fixture source mutation refusal, first failed gate, and both complete finals. Mandatory adversarial negative paths PASS, no cached acceptance. | PASS |
-| SW2-24-R4 | Before and after measurements use exact GitHub Actions runs with a cold/warm distinction; measured speed and job-seconds are reported without unproven cost or statistically causal claims, and no significant observed performance regression is silently accepted. | PASS observed Windows median reduction 77s baseline (6 exact successful historical runs) to 64s candidate, three all-six-context successful exact-SHA attempts on 8bb6f0f839c8557ecb084cae2df8dfe151169aab, run 37713042819 attempts 1/2/3: Windows 49,68,64 seconds (16.883% reduction versus declared >=15%). Full details in benchmarks/baselines/sw2-24-combined-attempts.json; median aggregate job-seconds 199 versus 197 historical and hosted runner cache/billing NOT_PROVEN, so no monetary saving or causal hardware-normalized performance claim. | PASS |
-| SW2-24-R5 | Authoritative public documentation, roadmap, source-derived sequence and human-view Mermaid remain consistent and readable; changes are backed by negative regressions, including false skipping/cache laundering. | PASS: docs/handbook/reference/ci-latency.md documents exact historical baseline, all three earlier failed 15% experiments, final 16.9% observed median improvement with unchanged six contexts, no cost claim, strict negative paths and Owner no-ruleset boundary; benchmarks/baselines/sw2-24-{ci-latency,initial-attempts,overlap-attempts,expanded-attempts,combined-attempts}.json retain complete samples. SW2-24 CURRENT source-derived actual/human Mermaid, frozen SW2-23 history and deterministic Project Truth/doc inventory regenerated with targeted GitHub sync run 37713472471 SUCCESS; final six-context exact helper-free acceptance is separately R6 NOT_PROVEN. | PASS |
-| SW2-24-R6 | Final exact helper-free feature candidate passes six permanent checks, is squash-merged with exact tree identity, and passes six permanent postmerge main checks before terminal accepted closure. | PASS: exact helper-free feature candidate e53b656811da5a8db2069715c643125eaba705df tree 433185f88756eeeda2eb7c8b63d39c96280ad505 passed all six permanent contexts in Governance CI run 37713622290; PR #42 squash merged to exact feature main 272aed60e21b6d5fc8cd027081d3de743a7726d4 with identical tree, then full postmerge Governance CI run 37713767803 passed six permanent contexts on exact accepted main. Terminal closure candidate and final closure main are independently retested. | PASS |
+| SW2-25-R1 | An exact-commit manifest records a deterministic product-only distribution allowlist, SHA-256 for every included file, stable ZIP digest, toolchain content identity and truthful Git-source versus copied-package provenance without treating self-asserted metadata as a cryptographic signature. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
+| SW2-25-R2 | A clean exact-SHA checkout builds the same canonical bundle bytes on repeated runs, and a second clean isolated checkout on another OS verifies identical SHA-256; timestamps, file ordering, executable modes and generated contents are normalized. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
+| SW2-25-R3 | Packaging rejects unsafe tracked paths, secrets/credentials, symlinks or submodules, untracked/extraneous archive entries, dirty working trees, missing mandatory product files, stale manifests, and unknown unsupported file modes with deterministic first failed gates. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
+| SW2-25-R4 | Detached verification validates the archive against an independent supplied manifest, rejecting payload tampering, corruption, swapped manifests, identity mismatches, duplicate entries, path traversal, missing/extra files and wrong canonical metadata; verification never grants release/publication authority. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
+| SW2-25-R5 | Release preflight and public handbook document read-only distribution dry-run boundaries; permanent CI exercises actual bundle build/verify and fail-closed regressions across Ubuntu and Windows, preserving the existing six contexts with no extra release or tag. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
+| SW2-25-R6 | An exact helper-free final feature candidate passes all six permanent Governance CI contexts, squash merges with identical tree, and passes full six-context postmerge main before terminal closure; no release or distribution publication happens without separate Owner authority. | NOT_PROVEN: SW2-25 phase-open only. | NOT_PROVEN |
 
 ## Test commands
 
-- python scripts/selftest_governance_engine.py
-- python scripts/selftest_performance_budget.py
+- python scripts/selftest_release_preflight.py
 - python scripts/validate_schema_toolchain.py --root .
 - python scripts/validate_sequence_sessions.py --root .
 
@@ -37,8 +36,8 @@ ROADMAP_SYNC: PASS
 ## Sequence contract evidence
 
 Sequence mode for this phase/session: DURING
-Sequence session contract: SW2-24-GOVERNANCE
-SEQUENCE_SYNC: PASS
+Sequence session contract: SW2-25-GOVERNANCE
+SEQUENCE_SYNC: NOT_PROVEN
 
 ## Project Truth Compiler evidence
 
@@ -51,7 +50,7 @@ PROJECT_DOCS_SYNC: PASS
 
 ## Human comprehension evidence
 
-SYSTEM_OVERVIEW status: PASS
-HUMAN_COMPREHENSION_GATE: PASS
+SYSTEM_OVERVIEW status: NOT_PROVEN
+HUMAN_COMPREHENSION_GATE: NOT_PROVEN
 
 Generated documentation never upgrades NOT_RUN or NOT_PROVEN to PASS.

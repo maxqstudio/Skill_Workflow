@@ -7,7 +7,7 @@
       "scripts/toolchain_identity.py::producer_metadata"
     ],
     "graph": "docs/sequence/generated/SW2-25-GOVERNANCE.actual.json",
-    "source_digest": ""
+    "source_digest": "a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2"
   },
   "critical": true,
   "evidence_boundary": "Static graph covers release preflight/provenance and bundle generation when implemented; runtime CI and byte parity require separately executed evidence. This phase does not grant stable publication.",
@@ -17,7 +17,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-25-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": ""
+    "source_digest": "a40587afdf1e1c7e758d2fe05da3bb18242c871eaddabf568b1344dedba80fa2"
   },
   "implementation_base_sha": "91b58b98049a7d27ed65169508177ea7dc978ca1",
   "mode": "DURING",
