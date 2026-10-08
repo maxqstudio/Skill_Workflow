@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-26 BEFORE/RED ONLY: trusted GitHub Actions publisher authentication, signed provenance for both SW2-25 ZIP and manifest, independent Sigstore trust root and strict exact-source/signing-workflow policy are declared but NOT_PROVEN. All six new requirements must receive live GitHub exact-SHA attestation, negative fixture and permanent CI evidence before acceptance. Historical SW2-25 integrity acceptance remains intact. publication_authority=false.",
+  "evidence_boundary": "SW2-26 IN_PROGRESS: real GitHub OIDC/Sigstore ZIP+manifest attestation and independent trusted-root verification demonstrated on exact candidate f87586fa784a22614217121c14519637df4155dd run 37783624068, with four real negative attestations. R3 offline-isolated verification, remainder of R4 replay/trust limitations, R5 six-context helper-free regression and R6 merge/closure remain NOT_PROVEN. publication_authority=false; SW2-25 acceptance remains historical authority.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -14,19 +14,19 @@
     "Who uses it and what are the primary outcomes?": "PASS",
     "Who/what is authoritative for important decisions?": "PASS"
   },
-  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_status": "PASS",
   "requirements": [
     {
       "id": "SW2-26-R1",
       "requirement": "Trusted producer identity pins repository, signer workflow, expected exact Git SHA and authoritative trust policy independently of unsigned artifact claims.",
-      "status": "NOT_PROVEN",
-      "evidence": "NOT_PROVEN: scope declared; independent trust-policy verifier and negative-path regression not implemented."
+      "status": "PASS",
+      "evidence": "PASS: fixed REPO/SIGNER/OIDC policy in .github/scripts/publisher_provenance.py plus independently supplied expected source SHA/ref; GitHub run 37783624068 at f87586fa784a22614217121c14519637df4155dd validated certificate identity through gh CLI."
     },
     {
       "id": "SW2-26-R2",
       "requirement": "GitHub Actions OIDC/Sigstore builds signed in-toto/SLSA attestations for exact deterministic ZIP and detached JSON manifest with least-privilege signer permissions, without release publishing.",
-      "status": "NOT_PROVEN",
-      "evidence": "NOT_PROVEN: no SW2-26 signed ZIP/manifest pair or real GitHub attestation execution yet."
+      "status": "PASS",
+      "evidence": "PASS: GitHub Actions run 37783624068 on pinned f87586fa784a22614217121c14519637df4155dd issued real actions/attest@v4 Sigstore OIDC attestation for both product.zip and manifest.json; content-build, cryptographic verification and CI evidence succeeded; publication_authority=false, no tag/release."
     },
     {
       "id": "SW2-26-R3",
@@ -38,7 +38,7 @@
       "id": "SW2-26-R4",
       "requirement": "Unsigned or forged claims, altered ZIP/manifest, wrong source SHA, repo or signer, missing/stale trust evidence, substitution and replay against a pinned expected SHA are rejected with deterministic first-failed-gate evidence.",
       "status": "NOT_PROVEN",
-      "evidence": "NOT_PROVEN: adversarial fixture suite and GitHub verifier proof pending."
+      "evidence": "NOT_PROVEN overall: real signed wrong signer, wrong source ref, wrong source SHA and corrupt attestation rejection succeeded in GitHub run 37783624068. Independent offline root freshness/replay policy and further adversarial cases remain; mocked tests alone are not cryptographic proof."
     },
     {
       "id": "SW2-26-R5",
@@ -74,16 +74,16 @@
     "DOC_READABILITY": "NOT_PROVEN",
     "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
     "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
-    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "NOT_PROVEN",
-    "PROJECT_DOCS_SYNC": "NOT_PROVEN",
+    "PROJECT_DOCS_SYNC": "PASS",
     "PROJECT_STATE_SYNC": "NOT_PROVEN",
     "PROVENANCE_SYNC": "NOT_PROVEN",
     "REFERENCE_SYNC": "NOT_PROVEN",
-    "ROADMAP_SYNC": "NOT_PROVEN",
+    "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"

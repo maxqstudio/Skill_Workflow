@@ -35,3 +35,7 @@ Upstream guidance: https://docs.github.com/en/actions/concepts/security/artifact
 - The completed smoke run verified a signed ZIP and independently signed detached manifest against exact SHA/ref, GitHub issuer, repository and signer workflow; its machine report retained `publication_authority=false` and `offline_trusted_root_freshness=NOT_PROVEN`.
 - Mocked negative tests prove only code-path expectations; live signer mismatch and trust-chain negative tests must be evidenced by GitHub CI, and source-generated Project Truth must remain synchronized.
 - `gh attestation verify --bundle ... --custom-trusted-root ...` supports detached offline verification after trusted root material has been obtained independently. It does **not** prove latest root revocation or the safety of the workflow's source.
+
+## Live adversarial evidence
+
+At exact SHA `f87586fa784a22614217121c14519637df4155dd`, [GitHub Actions run 37783624068](https://github.com/maxqstudio/Skill_Workflow/actions/runs/37783624068) generated a signed ZIP+manifest pair and independently verified both subjects. The real verifier rejected four signed negative cases: incorrect signer workflow, source ref, source SHA, and damaged attestation bundle. The current acceptance phase remains unfinished; no isolated network-offline simulation, freshness guarantee, six-context helper-free acceptance, postmerge acceptance, or terminal closure is claimed.
