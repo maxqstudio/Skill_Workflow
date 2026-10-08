@@ -1,0 +1,73 @@
+name: tmp-sw2-24-verify-sync
+on:
+  push:
+    branches:
+      - work/sw2-24-ci-latency-cost-optimization
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/sw2-24-ci-latency-cost-optimization
+          fetch-depth: 0
+      - name: Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Execute bounded-regression negative tests and optimized suite
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          git add docs/handbook/reference/ci-latency.md
+          python scripts/validate_documentation_contract.py --root . --write-report
+          git add .workflow/generated/documentation_coverage.json
+          python .github/scripts/validate_ci_parallel_contract.py
+          python .github/scripts/selftest_ci_parallel_selftests.py
+          python .github/scripts/selftest_ci_parallel_final_gates.py
+          python .github/scripts/ci_parallel_selftests.py --root . --workers 3
+      - name: Regenerate current sequence and documentation evidence
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+          path=Path("docs/sequence/sessions/SW2-24-GOVERNANCE.json")
+          session=json.loads(path.read_text(encoding="utf-8"))
+          assert session["scope"]=="CURRENT" and session["status"]=="IN_PROGRESS"
+          actual=session["actual"]
+          command=[sys.executable,"scripts/generate_sequence_actual.py","--root",".","--output-json",actual["graph"],"--output-mermaid",actual["diagram"]]
+          for entry in actual["entries"]:command.extend(["--entry",entry])
+          subprocess.run(command,check=True)
+          human=session["human_view"]
+          subprocess.run([sys.executable,"scripts/sequence_human_view.py","--root",".",
+              "--actual-json",actual["graph"],"--actual-mermaid",actual["diagram"],
+              "--output-json",human["graph"],"--output-mermaid",human["diagram"],
+              "--output-markdown",human["document"],"--session-id",session["session_id"]],check=True)
+          digest=json.loads(Path(actual["graph"]).read_text(encoding="utf-8"))["source_digest"]
+          session["actual"]["source_digest"]=digest
+          session["human_view"]["source_digest"]=digest
+          path.write_text(json.dumps(session,indent=2,sort_keys=True)+"\n",encoding="utf-8",newline="\n")
+          PY
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-24-GOVERNANCE.json --report artifacts/sequence/SW2-24-GOVERNANCE.acceptance.json
+          python scripts/validate_sequence_human_view.py --root . --session docs/sequence/sessions/SW2-24-GOVERNANCE.json
+          python scripts/validate_sequence_sessions.py --root .
+          python scripts/sync_project_truth.py --root .
+          git add .workflow docs artifacts/sequence benchmarks
+          python scripts/validate_documentation_contract.py --root . --write-report
+          git add .workflow/generated/documentation_coverage.json
+          git diff --cached --stat
+          git diff --cached --quiet || git commit -m "SW2-24: synchronize parallel CI source and Project Truth evidence"
+          python scripts/validate_sequence_contract.py --root . --session docs/sequence/sessions/SW2-24-GOVERNANCE.json --no-write-report
+          python scripts/validate_documentation_contract.py --root .
+          python scripts/validate_closure_defect_lifecycle.py --root . --expected-base e5bbd9e485380cda962656e7ce8a5477cfce0e68
+          python scripts/validate_project_docs.py --root .
+          git diff --exit-code -- .workflow docs scripts artifacts/sequence
+          git push origin HEAD:work/sw2-24-ci-latency-cost-optimization
