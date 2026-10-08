@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-24 intermediate phase: R1 six-run historical timing baseline and R2 explicit independent runner test inventory have targeted proof. R3 permanent Windows/Linux CI, R4 comparable candidate samples, R5 final public docs/sequence, R6 merge/main exact acceptance are NOT_PROVEN. No acceptance shortening, cache-based PASSES, or external consumer changes.",
+  "evidence_boundary": "R1-R4 supported by six historical CI samples, fixed 21-gate deterministic negative paths and three exact-SHA six-context successful candidate attempts meeting observed Windows latency target. R5 full current authoritative source/docs/sequence acceptance and R6 exact helper-free feature candidate, merge and postmerge main remain NOT_PROVEN. Hosted runner performance is variable and no billable-minute savings claimed.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -29,16 +29,16 @@
       "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
+      "evidence": "PASS: exact source SHA 8bb6f0f839c8557ecb084cae2df8dfe151169aab, permanent Governance CI 37713042819 all six contexts successful in attempts 1/2/3; Windows combined orchestrator executed full 15-group/19-command fixed regression inventory with complete STRICT and read-only VERIFY. Cross-OS workflow static contract requires Ubuntu serial fallback, exact SHA, no dropped command, fixture source mutation refusal, first failed gate, and both complete finals. Mandatory adversarial negative paths PASS, no cached acceptance.",
       "id": "SW2-24-R3",
       "requirement": "Bounded parallel self-test orchestration is deterministic, runs each selected command exactly once, captures explicit first failed gate and full failed command evidence, rejects missing/racy/mutating tests, and preserves six permanent contexts, STRICT, verify, finalize, Windows, Mermaid, performance and consumer gates.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
+      "evidence": "PASS observed Windows median reduction 77s baseline (6 exact successful historical runs) to 64s candidate, three all-six-context successful exact-SHA attempts on 8bb6f0f839c8557ecb084cae2df8dfe151169aab, run 37713042819 attempts 1/2/3: Windows 49,68,64 seconds (16.883% reduction versus declared >=15%). Full details in benchmarks/baselines/sw2-24-combined-attempts.json; median aggregate job-seconds 199 versus 197 historical and hosted runner cache/billing NOT_PROVEN, so no monetary saving or causal hardware-normalized performance claim.",
       "id": "SW2-24-R4",
       "requirement": "Before and after measurements use exact GitHub Actions runs with a cold/warm distinction; measured speed and job-seconds are reported without unproven cost or statistically causal claims, and no significant observed performance regression is silently accepted.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
