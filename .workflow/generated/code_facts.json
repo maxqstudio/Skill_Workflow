@@ -81,10 +81,24 @@
     },
     {
       "directory": ".github/scripts",
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 145
+    },
+    {
+      "directory": ".github/scripts",
       "file": ".github/scripts/selftest_ci_applicability.py",
       "is_test": false,
       "language": "Python",
       "lines": 40
+    },
+    {
+      "directory": ".github/scripts",
+      "file": ".github/scripts/selftest_ci_parallel_selftests.py",
+      "is_test": false,
+      "language": "Python",
+      "lines": 94
     },
     {
       "directory": ".github/scripts",
@@ -95,10 +109,10 @@
     },
     {
       "directory": ".github/scripts",
-      "file": ".github/scripts/tmp_sw2_24_open.py",
+      "file": ".github/scripts/validate_ci_parallel_contract.py",
       "is_test": false,
       "language": "Python",
-      "lines": 159
+      "lines": 111
     },
     {
       "directory": ".github/scripts",
@@ -112,7 +126,7 @@
       "file": ".github/scripts/validate_unified_ci.py",
       "is_test": false,
       "language": "Python",
-      "lines": 119
+      "lines": 123
     },
     {
       "directory": "scripts",
@@ -710,6 +724,242 @@
       "target_token": "value.startswith"
     },
     {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "output.append"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "part.startswith"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "path.is_file"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "path.resolve"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "target_token": "spec.split"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "argparse.ArgumentParser"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "json.dumps"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "parser.add_argument"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::main",
+      "target_token": "run_groups"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "concurrent.futures.ThreadPoolExecutor"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "executor.submit"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "future.result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "futures.items"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "next"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "root.resolve"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "sum"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "sum"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "Result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "Result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "Result"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "commands_for_group"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "output.append"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "round"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "runner"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "time.monotonic"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "target_token": "type"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::subprocess_runner",
+      "target_token": "os.environ.copy"
+    },
+    {
+      "caller": ".github/scripts/ci_parallel_selftests.py::subprocess_runner",
+      "target_token": "subprocess.run"
+    },
+    {
       "caller": ".github/scripts/selftest_ci_applicability.py::main",
       "target_token": "classify"
     },
@@ -756,6 +1006,202 @@
     {
       "caller": ".github/scripts/selftest_ci_applicability.py::require",
       "target_token": "AssertionError"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "any"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "ci.run_groups"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "ci.run_groups"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "ci.run_groups"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "ci.run_groups"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "contract.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "contract.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "contract.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "contract.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "contract.findings"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "f.parent.mkdir"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "f.write_text"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "len"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "list"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "print"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "set"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "spec.split"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "sum"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "tempfile.TemporaryDirectory"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "threading.Lock"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "wf.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "wf.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "target_token": "wf.replace"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.failed",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.failed",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.failed",
+      "target_token": "executed.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.ok",
+      "target_token": "Path"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.ok",
+      "target_token": "max"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.ok",
+      "target_token": "seen.append"
+    },
+    {
+      "caller": ".github/scripts/selftest_ci_parallel_selftests.py::main.ok",
+      "target_token": "time.sleep"
     },
     {
       "caller": ".github/scripts/selftest_skill_reference_split.py::copy_fixture",
@@ -894,52 +1340,144 @@
       "target_token": "module.validate"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::git",
-      "target_token": "subprocess.check_output"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "SERIAL_STEPS.items"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::load",
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "all"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "dict"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "problems.append"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "steps.get"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "steps_from_workflow"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "tuple"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "tuple"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "workflow.count"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "target_token": "workflow.count"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
       "target_token": "Path"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::load",
-      "target_token": "json.loads"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "findings"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::run",
-      "target_token": "list"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "p.read_text"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::run",
-      "target_token": "map"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::run",
-      "target_token": "map"
-    },
-    {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::run",
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
       "target_token": "print"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::run",
-      "target_token": "subprocess.run"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "print"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::save",
-      "target_token": "Path"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "print"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::save",
-      "target_token": "json.dumps"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "print"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::save",
-      "target_token": "p.parent.mkdir"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "print"
     },
     {
-      "caller": ".github/scripts/tmp_sw2_24_open.py::save",
-      "target_token": "p.write_text"
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "target_token": "str"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
+      "target_token": "ValueError"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
+      "target_token": "re.split"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
+      "target_token": "segment.partition"
+    },
+    {
+      "caller": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
+      "target_token": "workflow.split"
     },
     {
       "caller": ".github/scripts/validate_skill_reference_split.py::_normalized_text",
@@ -1131,6 +1669,10 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "ci_parallel_findings"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "classifier.is_file"
     },
     {
@@ -1179,11 +1721,19 @@
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "failures.extend"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "parser.add_argument"
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
       "target_token": "parser.parse_args"
+    },
+    {
+      "caller": ".github/scripts/validate_unified_ci.py::main",
+      "target_token": "print"
     },
     {
       "caller": ".github/scripts/validate_unified_ci.py::main",
@@ -27521,6 +28071,54 @@
       "symbol": "main"
     },
     {
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "kind": "class",
+      "line_end": 44,
+      "line_start": 36,
+      "locator": ".github/scripts/ci_parallel_selftests.py::Result",
+      "symbol": "Result"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "kind": "function",
+      "line_end": 60,
+      "line_start": 47,
+      "locator": ".github/scripts/ci_parallel_selftests.py::commands_for_group",
+      "symbol": "commands_for_group"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "kind": "function",
+      "line_end": 68,
+      "line_start": 63,
+      "locator": ".github/scripts/ci_parallel_selftests.py::subprocess_runner",
+      "symbol": "subprocess_runner"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "kind": "function",
+      "line_end": 93,
+      "line_start": 71,
+      "locator": ".github/scripts/ci_parallel_selftests.py::run_one",
+      "symbol": "run_one"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "kind": "function",
+      "line_end": 125,
+      "line_start": 96,
+      "locator": ".github/scripts/ci_parallel_selftests.py::run_groups",
+      "symbol": "run_groups"
+    },
+    {
+      "file": ".github/scripts/ci_parallel_selftests.py",
+      "kind": "function",
+      "line_end": 141,
+      "line_start": 128,
+      "locator": ".github/scripts/ci_parallel_selftests.py::main",
+      "symbol": "main"
+    },
+    {
       "file": ".github/scripts/selftest_ci_applicability.py",
       "kind": "function",
       "line_end": 9,
@@ -27535,6 +28133,30 @@
       "line_start": 12,
       "locator": ".github/scripts/selftest_ci_applicability.py::main",
       "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_selftests.py",
+      "kind": "function",
+      "line_end": 91,
+      "line_start": 18,
+      "locator": ".github/scripts/selftest_ci_parallel_selftests.py::main",
+      "symbol": "main"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_selftests.py",
+      "kind": "method",
+      "line_end": 56,
+      "line_start": 48,
+      "locator": ".github/scripts/selftest_ci_parallel_selftests.py::main.ok",
+      "symbol": "main.ok"
+    },
+    {
+      "file": ".github/scripts/selftest_ci_parallel_selftests.py",
+      "kind": "method",
+      "line_end": 71,
+      "line_start": 69,
+      "locator": ".github/scripts/selftest_ci_parallel_selftests.py::main.failed",
+      "symbol": "main.failed"
     },
     {
       "file": ".github/scripts/selftest_skill_reference_split.py",
@@ -27561,36 +28183,28 @@
       "symbol": "main"
     },
     {
-      "file": ".github/scripts/tmp_sw2_24_open.py",
+      "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 13,
-      "line_start": 11,
-      "locator": ".github/scripts/tmp_sw2_24_open.py::run",
-      "symbol": "run"
+      "line_end": 49,
+      "line_start": 37,
+      "locator": ".github/scripts/validate_ci_parallel_contract.py::steps_from_workflow",
+      "symbol": "steps_from_workflow"
     },
     {
-      "file": ".github/scripts/tmp_sw2_24_open.py",
+      "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 15,
-      "line_start": 14,
-      "locator": ".github/scripts/tmp_sw2_24_open.py::load",
-      "symbol": "load"
+      "line_end": 90,
+      "line_start": 52,
+      "locator": ".github/scripts/validate_ci_parallel_contract.py::findings",
+      "symbol": "findings"
     },
     {
-      "file": ".github/scripts/tmp_sw2_24_open.py",
+      "file": ".github/scripts/validate_ci_parallel_contract.py",
       "kind": "function",
-      "line_end": 19,
-      "line_start": 16,
-      "locator": ".github/scripts/tmp_sw2_24_open.py::save",
-      "symbol": "save"
-    },
-    {
-      "file": ".github/scripts/tmp_sw2_24_open.py",
-      "kind": "function",
-      "line_end": 21,
-      "line_start": 20,
-      "locator": ".github/scripts/tmp_sw2_24_open.py::git",
-      "symbol": "git"
+      "line_end": 108,
+      "line_start": 93,
+      "locator": ".github/scripts/validate_ci_parallel_contract.py::main",
+      "symbol": "main"
     },
     {
       "file": ".github/scripts/validate_skill_reference_split.py",
@@ -27619,16 +28233,16 @@
     {
       "file": ".github/scripts/validate_unified_ci.py",
       "kind": "function",
-      "line_end": 54,
-      "line_start": 28,
+      "line_end": 56,
+      "line_start": 30,
       "locator": ".github/scripts/validate_unified_ci.py::run_performance_budget_contract",
       "symbol": "run_performance_budget_contract"
     },
     {
       "file": ".github/scripts/validate_unified_ci.py",
       "kind": "function",
-      "line_end": 115,
-      "line_start": 57,
+      "line_end": 119,
+      "line_start": 59,
       "locator": ".github/scripts/validate_unified_ci.py::main",
       "symbol": "main"
     },
@@ -31250,13 +31864,13 @@
     }
   ],
   "schema_version": 1,
-  "source_digest": "973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c",
+  "source_digest": "a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c",
   "source_summary": {
-    "files": 73,
+    "files": 75,
     "languages": {
-      "Python": 73
+      "Python": 75
     },
-    "lines": 17581,
+    "lines": 17776,
     "test_files": 0
   },
   "tests": []

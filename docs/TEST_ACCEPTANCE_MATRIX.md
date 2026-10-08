@@ -7,7 +7,7 @@
 Phase-open boundary only; no SW2-24 performance improvement, concurrency safety, exact final CI, or merge is proven.
 
 Final tested source: external final acceptance evidence.
-Current source digest: 973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c
+Current source digest: a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c
 
 | Requirement | Contract | Evidence | Status |
 |---|---|---|---|

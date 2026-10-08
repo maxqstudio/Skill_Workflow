@@ -3,17 +3,19 @@
 # MODULE MAP
 
 Authority SHA: external final acceptance evidence
-Source digest: 973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c
+Source digest: a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c
 Generated/refreshed: current compiler run
 
 | Module / File | Language | Lines | Directory | Test file |
 |---|---|---:|---|---|
 | .github/scripts/ci_applicability.py | Python | 91 | .github/scripts | NO |
+| .github/scripts/ci_parallel_selftests.py | Python | 145 | .github/scripts | NO |
 | .github/scripts/selftest_ci_applicability.py | Python | 40 | .github/scripts | NO |
+| .github/scripts/selftest_ci_parallel_selftests.py | Python | 94 | .github/scripts | NO |
 | .github/scripts/selftest_skill_reference_split.py | Python | 77 | .github/scripts | NO |
-| .github/scripts/tmp_sw2_24_open.py | Python | 159 | .github/scripts | NO |
+| .github/scripts/validate_ci_parallel_contract.py | Python | 111 | .github/scripts | NO |
 | .github/scripts/validate_skill_reference_split.py | Python | 101 | .github/scripts | NO |
-| .github/scripts/validate_unified_ci.py | Python | 119 | .github/scripts | NO |
+| .github/scripts/validate_unified_ci.py | Python | 123 | .github/scripts | NO |
 | scripts/analyzer_contract.py | Python | 162 | scripts | NO |
 | scripts/benchmark_governance.py | Python | 293 | scripts | NO |
 | scripts/extract_project_facts.py | Python | 289 | scripts | NO |

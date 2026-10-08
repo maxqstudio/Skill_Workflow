@@ -8,7 +8,7 @@
       "scripts/selftest_performance_budget.py::main"
     ],
     "graph": "docs/sequence/generated/SW2-24-GOVERNANCE.actual.json",
-    "source_digest": "973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c"
+    "source_digest": "a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c"
   },
   "critical": true,
   "evidence_boundary": "Static source graph describes CI applicability, governance DAG and performance measurement; it does not prove actual parallel scheduling speed, cross-run performance, external bill charges, or GitHub-side required check enforcement.",
@@ -18,7 +18,7 @@
     "granularity": "module",
     "graph": "docs/sequence/generated/SW2-24-GOVERNANCE.human.json",
     "policy_id": "module-collapse-v1",
-    "source_digest": "973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c"
+    "source_digest": "a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c"
   },
   "implementation_base_sha": "e5bbd9e485380cda962656e7ce8a5477cfce0e68",
   "mode": "DURING",

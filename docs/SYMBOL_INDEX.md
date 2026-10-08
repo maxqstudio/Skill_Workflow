@@ -3,7 +3,7 @@
 # SYMBOL INDEX
 
 Authority SHA: external final acceptance evidence
-Source digest: 973f8f88dfaf0ea418964797c985cb4f325d8eb434e68e60474302addc171c5c
+Source digest: a1185d74dea50505005e1823a051d8266ecc77a375d61198b51b224d3c958d7c
 Status: CURRENT
 
 The default view summarizes machine-observed symbols by file. Expand a file only
@@ -16,9 +16,11 @@ responsibility, callers, or state ownership.
 | File | Symbols | Classes | Functions | Methods |
 |---|---:|---:|---:|---:|
 | .github/scripts/ci_applicability.py | 5 | 0 | 5 | 0 |
+| .github/scripts/ci_parallel_selftests.py | 6 | 1 | 5 | 0 |
 | .github/scripts/selftest_ci_applicability.py | 2 | 0 | 2 | 0 |
+| .github/scripts/selftest_ci_parallel_selftests.py | 3 | 0 | 1 | 2 |
 | .github/scripts/selftest_skill_reference_split.py | 3 | 0 | 3 | 0 |
-| .github/scripts/tmp_sw2_24_open.py | 4 | 0 | 4 | 0 |
+| .github/scripts/validate_ci_parallel_contract.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_skill_reference_split.py | 3 | 0 | 3 | 0 |
 | .github/scripts/validate_unified_ci.py | 2 | 0 | 2 | 0 |
 | scripts/analyzer_contract.py | 10 | 3 | 5 | 2 |
@@ -105,12 +107,37 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
+<summary><code>.github/scripts/ci_parallel_selftests.py</code> — 6 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| Result | class | 36-44 |
+| commands_for_group | function | 47-60 |
+| subprocess_runner | function | 63-68 |
+| run_one | function | 71-93 |
+| run_groups | function | 96-125 |
+| main | function | 128-141 |
+
+</details>
+
+<details>
 <summary><code>.github/scripts/selftest_ci_applicability.py</code> — 2 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
 | require | function | 7-9 |
 | main | function | 12-36 |
+
+</details>
+
+<details>
+<summary><code>.github/scripts/selftest_ci_parallel_selftests.py</code> — 3 symbols</summary>
+
+| Symbol | Kind | Lines@SHA |
+|---|---|---|
+| main | function | 18-91 |
+| main.ok | method | 48-56 |
+| main.failed | method | 69-71 |
 
 </details>
 
@@ -126,14 +153,13 @@ responsibility, callers, or state ownership.
 </details>
 
 <details>
-<summary><code>.github/scripts/tmp_sw2_24_open.py</code> — 4 symbols</summary>
+<summary><code>.github/scripts/validate_ci_parallel_contract.py</code> — 3 symbols</summary>
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| run | function | 11-13 |
-| load | function | 14-15 |
-| save | function | 16-19 |
-| git | function | 20-21 |
+| steps_from_workflow | function | 37-49 |
+| findings | function | 52-90 |
+| main | function | 93-108 |
 
 </details>
 
@@ -153,8 +179,8 @@ responsibility, callers, or state ownership.
 
 | Symbol | Kind | Lines@SHA |
 |---|---|---|
-| run_performance_budget_contract | function | 28-54 |
-| main | function | 57-115 |
+| run_performance_budget_contract | function | 30-56 |
+| main | function | 59-119 |
 
 </details>
 
