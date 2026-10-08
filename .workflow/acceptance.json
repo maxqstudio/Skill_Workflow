@@ -1,5 +1,5 @@
 {
-  "evidence_boundary": "SW2-23 interim evidence only. R1,R2,R4,R5,R6 supported by exact targeted/permanent CI; real legacy consumer finalize is unsupported and remains R3 NOT_PROVEN. R7 is NOT_PROVEN premerge/postmerge. No external consumer repositories mutated; three snapshots classified, not upgraded in place. Not a phase closure.",
+  "evidence_boundary": "SW2-23 R1-R6 proven individually by pinned sources, negative regressions, real consumer isolated exact-commit finalize and measured CI. R7 final helper-free candidate/merge/postmerge CI remains NOT_PROVEN. All external consumer repositories unchanged; real legacy finalization is only on isolated local migrated snapshot. Historical device/runtime E2E and GitHub automatic merge enforcement remain outside evidence.",
   "human_comprehension_questions": {
     "How does failure/recovery behave?": "PASS",
     "How does important data flow through the system?": "PASS",
@@ -29,10 +29,10 @@
       "status": "PASS"
     },
     {
-      "evidence": "PARTIAL: pinned max-grounding isolated check-plan-apply-check, post-apply lock validation, source test suite and Project Truth governance parity succeeded in permanent Consumer Engine Performance run 37706993081. Full `governance_engine --mode finalize` on this legacy consumer FAILED in exploratory run 37706882513 because the consumer lacks producer `scripts/selftest_*` files; no silent copy or scope weakening is authorized. Full end-to-end finalize for a compatible isolated consumer remains NOT_PROVEN.",
+      "evidence": "PASS: producer source candidate e86e402f24700b1a1a572a1bbc5e545611f46f54 permanently ran isolated pinned max-grounding 4c45a23c48b7954bbfb0ab86bcc92c975f345a1f through explicit legacy migration, read-only check-plan-apply-check and toolchain validation, replayed consumer application source tests and all mandatory STRICT project validators under vendored consumer-owned finalize on exact committed local consumer SHA 24124a9abd84fc1b2ab2996443d9884cb455d73e. Consumer Engine Performance job 113087372514 in CI run 37708148062 SUCCESS; CONSUMER_FINALIZE=PASS with empty first_failed_gate and an external machine-readable artifact. Previous producer-root finalize attempt in run 37706882513 correctly FAILED due to unavailable source-only producer scripts; dedicated consumer finalize fixes that contract without copying producer tests or silently claiming runtime E2E.",
       "id": "SW2-23-R3",
       "requirement": "Execute isolated supported consumer check-plan-apply-validate-finalize and test semantic preservation and idempotence.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "PASS: permanent schema/toolchain regression on Ubuntu and Windows run 37706993081 covers exact GIT+CONTENT checkout and CONTENT copied package identity, legacy hint rejection and migration, stronger provenance no-downgrade, toolchain tamper, interrupted partial-tool update rejection, and idempotent repair, with no Owner semantic authority mutation in fixtures.",
