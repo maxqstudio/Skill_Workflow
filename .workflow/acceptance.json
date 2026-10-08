@@ -1,32 +1,32 @@
 {
-  "evidence_boundary": "Phase-open boundary only; no SW2-24 performance improvement, concurrency safety, exact final CI, or merge is proven.",
+  "evidence_boundary": "SW2-24 intermediate phase: R1 six-run historical timing baseline and R2 explicit independent runner test inventory have targeted proof. R3 permanent Windows/Linux CI, R4 comparable candidate samples, R5 final public docs/sequence, R6 merge/main exact acceptance are NOT_PROVEN. No acceptance shortening, cache-based PASSES, or external consumer changes.",
   "human_comprehension_questions": {
-    "How does failure/recovery behave?": "NOT_PROVEN",
-    "How does important data flow through the system?": "NOT_PROVEN",
-    "What are the important lifecycle states and transitions?": "NOT_PROVEN",
-    "What are the main user/domain workflows?": "NOT_PROVEN",
-    "What are the major components and how do they relate?": "NOT_PROVEN",
-    "What is mutable and what is immutable?": "NOT_PROVEN",
-    "What is proven and what is not proven?": "NOT_PROVEN",
-    "What is the current project state?": "NOT_PROVEN",
-    "What is the project and what problem does it solve?": "NOT_PROVEN",
-    "What may happen next and what is blocked?": "NOT_PROVEN",
-    "Who uses it and what are the primary outcomes?": "NOT_PROVEN",
-    "Who/what is authoritative for important decisions?": "NOT_PROVEN"
+    "How does failure/recovery behave?": "PASS",
+    "How does important data flow through the system?": "PASS",
+    "What are the important lifecycle states and transitions?": "PASS",
+    "What are the main user/domain workflows?": "PASS",
+    "What are the major components and how do they relate?": "PASS",
+    "What is mutable and what is immutable?": "PASS",
+    "What is proven and what is not proven?": "PASS",
+    "What is the current project state?": "PASS",
+    "What is the project and what problem does it solve?": "PASS",
+    "What may happen next and what is blocked?": "PASS",
+    "Who uses it and what are the primary outcomes?": "PASS",
+    "Who/what is authoritative for important decisions?": "PASS"
   },
-  "human_comprehension_status": "NOT_PROVEN",
+  "human_comprehension_status": "PASS",
   "requirements": [
     {
-      "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
+      "evidence": "PASS: benchmarks/baselines/sw2-24-ci-latency.json records six successful exact-SHA GitHub runs (37430818483, 37706618341, 37708376562, 37708565187, 37708853965, 37708986331), six contexts per run, per-job durations, observed Windows median 77 seconds and aggregate job-seconds median 197. The source is historical GitHub run metadata, not a billed charge or causal speed claim.",
       "id": "SW2-24-R1",
       "requirement": "A traceable exact-SHA baseline records durations of all six permanent CI contexts, per-step critical path, and both observed wall time and aggregate job-seconds over at least three completed prior successful runs.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
-      "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
+      "evidence": "PASS: isolated fixture inventory audited in scripts/selftest_schema_toolchain.py, scripts/selftest_historical_evidence.py, scripts/selftest_public_docs.py, scripts/selftest_project_truth_compiler.py, scripts/selftest_release_preflight.py, scripts/selftest_analyzer_contract.py and scripts/selftest_consumer_finalize.py; all use temp fixtures and no shared root mutations. .github/scripts/validate_ci_parallel_contract.py statically enforces 10 original commands, seven named groups, Ubuntu serial fallback, Windows bounded dispatch and untouched STRICT/verify. Negative tamper and missing-test selftests succeeded in GitHub runner 37710069327; parallel execution is not yet final cross-platform acceptance.",
       "id": "SW2-24-R2",
       "requirement": "Independent self-test groups are specified conservatively; their complete original test inventory remains mandatory and any conflicts or unknown independence fail closed to serial execution rather than dropping tests.",
-      "status": "NOT_PROVEN"
+      "status": "PASS"
     },
     {
       "evidence": "NOT_PROVEN: SW2-24 phase-open only, no final evidence.",
@@ -58,7 +58,7 @@
   "schema_version": 1,
   "sequence_mode": "DURING",
   "sequence_session": "SW2-24-GOVERNANCE",
-  "sequence_sync_status": "NOT_PROVEN",
+  "sequence_sync_status": "PASS",
   "test_commands": [
     "python scripts/selftest_governance_engine.py",
     "python scripts/selftest_performance_budget.py",
@@ -72,7 +72,7 @@
     "DOC_READABILITY": "PASS",
     "DOC_SOURCE_TRACEABILITY": "NOT_PROVEN",
     "DOC_TEST_TRACEABILITY": "NOT_PROVEN",
-    "HUMAN_COMPREHENSION": "NOT_PROVEN",
+    "HUMAN_COMPREHENSION": "PASS",
     "PROJECT_DOCS_NORMALIZED": "PASS",
     "PROJECT_DOCS_SYNC": "PASS",
     "PROJECT_STATE_SYNC": "NOT_PROVEN",
@@ -81,7 +81,7 @@
     "ROADMAP_SYNC": "PASS",
     "RUNTIME_E2E": "NOT_APPLICABLE",
     "SEMANTIC_SYNC": "NOT_PROVEN",
-    "SEQUENCE_SYNC": "NOT_PROVEN",
+    "SEQUENCE_SYNC": "PASS",
     "SOURCE_TESTS": "NOT_PROVEN",
     "STRUCTURAL_SYNC": "NOT_PROVEN",
     "TEST_RUNTIME_TRACEABILITY": "NOT_APPLICABLE"
