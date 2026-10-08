@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "session_id": "SW2-26-GOVERNANCE",
+  "phase": "SW2-26",
+  "scope": "CURRENT",
+  "status": "IN_PROGRESS",
+  "mode": "DURING",
+  "critical": true,
+  "implementation_base_sha": "1344108d314f880f4a2e5bf31eb5323285ea0484",
+  "evidence_boundary": "Static source graph depicts SW2-25 deterministic ZIP plus detached publisher verification; it cannot prove a real GitHub attestation, unforgeability, current trust roots or release approval. GitHub exact-SHA evidence is separately required.",
+  "actual": {
+    "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.actual.json",
+    "diagram": "docs/sequence/generated/SW2-26-GOVERNANCE.actual.mmd",
+    "source_digest": "",
+    "entries": [
+      ".github/scripts/release_bundle.py::build",
+      ".github/scripts/release_bundle.py::verify",
+      ".github/scripts/publisher_provenance.py::verify",
+      ".github/scripts/publisher_provenance.py::verify_subject"
+    ]
+  },
+  "human_view": {
+    "graph": "docs/sequence/generated/SW2-26-GOVERNANCE.human.json",
+    "diagram": "docs/sequence/generated/SW2-26-GOVERNANCE.human.mmd",
+    "document": "docs/sequence/views/SW2-26-GOVERNANCE.md",
+    "granularity": "module",
+    "policy_id": "module-collapse-v1",
+    "source_digest": ""
+  },
+  "plan": {
+    "required": false,
+    "contract": "",
+    "diagram": "",
+    "sha256": "",
+    "frozen": false,
+    "frozen_commit": ""
+  },
+  "runtime_trace": {
+    "required": false,
+    "graph": ""
+  },
+  "acceptance_report": "artifacts/sequence/SW2-26-GOVERNANCE.acceptance.json",
+  "tests": [
+    ".github/scripts/selftest_publisher_provenance.py",
+    ".github/scripts/selftest_release_bundle.py",
+    ".github/scripts/selftest_release_bundle_ci.py"
+  ]
+}

@@ -56,7 +56,7 @@
   "runtime_checks": [],
   "runtime_status": "NOT_APPLICABLE",
   "schema_version": 1,
-  "sequence_mode": "BEFORE",
+  "sequence_mode": "DURING",
   "sequence_session": "SW2-26-GOVERNANCE",
   "sequence_sync_status": "NOT_PROVEN",
   "test_commands": [
