@@ -295,7 +295,9 @@ def main()->int:
         else:
             report=verify(Path(args.bundle),Path(args.manifest))
             print("BUNDLE_VERIFY=PASS")
-        print("BUNDLE_REPORT_JSON="+json.dumps(report,sort_keys=True,separators=(",",":")))
+        summary={k:report[k] for k in ("archive_sha256","source_git_sha","publication_authority","consumer_toolchain_digest","archive_size") if k in report}
+        summary["file_count"]=len(report["files"]) if "files" in report else report.get("file_count",0)
+        print("BUNDLE_REPORT_JSON="+json.dumps(summary,sort_keys=True,separators=(",",":")))
         return 0
     except (BundleError,ValueError) as exc:
         print("BUNDLE_RESULT=FAIL")
