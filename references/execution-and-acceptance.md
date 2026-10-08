@@ -563,3 +563,17 @@ generated documentation is enabled, affected projections/contracts are current, 
 tested SHA is known, and evidence boundary is explicit.
 
 A handoff is DONE only when the next room can continue safely without reconstructing authority from old chat messages.
+
+## Consumer-owned finalize (SW2-23)
+
+The producer `scripts/governance_engine.py --mode finalize` is the Skill Workflow repository's own acceptance DAG. Its producer-only `scripts/selftest_*` dependencies must **not** be assumed to exist in a consumer repository. Consumer acceptance uses the vendored `.workflow/tools/finalize_consumer.py` entrypoint against the consumer's committed snapshot:
+
+```bash
+python .workflow/tools/finalize_consumer.py --root . \
+  --base <EXACT_ACCEPTED_ANCESTOR_SHA> \
+  --expected-head <EXACT_CONSUMER_HEAD_SHA>
+```
+
+The consumer finalizer requires a clean Git worktree and exact HEAD, a verifiable accepted-base ancestor, v1 `.workflow/acceptance.json::test_commands` containing at least one recognized source-test invocation, and all required project-local validators. It executes the declared source tests again (without a shell), rejects command substitution/pipelines/inline Python execution, rejects zero-test `unittest` success, verifies an unchanged clean HEAD after each gate, and runs the full toolchain, documentation, human comprehension, sequence, handoff, cross-document, and Project Truth validators. Missing commands, malformed authority, missing validators, test failures, modified source, or unsupported profiles remain FAIL. Do **not** replace a consumer source test with producer self-tests or silently copy producer-only scripts into a consumer.
+
+For an external audit artifact, pass `--report <PATH_OUTSIDE_CONSUMER>`; the command produces machine-readable first-failed-gate evidence without writing inside the tested consumer. A `CONSUMER_FINALIZE=PASS` proves only the tests and validators actually executed on that exact consumer commit. It does **not** re-prove historical runtime/device E2E, the consumer's external CI, or publication/merge authority. Retain the producer's own complete selftests and exact six-context final CI separately.
