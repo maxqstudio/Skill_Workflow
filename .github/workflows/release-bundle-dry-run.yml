@@ -20,6 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       PYTHONDONTWRITEBYTECODE: "1"
+      EXPECTED_SHA: ${{ inputs.candidate_sha || github.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +29,8 @@ jobs:
       - name: Prove exact requested SHA
         shell: bash
         run: |
-          test "$(git rev-parse HEAD)" = "${{ inputs.candidate_sha || github.sha }}"
+          [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
       - name: Run deterministic and hostile-fixture regressions
         run: python .github/scripts/selftest_release_bundle.py
       - name: Build and detached-verify read-only package
@@ -36,7 +38,7 @@ jobs:
         run: |
           python .github/scripts/release_bundle.py build \
             --root . \
-            --expected-head "${{ inputs.candidate_sha || github.sha }}" \
+            --expected-head "$EXPECTED_SHA" \
             --bundle "${{ runner.temp }}/bundle.zip" \
             --manifest "${{ runner.temp }}/manifest.json"
           python .github/scripts/release_bundle.py verify \
@@ -56,6 +58,8 @@ jobs:
     name: Dry-run bundle cross-OS byte identity
     needs: build
     runs-on: ubuntu-latest
+    env:
+      EXPECTED_SHA: ${{ inputs.candidate_sha || github.sha }}
     steps:
       - name: Download both exact-head artifacts
         uses: actions/download-artifact@v4
@@ -82,7 +86,7 @@ jobs:
           data=json.loads((a/"manifest.json").read_text(encoding="utf-8"))
           assert data["publication_authority"] is False
           assert data["offline_source_git_identity"]=="NOT_PROVEN"
-          assert data["source_git_sha"]=="${{ inputs.candidate_sha || github.sha }}"
+          assert data["source_git_sha"]==os.environ["EXPECTED_SHA"]
           print("CROSS_OS_BUNDLE_EXACT_BYTES=PASS")
           print("BUNDLE_PUBLICATION_AUTHORITY=false")
           PY
